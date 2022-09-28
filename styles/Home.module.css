@@ -127,3 +127,12 @@
     filter: invert(1);
   }
 }
+.selectBet{
+  max-width:200px
+}
+
+.dateBox{
+  border: 2px solid red;
+  padding: 10px;
+  border-radius: 50px 20px;
+}

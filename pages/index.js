@@ -12,16 +12,18 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        {/* <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        </h1> */}
 
       <div className='card container'>
           <div className="card-header" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-           <img src="img/delete.png" style={{width:'20px'}}></img>
-           <div className='d-flex flex-column' >
-             <b>Sushil</b>
-             <span>Credit: <b>2600 VND</b></span> 
+           <div className='d-flex'>
+            <img src="img/delete.png" style={{width:'48px'}}></img>
+            <div className='d-flex flex-column px-3' >
+              <b>Sushil</b>
+              <span>Credit: <b>2600 VND</b></span> 
+            </div>
            </div>
           <div>
             <p href="#" className="card-link">Transaction History</p>
@@ -29,6 +31,57 @@ export default function Home() {
           </div>
          
       </div>
+      <div className='d-flex justify-content-center'>
+        <img className={styles.selectBet} src="img/Red_3d.png"></img>
+        <img className={styles.selectBet} src="img/Yellow_4d.png"></img>
+      </div>
+
+      <form className='row container'>
+        <div className="form-check form-check-inline col" style={{border: '2px solid red', padding: '30px', borderRadius: '50px 0px'}}>
+          <input  className="form-check-input" type="radio" id="option1"/>
+          <label className='d-flex flex-column'>
+                <b>Tuesday</b>
+                <span>20 Sep 2022</span> 
+          </label>
+          <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
+          <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
+          <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+        </div>
+        <div className="form-check form-check-inline col" style={{border: '2px solid red', padding: '30px', borderRadius: '50px 0px'}}>
+          <input  className="form-check-input" type="radio" id="option2"/>
+          <label className='d-flex flex-column'>
+                <b>Tuesday</b>
+                <span>20 Sep 2022</span> 
+          </label>
+          <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
+          <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
+          <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+        </div>
+        <div className="form-check form-check-inline col" style={{border: '2px solid red', padding: '30px', borderRadius: '50px 0px'}}>
+          <input  className="form-check-input" type="radio" id="option3"/>
+          <label className='d-flex flex-column'>
+                <b>Tuesday</b>
+                <span>20 Sep 2022</span> 
+          </label>
+          <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
+          <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
+          <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+        </div>
+        <div className="form-check form-check-inline col" style={{border: '2px solid red', padding: '30px', borderRadius: '50px 0px'}}>
+          <input  className="form-check-input" type="radio" id="option4"/>
+          <label className='d-flex flex-column'>
+                <b>Tuesday</b>
+                <span>20 Sep 2022</span> 
+          </label>
+          <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
+          <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
+          <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+        </div>
+      </form>
+
+        <table>
+          
+        </table>
 
       </main>
 
