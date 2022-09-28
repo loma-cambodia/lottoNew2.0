@@ -13,6 +13,33 @@ export default function Home() {
 {/* TEST */}
 {/* TEST */}
 {/* TEST */}
+<nav class="navbar navbar-expand-lg bg-light fixed-top">
+        <div class="container-fluid">
+          <a class="navba`r-brand" href="#">
+          <img src="img/ML.png"  width="150" height="74" ></img>
+          </a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Bettting</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">History</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Results</a>
+              </li>
+            </ul>
+            <span class="navbar-text">
+        Navbar text with an inline element
+      </span>
+
+          </div>
+        </div>
+      </nav>
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.j!s!</a>
