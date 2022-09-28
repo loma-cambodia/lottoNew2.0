@@ -25,8 +25,6 @@ export default function Home() {
            <div className='d-flex flex-column' >
              <b>Sushil</b>
              <span>Credit: <b>2600 VND</b></span> 
-
-
              
            </div>
           <div>
