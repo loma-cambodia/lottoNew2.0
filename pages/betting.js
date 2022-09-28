@@ -2,8 +2,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
+
 
 const Betting = () => {
+
+  useEffect(() => {
+    // Update the document title using the browser API
+  //  document.title = `You clicked ${count} times`;
+  console.log('11111111');
+  },[]);
 
 return(
     <div className={styles.container}>
