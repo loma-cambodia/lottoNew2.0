@@ -16,49 +16,20 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <div className="">
-          <b>Sushil</b>
-          <span>Credit:</span> <b>2600 VND</b>
-        </div>
-<div>
-  <a>Transaction History</a>
-</div>
-<div className="d-flex 
-justify-content-center align-items-center">
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        Launch demo modal
-      </button>
-
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Modal title
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">...</div>
+      <div className='card container'>
+          <div className="card-header" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+           <img src="img/delete.png" style={{width:'20px'}}></img>
+           <div className='d-flex flex-column' >
+             <b>Sushil</b>
+             <span>Credit: <b>2600 VND</b></span> 
+           </div>
+          <div>
+            <p href="#" className="card-link">Transaction History</p>
           </div>
-        </div>
+          </div>
+         
       </div>
-    </div>
+
       </main>
 
       <footer className={styles.footer}>
