@@ -67,8 +67,13 @@ export default function Home() {
       </nav>
       
       <main className={styles.main}>
-
-      <div className='card container'>
+      <div className='container' style={{backgroundImage: 'url(/lottoNew2.0/public/img/LOGO\ MALAYSIA\ BACK-01.png);'
+}}>
+        <div className='row text-center'>
+        <h3>BETTING</h3>
+        </div>
+      </div>
+      {/* <div className='card container'>
           <div className="card-header" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
            <img src="img/delete.png" style={{width:'20px'}}></img>
            <div className='d-flex flex-column' >
@@ -81,7 +86,7 @@ export default function Home() {
           </div>
           </div>
          
-      </div>
+      </div> */}
 
       </main>
 

@@ -19,14 +19,13 @@
   display: flex;
   flex: 1;
   padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid #272525;
   justify-content: center;
   align-items: center;
   background-image: url('/lottoNew2.0/public/img/hero-building.png');
 }
-.divBackground { 
-  background-color: rebeccapurple;
-  background-image: url('/lottoNew2.0/public/img/hero-building.png');
+.bgImage {
+  background-image: url('/lottoNew2.0/public/img/LOGO\ MALAYSIA\ BACK-01.png');
 }
 .footer a {
   display: flex;
