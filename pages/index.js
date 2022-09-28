@@ -12,35 +12,54 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <nav class="navbar navbar-expand-lg"> 
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+      <nav className="navbar navbar-expand-lg justify-content-center"> 
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
           <img src="img/LOGO MALAYSIA BACK-01.png"  width="150" height="74" ></img>
           </a>
-          <div class="collapse navbar-collapse" id="navbarNav" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Home</a>
+          <div className="collapse navbar-collapse" id="navbarNav" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link" aria-current="page" href="#">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Bettting</a>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Bettting</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">History</a>
+              <li className="nav-item">
+                <a className="nav-link" href="#">History</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link">Results</a>
+              <li className="nav-item">
+                <a className="nav-link">Results</a>
               </li>
             </ul>
           </div>
-          <div class="collapse navbar-collapse" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-            <ul class="navbar-nav">
-              
-              <li class="nav-item">
-                <a class="nav-link" href="#">John_0786</a>
+          <div className=" navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav flex-row d-none d-md-flex " >
+              <li className="nav-item">
+                <a className="nav-link">
+                  John_0786
+                  <br/>
+                  102,84665.00 <button className="btn btn-warning btn-sm rounded-pill">VND</button>
+                  </a>
               </li>
-              <li class="nav-item">
-                <button class="btn btn-warning my-2 my-sm-0">PLAY LOTTERY</button>
+            </ul>
+          </div>
+          <div className=" navbar-nav me-auto mb-2 mb-lg-0">
+            
+            <form class="form-inline my-2 my-lg-0">
+                <button className="btn btn-warning  form-control mr-sm-2">PLAY LOTTERY</button>
+            </form>
+            <ul className='navbar-nav  '>
+                 <li className='nav-item'>
+                <a className='nav-link'><img
+            src="img/photo_2022-09-28 16.33.50.jpeg"
+            className="rounded-circle"
+            height="20"
+            loading="lazy"
+          /></a>
+              </li>
+              <li className='nav-item'>
+                <a className='nav-link'>ENG</a>
               </li>
             </ul>
           </div>
@@ -48,6 +67,7 @@ export default function Home() {
       </nav>
       
       <main className={styles.main}>
+
       <div className='card container'>
           <div className="card-header" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
            <img src="img/delete.png" style={{width:'20px'}}></img>

@@ -24,7 +24,10 @@
   align-items: center;
   background-image: url('/lottoNew2.0/public/img/hero-building.png');
 }
-
+.divBackground { 
+  background-color: rebeccapurple;
+  background-image: url('/lottoNew2.0/public/img/hero-building.png');
+}
 .footer a {
   display: flex;
   justify-content: center;
