@@ -1,21 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css';
+// import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import React, { useState } from "react";
-
-
-
 import Footer from '../components/common/footer';
 import Header from '../components/common/header';
 import HomeSlider from '../components/home/homeSlider';
 import Announcement from '../components/home/announcement';
-
 import PayoutSection from '../components/home/payoutSection';
 import GamePlayPrize from '../components/home/gamePlayPrize';
 import HowToPlay from '../components/home/howToPlay';
-
-
 
 export default function Home() {
   const [active, setActive] = useState(false)
