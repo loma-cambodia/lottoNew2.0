@@ -228,25 +228,24 @@ export default function Home() {
       <footer className={styles.footer}>
       <div className="container-fluid">
       <div className="row">
-      <div className="col" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+      <div className="col-4" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
         <img src="img/ML.png" className='' width="150" height="74"/>
         </div>
-        <div className="col" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}> 
-          <ul className="nav col-md-4 justify-content-end">
+        <div className="col-8 d-flex flex-column align-items-end" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}> 
+          <ul className="nav col-md-8 justify-content-end">
             <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Home</a></li>
             <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Betting</a></li>
             <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">History</a></li>
             <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Results</a></li>
             <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Play Lottery</a></li>
+            <br></br>
+            <p className="">
+          Copyright© 2022. AllRight Reserved By PokLotto
+          </p>
           </ul>
         </div>
       </div>
-      <div class="row">
-        <div class="col-8"></div>
-        <div class="col-4"><p className="justify-content-end">
-          Copyright© 2022. AllRight Reserved By PokLotto
-          </p></div>
-      </div>
+      
       </div>
       </footer>
       
