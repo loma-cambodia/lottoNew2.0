@@ -2,8 +2,30 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
+import {speedUp,getUsers} from '../store/actions/index';
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Betting = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Update the document title using the browser API
+  //  document.title = `You clicked ${count} times`;
+  console.log('11111111');
+  //dispatch(speedUp({}));
+  dispatch(getUsers());
+
+  },[dispatch]);
+
+
+
+  let users = useSelector(state => state.users);
+  let state = useSelector(state => state);
+
+  console.log('users:', users);
+  console.log('state:', state)
 
 return(
     <div className={styles.container}>
