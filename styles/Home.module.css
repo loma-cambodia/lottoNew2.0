@@ -5,9 +5,25 @@
 .navbar {
   text-align: center;
 }
+.banner {
+  text-align: center;
+  padding: 1rem 0;
+  display: flex;
+  flex: 1;
+  width: 100%;
+  background:url(/img/hero-building.png), linear-gradient(
+    rgba(159, 16, 76, 0.80), 
+    rgba(157, 24, 80, 0.80)
+  );
+  background-size: 100% 110px;
+  background-repeat:  no-repeat;
+}
+
+
+
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
+  padding: 1rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -18,15 +34,25 @@
 .footer {
   display: flex;
   flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #272525;
+  opacity: 1;
+  padding: 1rem 0;
   justify-content: center;
   align-items: center;
-  background-image: url('/lottoNew2.0/public/img/hero-building.png');
+  background:url(/img/hero-building.png), linear-gradient(
+    rgba(61, 53, 56, 0.739), 
+    rgba(61, 53, 56, 0.739)
+  );
+  background-size: 100% 130px;
+  background-repeat:  no-repeat;
 }
-.bgImage {
-  background-image: url('/lottoNew2.0/public/img/LOGO\ MALAYSIA\ BACK-01.png');
+
+footer.logo {
+  position: absolute;
+  right: 1vmin;
+  bottom: 1vmin;
+  height: calc(100% + 30px);
 }
+
 .footer a {
   display: flex;
   justify-content: center;

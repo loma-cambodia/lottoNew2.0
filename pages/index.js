@@ -45,9 +45,8 @@ export default function Home() {
             </ul>
           </div>
           <div className=" navbar-nav me-auto mb-2 mb-lg-0">
-            
-            <form class="form-inline my-2 my-lg-0">
-                <button className="btn btn-warning  form-control mr-sm-2">PLAY LOTTERY</button>
+            <form className="form-inline my-2 my-lg-0">
+                <button className="btn btn-warning  form-control mr-sm-2 fw-normal">PLAY LOTTERY</button>
             </form>
             <ul className='navbar-nav  '>
                  <li className='nav-item'>
@@ -67,24 +66,18 @@ export default function Home() {
       </nav>
       
       <main className={styles.main}>
-        {/* <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1> */}
+      
+      {/* Banner */}
+      <div className={styles.banner}>
+        <div className='container'>
+        <h3>BETTING</h3>
+        <p className='font-weight-lght'>Home / Betting</p>
+        </div>
+       
+      </div>
+      <div>
 
-      {/* <div className='card container'>
-          <div className="card-header" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-           <div className='d-flex'>
-            <img src="img/delete.png" style={{width:'48px'}}></img>
-            <div className='d-flex flex-column px-3' >
-              <b>Sushil</b>
-              <span>Credit: <b>2600 VND</b></span> 
-            </div>
-           </div>
-          <div>
-            <p href="#" className="card-link">Transaction History</p>
-          </div>
-          </div>
-      </div> */}
+      </div>
 
       <div className='d-flex justify-content-center'>
         <img className={styles.selectBet} src="img/Red_3d.png"></img>
@@ -233,17 +226,30 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/img/hero-building.png" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
+      <div className="container-fluid">
+      <div className="row">
+      <div className="col" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+        <img src="img/ML.png" className='' width="150" height="74"/>
+        </div>
+        <div className="col" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}> 
+          <ul className="nav col-md-4 justify-content-end">
+            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Home</a></li>
+            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Betting</a></li>
+            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">History</a></li>
+            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Results</a></li>
+            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Play Lottery</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4"><p className="justify-content-end">
+          Copyright© 2022. AllRight Reserved By PokLotto
+          </p></div>
+      </div>
+      </div>
       </footer>
+      
     </div>
   )
 }
