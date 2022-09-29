@@ -154,3 +154,41 @@
     justify-content: space-between;
     align-items: center;
 }
+.betTypePick{
+  /* background-color: red;
+  display: inline-block; */
+  /* width: 100px;
+  height: 100px; */
+  border: 1px solid red;
+  border-radius: 20px 0px;
+  max-width: 50px;
+  padding: 20px;
+}
+
+.datePick{
+  border: 2px solid grey; 
+  padding: 30px;
+  border-radius: 50px 0px;
+  margin: 5px 5px;
+}
+#checkboxes label{
+  cursor: pointer;
+}
+
+#checkboxes input[type=checkbox]{
+  display: none;
+}
+
+#checkboxes input[type=checkbox]:checked + .betTypePick{
+  background-color: green;
+}
+
+#checkboxes input[type=checkbox]:checked + .datePicked{
+  /* border-color: #bf2262 ; */
+  color: #bf2262;
+  border-color: #bf2262;
+}
+
+.gamesPicker img{
+  margin: 0px 5px;
+}
