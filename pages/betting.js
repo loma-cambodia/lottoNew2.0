@@ -79,7 +79,7 @@ const Betting = () => {
                   </a>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link'>ENG</a>
+                  <a className='nav-link'>ENG!</a>
                 </li>
               </ul>
             </div>
