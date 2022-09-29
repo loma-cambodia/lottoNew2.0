@@ -24,3 +24,30 @@ a {
     background: black;
   }
 }
+
+
+
+
+
+
+/* for Mobile betting */
+
+.m-top-d-png.container {
+  width: 100%;
+}
+.m-top-d-png-l {
+  width: 45%;
+  float: left;
+}
+.m-top-d-png-r {
+  width: 45%;
+  float: right;
+}
+.m-top-d-png-m {
+  width: 10%;
+  float: left;
+  text-align: center;
+}
+.vr {
+  min-height: 4em !important;
+}
