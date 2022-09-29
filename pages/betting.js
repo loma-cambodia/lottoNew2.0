@@ -10,8 +10,30 @@ import { useDispatch, useSelector } from "react-redux";
 const Betting = () => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
-  const data = {"3d":true, "4d":false}
-  const [initData, setInitData] = useState(data);
+  const [initData, setInitData] = useState(dates);
+
+  const dates = [
+    {
+      "date": new Date('2017-01-03'),
+      "selected": false,
+      "games": {"damacai":false,"magnum":false,"toto":false}
+    },
+    {
+      "date": new Date('2017-01-03'),
+      "selected": false,
+      "games": {"damacai":false,"magnum":false,"toto":false}
+    },
+    {
+      "date": new Date('2017-01-03'),
+      "selected": false,
+      "games": {"damacai":false,"magnum":false,"toto":false}
+    },
+    {
+      "date": new Date('2017-01-03'),
+      "selected": false,
+      "games": {"damacai":false,"magnum":false,"toto":false}
+    }
+  ]
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -107,9 +129,9 @@ const Betting = () => {
 
       <div id={styles.checkboxes} className='row text-center'>
       <div className='col'>
-          <input type="radio" id="3D" name="flexRadioDefault" onChange={() => setInitData(!initData['3d'])} checked={!initData['3d']}/>
+          <input type="radio" id="3D" name="flexRadioDefault" onChange={() => setActive(!active)} checked={!active}/>
           <label for="3D">
-            <img className={styles.selectBet} src={`${!initData['3d'] ? "img/Yellow_3d.png":"img/red_3d.png"}`}></img>
+            <img className={styles.selectBet} src={`${active ? "img/Yellow_3d.png":"img/red_3d.png"}`}></img>
           </label>
       </div>
 
