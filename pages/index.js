@@ -2,8 +2,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
+import React, { useState } from "react";
+
 
 export default function Home() {
+  const [active, setActive] = useState(false)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -86,9 +90,16 @@ export default function Home() {
           </div>
       </div> */}
 
-      <div className='d-flex justify-content-center'>
-        <img className={styles.selectBet} src="img/Red_3d.png"></img>
-        <img className={styles.selectBet} src="img/Yellow_4d.png"></img>
+      <div id={styles.checkboxes} className='d-flex justify-content-center'>
+        <input type="radio" id="3D" name="flexRadioDefault" onChange={() => setActive(!active)} checked={!active}/>
+        <label for="3D">
+          <img className={styles.selectBet} src={`${active ? "img/Yellow_3d.png":"img/red_3d.png"}`}></img>
+        </label>
+
+        <input type="radio" id="4D" name="flexRadioDefault" onChange={() => setActive(!active)}/>
+        <label for="4D">
+          <img className={styles.selectBet} src={`${!active ? "img/Yellow_4d.png":"img/red_4d.png"}`}></img>
+        </label>
       </div>
 
       <form className='row container' id={styles.checkboxes}>
@@ -98,11 +109,20 @@ export default function Home() {
                     <b>Tuesday</b>
                     <span>20 Sep 2022</span> 
             </label>
-        <div className={styles.gamesPicker}>
-              <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
-              <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
-              <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
-        </div>
+          <div className={`${styles.gamesPicker} ${styles.checkboxes}`}>
+              <input type="checkbox" id="damacai" />
+              <label className={styles.gamesPicked} for="damacai">
+                <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
+              </label>
+              <input type="checkbox" id="magnum" />
+              <label className={styles.gamesPicked} for="magnum">
+                  <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
+                </label>
+              <input type="checkbox" id="toto" />
+              <label className={styles.gamesPicked} for="toto">
+                  <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+                </label>
+          </div>
         </div>
         <div className={`${styles.datePick} col`} >
             <input  className="form-check-input" name='bet_date' type="checkbox" id="option2"/>
@@ -110,9 +130,20 @@ export default function Home() {
                     <b>Tuesday</b>
                     <span>20 Sep 2022</span> 
             </label>
-              <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
-              <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
-              <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+            <div className={`${styles.gamesPicker} ${styles.checkboxes}`}>
+              <input type="checkbox" id="damacai1" />
+              <label className={styles.gamesPicked} for="damacai1">
+                <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
+              </label>
+              <input type="checkbox" id="magnum1" />
+              <label className={styles.gamesPicked} for="magnum1">
+                  <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
+                </label>
+              <input type="checkbox" id="toto1" />
+              <label className={styles.gamesPicked} for="toto1">
+                  <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+                </label>
+          </div>
         </div>
         <div className={`${styles.datePick} col`} >
             <input  className="form-check-input" name='bet_date' type="checkbox" id="option3"/>
@@ -120,9 +151,20 @@ export default function Home() {
                     <b>Tuesday</b>
                     <span>20 Sep 2022</span> 
             </label>
-              <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
-              <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
-              <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+            <div className={`${styles.gamesPicker} ${styles.checkboxes}`}>
+              <input type="checkbox" id="damacai2" />
+              <label className={styles.gamesPicked} for="damacai2">
+                <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
+              </label>
+              <input type="checkbox" id="magnum2" />
+              <label className={styles.gamesPicked} for="magnum2">
+                  <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
+                </label>
+              <input type="checkbox" id="toto2" />
+              <label className={styles.gamesPicked} for="toto2">
+                  <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+                </label>
+          </div>
         </div>
         <div className={`${styles.datePick} col`} >
             <input  className="form-check-input" name='bet_date' type="checkbox" id="option4"/>
@@ -130,9 +172,20 @@ export default function Home() {
                     <b>Tuesday</b>
                     <span>20 Sep 2022</span> 
             </label>
-              <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
-              <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
-              <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+            <div className={`${styles.gamesPicker} ${styles.checkboxes}`}>
+              <input type="checkbox" id="damacai3" />
+              <label className={styles.gamesPicked} for="damacai3">
+                <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
+              </label>
+              <input type="checkbox" id="magnum3" />
+              <label className={styles.gamesPicked} for="magnum3">
+                  <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
+                </label>
+              <input type="checkbox" id="toto3" />
+              <label className={styles.gamesPicked} for="toto3">
+                  <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+                </label>
+          </div>
         </div>
       </form>
 
@@ -155,23 +208,15 @@ export default function Home() {
                 </div>
              </th>
              <td>
-               <input className='form-control' type="text" style={{border: '1px solid red', borderRadius: '20px 0px'}}/>
+               <input className={`${styles.betTextBox} form-control`} type="text"/>
              </td>
              <td>
-               <input className='form-control' type="text" style={{border: '1px solid red', borderRadius: '20px 0px'}}/>
+               <input className={`${styles.betTextBox} form-control`} type="text" />
              </td>
              <td>
-               <input className='form-control' type="text" style={{border: '1px solid red', borderRadius: '20px 0px'}}/>
+               <input className={`${styles.betTextBox} form-control`} type="text"/>
              </td>
-             <td className='' id={styles.checkboxes}>
-               {/* <input className="form-check-input form-check-inline col" type="checkbox" id="B" style={{border: '1px solid red', padding: '20px', borderRadius: '20px 0px', maxWidth:"50px"}}>
-               </input>
-               <input className="form-check-input form-check-inline col" type="checkbox" id="I" style={{border: '1px solid red', padding: '20px', borderRadius: '20px 0px', maxWidth:"50px"}}>
-               </input>
-               <input className="form-check-input form-check-inline col" type="checkbox" id="R" style={{border: '1px solid red', padding: '20px', borderRadius: '20px 0px', maxWidth:"50px"}}>
-               </input> */}
-
-              
+             <td className='d-flex' id={styles.checkboxes}>              
                   <input type="checkbox" name="rGroup" value="1" id="r1"/>
                   <label className={`${styles.betTypePick} form-check-input form-check-inline col text-center`} for="r1">B</label>
                
@@ -183,38 +228,7 @@ export default function Home() {
                     
              </td>
              <td>
-                 <input className='form-control' type="text" style={{border: '1px solid red', borderRadius: '20px 0px'}}/>
-             </td>
-             <td>
-               <img style={{maxWidth:'30px'}} src="img/delete.png"></img>
-             </td>
-           </tr>
-           <tr>
-             <th>
-              {/* <div className={`${styles.betTableNumber} form-check form-check-inline col`}> */}
-              <div className={styles.betTableNumber}>
-                2
-              </div>
-             </th>
-             <td>
-               <input className='form-control' type="text" style={{border: '1px solid red', borderRadius: '20px 0px'}}/>
-             </td>
-             <td>
-               <input className='form-control' type="text" style={{border: '1px solid red', borderRadius: '20px 0px'}}/>
-             </td>
-             <td>
-               <input className='form-control' type="text" style={{border: '1px solid red', borderRadius: '20px 0px'}}/>
-             </td>
-             <td >
-              <input className="form-check-input form-check-inline col" type="checkbox" id="B" style={{border: '1px solid red', padding: '20px', borderRadius: '20px 0px', maxWidth:"50px"}}>
-               </input>
-               <input className="form-check-input form-check-inline col" type="checkbox" id="I" style={{border: '1px solid red', padding: '20px', borderRadius: '20px 0px', maxWidth:"50px"}}>
-               </input>
-               <input className="form-check-input form-check-inline col" type="checkbox" id="R" style={{border: '1px solid red', padding: '20px', borderRadius: '20px 0px', maxWidth:"50px"}}>
-               </input>
-             </td>
-             <td>
-                 <input className='form-control' type="text" style={{border: '1px solid red', borderRadius: '20px 0px'}}/>
+                 <input className={`${styles.betTextBox} form-control`} type="text"/>
              </td>
              <td>
                <img style={{maxWidth:'30px'}} src="img/delete.png"></img>
