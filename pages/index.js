@@ -4,6 +4,10 @@ import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import React, { useState } from "react";
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+import Marquee from "react-fast-marquee";
+
 
 export default function Home() {
   const [active, setActive] = useState(false)
@@ -83,9 +87,10 @@ export default function Home() {
 {/*--Mobile Menu-*/}
 
   {/*--Slider-*/}
-  <section className="slider">
-    <div className="owl-carousel owl-theme hero-slider">
-        <div className="item">
+
+
+  <Carousel>
+  <div className="item">
             <div className="hero-slider-special-draw">
                 <div className="container">
                     <div className="row align-items-center">
@@ -157,8 +162,83 @@ export default function Home() {
                 </div>
             </div>
         </div>
-    </div>
-  </section>
+              </Carousel>
+  {/* <section className="slider">
+    <div className="owl-carousel owl-theme hero-slider"> */}
+        {/* <div className="item">
+            <div className="hero-slider-special-draw">
+                <div className="container">
+                    <div className="row align-items-center">
+                        <div className="col-md-5 col-sm-5 col-6">
+                            <div className="sd-text-part">
+                                <p className="text-uppercase">CONTEST FOR YOUR CHANCE TO</p>
+                                <div className="d-inline-flex align-items-center mb-4">
+                                    <div className="logo-draw">
+                                        <div className="draw-logo-div">
+                                            <div className="draw-logo-img">
+                                                <img src="assets/images/1659581469.png" className="img-fluid" alt=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="draw-name">
+                                        SPECIAL<br/>DRAW
+                                    </div>
+                                </div>
+                                <div className="date-block">
+                                    <a href="#">27TH September (TUE)</a>
+                                </div>
+                                <p className="small">Don't miss your chance. Will you be our next</p>
+                                <h3>lucky winner?</h3>
+                                <div className="clearfix my-3">
+                                    <a href="#" className="btn-yellow rounded-full">Start Playing Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-7 col-sm-7 pt-5 hide-575">
+                            <img src="assets/images/special-draw-img.png" className="img-fluid" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> */}
+        {/* <div className="item">
+            <div className="hero-slider-special-draw">
+                <div className="container">
+                    <div className="row align-items-center">
+                        <div className="col-md-5 col-sm-5">
+                            <div className="sd-text-part">
+                                <p className="text-uppercase">CONTEST FOR YOUR CHANCE TO sdfksdjflksdf</p>
+                                <div className="d-inline-flex align-items-center mb-4">
+                                    <div className="logo-draw">
+                                        <div className="draw-logo-div">
+                                            <div className="draw-logo-img">
+                                                <img src="assets/images/1659581469.png" className="img-fluid" alt=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="draw-name">
+                                        SPECIAL<br/>DRAW
+                                    </div>
+                                </div>
+                                <div className="date-block">
+                                    <a href="#">27TH September (TUE)</a>
+                                </div>
+                                <p className="small">Don't miss your chance. Will you be our next</p>
+                                <h3>lucky winner?</h3>
+                                <div className="clearfix">
+                                    <a href="#" className="btn-yellow rounded-full">Start Playing Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-7 col-sm-7 pt-5 hide-575 col-6">                            
+                            <img src="assets/images/special-draw-img.png" className="img-fluid" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> */}
+    {/* </div>
+  </section> */}
   {/*--Slider--*/}
   {/*--Announcement--*/}
   <section className="announcement">
@@ -171,14 +251,23 @@ export default function Home() {
                 </div>
             </div>
             <div className="marque-div">
-                <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+            <Marquee pauseOnHover={true} speed={80}>
+            <ul className="list-inline">
+                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
+                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
+                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
+                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
+                    </ul>
+            
+            </Marquee>
+                {/* <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
                     <ul className="list-inline">
                         <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
                         <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
                         <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
                         <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
                     </ul>
-                </marquee>
+                </marquee> */}
             </div>
         </div>
     </div>
@@ -703,13 +792,14 @@ export default function Home() {
                             <div className="logo-gp-prize">
                                 <div className="logo-gp-prize-outer">
                                     <div className="logo-gp-prize-inner">
-                                        <img src="assets/images/icons/damacai.png" alt="" className="img-icon-prize"/>
+                                        <img  src="assets/images/icons/damacai.png" alt="" className="img-icon-prize"/>
                                     </div>
                                 </div>
                             </div>
                             <div className="name-lottery">
                                 <p className="fw-bold">DA MA CAI</p>
                                 <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p>
+                                
                             </div>
                             <div className="gp-prize-play-btn ms-auto">
                                 <a href="#" className="">Play Now</a>
@@ -749,6 +839,7 @@ export default function Home() {
                         </div>
                         <div className="s-and-c">
                             <table className="table-custom">
+                            <tbody>
                                 <tr>
                                     <td colspan="5" className="border-bottom border-light">Special</td>
                                 </tr>
@@ -766,10 +857,12 @@ export default function Home() {
                                     <td className="border-bottom border-light">87537</td>
                                     <td className="border-bottom border-light">87537</td>
                                 </tr>
+                              </tbody>  
                             </table>
                         </div>
-                        <div className="s-and-c">
+                         <div className="s-and-c">
                             <table className="table-custom">
+                            <tbody>
                                 <tr>
                                     <td colspan="5" className="border-bottom border-light">Consolation</td>
                                 </tr>
@@ -787,6 +880,7 @@ export default function Home() {
                                     <td className="border-bottom border-light">87537</td>
                                     <td className="border-bottom border-light">87537</td>
                                 </tr>
+                              </tbody>  
                             </table>
                         </div>
                     </div>
@@ -806,6 +900,7 @@ export default function Home() {
                             <div className="name-lottery">
                                 <p className="fw-bold">MAGNUM</p>
                                 <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p>
+                               
                             </div>
                             <div className="gp-prize-play-btn ms-auto">
                                 <a href="#" className="">Play Now</a>
@@ -845,6 +940,7 @@ export default function Home() {
                         </div>
                         <div className="s-and-c">
                             <table className="table-custom">
+                            <tbody>
                                 <tr>
                                     <td colspan="5" className="border-bottom border-light">Special</td>
                                 </tr>
@@ -862,10 +958,12 @@ export default function Home() {
                                     <td className="border-bottom border-light">87537</td>
                                     <td className="border-bottom border-light">87537</td>
                                 </tr>
+                                </tbody>   
                             </table>
                         </div>
                         <div className="s-and-c">
                             <table className="table-custom">
+                            <tbody> 
                                 <tr>
                                     <td colspan="5" className="border-bottom border-light">Consolation</td>
                                 </tr>
@@ -883,6 +981,7 @@ export default function Home() {
                                     <td className="border-bottom border-light">87537</td>
                                     <td className="border-bottom border-light">87537</td>
                                 </tr>
+                                </tbody>  
                             </table>
                         </div>
                     </div>
@@ -901,7 +1000,7 @@ export default function Home() {
                             </div>
                             <div className="name-lottery">
                                 <p className="fw-bold">SPORTS TOTO</p>
-                                <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p>
+                                 <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p> 
                             </div>
                             <div className="gp-prize-play-btn ms-auto">
                                 <a href="#" className="">Play Now</a>
@@ -941,6 +1040,7 @@ export default function Home() {
                         </div>
                         <div className="s-and-c">
                             <table className="table-custom">
+                            <tbody>
                                 <tr>
                                     <td colspan="5" className="border-bottom border-light">Special</td>
                                 </tr>
@@ -958,10 +1058,12 @@ export default function Home() {
                                     <td className="border-bottom border-light">87537</td>
                                     <td className="border-bottom border-light">87537</td>
                                 </tr>
+                                </tbody>    
                             </table>
                         </div>
                         <div className="s-and-c">
                             <table className="table-custom">
+                            <tbody> 
                                 <tr>
                                     <td colspan="5" className="border-bottom border-light">Consolation</td>
                                 </tr>
@@ -979,6 +1081,7 @@ export default function Home() {
                                     <td className="border-bottom border-light">87537</td>
                                     <td className="border-bottom border-light">87537</td>
                                 </tr>
+                                </tbody>   
                             </table>
                         </div>
                     </div>
