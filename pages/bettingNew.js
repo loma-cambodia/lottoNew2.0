@@ -10,7 +10,7 @@ import Announcement from '../components/home/announcement';
 import PayoutSection from '../components/home/payoutSection';
 import GamePlayPrize from '../components/home/gamePlayPrize';
 import HowToPlay from '../components/home/howToPlay';
-
+import Banner from '../components/betting/banner';
 export default function BettingNew() {
   const [active, setActive] = useState(false)
 
@@ -39,7 +39,7 @@ export default function BettingNew() {
  
 
       {/*-Breadcrumb--*/}
-<section className="custom-breadcrumb">
+{/* <section className="custom-breadcrumb">
     <div className="container">
         <div className="breadcrumb-heading">
             <h1>BETTING</h1>
@@ -53,7 +53,8 @@ export default function BettingNew() {
             </ul>
         </div>
     </div>
-</section>
+</section> */}
+    <Banner/>
 {/*--Breadcrumb--*/}
 
 <section className="page-content custom-padding">
