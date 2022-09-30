@@ -230,3 +230,15 @@ footer.logo {
   margin: 5px 5px;
   filter: grayscale(100%);
 }
+
+.error{
+  background:url('/img/error/403.jpg');
+  height: 100vh;
+  background-repeat:no-repeat;
+}
+@media (max-width:767px){
+.errorJpg img{
+  height: 50vh!important;
+  margin-bottom: 120px;
+}
+}

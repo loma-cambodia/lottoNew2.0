@@ -1,30 +1,20 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import styles from '../styles/Home.module.css'
 
 export default function About403() {
 
   return (
-    <div>
+    // <div className={`${styles.error} row`}>
+    <div className='row'>
         <Head>
           <title>Loma Lotto - 403 Access Denied</title>
         </Head>
 
-        <div className="error ">
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-xxl-7 col-xl-8 col-lg-9 col-md-10">
-                        <div className="part-img">
-                        {/* <p>To KK lotto <a className='btn btn-primary text-light'> <Link href="/api/login"> Login </Link> </a> ,
-                         To KK-2 lotto <a className='btn btn-danger text-light'> <Link href="/api/login"> Login </Link></a></p> */}
-                            <img src="img/error/error-access.jpg" alt="" />
+                        <div className={`${styles.errorJpg} col-md-7 col-12 px-0`}>
+                            <img src="img/error/403.jpg" style={{width: '100%',height: '100vh'}} alt="" />
                         </div>
-                        <div className="part-text">      
-                            <div className="section-title">
-                                <h3 className="sub-title">Error 403 Access Denied</h3>
-                                <h2 className="title">The page you’re looking for is now beyond our reach.</h2>
-                            </div>
-                            <p>Let’s get you back in home at <span className="back-time">00:00:05</span> or browse instead <i className="fa-solid fa-arrow-turn-down"></i></p>
-                            <div className="error-page-menu">
+                        {/* <div className="error-page-menu">
                                 <ul>
                                     <li>
                                         <Link href="/">
@@ -47,12 +37,13 @@ export default function About403() {
                                         </Link>
                                     </li>
                                 </ul>
+                            </div> */}
+                        <div className="col-md-5 col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'center', color:'#bf2262'}}>      
+                            <div className="section-title text-center">
+                                <h3 className="sub-title">Error 403 Access Denied</h3>
+                                <span className="title">The page you’re looking for is now beyond our reach.</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
   );
 }
