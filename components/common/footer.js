@@ -16,7 +16,7 @@ const Footer = () => {
                     <ul className="list-inline">
                         <li className="list-inline-item"><Link className="active"  href="/"><a>Home</a></Link></li>
                         <li className="list-inline-item"><Link href="/bettingNew"><a>Betting</a></Link></li>
-                        <li className="list-inline-item"><Link href="#"><a>History</a></Link></li>
+                        <li className="list-inline-item"><Link href="/transaction"><a>History</a></Link></li>
                         <li className="list-inline-item"><Link href="/results"><a>Results</a></Link></li>
                         <li className="list-inline-item"><Link href="#"><a>Play Lottery</a></Link></li>
                     </ul>
