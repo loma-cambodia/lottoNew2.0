@@ -1,4 +1,5 @@
 import Marquee from "react-fast-marquee";
+import Link from "next/link";
 const Banner = () => {
     return (
         <>
@@ -10,10 +11,7 @@ const Banner = () => {
                 </div>
                 <div className="breadcrumb-list">
                     <ul>
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li><span>Betting</span></li>
+                        <li><span>Home / Betting</span></li>
                     </ul>
                 </div>
             </div>
