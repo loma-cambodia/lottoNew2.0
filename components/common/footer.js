@@ -1,4 +1,4 @@
-
+import Link from 'next/link';
 const Footer = () => {
 
   return (
@@ -14,11 +14,11 @@ const Footer = () => {
             <div className="footer-links ms-auto">
                 <div className="clearfix">
                     <ul className="list-inline">
-                        <li className="list-inline-item"><a href="#">Home</a></li>
-                        <li className="list-inline-item"><a href="#">Betting</a></li>
-                        <li className="list-inline-item"><a href="#">History</a></li>
-                        <li className="list-inline-item"><a href="#">Results</a></li>
-                        <li className="list-inline-item"><a href="#">Play Lottery</a></li>
+                        <li className="list-inline-item"><Link className="active"  href="/"><a>Home</a></Link></li>
+                        <li className="list-inline-item"><Link href="/bettingNew"><a>Betting</a></Link></li>
+                        <li className="list-inline-item"><Link href="#"><a>History</a></Link></li>
+                        <li className="list-inline-item"><Link href="#"><a>Results</a></Link></li>
+                        <li className="list-inline-item"><Link href="#"><a>Play Lottery</a></Link></li>
                     </ul>
                 </div>
                 <div className="clearfix my-3">
