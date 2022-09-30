@@ -1,4 +1,5 @@
 
+import Link from 'next/link'
 const Header = () => {
 
     return (
@@ -14,13 +15,16 @@ const Header = () => {
             <div className="desktop-menu me-auto">
                     <ul className="desktop-menu-list">
                       <li>
-                        <a className="active" href="#">Home</a>
+                      <Link className="active"  href="/">Home</Link>
+                        {/* <a className="active" href="#">Home</a> */}
                       </li>
                       <li>
-                        <a  href="#">Betting</a>
+                      <Link href="/bettingNew">Betting</Link>
+                        {/* <a  href="#">Betting</a> */}
                       </li>
                       <li>
-                        <a href="#" >History</a>
+                      <Link href="#">History</Link>
+                        {/* <a href="#" >History</a> */}
                       </li>
                       <li>
                         <a href="#" >Results</a>
