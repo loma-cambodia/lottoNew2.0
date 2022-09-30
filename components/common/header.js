@@ -34,7 +34,7 @@ const Header = () => {
             <div className="right-part-menu">
                 <ul className="right-part-list">
                     <li>
-                        <span className="text-end mb-0 user-details"><span className="user-id">John_0786</span><a href="#" className="reload-icon"><span><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> 102,84665.00 <span className="badge badge-yellow">VND</span></span>
+                        <span className="text-end mb-0 user-details"><span className="user-id text-black" >John_0786</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>102,84665.00</span> <span className="badge badge-yellow text-black">VND</span></span>
                     </li>
                     <li className="hide-650">
                         <a href="#" className="play-lottery-btn">Play Lottery</a>
