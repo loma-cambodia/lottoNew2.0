@@ -808,11 +808,12 @@ section.announcement {
     padding: 15px;
     margin-bottom: 20px;
 }
+
 .unslected {
     border-color: #dddddd;
 }
 .selected {
-    border-color: #bc2263;
+    border: 1px solid #bf2262;
 }
 span.outer-circle-gp {
     width: 35px;

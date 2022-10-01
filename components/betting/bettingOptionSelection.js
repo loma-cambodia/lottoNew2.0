@@ -1,18 +1,50 @@
 import DateAndGameOption from './dateAndGameOption';
 import BettingInputs from './bettingInputs';
+import React, { useState, useEffect } from 'react';
 
 let bettingInputsData = ['01','02','03','04','05','06','07','08','09','10'];
-let dateAndGameOptionData = [1,2,3,4];
+
+
+
+  
 
 
 const BettingOptionSelection = () => {
+    let dateAndGameOptionData = [
+        { 
+          "id": 1,
+          "date": '2017-01-03',
+          "selected": true,
+          "games": {"damacai":false,"magnum":true,"toto":false},
+        },
+        {
+          "id":2,
+          "date": '2017-01-03',
+          "selected": false,
+          "games": {"damacai":true,"magnum":false,"toto":false}
+        },
+        {
+          "id":3,
+          "date": '2017-09-13',
+          "selected": false,
+          "games": {"damacai":false,"magnum":false,"toto":false}
+        },
+        {
+          "id":4,
+          "date": '2017-04-23',
+          "selected": false,
+          "games": {"damacai":false,"magnum":false,"toto":true}
+        }
+      ];
+
+    const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
 
     return(
         <section className="page-content custom-padding">
          <div className="container">
           <div className="row justify-content-center">
 
-          {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item} item={item}/>) )}
+          {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id} item={item} _bettingInitData={bettingInitData} _setBettingInitData={setBettingInitData}/>) )}
               
               
 
