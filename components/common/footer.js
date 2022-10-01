@@ -3,7 +3,7 @@ const Footer = () => {
 
   return (
     <>
-    <section className="footer py-3">
+    <section className="footer py-4">
     <div className="container">
         <div className="footer-row">
             <div className="footer-logo">
