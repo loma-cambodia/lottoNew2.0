@@ -916,7 +916,12 @@ span.outer-circle-gp.selected-gp-btn span.inner-circle-gp img {
     border-radius: 10px 0;
     transition: 0.5s;
   }
-  .btn-custom-small:active, .btn-custom-small:focus, .btn-custom-small:visited, .btn-custom-small:focus-visible, .btn-custom-small:focus-within, .btn-custom-small:hover {
+  .btn-custom-small:active, .btn-custom-small:visited, .btn-custom-small:focus-visible, .btn-custom-small:hover {
+    background-color: #bc2263;
+    color: #fff;
+    box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
+  }
+  .active-bet-type {
     background-color: #bc2263;
     color: #fff;
     box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
