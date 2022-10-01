@@ -231,11 +231,17 @@ footer.logo {
   filter: grayscale(100%);
 }
 
-.error{
-  background:url('/img/error/403.jpg');
-  height: 100vh;
+.errorBg{
+  background-image:url('/img/error/403.jpg');
   background-repeat:no-repeat;
+  min-height: 100vh;            /* fall-back */
+  min-height: -moz-available;
+  min-height: -webkit-fill-available;
+  min-height: fill-available;
 }
+.errorJpg img{
+}
+
 @media (max-width:767px){
 .errorJpg img{
   height: 50vh!important;
