@@ -48,7 +48,8 @@ const Header = () => {
                           </ul>
                     </li>
                     <li className="menu-mobile">
-                        <button className="navbar-toggler" type="button" onclick="openNav()">
+                        {/* <button className="navbar-toggler" type="button" onClick="openNav()"> */}
+                        <button className="navbar-toggler" type="button">
                             <span className="navbar-toggler-icon"></span>
                           </button>
                     </li>
