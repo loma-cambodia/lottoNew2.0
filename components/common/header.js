@@ -40,7 +40,7 @@ const Header = () => {
                         <a href="#" className="play-lottery-btn ">Play Lottery</a>
                     </li>
                     <li className="dropdown">
-                        <a href="#" className="lanugae-selector dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><span className="lang-flag"><img src="assets/images/icons/flag-english.png"/></span> Eng</a>
+                        <a href="#" className="lanugae-selector dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><span className="lang-flag"><img src="assets/images/icons/flag-english.png"/></span> ENG</a>
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                             <li><a className="dropdown-item" href="#">Action</a></li>
                             <li><a className="dropdown-item" href="#">Another action</a></li>
