@@ -10,38 +10,55 @@ import { useDispatch, useSelector } from "react-redux";
 const Betting = () => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
-  const [initData, setInitData] = useState(dates);
+  const [initData, setInitData] = useState([]);
 
   const dates = [
-    {
-      "date": new Date('2017-01-03'),
+    { 
+      "id": 1,
+      "date": '2017-01-03',
       "selected": false,
+      "games": {"damacai":false,"magnum":true,"toto":false}
+    },
+    {
+      "id":2,
+      "date": '2017-01-03',
+      "selected": false,
+      "games": {"damacai":true,"magnum":false,"toto":false}
+    },
+    {
+      "id":3,
+      "date": '2017-09-13',
+      "selected": true,
       "games": {"damacai":false,"magnum":false,"toto":false}
     },
     {
-      "date": new Date('2017-01-03'),
+      "id":4,
+      "date": '2017-04-23',
       "selected": false,
-      "games": {"damacai":false,"magnum":false,"toto":false}
-    },
-    {
-      "date": new Date('2017-01-03'),
-      "selected": false,
-      "games": {"damacai":false,"magnum":false,"toto":false}
-    },
-    {
-      "date": new Date('2017-01-03'),
-      "selected": false,
-      "games": {"damacai":false,"magnum":false,"toto":false}
+      "games": {"damacai":false,"magnum":false,"toto":true}
     }
   ]
 
+  const changeState =(k)=>{
+    const newState = initData.map((day,key) => {
+      if (key === k) {
+      return {  ...day,
+        selected: !day.selected
+      }
+      } else {
+        // Return a new circle 50px below
+        return day
+      }
+    });
+    setInitData(newState)
+  }
   useEffect(() => {
     // Update the document title using the browser API
   //  document.title = `You clicked ${count} times`;
   console.log('11111111');
   //dispatch(speedUp({}));
   dispatch(getUsers());
-
+  setInitData(dates);
   },[dispatch]);
 
 
@@ -126,7 +143,6 @@ const Betting = () => {
       <div>
 
       </div>
-
       <div id={styles.checkboxes} className='row text-center'>
       <div className='col'>
           <input type="radio" id="3D" name="flexRadioDefault" onChange={() => setActive(!active)} checked={!active}/>
@@ -143,8 +159,42 @@ const Betting = () => {
         </div>
       </div>
 
+      {/* <div key={day.id} style={{color:'black'}}>
+                                                            <input type="checkbox" name="dates[]" id={'fordateqqqp' + day.id} value={day.date} style={{ display: 'none' }} />
+                                                            <label style={{ border: '1px solid' }} className="dddate nav-link" id={'main' + day.id} htmlFor={'fordateqqqp' + day.id} >
+                                                                {day.date}
+                                                            </label>
+                                                        </div> */}
+                                                        
       <form className='row container' id={styles.checkboxes}>
-            <input  className="form-check-input" name='bet_date' type="checkbox" id="option1"/>
+      {initData.map((day,i) => {
+                                                    return (
+                                                      <div className='col' key={day.id}>
+                                                      <input  className="form-check-input" name='bet_date' type="checkbox" id={day.id} onChange={() =>changeState(i)} checked={day.selected}/>
+            <label className={`${styles.datePick} form-check form-check-inline d-flex flex-column`} for={day.id}>
+                    <b>{day.id} Tuesday</b>
+                    <span>{day.date}</span> 
+            <div className={`${styles.gamesPicker} ${styles.checkboxes}`}>
+
+                  <input type="checkbox" id="damacai" checked={day.games.damacai}/>
+                  <label className={styles.gamesPicked} for="damacai">
+                    <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
+                  </label>
+                  <input type="checkbox" id="magnum" checked={day.games.magnum}/>
+                  <label className={styles.gamesPicked} for="magnum">
+                      <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
+                    </label>
+                  <input type="checkbox" id="toto" checked={day.games.toto}/>
+                  <label className={styles.gamesPicked} for="toto">
+                      <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
+                  </label>
+            </div>
+            </label>
+            </div>            
+                                                    )
+                                                })}
+
+            {/* <input  className="form-check-input" name='bet_date' type="checkbox" id="option1"/>
             <label className={`${styles.datePick} form-check form-check-inline d-flex flex-column col`} for="option1">
                     <b>Tuesday</b>
                     <span>20 Sep 2022</span> 
@@ -220,7 +270,7 @@ const Betting = () => {
                   <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
                 </label>
           </div>
-            </label>
+            </label> */}
             
       </form>
               <div style={{overflowX: 'scroll!important'}}>
