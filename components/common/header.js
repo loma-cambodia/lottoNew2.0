@@ -23,21 +23,21 @@ const Header = () => {
                         {/* <a  href="#">Betting</a> */}
                       </li>
                       <li>
-                      <Link href="#">History</Link>
+                      <Link href="/transaction">History</Link>
                         {/* <a href="#" >History</a> */}
                       </li>
                       <li>
-                        <a href="#" >Results</a>
+                        <Link href="/results" >Results</Link>
                       </li>
                     </ul>
             </div>
             <div className="right-part-menu">
                 <ul className="right-part-list">
                     <li>
-                        <span className="text-end mb-0 user-details"><span className="user-id">John_0786</span><a href="#" className="reload-icon"><span><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> 102,84665.00 <span className="badge badge-yellow">VND</span></span>
+                        <span className="text-end mb-0 user-details"><span className="user-id text-black" >John_0786</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>102,84665.00</span> <span className="badge badge-yellow text-black">VND</span></span>
                     </li>
                     <li className="hide-650">
-                        <a href="#" className="play-lottery-btn">Play Lottery</a>
+                        <a href="#" className="play-lottery-btn ">Play Lottery</a>
                     </li>
                     <li className="dropdown">
                         <a href="#" className="lanugae-selector dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><span className="lang-flag"><img src="assets/images/icons/flag-english.png"/></span> Eng</a>
@@ -48,7 +48,8 @@ const Header = () => {
                           </ul>
                     </li>
                     <li className="menu-mobile">
-                        <button className="navbar-toggler" type="button" onclick="openNav()">
+                        {/* <button className="navbar-toggler" type="button" onClick="openNav()"> */}
+                        <button className="navbar-toggler" type="button">
                             <span className="navbar-toggler-icon"></span>
                           </button>
                     </li>

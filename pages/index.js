@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-// import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import React, { useState } from "react";
 import Footer from '../components/common/footer';
@@ -26,7 +26,7 @@ export default function Home() {
       <Header/>
       {/*--Mobile Menu--*/}
       <div id="mySidepanel" className="sidepanel">
-          <a href="javascript:void(0)" className="closebtn" onclick="closeNav()">&times;</a>
+          <a href="javascript:void(0)" className="closebtn">&times;</a>
           <ul className="list-unstyled">
               <li><a href="#">Home</a></li>
               <li><a href="#">Home</a></li>
