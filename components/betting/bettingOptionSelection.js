@@ -5,10 +5,6 @@ import React, { useState, useEffect } from 'react';
 let bettingInputsData = ['01','02','03','04','05','06','07','08','09','10'];
 
 
-
-  
-
-
 const BettingOptionSelection = () => {
     let dateAndGameOptionData = [
         { 
@@ -99,6 +95,7 @@ const BettingOptionSelection = () => {
       ];
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
+    console.log("bettingInitData " ,bettingInitData)
 
     return(
         <section className="page-content custom-padding">
