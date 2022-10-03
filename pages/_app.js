@@ -1,10 +1,11 @@
-import "bootstrap/dist/css/bootstrap.min.css"; // Import bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";; // Import bootstrap CSS
 
 // import '../styles/globals.css';
 import { wrapper, store } from "../store/store";
 import { Provider } from "react-redux";
 import React,{ useState,useEffect } from "react";
 import Notfound from './403';
+
 
 function MyApp({ Component, pageProps }) {
 
