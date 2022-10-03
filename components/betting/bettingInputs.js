@@ -227,7 +227,6 @@ const BettingInputs = ({ item }) => {
 
             }
 
-
         } else if (operationField == 'delete') {
             localStateDataForChange['number'] = { value: "", disabled: 0 }
             localStateDataForChange['big'] = { value: "", disabled: 0 }
@@ -236,9 +235,6 @@ const BettingInputs = ({ item }) => {
             localStateDataForChange['_3c'] = { value: "", disabled: 0 }
             localStateDataForChange['bet_type'] = { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }
         }
-
-
-        //console.log('localStateDataForChange2:', localStateDataForChange);
         setLocalStateData(localStateDataForChange);
         setPageLoadCount(pageLoadCount + 1);
     }
