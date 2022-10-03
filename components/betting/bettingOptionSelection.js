@@ -17,7 +17,9 @@ let bettingInputsData = [ {name:'01',dataInit:localStateInitData},{name:'02',dat
 
 let dateAndGameOptionData = [1,2,3,4];
 
-const BettingOptionSelection = () => {
+const BettingOptionSelection = ({_bettingDatesStore}) => {
+
+
     let dateAndGameOptionData = [
         { 
           "id": 1,
@@ -106,8 +108,18 @@ const BettingOptionSelection = () => {
         ],        }
       ];
 
+
+
+      _bettingDatesStore
+
+      dateAndGameOptionData;
+
+      console.log('_bettingDatesStore:',_bettingDatesStore);
+      console.log('dateAndGameOptionData:',dateAndGameOptionData);
+
+
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
-    console.log("bettingInitData " ,bettingInitData)
+    //console.log("bettingInitData " ,bettingInitData)
 
     const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
     const clearAllRecords = () => {
