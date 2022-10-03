@@ -384,6 +384,13 @@
     color: #000;
     text-transform: uppercase;
     font-family: "Open Sans";
+    transition: all 250ms;
+    }
+    .btn-yellow:hover {
+        color: #000;
+        background-color: rgb(255, 228, 0);
+        transform: translateY(-1px);
+        box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
     }
     .rounded-full {
     border-radius: 30px;
@@ -1481,6 +1488,15 @@
         color: #fabe41;
         margin-bottom: 50px;
       }
+      .homepage-carousel .carousel .slide {
+        text-align: left !important;
+      }
+      .homepage-carousel div.carousel:nth-of-type(2) {
+        display: none;
+      }
+      .marque-div .overlay {
+        display: none;
+      }
     @media (min-width: 576px) {
     .container-sm,
     .container {
@@ -1522,6 +1538,9 @@
     }
     }
     @media (max-width: 991px) {
+        .container {
+            max-width: 100% !important;
+        }
     .gp-prize-play-btn p {
     font-size: 12px !important;
     }
@@ -1591,7 +1610,7 @@
     }
     @media (max-width: 767.98px) {
     .timeline::after {
-    left: 90px;
+    left: 15px;
     }
     .half-circles span:nth-child(10),
     .half-circles span:nth-child(11),
@@ -1601,7 +1620,7 @@
     }
     .timeline-container {
     width: 100%;
-    padding-left: 120px;
+    padding-left: 50px;
     padding-right: 30px;
     }
     
@@ -1623,7 +1642,7 @@
     .timeline-container.left .date,
     .timeline-container.right .date {
     right: auto;
-    left: 67px;
+    left: -9px;
     }
     
     .timeline-container.left .icon,
@@ -1634,7 +1653,7 @@
     
     .timeline-container.left .content,
     .timeline-container.right .content {
-    padding: 30px 30px 30px 90px;
+    padding: 30px 30px 30px 30px;
     border-radius: 50px 0;
     }
     .draw-logo-img {
@@ -1713,7 +1732,7 @@
     .hide-575 {
     display: none;
     }
-    .hero-slider .col-6 {
+    .homepage-carousel .col-6 {
     width: 100%;
     }
     .theme-tabs .theme-nav-tabs {
