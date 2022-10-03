@@ -40,7 +40,9 @@
 
 import { combineReducers } from 'redux';
 import userReducer from './userReducers';
+import bettingReducers from './bettingReducers';
 
 export default combineReducers({
-  users: userReducer
+  users: userReducer,
+  betting:bettingReducers
 })

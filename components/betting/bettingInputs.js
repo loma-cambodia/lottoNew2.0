@@ -2,10 +2,7 @@ import React, { useState } from "react";
 
 const BettingInputs = ({ item }) => {
     const [active, setActive] = useState(false);
-    let localStateInitData = {
-        number: { value: "", disabled: 0 },number_field: { value: "", disabled: 0 }, big: { value: "", disabled: 0 }, small: { value: "", disabled: 0 }, _3a: { value: "", disabled: 0 }, _3c: { value: "", disabled: 0 },
-        bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }, amount: { value: "", disabled: 1 }
-    };
+    let localStateInitData = item.dataInit;
 
     const [localStateData, setLocalStateData] = useState(localStateInitData);
 
@@ -16,7 +13,7 @@ const BettingInputs = ({ item }) => {
 
     const calculate3DAmountEnable = (getValue,operationField) =>{
         let threeDAmount = false;
-        let localStateDataForChange = localStateData;
+        let localStateDataForChange = item.dataInit;
         if (operationField == '_3a') {
             if(getValue)
              threeDAmount = true;
@@ -44,7 +41,7 @@ const BettingInputs = ({ item }) => {
    } 
 
     const numberInputHandler = (getValue, operationField) => {
-        let localStateDataForChange = localStateData;
+        let localStateDataForChange = item.dataInit;
     
         let threeDAmout = calculate3DAmountEnable(getValue,operationField);
 
@@ -242,11 +239,11 @@ const BettingInputs = ({ item }) => {
     return (
         <tr>
             <td>
-                <span className="sno">{item}</span>
+                <span className="sno">{item.name}</span>
             </td>
             <td>
                 <input type="text" className="form-control-custom"
-                    value={localStateData.number.value}
+                    value={localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : ""}
                     maxLength={4}
                     minLength={3}
                     onChange={(e) => numberInputHandler(e.target.value, 'number')}
@@ -255,35 +252,35 @@ const BettingInputs = ({ item }) => {
             <td>
                 <input type="text" className="form-control-custom"
                     onChange={(e) => numberInputHandler(e.target.value, 'big')}
-                    value={localStateData.big.value}
-                    disabled={localStateData.big.disabled ? true : false}
+                    value={localStateData && localStateData.big && localStateData.big.value ? localStateData.big.value : ""}
+                    disabled={localStateData && localStateData.big && localStateData.big.disabled ? true : false}
                 /></td>{/* big*/}
             <td><input type="text" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, 'small')}
-                value={localStateData.small.value}
-                disabled={localStateData.small.disabled ? true : false}
+                value={localStateData && localStateData.small && localStateData.small.value ? localStateData.small.value : ""}
+                disabled={localStateData && localStateData.small && localStateData.small.disabled ? true : false}
             /></td>{/* small*/}
             <td><input type="text" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, '_3a')}
-                value={localStateData._3a.value}
-                disabled={localStateData._3a.disabled ? true : false}
+                value={localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : ""}
+                disabled={localStateData && localStateData._3a && localStateData._3a.disabled ? true : false}
             /></td>{/* 3A*/}
             <td><input type="text" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, '_3c')}
-                value={localStateData._3c.value}
-                disabled={localStateData._3c.disabled ? true : false}
+                value={localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : ""}
+                disabled={localStateData && localStateData._3c && localStateData._3c.disabled ? true : false}
             /></td>{/* 3C*/}
             <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" className={localStateData.bet_type.box_disabled ? 'btn-custom-small-disabled me-1' : localStateData.bet_type.box_value ? 'btn-custom-small me-1 active-bet-type' : 'btn-custom-small me-1'} disabled={localStateData.bet_type.box_disabled ? true : false} title={localStateData.bet_type.box_disabled ? "Disabled" : "Enabled"} onClick={(e) => numberInputHandler(1, 'box')}>B</button>
+                    <button type="button" className={localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled ? 'btn-custom-small-disabled me-1' : localStateData && localStateData.bet_type && localStateData.bet_type.box_value ? 'btn-custom-small me-1 active-bet-type' : 'btn-custom-small me-1'} disabled={localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled ? true : false} title={localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled ? "Disabled" : "Enabled"} onClick={(e) => numberInputHandler(1, 'box')}>B</button>
 
-                    <button type="button" className={localStateData.bet_type.i_box_disabled ? 'btn-custom-small-disabled me-1' : localStateData.bet_type.i_box_value ? 'btn-custom-small me-1 active-bet-type' : 'btn-custom-small me-1'} disabled={localStateData.bet_type.i_box_disabled ? true : false} title={localStateData.bet_type.i_box_disabled ? "Disabled" : "Enabled"} onClick={(e) => numberInputHandler(1, 'ibox')}>I</button>
+                    <button type="button" className={localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled? 'btn-custom-small-disabled me-1' : localStateData && localStateData.bet_type && localStateData.bet_type.i_box_value ? 'btn-custom-small me-1 active-bet-type' : 'btn-custom-small me-1'} disabled={localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled ? true : false} title={localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled ? "Disabled" : "Enabled"} onClick={(e) => numberInputHandler(1, 'ibox')}>I</button>
 
-                    <button type="button" className={localStateData.bet_type.reverse_disabled ? 'btn-custom-small-disabled' : localStateData.bet_type.reverse_value ? 'btn-custom-small active-bet-type' : 'btn-custom-small'} disabled={localStateData.bet_type.reverse_disabled ? true : false} title={localStateData.bet_type.reverse_disabled ? "Disabled" : "Enabled"} onClick={(e) => numberInputHandler(1, 'reverse')}>R</button>
+                    <button type="button" className={localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled ? 'btn-custom-small-disabled' : localStateData && localStateData.bet_type && localStateData.bet_type.reverse_value ? 'btn-custom-small active-bet-type' : 'btn-custom-small'} disabled={localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled ? true : false} title={localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled ? "Disabled" : "Enabled"} onClick={(e) => numberInputHandler(1, 'reverse')}>R</button>
                 </div>
             </td>
             <td>
-                <input type="text" className="form-control-custom" disabled={localStateData.amount.disabled ? true : false} />
+                <input type="text" className="form-control-custom" disabled={localStateData && localStateData.amount && localStateData.amount.disabled ? true : false} />
             </td>
             <td>
                 <button type="button" className="btn-delete-small" onClick={(e) => numberInputHandler('', 'delete')}>
