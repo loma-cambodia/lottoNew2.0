@@ -10,6 +10,13 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
     const [active, setActive] = useState(false);
 
 
+    const getDateName =(dateString) => {
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var d = new Date(dateString);
+        var dayName = days[d.getDay()];
+        return dayName
+    }
+
     const selectUnSelectDate =(getValue)=>{ // selectUnSelectDate
 
         console.log('getValue: ', getValue)
@@ -95,7 +102,7 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
                     ></label>
                 </div>
                 <div className="day-n-date">
-                    <p className="fw-bold mb-0">Tuesday</p>
+                    <p className="fw-bold mb-0">{getDateName(initData.date)}</p>
                     <p className="mb-0">{initData.date}</p>
                 </div>
             </div>

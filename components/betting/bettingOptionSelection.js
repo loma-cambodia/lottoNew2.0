@@ -9,7 +9,7 @@ const BettingOptionSelection = () => {
     let dateAndGameOptionData = [
         { 
           "id": 1,
-          "date": '2017-01-03',
+          "date": '02/12/2015',
           "selected": true,
           "games": [
             {
