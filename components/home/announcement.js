@@ -4,7 +4,7 @@ const Announcement = () => {
     return (
       <>
      {/*--Announcement--*/}
-  <section className="announcement">
+  <section className="announcement ">
     <div className="container">
         <div className="news-wrapper d-inline-flex align-item-center">
             <div className="announcement-block-icon">
