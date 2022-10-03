@@ -114,7 +114,7 @@ const BettingOptionSelection = () => {
                 aria-labelledby="bettingModal"
                 aria-hidden="true"
             >
-                <div className="modal-dialog">
+                <div className="modal-dialog modal-lg">
                 <div className="modal-content">
                     <div className="modal-header">
                     <h5 className="modal-title" id="bettingModal">
@@ -123,14 +123,52 @@ const BettingOptionSelection = () => {
                     <button
 
                         type="button"
-                        class="btn btn-danger btn-sm"
+                        className="btn btn-danger btn-sm"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                     >X</button>
                     </div>
-                    <div className="modal-body">...</div>
+                    <div className="modal-body">
+                        <div className='table-responsive'>
+                        <table className="table table-bordered text-center">
+                        <thead>
+                            <tr className='table-warning'>
+                            <th scope="col">No.</th>
+                            <th scope="col">Number</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col" className='th-lg'>Commission (%)</th>
+                            <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">1</th>
+                            <td>1221</td>
+                            <td>24</td>
+                            <td>10</td>
+                            <td><button className='btn btn-danger btn-sm'>X</button></td>
+                            </tr>
+                            <tr>
+                            <th scope="row">2</th>
+                            <td>1212</td>
+                            <td>24</td>
+                            <td>10</td>
+                            <td><button className='btn btn-danger btn-sm'>X</button></td>
+                            </tr>
+                            <tr>
+                            <th scope="row">3</th>
+                            <td>1122</td>
+                            <td>24</td>
+                            <td>10</td>
+                            <td><button className='btn btn-danger btn-sm'>X</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                        </div>
+                    
+                    </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirm</button>
+                        <button type="button" className="btn btn-success" data-bs-dismiss="modal">Confirm</button>
                     </div>
                 </div>
                 </div>
