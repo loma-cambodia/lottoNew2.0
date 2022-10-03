@@ -6,7 +6,9 @@ import Footer from '../components/common/footer';
 import Header from '../components/common/header';
 import BettingOptionSelection from '../components/betting/bettingOptionSelection';
 import DateAndGameOptionMob from '../components/betting/dateAndGameOptionMob';
+
 let dateAndGameOptionDataMob = [1,2,3,4];
+
 const customStyles = {
     content: {
       top: '45%',
@@ -21,6 +23,80 @@ const customStyles = {
   };
 export default function Formobbet() {
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [curserPointer, setCurserPointer] = React.useState('');
+
+  const [numberValue, setNumberValue] = React.useState('');
+  const [bigValue, setBigValue] = React.useState('');
+  const [smallValue, setSmallValue] = React.useState('');
+
+  const [boxValue, setBoxValue] = React.useState(false);
+  const [iBoxValue, setIboxValue] = React.useState(false);
+  const [reverseValue, setReverseValue] = React.useState(false);
+
+  const contentboxValue = boxValue ? ' checked ' : ' ';
+  const contentiBoxValue = iBoxValue ? ' checked ' : ' ';
+  const contentreverseValue = reverseValue ? ' checked ' : ' ';
+
+//   const onCheck = (e) => {
+//     const checked = e.target.checked;
+//     if (checked) {
+//        setIsDisabled(false)
+//     }
+//     if (!checked) {
+//        setIsDisabled(true)   
+//     }
+//   }
+
+
+  const setAllData = (getValue) => {
+    if(curserPointer == 'number'){
+        let numberVal = numberValue.toString();
+        setNumberValue(numberVal+getValue)
+    }  
+    if(curserPointer == 'big'){
+        let bigVal = bigValue.toString();
+        setBigValue(bigVal+getValue)
+    }   
+    if(curserPointer == 'small'){
+        let smallVal = smallValue.toString();
+        setSmallValue(smallVal+getValue)
+    }    
+  }
+
+    const allClearData = () => {
+        setNumberValue('');
+        setBigValue('');
+        setSmallValue('');
+    }
+
+    const resetAllData = () => {
+        setNumberValue('');
+        setBigValue('');
+        setSmallValue('');
+    }
+
+
+
+
+
+
+    
+    const [isValueBox, setIsValueBox] = useState(false);
+    const [isValueIbox, setIsValueIbox] = useState(false);
+    const [isValueReverse, setIsValueReverse] = useState(false);
+
+    const contentValueBox = isValueBox ? ' show-Selected-bet ' : ' hide-Selected-bet ';
+
+    const contentValueIbox = isValueIbox ? ' show-Selected-bet ' : ' hide-Selected-bet ';
+
+    const contentValueReverse = isValueReverse ? ' show-Selected-bet ' : ' hide-Selected-bet ';
+
+
+
+
+
+
+
 
   function openModal() {
     setIsOpen(true);
@@ -38,6 +114,8 @@ export default function Formobbet() {
   function selectAllDate(){
     alert('pppppppp');
   }
+
+  console.log('boxValue:',boxValue);
 
   return (
     <>
@@ -85,31 +163,38 @@ export default function Formobbet() {
 
             <div className="row">
                 <div className="col-6" style={{ padding: '-1px' }}>
-                    <input type="text" className="form-control" placeholder="Bet Number" />
+                    <input type="text" className="form-control" placeholder="Bet Number" value={numberValue}  onClick={() => setCurserPointer('number')} />
                 </div>
                 <div className="col-3" style={{ padding: '0px' }}>
-                    <input type="text" className="form-control" placeholder="Big"/>
+                    <input type="text" className="form-control" placeholder="Big" value={bigValue} onClick={() => setCurserPointer('big')} />
                 </div>
                 <div className="col-3" style={{ padding: '-0.9px' }}>
-                    <input type="text" className="form-control" placeholder="Small"/>
+                    <input type="text" className="form-control" placeholder="Small" value={smallValue} onClick={() => setCurserPointer('small')} />
                 </div>
             </div>
-
+            {/* 
+                const [boxValue, setBoxValue] = React.useState(false);
+                const [iBoxValue, setIboxValue] = React.useState(false);
+                const [reverseValue, setReverseValue] = React.useState(false);
+            */}
             <div className="row mt-2">
                 <div className="col-4">
-                    <button className="form-control" style={{ background: '-webkit-linear-gradient( 90deg, rgb(253,184,3) 0%, rgb(247,234,120) 100%)' }}>
+                    <input type="radio" name='betTypeValue' id="forBoxValue" checked={contentboxValue} onClick={() => setBoxValue(!boxValue)} />
+                    <label className={contentValueBox+" form-control"} htmlFor="forBoxValue" onClick={() => setIsValueBox(!isValueBox)}>
                         <img className="img-fluid" src="images\betting\0000.png" alt="" style={{ width: '20px' }} /> Box
-                    </button>
+                    </label>
                 </div>
                 <div className="col-4">
-                    <button className="form-control" style={{ background: 'aliceblue', marginLeft: '-11px' }}>
+                    <input type="radio" name='betTypeValue' value={contentiBoxValue} id="forIboxValue" checked={contentValueIbox} onClick={() => setIboxValue(!iBoxValue)} />
+                    <label className={contentValueIbox+" form-control"} htmlFor="forIboxValue" style={{ marginLeft: '-11px' }} onClick={() => setIsValueIbox(!isValueIbox)}>
                         <img className="img-fluid" src="images\betting\000000.png" alt="" style={{ width: '20px' }} /> iBox
-                    </button>            
+                    </label>            
                 </div>
                 <div className="col-4" style={{ padding: '0' }}>
-                    <button className="form-control" style={{ background: 'aliceblue', marginLeft: '-11px' }}>
+                    <input type="radio" name='betTypeValue' value={contentreverseValue} id="forReverseValue" checked={contentValueReverse} onClick={() => setReverseValue(!reverseValue)} />
+                    <label className={contentValueReverse+" form-control"} htmlFor="forReverseValue" style={{ marginLeft: '-11px' }} onClick={() => setIsValueReverse(!isValueReverse)}>
                         <img className="img-fluid" src="images\betting\00000000.png" alt="" style={{ width: '20px' }} /> Reverse
-                    </button>                       
+                    </label>                       
                 </div>
             </div>
             <div className="border mt-2">
@@ -188,66 +273,66 @@ export default function Formobbet() {
             <div className="mt-2">
                 <div className="row">
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(1)}>
                             <b>1</b>
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(2)}>
                             <b>2</b>
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(3)}>
                             <b>3</b>
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData('R')}>
                             <b>R</b>
                         </button>
                     </div>
                 </div>
                 <div className="row mt-2">
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(4)}>
                             <b>4</b>
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(5)}>
                             <b>5</b>
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(6)}>
                             <b>6</b>
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => allClearData()}>
                             <b>Clear</b>
                         </button>
                     </div>
                 </div>
                 <div className="row mt-2">
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(7)}>
                             <b>7</b>
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(8)}>
                             <b>8</b>
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(9)}>
                             <b>9</b>
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => singleClearData()}>
                             <img className="img-fluid" src="images\betting\ASA.png" alt="" style={{ width: '22px' }} />
                         </button>
                     </div>
@@ -259,7 +344,7 @@ export default function Formobbet() {
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(0)}>
                             <b>0</b>
                         </button>
                     </div>
@@ -277,10 +362,17 @@ export default function Formobbet() {
             </div>
         
         
-            <div className="mt-2 mb-2">
-                <button className="form-control text-light" style={{ background: '#e91d25' }}> 
-                    <b>BET</b> 
-                </button>             
+            <div className="mt-2 mb-2 row">
+                <div className='col-6'>
+                    <button className="form-control" onClick={() => resetAllData()} style={{ background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
+                        <b>Reset</b> 
+                    </button> 
+                </div>
+                <div className='col-6'>
+                    <button className="form-control text-light" style={{ background: '#e91d25' }}> 
+                        <b>BET</b> 
+                    </button> 
+                </div>            
             </div> 
 
             {/* <button onClick={closeModal}>close</button> */}

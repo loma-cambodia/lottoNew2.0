@@ -1430,3 +1430,11 @@ span.prize-name {
 span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
     filter: grayscale(0%);
 }
+.show-Selected-bet{
+    background: -webkit-linear-gradient( 90deg, rgb(253,184,3) 0%, rgb(247,234,120) 100%);
+    border: 1px solid #fdb803 !important;
+}
+.hide-Selected-bet{
+    background: aliceblue !important;
+    border: 1px solid #fdb803 !important;
+}
