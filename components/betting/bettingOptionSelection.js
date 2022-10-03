@@ -5,15 +5,11 @@ import React, { useState, useEffect } from 'react';
 let bettingInputsData = ['01','02','03','04','05','06','07','08','09','10'];
 
 
-
-  
-
-
 const BettingOptionSelection = () => {
     let dateAndGameOptionData = [
         { 
           "id": 1,
-          "date": '2017-01-03',
+          "date": '02/12/2015',
           "selected": true,
           "games": [
             {
@@ -35,7 +31,7 @@ const BettingOptionSelection = () => {
         },
         {
           "id":2,
-          "date": '2017-01-03',
+          "date": '10-03-2022',
           "selected": false,
           "games": [
             {
@@ -56,7 +52,7 @@ const BettingOptionSelection = () => {
         ],        },
         {
           "id":3,
-          "date": '2017-09-13',
+          "date": '2022-10-03',
           "selected": false,
           "games": [
             {
@@ -99,6 +95,7 @@ const BettingOptionSelection = () => {
       ];
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
+    console.log("bettingInitData " ,bettingInitData)
 
     return(
         <section className="page-content custom-padding">
