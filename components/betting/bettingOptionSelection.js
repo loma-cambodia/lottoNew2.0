@@ -183,6 +183,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
+
+    const [loadpageCounter, setLoadpageCounter] = useState(1);
   
 
     const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
@@ -225,16 +227,27 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
     } 
 
+
+    console.log('dateAndGameOptionData:',dateAndGameOptionData);
+
     return(
         
         <section className="page-content custom-padding">
          <div className="container">
           <div className="row justify-content-center">
             {/* {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item} item={item}/>) )} */}
-          {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id} item={item} _dateAndGameOptionData={dateAndGameOptionData} _bettingInitData={bettingInitData} _setBettingInitData={setBettingInitData}/>) )}
+          {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id}
+                                                  item={item} 
+                                                  _dateAndGameOptionData={dateAndGameOptionData} 
+                                                  _bettingInitData={bettingInitData} 
+                                                  _setBettingInitData={setBettingInitData}
+                                                  _loadpageCounter = {loadpageCounter}
+                                                   _setLoadpageCounter = {setLoadpageCounter}
+                                                  />) )}
               
          </div>
         <div className="table-scalable my-3">
+        loadpageCounter:{loadpageCounter}
             <table className="">
                 <tbody>
                 <tr>
