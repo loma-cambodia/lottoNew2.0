@@ -39,7 +39,7 @@ const Header = ({datauser}) => {
             <div className="right-part-menu">
                 <ul className="right-part-list">
                     <li>
-                        <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser.user && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>0.00</span> <span className="badge badge-yellow text-black">USD</span></span>
+                        <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>0.00</span> <span className="badge badge-yellow text-black">USD</span></span>
                     </li>
                     <li className="hide-650">
                         <a href="#" className="play-lottery-btn ">Play Lottery</a>
