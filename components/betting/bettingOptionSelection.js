@@ -1,9 +1,21 @@
 import DateAndGameOption from './dateAndGameOption';
 import BettingInputs from './bettingInputs';
-import React, { useState, useEffect } from 'react';
+import React, { useState,useEffect } from "react";
+let localStateInitData = {
+    number: { value: "", disabled: 0 },number_field: { value: "", disabled: 0 }, big: { value: "", disabled: 0 }, small: { value: "", disabled: 0 }, _3a: { value: "", disabled: 0 }, _3c: { value: "", disabled: 0 },
+    bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }, amount: { value: "", disabled: 1 }
+};
 
-let bettingInputsData = ['01','02','03','04','05','06','07','08','09','10'];
 
+
+
+let bettingInputsData = [ {name:'01',dataInit:localStateInitData},{name:'02',dataInit:localStateInitData},
+{name:'03',dataInit:localStateInitData},{name:'04',dataInit:localStateInitData},
+{name:'05',dataInit:localStateInitData},{name:'06',dataInit:localStateInitData},
+{name:'07',dataInit:localStateInitData},{name:'08',dataInit:localStateInitData},
+{name:'09',dataInit:localStateInitData},{name:'10',dataInit:localStateInitData}];
+
+let dateAndGameOptionData = [1,2,3,4];
 
 const BettingOptionSelection = () => {
     let dateAndGameOptionData = [
@@ -97,187 +109,22 @@ const BettingOptionSelection = () => {
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
     console.log("bettingInitData " ,bettingInitData)
 
+    const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
+    const clearAllRecords = () => {
+        setLocalStateInitDataParent([ {name:'01',dataInit:localStateInitData},{name:'02',dataInit:localStateInitData},
+        {name:'03',dataInit:localStateInitData},{name:'04',dataInit:localStateInitData},
+        {name:'05',dataInit:localStateInitData},{name:'06',dataInit:localStateInitData},
+        {name:'07',dataInit:localStateInitData},{name:'08',dataInit:localStateInitData},
+        {name:'09',dataInit:localStateInitData},{name:'10',dataInit:localStateInitData}]);
+    }
+
     return(
         <section className="page-content custom-padding">
          <div className="container">
           <div className="row justify-content-center">
-
+            {/* {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item} item={item}/>) )} */}
           {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id} item={item} _dateAndGameOptionData={dateAndGameOptionData} _bettingInitData={bettingInitData} _setBettingInitData={setBettingInitData}/>) )}
               
-              
-
-            {/* <div className="col-md-3 col-sm-6">
-                <div className="date-lottery-selector unslected">
-                    <div className="d-flex align-items-center">
-                        <div className="round">
-                            <input type="checkbox" id="checkbox1" />
-                            <label for="checkbox1"></label>
-                        </div>
-                        <div className="day-n-date">
-                            <p className="fw-bold mb-0">Tuesday</p>
-                            <p className="mb-0">20 Sep. 2022</p>
-                        </div>
-                    </div>
-                    <div className="d-flex">
-                        <div className="round"></div>
-                        <div className="select-gp">
-                            <ul className="list-inline">
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp" title="Select">
-                                        <span className="inner-circle-gp">
-                                            <img className="img-fluid" src="assets/images/icons/damacai.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp" title="Select">
-                                        <span className="inner-circle-gp">
-                                            <img className="img-fluid" src="assets/images/icons/magnum.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp" title="Select">
-                                        <span className="inner-circle-gp">
-                                            <img className="img-fluid" src="assets/images/icons/toto.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-md-3 col-sm-6">
-                <div className="date-lottery-selector selected">
-                    <div className="d-flex align-items-center">
-                        <div className="round">
-                            <input type="checkbox"  id="checkbox2" checked/>
-                            <label for="checkbox2"></label>
-                        </div>
-                        <div className="day-n-date">
-                            <p className="fw-bold mb-0">Tuesday</p>
-                            <p className="mb-0">20 Sep. 2022</p>
-                        </div>
-                    </div>
-                    <div className="d-flex">
-                        <div className="round"></div>
-                        <div className="select-gp">
-                            <ul className="list-inline">
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp selected-gp-btn" title="Select">
-                                        <span className="inner-circle-gp">
-                                            <img className="img-fluid" src="assets/images/icons/damacai.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp selected-gp-btn" title="Select">
-                                        <span className="inner-circle-gp">
-                                            <img className="img-fluid" src="assets/images/icons/magnum.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp">
-                                        <span className="inner-circle-gp selected-gp-btn" title="Select">
-                                            <img className="img-fluid" src="assets/images/icons/toto.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-md-3 col-sm-6">
-                <div className="date-lottery-selector unslected">
-                    <div className="d-flex align-items-center">
-                        <div className="round">
-                            <input type="checkbox"  id="checkbox3"/>
-                            <label for="checkbox3"></label>
-                        </div>
-                        <div className="day-n-date">
-                            <p className="fw-bold mb-0">Tuesday</p>
-                            <p className="mb-0">20 Sep. 2022</p>
-                        </div>
-                    </div>
-                    <div className="d-flex">
-                        <div className="round"></div>
-                        <div className="select-gp">
-                            <ul className="list-inline">
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp" title="Select">
-                                        <span className="inner-circle-gp">
-                                            <img className="img-fluid" src="assets/images/icons/damacai.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp" title="Select">
-                                        <span className="inner-circle-gp">
-                                            <img className="img-fluid" src="assets/images/icons/magnum.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp" title="Select">
-                                        <span className="inner-circle-gp">
-                                            <img className="img-fluid" src="assets/images/icons/toto.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-md-3 col-sm-6">
-                <div className="date-lottery-selector selected">
-                    <div className="d-flex align-items-center">
-                        <div className="round">
-                            <input type="checkbox"  id="checkbox4" checked/>
-                            <label for="checkbox4"></label>
-                        </div>
-                        <div className="day-n-date">
-                            <p className="fw-bold mb-0">Tuesday</p>
-                            <p className="mb-0">20 Sep. 2022</p>
-                        </div>
-                    </div>
-                    <div className="d-flex">
-                        <div className="round"></div>
-                        <div className="select-gp">
-                            <ul className="list-inline">
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp selected-gp-btn" title="Select">
-                                        <span className="inner-circle-gp">
-                                            <img className="img-fluid" src="assets/images/icons/damacai.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp selected-gp-btn" title="Select">
-                                        <span className="inner-circle-gp">
-                                            <img className="img-fluid" src="assets/images/icons/magnum.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                                <li className="list-inline-item">
-                                    <span className="outer-circle-gp selected-gp-btn" title="Select">
-                                        <span className="inner-circle-gp">
-                                            <img className="img-fluid" src="assets/images/icons/toto.png"/>
-                                        </span>
-                                    </span>
-                                </li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div> */}
          </div>
         <div className="table-scalable my-3">
             <table className="">
@@ -294,12 +141,12 @@ const BettingOptionSelection = () => {
                     <th className="border-0"></th>
                 </tr>
                 
-                {bettingInputsData.map((item) => (<BettingInputs key={'bettingInputs'+item} item={item}/>) )}
+                {bettingInputsDataParent.map((item) => (<BettingInputs key={'bettingInputs'+item.name} item={item}/>) )}
                 <tr>
                     <td colSpan="6">
                         Total Bet Amount 216.00
                     </td>
-                    <td><button type="button" className="btn-custom-curve1 me-1">CLEAR</button></td>
+                    <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>CLEAR</button></td>
                     <td colSpan="2">
                             <button type="button" className="btn-custom-curve2">Submit</button>
                     </td>
