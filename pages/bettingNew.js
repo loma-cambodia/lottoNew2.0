@@ -68,10 +68,7 @@ export default function BettingNew() {
                 </div>
                 <div className="breadcrumb-list">
                     <ul>
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li><span>Betting</span></li>
+                    <li><span>Home / Betting</span></li>
                     </ul>
                 </div>
             </div>

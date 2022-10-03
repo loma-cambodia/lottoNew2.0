@@ -8,10 +8,8 @@ const Banner2 = () => {
             </div>
             <div className="breadcrumb-list">
                 <ul>
-                <li>
-                    <a href="#">Home</a>
-                </li>
-                <li><span>Past draw Results</span></li>
+                
+                <li><span>Home / Past draw Results</span></li>
                 </ul>
             </div>
         </div>
