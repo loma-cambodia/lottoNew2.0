@@ -225,6 +225,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                         console.log('bettingInputsData2:',bettingInputsData2);
 
                         setLocalStateInitDataParent(bettingInputsData2);
+                        setLoadpageCounter(loadpageCounter + 1);
 
     }
 
@@ -241,6 +242,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
 
     console.log('dateAndGameOptionData:',dateAndGameOptionData);
+    console.log('bettingInputsDataParent:',bettingInputsDataParent);
+    
 
     return(
         
