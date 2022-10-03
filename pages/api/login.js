@@ -9,21 +9,21 @@ let ttl = 60 + 10800; // 3 hours
 async function handler(req, res) {
     const body  = req.body
 
-        const objectWithData = {
-            "user_name": "Sushil Gupta",
-            "email": "loma123@gmail.coma",
-            "customer_id": 1,
-            "enterprise_id": 11
-        }
-
-
-
         // const objectWithData = {
-        //     "user_name": req.body.user_name,
-        //     "email":  req.body.email,
-        //     "customer_id":  req.body.customer_id,
-        //     "enterprise_id":  req.body.enterprise_id,
+        //     "user_name": "Sushil Gupta",
+        //     "email": "loma123@gmail.coma",
+        //     "customer_id": 1,
+        //     "enterprise_id": 11
         // }
+
+        
+
+        const objectWithData = {
+            "user_name": req.body.user_name,
+            "email":  req.body.email,
+            "customer_id":  req.body.customer_id,
+            "enterprise_id":  req.body.enterprise_id,
+        }
         
         const userData = await fetch(process.env.siteUrl + '/api/login', {
             method: 'POST',
