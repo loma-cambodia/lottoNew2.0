@@ -11,7 +11,7 @@ import React, { useState, useEffect } from 'react';
             "accepted":200.00,
             "rebate":20.50,
             "net":180.50,
-            "result":"successful"
+            "status":"successful"
         },
         {
             "type":"B",
@@ -20,7 +20,7 @@ import React, { useState, useEffect } from 'react';
             "rejected":35.00,
             "rebate":16.50,
             "net":148.50,
-            "result":"successful",
+            "status":"successful",
             "rejectedBet":[{
                 "date":"27/09",
                 "code":"M",
@@ -28,11 +28,20 @@ import React, { useState, useEffect } from 'react';
                 "size":"Big",
                 "deduction":-20,
                 "comments":"Over Limit"
-            }]
+            },
+            {
+                "date":"27/09",
+                "code":"P",
+                "number":1234,
+                "size":"Big",
+                "deduction":-15,
+                "comments":"Over Limit"
+            }],
+            
         },
         {
             "type":"C",
-            "result":"failed",
+            "status":"failed",
             "remarks":"The market already closed"
         },
 
