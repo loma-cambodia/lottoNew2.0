@@ -142,54 +142,95 @@ const BettingOptionSelection = () => {
                 </div> */}
                 {/* MODAL B */}
                 <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
+                    <div className="modal-dialog modal-md">
+                        <div className="modal-content">
+                            <div className="modal-header text-white" style={{backgroundColor:'#0d6efd'}}>
+                                <h5 className="modal-title" id="bettingModal">
+                                    Bet Successful
+                                </h5>
+                            </div>
+                            <div className="modal-body" >
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-8 col-sm-8">
+                                            <p>Total bet amount</p>
+                                            <p>Accepted bet amount</p>
+                                            <p>Rebate</p>
+                                            <p style={{fontWeight:'bold'}}>Net Amount</p>
+                                        </div>
+                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
+                                            <p>200.00</p>
+                                            <p>165.00</p>
+                                            <p>35.00</p>
+                                            <p style={{fontWeight:'bold'}}>148.50</p>
+                                        </div>
+                                    </div>
+                                    <hr></hr>
+                                    <div><h5>Rejected Bet</h5></div>
+                                    <div class="row text-center">
+                                    <table class="table table-borderless">
+                                        <tbody style={{fontWeight:'bold'}}>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>P</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-15</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style={{justifyContent:'center'}}>
+                                <button type="button" className="btn  btn-sm btn-outline-primary" data-bs-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            {/* MODAL B */}
+            {/* MODAL C */}
+            {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
+                    <div className="modal-dialog modal-md">
+                        <div className="modal-content">
+                            <div className="modal-header text-white" style={{backgroundColor:'#0d6efd'}}>
+                                <h5 className="modal-title" id="bettingModal">
+                                    Bet Failed
+                                </h5>
+                            </div>
+                            <div className="modal-body" >
+                                <div class="container-fluid text-center">
+                                    <h5>The market already closed</h5>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style={{justifyContent:'center'}}>
+                                <button type="button" className="btn  btn-sm btn-outline-primary" data-bs-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+            </div> */}
+            {/* MODAL C */}
+            {/* MODAL D */}
+            {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
                 <div className="modal-dialog modal-md">
                     <div className="modal-content">
                         <div className="modal-header text-white" style={{backgroundColor:'#0d6efd'}}>
                             <h5 className="modal-title" id="bettingModal">
-                                Bet Successful
+                                Bet Failed
                             </h5>
-                            {/* <button type="button" className="btn btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close" >X</button> */}
                         </div>
                         <div className="modal-body" >
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-8 col-sm-8">
-                                        <p>Total bet amount</p>
-                                        <p>Accepted bet amount</p>
-                                        <p>Rebate</p>
-                                        <p style={{fontWeight:'bold'}}>Net Amount</p>
-                                    </div>
-                                    <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
-                                         <p>200.00</p>
-                                         <p>200.00</p>
-                                         <p>20.00</p>
-                                         <p style={{fontWeight:'bold'}}>180.00</p>
-                                    </div>
-                                </div>
-                                <hr></hr>
-                                <div><h5>Rejected Bet</h5></div>
-                                <div class="row text-center">
-                                <table class="table table-borderless">
-                                    <tbody style={{fontWeight:'bold'}}>
-                                        <tr>
-                                        <th scope="row">27/09</th>
-                                        <td>M</td>
-                                        <td>1234</td>
-                                        <td>Big</td>
-                                        <td className="text-danger">-20</td>
-                                        <td className="text-danger">Over Limit</td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">27/09</th>
-                                        <td>P</td>
-                                        <td>1234</td>
-                                        <td>Big</td>
-                                        <td className="text-danger">-15</td>
-                                        <td className="text-danger">Over Limit</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                </div>
+                            <div class="container-fluid text-center">
+                            <h5>The market already closed</h5>
                             </div>
                         </div>
                         <div class="modal-footer" style={{justifyContent:'center'}}>
@@ -197,7 +238,51 @@ const BettingOptionSelection = () => {
                         </div>
                     </div>
                 </div>
+        </div> */}
+        {/* MODAL D */}
+        {/* MODAL E */}
+        {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
+            <div className="modal-dialog modal-md">
+                <div className="modal-content">
+                    <div className="modal-header text-white" style={{backgroundColor:'#0d6efd'}}>
+                        <h5 className="modal-title" id="bettingModal">
+                            Bet Failed
+                        </h5>
+                    </div>
+                    <div className="modal-body" >
+                        <div class="container-fluid text-center">
+                        <h5>The selected company already closed</h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style={{justifyContent:'center'}}>
+                        <button type="button" className="btn  btn-sm btn-outline-primary" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </div>
             </div>
+         </div> */}
+        {/* MODAL E */}
+          {/* MODAL F */}
+          {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
+            <div className="modal-dialog modal-md">
+                <div className="modal-content">
+                    <div className="modal-header text-white" style={{backgroundColor:'#0d6efd'}}>
+                        <h5 className="modal-title" id="bettingModal">
+                            Bet Failed
+                        </h5>
+                    </div>
+                    <div className="modal-body" >
+                        <div class="container-fluid text-center">
+                        <h5>Bet is not allowed.</h5>
+                        <h5>Please contact your merchant.</h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style={{justifyContent:'center'}}>
+                        <button type="button" className="btn  btn-sm btn-outline-primary" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+         </div> */}
+        {/* MODAL F */}
         {/* End Modal */}
          <div className="container">
           <div className="row justify-content-center">
