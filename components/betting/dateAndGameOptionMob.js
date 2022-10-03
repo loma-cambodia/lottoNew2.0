@@ -1,18 +1,19 @@
 
 import React, { useState } from "react";
 
-const dateAndGameOptionMob = () => {
+const dateAndGameOptionMob = ({item}) => {
     
   const [isModal, setIsModal] = useState(false);
 
   const contentClassname = isModal ? ' selected-dt-h5 ' : ' ';
+  
     return(
         <div className="d-flex align-items-center py-2 border-bottom">
             <div className="round-h5">
-                <input type="checkbox" id="checkbox2" />
-                <label htmlFor="checkbox2"></label>
+                <input type="checkbox" id={'checkbox'+item} />
+                <label htmlFor={'checkbox'+item} onClick={() => setIsModal(!isModal)}></label>
             </div>
-            <label className={contentClassname+" date-time-small" } htmlFor="checkbox2" onClick={() => setIsModal(!isModal)}>
+            <label className={contentClassname+" date-time-small" } htmlFor={'checkbox'+item} onClick={() => setIsModal(!isModal)}>
                 <small>22-09-2022<br/>WED</small>
             </label>
             <div className="select-gp p-2">

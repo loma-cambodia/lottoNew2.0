@@ -35,6 +35,10 @@ export default function Formobbet() {
     setIsOpen(false);
   }
 
+  function selectAllDate(){
+    alert('pppppppp');
+  }
+
   return (
     <>
        <Head>
@@ -291,13 +295,14 @@ export default function Formobbet() {
         >   
         <div className="d-flex my-3">
             <div className="round-h5">
-                <input type="checkbox" id="checkbox1" />
-                <label htmlFor="checkbox1"></label>
+                <input type="checkbox" id="acheckbox1" />
+                <label htmlFor="acheckbox1"></label>
             </div>
-            <label className="small" htmlFor="checkbox1"><b>Select All</b></label>
+            <label onClick={() => selectAllDate() } className="small" htmlFor="acheckbox1"><b>Select All</b></label>
         </div>
 
         {dateAndGameOptionDataMob.map((item) => (<DateAndGameOptionMob key={'DateAndGameOptionMob'+item} item={item}/>) )}
+            
             {/* <div className="d-flex align-items-center py-2 border-bottom">
                 <div className="round-h5">
                         <input type="checkbox" id="checkbox3" />
