@@ -15,26 +15,87 @@ const BettingOptionSelection = () => {
           "id": 1,
           "date": '2017-01-03',
           "selected": true,
-          "games": {"damacai":false,"magnum":true,"toto":false},
+          "games": [
+            {
+            "name":"da ma chai",
+            "image":"assets/images/icons/damacai.png", 
+            "selected": false
+            },
+            {
+            "name":"magnum",
+            "image":"assets/images/icons/magnum.png", 
+            "selected": false
+            },
+            {
+            "name":"toto",
+            "image":"assets/images/icons/toto.png", 
+            "selected": false
+            },
+        ],
         },
         {
           "id":2,
           "date": '2017-01-03',
           "selected": false,
-          "games": {"damacai":true,"magnum":false,"toto":false}
-        },
+          "games": [
+            {
+            "name":"da ma chai",
+            "image":"assets/images/icons/damacai.png", 
+            "selected": false
+            },
+            {
+            "name":"magnum",
+            "image":"assets/images/icons/magnum.png", 
+            "selected": false
+            },
+            {
+            "name":"toto",
+            "image":"assets/images/icons/toto.png", 
+            "selected": false
+            },
+        ],        },
         {
           "id":3,
           "date": '2017-09-13',
           "selected": false,
-          "games": {"damacai":false,"magnum":false,"toto":false}
-        },
+          "games": [
+            {
+            "name":"da ma chai",
+            "image":"assets/images/icons/damacai.png", 
+            "selected": false
+            },
+            {
+            "name":"magnum",
+            "image":"assets/images/icons/magnum.png", 
+            "selected": false
+            },
+            {
+            "name":"toto",
+            "image":"assets/images/icons/toto.png", 
+            "selected": false
+            },
+        ],        },
         {
           "id":4,
           "date": '2017-04-23',
           "selected": false,
-          "games": {"damacai":false,"magnum":false,"toto":true}
-        }
+          "games": [
+            {
+            "name":"da ma chai",
+            "image":"assets/images/icons/damacai.png", 
+            "selected": false
+            },
+            {
+            "name":"magnum",
+            "image":"assets/images/icons/magnum.png", 
+            "selected": false
+            },
+            {
+            "name":"toto",
+            "image":"assets/images/icons/toto.png", 
+            "selected": false
+            },
+        ],        }
       ];
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
