@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBettingInitData}) => {
 
 
-    //console.log('DateAndGameOption:_bettingInitData:',_bettingInitData);
+    console.log('DateAndGameOption:_bettingInitData:',_bettingInitData);
     
     const [initData, setInitData] = useState(item);
     const [active, setActive] = useState(false);
@@ -35,19 +35,21 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
 
         
 
-       //  console.log('newstate selected: ', newState);
+        console.log('newstate selected: ', newState);
 
        _setBettingInitData(Object.assign(_dateAndGameOptionData,newState))
 
       }
 
-      const selectUnSelectgame =(dateSelect,gName,gselected)=>{ // selectUnSelectgame
+    const selectUnSelectgame =(dateSelect,gName,gselected)=>{ // selectUnSelectgame
 
         console.log('selectUnSelectgame is clicked: ', gName + gselected )
 
         if(dateSelect)
-        {const newState =  initData.games.map((game) => {
-            if (game.name === gName) {
+        {
+            
+            const newState =  initData.games.map((game) => {
+            if (game.name == gName) {
             return {  ...game,
               selected: gselected,
             }
@@ -57,25 +59,15 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
             }
 
           });
-          console.log('GamesnewState', newState)
+          console.log('initData: ', initData)
+          console.log('newState: ', newState)
+          console.log('selectUnSelectgame function _dateAndGameOptionData: ', _dateAndGameOptionData)
+        
 
        _setBettingInitData(Object.assign(_dateAndGameOptionData,Object.assign(initData.games,newState)))
 }
       }
 
-      const changeState =(k)=>{
-        const newState = initData.map((day,key) => {
-          if (key === k) {
-          return {  ...day,
-            selected: !day.selected
-          }
-          } else {
-            // Return a new circle 50px below
-            return day
-          }
-        });
-        setInitData(newState)
-      }
 
     useEffect(() => {
         // Update the document title using the browser API
