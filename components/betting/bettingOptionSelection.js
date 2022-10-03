@@ -8,11 +8,10 @@ import React, { useState, useEffect } from 'react';
         {
             "type":"A",
             "total":200.00,
-            "accepted":165.00,
-            "rejected":35.00,
-            "rebate":16.50,
-            "net":148.50,
-            "result":"successful"
+            "accepted":200.00,
+            "rebate":20.50,
+            "net":180.50,
+            "status":"successful"
         },
         {
             "type":"B",
@@ -21,7 +20,7 @@ import React, { useState, useEffect } from 'react';
             "rejected":35.00,
             "rebate":16.50,
             "net":148.50,
-            "result":"successful",
+            "status":"successful",
             "rejectedBet":[{
                 "date":"27/09",
                 "code":"M",
@@ -29,16 +28,20 @@ import React, { useState, useEffect } from 'react';
                 "size":"Big",
                 "deduction":-20,
                 "comments":"Over Limit"
-            }]
+            },
+            {
+                "date":"27/09",
+                "code":"P",
+                "number":1234,
+                "size":"Big",
+                "deduction":-15,
+                "comments":"Over Limit"
+            }],
+            
         },
         {
             "type":"C",
-            "total":200.00,
-            "accepted":165.00,
-            "rejected":35.00,
-            "rebate":16.50,
-            "net":148.50,
-            "result":"failed",
+            "status":"failed",
             "remarks":"The market already closed"
         },
 
@@ -266,7 +269,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                 {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
                     <div className="modal-dialog modal-md">
                         <div className="modal-content">
-                            <div className="modal-header text-white" style={{backgroundColor:'#0d6efd'}}>
+                            <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
                                 <h5 className="modal-title" id="bettingModal">
                                     Bet Successful
                                 </h5>
@@ -290,7 +293,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                 </div>
                             </div>
                             <div class="modal-footer" style={{justifyContent:'center'}}>
-                                <button type="button" className="btn  btn-sm btn-outline-primary" data-bs-dismiss="modal">OK</button>
+                            <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
                             </div>
                         </div>
                     </div>
@@ -299,7 +302,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                 <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
                     <div className="modal-dialog modal-md">
                         <div className="modal-content">
-                            <div className="modal-header text-white" style={{backgroundColor:'#0d6efd'}}>
+                            <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
                                 <h5 className="modal-title" id="bettingModal">
                                     Bet Successful
                                 </h5>
@@ -347,7 +350,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                 </div>
                             </div>
                             <div class="modal-footer" style={{justifyContent:'center'}}>
-                                <button type="button" className="btn  btn-sm btn-outline-primary" data-bs-dismiss="modal">OK</button>
+                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
                             </div>
                         </div>
                     </div>
@@ -357,7 +360,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
             {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
                     <div className="modal-dialog modal-md">
                         <div className="modal-content">
-                            <div className="modal-header text-white" style={{backgroundColor:'#0d6efd'}}>
+                            <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
                                 <h5 className="modal-title" id="bettingModal">
                                     Bet Failed
                                 </h5>
@@ -368,7 +371,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                 </div>
                             </div>
                             <div class="modal-footer" style={{justifyContent:'center'}}>
-                                <button type="button" className="btn  btn-sm btn-outline-primary" data-bs-dismiss="modal">OK</button>
+                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
                             </div>
                         </div>
                     </div>
@@ -378,28 +381,28 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
             {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
                 <div className="modal-dialog modal-md">
                     <div className="modal-content">
-                        <div className="modal-header text-white" style={{backgroundColor:'#0d6efd'}}>
+                       <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
                             <h5 className="modal-title" id="bettingModal">
                                 Bet Failed
                             </h5>
                         </div>
                         <div className="modal-body" >
                             <div class="container-fluid text-center">
-                            <h5>Your credit is insufficient </h5>
+                            <h5>Your credit is insufficient.</h5>
                             </div>
                         </div>
                         <div class="modal-footer" style={{justifyContent:'center'}}>
-                            <button type="button" className="btn  btn-sm btn-outline-primary" data-bs-dismiss="modal">OK</button>
+                            <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
                         </div>
                     </div>
                 </div>
-        </div> */}
+             </div> */}
         {/* MODAL D */}
         {/* MODAL E */}
         {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
             <div className="modal-dialog modal-md">
                 <div className="modal-content">
-                    <div className="modal-header text-white" style={{backgroundColor:'#0d6efd'}}>
+                   <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
                         <h5 className="modal-title" id="bettingModal">
                             Bet Failed
                         </h5>
@@ -410,7 +413,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                         </div>
                     </div>
                     <div class="modal-footer" style={{justifyContent:'center'}}>
-                        <button type="button" className="btn  btn-sm btn-outline-primary" data-bs-dismiss="modal">OK</button>
+                        <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
                     </div>
                 </div>
             </div>
@@ -420,7 +423,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
           {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
             <div className="modal-dialog modal-md">
                 <div className="modal-content">
-                    <div className="modal-header text-white" style={{backgroundColor:'#0d6efd'}}>
+                    <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
                         <h5 className="modal-title" id="bettingModal">
                             Bet Failed
                         </h5>
@@ -432,7 +435,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                         </div>
                     </div>
                     <div class="modal-footer" style={{justifyContent:'center'}}>
-                        <button type="button" className="btn  btn-sm btn-outline-primary" data-bs-dismiss="modal">OK</button>
+                        <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
                     </div>
                 </div>
             </div>
