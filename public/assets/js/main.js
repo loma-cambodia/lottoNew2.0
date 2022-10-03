@@ -28,25 +28,25 @@ $(function () {
 })
 $(function(){
     var active_dates = ["21/9/2022","25/9/2022"];
-    $("#datepicker").datepicker({
-        format: "dd/mm/yyyy",
-        autoclose: true,
-        todayHighlight: false,
-        beforeShowDay: function(date){
-            var d = date;
-            var curr_date = d.getDate();
-            var curr_month = d.getMonth() + 1; //Months are zero based
-            var curr_year = d.getFullYear();
-            var formattedDate = curr_date + "/" + curr_month + "/" + curr_year
+    // $("#datepicker").datepicker({
+    //     format: "dd/mm/yyyy",
+    //     autoclose: true,
+    //     todayHighlight: false,
+    //     beforeShowDay: function(date){
+    //         var d = date;
+    //         var curr_date = d.getDate();
+    //         var curr_month = d.getMonth() + 1; //Months are zero based
+    //         var curr_year = d.getFullYear();
+    //         var formattedDate = curr_date + "/" + curr_month + "/" + curr_year
    
-              if ($.inArray(formattedDate, active_dates) != -1){
-                  return {
-                     classes: 'activeClass'
-                  };
-              }
-             return;
-         }
-     });
+    //           if ($.inArray(formattedDate, active_dates) != -1){
+    //               return {
+    //                  classes: 'activeClass'
+    //               };
+    //           }
+    //          return;
+    //      }
+    //  });
   })
   $(window).on("scroll", function () {
     var header = $(".site-header.sticky-header");
