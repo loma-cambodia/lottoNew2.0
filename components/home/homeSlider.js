@@ -4,7 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 const HomeSlider = () => {
     return (
       <>
-     <Carousel>
+     <Carousel className="homepage-carousel">
   <div className="item">
             <div className="hero-slider-special-draw">
                 <div className="container">
