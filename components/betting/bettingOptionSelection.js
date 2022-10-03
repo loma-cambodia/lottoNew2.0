@@ -48,15 +48,22 @@ let localStateInitData = {
     bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }, amount: { value: "", disabled: 1 }
 };
 
-let bettingInputsData = [ {name:'01',dataInit:localStateInitData},{name:'02',dataInit:localStateInitData},
-{name:'03',dataInit:localStateInitData},{name:'04',dataInit:localStateInitData},
-{name:'05',dataInit:localStateInitData},{name:'06',dataInit:localStateInitData},
-{name:'07',dataInit:localStateInitData},{name:'08',dataInit:localStateInitData},
-{name:'09',dataInit:localStateInitData},{name:'10',dataInit:localStateInitData}];
+
+let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}},
+                          {name:'02',dataInit:{...localStateInitData}},
+                          {name:'03',dataInit:{...localStateInitData}},
+                          {name:'04',dataInit:{...localStateInitData}},
+                          {name:'05',dataInit:{...localStateInitData}},
+                          {name:'06',dataInit:{...localStateInitData}},
+                          {name:'07',dataInit:{...localStateInitData}},
+                          {name:'08',dataInit:{...localStateInitData}},
+                          {name:'09',dataInit:{...localStateInitData}},
+                          {name:'10',dataInit:{...localStateInitData}}
+                        ];
 
 let dateAndGameOptionData = [1,2,3,4];
 
-const BettingOptionSelection = ({_bettingDatesStore}) => {
+const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
     let dateAndGameOptionData = [];
     //  dateAndGameOptionData = [
@@ -172,28 +179,48 @@ const BettingOptionSelection = ({_bettingDatesStore}) => {
 
 
 
-
-
-
-      //_bettingDatesStore
-
-     // dateAndGameOptionData;
-
-      //console.log('_bettingDatesStore:',_bettingDatesStore);
-     // console.log('dateAndGameOptionData:',dateAndGameOptionData);
-
-
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
-    console.log("BettingOptionSelection:bettingInitData " ,bettingInitData)
+  
 
     const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
+
+    const updateBettingInputsData = (itemName,getNewChild) => {
+
+        let bettingInputsDataParentNew = bettingInputsDataParent;
+
+        bettingInputsDataParentNew.map(item => {
+           if(item.name == itemName)
+              item.dataInit = getNewChild;
+
+        })
+
+        console.log('bettingInputsDataParentNew:',bettingInputsDataParentNew);
+
+        console.log('getNewChild',getNewChild);
+        console.log('itemName:',itemName);
+
+
+
+    }
+
     const clearAllRecords = () => {
         setLocalStateInitDataParent([ {name:'01',dataInit:localStateInitData},{name:'02',dataInit:localStateInitData},
-        {name:'03',dataInit:localStateInitData},{name:'04',dataInit:localStateInitData},
-        {name:'05',dataInit:localStateInitData},{name:'06',dataInit:localStateInitData},
-        {name:'07',dataInit:localStateInitData},{name:'08',dataInit:localStateInitData},
-        {name:'09',dataInit:localStateInitData},{name:'10',dataInit:localStateInitData}]);
+                                      {name:'03',dataInit:localStateInitData},{name:'04',dataInit:localStateInitData},
+                                      {name:'05',dataInit:localStateInitData},{name:'06',dataInit:localStateInitData},
+                                      {name:'07',dataInit:localStateInitData},{name:'08',dataInit:localStateInitData},
+                                      {name:'09',dataInit:localStateInitData},{name:'10',dataInit:localStateInitData}]);
     }
+
+
+    const lotterySubmitRecordsCallAction = () => {
+
+     ///  let dataSubmit = {customer_id:"1", enterprise_id:"11", datesGamesData:bettingInitData, InputsData:bettingInputsDataParent}
+
+      //  _lotterySubmitRecords(dataSubmit)
+      
+      console.log('111');
+
+    } 
 
     return(
         
@@ -219,13 +246,14 @@ const BettingOptionSelection = ({_bettingDatesStore}) => {
                     <th className="border-0"></th>
                 </tr>
                 
-                {bettingInputsDataParent.map((item) => (<BettingInputs key={'bettingInputs'+item.name} item={item}/>) )}
+                {bettingInputsDataParent.map((item) => (<BettingInputs key={'bettingInputs'+item.name} item={item} _updateBettingInputsData = {updateBettingInputsData}/>) )}
                 <tr>
                     <td colSpan="6">
                         Total Bet Amount 216.00
                     </td>
                     <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>CLEAR</button></td>
                     <td colSpan="2">
+                            {/* <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> */}
                             <button  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">Submit</button>
                     </td>
                 </tr>
