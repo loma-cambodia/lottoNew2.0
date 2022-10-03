@@ -141,12 +141,12 @@ const BettingOptionSelection = ({_bettingDatesStore}) => {
 
      // dateAndGameOptionData;
 
-      //console.log('_bettingDatesStore:',_bettingDatesStore);
+    //   console.log('_bettingDatesStore:',_bettingDatesStore);
      // console.log('dateAndGameOptionData:',dateAndGameOptionData);
 
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
-    console.log("BettingOptionSelection:bettingInitData " ,bettingInitData)
+    // console.log("BettingOptionSelection:bettingInitData " ,bettingInitData)
 
     const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
     const clearAllRecords = () => {
