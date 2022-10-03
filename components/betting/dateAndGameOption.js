@@ -10,16 +10,58 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
     const [active, setActive] = useState(false);
 
 
+    const getDateName =(dateString) => {
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var d = new Date(dateString);
+        var dayName = days[d.getDay()];
+        return dayName
+    }
+
     const selectUnSelectDate =(getValue)=>{ // selectUnSelectDate
 
-        // console.log('getValue: ', getValue)
+        console.log('getValue: ', getValue)
+
+        if(getValue == false){
+            selectUnSelectgame(true,"da ma chai",false)
+            selectUnSelectgame(true,"toto",false)
+            selectUnSelectgame(true,"magnum",false)
+        }
 
         const newState = Object.assign(initData,{"selected": getValue});
+
+        
 
         // console.log('newstate selected: ', newState)
 
        _setBettingInitData(Object.assign(_dateAndGameOptionData,newState))
 
+      }
+
+      const selectUnSelectgame =(dateSelect,gName,gselected)=>{ // selectUnSelectgame
+
+        console.log('selectUnSelectgame is clicked: ', gName + gselected )
+
+        if(dateSelect)
+        {const newState =  initData.games.map((game) => {
+            if (game.name === gName) {
+            return {  ...game,
+              selected: gselected,
+            }
+            } else {
+              // Return a new circle 50px below
+              return game
+            }
+
+          });
+          console.log('GamesnewState', newState)
+
+
+        // newState = Object.assign(initData.games,newState);
+
+        // console.log('newstate selected: ', newState)
+
+       _setBettingInitData(Object.assign(_dateAndGameOptionData,Object.assign(initData.games,newState)))
+}
       }
 
       const changeState =(k)=>{
@@ -46,15 +88,21 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
     
 
     return(
-        <div className="col-md-3 col-sm-6" onClick={() => selectUnSelectDate(!initData.selected)}>
-        <div className= {`${initData.selected ? "selected":"unselected"} date-lottery-selector`}>
-            <div className="d-flex align-items-center">
+        <div className="col-md-3 col-sm-6" 
+        >
+        <div 
+        className= {`${initData.selected ? "selected":"unselected"} date-lottery-selector`}>
+            <div className="d-flex align-items-center"
+                    onClick={() => selectUnSelectDate(!initData.selected)}
+            >
                 <div className="round">
                     <input type="checkbox" id={initData.id} checked={initData.selected}/>
-                    <label htmlFor={initData.id}></label>
+                    <label htmlFor={initData.id}
+                    onClick={() => selectUnSelectDate(!initData.selected)}
+                    ></label>
                 </div>
                 <div className="day-n-date">
-                    <p className="fw-bold mb-0">Tuesday</p>
+                    <p className="fw-bold mb-0">{getDateName(initData.date)}</p>
                     <p className="mb-0">{initData.date}</p>
                 </div>
             </div>
@@ -62,8 +110,8 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
                 <div className="select-gp" id="checkboxes">
                     <ul id="checkboxes" className="list-inline">
                         {initData.games.map((game) =>(
-                            <li className="list-inline-item gamesPick">
-                            <span className="outer-circle-gp" title="Select">
+                            <li className={`${initData.selected ? "":""} list-inline-item`}>
+                            <span onClick={() => selectUnSelectgame(initData.selected,game.name,!game.selected)} className={`${game.selected ? "selected-gp-btn":""} outer-circle-gp`} title="Select">
                                 <span className="inner-circle-gp">
                                     <img className="img-fluid" src={game.image}/>
                                 </span>

@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 // import styles from '../styles/Home.module.css';
 import Link from 'next/link';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from '../components/common/footer';
 import Header from '../components/common/header';
 import HomeSlider from '../components/home/homeSlider';
@@ -11,9 +11,20 @@ import PayoutSection from '../components/home/payoutSection';
 import GamePlayPrize from '../components/home/gamePlayPrize';
 import HowToPlay from '../components/home/howToPlay';
 import BettingOptionSelection from '../components/betting/bettingOptionSelection';
-
+import {getBettingDates} from '../store/actions/bettingActions';
+import { useDispatch, useSelector } from "react-redux";
 export default function BettingNew() {
-  const [active, setActive] = useState(false)
+  const dispatch = useDispatch();
+  const [active, setActive] = useState(false);
+
+
+       useEffect(() => {
+          dispatch(getBettingDates());
+      },[dispatch]);
+
+
+      let bettingDatesStore = useSelector(state => state.betting.dates);
+    //  console.log('bettingDatesStore:',bettingDatesStore);
 
   return (
     <>
@@ -56,7 +67,7 @@ export default function BettingNew() {
             </div>
         </section>
       {/*--Breadcrumb--*/}
-     <BettingOptionSelection/> 
+     <BettingOptionSelection _bettingDatesStore={bettingDatesStore}/> 
      <Footer/>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
