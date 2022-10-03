@@ -222,7 +222,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
       //  _lotterySubmitRecords(dataSubmit)
       
       console.log('111');
-
+        console.log("TICKET DATA:",ticketSubmissionData)
     } 
 
     return(
@@ -257,7 +257,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                     <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>CLEAR</button></td>
                     <td colSpan="2">
                             {/* <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> */}
-                            <button  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">Submit</button>
+                            <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">Submit</button>
                     </td>
                 </tr>
                 </tbody>
@@ -308,7 +308,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                 </h5>
                             </div>
                             <div className="modal-body" >
-                                <div class="container-fluid">
+                                <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
                                     <div class="row">
                                         <div class="col-8 col-sm-8">
                                             <p>Total bet amount</p>
@@ -325,9 +325,89 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                     </div>
                                     <hr></hr>
                                     <div><h5>Rejected Bet</h5></div>
-                                    <div class="row text-center">
-                                    <table class="table table-borderless">
+                                    <div className="row text-center table-responsive " style={{height:"250px"}}>
+                                    <table className="table table-bordered table-striped mb-0">
                                         <tbody style={{fontWeight:'bold'}}>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
                                             <tr>
                                             <th scope="row">27/09</th>
                                             <td>M</td>
