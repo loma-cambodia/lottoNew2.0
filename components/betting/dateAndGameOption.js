@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBettingInitData}) => {
 
-
-    console.log('games:',_bettingInitData.games);
-    
+  
     const [initData, setInitData] = useState(item);
     const [active, setActive] = useState(false);
 
