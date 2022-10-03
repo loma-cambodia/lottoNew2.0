@@ -1121,7 +1121,19 @@
     border-radius: 10px 0;
     transition: 0.5s;
     }
-    .btn-custom-small:active,
+    .btn-custom-small-disabled {
+        border: 1px solid #bc2263;
+        color: #bc2263;
+        background-color: #fff;
+        max-width: 30px;
+        max-height: 30px;
+        width: 30px;
+        border-radius: 10px 0;
+        transition: 0.5s;
+      }
+
+
+    /*.btn-custom-small:active,
     .btn-custom-small:focus,
     .btn-custom-small:visited,
     .btn-custom-small:focus-visible,
@@ -1130,7 +1142,21 @@
     background-color: #bc2263;
     color: #fff;
     box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
+    }*/
+    .btn-custom-small:active,
+    .btn-custom-small:visited,
+    .btn-custom-small:focus-visible,
+    .btn-custom-small:hover {
+    background-color: #bc2263;
+    color: #fff;
+    box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
     }
+    .active-bet-type {
+        background-color: #bc2263;
+        color: #fff;
+        box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
+      }
+    
     .btn-delete-small {
     border: none;
     color: #fff;
@@ -1150,6 +1176,8 @@
     .btn-delete-small:hover {
     box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
     }
+
+   
     .table-scalable table {
     max-width: 100%;
     table-layout: fixed;
