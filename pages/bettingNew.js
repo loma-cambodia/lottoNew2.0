@@ -19,15 +19,12 @@ export default function BettingNew() {
 
 
        useEffect(() => {
-        // Update the document title using the browser API
-      //  document.title = `You clicked ${count} times`;
-      console.log('11111111');
-      //dispatch(speedUp({}));
-      dispatch(getBettingDates());
+          dispatch(getBettingDates());
       },[dispatch]);
 
 
-      let state = useSelector(state => state);
+      let bettingDatesStore = useSelector(state => state.betting.dates);
+    //  console.log('bettingDatesStore:',bettingDatesStore);
 
   return (
     <>
@@ -70,7 +67,7 @@ export default function BettingNew() {
             </div>
         </section>
       {/*--Breadcrumb--*/}
-     <BettingOptionSelection/> 
+     <BettingOptionSelection _bettingDatesStore={bettingDatesStore}/> 
      <Footer/>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
