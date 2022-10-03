@@ -2,6 +2,9 @@ import DateAndGameOption from './dateAndGameOption';
 import BettingInputs from './bettingInputs';
 import React, { useState, useEffect } from 'react';
 
+// reactstrap components
+
+
 let bettingInputsData = ['01','02','03','04','05','06','07','08','09','10'];
 
 
@@ -101,7 +104,38 @@ const BettingOptionSelection = () => {
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
 
     return(
+        
         <section className="page-content custom-padding">
+            {/* Modal */}
+            <div
+                className="modal fade"
+                id="bettingModal"
+                tabIndex="-1"
+                aria-labelledby="bettingModal"
+                aria-hidden="true"
+            >
+                <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                    <h5 className="modal-title" id="bettingModal">
+                        Bet Details
+                    </h5>
+                    <button
+
+                        type="button"
+                        class="btn btn-danger btn-sm"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    >X</button>
+                    </div>
+                    <div className="modal-body">...</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirm</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
          <div className="container">
           <div className="row justify-content-center">
 
@@ -304,7 +338,9 @@ const BettingOptionSelection = () => {
                     </td>
                     <td><button type="button" className="btn-custom-curve1 me-1">CLEAR</button></td>
                     <td colSpan="2">
-                            <button type="button" className="btn-custom-curve2">Submit</button>
+                            <button  data-bs-toggle="modal"
+                                data-bs-target="#bettingModal"
+                                type="button" className="btn-custom-curve2">Submit</button>
                     </td>
                 </tr>
                 </tbody>
