@@ -805,12 +805,24 @@ section.announcement {
     padding: 15px;
     margin-bottom: 20px;
 }
+
 .unslected {
     border-color: #dddddd;
 }
 .selected {
-    border-color: #bc2263;
+    border: 1px solid #bf2262;
 }
+
+#checkboxes .gamesPicked{
+    /* border: 1px solid #bf2262; */
+    filter: grayscale(0%)!important;
+    /* border-radius: 15px; */
+}
+
+#checkboxes input[type=checkbox]{
+    display: none;
+  }
+
 span.outer-circle-gp {
     width: 35px;
     height: 35px;

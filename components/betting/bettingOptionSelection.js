@@ -1,12 +1,10 @@
 import DateAndGameOption from './dateAndGameOption';
 import BettingInputs from './bettingInputs';
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 let localStateInitData = {
     number: { value: "", disabled: 0 },number_field: { value: "", disabled: 0 }, big: { value: "", disabled: 0 }, small: { value: "", disabled: 0 }, _3a: { value: "", disabled: 0 }, _3c: { value: "", disabled: 0 },
     bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }, amount: { value: "", disabled: 1 }
 };
-
-
 
 
 
@@ -19,10 +17,97 @@ let bettingInputsData = [ {name:'01',dataInit:localStateInitData},{name:'02',dat
 
 let dateAndGameOptionData = [1,2,3,4];
 
-
-
-
 const BettingOptionSelection = () => {
+    let dateAndGameOptionData = [
+        { 
+          "id": 1,
+          "date": '02/12/2015',
+          "selected": true,
+          "games": [
+            {
+            "name":"da ma chai",
+            "image":"assets/images/icons/damacai.png", 
+            "selected": false
+            },
+            {
+            "name":"magnum",
+            "image":"assets/images/icons/magnum.png", 
+            "selected": false
+            },
+            {
+            "name":"toto",
+            "image":"assets/images/icons/toto.png", 
+            "selected": false
+            },
+        ],
+        },
+        {
+          "id":2,
+          "date": '10-03-2022',
+          "selected": false,
+          "games": [
+            {
+            "name":"da ma chai",
+            "image":"assets/images/icons/damacai.png", 
+            "selected": false
+            },
+            {
+            "name":"magnum",
+            "image":"assets/images/icons/magnum.png", 
+            "selected": false
+            },
+            {
+            "name":"toto",
+            "image":"assets/images/icons/toto.png", 
+            "selected": false
+            },
+        ],        },
+        {
+          "id":3,
+          "date": '2022-10-03',
+          "selected": false,
+          "games": [
+            {
+            "name":"da ma chai",
+            "image":"assets/images/icons/damacai.png", 
+            "selected": false
+            },
+            {
+            "name":"magnum",
+            "image":"assets/images/icons/magnum.png", 
+            "selected": false
+            },
+            {
+            "name":"toto",
+            "image":"assets/images/icons/toto.png", 
+            "selected": false
+            },
+        ],        },
+        {
+          "id":4,
+          "date": '2017-04-23',
+          "selected": false,
+          "games": [
+            {
+            "name":"da ma chai",
+            "image":"assets/images/icons/damacai.png", 
+            "selected": false
+            },
+            {
+            "name":"magnum",
+            "image":"assets/images/icons/magnum.png", 
+            "selected": false
+            },
+            {
+            "name":"toto",
+            "image":"assets/images/icons/toto.png", 
+            "selected": false
+            },
+        ],        }
+      ];
+
+    const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
+    console.log("bettingInitData " ,bettingInitData)
 
     const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
     const clearAllRecords = () => {
@@ -37,7 +122,9 @@ const BettingOptionSelection = () => {
         <section className="page-content custom-padding">
          <div className="container">
           <div className="row justify-content-center">
-            {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item} item={item}/>) )}
+            {/* {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item} item={item}/>) )} */}
+          {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id} item={item} _dateAndGameOptionData={dateAndGameOptionData} _bettingInitData={bettingInitData} _setBettingInitData={setBettingInitData}/>) )}
+              
          </div>
         <div className="table-scalable my-3">
             <table className="">

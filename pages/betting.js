@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 const Betting = () => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
-  const [initData, setInitData] = useState([]);
 
   const dates = [
     { 
@@ -38,6 +37,7 @@ const Betting = () => {
       "games": {"damacai":false,"magnum":false,"toto":true}
     }
   ]
+  const [initData, setInitData] = useState(dates);
 
   const changeState =(k)=>{
     const newState = initData.map((day,key) => {
@@ -58,7 +58,7 @@ const Betting = () => {
   console.log('11111111');
   //dispatch(speedUp({}));
   dispatch(getUsers());
-  setInitData(dates);
+  // setInitData(dates);
   },[dispatch]);
 
 
