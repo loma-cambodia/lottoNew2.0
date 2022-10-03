@@ -9,11 +9,20 @@ let ttl = 60 + 10800; // 3 hours
 async function handler(req, res) {
     const body  = req.body
 
+        // const objectWithData = {
+        //     "user_name": "Sushil Gupta",
+        //     "email": "loma123@gmail.coma",
+        //     "customer_id": 1,
+        //     "enterprise_id": 11
+        // }
+
+        
+
         const objectWithData = {
-            "user_name": "Sushil Gupta",
-            "email": "loma123@gmail.coma",
-            "customer_id": 1,
-            "enterprise_id": 11
+            "user_name": req.body.user_name,
+            "email":  req.body.email,
+            "customer_id":  req.body.customer_id,
+            "enterprise_id":  req.body.enterprise_id,
         }
         
         const userData = await fetch(process.env.siteUrl + '/api/login', {
@@ -29,7 +38,7 @@ async function handler(req, res) {
             //req.session.set("user", data);
             req.session.user = data;
             await req.session.save();
-           // res.redirect(307, '/');
+             res.redirect(307, '/');
             res.send("You are Logged in, Please Go back");
         }else{
             console.log("Worng Data", data);
