@@ -7,7 +7,7 @@ import axios from 'axios'
         console.log('res:',res);
         dispatch( {
             type: "GET_DATES",
-            payload: res.data
+            payload: res.data.data
         })
     }
     catch(e){

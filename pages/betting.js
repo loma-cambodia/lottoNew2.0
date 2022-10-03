@@ -66,8 +66,7 @@ const Betting = () => {
   let users = useSelector(state => state.users);
   let state = useSelector(state => state);
 
-  console.log('users:', users);
-  console.log('state:', state)
+
 
   return (
     <div className={styles.container}>
