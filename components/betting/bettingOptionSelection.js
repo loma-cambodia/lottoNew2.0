@@ -31,7 +31,7 @@ const BettingOptionSelection = () => {
         },
         {
           "id":2,
-          "date": '2017-01-03',
+          "date": '10-03-2022',
           "selected": false,
           "games": [
             {
@@ -52,7 +52,7 @@ const BettingOptionSelection = () => {
         ],        },
         {
           "id":3,
-          "date": '2017-09-13',
+          "date": '2022-10-03',
           "selected": false,
           "games": [
             {
