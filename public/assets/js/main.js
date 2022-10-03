@@ -16,9 +16,34 @@ $('.hero-slider').owlCarousel({
 })
 
 function openNav() {
-    document.getElementById("mySidepanel").style.width = "300px";
+    document.getElementById("mySidepanel").style.width = "100%";
   }
   
   function closeNav() {
     document.getElementById("mySidepanel").style.width = "0";
-  }
+}
+// $(function () {
+//     $('[data-toggle="tooltip"]').tooltip()
+// })
+// $(function(){
+//     var active_dates = ["21/9/2022","25/9/2022"];
+//     $("#datepicker").datepicker({
+//         format: "dd/mm/yyyy",
+//         autoclose: true,
+//         todayHighlight: false,
+//         beforeShowDay: function(date){
+//             var d = date;
+//             var curr_date = d.getDate();
+//             var curr_month = d.getMonth() + 1; //Months are zero based
+//             var curr_year = d.getFullYear();
+//             var formattedDate = curr_date + "/" + curr_month + "/" + curr_year
+   
+//               if ($.inArray(formattedDate, active_dates) != -1){
+//                   return {
+//                      classes: 'activeClass'
+//                   };
+//               }
+//              return;
+//          }
+//      });
+//   })

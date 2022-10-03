@@ -150,7 +150,8 @@
     padding: 10px 25px;
     text-decoration: none;
     border-radius: 5px;
-    font-family: "Roboto Medium";
+    /* font-family: "Roboto Medium"; */
+    font-weight: bold;
     font-size: 14px;
     text-transform: uppercase;
 }
@@ -804,12 +805,24 @@ section.announcement {
     padding: 15px;
     margin-bottom: 20px;
 }
+
 .unslected {
     border-color: #dddddd;
 }
 .selected {
-    border-color: #bc2263;
+    border: 1px solid #bf2262;
 }
+
+#checkboxes .gamesPicked{
+    /* border: 1px solid #bf2262; */
+    filter: grayscale(0%)!important;
+    /* border-radius: 15px; */
+}
+
+#checkboxes input[type=checkbox]{
+    display: none;
+  }
+
 span.outer-circle-gp {
     width: 35px;
     height: 35px;
@@ -915,11 +928,22 @@ span.outer-circle-gp.selected-gp-btn span.inner-circle-gp img {
     border-radius: 10px 0;
     transition: 0.5s;
   }
-  .btn-custom-small:active, .btn-custom-small:visited, .btn-custom-small:focus-visible, .btn-custom-small:hover {
+
+  .btn-custom-small-disabled {
+    border: 1px solid #bc2263;
+    color: #bc2263;
+    background-color: #fff;
+    max-width: 30px;
+    max-height: 30px;
+    width: 30px;
+    border-radius: 10px 0;
+    transition: 0.5s;
+  }
+   .btn-custom-small:active, .btn-custom-small:visited, .btn-custom-small:focus-visible, .btn-custom-small:hover {
     background-color: #bc2263;
     color: #fff;
     box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
-  }
+  } 
   .active-bet-type {
     background-color: #bc2263;
     color: #fff;
@@ -987,7 +1011,143 @@ span.outer-circle-gp.selected-gp-btn span.inner-circle-gp img {
     background-color: #fff;
     color: #bc2263;
   }
-  
+  .form-control-custom-big {
+    border: 1px solid #ddd;
+    background: #fff;
+    box-shadow: none;
+    border-radius: 20px 0;
+    padding: 5px 15px;
+    width: 100%;
+    min-height: 45px;
+  }
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  .form-control-custom-big:active, .form-control-custom-big:focus, .form-control-custom-big:visited, .form-control-custom-big:focus-visible, .form-control-custom-big.btn-custom-small:focus-within {
+    border: 1px solid #bc2263;
+    outline: 0;
+  }
+  .datepicker {
+    padding: 6px;
+  }
+  .datepicker td, .datepicker th {
+    font-size: 13px;
+  }
+  .activeClass {
+    background-color: #ffc20f;
+    border-radius: 5px 0 !important;
+    min-width: 32px !important;
+    font-size: 12px;
+    opacity: .5;
+  }
+  .activeClass:hover {
+    opacity: 1;
+    background-color: #ffc20f !important;
+  }
+  .datepicker td, .datepicker th {
+    width: 32px;
+  }
+  .filter-text {
+    position: relative;
+}
+span.text-filter {
+    font-weight: bold;
+    font-size: 20px;
+}
+.filter-date .form-control {
+    border-radius: 10px 0 0 0;
+}
+.filter-date .input-group-text {
+    border-radius: 0 0 10px 0;
+    background-color: #bc2263 !important;
+    color: #fff;
+    border: 1px solid #bc2263;
+}
+.curved-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 20px 0;
+}
+span.filter-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px 0;
+    background: #efefef;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}
+.print-btn {
+    position: absolute;
+    right: 15px;
+    font-weight: normal;
+}
+.custom-accordion .accordion-button:not(.collapsed) {
+    background-color: #bc2263;
+    color: #fff;
+}
+.custom-accordion .accordion-button {
+    color: #000;
+    padding: 10px 20px;
+    background-color: #fbbb3b;
+    border-radius: 5px;
+}
+.custom-accordion .accordion-button span:first-child {
+    font-weight: bold;
+}
+.accordion-button:not(.collapsed)::after {
+    background-image: url(../images/icons/dow_arrow.png);
+    transform: rotate(-180deg);
+    color: #fff;
+}
+.custom-accordion .accordion-item:first-of-type .accordion-button {
+    border-radius: 5px;
+}
+.custom-accordion .accordion-item {
+    margin-bottom: 10px;
+}
+.custom-accordion .accordion-item {
+    border: none;
+}
+span.prize-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 3px;
+    line-height: 20px;
+}
+span.prize-name {
+    font-weight: bold;
+}
+.damamcai span.prize-icon {
+    border: 1px solid #c42026;
+}
+.card.damamcai {
+    border: 2px solid #c42026;
+}
+.card.magnum {
+    border: 2px solid #f17e00;
+}
+.card.toto {
+    border: 2px solid #000;
+}
+.bg-toto {
+    background-color: #f03c45 !important;
+}
+.custom-accordion .accordion-button::after {
+    display: none;
+}
+.card {
+    margin-bottom: 15px;
+}
+.active-btn {
+    background-color: #f03c45 !important;
+    color: #fff;
+    box-shadow: 0px 6px 3px rgb(0 0 0 / 30%)
+}
   @media (min-width: 576px) {
     .container-sm, .container {
       max-width: 100%;
