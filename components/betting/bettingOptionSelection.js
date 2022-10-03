@@ -44,7 +44,7 @@ const BettingOptionSelection = () => {
          <div className="container">
           <div className="row justify-content-center">
 
-          {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id} item={item} _bettingInitData={bettingInitData} _setBettingInitData={setBettingInitData}/>) )}
+          {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id} item={item} _dateAndGameOptionData={dateAndGameOptionData} _bettingInitData={bettingInitData} _setBettingInitData={setBettingInitData}/>) )}
               
               
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData}) => {
+const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBettingInitData}) => {
 
 
     console.log('_bettingInitData:',_bettingInitData);
@@ -16,10 +16,25 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData}) => {
 
         const newState = Object.assign(initData,{"selected": getValue});
 
-        console.log('newstate selected: ', newState.selected)
+        console.log('newstate selected: ', newState)
 
     //    setInitData(newState)
-       _setBettingInitData(newState)
+       _setBettingInitData(Object.assign(_dateAndGameOptionData,newState))
+
+      }
+
+      const changeState =(k)=>{
+        const newState = initData.map((day,key) => {
+          if (key === k) {
+          return {  ...day,
+            selected: !day.selected
+          }
+          } else {
+            // Return a new circle 50px below
+            return day
+          }
+        });
+        setInitData(newState)
       }
 
     useEffect(() => {
