@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBettingInitData}) => {
 
 
-    console.log('games:',_bettingInitData.games);
+    //console.log('DateAndGameOption:_bettingInitData:',_bettingInitData);
     
     const [initData, setInitData] = useState(item);
     const [active, setActive] = useState(false);
@@ -22,16 +22,20 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
         console.log('getValue: ', getValue)
 
         if(getValue == false){
-            selectUnSelectgame(true,"da ma chai",false)
-            selectUnSelectgame(true,"toto",false)
-            selectUnSelectgame(true,"magnum",false)
+           // selectUnSelectgame(true,"da ma chai",false)
+           // selectUnSelectgame(true,"toto",false)
+           // selectUnSelectgame(true,"magnum",false)
+           initData.games.map((game) => {
+            selectUnSelectgame(true,game.name,false)
+           });
+
         }
 
         const newState = Object.assign(initData,{"selected": getValue});
 
         
 
-        // console.log('newstate selected: ', newState)
+       //  console.log('newstate selected: ', newState);
 
        _setBettingInitData(Object.assign(_dateAndGameOptionData,newState))
 
@@ -55,11 +59,6 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
           });
           console.log('GamesnewState', newState)
 
-
-        // newState = Object.assign(initData.games,newState);
-
-        // console.log('newstate selected: ', newState)
-
        _setBettingInitData(Object.assign(_dateAndGameOptionData,Object.assign(initData.games,newState)))
 }
       }
@@ -80,7 +79,7 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
 
     useEffect(() => {
         // Update the document title using the browser API
-      console.log('11111111');
+    //  console.log('11111111');
      
     //   setInitData(newState);
 

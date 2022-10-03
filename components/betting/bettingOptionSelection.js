@@ -20,107 +20,133 @@ let dateAndGameOptionData = [1,2,3,4];
 
 const BettingOptionSelection = ({_bettingDatesStore}) => {
 
+    let dateAndGameOptionData = [];
+    //  dateAndGameOptionData = [
+    //     { 
+    //       "id": 1,
+    //       "date": '02/12/2015',
+    //       "selected": true,
+    //       "games": [
+    //         {
+    //         "name":"da ma chai",
+    //         "image":"assets/images/icons/damacai.png", 
+    //         "selected": false
+    //         },
+    //         {
+    //         "name":"magnum",
+    //         "image":"assets/images/icons/magnum.png", 
+    //         "selected": false
+    //         },
+    //         {
+    //         "name":"toto",
+    //         "image":"assets/images/icons/toto.png", 
+    //         "selected": false
+    //         },
+    //     ],
+    //     },
+    //     {
+    //       "id":2,
+    //       "date": '10-03-2022',
+    //       "selected": false,
+    //       "games": [
+    //         {
+    //         "name":"da ma chai",
+    //         "image":"assets/images/icons/damacai.png", 
+    //         "selected": false
+    //         },
+    //         {
+    //         "name":"magnum",
+    //         "image":"assets/images/icons/magnum.png", 
+    //         "selected": false
+    //         },
+    //         {
+    //         "name":"toto",
+    //         "image":"assets/images/icons/toto.png", 
+    //         "selected": false
+    //         },
+    //     ],        },
+    //     {
+    //       "id":3,
+    //       "date": '2022-10-03',
+    //       "selected": false,
+    //       "games": [
+    //         {
+    //         "name":"da ma chai",
+    //         "image":"assets/images/icons/damacai.png", 
+    //         "selected": false
+    //         },
+    //         {
+    //         "name":"magnum",
+    //         "image":"assets/images/icons/magnum.png", 
+    //         "selected": false
+    //         },
+    //         {
+    //         "name":"toto",
+    //         "image":"assets/images/icons/toto.png", 
+    //         "selected": false
+    //         },
+    //     ],        },
+    //     {
+    //       "id":4,
+    //       "date": '2017-04-23',
+    //       "selected": false,
+    //       "games": [
+    //         {
+    //         "name":"da ma chai",
+    //         "image":"assets/images/icons/damacai.png", 
+    //         "selected": false
+    //         },
+    //         {
+    //         "name":"magnum",
+    //         "image":"assets/images/icons/magnum.png", 
+    //         "selected": false
+    //         },
+    //         {
+    //         "name":"toto",
+    //         "image":"assets/images/icons/toto.png", 
+    //         "selected": false
+    //         },
+    //     ],        }
+    //   ];
 
-    let dateAndGameOptionData = [
-        { 
-          "id": 1,
-          "date": '02/12/2015',
-          "selected": true,
-          "games": [
-            {
-            "name":"da ma chai",
-            "image":"assets/images/icons/damacai.png", 
-            "selected": false
-            },
-            {
-            "name":"magnum",
-            "image":"assets/images/icons/magnum.png", 
-            "selected": false
-            },
-            {
-            "name":"toto",
-            "image":"assets/images/icons/toto.png", 
-            "selected": false
-            },
-        ],
-        },
-        {
-          "id":2,
-          "date": '10-03-2022',
-          "selected": false,
-          "games": [
-            {
-            "name":"da ma chai",
-            "image":"assets/images/icons/damacai.png", 
-            "selected": false
-            },
-            {
-            "name":"magnum",
-            "image":"assets/images/icons/magnum.png", 
-            "selected": false
-            },
-            {
-            "name":"toto",
-            "image":"assets/images/icons/toto.png", 
-            "selected": false
-            },
-        ],        },
-        {
-          "id":3,
-          "date": '2022-10-03',
-          "selected": false,
-          "games": [
-            {
-            "name":"da ma chai",
-            "image":"assets/images/icons/damacai.png", 
-            "selected": false
-            },
-            {
-            "name":"magnum",
-            "image":"assets/images/icons/magnum.png", 
-            "selected": false
-            },
-            {
-            "name":"toto",
-            "image":"assets/images/icons/toto.png", 
-            "selected": false
-            },
-        ],        },
-        {
-          "id":4,
-          "date": '2017-04-23',
-          "selected": false,
-          "games": [
-            {
-            "name":"da ma chai",
-            "image":"assets/images/icons/damacai.png", 
-            "selected": false
-            },
-            {
-            "name":"magnum",
-            "image":"assets/images/icons/magnum.png", 
-            "selected": false
-            },
-            {
-            "name":"toto",
-            "image":"assets/images/icons/toto.png", 
-            "selected": false
-            },
-        ],        }
-      ];
+
+      if(_bettingDatesStore){
+
+    
+        _bettingDatesStore.map(item => {
+
+           // console.log('item.games:',item.games);
+
+            let tempObject = { 
+                "id": item.id,
+                "date": item.day,
+                "selected": false,
+                "games": item.games.map(itemGame => {
+                    itemGame.selected = false;
+                    return itemGame;
+                })
+              }
+              dateAndGameOptionData.push(tempObject);
+        });
+
+
+      }
 
 
 
-      _bettingDatesStore
 
-      dateAndGameOptionData;
 
-      console.log('_bettingDatesStore:',_bettingDatesStore);
-      console.log('dateAndGameOptionData:',dateAndGameOptionData);
+
+      //_bettingDatesStore
+
+     // dateAndGameOptionData;
+
+      //console.log('_bettingDatesStore:',_bettingDatesStore);
+     // console.log('dateAndGameOptionData:',dateAndGameOptionData);
 
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
-    //console.log("bettingInitData " ,bettingInitData)
+    console.log("BettingOptionSelection:bettingInitData " ,bettingInitData)
 
     const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
     const clearAllRecords = () => {
