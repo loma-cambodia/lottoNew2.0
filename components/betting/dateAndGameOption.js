@@ -21,84 +21,112 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
 
     const selectUnSelectDate =(getValue, getId)=>{ // selectUnSelectDate
 
-        // console.log('getValue: ', getValue);
-        // console.log('getId: ', getId)
-        let dateAndGameOptionData = _dateAndGameOptionData;
+                        // console.log('getValue: ', getValue);
+                        // console.log('getId: ', getId)
+                        let dateAndGameOptionData = _dateAndGameOptionData;
 
-         console.log('dateAndGameOptionData: ', dateAndGameOptionData);
+                        console.log('dateAndGameOptionData: ', dateAndGameOptionData);
 
-        //  dateAndGameOptionData.map(item => {
-        //     if(item.id == getId)
-        //       item.selected = getValue;
-                
-        //  });
+                         dateAndGameOptionData.map(item => {
+                            if(item.id == getId)
+                              item.selected = getValue;
+                                
+                         });
 
-        //  console.log('dateAndGameOptionData2:', dateAndGameOptionData);
+                         console.log('dateAndGameOptionData2:', dateAndGameOptionData);
 
-        //   _setBettingInitData(dateAndGameOptionData);
-         _setLoadpageCounter(_loadpageCounter + 1);
+                          _setBettingInitData(dateAndGameOptionData);
+                        _setLoadpageCounter(_loadpageCounter + 1);
+                        setInitData(item)
+                        console.log('item:', item);
+
+                    //     if(getValue == false){
+                    //     initData.games.map((game) => {
+                    //         selectUnSelectgame(true,game.name,false)
+                    //     });
+
+                    //     }
+
+                    // const newState = Object.assign(initData,{"selected": getValue});
+
+                    // const index = _dateAndGameOptionData.findIndex(object => {
+                    //     return object.id === getId;
+                    // });
+
+                    // if (index !== -1) {
+                    //     _dateAndGameOptionData[index].selected = getValue;
+                    // }
 
 
-        if(getValue == false){
-           initData.games.map((game) => {
-            selectUnSelectgame(true,game.name,false)
-           });
+                    // console.log('initData selectUnSelectDate: ', initData);
+                    // console.log('_dateAndGameOptionData / selectunselectdate: ', _dateAndGameOptionData);
 
+                    // _setBettingInitData(_dateAndGameOptionData)
+
+                    // console.log('_dateAndGameOptionData in selectUnSelectDate: ', _dateAndGameOptionData);
+
+                }
+
+        const selectUnSelectgame =(dateSelect,getId,gId,gselected)=>{ // selectUnSelectgame
+
+                    console.log('selectUnSelectgame is clicked: ', gId,gselected  )
+
+                    if(dateSelect)
+                    {
+
+                        // const index = _bettingInitData.games.findIndex(object => {
+                        //     return object.name === gName;
+                        // });
+
+                        // if (index !== -1) {
+                        //     _bettingInitData.games[index].selected = gselected;
+                        // }
+
+                            initData.games.map((game) => {
+                                console.log(game.name)
+
+                                if (game.name === gId) {
+                                return {  ...game,
+                                selected: gselected,
+                                }
+                                } else {
+                                // Return a new circle 50px below
+                                return game
+                                }
+                            });
+                            console.log('initData/selectUnSelectgame: ', initData )
+
+                    // let dateAndGameOptionData = _dateAndGameOptionData;
+
+                    // dateAndGameOptionData.map(item => {
+                    //     if(item.id == getId){
+                    //     const index = item.games.findIndex(object => {
+                    //             return object.name === gName;
+                    //         });
+
+                    //         if (index !== -1) {
+                    //             item.games[index].selected = gselected;
+                    //         }
+                    //     }
+                    // });
+
+                    //  console.log('initData: ', initData)
+                    // console.log('dateAndGameOptionData / selectUnSelectgame: ', dateAndGameOptionData)
+                            
+                    //  var newData = Object.assign(_dateAndGameOptionData,initData)
+                    //  console.log('newData / selectUnSelectgame: ', newData)
+        
+                    // _setBettingInitData(dateAndGameOptionData)
         }
-
-       const newState = Object.assign(initData,{"selected": getValue});
-
-        
-
-    //    console.log('newstate selected: ', newState);
-
-      _setBettingInitData(Object.assign(_dateAndGameOptionData,newState))
-
-    //  console.log('_dateAndGameOptionData in selectUnSelectDate: ', _dateAndGameOptionData);
-
-      }
-
-    const selectUnSelectgame =(dateSelect,gName,gselected)=>{ // selectUnSelectgame
-
-        console.log('selectUnSelectgame is clicked: ', gName + gselected )
-
-        if(dateSelect)
-        {
-            const index = initData.games.findIndex(object => {
-                return object.name === gName;
-              });
-
-              if (index !== -1) {
-                initData.games[index].selected = gselected;
-              }
-
-            // initData.games.map((game) => {
-            //     if (game.name == gName) {
-            //     return {  ...game,
-            //     selected: gselected,
-            //     }
-            //     } else {
-            //     // Return a new circle 50px below
-            //     return game
-            //     }
-
-            // });
-          console.log('initData: ', initData)
-          console.log('_dateAndGameOptionData / selectUnSelectgame: ', _dateAndGameOptionData)
-        
-              var newData = Object.assign(_dateAndGameOptionData,initData)
-              console.log('newData / selectUnSelectgame: ', newData)
-
-            _setBettingInitData(newData)
-}
-      }
+           
+        }
 
 
     useEffect(() => {
         // Update the document title using the browser API
     //  console.log('11111111');
      
-    //   setInitData(newState);
+    // _setBettingInitData(_dateAndGameOptionData);
 
       },);
     
@@ -127,8 +155,8 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
                 <div className="select-gp" id="checkboxes">
                     <ul id="checkboxes" className="list-inline">
                         {initData.games.map((game) =>(
-                            <li className={`${initData.selected ? "":""} list-inline-item`}>
-                            <span onClick={() => selectUnSelectgame(initData.selected,game.name,!game.selected)} className={`${game.selected ? "selected-gp-btn":""} outer-circle-gp`} title="Select">
+                            <li className={`list-inline-item`}>
+                            <span onClick={() => selectUnSelectgame(initData.selected,initData.id,game.name,!game.selected)} className={`${game.selected ? "selected-gp-btn":""} outer-circle-gp`} title="Select">
                                 <span className="inner-circle-gp">
                                     <img className="img-fluid" src={game.image}/>
                                 </span>
