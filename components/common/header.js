@@ -110,6 +110,13 @@ const Header = ({datauser}) => {
                                 </span>&nbsp; &nbsp;Chinese
                               </a>
                             </li>
+                            <li onClick={changeLangm('kh')}>
+                              <a className="dropdown-item" href="#">
+                                <span className="lang-flag">
+                                  <img src="assets/images/icons/flag-china.png"/>
+                                </span>&nbsp; &nbsp;Khmer
+                              </a>
+                            </li>
                           </ul>
                     </li>
                     <li className="menu-mobile">
