@@ -195,18 +195,7 @@ const BettingOptionSelectionForMob = ({_bettingDatesStore}) => {
 
 
             {bettingInputsDataParent.map((item) => (<BettingInputsForMob key={'bettingInputs'+item.name} item={item} activeGame={activeGame}/>) )}      
-        <div className="mt-2 mb-2 row">
-            <div className='col-6'>
-                <button className="form-control" onClick={() => resetAllData()} style={{ background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
-                    <b>Reset</b> 
-                </button> 
-            </div>
-            <div className='col-6'>
-                <button className="form-control text-light" style={{ background: '#e91d25' }}> 
-                    <b>BET</b> 
-                </button> 
-            </div>            
-        </div> 
+
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}

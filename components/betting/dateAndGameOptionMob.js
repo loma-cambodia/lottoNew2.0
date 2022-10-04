@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBettingInitData}) => {
+const DateAndGameOptionMob = ({item,_dateAndGameOptionData,_bettingInitData,_setBettingInitData}) => {
 
 
     console.log('games:',_bettingInitData.games);
@@ -57,14 +57,6 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
         });
         setInitData(newState)
       }
-
-    useEffect(() => {
-        // Update the document title using the browser API
-      console.log('11111111');
-     
-    //   setInitData(newState);
-
-      },);
         
   const [isModal, setIsModal] = useState(false);
 
@@ -103,4 +95,4 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
     )
 
 }
-export default DateAndGameOption;
+export default DateAndGameOptionMob;
