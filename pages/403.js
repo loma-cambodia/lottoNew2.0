@@ -1,19 +1,45 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+// import styles from '../styles/Home.module.css'
 
 export default function About403() {
 
   return (
     // <div className={`${styles.error} row`}>
-    <div className='row errorBg'>
+    <div className='row' style={{margin: '0',padding: '0',height:'100vh'}}>
         <Head>
-          <title>Loma Lotto - 403 Access Denied</title>
+            <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+          <link href="assets/css/style.css" rel="stylesheet"/>
+          <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
+          <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
+        <title>Loma Lotto - 403 Access Denied</title>
         </Head>
+                        
+                            <div id='bigScreen'>
+                                <div className="col-12 errorBg text-center" style={{}}>
+                                    <img src="img/error/403-animated.gif" style={{width:'90%'}} alt="" />
+                                </div>
+                                <div className="col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'flex-start',paddingTop:'100px'}}>      
+                                    <div className="section-title text-center">
+                                        <h1 className="sub-title">Access Denied / Forbidden</h1>
+                                        <h4 className="" style={{fontWeight: 'normal'}}>The page or resource you’re trying to reach is absolutely forbbiden for some reason.</h4>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div className={`errorBg col-md-7 col-12 px-0`}>
-                            {/* <img src="img/error/403.jpg" style={{width: '100%',height: '100vh'}} alt="" /> */}
-                        </div>
+                          <div id='smallScreen'>
+                              <div className="col-12 text-center" style={{marginBottom:'20%'}}>
+                                  <img src="img/error/403-animated-mobile.gif" style={{width:'75%'}} alt="" />
+                              </div>
+                              <div className="col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'flex-start'}}>      
+                                    <div className="section-title text-center">
+                                        <h2 className="sub-title">Access Denied / Forbidden</h2>
+                                        <span className="" style={{fontSize:'1.25rem'}}>The page or resource you’re trying to reach is absolutely forbbiden for some reason.</span>
+                                    </div>
+                                </div>
+                          </div>
+                        
+                       
                         {/* <div className="error-page-menu">
                                 <ul>
                                     <li>
@@ -38,13 +64,6 @@ export default function About403() {
                                     </li>
                                 </ul>
                             </div> */}
-                            
-                        <div className="col-md-5 col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'center', color:'#bf2262'}}>      
-                            <div className="section-title text-center">
-                                <h3 className="sub-title">Error 403 Access Denied</h3>
-                                <span className="title">The page you’re looking for is now beyond our reach.</span>
-                            </div>
-                        </div>
     </div>
   );
 }
