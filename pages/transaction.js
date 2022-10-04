@@ -6,7 +6,7 @@ import Header from "../components/common/header";
 import Head from 'next/head';
 
 import { useTranslation } from "react-i18next";
-export default function Transaction(){
+export default function Transaction({datauser}){
     
     const { t } = useTranslation();
     const [active, setActive] = useState(false)
@@ -22,7 +22,7 @@ export default function Transaction(){
             <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
             <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
             </Head>
-            <Header/>
+            <Header datauser={datauser}/>
               {/*--Mobile Menu--*/}
                 <div id="mySidepanel" className="sidepanel">
                     <a href="javascript:void(0)" className="closebtn" onclick="closeNav()">&times;</a>

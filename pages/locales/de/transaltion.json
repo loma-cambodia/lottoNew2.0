@@ -100,8 +100,8 @@
     "All_Game": "所有游戏",
     "No_Result_For_Date": "日期没有结果",
     "Transactions": "ប្រតិបត្តិការ",
-    "transaction_type":"ប្រភេទប្រតិបត្តិការ",
-    "transaction_id":"លេខ​សម្គាល់​ប្រតិ​ប​ត្ដិ​ការ",
+    "transaction_type":"交易类型",
+    "transaction_id":"交易编号",
 
     "Betting_Details":"投注详情",
     "Transaction_Details":"交易明细",
