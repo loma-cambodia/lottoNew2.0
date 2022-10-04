@@ -289,7 +289,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
             </table>
         </div>
     </div>
-    <ModalA show={state.show}/>
+    {/* <ModalA show={state.show}/> */}
      {/* Modal*/}
      
                 {/* MODAL A */}

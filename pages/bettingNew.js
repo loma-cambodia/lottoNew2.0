@@ -42,7 +42,7 @@ export default function BettingNew() {
   return (
     <>
        <Head>
-          <title>Malaysia Lottery</title>
+          <title>{t('Lotteries_tittle')}</title>
           <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
           <link href="assets/css/style.css" rel="stylesheet"/>
           <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
