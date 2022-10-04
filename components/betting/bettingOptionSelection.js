@@ -1,6 +1,8 @@
 import DateAndGameOption from './dateAndGameOption';
 import BettingInputs from './bettingInputs';
 import React, { useState, useEffect } from 'react';
+import ModalA from '../modal/modalA';
+import { useTranslation } from "react-i18next";
 
 
     //   Dummy Ticket Data for Modal Use.
@@ -72,7 +74,7 @@ let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}},
 let dateAndGameOptionData = [1,2,3,4];
 
 const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
-
+    const { t } = useTranslation();
     let dateAndGameOptionData = [];
     //  dateAndGameOptionData = [
     //     { 
@@ -191,28 +193,21 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
 
     const [loadpageCounter, setLoadpageCounter] = useState(1);
-  
-
     const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
-
     const updateBettingInputsData = (itemName,getNewChild) => {
-
         let bettingInputsDataParentNew = bettingInputsDataParent;
         bettingInputsDataParentNew.map(item => {
            if(item.name == itemName)
               item.dataInit = getNewChild;
-
         })
         setLocalStateInitDataParent(bettingInputsDataParentNew);
     }
-
+    
     const clearAllRecords = () => {
-
         let localStateInitData2 = {
             number: { value: "", disabled: 0 }, big: { value: "", disabled: 0 }, small: { value: "", disabled: 0 }, _3a: { value: "", disabled: 0 }, _3c: { value: "", disabled: 0 },
             bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }, amount: { value: "", disabled: 1 }
         };
-
             let bettingInputsData2 = [ {name:'01',dataInit:{...localStateInitData2}},
                           {name:'02',dataInit:{...localStateInitData2}},
                           {name:'03',dataInit:{...localStateInitData2}},
@@ -229,14 +224,11 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
                         setLocalStateInitDataParent(bettingInputsData2);
                         setLoadpageCounter(loadpageCounter + 1);
-
     }
 
 
     const lotterySubmitRecordsCallAction = () => {
-
      ///  let dataSubmit = {customer_id:"1", enterprise_id:"11", datesGamesData:bettingInitData, InputsData:bettingInputsDataParent}
-
       //  _lotterySubmitRecords(dataSubmit)
       
      // console.log('111');
@@ -273,13 +265,13 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                 <tbody>
                 <tr>
                     <th className="border-0"></th>
-                    <th className="border-0">Number</th>
-                    <th className="border-0">Big</th>
-                    <th className="border-0">Small</th>
+                    <th className="border-0">{t('Number')}</th>
+                    <th className="border-0">{t('Big_Bet')}</th>
+                    <th className="border-0">{t('Small_Bet')}</th>
                     <th className="border-0">3 A</th>
                     <th className="border-0">3 C</th>
-                    <th className="border-0">Bet type</th>
-                    <th className="border-0">Amount</th>
+                    <th className="border-0">{t('Bet_Type')}</th>
+                    <th className="border-0">{t('Amount')}</th>
                     <th className="border-0"></th>
                 </tr>
                 
@@ -291,19 +283,22 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                  />) )}
                 <tr>
                     <td colSpan="6">
-                        Total Bet Amount 216.00
+                        {t('Total_Stake')} 216.00
                     </td>
                     <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>CLEAR</button></td>
                     <td colSpan="2">
                             {/* <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> */}
-                            <button  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">Submit</button>
+                            <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">Submit</button>
+                            {/* <button  onClick={e => { showModal();  }}> show Modal </button> */}
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    {/* <ModalA show={state.show}/> */}
      {/* Modal*/}
+     
                 {/* MODAL A */}
                 {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
                     <div className="modal-dialog modal-md">
@@ -347,7 +342,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                 </h5>
                             </div>
                             <div className="modal-body" >
-                                <div class="container-fluid">
+                                <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
                                     <div class="row">
                                         <div class="col-8 col-sm-8">
                                             <p>Total bet amount</p>
@@ -364,9 +359,89 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                     </div>
                                     <hr></hr>
                                     <div><h5>Rejected Bet</h5></div>
-                                    <div class="row text-center">
-                                    <table class="table table-borderless">
+                                    <div className="row text-center table-responsive " style={{height:"250px"}}>
+                                    <table className="table table-bordered table-striped mb-0">
                                         <tbody style={{fontWeight:'bold'}}>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>M</td>
+                                            <td>1234</td>
+                                            <td>Big</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">Over Limit</td>
+                                            </tr>
                                             <tr>
                                             <th scope="row">27/09</th>
                                             <td>M</td>

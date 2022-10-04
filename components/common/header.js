@@ -4,6 +4,7 @@ import i18n from '../../components/i18n';
 import Link from 'next/link'
 
 const Header = ({datauser}) => {
+  const { t } = useTranslation();
   const [langType, setLangType] = useState('');
   useEffect(() => {
     let currentLang = localStorage.getItem('lang');
@@ -65,19 +66,19 @@ const Header = ({datauser}) => {
             <div className="desktop-menu me-auto">
                     <ul className="desktop-menu-list">
                       <li>
-                      <Link className="active"  href="/">Home</Link>
+                      <Link className="active"  href="/">{t('Homepage')}</Link>
                         {/* <a className="active" href="#">Home</a> */}
                       </li>
                       <li>
-                      <Link href="/bettingNew">Betting</Link>
+                      <Link href="/bettingNew">{t('Betting')}</Link>
                         {/* <a  href="#">Betting</a> */}
                       </li>
                       <li>
-                      <Link href="/transaction">History</Link>
+                      <Link href="/transaction">{t('History')}</Link>
                         {/* <a href="#" >History</a> */}
                       </li>
                       <li>
-                        <Link href="/results" >Results</Link>
+                        <Link href="/results" >{t('Result')}</Link>
                       </li>
                     </ul>
             </div>
@@ -88,7 +89,7 @@ const Header = ({datauser}) => {
                          USD</span></span>
                     </li>
                     <li className="hide-650">
-                        <a href="#" className="play-lottery-btn ">Play Lottery</a>
+                        <a href="#" className="play-lottery-btn ">{t('Play_Lottery')}</a>
                     </li>
                     <li className="dropdown">
                         <a href="#" className="lanugae-selector dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">

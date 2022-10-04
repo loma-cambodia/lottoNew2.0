@@ -105,5 +105,18 @@
 
     "Betting_Details":"投注详情",
     "Transaction_Details":"交易明细",
-    "Betting_Date":"投注日期"
+
+    "Contest_your_chance_to": "Contest your chance to",
+    "Special":"Special",
+    "Draw":"Draw",
+    "Dont_miss_your_chance":"Don't miss your chance. Will you be our next",
+    "Lucky_Winner":"Lucky Winner?",
+    "Start_playing_now":"Start Playing Now",
+    "Announcement":"Announcement",
+    "Play_now":"Play Now",
+
+    
+    "Past_Draw_Result":"Past_Draw_Result",
+    "Last_draw_date":"Last_draw_date",
+    "Draw_Id":"Draw_Id"
     }
