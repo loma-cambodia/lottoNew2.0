@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 
-const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBettingInitData}) => {
+const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBettingInitData,_loadpageCounter,_setLoadpageCounter}) => {
 
 
-    console.log('games:',_bettingInitData.games);
+    // console.log('DateAndGameOption:_bettingInitData:',_bettingInitData);
+    // console.log('item:item:',item);
+    // console.log('_dateAndGameOptionData:',_dateAndGameOptionData);
     
     const [initData, setInitData] = useState(item);
     const [active, setActive] = useState(false);
@@ -17,70 +19,84 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
         return dayName
     }
 
-    const selectUnSelectDate =(getValue)=>{ // selectUnSelectDate
+    const selectUnSelectDate =(getValue, getId)=>{ // selectUnSelectDate
 
-        console.log('getValue: ', getValue)
+        // console.log('getValue: ', getValue);
+        // console.log('getId: ', getId)
+        let dateAndGameOptionData = _dateAndGameOptionData;
+
+         console.log('dateAndGameOptionData: ', dateAndGameOptionData);
+
+        //  dateAndGameOptionData.map(item => {
+        //     if(item.id == getId)
+        //       item.selected = getValue;
+                
+        //  });
+
+        //  console.log('dateAndGameOptionData2:', dateAndGameOptionData);
+
+        //   _setBettingInitData(dateAndGameOptionData);
+         _setLoadpageCounter(_loadpageCounter + 1);
+
 
         if(getValue == false){
-            selectUnSelectgame(true,"da ma chai",false)
-            selectUnSelectgame(true,"toto",false)
-            selectUnSelectgame(true,"magnum",false)
+           initData.games.map((game) => {
+            selectUnSelectgame(true,game.name,false)
+           });
+
         }
 
-        const newState = Object.assign(initData,{"selected": getValue});
+       const newState = Object.assign(initData,{"selected": getValue});
 
         
 
-        // console.log('newstate selected: ', newState)
+    //    console.log('newstate selected: ', newState);
 
-       _setBettingInitData(Object.assign(_dateAndGameOptionData,newState))
+      _setBettingInitData(Object.assign(_dateAndGameOptionData,newState))
+
+    //  console.log('_dateAndGameOptionData in selectUnSelectDate: ', _dateAndGameOptionData);
 
       }
 
-      const selectUnSelectgame =(dateSelect,gName,gselected)=>{ // selectUnSelectgame
+    const selectUnSelectgame =(dateSelect,gName,gselected)=>{ // selectUnSelectgame
 
         console.log('selectUnSelectgame is clicked: ', gName + gselected )
 
         if(dateSelect)
-        {const newState =  initData.games.map((game) => {
-            if (game.name === gName) {
-            return {  ...game,
-              selected: gselected,
-            }
-            } else {
-              // Return a new circle 50px below
-              return game
-            }
+        {
+            const index = initData.games.findIndex(object => {
+                return object.name === gName;
+              });
 
-          });
-          console.log('GamesnewState', newState)
+              if (index !== -1) {
+                initData.games[index].selected = gselected;
+              }
 
+            // initData.games.map((game) => {
+            //     if (game.name == gName) {
+            //     return {  ...game,
+            //     selected: gselected,
+            //     }
+            //     } else {
+            //     // Return a new circle 50px below
+            //     return game
+            //     }
 
-        // newState = Object.assign(initData.games,newState);
+            // });
+          console.log('initData: ', initData)
+          console.log('_dateAndGameOptionData / selectUnSelectgame: ', _dateAndGameOptionData)
+        
+              var newData = Object.assign(_dateAndGameOptionData,initData)
+              console.log('newData / selectUnSelectgame: ', newData)
 
-        // console.log('newstate selected: ', newState)
-
-       _setBettingInitData(Object.assign(_dateAndGameOptionData,Object.assign(initData.games,newState)))
+            _setBettingInitData(newData)
 }
       }
 
-      const changeState =(k)=>{
-        const newState = initData.map((day,key) => {
-          if (key === k) {
-          return {  ...day,
-            selected: !day.selected
-          }
-          } else {
-            // Return a new circle 50px below
-            return day
-          }
-        });
-        setInitData(newState)
-      }
 
     useEffect(() => {
         // Update the document title using the browser API
-      console.log('11111111');
+    //  console.log('11111111');
      
     //   setInitData(newState);
 
@@ -92,13 +108,14 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
         >
         <div 
         className= {`${initData.selected ? "selected":"unselected"} date-lottery-selector`}>
-            <div className="d-flex align-items-center"
+            {/* <div className="d-flex align-items-center"
                     onClick={() => selectUnSelectDate(!initData.selected)}
-            >
+            > */}
+           <div className="d-flex align-items-center"> 
                 <div className="round">
-                    <input type="checkbox" id={initData.id} checked={initData.selected}/>
+                    <input type="checkbox" id={initData.id} checked={initData.selected} />
                     <label htmlFor={initData.id}
-                    onClick={() => selectUnSelectDate(!initData.selected)}
+                    onClick={() => selectUnSelectDate(!initData.selected, item.id)}
                     ></label>
                 </div>
                 <div className="day-n-date">

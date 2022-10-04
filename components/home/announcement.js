@@ -6,11 +6,11 @@ const Announcement = () => {
      {/*--Announcement--*/}
   <section className="announcement">
     <div className="container">
-        <div className="d-inline-flex align-item-center">
+        <div className="news-wrapper d-inline-flex align-item-center">
             <div className="announcement-block-icon">
                 <div className="annoncement-icon">
                     <span className="icon-img-announcement"><img src="assets/images/icons/announcement-icon-white.png" alt="" className="img-fluid"/></span>
-                    <span className="text-announcement">Announcement</span>
+                    <span class="text-announcement"><span class="announcement-text">Announcement</span> <span class="toggle-icon-news" onclick="myFunction()" type="button"><i className="fa fa-plus"></i></span></span>
                 </div>
             </div>
             <div className="marque-div">

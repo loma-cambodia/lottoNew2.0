@@ -1,11 +1,16 @@
 
+import React from 'react';
+import { useTranslation } from "react-i18next";
+
 const HowToPlay = () => {
+  const { t } = useTranslation();
     return (
       <>
+       {/* HOW TO PLAY */}
        <section className="how-to-play custom-padding">
     <div className="container">
         <div className="heading-part text-center mb-4">
-            <h5 className="text-uppercase fw-bold">HOW TO PLAY</h5>
+            <h5 className="text-uppercase fw-bold">{t('how_to')}</h5>
             <h2 className="text-uppercase text-color-main fw-bold">Easiest Way To Picking A Number</h2>
         </div>
 

@@ -69,7 +69,7 @@ const DateAndGameOption = ({item,_dateAndGameOptionData,_bettingInitData,_setBet
   const [isModal, setIsModal] = useState(false);
 
   const contentClassname = isModal ? ' selected-dt-h5 ' : ' ';
-
+    console.log("item:",item);
     return(
         <>
         <div className="d-flex align-items-center py-2 border-bottom">

@@ -170,11 +170,30 @@ const BettingOptionSelectionForMob = ({_bettingDatesStore}) => {
                     </label>
                 </div>
             </div>
+
         <div className="form-group">
             <button onClick={openModal} className="form-control custom-i-dg" style={{ background: '-webkit-linear-gradient( 90deg, rgb(253,184,3) 0%, rgb(247,234,120) 100%)' }}> <b>SELECT DATE & GAME</b> 
             <img className="img-fluid" src="images\betting\1111111.png" alt="" style={{ width: '20px',float: 'right', marginTop:'5px' }}  />
             </button>             
-        </div> 
+        </div>
+
+        
+        {/* <div className="form-group">
+            <button onClick={openModal} className="form-control custom-i-dg py-1 d-flex align-items-center down-arrow" style={{ background: '-webkit-linear-gradient( 90deg, rgb(253,184,3) 0%, rgb(247,234,120) 100%)', fontSize: '12px', flexDirection:'row',flexWrap:'nowrap', overflowX:'auto' }}> 
+            
+               <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>21-09 MPT</span> <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>21-09 MPT</span> <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>21-09 MPT</span> 
+               <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>21-09 MPT</span> 
+               <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>21-09 MPT</span> 
+               <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>21-09 MPT</span> 
+            
+                <img className="img-fluid" src="images\betting\1111111.png" alt="" style={{ width: '20px',float: 'right', marginTop:'5px' }}  />
+
+            </button>             
+        </div> */}
+
+
+
+
             {bettingInputsDataParent.map((item) => (<BettingInputsForMob key={'bettingInputs'+item.name} item={item} activeGame={activeGame}/>) )}      
         <div className="mt-2 mb-2 row">
             <div className='col-6'>

@@ -15,6 +15,15 @@ async function handler(req, res) {
             "customer_id": 1,
             "enterprise_id": 11
         }
+
+        
+
+        // const objectWithData = {
+        //     "user_name": req.body.user_name,
+        //     "email":  req.body.email,
+        //     "customer_id":  req.body.customer_id,
+        //     "enterprise_id":  req.body.enterprise_id,
+        // }
         
         const userData = await fetch(process.env.siteUrl + '/api/login', {
             method: 'POST',
@@ -29,7 +38,7 @@ async function handler(req, res) {
             //req.session.set("user", data);
             req.session.user = data;
             await req.session.save();
-           // res.redirect(307, '/');
+             res.redirect(307, '/');
             res.send("You are Logged in, Please Go back");
         }else{
             console.log("Worng Data", data);

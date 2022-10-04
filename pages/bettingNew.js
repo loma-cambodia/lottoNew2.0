@@ -11,7 +11,7 @@ import PayoutSection from '../components/home/payoutSection';
 import GamePlayPrize from '../components/home/gamePlayPrize';
 import HowToPlay from '../components/home/howToPlay';
 import BettingOptionSelection from '../components/betting/bettingOptionSelection';
-import {getBettingDates} from '../store/actions/bettingActions';
+import {getBettingDates,lotterySubmit} from '../store/actions/bettingActions';
 import { useDispatch, useSelector } from "react-redux";
 export default function BettingNew() {
   const dispatch = useDispatch();
@@ -21,6 +21,16 @@ export default function BettingNew() {
        useEffect(() => {
           dispatch(getBettingDates());
       },[dispatch]);
+
+
+      const lotterySubmitRecords = () => {
+
+        dispatch(lotterySubmit( setData, response =>{
+           console.log('response:',response);
+        }));
+
+
+      }
 
 
       let bettingDatesStore = useSelector(state => state.betting.dates);
@@ -58,10 +68,7 @@ export default function BettingNew() {
                 </div>
                 <div className="breadcrumb-list">
                     <ul>
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li><span>Betting</span></li>
+                    <li><span>Home / Betting</span></li>
                     </ul>
                 </div>
             </div>

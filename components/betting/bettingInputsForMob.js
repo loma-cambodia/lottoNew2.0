@@ -20,22 +20,31 @@ const BettingInputsForMob = ({ item,activeGame }) => {
         }
     }
 
-    
     const [curserPointer, setCurserPointer] = React.useState('');
 
     const [numberValue, setNumberValue] = React.useState('');
     const [bigValue, setBigValue] = React.useState('');
     const [smallValue, setSmallValue] = React.useState('');
+    const [a3Value, setA3Value] = React.useState('');
+    const [c3Value, setC3Value] = React.useState('');
   
-
-
     let localStateInitData = item.dataInit;
     const [localStateData, setLocalStateData] = useState(localStateInitData);
 
     const [pageLoadCount, setPageLoadCount] = useState(1);
 
-  console.log("curserPointer:",curserPointer)
+    console.log("curserPointer:",curserPointer)
     const setAllData = (getValue) => {
+        
+        if(activeGame == false){
+            // alert('3d');
+            // if()
+        }
+        if(activeGame == true){
+            // alert('4d');
+
+        }
+
       if(curserPointer == 'number'){
           let numberVal = numberValue.toString();
           setNumberValue(numberVal+getValue)
@@ -47,6 +56,14 @@ const BettingInputsForMob = ({ item,activeGame }) => {
       if(curserPointer == 'small'){
           let smallVal = smallValue.toString();
           setSmallValue(smallVal+getValue)
+      }   
+      if(curserPointer == '3a'){
+          let a3Val = a3Value.toString();
+          setA3Value(a3Val+getValue)
+      }   
+      if(curserPointer == '3c'){
+          let c3Val = c3Value.toString();
+          setC3Value(c3Val+getValue)
       }    
     }
   const allClearData = () => {
@@ -332,6 +349,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                         onChange={(e) => numberInputHandler(e.target.value, '_3a')}
                         value={localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : ""}
                         placeholder="3A"
+                        onClick={() => setCurserPointer('3a')}
                     />
                         
                     </div>
@@ -341,7 +359,8 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                             className="form-control"
                             onChange={(e) => numberInputHandler(e.target.value, '_3c')}
                             value={localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : ""}
-                            placeholder="3C"
+                            placeholder="3C" 
+                            onClick={() => setCurserPointer('3c')}
                         />
                     </div>
                 </div>
@@ -396,7 +415,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                 </div>
             </div>
             
-            <div className="border mt-2">
+            {/* <div className="border mt-2">
                 <div className="" style={{ height: '180px' }}>
                     <table className="table-borderless" style={{ width: '100%' }}>
                         <thead className="text-light" style={{ background: '#e91d25', fontSize: '12px' }}>
@@ -467,7 +486,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                     <div className="col-6">Total Amount</div>
                     <div className="col-6" style={{ textAlign: 'end' }}>1500</div>
                 </div>
-            </div>
+            </div> */}
                     
             <div className="mt-2">
                 <div className="row">

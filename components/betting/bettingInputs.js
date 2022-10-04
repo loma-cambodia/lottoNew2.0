@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const BettingInputs = ({ item }) => {
+const BettingInputs = ({ item, _updateBettingInputsData }) => {
     const [active, setActive] = useState(false);
     let localStateInitData = item.dataInit;
 
@@ -11,7 +11,7 @@ const BettingInputs = ({ item }) => {
     const [_3cDisabed, set_3cDisabed] = useState(false);
     const [pageLoadCount, setPageLoadCount] = useState(1);
 
-    const calculate3DAmountEnable = (getValue,operationField) =>{
+    const calculate3DAmountEnable = (getValue,operationField,) =>{
         let threeDAmount = false;
         let localStateDataForChange = item.dataInit;
         if (operationField == '_3a') {
@@ -234,6 +234,7 @@ const BettingInputs = ({ item }) => {
         }
         setLocalStateData(localStateDataForChange);
         setPageLoadCount(pageLoadCount + 1);
+        _updateBettingInputsData(item.name,localStateDataForChange);
     }
 
     return (

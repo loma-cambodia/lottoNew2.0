@@ -1,5 +1,40 @@
-
+import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from 'react';
+import i18n from '../../components/i18n';
 import Link from 'next/link'
+
+
+const changeLang = (l) => {
+  return () => {
+      // if (l == 'en') {
+
+      // }
+      // else if (l == 'de') {
+
+      // } else {
+
+      // }
+      i18n.changeLanguage(l);
+      localStorage.setItem('lang', l);
+  }
+}
+
+const changeLangm = (l) => {
+  return () => {
+      // if (l == 'en') {
+
+      // }
+      // else if (l == 'de') {
+
+      // } else {
+
+      // }
+      i18n.changeLanguage(l);
+      localStorage.setItem('lang', l);
+  }
+}
+
+
 const Header = () => {
 
     return (
@@ -40,11 +75,11 @@ const Header = () => {
                         <a href="#" className="play-lottery-btn ">Play Lottery</a>
                     </li>
                     <li className="dropdown">
-                        <a href="#" className="lanugae-selector dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><span className="lang-flag"><img src="assets/images/icons/flag-english.png"/></span> Eng</a>
+                        <a href="#" className="lanugae-selector dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><span className="lang-flag"><img src="assets/images/icons/flag-english.png"/></span> ENG</a>
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                             <li><a className="dropdown-item" href="#">Action</a></li>
-                            <li><a className="dropdown-item" href="#">Another action</a></li>
-                            <li><a className="dropdown-item" href="#">Something else here</a></li>
+                            <li onClick={changeLangm('en')}><a className="dropdown-item" href="#">English</a></li>
+                            <li onClick={changeLangm('de')}><a className="dropdown-item" href="#">Chinese</a></li>
                           </ul>
                     </li>
                     <li className="menu-mobile">
