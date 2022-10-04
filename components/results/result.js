@@ -8,7 +8,7 @@ const Result = () => {
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingThree">
             <button class="accordion-button" type="button">
-              <span>LAST DRAW DATE : 28/09/2022 (WED)</span> <span class="print-btn"><i class="fa-solid fa-print"></i></span>
+              <span>{t('Past_Draw_Result')}: 28/09/2022 (WED)</span> <span class="print-btn"><i class="fa-solid fa-print"></i></span>
             </button>
           </h2>
           <div id="collapseThree" class="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">

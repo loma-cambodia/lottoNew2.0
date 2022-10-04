@@ -280,7 +280,7 @@ const PayoutSection = () => {
               </div>
         </div>
         <div className="clearfix text-center">
-            <a href="#" className="btn-yellow rounded-full">Play Now</a>
+            <a href="#" className="btn-yellow rounded-full">{t('Play_now')}</a>
         </div>
     </div>
   </section>

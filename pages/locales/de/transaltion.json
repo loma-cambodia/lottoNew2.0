@@ -106,17 +106,24 @@
     "Betting_Details":"投注详情",
     "Transaction_Details":"交易明细",
 
-    "Contest_your_chance_to": "Contest your chance to",
-    "Special":"Special",
-    "Draw":"Draw",
-    "Dont_miss_your_chance":"Don't miss your chance. Will you be our next",
-    "Lucky_Winner":"Lucky Winner?",
-    "Start_playing_now":"Start Playing Now",
-    "Announcement":"Announcement",
-    "Play_now":"Play Now",
+    "Contest_your_chance_to": "倍增您的机会",
+    "Special":"特别",
+    "Draw":"开彩",
+    "Dont_miss_your_chance":"不要错过机会，您将会是下一位",
+    "Lucky_Winner":"幸运者?",
+    "Start_playing_now":"开始下注",
+    "Announcement":"公告",
+    "Play_now":"即刻下注",
 
     
-    "Past_Draw_Result":"Past_Draw_Result",
-    "Last_draw_date":"Last_draw_date",
-    "Draw_Id":"Draw_Id"
+    "Past_Draw_Result":"开奖记录",
+    "Last_draw_date":"最后开奖日期",
+    "Draw_Id":"期号",
+    "1":"一",
+    "2":"二",
+    "3":"三",
+    "4":"四",
+    "clear":"清除",
+    "submit":"提交"
+    
     }

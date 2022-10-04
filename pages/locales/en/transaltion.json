@@ -111,11 +111,18 @@
     "Draw":"Draw",
     "Dont_miss_your_chance":"Don't miss your chance. Will you be our next",
     "Lucky_Winner":"Lucky Winner?",
-    "Start_playing_now":"Start Playing Now",
+    "Start_playing_now":"Start Betting Now",
     "Announcement":"Announcement",
-    "Play_now":"Play Now",
+    "Play_now":"Bet Now",
 
-    "Past_Draw_Result":"Past_Draw_Result",
-    "Last_draw_date":"Last_draw_date",
-    "Draw_Id":"Draw_Id"
+    "Past_Draw_Result":"Past draw result",
+    "Last_draw_date":"Last draw date",
+    "Draw_Id":"Draw ID",
+    "1":"1",
+    "2":"2",
+    "3":"3",
+    "4":"4",
+    
+    "clear":"Clear",
+    "submit":"Submit"
     }
