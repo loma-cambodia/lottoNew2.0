@@ -1,5 +1,7 @@
-
+import React from 'react';
+import { useTranslation } from "react-i18next";
 const GamePlayPrize = () => {
+    const { t } = useTranslation();
     return (
       <>
        <section className="gp-prize">
@@ -29,7 +31,7 @@ const GamePlayPrize = () => {
                             <div className="col-4">
                                 <div className="first-three-block">
                                     <div className="prize-type">
-                                        1<sup>st</sup> Prize
+                                        {t('1st_Prize')}
                                     </div>
                                     <div className="prize-amt">
                                         124563
@@ -39,7 +41,7 @@ const GamePlayPrize = () => {
                             <div className="col-4">
                                 <div className="first-three-block">
                                     <div className="prize-type">
-                                        1<sup>st</sup> Prize
+                                    {t('2nd_Prize')}
                                     </div>
                                     <div className="prize-amt">
                                         124563
@@ -49,7 +51,7 @@ const GamePlayPrize = () => {
                             <div className="col-4">
                                 <div className="first-three-block">
                                     <div className="prize-type">
-                                        1<sup>st</sup> Prize
+                                    {t('3rd_Prize')}
                                     </div>
                                     <div className="prize-amt">
                                         124563
@@ -61,7 +63,7 @@ const GamePlayPrize = () => {
                             <table className="table-custom">
                             <tbody>
                                 <tr>
-                                    <td colspan="5" className="border-bottom border-light">Special</td>
+                                    <td colspan="5" className="border-bottom border-light">{t('Special_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td className="border-bottom border-light">87537</td>
@@ -84,7 +86,7 @@ const GamePlayPrize = () => {
                             <table className="table-custom">
                             <tbody>
                                 <tr>
-                                    <td colspan="5" className="border-bottom border-light">Consolation</td>
+                                    <td colspan="5" className="border-bottom border-light">{t('Consolation_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td className="border-bottom border-light">87537</td>
@@ -130,7 +132,7 @@ const GamePlayPrize = () => {
                             <div className="col-4">
                                 <div className="first-three-block">
                                     <div className="prize-type">
-                                        1<sup>st</sup> Prize
+                                    {t('1st_Prize')}
                                     </div>
                                     <div className="prize-amt">
                                         124563
@@ -140,7 +142,7 @@ const GamePlayPrize = () => {
                             <div className="col-4">
                                 <div className="first-three-block">
                                     <div className="prize-type">
-                                        1<sup>st</sup> Prize
+                                    {t('2nd_Prize')}
                                     </div>
                                     <div className="prize-amt">
                                         124563
@@ -150,7 +152,7 @@ const GamePlayPrize = () => {
                             <div className="col-4">
                                 <div className="first-three-block">
                                     <div className="prize-type">
-                                        1<sup>st</sup> Prize
+                                    {t('3rd_Prize')}
                                     </div>
                                     <div className="prize-amt">
                                         124563
@@ -162,7 +164,7 @@ const GamePlayPrize = () => {
                             <table className="table-custom">
                             <tbody>
                                 <tr>
-                                    <td colspan="5" className="border-bottom border-light">Special</td>
+                                    <td colspan="5" className="border-bottom border-light">{t('Special_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td className="border-bottom border-light">87537</td>
@@ -185,7 +187,7 @@ const GamePlayPrize = () => {
                             <table className="table-custom">
                             <tbody> 
                                 <tr>
-                                    <td colspan="5" className="border-bottom border-light">Consolation</td>
+                                    <td colspan="5" className="border-bottom border-light">{t('Consolation_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td className="border-bottom border-light">87537</td>
@@ -230,7 +232,7 @@ const GamePlayPrize = () => {
                             <div className="col-4">
                                 <div className="first-three-block">
                                     <div className="prize-type">
-                                        1<sup>st</sup> Prize
+                                        {t('1st_Prize')}
                                     </div>
                                     <div className="prize-amt">
                                         124563
@@ -240,7 +242,7 @@ const GamePlayPrize = () => {
                             <div className="col-4">
                                 <div className="first-three-block">
                                     <div className="prize-type">
-                                        1<sup>st</sup> Prize
+                                    {t('2nd_Prize')}
                                     </div>
                                     <div className="prize-amt">
                                         124563
@@ -250,7 +252,7 @@ const GamePlayPrize = () => {
                             <div className="col-4">
                                 <div className="first-three-block">
                                     <div className="prize-type">
-                                        1<sup>st</sup> Prize
+                                    {t('3rd_Prize')}
                                     </div>
                                     <div className="prize-amt">
                                         124563
@@ -262,7 +264,7 @@ const GamePlayPrize = () => {
                             <table className="table-custom">
                             <tbody>
                                 <tr>
-                                    <td colspan="5" className="border-bottom border-light">Special</td>
+                                    <td colspan="5" className="border-bottom border-light">{t('Special_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td className="border-bottom border-light">87537</td>
@@ -285,7 +287,7 @@ const GamePlayPrize = () => {
                             <table className="table-custom">
                             <tbody> 
                                 <tr>
-                                    <td colspan="5" className="border-bottom border-light">Consolation</td>
+                                    <td colspan="5" className="border-bottom border-light">{t('Consolation_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td className="border-bottom border-light">87537</td>

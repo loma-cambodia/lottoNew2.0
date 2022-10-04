@@ -34,7 +34,7 @@ const changeLangm = (l) => {
 }
 
 const Header = ({datauser}) => {
-
+  const { t } = useTranslation();
   useEffect(() => {
     let currentLang = localStorage.getItem('lang');
     i18n.changeLanguage(currentLang);
@@ -60,19 +60,19 @@ useEffect(() => {
             <div className="desktop-menu me-auto">
                     <ul className="desktop-menu-list">
                       <li>
-                      <Link className="active"  href="/">Home</Link>
+                      <Link className="active"  href="/">{t('Homepage')}</Link>
                         {/* <a className="active" href="#">Home</a> */}
                       </li>
                       <li>
-                      <Link href="/bettingNew">Betting</Link>
+                      <Link href="/bettingNew">{t('Betting')}</Link>
                         {/* <a  href="#">Betting</a> */}
                       </li>
                       <li>
-                      <Link href="/transaction">History</Link>
+                      <Link href="/transaction">{t('History')}</Link>
                         {/* <a href="#" >History</a> */}
                       </li>
                       <li>
-                        <Link href="/results" >Results</Link>
+                        <Link href="/results" >{t('Result')}</Link>
                       </li>
                     </ul>
             </div>
@@ -82,12 +82,12 @@ useEffect(() => {
                         <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>0.00</span> <span className="badge badge-yellow text-black">USD</span></span>
                     </li>
                     <li className="hide-650">
-                        <a href="#" className="play-lottery-btn ">Play Lottery</a>
+                        <a href="#" className="play-lottery-btn ">{t('Play_Lottery')}</a>
                     </li>
                     <li className="dropdown">
                         <a href="#" className="lanugae-selector dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><span className="lang-flag"><img src="assets/images/icons/flag-english.png"/></span> ENG</a>
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                            <li><a className="dropdown-item" href="#">Action</a></li>
+                            <li><a className="dropdown-item" href="#">{t('Action')}</a></li>
                             <li onClick={changeLangm('en')}><a className="dropdown-item" href="#">English</a></li>
                             <li onClick={changeLangm('de')}><a className="dropdown-item" href="#">Chinese</a></li>
                           </ul>
