@@ -193,7 +193,6 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
            if(item.name == itemName)
               item.dataInit = getNewChild;
         })
-        console.log('bettingInputsDataParentNew:',bettingInputsDataParentNew);
         setLocalStateInitDataParent(bettingInputsDataParentNew);
     }
     
@@ -213,7 +212,9 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                           {name:'09',dataInit:{...localStateInitData2}},
                           {name:'10',dataInit:{...localStateInitData2}}
                         ];
-                        console.log('bettingInputsData2:',bettingInputsData2);
+
+                     //   console.log('bettingInputsData2:',bettingInputsData2);
+
                         setLocalStateInitDataParent(bettingInputsData2);
                         setLoadpageCounter(loadpageCounter + 1);
     }
@@ -222,19 +223,18 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
     const lotterySubmitRecordsCallAction = () => {
      ///  let dataSubmit = {customer_id:"1", enterprise_id:"11", datesGamesData:bettingInitData, InputsData:bettingInputsDataParent}
       //  _lotterySubmitRecords(dataSubmit)
-      console.log('111');
-        console.log("TICKET DATA:",ticketSubmissionData)
+      
+     // console.log('111');
+
     } 
-    const state = {
-        show: false
-      };
-    const showModal = e => {
-        // this.useState({show: !this.state.show});
-        // state.map(item =>{item.show = true})
-        console.log("Modal State:",state)
-      };
-    console.log('dateAndGameOptionData:',dateAndGameOptionData);
     console.log('bettingInputsDataParent:',bettingInputsDataParent);
+    console.log('Load Betting Option Selection');
+
+
+    // useEffect(() => {
+    //     //dispatch(getBettingDates());
+    //     console.log('Load Betting Option Selection in Use Effect');
+    // },[loadpageCounter]);
     
     return(
         
@@ -253,7 +253,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
               
          </div>
         <div className="table-scalable my-3">
-        loadpageCounter:{loadpageCounter}
+        {/* loadpageCounter:{loadpageCounter} */}
             <table className="">
                 <tbody>
                 <tr>
@@ -268,7 +268,12 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                     <th className="border-0"></th>
                 </tr>
                 
-                {bettingInputsDataParent.map((item) => (<BettingInputs key={'bettingInputs'+item.name} item={item} _updateBettingInputsData = {updateBettingInputsData}/>) )}
+                {bettingInputsDataParent.map((item) => (<BettingInputs key={'bettingInputs'+item.name} 
+                                                         item={item} 
+                                                         _updateBettingInputsData = {updateBettingInputsData}
+                                                         _loadpageCounter = {loadpageCounter}
+                                                         _setLoadpageCounter = {setLoadpageCounter}
+                 />) )}
                 <tr>
                     <td colSpan="6">
                         {t('Total_Stake')} 216.00
