@@ -14,6 +14,7 @@ import BettingOptionSelection from '../components/betting/bettingOptionSelection
 import {getBettingDates,lotterySubmit} from '../store/actions/bettingActions';
 import { useDispatch, useSelector } from "react-redux";
 export default function BettingNew() {
+  
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
 

@@ -1,6 +1,7 @@
 import DateAndGameOption from './dateAndGameOption';
 import BettingInputs from './bettingInputs';
 import React, { useState, useEffect } from 'react';
+import ModalA from '../modal/modalA';
 
 
     //   Dummy Ticket Data for Modal Use.
@@ -183,33 +184,23 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
-
     const [loadpageCounter, setLoadpageCounter] = useState(1);
-  
-
     const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
-
     const updateBettingInputsData = (itemName,getNewChild) => {
-
         let bettingInputsDataParentNew = bettingInputsDataParent;
-
         bettingInputsDataParentNew.map(item => {
            if(item.name == itemName)
               item.dataInit = getNewChild;
-
         })
-
         console.log('bettingInputsDataParentNew:',bettingInputsDataParentNew);
         setLocalStateInitDataParent(bettingInputsDataParentNew);
     }
-
+    
     const clearAllRecords = () => {
-
         let localStateInitData2 = {
             number: { value: "", disabled: 0 },number_field: { value: "", disabled: 0 }, big: { value: "", disabled: 0 }, small: { value: "", disabled: 0 }, _3a: { value: "", disabled: 0 }, _3c: { value: "", disabled: 0 },
             bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }, amount: { value: "", disabled: 1 }
         };
-
             let bettingInputsData2 = [ {name:'01',dataInit:{...localStateInitData2}},
                           {name:'02',dataInit:{...localStateInitData2}},
                           {name:'03',dataInit:{...localStateInitData2}},
@@ -221,28 +212,29 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                           {name:'09',dataInit:{...localStateInitData2}},
                           {name:'10',dataInit:{...localStateInitData2}}
                         ];
-
                         console.log('bettingInputsData2:',bettingInputsData2);
-
                         setLocalStateInitDataParent(bettingInputsData2);
                         setLoadpageCounter(loadpageCounter + 1);
-
     }
 
 
     const lotterySubmitRecordsCallAction = () => {
-
      ///  let dataSubmit = {customer_id:"1", enterprise_id:"11", datesGamesData:bettingInitData, InputsData:bettingInputsDataParent}
-
       //  _lotterySubmitRecords(dataSubmit)
-      
       console.log('111');
         console.log("TICKET DATA:",ticketSubmissionData)
     } 
+    const state = {
+        show: false
+      };
+    const showModal = e => {
+        // this.useState({show: !this.state.show});
+        // state.map(item =>{item.show = true})
+        console.log("Modal State:",state)
+      };
     console.log('dateAndGameOptionData:',dateAndGameOptionData);
     console.log('bettingInputsDataParent:',bettingInputsDataParent);
     
-
     return(
         
         <section className="page-content custom-padding">
@@ -284,13 +276,16 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                     <td colSpan="2">
                             {/* <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> */}
                             <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">Submit</button>
+                            <button  onClick={e => { showModal();  }}> show Modal </button>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <ModalA show={state.show}/>
      {/* Modal*/}
+     
                 {/* MODAL A */}
                 {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
                     <div className="modal-dialog modal-md">
