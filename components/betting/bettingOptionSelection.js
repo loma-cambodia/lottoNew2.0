@@ -184,6 +184,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
 
+
     const [loadpageCounter, setLoadpageCounter] = useState(1);
   
 
@@ -237,14 +238,14 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
     } 
     console.log('bettingInputsDataParent:',bettingInputsDataParent);
-    console.log('Load Betting Option Selection');
+    console.log('bettingInitData in bettingoptionselection:',bettingInitData);
 
-
-    // useEffect(() => {
-    //     //dispatch(getBettingDates());
-    //     console.log('Load Betting Option Selection in Use Effect');
-    // },[loadpageCounter]);
-    
+    useEffect(() => {
+        if (bettingInitData.length === 0){
+            setBettingInitData(dateAndGameOptionData)
+        }
+        console.log('useeffect was ran');
+      });
 
     return(
         
@@ -252,10 +253,9 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
          <div className="container">
           <div className="row justify-content-center">
             {/* {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item} item={item}/>) )} */}
-          {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id}
+          {bettingInitData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id}
                                                   item={item} 
-                                                  _dateAndGameOptionData={dateAndGameOptionData} 
-                                                  _bettingInitData={bettingInitData} 
+                                                  _bettingInitData={bettingInitData}
                                                   _setBettingInitData={setBettingInitData}
                                                   _loadpageCounter = {loadpageCounter}
                                                    _setLoadpageCounter = {setLoadpageCounter}

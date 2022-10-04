@@ -1825,7 +1825,18 @@ span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
 
 .filter-text .text-filter {
     display: none;
-}
+    }
+    
+    
+.errorBg{
+        background-image:url('/img/error/403_banner.jpg');
+        background-repeat:no-repeat;
+        height: 100vh;   
+        min-height: -moz-available;
+        min-height: -webkit-fill-available;
+        min-height: fill-available;
+    }
+
 .border-doted {
     border: 1px dotted #777;
 }
