@@ -231,8 +231,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
      // console.log('111');
 
     } 
-    console.log('bettingInputsDataParent:',bettingInputsDataParent);
-    console.log('bettingInitData in bettingoptionselection:',bettingInitData);
+    
 
     useEffect(() => {
         if (bettingInitData.length === 0){
@@ -240,6 +239,25 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
         }
         console.log('useeffect was ran');
       });
+
+      console.log('bettingInputsDataParent:',bettingInputsDataParent);
+      
+      console.log('bettingInitData:',bettingInitData);
+
+
+      let gameCount = 0;
+
+      bettingInitData && bettingInitData.map(item => {
+        if(item.selected == true){
+            item.games.map(itemGame => {
+                if(itemGame.selected)
+                   gameCount++; 
+            })
+
+        }
+        
+      });
+
 
     return(
         
@@ -277,6 +295,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                                          _updateBettingInputsData = {updateBettingInputsData}
                                                          _loadpageCounter = {loadpageCounter}
                                                          _setLoadpageCounter = {setLoadpageCounter}
+                                                         _gameCount={gameCount}
                  />) )}
                 <tr>
                     <td colSpan="6">
