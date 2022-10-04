@@ -12,7 +12,7 @@ export default function About404() {
 
                         <div class="d-flex align-items-center justify-content-center vh-100 ">
                             <div class="text-center">
-                                <img src="img/LOGO MALAYSIA BACK-01.png" style={{width: '30%',height: '15vh'}} alt="" />
+                                <img src="img/LOGO MALAYSIA BACK-01.png" style={{width: '25%',height: '25vh',paddingBottom:'100px',paddingLeft:'15px'}} alt="" />
                                 <br></br>
                                 <img src="img/404-animated.gif"  alt="" />
                                     <hr></hr>
@@ -22,7 +22,7 @@ export default function About404() {
                                     <p class="lead">
                                         The page you’re looking for might have been removed, had the name changed or it's temporary unavailable.
                                     </p>
-                                    <a href="index.html" class="btn btn-primary">Go Home</a>
+                                    <Link href="/"><button className='btn btn-outline' style={{backgroundColor:'#c12362',color:'white'}}>Go Home</button></Link>
                             </div>
                         </div>
     </div>

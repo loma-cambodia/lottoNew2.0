@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLoadpageCounter,_gameCount }) => {
 
+    const { t } = useTranslation();
     const [active, setActive] = useState(false);
     let localStateInitData = item.dataInit;
 
