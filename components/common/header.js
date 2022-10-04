@@ -20,7 +20,6 @@ const changeLang = (l) => {
 
 const changeLangm = (l) => {
   return () => {
-    alert(l);
       // if (l == 'en') {
 
       // }

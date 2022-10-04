@@ -1,13 +1,15 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-
+import React from 'react';
+import { useTranslation } from "react-i18next";
 const PayoutSection = () => {
+    const { t } = useTranslation();
     return (
       <>
         <section className="payouts-part custom-padding">
     <div className="container">
         <div className="heading-part text-center mb-4">
-            <h5 className="text-uppercase fw-bold">Payouts</h5>
+            <h5 className="text-uppercase fw-bold">{t('Sushil')}</h5>
             <h2 className="text-uppercase text-color-main fw-bold">Winning Payouts</h2>
         </div>
         <div className="theme-tabs py-4">
