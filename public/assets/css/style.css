@@ -25,7 +25,7 @@
     display: inline-block;
     }
     .desktop-menu .desktop-menu-list li a {
-    font-family: "Roboto Medium";
+    /* font-family: "Roboto Medium"; */
     text-decoration: none;
     padding: 10px 10px;
     color: #000;
@@ -211,7 +211,8 @@
     padding: 10px 25px;
     text-decoration: none;
     border-radius: 5px;
-    font-family: "Roboto Medium";
+    font-weight: bold;
+    /* font-family: "Roboto Medium"; */
     font-size: 14px;
     text-transform: uppercase;
     }
