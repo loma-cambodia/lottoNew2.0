@@ -49,8 +49,13 @@ import { useTranslation } from "react-i18next";
 
       ];
 let localStateInitData = {
-    number: { value: "", disabled: 0 },number_field: { value: "", disabled: 0 }, big: { value: "", disabled: 0 }, small: { value: "", disabled: 0 }, _3a: { value: "", disabled: 0 }, _3c: { value: "", disabled: 0 },
-    bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }, amount: { value: "", disabled: 1 }
+    number: { value: "", disabled: 0 },
+    big: { value: "", disabled: 0 }, 
+    small: { value: "", disabled: 0 },
+    _3a: { value: "", disabled: 0 },
+    _3c: { value: "", disabled: 0 },
+    bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 },
+    amount: { value: "", disabled: 1 }
 };
 
 
@@ -185,6 +190,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
+
+
     const [loadpageCounter, setLoadpageCounter] = useState(1);
     const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
     const updateBettingInputsData = (itemName,getNewChild) => {
@@ -198,7 +205,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
     
     const clearAllRecords = () => {
         let localStateInitData2 = {
-            number: { value: "", disabled: 0 },number_field: { value: "", disabled: 0 }, big: { value: "", disabled: 0 }, small: { value: "", disabled: 0 }, _3a: { value: "", disabled: 0 }, _3c: { value: "", disabled: 0 },
+            number: { value: "", disabled: 0 }, big: { value: "", disabled: 0 }, small: { value: "", disabled: 0 }, _3a: { value: "", disabled: 0 }, _3c: { value: "", disabled: 0 },
             bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }, amount: { value: "", disabled: 1 }
         };
             let bettingInputsData2 = [ {name:'01',dataInit:{...localStateInitData2}},
@@ -228,24 +235,24 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
     } 
     console.log('bettingInputsDataParent:',bettingInputsDataParent);
-    console.log('Load Betting Option Selection');
+    console.log('bettingInitData in bettingoptionselection:',bettingInitData);
 
+    useEffect(() => {
+        if (bettingInitData.length === 0){
+            setBettingInitData(dateAndGameOptionData)
+        }
+        console.log('useeffect was ran');
+      });
 
-    // useEffect(() => {
-    //     //dispatch(getBettingDates());
-    //     console.log('Load Betting Option Selection in Use Effect');
-    // },[loadpageCounter]);
-    
     return(
         
         <section className="page-content custom-padding">
          <div className="container">
           <div className="row justify-content-center">
             {/* {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item} item={item}/>) )} */}
-          {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id}
+          {bettingInitData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id}
                                                   item={item} 
-                                                  _dateAndGameOptionData={dateAndGameOptionData} 
-                                                  _bettingInitData={bettingInitData} 
+                                                  _bettingInitData={bettingInitData}
                                                   _setBettingInitData={setBettingInitData}
                                                   _loadpageCounter = {loadpageCounter}
                                                    _setLoadpageCounter = {setLoadpageCounter}
