@@ -1750,18 +1750,108 @@
     margin-right: 5px;
     }
     .coupon-block {
-    padding-left: 30px;
+         padding-left: 30px;
     }
-    .filter-text .text-filter {
+  }
+  
+
+  /*-------- For H5 Screen ----------------*/
+
+  .date-time-small {
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    line-height: 1;
+  }
+  
+.round-h5 {
+    position: relative;
+    width: 30px;
+}
+  .round-h5 label {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 24px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 24px;
+  }
+  .round-h5 label:after {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #ccc;
+    content: "";
+    left: 3px;
+    position: absolute;
+    top: 3px;
+    border: 1px solid #ddd;
+  }
+  .round-h5 input[type="checkbox"] {
+    visibility: hidden;
+  }
+  .round-h5 input[type="checkbox"]:checked + label {
+    background-color: #fff;
+    border: 1px solid #fdb803;
+  }
+  .round-h5 input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    background-color: #fdb803;
+  }
+  .selected-dt-h5 {
+    background: #fdb803;
+    border-color: #fdb803;
+}
+.selected-gp-h5 {
+    background-color: #fdb803;
+    border: 1px solid #fdb803 !important;
+}
+span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
+    filter: grayscale(0%);
+}
+.show-Selected-bet{
+    background: -webkit-linear-gradient( 90deg, rgb(253,184,3) 0%, rgb(247,234,120) 100%);
+    border: 1px solid #fdb803 !important;
+}
+.hide-Selected-bet{
+    background: aliceblue !important;
+    border: 1px solid #fdb803 !important;
+}
+
+.filter-text .text-filter {
     display: none;
     }
-    }
     
-    .errorBg{
+    
+.errorBg{
         background-image:url('/img/error/403_banner.jpg');
         background-repeat:no-repeat;
         height: 100vh;   
         min-height: -moz-available;
         min-height: -webkit-fill-available;
         min-height: fill-available;
-      }
+    }
+
+.border-doted {
+    border: 1px dotted #777;
+}
+.down-arrow {
+    position: relative;
+}
+.down-arrow::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: #f7df68 url(../images/icons/dow_arrow-black.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    right: 5px;
+    top: 5px;
+    z-index: 9999;
+    position: absolute;
+}
