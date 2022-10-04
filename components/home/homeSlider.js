@@ -28,7 +28,7 @@ const HomeSlider = () => {
                                 <div className="date-block">
                                     <a href="#">27TH September (TUE)</a>
                                 </div>
-                                <p className="small">{t("Dont_miss_your_chance")}t</p>
+                                <p className="small">{t("Dont_miss_your_chance")}</p>
                                 <h3>{t('Lucky_Winner')}</h3>
                                 <div className="clearfix my-3">
                                     <a href="#" className="btn-yellow rounded-full">{t("Start_playing_now")}</a>
@@ -64,7 +64,7 @@ const HomeSlider = () => {
                                 <div className="date-block">
                                     <a href="#">27TH September (TUE)</a>
                                 </div>
-                                <p className="small">{t("Dont_miss_your_chance")}t</p>
+                                <p className="small">{t("Dont_miss_your_chance")}</p>
                                 <h3>{t('Lucky_Winner')}</h3>
                                 <div className="clearfix my-3">
                                     <a href="#" className="btn-yellow rounded-full">{t("Start_playing_now")}</a>

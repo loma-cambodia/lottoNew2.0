@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 // import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import Filter from "../components/results/filter";
- export default function Results(){
+ export default function Results({datauser}){
     const { t } = useTranslation();
     const [active, setActive] = useState(false)
 
@@ -24,7 +24,7 @@ import Filter from "../components/results/filter";
                 <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
             </Head>
             
-            <Header/>
+            <Header datauser={datauser}/>
             {/*--Mobile Menu--*/}
             <div id="mySidepanel" className="sidepanel">
                 <a href="javascript:void(0)" className="closebtn" onclick="closeNav()">&times;</a>
