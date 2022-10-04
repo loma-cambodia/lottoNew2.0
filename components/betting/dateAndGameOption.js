@@ -130,15 +130,18 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                 <div className="round">
                     <input type="checkbox" id={initData.id} checked={initData.selected} />
                     <label htmlFor={initData.id}
-                    onClick={() => selectUnSelectDate(!initData.selected, item.id)}
+                        onClick={() => selectUnSelectDate(!initData.selected, item.id)}
                     ></label>
                 </div>
-                <div className="day-n-date">
-                    <p className="fw-bold mb-0">{getDateName(initData.date)}</p>
+                <div className="day-n-date"
+                    onClick={() => selectUnSelectDate(!initData.selected, item.id)}
+                >
+                    <p className="fw-bold mb-0">{initData.day}</p>
                     <p className="mb-0">{initData.date}</p>
                 </div>
             </div>
             <div className="d-flex">
+                <div className='round'/>
                 <div className="select-gp" id="checkboxes">
                     <ul id="checkboxes" className="list-inline">
                         {initData.games.map((game) =>(
