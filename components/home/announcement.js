@@ -1,5 +1,6 @@
 import Marquee from "react-fast-marquee";
 const Announcement = () => {
+  //  const userDatas = JSON.parse(localStorage.getItem("name"));
 
     return (
       <>

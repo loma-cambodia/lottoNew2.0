@@ -239,8 +239,6 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
       console.log('111');
         console.log("TICKET DATA:",ticketSubmissionData)
     } 
-
-
     console.log('dateAndGameOptionData:',dateAndGameOptionData);
     console.log('bettingInputsDataParent:',bettingInputsDataParent);
     
