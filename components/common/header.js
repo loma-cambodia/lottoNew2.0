@@ -42,6 +42,15 @@ const Header = ({datauser}) => {
             </span> Chinese
         </>
       )
+    }
+    else if (langTypeVal == 'kh') {
+      return(
+        <>
+            <span className="lang-flag">
+              <img src="assets/images/icons/flag-khmer.png"/>
+            </span> Khmer
+        </>
+      )
     } else {
       return(
         <>
@@ -109,6 +118,13 @@ const Header = ({datauser}) => {
                                 <span className="lang-flag">
                                   <img src="assets/images/icons/flag-china.png"/>
                                 </span>&nbsp; &nbsp;Chinese
+                              </a>
+                            </li>
+                            <li onClick={changeLangm('kh')}>
+                              <a className="dropdown-item" href="#">
+                                <span className="lang-flag">
+                                  <img src="assets/images/icons/flag-china.png"/>
+                                </span>&nbsp; &nbsp;Khmer
                               </a>
                             </li>
                           </ul>
