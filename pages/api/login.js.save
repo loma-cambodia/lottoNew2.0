@@ -1,4 +1,4 @@
-//import { withIronSession } from git "next-iron-session";
+x//import { withIronSession } from git "next-iron-session";
 import { withIronSessionApiRoute } from "iron-session/next";
 
 let ttl = 60 + 10800; // 3 hours 
@@ -25,7 +25,7 @@ async function handler(req, res) {
             "enterprise_id":  req.body.enterprise_id,
         }
         
-        const userData = await fetch(process.env.siteUrl + '/api/member-login', {
+        const userData = await fetch(process.env.siteUrl + '/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
