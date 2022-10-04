@@ -23,8 +23,11 @@ const GamePlayPrize = () => {
                                 <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p>
                                 
                             </div>
-                            <div className="gp-prize-play-btn ms-auto">
-                                <a href="#" className="">Play Now</a>
+                            <div class="gp-prize-play-btn ms-auto">
+                                <div class="gp-prize-play-btn ms-auto">
+                                  <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
+                                  <p class="mb-0 fs-5 fw-bold">4567891</p>
+                                </div>
                             </div>
                         </div>
                         <div className="row first-three">
@@ -124,8 +127,11 @@ const GamePlayPrize = () => {
                                 <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p>
                                
                             </div>
-                            <div className="gp-prize-play-btn ms-auto">
-                                <a href="#" className="">Play Now</a>
+                            <div class="gp-prize-play-btn ms-auto">
+                                <div class="gp-prize-play-btn ms-auto">
+                                  <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
+                                  <p class="mb-0 fs-5 fw-bold">4567891</p>
+                                </div>
                             </div>
                         </div>
                         <div className="row first-three">
@@ -224,8 +230,11 @@ const GamePlayPrize = () => {
                                 <p className="fw-bold">SPORTS TOTO</p>
                                  <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p> 
                             </div>
-                            <div className="gp-prize-play-btn ms-auto">
-                                <a href="#" className="">Play Now</a>
+                            <div class="gp-prize-play-btn ms-auto">
+                                <div class="gp-prize-play-btn ms-auto">
+                                  <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
+                                  <p class="mb-0 fs-5 fw-bold">4567891</p>
+                                </div>
                             </div>
                         </div>
                         <div className="row first-three">

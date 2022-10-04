@@ -1,5 +1,8 @@
 import Marquee from "react-fast-marquee";
+import React from 'react';
+import { useTranslation } from "react-i18next";
 const Announcement = () => {
+    const { t } = useTranslation();
   //  const userDatas = JSON.parse(localStorage.getItem("name"));
 
     return (
