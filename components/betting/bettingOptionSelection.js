@@ -185,9 +185,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
               dateAndGameOptionData.push(tempObject);
         });
 
-
       }
-
 
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
@@ -220,8 +218,6 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                           {name:'09',dataInit:{...localStateInitData2}},
                           {name:'10',dataInit:{...localStateInitData2}}
                         ];
-
-                     //   console.log('bettingInputsData2:',bettingInputsData2);
 
                         setLocalStateInitDataParent(bettingInputsData2);
                         setLoadpageCounter(loadpageCounter + 1);
