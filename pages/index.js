@@ -11,9 +11,10 @@ import PayoutSection from '../components/home/payoutSection';
 import GamePlayPrize from '../components/home/gamePlayPrize';
 import HowToPlay from '../components/home/howToPlay';
 
-export default function Home() {
-  const [active, setActive] = useState(false)
+export default function Home({datauser}) {
+  const [active, setActive] = useState(false);
 
+console.log('datauser212121212:',datauser);
   return (
     <>
        <Head>
@@ -23,7 +24,7 @@ export default function Home() {
           <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
       </Head>
-      <Header/>
+      <Header datauser={datauser}/>
       {/*--Mobile Menu--*/}
       <div id="mySidepanel" className="sidepanel">
           <a href="javascript:void(0)" className="closebtn">&times;</a>
