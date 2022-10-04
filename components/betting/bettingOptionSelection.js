@@ -172,7 +172,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
             let tempObject = { 
                 "id": item.id,
-                "date": item.day,
+                "day": item.day,
+                "date" : item.date,
                 "selected": false,
                 "games": item.games.map(itemGame => {
                     itemGame.selected = false;
