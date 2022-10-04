@@ -12,7 +12,7 @@ export default function About404() {
 
                         <div class="d-flex align-items-center justify-content-center vh-100 ">
                             <div class="text-center">
-                                <img src="img/LOGO MALAYSIA BACK-01.png" style={{width: '25%',height: '25vh',paddingBottom:'100px',paddingLeft:'15px'}} alt="" />
+                                <img src="img/LOGO MALAYSIA BACK-01.png" style={{width: '15%',height: 'auto',paddingBottom:'100px',paddingLeft:'15px'}} alt="" />
                                 <br></br>
                                 <img src="img/404-animated.gif"  alt="" />
                                     <hr></hr>
