@@ -123,7 +123,7 @@ const Header = ({datauser}) => {
                             <li onClick={changeLangm('kh')}>
                               <a className="dropdown-item" href="#">
                                 <span className="lang-flag">
-                                  <img src="assets/images/icons/flag-china.png"/>
+                                  <img src="assets/images/icons/flag-khmer.png"/>
                                 </span>&nbsp; &nbsp;Khmer
                               </a>
                             </li>
