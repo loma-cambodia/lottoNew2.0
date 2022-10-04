@@ -106,11 +106,11 @@
     "Betting_Details":"投注详情",
     "Transaction_Details":"交易明细",
 
-    "Contest_your_chance_to": "争夺您的机会",
-    "Special":"特别的",
-    "Draw":"画",
-    "Dont_miss_your_chance":"不要错过机会。你会是我们的下一个吗",
-    "Lucky_Winner":"幸运的赢家？",
-    "Start_playing_now":"现在开始玩",
-    "Announcement":"公告"
+    "Contest_your_chance_to": "Contest your chance to",
+    "Special":"Special",
+    "Draw":"Draw",
+    "Dont_miss_your_chance":"Don't miss your chance. Will you be our next",
+    "Lucky_Winner":"Lucky Winner?",
+    "Start_playing_now":"Start Playing Now",
+    "Announcement":"Announcement"
     }

@@ -4,6 +4,7 @@ import i18n from '../../components/i18n';
 import Link from 'next/link'
 
 const Header = ({datauser}) => {
+  const { t } = useTranslation();
   const [langType, setLangType] = useState('');
   useEffect(() => {
     let currentLang = localStorage.getItem('lang');
