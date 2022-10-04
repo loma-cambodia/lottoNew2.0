@@ -1,11 +1,14 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
 const Result = () => {
+  const { t } = useTranslation();
     return (
         <>
       <div class="accordion my-3 custom-accordion" id="accordionExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingThree">
             <button class="accordion-button" type="button">
-              <span>LAST DRAW DATE : 28/09/2022 (WED)</span> <span class="print-btn"><i class="fa-solid fa-print"></i></span>
+              <span>{t('Past_Draw_Result')}: 28/09/2022 (WED)</span> <span class="print-btn"><i class="fa-solid fa-print"></i></span>
             </button>
           </h2>
           <div id="collapseThree" class="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
@@ -28,7 +31,7 @@ const Result = () => {
                               </div>
                               <div class="gp-prize-play-btn ms-auto">
                                 <div class="gp-prize-play-btn ms-auto">
-                                  <p class="fw-bold small mb-0 text-end">Draw ID</p>
+                                  <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
                                   <p class="mb-0 fs-5 fw-bold">4567891</p>
                                 </div>
                             </div>
@@ -39,15 +42,15 @@ const Result = () => {
                                     <ul class="list-group">
                                       <li class="list-group-item d-flex justify-content-between align-items-center">
                                         {/* <span class="prize-icon"><img src="assets/images/icons/1st-prize.png" class="img-fluid" alt=""></span> */}
-                                        <span class="prize-name">1st Prize</span>
+                                        <span class="prize-name">{t('1st_Prize')}</span>
                                         <span class="badge bg-danger rounded-pill fs-6">6459</span>
                                       </li>
                                       <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span class="prize-name">2nd Prize</span>
+                                        <span class="prize-name">{t('2nd_Prize')}</span>
                                         <span class="badge bg-danger rounded-pill fs-6">6459</span>
                                       </li>
                                       <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span class="prize-name">3rd Prize</span>
+                                        <span class="prize-name">{t('3rd_Prize')}</span>
                                         <span class="badge bg-danger rounded-pill fs-6">6459</span>
                                       </li>
                                     </ul>
@@ -59,7 +62,7 @@ const Result = () => {
                               <div class="s-and-c">
                                 <table class="table-custom">
                                     <tr>
-                                        <td colspan="2" class="border-bottom border-light">Special</td>
+                                        <td colspan="2" class="border-bottom border-light">{t('Special_Prize')}</td>
                                     </tr>
                                     <tr>
                                         <td class="border-bottom border-light">87537</td>
@@ -100,7 +103,7 @@ const Result = () => {
                               <div class="s-and-c">
                                 <table class="table-custom">
                                     <tr>
-                                        <td colspan="5" class="border-bottom border-light">Consolation</td>
+                                        <td colspan="5" class="border-bottom border-light">{t('Consolation_Prize')}</td>
                                     </tr>
                                     <tr>
                                         <td class="border-bottom border-light">87537</td>
@@ -160,7 +163,7 @@ const Result = () => {
                           </div>
                           <div class="gp-prize-play-btn ms-auto">
                             <div class="gp-prize-play-btn ms-auto">
-                              <p class="fw-bold small mb-0 text-end">Draw ID</p>
+                              <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
                               <p class="mb-0 fs-5 fw-bold">4567891</p>
                             </div>
                         </div>
@@ -171,15 +174,15 @@ const Result = () => {
                                 <ul class="list-group">
                                   <li class="list-group-item d-flex justify-content-between align-items-center">
                                      {/* <span class="prize-icon"><img src="assets/images/icons/1st-prize.png" class="img-fluid" alt=""></span> */}
-                                    <span class="prize-name">1st Prize</span>
+                                    <span class="prize-name">{t('1st_Prize')}</span>
                                     <span class="badge bg-warning rounded-pill fs-6 text-dark">6459</span>
                                   </li>
                                   <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span class="prize-name">2nd Prize</span>
+                                    <span class="prize-name">{t('2nd_Prize')}</span>
                                     <span class="badge bg-warning rounded-pill fs-6 text-dark">6459</span>
                                   </li>
                                   <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span class="prize-name">3rd Prize</span>
+                                    <span class="prize-name">{t('3rd_Prize')}</span>
                                     <span class="badge bg-warning rounded-pill fs-6 text-dark">6459</span>
                                   </li>
                                 </ul>
@@ -191,7 +194,7 @@ const Result = () => {
                           <div class="s-and-c">
                             <table class="table-custom">
                                 <tr>
-                                    <td colspan="2" class="border-bottom border-light">Special</td>
+                                    <td colspan="2" class="border-bottom border-light">{t('Special_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td class="border-bottom border-light">87537</td>
@@ -232,7 +235,7 @@ const Result = () => {
                           <div class="s-and-c">
                             <table class="table-custom">
                                 <tr>
-                                    <td colspan="5" class="border-bottom border-light">Consolation</td>
+                                    <td colspan="5" class="border-bottom border-light">{t('Consolation_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td class="border-bottom border-light">87537</td>
@@ -291,7 +294,7 @@ const Result = () => {
                               <p class="date-cal"><span class="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p>
                           </div>
                           <div class="gp-prize-play-btn ms-auto">
-                            <p class="fw-bold small mb-0 text-end">Draw ID</p>
+                            <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
                             <p class="mb-0 fs-5 fw-bold">4567891</p>
                           </div>
                       </div>
@@ -301,15 +304,15 @@ const Result = () => {
                                 <ul class="list-group">
                                   <li class="list-group-item d-flex justify-content-between align-items-center">
                                   {/* <span class="prize-icon"><img src="assets/images/icons/1st-prize.png" class="img-fluid" alt=""></span> */}
-                                    <span class="prize-name">1st Prize</span>
+                                    <span class="prize-name">{t('1st_Prize')}</span>
                                     <span class="badge bg-toto rounded-pill fs-6">6459</span>
                                   </li>
                                   <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span class="prize-name">2nd Prize</span>
+                                    <span class="prize-name">{t('2nd_Prize')}</span>
                                     <span class="badge bg-toto rounded-pill fs-6">6459</span>
                                   </li>
                                   <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span class="prize-name">3rd Prize</span>
+                                    <span class="prize-name">{t('3rd_Prize')}</span>
                                     <span class="badge bg-toto rounded-pill fs-6">6459</span>
                                   </li>
                                 </ul>
@@ -321,7 +324,7 @@ const Result = () => {
                           <div class="s-and-c">
                             <table class="table-custom">
                                 <tr>
-                                    <td colspan="2" class="border-bottom border-light">Special</td>
+                                    <td colspan="2" class="border-bottom border-light">{t('Special_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td class="border-bottom border-light">87537</td>
@@ -362,7 +365,7 @@ const Result = () => {
                           <div class="s-and-c">
                             <table class="table-custom">
                                 <tr>
-                                    <td colspan="5" class="border-bottom border-light">Consolation</td>
+                                    <td colspan="5" class="border-bottom border-light">{t('Consolation_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td class="border-bottom border-light">87537</td>

@@ -11,58 +11,50 @@ const HowToPlay = () => {
     <div className="container">
         <div className="heading-part text-center mb-4">
             <h5 className="text-uppercase fw-bold">{t('how_to')}</h5>
-            <h2 className="text-uppercase text-color-main fw-bold">Easiest Way To Picking A Number</h2>
+            <h2 className="text-uppercase text-color-main fw-bold">{t('Easiest_Way_To_Picking_A_Number')}</h2>
         </div>
 
         <div className="timeline">
             <div className="timeline-container left">
-              <div className="date">1</div>
+              <div className="date">{t('1')}</div>
               <div className="content">
-                <h2>Set A Budget</h2>
+                <h2>{t('step_1_heading')}</h2>
                 <p>
-                    Playing the lottery is gambling, so keep it
-                    fun by treating it as part of your
-                    entertainment budget.
+                {t('step_1_tittle')}
                 </p>
               </div>
             </div>
             <div className="timeline-container right">
-              <div className="date">2</div>
+              <div className="date">{t('2')}</div>
               <div className="content">
-                <h2>Choose Your Numbers</h2>
+                <h2>{t('step_2_heading')}</h2>
                 <p>
-                    Pick single/multiple 4 digit numbers from
-                    0000 to 9999. Choose how you want to 
-                    play (Big bet, Small bet etc..)
+                {t('step_2_tittle')}
                 </p>
               </div>
             </div>
             <div className="timeline-container left">
-              <div className="date">3</div>
+              <div className="date">{t('3')}</div>
               <div className="content">
-                <h2>Buy Your Numbers</h2>
+                <h2>{t('step_3_heading')}</h2>
                 <p>
-                    Add selected numbers to the cart, check if 
-                    you have sufficient balance then place 
-                    your order.
+                {t('step_3_tittle')}
                 </p>
               </div>
             </div>
             <div className="timeline-container right">
-              <div className="date">4</div>
+              <div className="date">{t('4')}</div>
               <div className="content">
-                <h2>Check Winnings</h2>
+                <h2>{t('step_4_heading')}</h2>
                 <p>
-                    Congratulations! You are winner if your
-                    selected number are in the announced
-                    winners list.
+                {t('step_4_tittle')}
                 </p>
               </div>
             </div>
             
           </div>
           <div className="clearfix text-center mt-5">
-            <a href="#" className="btn-yellow rounded-full">Play Now</a>
+            <a href="#" className="btn-yellow rounded-full">{t('Play_now')}</a>
         </div>
     </div>
   </section>

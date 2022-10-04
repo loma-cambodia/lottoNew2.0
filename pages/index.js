@@ -10,15 +10,16 @@ import Announcement from '../components/home/announcement';
 import PayoutSection from '../components/home/payoutSection';
 import GamePlayPrize from '../components/home/gamePlayPrize';
 import HowToPlay from '../components/home/howToPlay';
-
+import { useTranslation } from "react-i18next";
 export default function Home({datauser}) {
   const [active, setActive] = useState(false);
 
+  const { t } = useTranslation();
 console.log('datauser212121212:',datauser);
   return (
     <>
        <Head>
-          <title>Malaysia Lottery</title>
+          <title>{t('Index_tittle')}</title>
           <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
           <link href="assets/css/style.css" rel="stylesheet"/>
           <link href="assets/css/owl.carousel.css" rel="stylesheet"/>

@@ -1,4 +1,9 @@
+
+import React from 'react';
+import { useTranslation } from "react-i18next";
 const Transactions = () => {
+    
+    const { t } = useTranslation();
     return (
         <>
         <section class="page-content custom-padding">
@@ -7,13 +12,13 @@ const Transactions = () => {
                     <div class="row">
                         <div class="col-md-3 col-6">
                             <div class="form-group">
-                                <label for="transactionid" class="fw-bold mb-2">Transaction ID</label>
+                                <label for="transactionid" class="fw-bold mb-2">{t('transaction_id')}</label>
                                 <input type="text" class="form-control-custom-big" name="transationid"/>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
                             <div class="form-group">
-                                <label for="transactionid" class="fw-bold mb-2">Transaction Type</label>
+                                <label for="transactionid" class="fw-bold mb-2">{t('transaction_type')}</label>
                                 <select type="text" class="form-control-custom-big" name="transationid">
                                     <option>Transaction type 1</option>
                                     <option>Transaction type 2</option>
