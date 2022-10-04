@@ -338,17 +338,17 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                         <div className="modal-content">
                             <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
                                 <h5 className="modal-title" id="bettingModal">
-                                    Bet Successful
+                                {t('Bet_Successful')}
                                 </h5>
                             </div>
                             <div className="modal-body" >
                                 <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
                                     <div class="row">
                                         <div class="col-8 col-sm-8">
-                                            <p>Total bet amount</p>
-                                            <p>Accepted bet amount</p>
-                                            <p>Rebate</p>
-                                            <p style={{fontWeight:'bold'}}>Net Amount</p>
+                                            <p>{t('Total')}</p>
+                                            <p>{t('Accepted_bet_amount')}</p>
+                                            <p>{t('Rebate')}</p>
+                                            <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
                                         </div>
                                         <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
                                             <p>200.00</p>
@@ -364,100 +364,69 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                         <tbody style={{fontWeight:'bold'}}>
                                             <tr>
                                             <th scope="row">27/09</th>
-                                            <td>M</td>
+                                            <td>{t('M')}</td>
                                             <td>1234</td>
-                                            <td>Big</td>
+                                            <td>{t('Big')}</td>
                                             <td className="text-danger">-20</td>
-                                            <td className="text-danger">Over Limit</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
                                             </tr>
                                             <tr>
                                             <th scope="row">27/09</th>
-                                            <td>M</td>
+                                            <td>{t('P')}</td>
                                             <td>1234</td>
-                                            <td>Big</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">Over Limit</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>M</td>
-                                            <td>1234</td>
-                                            <td>Big</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">Over Limit</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>M</td>
-                                            <td>1234</td>
-                                            <td>Big</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">Over Limit</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>M</td>
-                                            <td>1234</td>
-                                            <td>Big</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">Over Limit</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>M</td>
-                                            <td>1234</td>
-                                            <td>Big</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">Over Limit</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>M</td>
-                                            <td>1234</td>
-                                            <td>Big</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">Over Limit</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>M</td>
-                                            <td>1234</td>
-                                            <td>Big</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">Over Limit</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>M</td>
-                                            <td>1234</td>
-                                            <td>Big</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">Over Limit</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>M</td>
-                                            <td>1234</td>
-                                            <td>Big</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">Over Limit</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>M</td>
-                                            <td>1234</td>
-                                            <td>Big</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">Over Limit</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>P</td>
-                                            <td>1234</td>
-                                            <td>Big</td>
+                                            <td>{t('Big')}</td>
                                             <td className="text-danger">-15</td>
-                                            <td className="text-danger">Over Limit</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
                                             </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('P')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-15</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('M')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('P')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-15</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('M')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('M')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('M')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                           
                                         </tbody>
                                     </table>
                                     </div>

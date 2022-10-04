@@ -124,5 +124,14 @@
     "4":"4",
     
     "clear":"Clear",
-    "submit":"Submit"
+    "submit":"Submit",
+
+    "Rebate":"Rebate",
+    "Rejected_Bet":"Rejected Bet",
+    "Over_Limit":"Over Limit",
+    "Accepted_bet_amount":"Accepted bet amount",
+    "Big":"Big",
+    "M":"M",
+    "P":"P",
+    "Bet_Successful":"Bet Successful"
     }

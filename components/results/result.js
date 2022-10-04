@@ -31,7 +31,7 @@ const Result = () => {
                               </div>
                               <div class="gp-prize-play-btn ms-auto">
                                 <div class="gp-prize-play-btn ms-auto">
-                                  <p class="fw-bold small mb-0 text-end">Draw ID</p>
+                                  <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
                                   <p class="mb-0 fs-5 fw-bold">4567891</p>
                                 </div>
                             </div>
@@ -163,7 +163,7 @@ const Result = () => {
                           </div>
                           <div class="gp-prize-play-btn ms-auto">
                             <div class="gp-prize-play-btn ms-auto">
-                              <p class="fw-bold small mb-0 text-end">Draw ID</p>
+                              <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
                               <p class="mb-0 fs-5 fw-bold">4567891</p>
                             </div>
                         </div>
@@ -294,7 +294,7 @@ const Result = () => {
                               <p class="date-cal"><span class="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p>
                           </div>
                           <div class="gp-prize-play-btn ms-auto">
-                            <p class="fw-bold small mb-0 text-end">Draw ID</p>
+                            <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
                             <p class="mb-0 fs-5 fw-bold">4567891</p>
                           </div>
                       </div>

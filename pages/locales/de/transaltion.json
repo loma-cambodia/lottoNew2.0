@@ -124,6 +124,15 @@
     "3":"三",
     "4":"四",
     "clear":"清除",
-    "submit":"提交"
+    "submit":"提交",
+
+    "Rebate":"回扣",
+    "Rejected_Bet":"被拒绝的赌注",
+    "Over_Limit":"超限",
+    "Accepted_bet_amount":"接受的投注金额",
+    "Big":"大的",
+    "M":"米",
+    "P":"磷",
+    "Bet_Successful":"投注成功"
     
     }
