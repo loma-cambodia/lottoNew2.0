@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import i18n from '../../components/i18n';
 import Link from 'next/link'
 
-
 const changeLang = (l) => {
   return () => {
       // if (l == 'en') {
@@ -21,6 +20,7 @@ const changeLang = (l) => {
 
 const changeLangm = (l) => {
   return () => {
+    alert(l);
       // if (l == 'en') {
 
       // }
@@ -34,9 +34,20 @@ const changeLangm = (l) => {
   }
 }
 
+const Header = ({datauser}) => {
 
-const Header = () => {
+  useEffect(() => {
+    let currentLang = localStorage.getItem('lang');
+    i18n.changeLanguage(currentLang);
+}, [])
 
+useEffect(() => {
+    let currentLang = localStorage.getItem('lang');
+    i18n.changeLanguage(currentLang);
+}, [])
+
+  // const userDatas = JSON.parse(localStorage.getItem("name"));
+   console.log('Header:datauser:',datauser);
     return (
       <>
         <header className="header-top" data-spy="affix" data-offset-top="197">
@@ -69,7 +80,7 @@ const Header = () => {
             <div className="right-part-menu">
                 <ul className="right-part-list">
                     <li>
-                        <span className="text-end mb-0 user-details"><span className="user-id text-black" >John_0786</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>102,84665.00</span> <span className="badge badge-yellow text-black">VND</span></span>
+                        <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>0.00</span> <span className="badge badge-yellow text-black">USD</span></span>
                     </li>
                     <li className="hide-650">
                         <a href="#" className="play-lottery-btn ">Play Lottery</a>
