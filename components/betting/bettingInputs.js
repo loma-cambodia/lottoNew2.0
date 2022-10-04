@@ -305,11 +305,16 @@ const getPermutation = (_getNumber) => {
             if(uniqueAges.length == 3)
              returnPermutation = 6;
             else  if(uniqueAges.length == 2)
-            returnPermutation = 6;
-             
-         
-
-
+            returnPermutation = 3;
+            else  if(uniqueAges.length == 1)
+            returnPermutation = 1;
+        } else if(_getNumber.length == 4){
+            if(uniqueAges.length == 4)
+             returnPermutation = 24;
+            else  if(uniqueAges.length == 3)
+            returnPermutation =1 ;
+            else  if(uniqueAges.length == 1)
+            returnPermutation = 1;
         }
         console.log('unique', uniqueAges.length)
 }
