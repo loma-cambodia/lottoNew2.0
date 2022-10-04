@@ -1,6 +1,9 @@
 import Link from 'next/link';
-const Footer = () => {
+import React from 'react';
+import { useTranslation } from "react-i18next";
 
+const Footer = () => {
+const { t } = useTranslation();
   return (
     <>
     <section className="footer py-4">
@@ -14,15 +17,15 @@ const Footer = () => {
             <div className="footer-links ms-auto">
                 <div className="clearfix">
                     <ul className="list-inline">
-                        <li className="list-inline-item"><Link className="active"  href="/"><a>Home</a></Link></li>
-                        <li className="list-inline-item"><Link href="/bettingNew"><a>Betting</a></Link></li>
-                        <li className="list-inline-item"><Link href="/transaction"><a>History</a></Link></li>
-                        <li className="list-inline-item"><Link href="/results"><a>Results</a></Link></li>
-                        <li className="list-inline-item"><Link href="#"><a>Play Lottery</a></Link></li>
+                        <li className="list-inline-item"><Link className="active"  href="/"><a>{t('Homepage')}</a></Link></li>
+                        <li className="list-inline-item"><Link href="/bettingNew"><a>{t('Betting')}</a></Link></li>
+                        <li className="list-inline-item"><Link href="/transaction"><a>{t('History')}</a></Link></li>
+                        <li className="list-inline-item"><Link href="/results"><a>{t('Result')}</a></Link></li>
+                        <li className="list-inline-item"><Link href="#"><a>{t('Play_Lottery')}</a></Link></li>
                     </ul>
                 </div>
                 <div className="clearfix my-3">
-                    <p className="mb-0 small text-white">Copyright © 2022. All Right Reserved By PokLotto</p>
+                    <p className="mb-0 small text-white">{t('copyright')}</p>
                 </div>
             </div>
         </div>
