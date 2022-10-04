@@ -16,7 +16,7 @@ const HowToPlay = () => {
 
         <div className="timeline">
             <div className="timeline-container left">
-              <div className="date">1</div>
+              <div className="date">{t('1')}</div>
               <div className="content">
                 <h2>{t('step_1_heading')}</h2>
                 <p>
@@ -25,7 +25,7 @@ const HowToPlay = () => {
               </div>
             </div>
             <div className="timeline-container right">
-              <div className="date">2</div>
+              <div className="date">{t('2')}</div>
               <div className="content">
                 <h2>{t('step_2_heading')}</h2>
                 <p>
@@ -34,7 +34,7 @@ const HowToPlay = () => {
               </div>
             </div>
             <div className="timeline-container left">
-              <div className="date">3</div>
+              <div className="date">{t('3')}</div>
               <div className="content">
                 <h2>{t('step_3_heading')}</h2>
                 <p>
@@ -43,7 +43,7 @@ const HowToPlay = () => {
               </div>
             </div>
             <div className="timeline-container right">
-              <div className="date">4</div>
+              <div className="date">{t('4')}</div>
               <div className="content">
                 <h2>{t('step_4_heading')}</h2>
                 <p>
@@ -54,7 +54,7 @@ const HowToPlay = () => {
             
           </div>
           <div className="clearfix text-center mt-5">
-            <a href="#" className="btn-yellow rounded-full">Play Now</a>
+            <a href="#" className="btn-yellow rounded-full">{t('Play_now')}</a>
         </div>
     </div>
   </section>

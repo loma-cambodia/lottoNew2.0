@@ -40,7 +40,7 @@ import Filter from "../components/results/filter";
             <Banner2/>
             <section class="page-content py-3">
                 <div class="container">
-                {/* <Filter/> */}
+                <Filter/>
                     <Result/>
                 </div>
             </section>   
