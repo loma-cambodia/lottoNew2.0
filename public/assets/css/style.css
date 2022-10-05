@@ -277,7 +277,7 @@
     }
     .sd-text-part p {
     color: #000;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     }
     .date-block {
     margin: 20px 0;
@@ -478,7 +478,7 @@
         width: 100%;
     }
     .news-wrapper.short {
-        position: fixed;
+        position: sticky;
         bottom: 0%;
         width: 95%;
         margin: 0 auto;

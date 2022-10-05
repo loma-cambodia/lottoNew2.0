@@ -22,7 +22,7 @@ const HomeSlider = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="draw-name">
+                                    <div className="draw-name text-uppercase">
                                         {t('Special')}<br/>{t('Draw')}
                                     </div>
                                 </div>
