@@ -269,11 +269,12 @@
     z-index: 1;
     }
     .draw-name {
-        font-size: 60px;
+    font-size: 60px;
     font-family: "Poppins";
     line-height: 1;
     color: #ff0000;
     font-weight: 900;
+    text-transform: uppercase;
     }
     .sd-text-part p {
     color: #000;
