@@ -18,7 +18,6 @@ export default function BettingNew({datauser}) {
       },[dispatch]);
       const lotterySubmitRecords = () => {
         dispatch(lotterySubmit( setData, response =>{
-           console.log('response:',response);
         }));
       }
       let bettingDatesStore = useSelector(state => state.betting.dates);

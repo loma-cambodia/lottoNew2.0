@@ -13,22 +13,24 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
 
    {winnerResultDetails && winnerResultDetails.map(item => {
     let gameImage = '';
+    let cardName = '';
     //toto.png"  magnum.png
     if(item.game_play_id == 1){
          //gameImage = 'assets/images/icons/damacai.png';
          gameImage = 'assets/images/icons/magnum.png';
-
+        cardName = 'card magnum';
     }else if(item.game_play_id == 2){
       
         gameImage = 'assets/images/icons/toto.png';
-
+        cardName = 'card toto'
     }else if(item.game_play_id == 6){
         gameImage = 'assets/images/icons/damacai.png';
+        cardName = 'card damamcai'
     }
 
     return(
 <div className="col-md-4">
-                <div className="card damamcai">
+                <div className={cardName}>
                     <div className="card-body">
                         <div className="card-top">
                             <div className="logo-gp-prize">
