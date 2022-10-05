@@ -195,7 +195,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
               
          </div>
         <div className="table-scalable my-3">
-        loadpageCounter:{loadpageCounter}
+        {/* loadpageCounter:{loadpageCounter} */}
             <table className="">
                 <tbody>
                 <tr>

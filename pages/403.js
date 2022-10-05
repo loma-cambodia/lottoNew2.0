@@ -24,15 +24,15 @@ export default function About403() {
                                     <img src="img/error/403-animated-2.gif" style={{width:'35%'}} alt="" />
                                 </div>
                                 <div className="col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'center', flexDirection:'column',paddingTop:'100px'}}>      
-                                    <div className="section-title text-center border-bottom border-top border-4" style={{width:'60vw'}}>
-                                        <h1 className="sub-title py-3">Page Not Found</h1>
+                                    <div className="section-title text-center border-bottom border-top border-4" style={{width:'60vw',color:' #cf447e'}}>
+                                        <h1 className="sub-title py-3 smallLetter" style={{}}>Access Denied Or Forbbiden</h1>
                                     </div>
-                                    <br></br>
-                                  <div className='text-center'>
+                                        <br></br>
+                                    <div className='text-center'>
                                       <span className="" style={{fontWeight: 'normal'}}>
                                           The page or resource you’re trying to reach is absolutely forbbiden for some reason.
                                       </span>
-                                  </div>
+                                    </div>
                                   <div>
                                       <a className="" style={{fontWeight: 'normal', color:'#fd5497'}}>
                                           Return to Home Page.
