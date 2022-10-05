@@ -188,13 +188,13 @@ const BettingOptionSelectionForMob = ({_bettingDatesStore}) => {
                 </button>             
             </div> */}
             {bettingInputsDataParent.map((item) => (<BettingInputsForMob key={'bettingInputs'+item.name} item={item} activeGame={activeGame}/>) )}      
-            <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-            >   
+              <Modal
+                  isOpen={modalIsOpen}
+                  onAfterOpen={afterOpenModal}
+                  onRequestClose={closeModal}
+                  style={customStyles}
+                  contentLabel="Example Modal"
+              >   
                 <div className="d-flex my-3">
                     <div className="round-h5">
                         <input type="checkbox" id="acheckbox1" />

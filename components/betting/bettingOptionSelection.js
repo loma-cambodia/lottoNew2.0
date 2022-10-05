@@ -185,9 +185,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
               dateAndGameOptionData.push(tempObject);
         });
 
-
       }
-
 
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
@@ -221,8 +219,6 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                           {name:'10',dataInit:{...localStateInitData2}}
                         ];
 
-                     //   console.log('bettingInputsData2:',bettingInputsData2);
-
                         setLocalStateInitDataParent(bettingInputsData2);
                         setLoadpageCounter(loadpageCounter + 1);
     }
@@ -235,8 +231,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
      // console.log('111');
 
     } 
-    console.log('bettingInputsDataParent:',bettingInputsDataParent);
-    console.log('bettingInitData in bettingoptionselection:',bettingInitData);
+    
 
     useEffect(() => {
         if (bettingInitData.length === 0){
@@ -244,6 +239,25 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
         }
         console.log('useeffect was ran');
       });
+
+      console.log('bettingInputsDataParent:',bettingInputsDataParent);
+      
+      console.log('bettingInitData:',bettingInitData);
+
+
+      let gameCount = 0;
+
+      bettingInitData && bettingInitData.map(item => {
+        if(item.selected == true){
+            item.games.map(itemGame => {
+                if(itemGame.selected)
+                   gameCount++; 
+            })
+
+        }
+        
+      });
+
 
     return(
         
@@ -269,8 +283,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                     <th className="border-0">{t('Number')}</th>
                     <th className="border-0">{t('Big_Bet')}</th>
                     <th className="border-0">{t('Small_Bet')}</th>
-                    <th className="border-0">3 A</th>
-                    <th className="border-0">3 C</th>
+                    <th className="border-0">{t('3')} {t('A')}</th>
+                    <th className="border-0">{t('3')} {t('C')}</th>
                     <th className="border-0">{t('Bet_Type')}</th>
                     <th className="border-0">{t('Amount')}</th>
                     <th className="border-0"></th>
@@ -281,6 +295,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                                          _updateBettingInputsData = {updateBettingInputsData}
                                                          _loadpageCounter = {loadpageCounter}
                                                          _setLoadpageCounter = {setLoadpageCounter}
+                                                         _gameCount={gameCount}
                  />) )}
                 <tr>
                     <td colSpan="6">
