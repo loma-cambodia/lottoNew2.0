@@ -269,11 +269,12 @@
     z-index: 1;
     }
     .draw-name {
-        font-size: 60px;
+    font-size: 60px;
     font-family: "Poppins";
     line-height: 1;
     color: #ff0000;
     font-weight: 900;
+    text-transform: uppercase;
     }
     .sd-text-part p {
     color: #000;
@@ -1550,8 +1551,23 @@
         background: rgb(191 34 98) !important;
         line-height: 30px;
     }
-    .carousel-status {
+    .homepage-carousel .carousel-status {
         display: none;
+    }
+    .homepage-carousel .carousel .control-disabled.control-arrow {
+      display: block;
+      opacity: 0.5 !important;
+    }
+    .homepage-carousel .carousel .control-dots .dot.selected, .homepage-carousel .carousel .control-dots .dot:hover {
+      border: 1px solid #bc2263;
+      background: #bc2263;
+      box-shadow: none;
+    }
+    .homepage-carousel .carousel .control-dots .dot {
+      width: 10px;
+      height: 10px;
+      opacity: 1 !important;
+      box-shadow: none !important;
     }
     @media (min-width: 576px) {
     .container-sm,
@@ -1944,4 +1960,7 @@ span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
     top: 5px;
     z-index: 9999;
     position: absolute;
+}
+span.name-gp {
+  white-space: nowrap;
 }
