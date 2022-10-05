@@ -17,18 +17,18 @@ async function handler(req, res) {
             //       "language": 'en'
             // }
 
-            // const objectWithData = {
-            //         "customer_name": "Dileep Maurya",
-            //         "customer_id":  111,
-            //         "merchant_id":  1,
-            //         "language":  'kh',
-            //     }
+          //  const objectWithData = {
+           //         "customer_name": "Dileep Maurya",
+           //         "customer_id":  111,
+           //         "merchant_id":  1,
+            //        "language":  'kh',
+             //   }
 
 
 
                 //fdfdkfdkfdflkdlfkf
 
-            ////   1111111111111111111111111111111111111111111
+            ////   2222222222222222222222222222222222222222
 
         const objectWithData = {
             "customer_name": req.body.customer_name,
