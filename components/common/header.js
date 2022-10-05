@@ -20,23 +20,16 @@ const Header = ({datauser}) => {
 
   const { t } = useTranslation();
   const [langType, setLangType] = useState('');
-  const [currentLang, setCurrentLang] = useState('');
   // const dispatch = useDispatch();
-  // let getLanguage2 = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.name ? datauser.user.data.language.name : "en";
-
   useEffect(() => {
-    let currentLanga = localStorage.getItem('lang');
-    setCurrentLang(currentLanga);
+    let currentLang = localStorage.getItem('lang');
     i18n.changeLanguage(currentLang);
     setLangType(currentLang);
   }, [langType])
 
+  
 
   
-  setTimeout(function() {
-    let getLanguage = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.name ? datauser.user.data.language.name : "en";
-    setCurrentLang(getLanguage);
-  }, 5000);
 
   const changeLangm = (l) => {
     return () => {
@@ -59,7 +52,7 @@ const Header = ({datauser}) => {
         </>
       )
     }
-    else if (langTypeVal == 'de') {
+    else if (langTypeVal == 'ch') {
       return(
         <>
             <span className="lang-flag">
