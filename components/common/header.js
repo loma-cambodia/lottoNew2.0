@@ -20,22 +20,22 @@ const Header = ({datauser}) => {
 
   const { t } = useTranslation();
   const [langType, setLangType] = useState('');
+  const [currentLang, setCurrentLang] = useState('');
   // const dispatch = useDispatch();
   // let getLanguage2 = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.name ? datauser.user.data.language.name : "en";
 
   useEffect(() => {
-    let currentLang = localStorage.getItem('lang');
-
+    let currentLanga = localStorage.getItem('lang');
+    setCurrentLang(currentLanga);
     i18n.changeLanguage(currentLang);
     setLangType(currentLang);
-
   }, [langType])
 
 
   
   setTimeout(function() {
     let getLanguage = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.name ? datauser.user.data.language.name : "en";
-    changeLangm(getLanguage);
+    setCurrentLang(getLanguage);
   }, 5000);
 
   const changeLangm = (l) => {
