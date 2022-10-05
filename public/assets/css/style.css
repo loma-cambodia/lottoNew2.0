@@ -1569,6 +1569,9 @@
       opacity: 1 !important;
       box-shadow: none !important;
     }
+    .table-part table tr th, .table-part table tr td {
+      width: 20% !important;
+  }
     @media (min-width: 576px) {
     .container-sm,
     .container {
