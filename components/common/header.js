@@ -180,7 +180,7 @@ const Header = ({datauser}) => {
                                         <img src="assets/images/icons/flag-english.png"/>
                                       </span>&nbsp; &nbsp;Eng
                                 </DropdownItem>
-                                <DropdownItem  onClick={changeLangm('de')}>
+                                <DropdownItem  onClick={changeLangm('ch')}>
                                       <span className="lang-flag">
                                         <img src="assets/images/icons/flag-china.png"/>
                                       </span>&nbsp; &nbsp;中国人
