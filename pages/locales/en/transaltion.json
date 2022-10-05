@@ -87,8 +87,7 @@
     "2nd_Prize": " 2nd Prize",
     "3rd_Prize": " 3rd Prize",
     "Back": "Back",
-    "Betting Date": "Betting Date",
-    
+    "Betting_Date": "Betting Date",
     "User_Name": "User Name",
     "Confirm": "Confirm",
     "Ok": "Ok",
@@ -101,11 +100,8 @@
     "Transactions": "Transactions",
     "transaction_type":"Transaction Type",
     "transaction_id":"Transaction ID",
-
     "Betting_Details":"Betting Details",
     "Transaction_Details":"Transaction Details",
-    "Betting_Date":"Betting Date",
-    
     "Contest_your_chance_to": "Contest your chance to",
     "Special":"Special",
     "Draw":"Draw",
@@ -114,7 +110,6 @@
     "Start_playing_now":"Start Betting Now",
     "Announcement":"Announcement",
     "Play_now":"Bet Now",
-
     "Past_Draw_Result":"Past draw result",
     "Last_draw_date":"Last draw date",
     "Draw_Id":"Draw ID",
@@ -122,10 +117,8 @@
     "2":"2",
     "3":"3",
     "4":"4",
-    
     "clear":"Clear",
     "submit":"Submit",
-
     "Rebate":"Rebate",
     "Rejected_Bet":"Rejected Bet",
     "Over_Limit":"Over Limit",
@@ -134,4 +127,4 @@
     "M":"M",
     "P":"P",
     "Bet_Successful":"Bet Successful"
-    }
+}

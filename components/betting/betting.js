@@ -10,7 +10,7 @@ const Betting = () => {
                     <div className="d-flex align-items-center">
                         <div className="round">
                             <input type="checkbox" id="checkbox1" />
-                            <label for="checkbox1"></label>
+                            <label htmlFor="checkbox1"></label>
                         </div>
                         <div className="day-n-date">
                             <p className="fw-bold mb-0">Tuesday</p>
@@ -53,7 +53,7 @@ const Betting = () => {
                     <div className="d-flex align-items-center">
                         <div className="round">
                             <input type="checkbox"  id="checkbox2" checked/>
-                            <label for="checkbox2"></label>
+                            <label htmlFor="checkbox2"></label>
                         </div>
                         <div className="day-n-date">
                             <p className="fw-bold mb-0">Tuesday</p>
@@ -96,7 +96,7 @@ const Betting = () => {
                     <div className="d-flex align-items-center">
                         <div className="round">
                             <input type="checkbox"  id="checkbox3"/>
-                            <label for="checkbox3"></label>
+                            <label htmlFor="checkbox3"></label>
                         </div>
                         <div className="day-n-date">
                             <p className="fw-bold mb-0">Tuesday</p>
@@ -139,7 +139,7 @@ const Betting = () => {
                     <div className="d-flex align-items-center">
                         <div className="round">
                             <input type="checkbox"  id="checkbox4" checked/>
-                            <label for="checkbox4"></label>
+                            <label htmlFor="checkbox4"></label>
                         </div>
                         <div className="day-n-date">
                             <p className="fw-bold mb-0">Tuesday</p>

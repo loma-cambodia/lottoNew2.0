@@ -88,8 +88,6 @@
     "3rd_Prize": "三奖",
     "Back": "后退",
     "Betting_Date": "投注日期",
-
-
     "User_Name": "用户名",
     "Confirm": "确认",
     "Ok": "好的",
@@ -102,10 +100,8 @@
     "Transactions": "ប្រតិបត្តិការ",
     "transaction_type":"ប្រភេទប្រតិបត្តិការ",
     "transaction_id":"លេខ​សម្គាល់​ប្រតិ​ប​ត្ដិ​ការ",
-
     "Betting_Details":"投注详情",
     "Transaction_Details":"交易明细",
-
     "Contest_your_chance_to": "倍增您的机会",
     "Special":"特别",
     "Draw":"开彩",
@@ -114,8 +110,6 @@
     "Start_playing_now":"开始下注",
     "Announcement":"公告",
     "Play_now":"即刻下注",
-
-    
     "Past_Draw_Result":"开奖记录",
     "Last_draw_date":"最后开奖日期",
     "Draw_Id":"期号",
@@ -125,7 +119,6 @@
     "4":"四",
     "clear":"清除",
     "submit":"提交",
-
     "Rebate":"回扣",
     "Rejected_Bet":"被拒绝的赌注",
     "Over_Limit":"超限",
@@ -134,5 +127,4 @@
     "M":"米",
     "P":"磷",
     "Bet_Successful":"投注成功"
-    
-    }
+}

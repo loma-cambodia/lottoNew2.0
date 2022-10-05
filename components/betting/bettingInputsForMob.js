@@ -361,7 +361,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                     <div className="row">
                         <div className="col-6" style={{ padding: '-1px' }}>
                             <input type="text" 
-                                inputmode='none'
+                                inputMode='none'
                                 className="form-control" 
                                 placeholder="4D Bet Number" 
                                 value={numberValue4D}  
@@ -374,7 +374,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                         </div>
                         <div className="col-3" style={{ padding: '0px' }}>
                             <input 
-                                inputmode='none'
+                                inputMode='none'
                                 type="text" 
                                 className="form-control" 
                                 placeholder="Big" 
@@ -384,7 +384,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                         </div>
                         <div className="col-3" style={{ padding: '-0.9px' }}>
                             <input 
-                                inputmode='none'
+                                inputMode='none'
                                 type="text" 
                                 className="form-control" 
                                 placeholder="Small" 
@@ -399,7 +399,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                     <div className="row">
                         <div className="col-6" style={{ padding: '-1px' }}>
                             <input type="text" 
-                                inputmode='none'
+                                inputMode='none'
                                 className="form-control" 
                                 placeholder="3D Bet Number" 
                                 value={numberValue3D}  
@@ -412,7 +412,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                         </div>
                         <div className="col-3" style={{ padding: '0px' }}>
                             <input 
-                                inputmode='none'
+                                inputMode='none'
                                 type="text" 
                                 className="form-control"
                                 value={a3Value} 
@@ -424,7 +424,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                         </div>
                         <div className="col-3" style={{ padding: '-0.9px' }}>  
                             <input 
-                                inputmode='none'
+                                inputMode='none'
                                 type="text" 
                                 className="form-control"
                                 value={c3Value} 
