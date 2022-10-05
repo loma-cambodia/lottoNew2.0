@@ -10,9 +10,11 @@ const PayoutSection = ({_transactions}) => {
 
 
     let transactions = _transactions;
-
-    console.log('transactions:',transactions);
-
+    let market = transactions.market;
+    let oddSettings = transactions.market;
+    let oddSet = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : [];
+    // let oddSettings = market.odd_settings;
+    console.log("ODD-SETTINGS-->",oddSet)
     return (
       <>
         <section className="payouts-part custom-padding">
@@ -22,34 +24,72 @@ const PayoutSection = ({_transactions}) => {
             <h2 className="text-uppercase text-color-main fw-bold">{t('Winning_Payouts')}</h2>
         </div>
         <div className="theme-tabs py-4">
+
               <ul className="nav nav-tabs theme-nav-tabs" id="myTab" role="tablist">
+             
+
+               
                 <li className="nav-item" role="presentation">
-                  <button className="nav-link active d-inline-flex align-items-center" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
-                        <span className="circle-logo-gp me-2"><img src="assets/images/icons/damacai.png" className="img-gp" alt=""/></span> <span className="name-gp">Da Ma Cai</span>
-                  </button>
-                </li>
+                <button className="nav-link active d-inline-flex align-items-center" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+                      <span className="circle-logo-gp me-2"><img src="assets/images/icons/damacai.png" className="img-gp" alt=""/></span> <span className="name-gp">aaaaaaaaa</span>
+                </button>
+              </li>
+            
                 <li className="nav-item" role="presentation">
                   <button className="nav-link d-inline-flex align-items-center" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
-                    <span className="circle-logo-gp me-2"><img src="assets/images/icons/magnum.png" className="img-gp" alt=""/></span> <span className="name-gp">Magnum</span>
+                    <span className="circle-logo-gp me-2"><img src="assets/images/icons/magnum.png" className="img-gp" alt=""/></span> <span className="name-gp">ddssdd</span>
                   </button>
                 </li>
                 <li className="nav-item" role="presentation">
                   <button className="nav-link d-inline-flex align-items-center" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">
-                    <span className="circle-logo-gp me-2"><img src="assets/images/icons/toto.png" className="img-gp" alt=""/></span> <span className="name-gp">Sports Toto</span>
+                    <span className="circle-logo-gp me-2"><img src="assets/images/icons/toto.png" className="img-gp" alt=""/></span> <span className="name-gp">dddddddd</span>
                   </button>
                 </li>
+
+
+
               </ul>
               <div className="tab-content py-5" id="myTabContent">
 
 
-                <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                     <WinnerGameData/>
-                </div>
+
+               { oddSet && oddSet.map(item => {
+                  let gameName = '';
+                  let customId ='';
+                  let labelledby  = '';
+                  let className = 'tab-pane fade show active';
+                if(item.game_play_id == 1){
+                     gameName = 'Da Ma Chai';
+                      customId ='home';
+                      labelledby = 'home-tab';
+                      className = 'tab-pane fade show active';
+                }else if(item.game_play_id == 2){
+                    gameName = 'Da Ma Chai1111';
+                    customId ='profile';
+                    labelledby = 'profile-tab';
+                    className = 'tab-pane fade show ';
+               }else if(item.game_play_id == 3){
+                gameName = 'Da Ma Chai 33333333';
+                customId ='contact';
+                labelledby = 'contact-tab';
+                className = 'tab-pane fade show';
+           }
+
+                       return(<div className={className} id={customId} role="tabpanel" aria-labelledby={labelledby}>
+                       <WinnerGameData  _item={item}/>
+                  </div>)
+              })} 
 
 
-                <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <WinnerGameData/>
-                    {/* <div className="row justify-content-center">
+
+                 {/* <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                     <WinnerGameData />
+                </div>  */}
+
+
+                {/* <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <WinnerGameData _oddSet={oddSet[1]}/>
+                     <div className="row justify-content-center">
                         <div className="col-md-8">
                             <div className="coupon-block">
                                 <div className="half-cicle left">
@@ -128,13 +168,13 @@ const PayoutSection = ({_transactions}) => {
                             </div>
                         </div>
                        
-                    </div> */}
-                </div>
+                    </div> 
+                </div> */}
 
 
-                <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                <WinnerGameData/>
-                    {/* <div className="row justify-content-center">
+                {/* <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <WinnerGameData _oddSet={oddSet[2]}/>
+                     <div className="row justify-content-center">
                         <div className="col-md-8">
                             <div className="coupon-block">
                                 <div className="half-cicle left">
@@ -213,8 +253,8 @@ const PayoutSection = ({_transactions}) => {
                             </div>
                         </div>
                         
-                    </div> */}
-                </div>
+                    </div> 
+                </div> */}
 
 
               </div>
