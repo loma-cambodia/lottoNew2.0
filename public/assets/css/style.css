@@ -520,7 +520,9 @@
     }
 
     .custom-padding {
-    padding: 60px 0;
+      padding-top: 2rem;
+      padding-bottom: 35rem;
+      height: 100%;
     }
     .theme-tabs .theme-nav-tabs {
     width: fit-content;
