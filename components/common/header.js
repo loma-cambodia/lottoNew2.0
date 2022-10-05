@@ -31,11 +31,17 @@ const Header = ({datauser}) => {
   const { t } = useTranslation();
   const [langType, setLangType] = useState(language);
  //const [langType, setLangType] = useState('ch');
+  // useEffect(() => {
+  //   let currentLang = localStorage.getItem('lang');
+  //   i18n.changeLanguage(currentLang);
+  //  // setLangType(currentLang);
+  // }, [langType])
+
   useEffect(() => {
-    let currentLang = localStorage.getItem('lang');
-    i18n.changeLanguage(currentLang);
+   // let currentLang = localStorage.getItem('lang');
+    i18n.changeLanguage(language);
    // setLangType(currentLang);
-  }, [langType])
+  }, [language])
 
 
 
