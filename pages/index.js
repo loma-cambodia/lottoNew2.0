@@ -17,10 +17,6 @@ export default function Home({datauser}) {
   const [active, setActive] = useState(false);
   const { t } = useTranslation();
   const dispatch = useDispatch();
-console.log('datauser212121212:',datauser);
-
-
-
 
 
 useEffect(() => {
