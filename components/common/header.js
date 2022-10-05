@@ -16,8 +16,6 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
 const Header = ({datauser}) => {
   
-  // console.log('sssssss',datauser.user.data.merchant.currency.code);
-
   const { t } = useTranslation();
   const [langType, setLangType] = useState('');
   // const dispatch = useDispatch();
@@ -39,7 +37,6 @@ const Header = ({datauser}) => {
     }
   }
   // const userDatas = JSON.parse(localStorage.getItem("name"));
-  //  console.log('Header:datauser:',datauser);
 
   function LangTypeFun({langTypeVal}){
     // alert(langTypeVal)
@@ -87,7 +84,6 @@ const Header = ({datauser}) => {
 
   // const state = useSelector(state => state);
 
-   console.log('header:datauser:',datauser);
 
 
     return (
@@ -184,7 +180,7 @@ const Header = ({datauser}) => {
                                 <DropdownItem  onClick={changeLangm('ch')}>
                                       <span className="lang-flag">
                                         <img src="assets/images/icons/flag-china.png"/>
-                                      </span>&nbsp; &nbsp;中国人
+                                      </span>&nbsp; &nbsp;中文
                                 </DropdownItem>
                                 <DropdownItem onClick={changeLangm('kh')}>
                                       <span className="lang-flag">

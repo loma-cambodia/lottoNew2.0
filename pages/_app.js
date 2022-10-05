@@ -11,7 +11,6 @@ import { withIronSessionSsr } from "iron-session/next";
 export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req }) {
     const user = req.session.user;
-   console.log(user);
   
 
     return {
@@ -34,8 +33,6 @@ export const getServerSideProps = withIronSessionSsr(
 function MyApp({ Component, pageProps,user }) {
 
 
-  console.log('user1222:',user);
-
 
   const [data, setData] = useState([{abc:'1'}])
   //const [isLoading, setLoading] = useState(false)
@@ -48,7 +45,6 @@ function MyApp({ Component, pageProps,user }) {
       .then((data) => {
         setData(data)
      //   setLoading(false)
-        console.log('data:', data);
         if(Object.keys(data).length != 0){
           localStorage.setItem("name", JSON.stringify(data.user));
         }
@@ -58,7 +54,6 @@ function MyApp({ Component, pageProps,user }) {
 
   if (isLoading) return <p>Loading...</p>
   if (!data) return <p>No profile data</p>
-   console.log('data111:', data);
   if(Object.keys(data).length === 0){
     return (
       <Notfound />

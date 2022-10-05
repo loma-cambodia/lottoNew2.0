@@ -3,10 +3,6 @@ import React, { useState, useEffect } from 'react';
 
 const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageCounter,_setLoadpageCounter}) => {
 
-
-    // console.log('_dateAndGameOptionData AND _bettingInitData:',_dateAndGameOptionData);
-    // console.log('item:item:',item);
-    // console.log('_dateAndGameOptionData:',_dateAndGameOptionData);
     
     const [initData, setInitData] = useState(item);
     const [active, setActive] = useState(false);
@@ -30,11 +26,9 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
 
     const selectUnSelectDate =(getValue, getId)=>{ // selectUnSelectDate
 
-                        // console.log('getValue: ', getValue);
-                        // console.log('getId: ', getId)
+                      
                         let bettingInitData = _bettingInitData;
 
-                        // console.log('dateAndGameOptionData: ', dateAndGameOptionData);
 
                         bettingInitData.map(item => {
                             if(item.id == getId)
@@ -42,12 +36,12 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                                 
                          });
 
-                         console.log('dateAndGameOptionData2:', bettingInitData);
+                        
 
                         _setBettingInitData(bettingInitData);
                         _setLoadpageCounter(_loadpageCounter + 1);
                         setInitData(item)
-                        console.log('item:', item);
+                      
 
                         if(getValue == false){
                         initData.games.map((game) => {
@@ -67,25 +61,19 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                     // }
 
 
-                    // console.log('initData selectUnSelectDate: ', initData);
-                    // console.log('_dateAndGameOptionData / selectunselectdate: ', _dateAndGameOptionData);
 
                     // _setBettingInitData(_dateAndGameOptionData)
 
-                    // console.log('_dateAndGameOptionData in selectUnSelectDate: ', _dateAndGameOptionData);
 
                 }
 
         const selectUnSelectgame =(dateSelect,gId,gselected)=>{ // selectUnSelectgame
 
-                    console.log('selectUnSelectgame is clicked: ', gId,gselected  )
-
+                    
                     if(dateSelect)
                     {
                             const newState = initData.games.map(game => {
-                                console.log("matching_ID:", gId,game.name)
                                 if (game.name == gId){
-                                    console.log("matchinged:" )
                                     return {  ...game, 
                                         selected: gselected
                                     }
@@ -95,15 +83,11 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                                     return game
                                 }
                             })
-                            console.log('newState/selectUnSelectgame: ', newState )
                             _setLoadpageCounter(_loadpageCounter + 1);
-                            console.log('initData/selectUnSelectgame before: ', initData )
                             setInitData(Object.assign(initData,{games:newState}));
-                            console.log('initData/selectUnSelectgame after: ', initData )
 
                             _bettingInitData[findArrayIndex(_bettingInitData,initData.id)] = initData
                             _setBettingInitData(_bettingInitData);
-                            // console.log("_dateAndGameOptionData: ", _dateAndGameOptionData);
         }
            
         }
@@ -111,7 +95,6 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
 
     useEffect(() => {
         // Update the document title using the browser API
-    //  console.log('11111111');
      
     // _setBettingInitData(_dateAndGameOptionData);
 

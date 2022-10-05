@@ -14,7 +14,6 @@ const PayoutSection = ({_transactions}) => {
     let oddSettings = transactions.market;
     let oddSet = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : [];
     // let oddSettings = market.odd_settings;
-    console.log("ODD-SETTINGS-->",oddSet)
     return (
       <>
         <section className="payouts-part custom-padding">

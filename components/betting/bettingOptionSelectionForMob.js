@@ -139,12 +139,9 @@ const BettingOptionSelectionForMob = ({_bettingDatesStore}) => {
 
       dateAndGameOptionData;
 
-      console.log('_bettingDatesStore:',_bettingDatesStore);
-      console.log('dateAndGameOptionData:',dateAndGameOptionData);
 
 
     const [bettingInitData, setBettingInitData] = useState(dateAndGameOptionData);
-    //console.log("bettingInitData " ,bettingInitData)
 
     const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
     const clearAllRecords = () => {
