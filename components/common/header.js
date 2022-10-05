@@ -7,17 +7,25 @@ import {
 } from 'reactstrap';
 import React, { useEffect, useState } from 'react';
 import i18n from '../../components/i18n';
-import Link from 'next/link'
+
 import PropTypes from 'prop-types';
 
+import Link from 'next/link';
+
+
+import { useDispatch, useSelector } from "react-redux";
 const Header = ({datauser}) => {
   const { t } = useTranslation();
   const [langType, setLangType] = useState('');
+  const dispatch = useDispatch();
   useEffect(() => {
     let currentLang = localStorage.getItem('lang');
     i18n.changeLanguage(currentLang);
     setLangType(currentLang);
   }, [langType])
+
+
+
   
 
   const changeLangm = (l) => {
@@ -71,6 +79,14 @@ const Header = ({datauser}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
+
+
+
+  const state = useSelector(state => state);
+
+  console.log('header:state:',state);
+
+
     return (
       <>
         <header className="header-top" data-spy="affix" data-offset-top="197">

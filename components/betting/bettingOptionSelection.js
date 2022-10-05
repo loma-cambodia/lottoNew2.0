@@ -76,95 +76,7 @@ let dateAndGameOptionData = [1,2,3,4];
 const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
     const { t } = useTranslation();
     let dateAndGameOptionData = [];
-    //  dateAndGameOptionData = [
-    //     { 
-    //       "id": 1,
-    //       "date": '02/12/2015',
-    //       "selected": true,
-    //       "games": [
-    //         {
-    //         "name":"da ma chai",
-    //         "image":"assets/images/icons/damacai.png", 
-    //         "selected": false
-    //         },
-    //         {
-    //         "name":"magnum",
-    //         "image":"assets/images/icons/magnum.png", 
-    //         "selected": false
-    //         },
-    //         {
-    //         "name":"toto",
-    //         "image":"assets/images/icons/toto.png", 
-    //         "selected": false
-    //         },
-    //     ],
-    //     },
-    //     {
-    //       "id":2,
-    //       "date": '10-03-2022',
-    //       "selected": false,
-    //       "games": [
-    //         {
-    //         "name":"da ma chai",
-    //         "image":"assets/images/icons/damacai.png", 
-    //         "selected": false
-    //         },
-    //         {
-    //         "name":"magnum",
-    //         "image":"assets/images/icons/magnum.png", 
-    //         "selected": false
-    //         },
-    //         {
-    //         "name":"toto",
-    //         "image":"assets/images/icons/toto.png", 
-    //         "selected": false
-    //         },
-    //     ],        },
-    //     {
-    //       "id":3,
-    //       "date": '2022-10-03',
-    //       "selected": false,
-    //       "games": [
-    //         {
-    //         "name":"da ma chai",
-    //         "image":"assets/images/icons/damacai.png", 
-    //         "selected": false
-    //         },
-    //         {
-    //         "name":"magnum",
-    //         "image":"assets/images/icons/magnum.png", 
-    //         "selected": false
-    //         },
-    //         {
-    //         "name":"toto",
-    //         "image":"assets/images/icons/toto.png", 
-    //         "selected": false
-    //         },
-    //     ],        },
-    //     {
-    //       "id":4,
-    //       "date": '2017-04-23',
-    //       "selected": false,
-    //       "games": [
-    //         {
-    //         "name":"da ma chai",
-    //         "image":"assets/images/icons/damacai.png", 
-    //         "selected": false
-    //         },
-    //         {
-    //         "name":"magnum",
-    //         "image":"assets/images/icons/magnum.png", 
-    //         "selected": false
-    //         },
-    //         {
-    //         "name":"toto",
-    //         "image":"assets/images/icons/toto.png", 
-    //         "selected": false
-    //         },
-    //     ],        }
-    //   ];
-
-
+    
       if(_bettingDatesStore){
 
     
@@ -248,7 +160,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
       let gameCount = 0;
 
       bettingInitData && bettingInitData.map(item => {
-        if(item.selected == true){
+        
+            if(item.selected == true){
             item.games.map(itemGame => {
                 if(itemGame.selected)
                    gameCount++; 
@@ -256,6 +169,13 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
         }
         
+      });
+
+      let totalAmount = 0;
+      bettingInputsDataParent && bettingInputsDataParent.map(item => {
+        if(item.dataInit.amount.value){
+            totalAmount += parseInt(item.dataInit.amount.value)
+        }
       });
 
 
@@ -275,7 +195,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
               
          </div>
         <div className="table-scalable my-3">
-        {/* loadpageCounter:{loadpageCounter} */}
+        loadpageCounter:{loadpageCounter}
             <table className="">
                 <tbody>
                 <tr>
@@ -299,7 +219,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                  />) )}
                 <tr>
                     <td colSpan="6">
-                        {t('Total_Stake')} 216.00
+                        {t('Total_Stake')} {totalAmount}
                     </td>
                     <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>{t('clear')}</button></td>
                     <td colSpan="2">
@@ -349,6 +269,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                     </div>
                 </div> */}
                 {/* MODAL B */}
+
+                
                 <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
                     <div className="modal-dialog modal-md">
                         <div className="modal-content">
