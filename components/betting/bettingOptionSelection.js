@@ -269,6 +269,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                     </div>
                 </div> */}
                 {/* MODAL B */}
+
+                
                 <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
                     <div className="modal-dialog modal-md">
                         <div className="modal-content">
