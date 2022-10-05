@@ -15,6 +15,9 @@ import Link from 'next/link';
 
 import { useDispatch, useSelector } from "react-redux";
 const Header = ({datauser}) => {
+  
+  // console.log('sssssss',datauser.user.data.merchant.currency.code);
+
   const { t } = useTranslation();
   const [langType, setLangType] = useState('');
   // const dispatch = useDispatch();
@@ -24,7 +27,7 @@ const Header = ({datauser}) => {
     setLangType(currentLang);
   }, [langType])
 
-
+  
 
   
 
@@ -119,8 +122,11 @@ const Header = ({datauser}) => {
                   <div className="right-part-menu">
                       <ul className="right-part-list">
                           <li>
-                              <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>0.00</span> <span className="badge badge-yellow text-black">{datauser && datauser.user && datauser.user.data  && datauser.user.data.currency_symbol ? datauser.user.data.currency_symbol  : "" }
-                              USD</span></span>
+                              <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>0.00</span> <span className="badge badge-yellow text-black">
+                            
+                                {datauser && datauser.user && datauser.user.data  && datauser.user.data.currency_symbol ? datauser.user.data.merchant.currency.code  : "" }
+
+                              </span></span>
                           </li>
                           <li className="hide-650">
                               <a href="#" className="play-lottery-btn ">{t('Play_Lottery')}</a>
@@ -199,38 +205,38 @@ const Header = ({datauser}) => {
               </div>
           </div>
         </header>
-  <div id="mySidepanel" className="sidepanel">
-      <a href="javascript:void(0)" className="closebtn" onClick={() => closeNav() } >&times;</a>
-        <div className="mobile-menu-list">
-            <ul className="list-unstyled">
-                <li>
-                  <Link className="active"  href="/">{t('Homepage')}</Link>  
-                </li>
-                {/* <li className="submenu-mobile">
-                    <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" className="collapsed">Betting</a>
-                    <div className="collapse" id="collapseExample">
-                        <ul className="list-unstyled">
-                            <li>
-                                <Link href="/bettingNew">{t('Betting')}</Link>
-                            </li>
-                            <li>
-                              <Link href="/transaction">{t('History')}</Link>
-                            </li>
-                        </ul>
-                      </div>
-                </li> */}
-                <li>
-                    <Link href="/bettingNew">{t('Betting')}</Link>
-                </li>
-                <li>
-                  <Link href="/transaction">{t('History')}</Link>
-                </li>
-                <li>
-                  <Link href="/results" >{t('Result')}</Link>  
-                </li>
-            </ul>
+        <div id="mySidepanel" className="sidepanel">
+            <a href="javascript:void(0)" className="closebtn" onClick={() => closeNav() } >&times;</a>
+              <div className="mobile-menu-list">
+                  <ul className="list-unstyled">
+                      <li>
+                        <Link className="active"  href="/">{t('Homepage')}</Link>  
+                      </li>
+                      {/* <li className="submenu-mobile">
+                          <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" className="collapsed">Betting</a>
+                          <div className="collapse" id="collapseExample">
+                              <ul className="list-unstyled">
+                                  <li>
+                                      <Link href="/bettingNew">{t('Betting')}</Link>
+                                  </li>
+                                  <li>
+                                    <Link href="/transaction">{t('History')}</Link>
+                                  </li>
+                              </ul>
+                            </div>
+                      </li> */}
+                      <li>
+                          <Link href="/bettingNew">{t('Betting')}</Link>
+                      </li>
+                      <li>
+                        <Link href="/transaction">{t('History')}</Link>
+                      </li>
+                      <li>
+                        <Link href="/results" >{t('Result')}</Link>  
+                      </li>
+                  </ul>
+              </div>
         </div>
-  </div>
       </>
     )
   }
