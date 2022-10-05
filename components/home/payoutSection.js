@@ -31,18 +31,18 @@ const PayoutSection = ({_transactions}) => {
                
                 <li className="nav-item" role="presentation">
                 <button className="nav-link active d-inline-flex align-items-center" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
-                      <span className="circle-logo-gp me-2"><img src="assets/images/icons/damacai.png" className="img-gp" alt=""/></span> <span className="name-gp">aaaaaaaaa</span>
+                      <span className="circle-logo-gp me-2"><img src="assets/images/icons/damacai.png" className="img-gp" alt=""/></span> <span className="name-gp">DA MA CAI</span>
                 </button>
               </li>
             
                 <li className="nav-item" role="presentation">
                   <button className="nav-link d-inline-flex align-items-center" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
-                    <span className="circle-logo-gp me-2"><img src="assets/images/icons/magnum.png" className="img-gp" alt=""/></span> <span className="name-gp">ddssdd</span>
+                    <span className="circle-logo-gp me-2"><img src="assets/images/icons/magnum.png" className="img-gp" alt=""/></span> <span className="name-gp">MAGNUM</span>
                   </button>
                 </li>
                 <li className="nav-item" role="presentation">
                   <button className="nav-link d-inline-flex align-items-center" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">
-                    <span className="circle-logo-gp me-2"><img src="assets/images/icons/toto.png" className="img-gp" alt=""/></span> <span className="name-gp">dddddddd</span>
+                    <span className="circle-logo-gp me-2"><img src="assets/images/icons/toto.png" className="img-gp" alt=""/></span> <span className="name-gp">SPORTS TOTO</span>
                   </button>
                 </li>
 
