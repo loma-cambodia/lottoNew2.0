@@ -6,7 +6,7 @@ const HomeSlider = () => {
     const { t } = useTranslation();
     return (
       <>
-     <Carousel autoPlay className="homepage-carousel ">
+     {/* <Carousel autoPlay className="homepage-carousel "> */}
   <div className="item">
             <div className="hero-slider-special-draw">
                 <div className="container">
@@ -22,7 +22,7 @@ const HomeSlider = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="draw-name">
+                                    <div className="draw-name text-uppercase">
                                         {t('Special')}<br/>{t('Draw')}
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@ const HomeSlider = () => {
                 </div>
             </div>
         </div>
-        <div className="item">
+        {/* <div className="item">
             <div className="hero-slider-special-draw">
                 <div className="container">
                     <div className="row align-items-center">
@@ -71,8 +71,7 @@ const HomeSlider = () => {
                                 <p className="">{t("Dont_miss_your_chance")}</p>
                                 <h3>{t('Lucky_Winner')}</h3>
                                 <div className="clearfix my-3">
-                                    {/* <a href="/bettingNew" className="btn-yellow rounded-full">{t("Start_playing_now")}</a> */}
-                                    {/* <Link className="btn-yellow rounded-full"  href="/bettingNew">{t('Start_playing_now')}</Link> */}
+                                  
                                     <Link href="/bettingNew"> 
                                     <a href="#" className="btn-yellow rounded-full">{t("Start_playing_now")}</a>
                                      </Link>
@@ -85,8 +84,8 @@ const HomeSlider = () => {
                     </div>
                 </div>
             </div>
-        </div>
-              </Carousel>
+        </div> */}
+              {/* </Carousel> */}
       </>
     )
   }
