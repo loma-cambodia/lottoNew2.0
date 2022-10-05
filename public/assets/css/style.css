@@ -269,15 +269,16 @@
     z-index: 1;
     }
     .draw-name {
-        font-size: 60px;
+    font-size: 60px;
     font-family: "Poppins";
     line-height: 1;
     color: #ff0000;
     font-weight: 900;
+    text-transform: uppercase;
     }
     .sd-text-part p {
     color: #000;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     }
     .date-block {
     margin: 20px 0;
@@ -478,7 +479,7 @@
         width: 100%;
     }
     .news-wrapper.short {
-        position: fixed;
+        position: sticky;
         bottom: 0%;
         width: 95%;
         margin: 0 auto;
@@ -525,7 +526,7 @@
     .heading-part h4,
     .heading-part h5,
     .heading-part h6 {
-    font-family: "Roboto";
+    font-family: "Poppins";
     }
 
     .custom-padding {
@@ -1550,9 +1551,27 @@
         background: rgb(191 34 98) !important;
         line-height: 30px;
     }
-    .carousel-status {
+    .homepage-carousel .carousel-status {
         display: none;
     }
+    .homepage-carousel .carousel .control-disabled.control-arrow {
+      display: block;
+      opacity: 0.5 !important;
+    }
+    .homepage-carousel .carousel .control-dots .dot.selected, .homepage-carousel .carousel .control-dots .dot:hover {
+      border: 1px solid #bc2263;
+      background: #bc2263;
+      box-shadow: none;
+    }
+    .homepage-carousel .carousel .control-dots .dot {
+      width: 10px;
+      height: 10px;
+      opacity: 1 !important;
+      box-shadow: none !important;
+    }
+    .table-part table tr th, .table-part table tr td {
+      width: 20% !important;
+  }
     @media (min-width: 576px) {
     .container-sm,
     .container {
