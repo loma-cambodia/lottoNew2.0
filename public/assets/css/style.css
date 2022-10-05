@@ -219,6 +219,10 @@
     font-size: 14px;
     text-transform: uppercase;
     }
+    .play-lottery-btn:hover {
+        color: #000;
+        box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
+    }
     .dropdown .lanugae-selector .lang-flag {
     width: 25px;
     height: 25px;
@@ -304,6 +308,10 @@
     max-width: 386px;
     text-decoration: none;
     text-align: center;
+    }
+    .date-block a:hover {
+        color: #fff;
+        box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
     }
     .sd-text-part h3 {
     font-family: "Poppins";
@@ -395,8 +403,9 @@
     .btn-yellow:hover {
         color: #000;
         background-color: rgb(255, 228, 0);
-        transform: translateY(-1px);
-        box-shadow: rgba(188, 34, 99, 0.5) 0 4px 12px;
+
+        box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
+
     }
     .rounded-full {
     border-radius: 30px;
@@ -521,7 +530,7 @@
 
     .custom-padding {
       padding-top: 2rem;
-      padding-bottom: 35rem;
+      padding-bottom: 4rem;
       height: 100%;
     }
     .theme-tabs .theme-nav-tabs {
@@ -970,6 +979,17 @@
         right: -20px;
         background-size: cover;
         transform: rotateX(180deg);
+    }
+    .mobile-menu-list ul.list-unstyled li.submenu-mobile a.collapsed::after {
+        content: "";
+        width: 15px;
+        height: 15px;
+        background-image: url(../images/icons/dow_arrow.png);
+        position: absolute;
+        top: 34%;
+        right: -20px;
+        background-size: cover;
+        transform: rotateX(0deg);
     }
     .custom-breadcrumb {
     padding: 20px 0;
@@ -1504,6 +1524,21 @@
       }
       .marque-div .overlay {
         display: none;
+      }
+      button.lanugae-selector {
+        border: none !important;
+        background: none !important;
+        padding: 0;
+        color: #000 !important;
+        width: 80px;
+      }
+      button.lanugae-selector:focus, button.lanugae-selector:focus-within, button.lanugae-selector:focus-visible {
+        border: none !important;
+        box-shadow: none !important;
+        outline: 0;
+      }
+      .dropdown-item .lang-flag img {
+        width: 15px;
       }
     @media (min-width: 576px) {
     .container-sm,
