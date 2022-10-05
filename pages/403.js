@@ -6,13 +6,13 @@ export default function About403() {
 
   return (
     // <div className={`${styles.error} row`}>
-    <div className='row'>
+    <div className='row errorBg'>
         <Head>
           <title>Loma Lotto - 403 Access Denied</title>
         </Head>
 
-                        <div className={`${styles.errorJpg} col-md-7 col-12 px-0`}>
-                            <img src="img/error/403.jpg" style={{width: '100%',height: '100vh'}} alt="" />
+                        <div className={`errorBg col-md-7 col-12 px-0`}>
+                            {/* <img src="img/error/403.jpg" style={{width: '100%',height: '100vh'}} alt="" /> */}
                         </div>
                         {/* <div className="error-page-menu">
                                 <ul>
@@ -38,6 +38,7 @@ export default function About403() {
                                     </li>
                                 </ul>
                             </div> */}
+                            
                         <div className="col-md-5 col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'center', color:'#bf2262'}}>      
                             <div className="section-title text-center">
                                 <h3 className="sub-title">Error 403 Access Denied</h3>

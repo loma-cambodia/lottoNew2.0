@@ -13,10 +13,13 @@ import HowToPlay from '../components/home/howToPlay';
 import BettingOptionSelection from '../components/betting/bettingOptionSelection';
 import {getBettingDates,lotterySubmit} from '../store/actions/bettingActions';
 import { useDispatch, useSelector } from "react-redux";
-export default function BettingNew() {
+import { useTranslation } from "react-i18next";
+
+export default function BettingNew({datauser}) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
-
+console.log("USER-->>:",datauser)
 
        useEffect(() => {
           dispatch(getBettingDates());
@@ -39,13 +42,13 @@ export default function BettingNew() {
   return (
     <>
        <Head>
-          <title>Malaysia Lottery</title>
+          <title>{t('Lotteries_tittle')}</title>
           <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
           <link href="assets/css/style.css" rel="stylesheet"/>
           <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
       </Head>
-      <Header/>
+      <Header datauser={datauser}/>
       {/*--Mobile Menu--*/}
       <div id="mySidepanel" className="sidepanel">
           <a href="#" className="closebtn" >&times;</a>
@@ -64,11 +67,11 @@ export default function BettingNew() {
         <section className="custom-breadcrumb">
             <div className="container">
                 <div className="breadcrumb-heading">
-                    <h1>BETTING</h1>
+                    <h1>{t('Betting')}</h1>
                 </div>
                 <div className="breadcrumb-list">
                     <ul>
-                    <li><span>Home / Betting</span></li>
+                    <li><span>{t('Homepage')} / {t('Betting')}</span></li>
                     </ul>
                 </div>
             </div>

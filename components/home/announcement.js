@@ -1,10 +1,14 @@
 import Marquee from "react-fast-marquee";
+import React from 'react';
+import { useTranslation } from "react-i18next";
 const Announcement = () => {
+    const { t } = useTranslation();
+  //  const userDatas = JSON.parse(localStorage.getItem("name"));
 
     return (
       <>
      {/*--Announcement--*/}
-  <section className="announcement">
+  <section className="announcement ">
     <div className="container">
         <div className="news-wrapper d-inline-flex align-item-center">
             <div className="announcement-block-icon">

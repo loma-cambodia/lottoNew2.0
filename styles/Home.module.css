@@ -232,14 +232,15 @@ footer.logo {
   filter: grayscale(100%);
 }
 
-.errorBg{
-  background-image:url('/img/error/403.jpg');
+/* .errorBg{
+  background-image:url('/img/error/403_banner.jpg');
   background-repeat:no-repeat;
-  min-height: 100vh;            /* fall-back */
+  min-height: 100vh;            
   min-height: -moz-available;
   min-height: -webkit-fill-available;
   min-height: fill-available;
-}
+} */
+
 .errorJpg img{
 }
 
