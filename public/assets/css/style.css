@@ -685,6 +685,7 @@
     .first-three-block {
     border-radius: 10px;
     text-align: center;
+    white-space: nowrap;
     }
     .first-three-block .prize-type {
     font-size: 13px;

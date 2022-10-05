@@ -24,8 +24,8 @@ export default function About403() {
                                     <img src="img/error/403-animated-2.gif" style={{width:'35%'}} alt="" />
                                 </div>
                                 <div className="col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'center', flexDirection:'column',paddingTop:'100px'}}>      
-                                    <div className="section-title text-center border-bottom border-top border-4" style={{width:'60vw',color:' #cf447e'}}>
-                                        <h1 className="sub-title py-3 smallLetter" style={{}}>Access Denied Or Forbbiden</h1>
+                                    <div className="section-title text-center border-bottom border-top border-4" style={{width:'60vw'}}>
+                                        <h1 className="sub-title py-3 smallLetter text-color-main" style={{}}>Access Denied Or Forbbiden</h1>
                                     </div>
                                         <br></br>
                                     <div className='text-center'>
