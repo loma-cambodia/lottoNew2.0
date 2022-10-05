@@ -14,10 +14,13 @@ export default function About403() {
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
         <title>Loma Lotto - 403 Access Denied</title>
         </Head>
-                        
+        
+                                <div className="col-12 text-center" style={{}}>
+                                    <img src="img/LOGO MALAYSIA BACK-01-02.png" style={{width:'10%'}} alt="" />
+                                </div>
                             <div id='bigScreen'>
                                 <div className="col-12 errorBg text-center" style={{}}>
-                                    <img src="img/error/403-animated.gif" style={{width:'90%'}} alt="" />
+                                    <img src="img/error/403-animated-2.gif" style={{width:'40%'}} alt="" />
                                 </div>
                                 <div className="col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'flex-start',paddingTop:'100px'}}>      
                                     <div className="section-title text-center">
