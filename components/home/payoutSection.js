@@ -2,6 +2,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import React from 'react';
 import { useTranslation } from "react-i18next";
+import Link from 'next/link';
 const PayoutSection = () => {
     const { t } = useTranslation();
     return (
@@ -280,7 +281,11 @@ const PayoutSection = () => {
               </div>
         </div>
         <div className="clearfix text-center">
-            <a href="#" className="btn-yellow rounded-full">{t('Play_now')}</a>
+            {/* <a href="#" className="btn-yellow rounded-full">{t('Play_now')}</a> */}
+            {/* <Link className="btn-yellow rounded-full"  href="/bettingNew">{t('Play_now')}</Link> */}
+            <Link href="/bettingNew"> 
+                <a href="#" className="btn-yellow rounded-full">{t('Play_now')}</a>
+            </Link>
         </div>
     </div>
   </section>

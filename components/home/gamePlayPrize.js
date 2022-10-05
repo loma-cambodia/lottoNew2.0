@@ -4,7 +4,7 @@ const GamePlayPrize = () => {
     const { t } = useTranslation();
     return (
       <>
-       <section className="gp-prize">
+    <section className="gp-prize">
     <div className="container">
         <div className="row">
             <div className="col-md-4">
