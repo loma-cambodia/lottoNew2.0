@@ -101,5 +101,7 @@
     "Big":"大",
     "M":"M",
     "P":"P",
-    "Bet_Successful":"投注成功"
+    "Bet_Successful":"投注成功",
+
+    "win_big":"成为大赢家"
 }
