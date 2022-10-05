@@ -15,34 +15,32 @@ export default function About403() {
         <title>Loma Lotto - 403 Access Denied</title>
         </Head>
         
-                                <div className="col-12 text-center" style={{}}>
-                                    <img src="img/LOGO MALAYSIA BACK-01-02.png" style={{width:'10%'}} alt="" />
+                                <div className="col-12 text-center" 
+                                style={{display: 'flex',justifyContent: 'center',alignItems: 'center'}}>
+                                    <img src="img/LOGO MALAYSIA BACK-01-02.png" style={{width:'150px',filter: 'drop-shadow(5px 10px 10px grey)'}} alt="" />
                                 </div>
-                            <div id='bigScreen'>
+                            <div id=''>
                                 <div className="col-12 errorBg text-center" style={{}}>
-                                    <img src="img/error/403-animated-2.gif" style={{width:'40%'}} alt="" />
+                                    <img src="img/error/403-animated-2.gif" style={{width:'35%'}} alt="" />
                                 </div>
-                                <div className="col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'flex-start',paddingTop:'100px'}}>      
-                                    <div className="section-title text-center">
-                                        <h1 className="sub-title">Access Denied / Forbidden</h1>
-                                        <h4 className="" style={{fontWeight: 'normal'}}>The page or resource you’re trying to reach is absolutely forbbiden for some reason.</h4>
+                                <div className="col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'center', flexDirection:'column',paddingTop:'100px'}}>      
+                                    <div className="section-title text-center border-bottom border-top border-4" style={{width:'60vw'}}>
+                                        <h1 className="sub-title py-3">Page Not Found</h1>
                                     </div>
+                                    <br></br>
+                                  <div className='text-center'>
+                                      <span className="" style={{fontWeight: 'normal'}}>
+                                          The page or resource you’re trying to reach is absolutely forbbiden for some reason.
+                                      </span>
+                                  </div>
+                                  <div>
+                                      <a className="" style={{fontWeight: 'normal', color:'#fd5497'}}>
+                                          Return to Home Page.
+                                      </a>
+                                  </div>
                                 </div>
                             </div>
 
-                          <div id='smallScreen'>
-                              <div className="col-12 text-center" style={{marginBottom:'20%'}}>
-                                  <img src="img/error/403-animated-mobile.gif" style={{width:'75%'}} alt="" />
-                              </div>
-                              <div className="col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'flex-start'}}>      
-                                    <div className="section-title text-center">
-                                        <h2 className="sub-title">Access Denied / Forbidden</h2>
-                                        <span className="" style={{fontSize:'1.25rem'}}>The page or resource you’re trying to reach is absolutely forbbiden for some reason.</span>
-                                    </div>
-                                </div>
-                          </div>
-                        
-                       
                         {/* <div className="error-page-menu">
                                 <ul>
                                     <li>
