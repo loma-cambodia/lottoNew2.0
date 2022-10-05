@@ -19,8 +19,8 @@ let data = _item;
                                         <th></th>
                                         <th className="text-end">{t('Big_Bet')}</th>
                                         <th className="text-end">{t('Small_Bet')}</th>
-                                        <th className="text-end">3 A</th>
-                                        <th className="text-end">3 C</th>
+                                        <th className="text-end">3A</th>
+                                        <th className="text-end">3C</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -6,7 +6,7 @@ const HomeSlider = () => {
     const { t } = useTranslation();
     return (
       <>
-     <Carousel className="homepage-carousel">
+     <Carousel autoPlay className="homepage-carousel ">
   <div className="item">
             <div className="hero-slider-special-draw">
                 <div className="container">
