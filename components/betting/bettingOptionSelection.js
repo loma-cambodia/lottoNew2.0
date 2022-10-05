@@ -3,6 +3,8 @@ import BettingInputs from './bettingInputs';
 import React, { useState, useEffect } from 'react';
 import ModalA from '../modal/modalA';
 import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
     //   Dummy Ticket Data for Modal Use.
@@ -180,7 +182,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
 
     return(
-        
+        <>
+        <ToastContainer />
         <section className="page-content custom-padding">
          <div className="container">
           <div className="row justify-content-center">
@@ -226,6 +229,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                             {/* <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> */}
                             <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button>
                             {/* <button  onClick={e => { showModal();  }}> show Modal </button> */}
+                            
                     </td>
                 </tr>
                 </tbody>
@@ -464,6 +468,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
         {/* MODAL F */}
         {/* End Modal */}
 </section>
+</>
     )
 } 
 export default BettingOptionSelection;
