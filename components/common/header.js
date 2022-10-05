@@ -1,15 +1,21 @@
 import { useTranslation } from "react-i18next";
 import React, { useEffect, useState } from 'react';
 import i18n from '../../components/i18n';
-import Link from 'next/link'
+import Link from 'next/link';
 
+import { useDispatch, useSelector } from "react-redux";
 const Header = ({datauser}) => {
+  const { t } = useTranslation();
   const [langType, setLangType] = useState('');
+  const dispatch = useDispatch();
   useEffect(() => {
     let currentLang = localStorage.getItem('lang');
     i18n.changeLanguage(currentLang);
     setLangType(currentLang);
   }, [langType])
+
+
+
   
 
   const changeLangm = (l) => {
@@ -41,6 +47,15 @@ const Header = ({datauser}) => {
             </span> Chinese
         </>
       )
+    }
+    else if (langTypeVal == 'kh') {
+      return(
+        <>
+            <span className="lang-flag">
+              <img src="assets/images/icons/flag-khmer.png"/>
+            </span> Khmer
+        </>
+      )
     } else {
       return(
         <>
@@ -51,6 +66,12 @@ const Header = ({datauser}) => {
       )
     }
   }
+
+
+
+  const state = useSelector(state => state);
+
+  console.log('header:state:',state);
 
     return (
       <>
@@ -65,19 +86,19 @@ const Header = ({datauser}) => {
             <div className="desktop-menu me-auto">
                     <ul className="desktop-menu-list">
                       <li>
-                      <Link className="active"  href="/">Home</Link>
+                      <Link className="active"  href="/">{t('Homepage')}</Link>
                         {/* <a className="active" href="#">Home</a> */}
                       </li>
                       <li>
-                      <Link href="/bettingNew">Betting</Link>
+                      <Link href="/bettingNew">{t('Betting')}</Link>
                         {/* <a  href="#">Betting</a> */}
                       </li>
                       <li>
-                      <Link href="/transaction">History</Link>
+                      <Link href="/transaction">{t('History')}</Link>
                         {/* <a href="#" >History</a> */}
                       </li>
                       <li>
-                        <Link href="/results" >Results</Link>
+                        <Link href="/results" >{t('Result')}</Link>
                       </li>
                     </ul>
             </div>
@@ -88,7 +109,7 @@ const Header = ({datauser}) => {
                          USD</span></span>
                     </li>
                     <li className="hide-650">
-                        <a href="#" className="play-lottery-btn ">Play Lottery</a>
+                        <a href="#" className="play-lottery-btn ">{t('Play_Lottery')}</a>
                     </li>
                     <li className="dropdown">
                         <a href="#" className="lanugae-selector dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -108,6 +129,13 @@ const Header = ({datauser}) => {
                                 <span className="lang-flag">
                                   <img src="assets/images/icons/flag-china.png"/>
                                 </span>&nbsp; &nbsp;Chinese
+                              </a>
+                            </li>
+                            <li onClick={changeLangm('kh')}>
+                              <a className="dropdown-item" href="#">
+                                <span className="lang-flag">
+                                  <img src="assets/images/icons/flag-khmer.png"/>
+                                </span>&nbsp; &nbsp;Khmer
                               </a>
                             </li>
                           </ul>

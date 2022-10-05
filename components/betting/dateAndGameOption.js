@@ -144,8 +144,9 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                 <div className='round'/>
                 <div className="select-gp" id="checkboxes">
                     <ul id="checkboxes" className="list-inline">
-                        {initData.games.map((game) =>(
-                            <li className={`list-inline-item`}>
+                        {initData.games.map((game,id) =>(
+                            <li key={id} className={`${initData.selected ? "":""} list-inline-item`}>
+
                             <span onClick={() => selectUnSelectgame(initData.selected,game.name,!game.selected)} className={`${game.selected ? "selected-gp-btn":""} outer-circle-gp`} title="Select">
                                 <span className="inner-circle-gp">
                                     <img className="img-fluid" src={game.image}/>

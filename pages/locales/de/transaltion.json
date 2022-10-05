@@ -100,10 +100,44 @@
     "All_Game": "所有游戏",
     "No_Result_For_Date": "日期没有结果",
     "Transactions": "ប្រតិបត្តិការ",
-    "transaction_type":"ប្រភេទប្រតិបត្តិការ",
-    "transaction_id":"លេខ​សម្គាល់​ប្រតិ​ប​ត្ដិ​ការ",
+    "transaction_type":"交易类型",
+    "transaction_id":"交易编号",
 
     "Betting_Details":"投注详情",
     "Transaction_Details":"交易明细",
-    "Betting_Date":"投注日期"
+
+    "Contest_your_chance_to": "倍增您的机会",
+    "Special":"特别",
+    "Draw":"开彩",
+    "Dont_miss_your_chance":"不要错过机会，您将会是下一位",
+    "Lucky_Winner":"幸运者?",
+    "Start_playing_now":"开始下注",
+    "Announcement":"公告",
+    "Play_now":"即刻下注",
+
+    
+    "Past_Draw_Result":"开奖记录",
+    "Last_draw_date":"最后开奖日期",
+    "Draw_Id":"期号",
+    "1":"一",
+    "2":"二",
+    "3":"三",
+    "4":"四",
+    "clear":"清除",
+    "submit":"提交",
+
+    "Rebate":"回扣",
+    "Rejected_Bet":"被拒绝的赌注",
+    "Over_Limit":"超限",
+    "Accepted_bet_amount":"接受的投注金额",
+    "Big":"大的",
+    "M":"米",
+    "P":"磷",
+    "Bet_Successful":"投注成功",
+    "B":"乙",
+    "I":"我",
+    "R":"R",
+    "A":"一个",
+    "C":"C"
+    
     }

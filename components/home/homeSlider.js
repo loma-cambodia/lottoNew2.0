@@ -1,7 +1,8 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-
+import { useTranslation } from "react-i18next";
 const HomeSlider = () => {
+    const { t } = useTranslation();
     return (
       <>
      <Carousel className="homepage-carousel">
@@ -11,7 +12,7 @@ const HomeSlider = () => {
                     <div className="row align-items-center">
                         <div className="col-md-5 col-sm-5 col-6">
                             <div className="sd-text-part">
-                                <p className="text-uppercase">CONTEST FOR YOUR CHANCE TO</p>
+                                <p className="text-uppercase">{t('Contest_your_chance_to')}</p>
                                 <div className="d-inline-flex align-items-center mb-4">
                                     <div className="logo-draw">
                                         <div className="draw-logo-div">
@@ -21,16 +22,16 @@ const HomeSlider = () => {
                                         </div>
                                     </div>
                                     <div className="draw-name">
-                                        SPECIAL<br/>DRAW
+                                        {t('Special')}<br/>{t('Draw')}
                                     </div>
                                 </div>
                                 <div className="date-block">
                                     <a href="#">27TH September (TUE)</a>
                                 </div>
-                                <p className="small">Don't miss your chance. Will you be our next</p>
-                                <h3>lucky winner?</h3>
+                                <p className="small">{t("Dont_miss_your_chance")}</p>
+                                <h3>{t('Lucky_Winner')}</h3>
                                 <div className="clearfix my-3">
-                                    <a href="#" className="btn-yellow rounded-full">Start Playing Now</a>
+                                    <a href="#" className="btn-yellow rounded-full">{t("Start_playing_now")}</a>
                                 </div>
                             </div>
                         </div>
@@ -46,8 +47,8 @@ const HomeSlider = () => {
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-md-5 col-sm-5">
-                            <div className="sd-text-part">
-                                <p className="text-uppercase">CONTEST FOR YOUR CHANCE TO sdfksdjflksdf</p>
+                        <div className="sd-text-part">
+                                <p className="text-uppercase">{t('Contest_your_chance_to')}</p>
                                 <div className="d-inline-flex align-items-center mb-4">
                                     <div className="logo-draw">
                                         <div className="draw-logo-div">
@@ -57,16 +58,16 @@ const HomeSlider = () => {
                                         </div>
                                     </div>
                                     <div className="draw-name">
-                                        SPECIAL<br/>DRAW
+                                        {t('Special')}<br/>{t('Draw')}
                                     </div>
                                 </div>
                                 <div className="date-block">
                                     <a href="#">27TH September (TUE)</a>
                                 </div>
-                                <p className="small">Don't miss your chance. Will you be our next</p>
-                                <h3>lucky winner?</h3>
-                                <div className="clearfix">
-                                    <a href="#" className="btn-yellow rounded-full">Start Playing Now</a>
+                                <p className="small">{t("Dont_miss_your_chance")}</p>
+                                <h3>{t('Lucky_Winner')}</h3>
+                                <div className="clearfix my-3">
+                                    <a href="#" className="btn-yellow rounded-full">{t("Start_playing_now")}</a>
                                 </div>
                             </div>
                         </div>

@@ -12,17 +12,16 @@ const BettingInputsForMob = ({ item,activeGame }) => {
         setActiveTypeGame(activeGame);
         if(activeGame == false){
             // alert('3d');
-            localStateData.number.value = '';
         }
         if(activeGame == true){
             // alert('4d');
-            localStateData.number.value = '';
         }
+        allClearData();
     }
 
     const [curserPointer, setCurserPointer] = React.useState('');
-
-    const [numberValue, setNumberValue] = React.useState('');
+    const [numberValue4D, setNumberValue4D] = React.useState('');
+    const [numberValue3D, setNumberValue3D] = React.useState('');
     const [bigValue, setBigValue] = React.useState('');
     const [smallValue, setSmallValue] = React.useState('');
     const [a3Value, setA3Value] = React.useState('');
@@ -33,22 +32,39 @@ const BettingInputsForMob = ({ item,activeGame }) => {
 
     const [pageLoadCount, setPageLoadCount] = useState(1);
 
-    console.log("curserPointer:",curserPointer)
+    // console.log("curserPointer:",curserPointer)
     const setAllData = (getValue) => {
-        
         if(activeGame == false){
             // alert('3d');
-            // if()
+            if(getValue.length == 4){
+                return false;
+            }
         }
         if(activeGame == true){
             // alert('4d');
-
+            if(getValue.length == 5){
+                return false;
+            }
         }
 
-      if(curserPointer == 'number'){
-          let numberVal = numberValue.toString();
-          setNumberValue(numberVal+getValue)
-      }  
+        if(curserPointer == 'number4d'){
+            let numberVal = numberValue4D.toString();
+            let mainDataVal = numberVal+getValue;
+            if(mainDataVal.length == 5){
+                return false;
+            }
+            setNumberValue4D(mainDataVal)
+            numberInputHandler(mainDataVal, 'number')
+        }
+        if(curserPointer == 'number3d'){
+            let numberVal = numberValue3D.toString();
+            let mainDataVal = numberVal+getValue;
+            if(mainDataVal.length == 4){
+                return false;
+            }
+            setNumberValue3D(mainDataVal)
+            numberInputHandler(mainDataVal, 'number')
+        }  
       if(curserPointer == 'big'){
           let bigVal = bigValue.toString();
           setBigValue(bigVal+getValue)
@@ -66,16 +82,54 @@ const BettingInputsForMob = ({ item,activeGame }) => {
           setC3Value(c3Val+getValue)
       }    
     }
-  const allClearData = () => {
-      setNumberValue('');
-      setBigValue('');
-      setSmallValue('');
-  }
-  const resetAllData = () => {
-      setNumberValue('');
-      setBigValue('');
-      setSmallValue('');
-  }
+    const allClearData = () => {
+        setCurserPointer('');
+        setNumberValue4D('');
+        setNumberValue3D('');
+        setBigValue('');
+        setSmallValue('');
+        setA3Value('');
+        setC3Value('');
+    }
+    const resetAllData = () => {
+        allClearData();
+    }
+
+    const singleClearData = () => {
+        if(curserPointer == 'number4d'){
+            var mainDataVal = numberValue4D.toString().split('').slice(0, -1).join('')
+            if(mainDataVal.length == 5){
+                return false;
+            }
+            setNumberValue4D(mainDataVal)
+            numberInputHandler(mainDataVal, 'number')
+        }
+        if(curserPointer == 'number3d'){
+            var mainDataVal = numberValue3D.toString().split('').slice(0, -1).join('')
+            if(mainDataVal.length == 4){
+                return false;
+            }
+            setNumberValue3D(mainDataVal)
+            numberInputHandler(mainDataVal, 'number')
+        } 
+        
+        if(curserPointer == 'big'){
+            let bigVal = bigValue.toString().split('').slice(0, -1).join('')
+            setBigValue(bigVal)
+        }   
+        if(curserPointer == 'small'){
+            let smallVal = smallValue.toString().split('').slice(0, -1).join('')
+            setSmallValue(smallVal)
+        }   
+        if(curserPointer == '3a'){
+            let a3Val = a3Value.toString().split('').slice(0, -1).join('')
+            setA3Value(a3Val)
+        }   
+        if(curserPointer == '3c'){
+            let c3Val = c3Value.toString().split('').slice(0, -1).join('')
+            setC3Value(c3Val)
+        }
+    }
 
     const calculate3DAmountEnable = (getValue,operationField) =>{
         let threeDAmount = false;
@@ -302,70 +356,86 @@ const BettingInputsForMob = ({ item,activeGame }) => {
     return (
         
         <>
-
-
-        {activeTypeGame ? 
-            <>  
-                <div className="row">
-                    <div className="col-6" style={{ padding: '-1px' }}>
-                        <input type="text" 
-                            className="form-control" 
-                            placeholder="4D Bet Number" 
-                            // value={numberValue}  
-                            onClick={() => setCurserPointer('number')} 
-                            value={localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : ""}
-                            maxLength={4}
-                            minLength={3}
-                            onChange={(e) => numberInputHandler(e.target.value, 'number')}
-                        />
+            {activeTypeGame ? 
+                <>  
+                    <div className="row">
+                        <div className="col-6" style={{ padding: '-1px' }}>
+                            <input type="text" 
+                                inputmode='none'
+                                className="form-control" 
+                                placeholder="4D Bet Number" 
+                                value={numberValue4D}  
+                                onClick={() => setCurserPointer('number4d')} 
+                                // value={localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : ""}
+                                maxLength={4}
+                                minLength={3}
+                                onChange={(e) => numberInputHandler(e.target.value, 'number')}
+                            />
+                        </div>
+                        <div className="col-3" style={{ padding: '0px' }}>
+                            <input 
+                                inputmode='none'
+                                type="text" 
+                                className="form-control" 
+                                placeholder="Big" 
+                                value={bigValue}
+                                onClick={() => setCurserPointer('big')} 
+                            />
+                        </div>
+                        <div className="col-3" style={{ padding: '-0.9px' }}>
+                            <input 
+                                inputmode='none'
+                                type="text" 
+                                className="form-control" 
+                                placeholder="Small" 
+                                value={smallValue}
+                                onClick={() => setCurserPointer('small')} 
+                            />
+                        </div>
                     </div>
-                    <div className="col-3" style={{ padding: '0px' }}>
-                        <input type="text" className="form-control" placeholder="Big" onClick={() => setCurserPointer('big')} />
+                </> : 
+                
+                <>
+                    <div className="row">
+                        <div className="col-6" style={{ padding: '-1px' }}>
+                            <input type="text" 
+                                inputmode='none'
+                                className="form-control" 
+                                placeholder="3D Bet Number" 
+                                value={numberValue3D}  
+                                onClick={() => setCurserPointer('number3d')} 
+                                // value={localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : ""}
+                                maxLength={3}
+                                minLength={3}
+                                onChange={(e) => numberInputHandler(e.target.value, 'number')}
+                            />
+                        </div>
+                        <div className="col-3" style={{ padding: '0px' }}>
+                            <input 
+                                inputmode='none'
+                                type="text" 
+                                className="form-control"
+                                value={a3Value} 
+                                onChange={(e) => numberInputHandler(e.target.value, '_3a')}
+                                // value={localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : ""}
+                                placeholder="3A"
+                                onClick={() => setCurserPointer('3a')}
+                            />
+                        </div>
+                        <div className="col-3" style={{ padding: '-0.9px' }}>  
+                            <input 
+                                inputmode='none'
+                                type="text" 
+                                className="form-control"
+                                value={c3Value} 
+                                onChange={(e) => numberInputHandler(e.target.value, '_3c')}
+                                // value={localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : ""}
+                                placeholder="3C" 
+                                onClick={() => setCurserPointer('3c')}
+                            />
+                        </div>
                     </div>
-                    <div className="col-3" style={{ padding: '-0.9px' }}>
-                        <input type="text" className="form-control" placeholder="Small" onClick={() => setCurserPointer('small')} />
-                    </div>
-                </div>
-            </> : 
-            
-            <>
-                <div className="row">
-                    <div className="col-6" style={{ padding: '-1px' }}>
-                        <input type="text" 
-                            className="form-control" 
-                            placeholder="3D Bet Number" 
-                            // value={numberValue}  
-                            onClick={() => setCurserPointer('number')} 
-                            value={localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : ""}
-                            maxLength={3}
-                            minLength={3}
-                            onChange={(e) => numberInputHandler(e.target.value, 'number')}
-                        />
-                    </div>
-                    <div className="col-3" style={{ padding: '0px' }}>
-                    <input 
-                        type="text" 
-                        className="form-control"
-                        onChange={(e) => numberInputHandler(e.target.value, '_3a')}
-                        value={localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : ""}
-                        placeholder="3A"
-                        onClick={() => setCurserPointer('3a')}
-                    />
-                        
-                    </div>
-                    <div className="col-3" style={{ padding: '-0.9px' }}>  
-                        <input 
-                            type="text" 
-                            className="form-control"
-                            onChange={(e) => numberInputHandler(e.target.value, '_3c')}
-                            value={localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : ""}
-                            placeholder="3C" 
-                            onClick={() => setCurserPointer('3c')}
-                        />
-                    </div>
-                </div>
-            </>
-            
+                </>  
             }
 
             <div className="row mt-2">
@@ -415,7 +485,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                 </div>
             </div>
             
-            {/* <div className="border mt-2">
+            <div className="border mt-2">
                 <div className="" style={{ height: '180px' }}>
                     <table className="table-borderless" style={{ width: '100%' }}>
                         <thead className="text-light" style={{ background: '#e91d25', fontSize: '12px' }}>
@@ -486,7 +556,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                     <div className="col-6">Total Amount</div>
                     <div className="col-6" style={{ textAlign: 'end' }}>1500</div>
                 </div>
-            </div> */}
+            </div>
                     
             <div className="mt-2">
                 <div className="row">
@@ -578,6 +648,19 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                     </div>
                 </div>
             </div>
+
+            <div className="mt-2 mb-2 row">
+                <div className='col-6'>
+                    <button className="form-control" onClick={() => resetAllData()} style={{ background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
+                        <b>Reset</b> 
+                    </button> 
+                </div>
+                <div className='col-6'>
+                    <button className="form-control text-light" style={{ background: '#e91d25' }}> 
+                        <b>BET</b> 
+                    </button> 
+                </div>            
+            </div> 
         </>
     );
 

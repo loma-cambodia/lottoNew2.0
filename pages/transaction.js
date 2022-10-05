@@ -4,7 +4,11 @@ import React, {useState} from "react";
 import Footer from "../components/common/footer";
 import Header from "../components/common/header";
 import Head from 'next/head';
-export default function Transaction(){
+
+import { useTranslation } from "react-i18next";
+export default function Transaction({datauser}){
+    
+    const { t } = useTranslation();
     const [active, setActive] = useState(false)
     return (
         <>
@@ -12,13 +16,13 @@ export default function Transaction(){
             <meta charset="UTF-8"/>
             <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <title>Malaysia Lottery</title>
+            <title>{t('History_tittle')}</title>
             <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
             <link href="assets/css/style.css" rel="stylesheet"/>
             <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
             <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
             </Head>
-            <Header/>
+            <Header datauser={datauser}/>
               {/*--Mobile Menu--*/}
                 <div id="mySidepanel" className="sidepanel">
                     <a href="javascript:void(0)" className="closebtn" onclick="closeNav()">&times;</a>
