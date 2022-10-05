@@ -172,6 +172,7 @@
     .right-part-menu .right-part-list li .user-details .reload-icon span img {
     width: 100%;
     }
+   
     .badge-yellow {
     color: #000;
     background-image: -moz-linear-gradient(
@@ -519,7 +520,9 @@
     }
 
     .custom-padding {
-    padding: 60px 0;
+      padding-top: 2rem;
+      padding-bottom: 35rem;
+      height: 100%;
     }
     .theme-tabs .theme-nav-tabs {
     width: fit-content;
@@ -1714,6 +1717,11 @@
     .logo {
     max-width: 90px;
     margin-right: 10px;
+    }
+    .rotate:hover{
+      -webkit-transform: rotateZ(720deg);
+      -moz-transform: rotateZ(720deg);
+      transform: rotateZ(720deg);
     }
     .right-part-menu .right-part-list li .user-details .reload-icon span {
     
