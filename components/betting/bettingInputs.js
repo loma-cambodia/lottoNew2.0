@@ -305,7 +305,6 @@ const getPermutation = (_getNumber) => {
         return returnPermutation;
 }
 
-<<<<<<< HEAD
 const getStringUniqueCharactors  = (_getNumber) => {
       const unique = (value, index, self) => {
         return self.indexOf(value) === index
@@ -329,8 +328,6 @@ const  checkPalindrome = (string) =>{
 }
 
 //console.log('11111111111111111111111111111111111111111111111111');
-=======
->>>>>>> b8f9294360939f4564b2a792c2fa0c235ff11533
 
 useEffect(() => {
     numberInputHandler('', '');
