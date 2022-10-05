@@ -1842,15 +1842,51 @@ span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
     }
     
     
-.errorBg{
+/* .errorBg{
         background-image:url('/img/error/403_banner.jpg');
         background-repeat:no-repeat;
-        height: 100vh;   
+        min-height: 100vh;   
         min-height: -moz-available;
         min-height: -webkit-fill-available;
         min-height: fill-available;
+    } */
+@media only screen and (max-width:912px) and (min-width:768px)  {
+    .errorBg{
+        height: 50%!important;
+        align-self: end;
     }
+    .errorBg img {
+        height: 45vh;
+    }
+}
 
+@media (max-width:767px){
+        #bigScreen{
+            display: none;
+    }
+}
+@media (min-width:768px) {
+    #smallScreen{
+        display: none;
+    }
+}
+@media (max-width:425px){
+    #smallScreen
+    {
+        padding-top: 100px;
+    }
+    #smallScreen h2{
+        font-size: 1.30rem!important;
+    }
+    #smallScreen span{
+        font-size: 1rem!important;
+    }
+}
+.errorBg {
+    width: 100vw;
+    text-align: center;
+    /* height: 40vh; */
+}
 .border-doted {
     border: 1px dotted #777;
 }
