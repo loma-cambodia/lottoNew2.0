@@ -10,21 +10,21 @@ async function handler(req, res) {
     const body  = req.body
 
 
-     ///   const objectWithData = {
-            //     "customer_name": "Sushil Gupta",
-            //     "email": "loma123@gmail.coma",
-            //     "customer_id": 1,
-            //     "merchant_id": 11
-            //       "language": 'en'
-            // }
-
-
         const objectWithData = {
-            "customer_name": req.body.customer_name,
-            "customer_id":  req.body.customer_id,
-            "merchant_id":  req.body.enterprise_id,
-            "language":  req.body.language,
-        }
+                "customer_name": "Sushil Gupta",
+                "email": "loma123@gmail.coma",
+                "customer_id": 1,
+                "merchant_id": 11,
+                  "language": 'en'
+            }
+
+
+        // const objectWithData = {
+        //     "customer_name": req.body.customer_name,
+        //     "customer_id":  req.body.customer_id,
+        //     "merchant_id":  req.body.enterprise_id,
+        //     "language":  req.body.language,
+        // }
         
 
 
