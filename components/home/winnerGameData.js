@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
-const WinnerGameData = () => {
-
+const WinnerGameData = ({_item}) => {
+let data = _item;
+console.log("GAME--DATA:",data)
     const { t } = useTranslation();
 
     return (
