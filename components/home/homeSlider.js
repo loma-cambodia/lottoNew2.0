@@ -1,6 +1,7 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { useTranslation } from "react-i18next";
+import Link from 'next/link';
 const HomeSlider = () => {
     const { t } = useTranslation();
     return (
@@ -31,7 +32,10 @@ const HomeSlider = () => {
                                 <p className="small">{t("Dont_miss_your_chance")}</p>
                                 <h3>{t('Lucky_Winner')}</h3>
                                 <div className="clearfix my-3">
-                                    <a href="#" className="btn-yellow rounded-full">{t("Start_playing_now")}</a>
+                                      <Link href="/bettingNew"> 
+                                        <a href="#" className="btn-yellow rounded-full">{t("Start_playing_now")}</a>
+                                     </Link>
+                                    {/* <Link className="btn-yellow rounded-full"  href="/bettingNew">{t('Start_playing_now')}</Link> */}
                                 </div>
                             </div>
                         </div>
@@ -67,7 +71,11 @@ const HomeSlider = () => {
                                 <p className="small">{t("Dont_miss_your_chance")}</p>
                                 <h3>{t('Lucky_Winner')}</h3>
                                 <div className="clearfix my-3">
+                                    {/* <a href="/bettingNew" className="btn-yellow rounded-full">{t("Start_playing_now")}</a> */}
+                                    {/* <Link className="btn-yellow rounded-full"  href="/bettingNew">{t('Start_playing_now')}</Link> */}
+                                    <Link href="/bettingNew"> 
                                     <a href="#" className="btn-yellow rounded-full">{t("Start_playing_now")}</a>
+                                     </Link>
                                 </div>
                             </div>
                         </div>

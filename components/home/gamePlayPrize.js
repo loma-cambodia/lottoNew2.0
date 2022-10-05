@@ -1,32 +1,52 @@
 import React from 'react';
 import { useTranslation } from "react-i18next";
-const GamePlayPrize = () => {
+const GamePlayPrize = ({_winnerResultDetails}) => {
     const { t } = useTranslation();
+
+    let winnerResultDetails = _winnerResultDetails;
     return (
       <>
-       <section className="gp-prize">
+    <section className="gp-prize">
     <div className="container">
         <div className="row">
-            <div className="col-md-4">
+
+
+   {winnerResultDetails && winnerResultDetails.map(item => {
+    let gameImage = '';
+    //toto.png"  magnum.png
+    if(item.game_play_id == 1){
+         //gameImage = 'assets/images/icons/damacai.png';
+         gameImage = 'assets/images/icons/magnum.png';
+
+    }else if(item.game_play_id == 2){
+      
+        gameImage = 'assets/images/icons/toto.png';
+
+    }else if(item.game_play_id == 6){
+        gameImage = 'assets/images/icons/damacai.png';
+    }
+
+    return(
+<div className="col-md-4">
                 <div className="card damamcai">
                     <div className="card-body">
                         <div className="card-top">
                             <div className="logo-gp-prize">
                                 <div className="logo-gp-prize-outer">
                                     <div className="logo-gp-prize-inner">
-                                        <img  src="assets/images/icons/damacai.png" alt="" className="img-icon-prize"/>
+                                        <img  src={gameImage} alt="" className="img-icon-prize"/>
                                     </div>
                                 </div>
                             </div>
                             <div className="name-lottery">
-                                <p className="fw-bold">DA MA CAI</p>
-                                <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p>
+                                <p className="fw-bold">{item.title}</p>
+                                <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span>{item.fetching_date}</p>
                                 
                             </div>
                             <div class="gp-prize-play-btn ms-auto">
                                 <div class="gp-prize-play-btn ms-auto">
                                   <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
-                                  <p class="mb-0 fs-5 fw-bold">4567891</p>
+                                  <p class="mb-0 fs-5 fw-bold">{item.reference_number}</p>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +57,7 @@ const GamePlayPrize = () => {
                                         {t('1st_Prize')}
                                     </div>
                                     <div className="prize-amt">
-                                        124563
+                                        {item.prize1}
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +67,7 @@ const GamePlayPrize = () => {
                                     {t('2nd_Prize')}
                                     </div>
                                     <div className="prize-amt">
-                                        124563
+                                    {item.prize2}
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +77,7 @@ const GamePlayPrize = () => {
                                     {t('3rd_Prize')}
                                     </div>
                                     <div className="prize-amt">
-                                        124563
+                                    {item.prize3}
                                     </div>
                                 </div>
                             </div>
@@ -69,18 +89,18 @@ const GamePlayPrize = () => {
                                     <td colspan="5" className="border-bottom border-light">{t('Special_Prize')}</td>
                                 </tr>
                                 <tr>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
+                                    <td className="border-bottom border-light">{item.special1}</td>
+                                    <td className="border-bottom border-light">{item.special2}</td>
+                                    <td className="border-bottom border-light">{item.special3}</td>
+                                    <td className="border-bottom border-light">{item.special4}</td>
+                                    <td className="border-bottom border-light">{item.special5}</td>
                                 </tr>
                                 <tr>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
+                                    <td className="border-bottom border-light">{item.special6}</td>
+                                    <td className="border-bottom border-light">{item.special7}</td>
+                                    <td className="border-bottom border-light">{item.special8}</td>
+                                    <td className="border-bottom border-light">{item.special9}</td>
+                                    <td className="border-bottom border-light">{item.special10}</td>
                                 </tr>
                               </tbody>  
                             </table>
@@ -92,18 +112,18 @@ const GamePlayPrize = () => {
                                     <td colspan="5" className="border-bottom border-light">{t('Consolation_Prize')}</td>
                                 </tr>
                                 <tr>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
+                                    <td className="border-bottom border-light">{item.consolation1}</td>
+                                    <td className="border-bottom border-light">{item.consolation2}</td>
+                                    <td className="border-bottom border-light">{item.consolation3}</td>
+                                    <td className="border-bottom border-light">{item.consolation4}</td>
+                                    <td className="border-bottom border-light">{item.consolation5}</td>
                                 </tr>
                                 <tr>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
-                                    <td className="border-bottom border-light">87537</td>
+                                    <td className="border-bottom border-light">{item.consolation6}</td>
+                                    <td className="border-bottom border-light">{item.consolation7}</td>
+                                    <td className="border-bottom border-light">{item.consolation8}</td>
+                                    <td className="border-bottom border-light">{item.consolation9}</td>
+                                    <td className="border-bottom border-light">{item.consolation10}</td>
                                 </tr>
                               </tbody>  
                             </table>
@@ -111,7 +131,19 @@ const GamePlayPrize = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-4">
+    );
+   })}
+            
+
+
+
+
+
+
+
+
+
+            {/* <div className="col-md-4">
                 <div className="card magnum">
                     <div className="card-body">
                         <div className="card-top">
@@ -317,7 +349,7 @@ const GamePlayPrize = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     </div>
   </section>

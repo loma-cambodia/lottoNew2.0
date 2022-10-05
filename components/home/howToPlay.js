@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useTranslation } from "react-i18next";
-
+import Link from 'next/link';
 const HowToPlay = () => {
   const { t } = useTranslation();
     return (
@@ -54,7 +54,11 @@ const HowToPlay = () => {
             
           </div>
           <div className="clearfix text-center mt-5">
-            <a href="#" className="btn-yellow rounded-full">{t('Play_now')}</a>
+            {/* <a href="#" className="btn-yellow rounded-full">{t('Play_now')}</a> */}
+                                   <Link href="/bettingNew"> 
+                                        <a href="#" className="btn-yellow rounded-full">{t("Play_now")}</a>
+                                     </Link>
+
         </div>
     </div>
   </section>

@@ -23,6 +23,9 @@ const Header = ({datauser}) => {
   // const dispatch = useDispatch();
   useEffect(() => {
     let currentLang = localStorage.getItem('lang');
+    
+    // console.log('sssssssssss',datauser.user.data.language.name)
+
     i18n.changeLanguage(currentLang);
     setLangType(currentLang);
   }, [langType])
@@ -87,7 +90,7 @@ const Header = ({datauser}) => {
 
   // const state = useSelector(state => state);
 
-  // console.log('header:state:',state);
+   console.log('header:datauser:',datauser);
 
 
     return (
@@ -124,7 +127,7 @@ const Header = ({datauser}) => {
                           <li>
                               <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>0.00</span> <span className="badge badge-yellow text-black">
                             
-                                {datauser && datauser.user && datauser.user.data  && datauser.user.data.currency_symbol ? datauser.user.data.merchant.currency.code  : "" }
+                                { datauser && datauser.user && datauser.user.data && datauser.user.data.merchant && datauser.user.data.merchant.currency && datauser.user.data.merchant.currency.code ? datauser.user.data.merchant.currency.code  : "USD" }
 
                               </span></span>
                           </li>

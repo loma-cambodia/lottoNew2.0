@@ -12,7 +12,7 @@ import GamePlayPrize from '../components/home/gamePlayPrize';
 import HowToPlay from '../components/home/howToPlay';
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import {userTransactionDetails,winnerResultDetails} from '../store/actions/homeActions';
+import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
 export default function Home({datauser}) {
   const [active, setActive] = useState(false);
   const { t } = useTranslation();
@@ -21,8 +21,9 @@ export default function Home({datauser}) {
 
 useEffect(() => {
   dispatch(userTransactionDetails());
-  dispatch(winnerResultDetails());
+  dispatch(winnerResultDetails2());
 }, [])
+
 
 const state = useSelector(state => state);
 console.log('index:state:',state);
@@ -30,6 +31,11 @@ console.log('index:state:',state);
       state.auth.transactions
 
       let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
+
+      let winnerResultDetails = state && state.home && state.home.winnerResultDetails ? state.home.winnerResultDetails : [];
+
+
+      console.log('winnerResultDetails:',winnerResultDetails);
 
 
 
@@ -61,7 +67,7 @@ console.log('index:state:',state);
   <HomeSlider />
   <Announcement />
   <PayoutSection _transactions={transactions}/>
-  <GamePlayPrize/>
+  <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>
   <HowToPlay/>
   <Footer/>
 <script src="assets/js/jquery.min.js"></script>
