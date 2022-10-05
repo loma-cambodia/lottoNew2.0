@@ -9,7 +9,6 @@ let ttl = 60 + 10800; // 3 hours
 async function handler(req, res) {
     const body  = req.body
 
-
      ///   const objectWithData = {
             //     "customer_name": "Sushil Gupta",
             //     "email": "loma123@gmail.coma",
@@ -18,18 +17,21 @@ async function handler(req, res) {
             //       "language": 'en'
             // }
 
+            const objectWithData = {
+                    "customer_name": "Dileep Maurya",
+                    "customer_id":  110,
+                    "merchant_id":  1,
+                    "language":  'en',
+                }
 
-        const objectWithData = {
-            "customer_name": req.body.customer_name,
-            "customer_id":  req.body.customer_id,
-            "merchant_id":  req.body.enterprise_id,
-            "language":  req.body.language,
-        }
+        // const objectWithData = {
+        //     "customer_name": req.body.customer_name,
+        //     "customer_id":  req.body.customer_id,
+        //     "merchant_id":  req.body.enterprise_id,
+        //     "language":  req.body.language,
+        // }
         
-
-
-       const userData = await fetch('http://api.kk-lotto.com:8080/api/member-login', {
-
+        const userData = await fetch('http://api.kk-lotto.com:8080/api/member-login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
