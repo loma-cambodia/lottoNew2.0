@@ -93,7 +93,6 @@ const PayoutSection = ({_transactions}) => {
                         <div className="col-md-8">
                             <div className="coupon-block">
                                 <div className="half-cicle left">
-
                                 </div>
                                 <div className="content-part">
                                     <div className="table-part">
@@ -178,7 +177,6 @@ const PayoutSection = ({_transactions}) => {
                         <div className="col-md-8">
                             <div className="coupon-block">
                                 <div className="half-cicle left">
-
                                 </div>
                                 <div className="content-part">
                                     <div className="table-part">
@@ -268,4 +266,3 @@ const PayoutSection = ({_transactions}) => {
     )
   }
   export default PayoutSection;
-  
