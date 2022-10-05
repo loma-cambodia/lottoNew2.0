@@ -39,10 +39,14 @@
 //   }
 
 import { combineReducers } from 'redux';
-import userReducer from './userReducers';
+import userReducer from './userReducers'; // Need to delete 
 import bettingReducers from './bettingReducers';
+import authReducers from './authReducers';
+import homeReducers from './homeReducers';
 
 export default combineReducers({
   users: userReducer,
-  betting:bettingReducers
+  betting:bettingReducers,
+  auth:authReducers,
+  home:homeReducers
 })
