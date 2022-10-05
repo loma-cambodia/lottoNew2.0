@@ -27,6 +27,14 @@ useEffect(() => {
 const state = useSelector(state => state);
 console.log('index:state:',state);
 
+      state.auth.transactions
+
+      let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
+
+
+
+
+
 
   return (
     <>
@@ -52,7 +60,7 @@ console.log('index:state:',state);
       {/*--Mobile Menu-*/}
   <HomeSlider />
   <Announcement />
-  <PayoutSection/>
+  <PayoutSection _transactions={transactions}/>
   <GamePlayPrize/>
   <HowToPlay/>
   <Footer/>

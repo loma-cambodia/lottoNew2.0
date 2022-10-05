@@ -2,8 +2,17 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import React from 'react';
 import { useTranslation } from "react-i18next";
-const PayoutSection = () => {
+
+import WinnerGameData from './winnerGameData'
+
+const PayoutSection = ({_transactions}) => {
     const { t } = useTranslation();
+
+
+    let transactions = _transactions;
+
+    console.log('transactions:',transactions);
+
     return (
       <>
         <section className="payouts-part custom-padding">
@@ -31,90 +40,16 @@ const PayoutSection = () => {
                 </li>
               </ul>
               <div className="tab-content py-5" id="myTabContent">
-                <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <div className="row justify-content-center">
-                        <div className="col-md-8">
-                            <div className="coupon-block">
-                                <div className="half-cicle left">
 
-                                </div>
-                                <div className="content-part">
-                                    <div className="table-part">
-                                        <table className="table">
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th className="text-end">{t('Big_Bet')}</th>
-                                                    <th className="text-end">{t('Small_Bet')}</th>
-                                                    <th className="text-end">3 A</th>
-                                                    <th className="text-end">3 C</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>{t('1st_Prize')}</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>{t('2nd_Prize')}</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>{t('3rd_Prize')}</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>{t('Special_Prize')}</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>{t('Consolation_Prize')}</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                    <td className="text-end">5000</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div className="payout-text-part">
-                                        {t('PAYOUTS')}
-                                    </div>
-                                </div>
-                                <div className="half-circles">
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                    <span className="circle-coupon"></span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
+
+                <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                     <WinnerGameData/>
                 </div>
+
+
                 <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div className="row justify-content-center">
+                <WinnerGameData/>
+                    {/* <div className="row justify-content-center">
                         <div className="col-md-8">
                             <div className="coupon-block">
                                 <div className="half-cicle left">
@@ -193,10 +128,13 @@ const PayoutSection = () => {
                             </div>
                         </div>
                        
-                    </div>
+                    </div> */}
                 </div>
+
+
                 <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <div className="row justify-content-center">
+                <WinnerGameData/>
+                    {/* <div className="row justify-content-center">
                         <div className="col-md-8">
                             <div className="coupon-block">
                                 <div className="half-cicle left">
@@ -275,8 +213,10 @@ const PayoutSection = () => {
                             </div>
                         </div>
                         
-                    </div>
+                    </div> */}
                 </div>
+
+
               </div>
         </div>
         <div className="clearfix text-center">
