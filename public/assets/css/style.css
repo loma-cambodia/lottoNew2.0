@@ -1004,6 +1004,7 @@
     color: #fff;
     font-size: 35px;
     font-weight: 700;
+    text-transform: uppercase;
     }
     .custom-breadcrumb .breadcrumb-list ul {
     margin: 0;
@@ -1041,7 +1042,7 @@
     }
     .date-lottery-selector {
     border: 1px solid;
-    border-radius: 50px 0;
+    border-radius: 35px 0;
     padding: 15px;
     margin-bottom: 20px;
     }
@@ -1650,6 +1651,9 @@
     .logo-gp-prize {
     margin-right: 5px;
     }
+    .sd-text-part h3 {
+        font-size: 34px;
+    }
     }
     @media (max-width: 767.98px) {
     .timeline::after {
@@ -1776,6 +1780,9 @@
     height: 15px;
     display: inline-block;
     }
+    .btn-yellow {
+        padding: 10px 15px;
+    }
     }
     @media (max-width: 575px) {
     .hide-575 {
@@ -1786,6 +1793,19 @@
     }
     .theme-tabs .theme-nav-tabs {
     width: auto;
+    }
+    .draw-logo-img {
+        width: 80px;
+        height: 80px;
+    }
+    .draw-name {
+        font-size: 34px;
+    }
+    .sd-text-part {
+        text-align: center;
+    }
+    .date-block a {
+        margin: 0 auto;
     }
     }
     @media (max-width: 480px) {
