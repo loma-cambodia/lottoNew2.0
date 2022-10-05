@@ -1,7 +1,17 @@
 import { useTranslation } from "react-i18next";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 import React, { useEffect, useState } from 'react';
 import i18n from '../../components/i18n';
+
+import PropTypes from 'prop-types';
+
 import Link from 'next/link';
+
 
 import { useDispatch, useSelector } from "react-redux";
 const Header = ({datauser}) => {
@@ -35,7 +45,7 @@ const Header = ({datauser}) => {
         <>
             <span className="lang-flag">
               <img src="assets/images/icons/flag-english.png"/>
-            </span> ENGLISH
+            </span> Eng
         </>
       )
     }
@@ -44,7 +54,7 @@ const Header = ({datauser}) => {
         <>
             <span className="lang-flag">
               <img src="assets/images/icons/flag-china.png"/>
-            </span> Chinese
+            </span> 中国人
         </>
       )
     }
@@ -53,7 +63,7 @@ const Header = ({datauser}) => {
         <>
             <span className="lang-flag">
               <img src="assets/images/icons/flag-khmer.png"/>
-            </span> Khmer
+            </span> ខ្មែរ
         </>
       )
     } else {
@@ -61,17 +71,21 @@ const Header = ({datauser}) => {
         <>
             <span className="lang-flag">
               <img src="assets/images/icons/flag-english.png"/>
-            </span> ENGLISH
+            </span> Eng
         </>
       )
     }
   }
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
 
 
 
   const state = useSelector(state => state);
 
   console.log('header:state:',state);
+
 
     return (
       <>
@@ -111,12 +125,15 @@ const Header = ({datauser}) => {
                     <li className="hide-650">
                         <a href="#" className="play-lottery-btn ">{t('Play_Lottery')}</a>
                     </li>
-                    <li className="dropdown">
+
+
+
+
+                    {/* <li className="dropdown">
                         <a href="#" className="lanugae-selector dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                           <LangTypeFun langTypeVal={langType} />
                         </a>
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                            {/* <li><a className="dropdown-item" href="#">Action</a></li> */}
                             <li onClick={changeLangm('en')}>
                               <a className="dropdown-item" href="#">
                                 <span className="lang-flag">
@@ -139,11 +156,42 @@ const Header = ({datauser}) => {
                               </a>
                             </li>
                           </ul>
+                    </li> */}
+
+                    <li className="dropdown position-relative">
+                    <div className="">
+                      <Dropdown isOpen={dropdownOpen} toggle={toggle} >
+                        <DropdownToggle className="lanugae-selector" caret>
+                          <LangTypeFun langTypeVal={langType} />
+                          {/* <span className="lang-flag me-2"><img src="assets/images/icons/flag-english.png"/></span>English */}
+                        </DropdownToggle>
+                        <DropdownMenu >
+                          <DropdownItem  onClick={changeLangm('en')}>
+                                <span className="lang-flag">
+                                  <img src="assets/images/icons/flag-english.png"/>
+                                </span>&nbsp; &nbsp;Eng
+                          </DropdownItem>
+                          <DropdownItem  onClick={changeLangm('de')}>
+                                <span className="lang-flag">
+                                  <img src="assets/images/icons/flag-china.png"/>
+                                </span>&nbsp; &nbsp;中国人
+                          </DropdownItem>
+                          <DropdownItem onClick={changeLangm('kh')}>
+                                <span className="lang-flag">
+                                  <img src="assets/images/icons/flag-khmer.png"/>
+                                </span>&nbsp; &nbsp;ខ្មែរ
+                          </DropdownItem>
+                        </DropdownMenu>
+                      </Dropdown>
+                    </div>
                     </li>
+
+
+
+                    
                     <li className="menu-mobile">
-                        {/* <button className="navbar-toggler" type="button" onClick="openNav()"> */}
-                        <button className="navbar-toggler" type="button">
-                            <span className="navbar-toggler-icon"></span>
+                        <button class="navbar-toggler" type="button" onClick={() => openNav() } >
+                            <span class="navbar-toggler-icon"></span>
                           </button>
                     </li>
                 </ul>
@@ -151,6 +199,38 @@ const Header = ({datauser}) => {
         </div>
     </div>
   </header>
+  <div id="mySidepanel" className="sidepanel">
+      <a href="javascript:void(0)" className="closebtn" onClick={() => closeNav() } >&times;</a>
+        <div className="mobile-menu-list">
+            <ul className="list-unstyled">
+                <li>
+                  <Link className="active"  href="/">{t('Homepage')}</Link>  
+                </li>
+                {/* <li className="submenu-mobile">
+                    <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" className="collapsed">Betting</a>
+                    <div className="collapse" id="collapseExample">
+                        <ul className="list-unstyled">
+                            <li>
+                                <Link href="/bettingNew">{t('Betting')}</Link>
+                            </li>
+                            <li>
+                              <Link href="/transaction">{t('History')}</Link>
+                            </li>
+                        </ul>
+                      </div>
+                </li> */}
+                <li>
+                    <Link href="/bettingNew">{t('Betting')}</Link>
+                </li>
+                <li>
+                  <Link href="/transaction">{t('History')}</Link>
+                </li>
+                <li>
+                  <Link href="/results" >{t('Result')}</Link>  
+                </li>
+            </ul>
+        </div>
+  </div>
       </>
     )
   }
