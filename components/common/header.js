@@ -155,7 +155,7 @@ const Header = ({datauser}) => {
                                 <DropdownItem  onClick={changeLangm('ch')}>
                                       <span className="lang-flag">
                                         <img src="assets/images/icons/flag-china.png"/>
-                                      </span>&nbsp; &nbsp;中国人
+                                      </span>&nbsp; &nbsp;中文
                                 </DropdownItem>
                                 <DropdownItem onClick={changeLangm('kh')}>
                                       <span className="lang-flag">

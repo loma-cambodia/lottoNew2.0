@@ -84,7 +84,6 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
     
         _bettingDatesStore.map(item => {
 
-           // console.log('item.games:',item.games);
 
             let tempObject = { 
                 "id": item.id,
@@ -142,7 +141,6 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
      ///  let dataSubmit = {customer_id:"1", enterprise_id:"11", datesGamesData:bettingInitData, InputsData:bettingInputsDataParent}
       //  _lotterySubmitRecords(dataSubmit)
       
-     // console.log('111');
 
     } 
     
@@ -151,12 +149,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
         if (bettingInitData.length === 0){
             setBettingInitData(dateAndGameOptionData)
         }
-        console.log('useeffect was ran');
       });
 
-      console.log('bettingInputsDataParent:',bettingInputsDataParent);
-      
-      console.log('bettingInitData:',bettingInitData);
 
 
       let gameCount = 0;

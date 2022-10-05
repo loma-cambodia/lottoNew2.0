@@ -210,7 +210,6 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
         }
 
         let totalAmount = calculationOfTotalAmount(localStateDataForChange);
-        console.log('totalAmount:',totalAmount);
         if(totalAmount)
           localStateDataForChange = { ...localStateDataForChange, amount: { value: totalAmount, disabled: 1 } };
 
@@ -221,7 +220,6 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
     }
 
     const calculationOfTotalAmount = (getRow) => {
-       console.log('getRow:',getRow);
       let bet_type = '';
       let total_sum = 0;
       if(getRow && getRow.bet_type && getRow.bet_type.box_value) 
@@ -252,14 +250,12 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
 
 
 
-   //   console.
       let totalAmount =  0;
       if(_gameCount && total_sum)
       totalAmount = _gameCount * total_sum  
 
       if(bet_type == 'box'){
         let totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
-        console.log('totalBoxing:',totalBoxing);
       if(totalBoxing)
         totalAmount = totalAmount * totalBoxing;  
 
@@ -277,12 +273,10 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
     }
 
     const totalBoxingCalculation = (getNumber) => {
-        console.log('getNumber:',getNumber);
         let _getNumber = getNumber;
         let boxing = 0;
         if(_getNumber)
         boxing = getPermutation(_getNumber);
-        console.log('boxing:',boxing);
         return boxing ;
     }
 
@@ -308,10 +302,10 @@ const getPermutation = (_getNumber) => {
             else  if(uniqueAges.length == 1)
             returnPermutation = 1;
         }
-        //console.log('unique', uniqueAges.length)
         return returnPermutation;
 }
 
+<<<<<<< HEAD
 const getStringUniqueCharactors  = (_getNumber) => {
       const unique = (value, index, self) => {
         return self.indexOf(value) === index
@@ -335,6 +329,8 @@ const  checkPalindrome = (string) =>{
 }
 
 //console.log('11111111111111111111111111111111111111111111111111');
+=======
+>>>>>>> b8f9294360939f4564b2a792c2fa0c235ff11533
 
 useEffect(() => {
     numberInputHandler('', '');

@@ -47,7 +47,6 @@ async function handler(req, res) {
              res.redirect(307, '/');
             res.send("You are Logged in, Please Go back");
         }else{
-            console.log("Worng Data", data);
             res.send("Worng Data");
         }
     

@@ -32,7 +32,6 @@ const BettingInputsForMob = ({ item,activeGame }) => {
 
     const [pageLoadCount, setPageLoadCount] = useState(1);
 
-    // console.log("curserPointer:",curserPointer)
     const setAllData = (getValue) => {
         if(activeGame == false){
             // alert('3d');
@@ -351,7 +350,6 @@ const BettingInputsForMob = ({ item,activeGame }) => {
         }
         setLocalStateData(localStateDataForChange);
         setPageLoadCount(pageLoadCount + 1);
-        console.log("localStateDataForChange:",localStateDataForChange)
     }
     return (
         

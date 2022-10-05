@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 const DateAndGameOptionMob = ({item,_dateAndGameOptionData,_bettingInitData,_setBettingInitData}) => {
 
 
-    console.log('games:',_bettingInitData.games);
     
     const [initData, setInitData] = useState(item);
     const [active, setActive] = useState(false);
@@ -18,7 +17,6 @@ const DateAndGameOptionMob = ({item,_dateAndGameOptionData,_bettingInitData,_set
         }
 
         const selectUnSelectDate =(getValue)=>{ // selectUnSelectDate
-            console.log('getValue: ', getValue)
             if(getValue == false){
                 selectUnSelectgame(true,"da ma chai",false)
                 selectUnSelectgame(true,"toto",false)
@@ -39,7 +37,6 @@ const DateAndGameOptionMob = ({item,_dateAndGameOptionData,_bettingInitData,_set
                 }
 
             });
-                console.log('GamesnewState', newState)
                 _setBettingInitData(Object.assign(_dateAndGameOptionData,Object.assign(initData.games,newState)))
             }
         }
@@ -61,7 +58,6 @@ const DateAndGameOptionMob = ({item,_dateAndGameOptionData,_bettingInitData,_set
   const [isModal, setIsModal] = useState(false);
 
   const contentClassname = isModal ? ' selected-dt-h5 ' : ' ';
-    console.log("item:",item);
     return(
         <>
         <div className="d-flex align-items-center py-2 border-bottom">

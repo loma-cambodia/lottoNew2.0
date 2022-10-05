@@ -1,8 +1,6 @@
 import { useTranslation } from "react-i18next";
 const WinnerGameData = ({_item}) => {
 let data = _item;
-console.log("ID: ",data.id,"BIG BET:",data)
-console.log("ID: ",data.id,"BIG BET:",data.big_first)
     const { t } = useTranslation();
 
     return (
@@ -21,8 +19,8 @@ console.log("ID: ",data.id,"BIG BET:",data.big_first)
                                         <th></th>
                                         <th className="text-end">{t('Big_Bet')}</th>
                                         <th className="text-end">{t('Small_Bet')}</th>
-                                        <th className="text-end">3 A</th>
-                                        <th className="text-end">3 C</th>
+                                        <th className="text-end">3A</th>
+                                        <th className="text-end">3C</th>
                                     </tr>
                                 </thead>
                                 <tbody>

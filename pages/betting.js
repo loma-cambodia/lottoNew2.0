@@ -55,7 +55,6 @@ const Betting = () => {
   useEffect(() => {
     // Update the document title using the browser API
   //  document.title = `You clicked ${count} times`;
-  console.log('11111111');
   //dispatch(speedUp({}));
   dispatch(getUsers());
   // setInitData(dates);

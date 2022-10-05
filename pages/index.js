@@ -26,7 +26,6 @@ useEffect(() => {
 
 
 const state = useSelector(state => state);
-console.log('index:state:',state);
 
       state.auth.transactions
 
@@ -35,7 +34,6 @@ console.log('index:state:',state);
       let winnerResultDetails = state && state.home && state.home.winnerResultDetails ? state.home.winnerResultDetails : [];
 
 
-      console.log('winnerResultDetails:',winnerResultDetails);
 
 
 
