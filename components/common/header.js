@@ -128,7 +128,7 @@ const Header = ({datauser}) => {
                           <li>
                               <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>
                                 
-                              {/* { datauser && datauser.user && datauser.user.data && datauser.user.data.merchant && datauser.user.data.merchant.wallet && datauser.user.data.wallet[0].amount ? datauser.user.data.wallet[0].amount  : "USD" } */}
+                              { datauser && datauser.user && datauser.user.data && datauser.user.data && datauser.user.data.wallet && datauser.user.data.wallet.amount ? parseFloat(datauser.user.data.wallet.amount).toFixed(2)  : "0.00" }
                                 
                               </span> <span className="badge badge-yellow text-black">
                             
