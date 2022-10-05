@@ -46,6 +46,8 @@ const HomeSlider = () => {
                 </div>
             </div>
         </div>
+
+        
         <div class="item">
             <div class="hero-slider-normal-one">
                 <div class="container">
@@ -72,6 +74,7 @@ const HomeSlider = () => {
                     </div>
                 </div>
             </div>
+
         </div>    
               </Carousel>
       </>
