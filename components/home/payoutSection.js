@@ -4,7 +4,7 @@ import React from 'react';
 import { useTranslation } from "react-i18next";
 
 import WinnerGameData from './winnerGameData'
-
+import Link from 'next/link';
 const PayoutSection = ({_transactions}) => {
     const { t } = useTranslation();
 
@@ -257,7 +257,10 @@ const PayoutSection = ({_transactions}) => {
               </div>
         </div>
         <div className="clearfix text-center">
-            <a href="#" className="btn-yellow rounded-full">{t('Play_now')}</a>
+            {/* <a href="#" className="btn-yellow rounded-full">{t('Play_now')}</a> */}
+            <Link href="/bettingNew"> 
+                    <a href="#" className="btn-yellow rounded-full">{t("Play_now")}</a>
+            </Link>
         </div>
     </div>
   </section>
