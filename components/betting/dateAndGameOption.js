@@ -177,15 +177,15 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                         </li> */}
                     </ul>
                     {/* <input type="checkbox" id="damacai" checked={initData.damacai}/>
-                  <label className="gamesPicked" for="damacai">
+                  <label className="gamesPicked" htmlFor="damacai">
                     <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
                   </label>
                   <input type="checkbox" id="magnum" checked={initData.magnum}/>
-                  <label className="gamesPicked" for="magnum">
+                  <label className="gamesPicked" htmlFor="magnum">
                       <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
                     </label>
                   <input type="checkbox" id="toto" checked={initData.toto}/>
-                  <label className="gamesPicked" for="toto">
+                  <label className="gamesPicked" htmlFor="toto">
                       <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
                   </label> */}
                 </div>

@@ -1,47 +1,30 @@
 import Head from 'next/head'
-import Image from 'next/image'
-// import styles from '../styles/Home.module.css';
-import Link from 'next/link';
 import React, { useState, useEffect } from "react";
 import Footer from '../components/common/footer';
 import Header from '../components/common/header';
-import HomeSlider from '../components/home/homeSlider';
-import Announcement from '../components/home/announcement';
-import PayoutSection from '../components/home/payoutSection';
-import GamePlayPrize from '../components/home/gamePlayPrize';
-import HowToPlay from '../components/home/howToPlay';
 import BettingOptionSelection from '../components/betting/bettingOptionSelection';
 import {getBettingDates,lotterySubmit} from '../store/actions/bettingActions';
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+import BettingOptionSelectionForMob from '../components/betting/bettingOptionSelectionForMob';
 
 export default function BettingNew({datauser}) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
-console.log("USER-->>:",datauser)
-
        useEffect(() => {
           dispatch(getBettingDates());
       },[dispatch]);
-
-
       const lotterySubmitRecords = () => {
-
         dispatch(lotterySubmit( setData, response =>{
            console.log('response:',response);
         }));
-
-
       }
-
-
       let bettingDatesStore = useSelector(state => state.betting.dates);
-    //  console.log('bettingDatesStore:',bettingDatesStore);
-
   return (
     <>
-       <Head>
+      <Head>
           <title>{t('Lotteries_tittle')}</title>
           <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
           <link href="assets/css/style.css" rel="stylesheet"/>
@@ -49,40 +32,20 @@ console.log("USER-->>:",datauser)
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
       </Head>
       <Header datauser={datauser}/>
-      {/*--Mobile Menu--*/}
-      <div id="mySidepanel" className="sidepanel">
-          <a href="#" className="closebtn" >&times;</a>
-          <ul className="list-unstyled">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Home</a></li>
-          </ul>
-        </div>
-      {/*--Mobile Menu-*/}
- 
 
-      {/*-Breadcrumb--*/}
-        <section className="custom-breadcrumb">
-            <div className="container">
-                <div className="breadcrumb-heading">
-                    <h1>{t('Betting')}</h1>
-                </div>
-                <div className="breadcrumb-list">
-                    <ul>
-                    <li><span>{t('Homepage')} / {t('Betting')}</span></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-      {/*--Breadcrumb--*/}
-     <BettingOptionSelection _bettingDatesStore={bettingDatesStore}/> 
+      <BrowserView>
+        <BettingOptionSelection _bettingDatesStore={bettingDatesStore}/> 
+      </BrowserView>
+     
+      <MobileView className="container">
+        <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore}/>
+      </MobileView> 
+
      <Footer/>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="assets/js/owl.carousel.js"></script>
-    <script src="assets/js/main.js"></script>
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
+      <script src="assets/js/owl.carousel.js"></script>
+      <script src="assets/js/main.js"></script>
     {/*--Footer--*/}
 </>
       

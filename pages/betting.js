@@ -137,14 +137,14 @@ const Betting = () => {
       <div id={styles.checkboxes} className='row text-center'>
       <div className='col'>
           <input type="radio" id="3D" name="flexRadioDefault" onChange={() => setActive(!active)} checked={!active}/>
-          <label for="3D">
+          <label htmlFor="3D">
             <img className={styles.selectBet} src={`${active ? "img/Yellow_3d.png":"img/red_3d.png"}`}></img>
           </label>
       </div>
 
         <div className='col'>
           <input type="radio" id="4D" name="flexRadioDefault" onChange={() => setActive(!active)}/>
-          <label for="4D">
+          <label htmlFor="4D">
             <img className={styles.selectBet} src={`${!active ? "img/Yellow_4d.png":"img/red_4d.png"}`}></img>
           </label>
         </div>
@@ -168,15 +168,15 @@ const Betting = () => {
             <div className={`${styles.gamesPicker} ${styles.checkboxes}`}>
 
                   <input type="checkbox" id="damacai" checked={day.games.damacai}/>
-                  <label className={styles.gamesPicked} for="damacai">
+                  <label className={styles.gamesPicked} htmlFor="damacai">
                     <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
                   </label>
                   <input type="checkbox" id="magnum" checked={day.games.magnum}/>
-                  <label className={styles.gamesPicked} for="magnum">
+                  <label className={styles.gamesPicked} htmlFor="magnum">
                       <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
                     </label>
                   <input type="checkbox" id="toto" checked={day.games.toto}/>
-                  <label className={styles.gamesPicked} for="toto">
+                  <label className={styles.gamesPicked} htmlFor="toto">
                       <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
                   </label>
             </div>
@@ -186,78 +186,78 @@ const Betting = () => {
                                                 })}
 
             {/* <input  className="form-check-input" name='bet_date' type="checkbox" id="option1"/>
-            <label className={`${styles.datePick} form-check form-check-inline d-flex flex-column col`} for="option1">
+            <label className={`${styles.datePick} form-check form-check-inline d-flex flex-column col`} htmlFor="option1">
                     <b>Tuesday</b>
                     <span>20 Sep 2022</span> 
             <div className={`${styles.gamesPicker} ${styles.checkboxes}`}>
                   <input type="checkbox" id="damacai" />
-                  <label className={styles.gamesPicked} for="damacai">
+                  <label className={styles.gamesPicked} htmlFor="damacai">
                     <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
                   </label>
                   <input type="checkbox" id="magnum" />
-                  <label className={styles.gamesPicked} for="magnum">
+                  <label className={styles.gamesPicked} htmlFor="magnum">
                       <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
                     </label>
                   <input type="checkbox" id="toto" />
-                  <label className={styles.gamesPicked} for="toto">
+                  <label className={styles.gamesPicked} htmlFor="toto">
                       <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
                   </label>
             </div>
             </label>
             <input  className="form-check-input" name='bet_date' type="checkbox" id="option2"/>
-            <label className={`${styles.datePick} form-check form-check-inline col d-flex flex-column`} for="option2">
+            <label className={`${styles.datePick} form-check form-check-inline col d-flex flex-column`} htmlFor="option2">
                     <b>Tuesday</b>
                     <span>20 Sep 2022</span> 
                     <div className={`${styles.gamesPicker} ${styles.checkboxes}`}>
               <input type="checkbox" id="damacai1" />
-              <label className={styles.gamesPicked} for="damacai1">
+              <label className={styles.gamesPicked} htmlFor="damacai1">
                 <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
               </label>
               <input type="checkbox" id="magnum1" />
-              <label className={styles.gamesPicked} for="magnum1">
+              <label className={styles.gamesPicked} htmlFor="magnum1">
                   <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
                 </label>
               <input type="checkbox" id="toto1" />
-              <label className={styles.gamesPicked} for="toto1">
+              <label className={styles.gamesPicked} htmlFor="toto1">
                   <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
                 </label>
           </div>
             </label>
             <input  className="form-check-input" name='bet_date' type="checkbox" id="option3"/>
-            <label className={`${styles.datePick} form-check form-check-inline col d-flex flex-column`} for="option3">
+            <label className={`${styles.datePick} form-check form-check-inline col d-flex flex-column`} htmlFor="option3">
                     <b>Tuesday</b>
                     <span>20 Sep 2022</span> 
                     <div className={`${styles.gamesPicker} ${styles.checkboxes}`}>
               <input type="checkbox" id="damacai2" />
-              <label className={styles.gamesPicked} for="damacai2">
+              <label className={styles.gamesPicked} htmlFor="damacai2">
                 <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
               </label>
               <input type="checkbox" id="magnum2" />
-              <label className={styles.gamesPicked} for="magnum2">
+              <label className={styles.gamesPicked} htmlFor="magnum2">
                   <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
                 </label>
               <input type="checkbox" id="toto2" />
-              <label className={styles.gamesPicked} for="toto2">
+              <label className={styles.gamesPicked} htmlFor="toto2">
                   <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
                 </label>
           </div>
             </label>
             
             <input  className="form-check-input" name='bet_date' type="checkbox" id="option4"/>
-            <label className={`${styles.datePick} form-check form-check-inline col d-flex flex-column`} for="option4">
+            <label className={`${styles.datePick} form-check form-check-inline col d-flex flex-column`} htmlFor="option4">
                     <b>Tuesday</b>
                     <span>20 Sep 2022</span> 
                     <div className={`${styles.gamesPicker} ${styles.checkboxes}`}>
               <input type="checkbox" id="damacai3" />
-              <label className={styles.gamesPicked} for="damacai3">
+              <label className={styles.gamesPicked} htmlFor="damacai3">
                 <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
               </label>
               <input type="checkbox" id="magnum3" />
-              <label className={styles.gamesPicked} for="magnum3">
+              <label className={styles.gamesPicked} htmlFor="magnum3">
                   <img style={{maxWidth:'30px'}} src="img/LOGO Magnum.png"></img>
                 </label>
               <input type="checkbox" id="toto3" />
-              <label className={styles.gamesPicked} for="toto3">
+              <label className={styles.gamesPicked} htmlFor="toto3">
                   <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
                 </label>
           </div>
@@ -295,16 +295,16 @@ const Betting = () => {
                             </td>
                             <td className='d-flex' id={styles.checkboxes}>              
                                   <input type="checkbox" name="rGroup" value="1" id="r1"/>
-                                  <label className={`${styles.betTypePick} col`} for="r1">
+                                  <label className={`${styles.betTypePick} col`} htmlFor="r1">
                                       <span style={{position: 'relative',bottom:'10px'}}>B</span>
                                   </label>
                                   <input type="checkbox" name="rGroup" value="2" id="r2"/>
-                                  <label className={`${styles.betTypePick}  col`} for="r2">
+                                  <label className={`${styles.betTypePick}  col`} htmlFor="r2">
                                     <span style={{position: 'relative',bottom:'10px'}}>I</span>
                                   </label>
                                 
                                     <input type="checkbox" name="rGroup" value="3" id="r3"/>
-                                    <label className={`${styles.betTypePick} col`} for="r3">
+                                    <label className={`${styles.betTypePick} col`} htmlFor="r3">
                                       <span style={{position: 'relative',bottom:'10px'}}>R</span>
                                     </label>
                                     
@@ -333,16 +333,16 @@ const Betting = () => {
                             </td>
                             <td className='d-flex' id={styles.checkboxes}>              
                                   <input type="checkbox" name="rGroup" value="1" id="s1"/>
-                                  <label className={`${styles.betTypePick} col`} for="s1">
+                                  <label className={`${styles.betTypePick} col`} htmlFor="s1">
                                       <span style={{position: 'relative',bottom:'10px'}}>B</span>
                                   </label>
                                   <input type="checkbox" name="rGroup" value="2" id="s2"/>
-                                  <label className={`${styles.betTypePick}  col`} for="s2">
+                                  <label className={`${styles.betTypePick}  col`} htmlFor="s2">
                                     <span style={{position: 'relative',bottom:'10px'}}>I</span>
                                   </label>
                                 
                                     <input type="checkbox" name="rGroup" value="3" id="s3"/>
-                                    <label className={`${styles.betTypePick} col`} for="s3">
+                                    <label className={`${styles.betTypePick} col`} htmlFor="s3">
                                       <span style={{position: 'relative',bottom:'10px'}}>R</span>
                                     </label>
                                     
