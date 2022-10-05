@@ -2,14 +2,19 @@ import React from 'react';
 import { useTranslation } from "react-i18next";
 const GamePlayPrize = ({_winnerResultDetails}) => {
     const { t } = useTranslation();
-
+    const getDateName =(dateString) => {
+        var days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        var d = new Date(dateString);
+        var dayName = days[d.getDay()];
+        return dayName
+    }
     let winnerResultDetails = _winnerResultDetails;
     return (
       <>
     <section className="gp-prize">
     <div className="container">
         <div className="row">
-
+    
 
    {winnerResultDetails && winnerResultDetails.map(item => {
     let gameImage = '';
@@ -43,7 +48,7 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
                             <div className="name-lottery">
                                 <p className="fw-bold">{item.title}</p>
                                 <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span>{item.fetching_date}</p>
-                                
+                                <p className="date-cal">{getDateName(item.fetching_date)}</p>
                             </div>
                             <div class="gp-prize-play-btn ms-auto">
                                 <div class="gp-prize-play-btn ms-auto">
