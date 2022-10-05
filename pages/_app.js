@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";; // Import bootstrap CSS
+import Head from 'next/head'
 
 // import '../styles/globals.css';
 import { wrapper, store } from "../store/store";
@@ -65,9 +66,12 @@ function MyApp({ Component, pageProps,user }) {
   }else{
     return (
       <>
-      <Provider store={store}>
-      <Component {...pageProps} datauser={data}/>
-      </Provider>
+        <Head>
+          <link rel="icon" type="image/x-icon" href="assets/images/icons/150 x150-01.png" />
+      </Head>
+        <Provider store={store}>
+        <Component {...pageProps} datauser={data}/>
+        </Provider>
       </> 
     );
     }
