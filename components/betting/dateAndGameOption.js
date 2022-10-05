@@ -133,7 +133,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                         onClick={() => selectUnSelectDate(!initData.selected, item.id)}
                     ></label>
                 </div>
-                <div className="day-n-date"
+                <div className="day-n-date" style={{cursor:'pointer'}}
                     onClick={() => selectUnSelectDate(!initData.selected, item.id)}
                 >
                     <p className="fw-bold mb-0">{initData.day}</p>

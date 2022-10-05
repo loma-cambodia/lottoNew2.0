@@ -15,11 +15,11 @@ import {getBettingDates,lotterySubmit} from '../store/actions/bettingActions';
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-export default function BettingNew() {
+export default function BettingNew({datauser}) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
-
+console.log("USER-->>:",datauser)
 
        useEffect(() => {
           dispatch(getBettingDates());
@@ -48,7 +48,7 @@ export default function BettingNew() {
           <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
       </Head>
-      <Header/>
+      <Header datauser={datauser}/>
       {/*--Mobile Menu--*/}
       <div id="mySidepanel" className="sidepanel">
           <a href="#" className="closebtn" >&times;</a>
