@@ -685,6 +685,7 @@
     .first-three-block {
     border-radius: 10px;
     text-align: center;
+    white-space: nowrap;
     }
     .first-three-block .prize-type {
     font-size: 13px;
@@ -1875,16 +1876,11 @@ span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
 .filter-text .text-filter {
     display: none;
     }
-    
-    
-/* .errorBg{
-        background-image:url('/img/error/403_banner.jpg');
-        background-repeat:no-repeat;
-        min-height: 100vh;   
-        min-height: -moz-available;
-        min-height: -webkit-fill-available;
-        min-height: fill-available;
-    } */
+@media (max-width:692px) {
+    .smallLetter{
+        font-size: 1.30rem;
+    }
+}
 @media only screen and (max-width:768px)  {
     .errorBg{
         /* height: 50%!important; */
