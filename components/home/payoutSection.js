@@ -16,9 +16,9 @@ const PayoutSection = ({_transactions}) => {
     return (
       <>
         <section className="payouts-part custom-padding">
-    <div className="container">
+    <div className="container"> 
         <div className="heading-part text-center mb-4">
-            <h5 className="text-uppercase fw-bold">{t('how_to')}</h5>
+            <h5 className="text-uppercase fw-bold">{t('PAYOUTS')}</h5>
             <h2 className="text-uppercase text-color-main fw-bold">{t('Winning_Payouts')}</h2>
         </div>
         <div className="theme-tabs py-4">
