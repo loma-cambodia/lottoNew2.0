@@ -6,7 +6,7 @@ const Footer = () => {
 const { t } = useTranslation();
   return (
     <>
-    <section className="footer py-4">
+    <section className="footer py-4" >
     <div className="container">
         <div className="footer-row">
             <div className="footer-logo">
