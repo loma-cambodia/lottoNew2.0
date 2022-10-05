@@ -1934,3 +1934,6 @@ span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
     z-index: 9999;
     position: absolute;
 }
+span.name-gp {
+  white-space: nowrap;
+}
