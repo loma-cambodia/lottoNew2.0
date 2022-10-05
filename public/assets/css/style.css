@@ -533,285 +533,394 @@
     padding-top: 2rem;
     padding-bottom: 4rem;
     height: 100%;
-    width: 100%;
-    left: -2px;
-    top: 2px;
-    border-radius: 10px;
-    }
-    .draw-logo-img {
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
-    border: 2px solid #c6252c;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    z-index: 1;
-    }
-    .draw-name {
-    font-size: 60px;
-    font-family: "Poppins";
-    line-height: 1;
-    color: #ff0000;
-    font-weight: 900;
-    text-transform: uppercase;
-    }
-    .sd-text-part p {
-    color: #000;
-    font-family: "Open Sans";
-    }
-    .date-block {
-    margin: 20px 0;
-    }
-    .date-block a {
-      --bs-link-hover-color: white;
-    display: block;
-    padding: 5px 10px;
-    border-radius: 30px;
-    background-image: -moz-linear-gradient(
-    90deg,
-    rgb(195, 32, 38) 0%,
-    rgb(255, 0, 0) 100%
-    );
-    background-image: -webkit-linear-gradient(
-    90deg,
-    rgb(195, 32, 38) 0%,
-    rgb(255, 0, 0) 100%
-    );
-    background-image: -ms-linear-gradient(
-    90deg,
-    rgb(195, 32, 38) 0%,
-    rgb(255, 0, 0) 100%
-    );
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 20px;
-    max-width: 386px;
-    text-decoration: none;
-    text-align: center;
-    }
-    .date-block a:hover {
-        color: #fff;
-        box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
-    }
-    .sd-text-part h3 {
-    font-family: "Poppins";
-    font-size: 46px;
-    text-transform: uppercase;
-    font-weight: 900;
-    }
-    .hero-slider .owl-nav {
-    position: absolute;
-    top: 45%;
-    z-index: 2;
-    width: 100%;
-    }
-    .hero-slider .owl-nav .owl-prev {
-    position: absolute;
-    left: 5px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50% !important;
-    background: #bc2263 !important;
-    color: #fff !important;
-    font-size: 25px !important;
-    line-height: 12px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    }
-    .hero-slider .owl-nav .owl-next {
-    position: absolute;
-    right: 5px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50% !important;
-    background: #bc2263 !important;
-    color: #fff !important;
-    font-size: 25px !important;
-    line-height: 12px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    }
-    .hero-slider .owl-nav .owl-prev span,
-    .hero-slider .owl-nav .owl-next span {
-    line-height: 11px;
-    display: block;
-    padding-top: 0px;
-    position: absolute;
-    top: 21%;
-    left: 35%;
-    }
-    .hero-slider .owl-dots {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    margin: 0 auto;
-    }
-    .hero-slider .owl-dots .owl-dot.active span {
-    border: 1px solid #bc2263;
-    background-color: #bc2263 !important;
-    }
-    .hero-slider .owl-dots .owl-dot span {
-    border: 1px solid #000;
-    background-color: #fff !important;
-    }
-    .btn-yellow {
-    background-image: -moz-linear-gradient(
-    90deg,
-    rgb(239, 118, 0) 0%,
-    rgb(255, 228, 0) 100%
-    );
-    background-image: -webkit-linear-gradient(
-    90deg,
-    rgb(239, 118, 0) 0%,
-    rgb(255, 228, 0) 100%
-    );
-    background-image: -ms-linear-gradient(
-    90deg,
-    rgb(239, 118, 0) 0%,
-    rgb(255, 228, 0) 100%
-    );
-    padding: 15px 30px;
-    text-decoration: none;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 600;
-    color: #000;
-    text-transform: uppercase;
-    font-family: "Open Sans";
-    transition: all 250ms;
-    }
-    .btn-yellow:hover {
-        color: #000;
-        background-color: rgb(255, 228, 0);
-
-        box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
-
-    }
-    .rounded-full {
-    border-radius: 30px;
-    }
-    .hero-slider-normal-one {
-        background: url(../images/bg-slider/win-big-bg.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: right center;
-        border-top: 5px solid #ffc100;
-    }
-    .annoncement-icon {
-    display: flex;
-    align-items: center;
-    position: relative;
-    }
-    .annoncement-icon span.icon-img-announcement {
-    width: 30px;
-    height: 30px;
-    background: #bc2263;
-    border-radius: 50%;
-    padding: 6px;
-    line-height: 16px;
-    position: absolute;
-    left: 0;
-    box-shadow: 6px 0px 2px rgb(0 0 0 / 20%);
-    }
-    .annoncement-icon span.text-announcement {
-    padding: 0 10px 0 25px;
-    border-radius: 5px;
-    background: #bc2263;
-    margin-left: 10px;
-    color: #fff;
-    font-size: 13px;
-    font-family: "Poppins";
-    }
-    .marque-div ul {
-    margin: 0;
-    padding: 0;
-    }
-    section.announcement {
-    background: #f07f00;
-    padding: 0;
-    }
-    .marque-div ul li {
-    margin-right: 20px !important;
-    position: relative;
-    color: #fff;
-    }
-    .marque-div ul li:hover {
-    cursor: pointer;
-    }
-    .marque-div ul li:after {
-    content: "";
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background: #bc2263;
-    border-radius: 50%;
-    top: 10px;
-    right: -15px;
-    }
-    .text-color-main {
-    color: #bc2263;
-    }
-    .news-wrapper {
-        padding: 10px 0 5px;
-    }
-    .news-wrapper.short.shrink {
-        width: 100%;
-    }
-    .news-wrapper.short {
-        position: sticky;
-        bottom: 0%;
-        width: 95%;
-        margin: 0 auto;
-        left: 0;
-        background: rgb(241 131 40);
-        background-size: 400% 400%;
-        -webkit-animation: Gradient 12s ease infinite;
-        animation: Gradient 12s ease infinite;
-        z-index: 15;
-    }
-    .news-wrapper .announcement-text {
-        display: inherit;
-    }
-    .news-wrapper .toggle-icon-news {
-        display: none;
-    }
-    .news-wrapper.short .toggle-icon-news {
-        display: inherit;
-    }
-    .news-wrapper.short.shrink .announcement-text {
-        display: none;
-    }
-    .news-wrapper.short .announcement-text {
-        display: none;
-    }
-    .news-wrapper.short.shrink .toggle-icon-news {
-        display: inherit;
-    }
-    .news-wrapper.short.shrink .announcement-block-icon, .news-wrapper.short .announcement-block-icon {
-        width: 70px;
-        padding: 10px 10px;
-        background: rgb(241 131 40);
-    }
-    .news-wrapper.short .marque-div {
-        padding-top: 7px;
-    }
-    .news-wrapper.short.shrink .marque-div {
-        width: 100%;
-    }
-    .heading-part h1,
-    .heading-part h2,
-    .heading-part h3,
-    .heading-part h4,
-    .heading-part h4,
-    .heading-part h5,
-    .heading-part h6 {
-    font-family: "Poppins";
-    }
-
-    .custom-padding {
-      padding-top: 2rem;
-      padding-bottom: 4rem;
+  }
+  .theme-tabs .theme-nav-tabs {
+  width: fit-content;
+  margin: 0 auto !important;
+  border-bottom: none !important;
+  margin: 0 auto !important;
+  border-bottom: none !important;
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  }
+  .theme-tabs .theme-nav-tabs .nav-link {
+  margin-bottom: 0 !important;
+  border: 1px solid #ddd;
+  border-radius: 30px 0;
+  color: #000;
+  background-color: #fff;
+  min-width: 160px;
+  }
+  .theme-tabs .theme-nav-tabs .nav-link .circle-logo-gp {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 28px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  background: #fff;
+  }
+  .theme-tabs .theme-nav-tabs .nav-link .circle-logo-gp .img-gp {
+  border-radius: 50%;
+  padding: 3px;
+  width: 100%;
+  }
+  .theme-tabs .theme-nav-tabs .nav-item {
+  margin-right: 15px;
+  }
+  .theme-tabs .theme-nav-tabs .nav-link.active {
+  margin-bottom: 0 !important;
+  border: 1px solid #bc2263;
+  border-radius: 30px 0;
+  color: #fff;
+  background-color: #bc2263;
+  }
+  .coupon-block {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  position: relative;
+  padding: 15px 50px;
+  }
+  .coupon-block .half-cicle.left {
+  position: absolute;
+  left: -25px;
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-25px);
+  box-shadow: 1px 0px 0px rgb(0 0 0 / 20%);
+  z-index: 10;
+  }
+  .payout-text-part {
+  position: absolute;
+  right: -12px;
+  transform: rotateZ(-90deg);
+  width: 65px;
+  top: 55%;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: -15px;
+  z-index: 1;
+  color: #fff;
+  }
+  .coupon-block:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  height: 100%;
+  width: 40px;
+  background-color: #000;
+  top: 0;
+  border-radius: 0 10px 10px 0;
+  }
+  .half-circles {
+  position: absolute;
+  z-index: 9;
+  width: 15px;
+  right: -11px;
+  top: 0;
+  height: 100%;
+  }
+  .half-circles span {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 10px 0;
+  }
+  .card-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  }
+  .logo-gp-prize {
+  margin-right: 10px;
+  }
+  .logo-gp-prize-outer {
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  padding: 5px;
+  box-sizing: border-box;
+  }
+  .logo-gp-prize .logo-gp-prize-outer .logo-gp-prize-inner img {
+  width: 100%;
+  }
+  .name-lottery p {
+  margin-bottom: 0;
+  font-size: 14px;
+  }
+  .name-lottery .date-cal {
+  font-size: 14px;
+  line-height: 1;
+  position: relative;
+  padding-left: 20px;
+  }
+  .name-lottery .date-cal span.small-calendar {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  position: absolute;
+  margin-top: -3px;
+  left: 0;
+  }
+  .name-lottery .date-cal span.small-calendar img {
+  width: 100%;
+  }
+  .gp-prize-play-btn a {
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  text-decoration: none;
+  }
+  .first-three-block {
+  border-radius: 10px;
+  text-align: center;
+  white-space: nowrap;
+  }
+  .first-three-block .prize-type {
+  font-size: 13px;
+  color: #fff;
+  padding: 5px 0;
+  border-bottom: 1px solid #fff;
+  }
+  .first-three-block .prize-amt {
+  padding: 10px 0;
+  font-weight: bold;
+  color: #fff;
+  font-size: 14px;
+  }
+  .s-and-c {
+  margin: 10px 0;
+  border-radius: 10px;
+  padding: 10px 0;
+  }
+  .s-and-c .table-custom {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  }
+  .s-and-c .table-custom tr:last-child td {
+  border: none !important;
+  }
+  .damamcai .first-three-block {
+  background: #c42026;
+  }
+  .damamcai .gp-prize-play-btn a {
+  background: #c42026;
+  color: #fff;
+  }
+  .damamcai .s-and-c {
+  background-color: #1c377c;
+  }
+  .damamcai .logo-gp-prize-outer {
+  border-color: #c42026;
+  }
+  .magnum .first-three-block {
+  background: #ffc100;
+  }
+  .magnum .gp-prize-play-btn a {
+  background: #f18300;
+  color: #fff;
+  }
+  .magnum .s-and-c {
+  background-color: #f17e00;
+  }
+  .magnum .logo-gp-prize-outer {
+  border-color: #000;
+  }
+  .magnum .logo-gp-prize .logo-gp-prize-outer .logo-gp-prize-inner img {
+  border-radius: 10px;
+  }
+  .toto .first-three-block {
+  background: #ed3740;
+  }
+  .toto .gp-prize-play-btn a {
+  background: #ed3740;
+  color: #fff;
+  }
+  .toto .s-and-c {
+  background-color: #000;
+  }
+  .toto .logo-gp-prize-outer {
+  border-color: #ed3740;
+  }
+  
+  .timeline {
+  position: relative;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 15px 0;
+  }
+  
+  .timeline::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  background: #ddd;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+  }
+  
+  .timeline-container {
+  padding: 15px 30px;
+  position: relative;
+  background: inherit;
+  width: 50%;
+  }
+  
+  .timeline-container.left {
+  left: 0;
+  }
+  
+  .timeline-container.right {
+  left: 50%;
+  }
+  
+  .timeline-container .date {
+  position: absolute;
+  display: inline-block;
+  top: 85%;
+  width: 45px;
+  height: 45px;
+  background: #bf2262;
+  border-radius: 50%;
+  color: #fff;
+  line-height: 45px;
+  text-align: center;
+  z-index: 2;
+  }
+  
+  .timeline-container.left .date {
+  right: -23px;
+  }
+  
+  .timeline-container.right .date {
+  left: -23px;
+  }
+  
+  .timeline-container .icon {
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  padding: 9px 0;
+  top: calc(50% - 20px);
+  background: #f6d155;
+  border: 2px solid #006e51;
+  border-radius: 40px;
+  text-align: center;
+  font-size: 18px;
+  color: #006e51;
+  z-index: 1;
+  }
+  
+  .timeline-container.left .icon {
+  right: 56px;
+  }
+  
+  .timeline-container.right .icon {
+  left: 56px;
+  }
+  
+  .timeline-container .content {
+  padding: 30px 60px 30px 30px;
+  background: #fff;
+  border: 1px solid #ddd;
+  position: relative;
+  border-radius: 0 50px;
+  }
+  
+  .timeline-container.right .content {
+  padding: 30px 30px 30px 60px;
+  border-radius: 50px 0;
+  }
+  
+  .timeline-container .content h2 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  }
+  
+  .timeline-container .content p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  }
+  .how-to-play {
+  background: url(../images/vector-bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  }
+  .footer {
+  background: #303030 url(../images/hero-building.png);
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  }
+  .footer-row {
+  display: flex;
+  align-items: center;
+  }
+  .footer-links ul {
+  margin: 0;
+  padding: 0;
+  }
+  .footer-links ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  padding: 0 15px;
+  }
+  .footer-links ul li:last-child a {
+  padding-right: 0;
+  }
+  .footer-links ul li:first-child a {
+  padding-left: 0;
+  }
+  .footer-links p {
+  font-size: 13px;
+  text-align: right;
+  }
+  .menu-mobile {
+  display: none !important;
+  }
+  .sidepanel {
+  position: fixed;
+  z-index: 1051;
+  height: 100%;
+  width: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(188, 34, 99, 0.6);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 0;
+  display: flex;
+  align-items: center;
+  }
+  .mobile-menu-list {
+      position: relative;
+      top: 0;
+      padding: 20px;
+      background: rgb(134, 34, 99);
       height: 100%;
       text-align: center;
       width: 100%;
