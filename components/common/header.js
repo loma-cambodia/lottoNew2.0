@@ -1,16 +1,21 @@
 import { useTranslation } from "react-i18next";
 import React, { useEffect, useState } from 'react';
 import i18n from '../../components/i18n';
-import Link from 'next/link'
+import Link from 'next/link';
 
+import { useDispatch, useSelector } from "react-redux";
 const Header = ({datauser}) => {
   const { t } = useTranslation();
   const [langType, setLangType] = useState('');
+  const dispatch = useDispatch();
   useEffect(() => {
     let currentLang = localStorage.getItem('lang');
     i18n.changeLanguage(currentLang);
     setLangType(currentLang);
   }, [langType])
+
+
+
   
 
   const changeLangm = (l) => {
@@ -61,6 +66,12 @@ const Header = ({datauser}) => {
       )
     }
   }
+
+
+
+  const state = useSelector(state => state);
+
+  console.log('header:state:',state);
 
     return (
       <>

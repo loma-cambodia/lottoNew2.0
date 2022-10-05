@@ -1,6 +1,6 @@
+import React, { useState,useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
-import React, { useState } from "react";
 
 const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLoadpageCounter,_gameCount }) => {
 
@@ -56,7 +56,7 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
 
              localStateDataForChange = { ...localStateDataForChange, number: { value: getValue, disabled: 0 } };
             if (getValue.length == 1 || getValue.length == 2) {
-  
+
                 localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 1 } };
                 localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 1 } };
                 localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 1 } };
@@ -231,6 +231,13 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
          bet_type = 'ibox';
       else if(getRow && getRow.bet_type && getRow.bet_type.reverse_value) 
          bet_type = 'reverse';
+    else if(getRow && getRow.number && getRow.number.value){
+        if (getRow.number.value.includes("R") || getRow.number.value.includes("r")) 
+           bet_type = 'rolling';  
+    } 
+         
+
+         // rollingNumber
 
      if(getRow && getRow.big && getRow.big.value) 
       total_sum += parseInt(getRow.big.value);
@@ -244,15 +251,6 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
       if(getRow && getRow._3c && getRow._3c.value) 
       total_sum += parseInt(getRow._3c.value);
 
-
-
-
-
-
-
-     
-
-      console.log('_gameCount:',_gameCount);
 
 
    //   console.
@@ -270,6 +268,10 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
 
         totalAmount = totalAmount * 2;  
 
+    }else if(bet_type == 'rolling'){
+
+        totalAmount = totalAmount * 10;  
+
     }
           
       return totalAmount;
@@ -280,17 +282,9 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
         let _getNumber = getNumber;
         let boxing = 0;
         if(_getNumber)
-        _getNumber = _getNumber.toString();
-
-        if(_getNumber.length == 3){
-            boxing = 6;
-
-        }else if(_getNumber.length == 4){
-            boxing = 24; 
-
-        }
-
-      return boxing ;
+        boxing = getPermutation(_getNumber);
+        console.log('boxing:',boxing);
+        return boxing ;
     }
 
 
@@ -315,12 +309,21 @@ const getPermutation = (_getNumber) => {
             if(uniqueAges.length == 4)
              returnPermutation = 24;
             else  if(uniqueAges.length == 3)
-            returnPermutation =1 ;
+            returnPermutation = 12 ;
+            else  if(uniqueAges.length == 2)
+            returnPermutation = 6;
             else  if(uniqueAges.length == 1)
             returnPermutation = 1;
         }
-        console.log('unique', uniqueAges.length)
+        //console.log('unique', uniqueAges.length)
+        return returnPermutation;
 }
+
+//console.log('11111111111111111111111111111111111111111111111111');
+
+useEffect(() => {
+    numberInputHandler('', '');
+  },[_gameCount]);
 
     return (
         <tr>
