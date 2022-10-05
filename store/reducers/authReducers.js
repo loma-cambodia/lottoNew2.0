@@ -1,7 +1,8 @@
 const initialState = {
     auth:{},
     transactions:{},
-    loading:true
+    loading:true,
+    lang:''
 }
 
 export default function(state = initialState, action){
@@ -20,6 +21,13 @@ export default function(state = initialState, action){
                 ...state,
                 transactions:action.payload,
                 loading:false
+    
+            }
+
+        case "CHANGE_LANGUAGE":
+            return {
+                ...state,
+                lang:action.payload
     
             }
         default: return state

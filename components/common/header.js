@@ -16,27 +16,41 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
 const Header = ({datauser}) => {
   
+   const dispatch = useDispatch();
+   let auth = useSelector(state => state.auth);
+   let language = '';
+
+   
+
+   if(auth && auth.lang){
+    language = auth.lang;
+   }else {
+    language = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.name ? datauser.user.data.language.name : 'en'
+   }
+
   const { t } = useTranslation();
-  const [langType, setLangType] = useState('');
-  // const dispatch = useDispatch();
+  const [langType, setLangType] = useState(language);
+ //const [langType, setLangType] = useState('ch');
   useEffect(() => {
     let currentLang = localStorage.getItem('lang');
     i18n.changeLanguage(currentLang);
-    setLangType(currentLang);
+   // setLangType(currentLang);
   }, [langType])
 
-  
 
-  
 
   const changeLangm = (l) => {
     return () => {
         i18n.changeLanguage(l);
-        localStorage.setItem('lang', l);
-        setLangType(l);
+        //localStorage.setItem('lang', l);
+      //  setLangType(l);
+
+      dispatch( {
+        type: "CHANGE_LANGUAGE",
+        payload: l
+    })
     }
   }
-  // const userDatas = JSON.parse(localStorage.getItem("name"));
 
   function LangTypeFun({langTypeVal}){
     // alert(langTypeVal)
@@ -79,13 +93,7 @@ const Header = ({datauser}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-
-
-
-  // const state = useSelector(state => state);
-
-
-
+   
     return (
       <>
         <header className="header-top" data-spy="affix" data-offset-top="197">
@@ -120,7 +128,7 @@ const Header = ({datauser}) => {
                           <li>
                               <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>
                                 
-                              {/* { datauser && datauser.user && datauser.user.data && datauser.user.data.merchant && datauser.user.data.merchant.wallet && datauser.user.data.wallet[0].amount ? datauser.user.data.wallet[0].amount  : "USD" } */}
+                              { datauser && datauser.user && datauser.user.data && datauser.user.data && datauser.user.data.wallet && datauser.user.data.wallet.amount ? parseFloat(datauser.user.data.wallet.amount).toFixed(2)  : "0.00" }
                                 
                               </span> <span className="badge badge-yellow text-black">
                             
@@ -131,44 +139,11 @@ const Header = ({datauser}) => {
                           <li className="hide-650">
                               <a href="#" className="play-lottery-btn ">{t('Play_Lottery')}</a>
                           </li>
-
-
-
-
-                          {/* <li className="dropdown">
-                              <a href="#" className="lanugae-selector dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                <LangTypeFun langTypeVal={langType} />
-                              </a>
-                              <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                                  <li onClick={changeLangm('en')}>
-                                    <a className="dropdown-item" href="#">
-                                      <span className="lang-flag">
-                                        <img src="assets/images/icons/flag-english.png"/>
-                                      </span>&nbsp; &nbsp;English
-                                    </a>
-                                  </li>
-                                  <li onClick={changeLangm('de')}>
-                                    <a className="dropdown-item" href="#">
-                                      <span className="lang-flag">
-                                        <img src="assets/images/icons/flag-china.png"/>
-                                      </span>&nbsp; &nbsp;Chinese
-                                    </a>
-                                  </li>
-                                  <li onClick={changeLangm('kh')}>
-                                    <a className="dropdown-item" href="#">
-                                      <span className="lang-flag">
-                                        <img src="assets/images/icons/flag-khmer.png"/>
-                                      </span>&nbsp; &nbsp;Khmer
-                                    </a>
-                                  </li>
-                                </ul>
-                          </li> */}
-
                           <li className="dropdown position-relative">
                           <div className="">
                             <Dropdown isOpen={dropdownOpen} toggle={toggle} >
                               <DropdownToggle className="lanugae-selector" caret>
-                                <LangTypeFun langTypeVal={langType} />
+                                <LangTypeFun langTypeVal={language} />
                                 {/* <span className="lang-flag me-2"><img src="assets/images/icons/flag-english.png"/></span>English */}
                               </DropdownToggle>
                               <DropdownMenu >
