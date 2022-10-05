@@ -21,18 +21,22 @@ const Header = ({datauser}) => {
   const { t } = useTranslation();
   const [langType, setLangType] = useState('');
   // const dispatch = useDispatch();
+  // let getLanguage2 = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.name ? datauser.user.data.language.name : "en";
+
   useEffect(() => {
     let currentLang = localStorage.getItem('lang');
-    
-    // console.log('sssssssssss',datauser.user.data.language.name)
 
     i18n.changeLanguage(currentLang);
     setLangType(currentLang);
+
   }, [langType])
 
-  
 
   
+  setTimeout(function() {
+    let getLanguage = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.name ? datauser.user.data.language.name : "en";
+    changeLangm(getLanguage);
+  }, 5000);
 
   const changeLangm = (l) => {
     return () => {
@@ -125,7 +129,11 @@ const Header = ({datauser}) => {
                   <div className="right-part-menu">
                       <ul className="right-part-list">
                           <li>
-                              <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>0.00</span> <span className="badge badge-yellow text-black">
+                              <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>
+                                
+                              {/* { datauser && datauser.user && datauser.user.data && datauser.user.data.merchant && datauser.user.data.merchant.wallet && datauser.user.data.wallet[0].amount ? datauser.user.data.wallet[0].amount  : "USD" } */}
+                                
+                              </span> <span className="badge badge-yellow text-black">
                             
                                 { datauser && datauser.user && datauser.user.data && datauser.user.data.merchant && datauser.user.data.merchant.currency && datauser.user.data.merchant.currency.code ? datauser.user.data.merchant.currency.code  : "USD" }
 
@@ -180,7 +188,7 @@ const Header = ({datauser}) => {
                                         <img src="assets/images/icons/flag-english.png"/>
                                       </span>&nbsp; &nbsp;Eng
                                 </DropdownItem>
-                                <DropdownItem  onClick={changeLangm('de')}>
+                                <DropdownItem  onClick={changeLangm('ch')}>
                                       <span className="lang-flag">
                                         <img src="assets/images/icons/flag-china.png"/>
                                       </span>&nbsp; &nbsp;中国人
