@@ -68,7 +68,7 @@ const Header = ({datauser}) => {
         <>
             <span className="lang-flag">
               <img src="assets/images/icons/flag-china.png"/>
-            </span> 中国人
+            </span> 中文
         </>
       )
     }
