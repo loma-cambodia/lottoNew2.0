@@ -69,19 +69,21 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
                 localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 0 } };
                 localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 0 } };
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
-
-
-                if (getValue.includes("R") || getValue.includes("r")) {
-                    localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 1 } };
-                    localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 1 } };
+              
+                
+                localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 1 } };
+                localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 1 } };
+                let uniqueAges = getStringUniqueCharactors(getValue);
+                let isPalindrom =  checkPalindrome(getValue);
+                if (getValue.includes("R") || getValue.includes("r")) 
                     localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
-
-                } else {
-                    localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 1 } };
-                    localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 1 } };
+                else if (uniqueAges.length == 1) 
+                    localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+                else if (isPalindrom) 
+                    localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+                else 
                     localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 0 } };
-
-                }
+                
 
 
             } else if (getValue.length == 4) {
@@ -93,29 +95,26 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
 
                 
 
-
+                let uniqueAges = getStringUniqueCharactors(getValue);
+                let isPalindrom =  checkPalindrome(getValue);
                 if (getValue.includes("R") || getValue.includes("r")) {
                     localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 1 } };
                     localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 1 } };
                     localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
 
 
+                } else  if (uniqueAges.length == 1) {
+                    localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+                } else  if (isPalindrom) {
+                    localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 1 } };
                 } else {
-
+                    localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 0 } };
+                    localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 0 } };
                     if (threeDAmout) {
-                        localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 0 } };
-                        localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 0 } };
                         localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
-
-
-
                     } else {
-                        localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 0 } };
-                        localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 0 } };
                         localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
                     }
-
-
                 }
 
 
@@ -283,14 +282,8 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
 
 
 const getPermutation = (_getNumber) => {
-    let returnPermutation = 0;
-    const unique = (value, index, self) => {
-        return self.indexOf(value) === index
-      }
-        const number = _getNumber;
-        let myFunc = num => Number(num);
-        var intArr = Array.from(String(number), myFunc);
-        const uniqueAges = intArr.filter(unique);
+       let returnPermutation = 0;
+       let uniqueAges = getStringUniqueCharactors(_getNumber);
 
         if(_getNumber.length == 3){
             if(uniqueAges.length == 3)
@@ -312,6 +305,29 @@ const getPermutation = (_getNumber) => {
         return returnPermutation;
 }
 
+const getStringUniqueCharactors  = (_getNumber) => {
+      const unique = (value, index, self) => {
+        return self.indexOf(value) === index
+      }
+        const number = _getNumber;
+        let myFunc = num => Number(num);
+        var intArr = Array.from(String(number), myFunc);
+        const uniqueAges = intArr.filter(unique);
+        return uniqueAges;
+}
+
+
+const  checkPalindrome = (string) =>{
+     const len = string.length;
+    for (let i = 0; i < len / 2; i++) {
+        if (string[i] !== string[len - 1 - i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+//console.log('11111111111111111111111111111111111111111111111111');
 
 useEffect(() => {
     numberInputHandler('', '');
