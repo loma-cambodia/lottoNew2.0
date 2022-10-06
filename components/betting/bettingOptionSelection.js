@@ -236,7 +236,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
                     <th className="border-0"></th>
                 </tr>
                 
-                {bettingInputsDataParent.map((item) => (<BettingInputs key={'bettingInputs'+item.name} 
+                {bettingInputsDataParent.map((item,ids) => (<BettingInputs key={'bettingInputs'+item.name} 
+                ids={ids}
                                                          item={item} 
                                                          _updateBettingInputsData = {updateBettingInputsData}
                                                          _loadpageCounter = {loadpageCounter}

@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
 
-const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLoadpageCounter,_gameCount,_limit}) => {
+const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_setLoadpageCounter,_gameCount,_limit}) => {
     let betLimit = _limit;
     let limit = betLimit;
     console.log("DATA-BETTING:",limit)
@@ -39,8 +39,8 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
         }
         return threeDAmount;
    } 
-
-    const numberInputHandler = (getValue, operationField) => {
+// console.log('sushil', limit[0].small_max_bet);
+    const numberInputHandler = (getValue, operationField,idas) => {
         let localStateDataForChange ={ ...item.dataInit};
 
         let threeDAmout = calculate3DAmountEnable(getValue,operationField);
@@ -149,19 +149,29 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            {limit.map(i =>{
-                if(getValue > i.big_max_bet ){
-                    let max = i.big_max_bet[0]
-                    getValue = max;
-                    return false;
-                }
-                if(getValue < i.big_min_bet ){
-                    let min = i.big_min_bet[0]
-                    getValue = min;
-                    return false;
-                }
+            if(getValue > limit[0].big_max_bet ){
+                $("#ErrorBig"+idas).html('Max Bet is '+limit[0].big_max_bet);
+                return false;
+            }else if(getValue < limit[0].big_min_bet ){
+                $("#ErrorBig"+idas).html('Minimum Bet is '+limit[0].big_min_bet);
+            }
+            
+            else{
+                $("#ErrorBig"+idas).html('');
+            }
+            // {limit.map(i =>{
+            //     if(getValue > i.big_max_bet ){
+            //         let max = i.big_max_bet[0]
+            //         getValue = max;
+            //         return false;
+            //     }
+            //     if(getValue < i.big_min_bet ){
+            //         let min = i.big_min_bet[0]
+            //         getValue = min;
+            //         return false;
+            //     }
                
-            })}
+            // })}
             // if(getValue > limit.big_max_bet){
             //     return false;
             // }
@@ -172,39 +182,58 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            {limit.map(i =>{
-                if(getValue > i.small_max_bet ){
-                    let max = i.small_max_bet[0]
-                    getValue = max;
-                    return false;
-                }
-                if(getValue < i.small_min_bet ){
-                    let min = i.small_min_bet[0]
-                    getValue = min;
-                    return false;
-                }
+            if(getValue > limit[0].small_max_bet ){
+                $("#ErrorSmall"+idas).html('Max Bet is '+limit[0].small_max_bet);
+                return false;
+            }else if(getValue < limit[0].small_min_bet ){
+                $("#ErrorSmall"+idas).html('Minimum Bet is '+limit[0].small_min_bet);
+            }
+            else{
+                $("#ErrorSmall"+idas).html('');
+            }
+
+            // {limit.map(i =>{
+            //     if(getValue > i.small_max_bet ){
+            //         // let max = i.small_max_bet[0]
+            //         // getValue = max;
+            //         alert('pppp');
+            //     }
+            //     if(getValue < i.small_min_bet ){
+            //         // let min = i.small_min_bet[0]
+            //         // getValue = min;
+            //         alert('ppppaa');
+            //     }
                
-            })}
+            // })}
             localStateDataForChange = { ...localStateDataForChange, small: { value: getValue, disabled: 0 } };
         } else if (operationField == '_3a') {
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            {limit.map(i =>{
-                if(getValue > i.three_a_max_bet ){
-                    console.log("XXXXXXXX")
-                    let max = i.three_a_max_bet[0]
-                    getValue = max;
-                    return false;
-                }
-                if(getValue < i.three_a_min_bet ){
-                    console.log("!!!!!!!!")
-                    let min = i.three_a_min_bet[0]
-                    getValue = min;
-                    return false;
-                }
+            if(getValue > limit[0].three_a_max_bet ){
+                $("#ErrorA"+idas).html('Max Bet is '+limit[0].three_a_max_bet);
+                return false;
+            }else if(getValue < limit[0].three_a_min_bet ){
+                $("#ErrorA"+idas).html('Minimum Bet is  '+limit[0].three_a_min_bet);
+            }
+            else{
+                $("#ErrorA"+idas).html('');
+            }
+            // {limit.map(i =>{
+            //     if(getValue > i.three_a_max_bet ){
+            //         console.log("XXXXXXXX")
+            //         let max = i.three_a_max_bet[0]
+            //         getValue = max;
+            //         return false;
+            //     }
+            //     if(getValue < i.three_a_min_bet ){
+            //         console.log("!!!!!!!!")
+            //         let min = i.three_a_min_bet[0]
+            //         getValue = min;
+            //         return false;
+            //     }
                
-            })}
+            // })}
             localStateDataForChange = { ...localStateDataForChange, _3a: { value: getValue, disabled: 0 } };
 
             let number_value = localStateDataForChange['number']['value'];
@@ -233,21 +262,30 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            {limit.map(i =>{
-                if(getValue > i.three_c_max_bet ){
-                    console.log("XXXXXXXX")
-                    let max = i.three_c_max_bet[0]
-                    getValue = max;
-                    return false;
-                }
-                if(getValue < i.three_c_min_bet ){
-                    console.log("!!!!!!!!")
-                    let min = i.three_c_min_bet[0]
-                    getValue = min;
-                    return false;
-                }
+            if(getValue > limit[0].three_c_max_bet ){
+                $("#ErrorC"+idas).html('Max Bet is '+limit[0].three_c_max_bet);
+                return false;
+            }else if(getValue < limit[0].three_c_min_bet ){
+                $("#ErrorC"+idas).html('Minimum Bet is '+limit[0].three_c_min_bet);
+            }
+            else{
+                $("#ErrorC"+idas).html('');
+            }
+            // {limit.map(i =>{
+            //     if(getValue > i.three_c_max_bet ){
+            //         console.log("XXXXXXXX")
+            //         let max = i.three_c_max_bet[0]
+            //         getValue = max;
+            //         return false;
+            //     }
+            //     if(getValue < i.three_c_min_bet ){
+            //         console.log("!!!!!!!!")
+            //         let min = i.three_c_min_bet[0]
+            //         getValue = min;
+            //         return false;
+            //     }
                
-            })}
+            // })}
             localStateDataForChange = { ...localStateDataForChange, _3c: { value: getValue, disabled: 0 } };
 
 
@@ -429,38 +467,46 @@ useEffect(() => {
                     onChange={(e) => numberInputHandler(e.target.value, 'number')}
                 />
                 
-                
             </td>
             <td>
                 <input type="text" className="form-control-custom"
-                    onChange={(e) => numberInputHandler(e.target.value, 'big')}
+                    onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
                     maxLength={4}
                     minLength={3}
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
                     disabled={localStateInitData && localStateInitData.big && localStateInitData.big.disabled ? true : false}
                 />  
+                <small style={{color: 'red'}} id={"ErrorBig"+ids}></small>
             </td>{/* big*/}
             <td><input type="text" className="form-control-custom"
-                onChange={(e) => numberInputHandler(e.target.value, 'small')}
+                onChange={(e) => numberInputHandler(e.target.value, 'small', ids)}
                 maxLength={4}
                 minLength={3}
                 value={localStateInitData && localStateInitData.small && localStateInitData.small.value ? localStateInitData.small.value : ""}
                 disabled={localStateInitData && localStateInitData.small && localStateInitData.small.disabled ? true : false}
-            /></td>{/* small*/}
+            />
+            <small style={{color: 'red'}} id={"ErrorSmall"+ids}></small>
+            
+            </td>{/* small*/}
+
             <td><input type="text" className="form-control-custom"
-                onChange={(e) => numberInputHandler(e.target.value, '_3a')}
+                onChange={(e) => numberInputHandler(e.target.value, '_3a', ids)}
                 maxLength={4}
                 minLength={3}
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
-            /></td>{/* 3A*/}
+            />
+            <small style={{color: 'red'}} id={"ErrorA"+ids}></small>
+            </td>{/* 3A*/}
             <td><input type="text" className="form-control-custom"
-                onChange={(e) => numberInputHandler(e.target.value, '_3c')}
+                onChange={(e) => numberInputHandler(e.target.value, '_3c', ids)}
                 maxLength={4}
                 minLength={3}
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
-            /></td>{/* 3C*/}
+            />
+            <small style={{color: 'red'}} id={"ErrorC"+ids}></small>
+            </td>{/* 3C*/}
             <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
                     <button type="button" className={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_disabled ? 'btn-custom-small-disabled me-1' : localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_value ? 'btn-custom-small me-1 active-bet-type' : 'btn-custom-small me-1'} disabled={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_disabled ? true : false} title={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_disabled ? "Disabled" : "Enabled"} onClick={(e) => numberInputHandler(1, 'box')}>{t('B')}</button>
