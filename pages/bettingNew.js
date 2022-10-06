@@ -24,12 +24,12 @@ export default function BettingNew({datauser}) {
         }));
       }
 
-      //BET LIMIT
+      //BET LIMIT-----
       const state = useSelector(state => state);
       state.auth.transactions
       let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
       let betLimit = transactions && transactions.bet_limit && transactions.bet_limit.limit_settings ? transactions.bet_limit.limit_settings : {};
-      
+      // -------------
       let bettingDatesStore = useSelector(state => state.betting.dates);
       
   return (
