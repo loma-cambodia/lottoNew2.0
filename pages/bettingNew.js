@@ -9,18 +9,29 @@ import { useTranslation } from "react-i18next";
 import BettingOptionSelectionForMob from '../components/betting/bettingOptionSelectionForMob';
 import styles from '../styles/Home.module.css'
 
+import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
 export default function BettingNew({datauser}) {
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
        useEffect(() => {
+        dispatch(userTransactionDetails());
           dispatch(getBettingDates());
       },[dispatch]);
       const lotterySubmitRecords = () => {
         dispatch(lotterySubmit( setData, response =>{
         }));
       }
+
+      //BET LIMIT
+      const state = useSelector(state => state);
+      state.auth.transactions
+      let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
+      let betLimit = transactions && transactions.bet_limit && transactions.bet_limit.limit_settings ? transactions.bet_limit.limit_settings : {};
+      
       let bettingDatesStore = useSelector(state => state.betting.dates);
+      
   return (
     <>
       <Head>
@@ -33,7 +44,7 @@ export default function BettingNew({datauser}) {
       </Head>
       <Header datauser={datauser}/>
         <div className={styles.device_detect_for_desktop}>
-          <BettingOptionSelection _bettingDatesStore={bettingDatesStore}/>
+          <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
         </div> 
         <div className="container">
             <div className={styles.device_detect_for_mobile}> 
