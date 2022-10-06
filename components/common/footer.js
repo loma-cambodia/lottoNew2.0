@@ -24,9 +24,9 @@ const { t } = useTranslation();
                         <li className="list-inline-item"><Link href="#"><a>{t('Play_Lottery')}</a></Link></li>
                     </ul>
                 </div>
-                <div className="clearfix my-3">
+                {/* <div className="clearfix my-3">
                     <p className="mb-0 small text-white">{t('copyright')}</p>
-                </div>
+                </div> */}
             </div>
         </div>
     </div>

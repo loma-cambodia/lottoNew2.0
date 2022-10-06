@@ -52,7 +52,7 @@ const HomeSlider = () => {
             <div class="hero-slider-normal-one">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-md-7 col-sm-6 col-6">
+                        <div class="col-md-5 col-sm-5">
                             <div class="wb-text-part">
                                 <p class="text-uppercase color-1 fs-5">{t('Contest_your_chance_to')}</p>
                                 <div class="d-inline-flex align-items-center mb-4">
@@ -68,7 +68,7 @@ const HomeSlider = () => {
                                      </Link>
                             </div>
                         </div>
-                        <div class="col-md-5 col-sm-6 pt-0 hide-575">
+                        <div class="col-md-7 col-sm-7 pt-5 hide-575">
                             <img src="assets/images/win-big-guy.png" class="img-fluid" alt=""/>
                         </div>
                     </div>
