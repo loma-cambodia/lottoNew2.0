@@ -227,12 +227,12 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
                 <tr>
                     <th className="border-0"></th>
                     <th className="border-0">{t('Number')}</th>
-                    <th className="border-0">{t('Big_Bet')}</th>
-                    <th className="border-0">{t('Small_Bet')}</th>
-                    <th className="border-0">{t('3')} {t('A')}</th>
-                    <th className="border-0">{t('3')} {t('C')}</th>
-                    <th className="border-0">{t('Bet_Type')}</th>
-                    <th className="border-0">{t('Amount')}</th>
+                    <th className="border-0 text-end">{t('Big_Bet')}</th>
+                    <th className="border-0 text-end">{t('Small_Bet')}</th>
+                    <th className="border-0 text-end">{t('3')}{t('A')}</th>
+                    <th className="border-0 text-end">{t('3')}{t('C')}</th>
+                    <th className="border-0 text-center">{t('Bet_Type')}</th>
+                    <th className="border-0 text-end">{t('Amount')}</th>
                     <th className="border-0"></th>
                 </tr>
                 

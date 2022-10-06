@@ -182,13 +182,13 @@ const Betting = () => {
             <table className="">
                 <tr>
                     <th className="border-0"></th>
-                    <th className="border-0">Number</th>
-                    <th className="border-0">Big</th>
-                    <th className="border-0">Small</th>
-                    <th className="border-0">3 A</th>
-                    <th className="border-0">3 C</th>
-                    <th className="border-0">Bet type</th>
-                    <th className="border-0">Amount</th>
+                    <th className="border-0 text-end">Number</th>
+                    <th className="border-0 text-end">Big</th>
+                    <th className="border-0 text-end">Small</th>
+                    <th className="border-0 text-end">3A</th>
+                    <th className="border-0 text-end">3C</th>
+                    <th className="border-0 text-center">Bet type</th>
+                    <th className="border-0 text-end">Amount</th>
                     <th className="border-0"></th>
                 </tr>
                 <tr>
