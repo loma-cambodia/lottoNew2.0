@@ -107,8 +107,8 @@ const Header = ({datauser}) => {
                   </div>
                   <div className="desktop-menu me-auto">
                           <ul className="desktop-menu-list">
-                            <li className="active">
-                            <Link   href="/">{t('Homepage')}</Link>
+                            <li >
+                            <Link  className="active" href="/">{t('Homepage')}</Link>
                               {/* <a className="active" href="#">Home</a> */}
                             </li>
                             <li>
