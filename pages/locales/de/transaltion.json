@@ -102,6 +102,16 @@
     "M":"M",
     "P":"P",
     "Bet_Successful":"投注成功",
+    "win_big":"成为大赢家",
 
-    "win_big":"成为大赢家"
+    "select_game_and_date":"选择日期和公司",
+    "3D_Bet_Number":"3D 投注号码",
+    "4D_Bet_Number":"4D 投注号码",
+    "Box":"Box",
+    "iBox":"iBox",
+    "Reverse":"返字",
+    "Select_All":"全选",
+    "Company":"公司",
+    "Reset":"重置",
+    "BET":"投注"
 }
