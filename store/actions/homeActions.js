@@ -3,7 +3,7 @@ import axios from 'axios'
   export const userTransactionDetails = () => async dispatch => {
     console.log('userTransactionDetails');
     try{
-        const res = await axios.get(`http://api.kk-lotto.com:8080/api/merchant/1`);
+        const res = await axios.get(`http://api.kk-lotto.com:8080/frontend-api/merchant/1`);
         //console.log('res:',res);
         dispatch( {
             type: "TRANSACTION_DETAILS",
@@ -22,7 +22,7 @@ import axios from 'axios'
 export const winnerResultDetails = () => async dispatch => {
     console.log('userTransactionDetails');
     try{
-        const res = await axios.get(`http://api.kk-lotto.com:8080/api/result/latest`);
+        const res = await axios.get(`http://api.kk-lotto.com:8080/frontend-api/result/latest`);
        // console.log('userTransactionDetails:res:',res);
         dispatch( {
             type: "WINNER_RESULT_DETAILS",
@@ -42,7 +42,7 @@ export const winnerResultDetails = () => async dispatch => {
 export const winnerResultDetails2 = () => async dispatch => {
     console.log('userTransactionDetails');
     try{
-        const res = await axios.get(`http://api.kk-lotto.com:8080/api/result/latest`);
+        const res = await axios.get(`http://api.kk-lotto.com:8080/frontend-api/result/latest`);
        // console.log('userTransactionDetails:res:',res);
         dispatch( {
             type: "WINNER_RESULT_DETAILS",
