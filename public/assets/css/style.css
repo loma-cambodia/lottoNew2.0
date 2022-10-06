@@ -2226,6 +2226,9 @@
   }
   }
   @media (max-width: 991px) {
+    .draw-name {
+      font-size: 35px;
+    }
       .container {
           max-width: 100% !important;
       }
@@ -2588,7 +2591,7 @@ span.name-gp {
 }
 @media (max-width:1200px) {
   .wb-text-part .slider-big-text {
-      font-size: 65px;
+      font-size: 60px;
   }
   .wb-text-part p.text-white.fs-5 {
       font-size: 15px !important;
@@ -2607,14 +2610,14 @@ span.name-gp {
       font-size: 42px;
   }
   .wb-text-part h3 {
-      font-size: 35px;
+      font-size: 25px;
       margin-bottom: 20px;
   }
 }
 @media (max-width:575px) {
   .wb-text-part {
       text-align: center;
-      padding: 38px 0;
+      padding: 44px 0;
   }
   .sd-text-part .d-inline-flex.align-items-center.mb-4 {
       margin-bottom: 15px !important;
