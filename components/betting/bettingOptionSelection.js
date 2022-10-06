@@ -77,7 +77,6 @@ let dateAndGameOptionData = [1,2,3,4];
 
 const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit}) => {
     let betLimit = _betLimit;
-    console.log("DATA-BETTING:",betLimit)
     
     
     const { t } = useTranslation();
