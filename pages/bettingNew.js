@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import BettingOptionSelectionForMob from '../components/betting/bettingOptionSelectionForMob';
 import styles from '../styles/Home.module.css'
-
+import Banner from '../components/betting/banner';
 import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
 export default function BettingNew({datauser}) {
 
@@ -45,6 +45,7 @@ export default function BettingNew({datauser}) {
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
       <Header datauser={datauser}/>
+      <Banner/>
         <div className={styles.device_detect_for_desktop}>
           <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
         </div> 

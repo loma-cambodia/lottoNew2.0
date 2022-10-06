@@ -425,7 +425,7 @@ useEffect(() => {
             </td>
             {/* big*/}
             <td>
-                <input type="text" className="form-control-custom"
+                <input type="text" className="form-control-custom text-end"
                     onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
                     id={"BigText"+ids}
                     onBlur={(i) => hideError(ids)}
@@ -434,10 +434,10 @@ useEffect(() => {
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
                     disabled={localStateInitData && localStateInitData.big && localStateInitData.big.disabled ? true : false}
                     />  
-                    <small style={{color: 'red'}} id={"ErrorBig"+ids}></small>
+                    <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorBig"+ids}></small>
             </td>
             {/* small*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, 'small', ids)}
                 id={"SmallText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -446,10 +446,10 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData.small && localStateInitData.small.value ? localStateInitData.small.value : ""}
                 disabled={localStateInitData && localStateInitData.small && localStateInitData.small.disabled ? true : false}
                 />
-                <small style={{color: 'red'}} id={"ErrorSmall"+ids}></small>
+                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorSmall"+ids}></small>
             </td>
             {/* 3A*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, '_3a', ids)}
                 id={"AText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -458,10 +458,10 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
                 />
-                <small style={{color: 'red'}} id={"ErrorA"+ids}></small>
+                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorA"+ids}></small>
             </td>
             {/* 3C*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, '_3c', ids)}
                 id={"CText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -470,7 +470,7 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
                 />
-                <small style={{color: 'red'}} id={"ErrorC"+ids}></small>
+                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorC"+ids}></small>
             </td>
             <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
