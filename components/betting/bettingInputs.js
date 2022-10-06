@@ -278,6 +278,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 0 } };
             localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 0 } };
             localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 0 } };
+            localStateDataForChange = { ...localStateDataForChange, amount: { value: "", disabled: 1 } };
             localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
         }
 
