@@ -253,7 +253,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
                        {/* <button type="button" className="btn-custom-curve1 me-1" onClick={showTostyFy}>test </button> */}
                     </td>
                     <td colSpan="2">
-                            <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> 
+                            <button type="button" className="btn-custom-curve2" data-bs-toggle="modal" data-bs-target="#bettingModal" onClick ={lotterySubmitRecordsCallAction}>Submit</button> 
                             {/* <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button> */}
                             {/* <button  onClick={e => { showModal();  }}> show Modal </button> */}
                             
