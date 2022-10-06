@@ -2,14 +2,13 @@ import React, { useState,useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
 
-const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLoadpageCounter,_gameCount,_limit}) => {
+const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_setLoadpageCounter,_gameCount,_limit}) => {
     let betLimit = _limit;
     let limit = betLimit;
-    console.log("DATA-BETTING:",limit)
+    
     const { t } = useTranslation();
     const [active, setActive] = useState(false);
     let localStateInitData = item.dataInit;
-
 
     const calculate3DAmountEnable = (getValue,operationField,) =>{
         let threeDAmount = false;
@@ -39,8 +38,13 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
         }
         return threeDAmount;
    } 
-
-    const numberInputHandler = (getValue, operationField) => {
+   const hideError = (ids) => {
+    $("#ErrorBig"+ids).html('');
+    $("#ErrorSmall"+ids).html('');
+    $("#ErrorC"+ids).html('');
+    $("#ErrorA"+ids).html('');
+   }
+    const numberInputHandler = (getValue, operationField,idas) => {
         let localStateDataForChange ={ ...item.dataInit};
 
         let threeDAmout = calculate3DAmountEnable(getValue,operationField);
@@ -146,65 +150,58 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: changeValue, reverse_disabled: 0 } };
 
         } else if (operationField == 'big') {
+            
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            {limit.map(i =>{
-                if(getValue > i.big_max_bet ){
-                    let max = i.big_max_bet[0]
-                    getValue = max;
-                    return false;
-                }
-                if(getValue < i.big_min_bet ){
-                    let min = i.big_min_bet[0]
-                    getValue = min;
-                    return false;
-                }
-               
-            })}
-            // if(getValue > limit.big_max_bet){
-            //     return false;
-            // }
+
             
+            if(getValue > limit[0].big_max_bet ){
+                $("#ErrorBig"+idas).html('Bet should not be greater than '+limit[0].big_max_bet);
+                getValue = limit[0].big_max_bet
+               
+            }else if(getValue < limit[0].big_min_bet ){
+                getValue = limit[0].big_min_bet
+                $("#ErrorBig"+idas).html('Bet should not be less than '+limit[0].big_min_bet);
+                
+            }
+            else{
+                $("#ErrorBig"+idas).html('');
+            }
            
             localStateDataForChange = { ...localStateDataForChange, big: { value: getValue, disabled: 0 } };
         } else if (operationField == 'small') {
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            {limit.map(i =>{
-                if(getValue > i.small_max_bet ){
-                    let max = i.small_max_bet[0]
-                    getValue = max;
-                    return false;
-                }
-                if(getValue < i.small_min_bet ){
-                    let min = i.small_min_bet[0]
-                    getValue = min;
-                    return false;
-                }
-               
-            })}
+            if(getValue > limit[0].small_max_bet ){
+                $("#ErrorSmall"+idas).html('Bet should not be greater than'+limit[0].small_max_bet);
+                getValue = limit[0].small_max_bet
+            }else if(getValue < limit[0].small_min_bet ){
+
+                $("#ErrorSmall"+idas).html('Bet should not be less than'+limit[0].small_min_bet);
+                getValue = limit[0].small_min_bet
+            }
+            else{
+                $("#ErrorSmall"+idas).html('');
+            }
+
             localStateDataForChange = { ...localStateDataForChange, small: { value: getValue, disabled: 0 } };
         } else if (operationField == '_3a') {
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            {limit.map(i =>{
-                if(getValue > i.three_a_max_bet ){
-                    console.log("XXXXXXXX")
-                    let max = i.three_a_max_bet[0]
-                    getValue = max;
-                    return false;
-                }
-                if(getValue < i.three_a_min_bet ){
-                    console.log("!!!!!!!!")
-                    let min = i.three_a_min_bet[0]
-                    getValue = min;
-                    return false;
-                }
-               
-            })}
+            if(getValue > limit[0].three_a_max_bet ){
+                $("#ErrorA"+idas).html('Bet should not be greater than'+limit[0].three_a_max_bet);
+                getValue = limit[0].three_a_max_bet
+            }else if(getValue < limit[0].three_a_min_bet ){
+                $("#ErrorA"+idas).html('Bet should not be less than'+limit[0].three_a_min_bet);
+                getValue = limit[0].three_a_min_bet
+            }
+            else{
+                $("#ErrorA"+idas).html('');
+            }
+           
             localStateDataForChange = { ...localStateDataForChange, _3a: { value: getValue, disabled: 0 } };
 
             let number_value = localStateDataForChange['number']['value'];
@@ -233,21 +230,17 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            {limit.map(i =>{
-                if(getValue > i.three_c_max_bet ){
-                    console.log("XXXXXXXX")
-                    let max = i.three_c_max_bet[0]
-                    getValue = max;
-                    return false;
-                }
-                if(getValue < i.three_c_min_bet ){
-                    console.log("!!!!!!!!")
-                    let min = i.three_c_min_bet[0]
-                    getValue = min;
-                    return false;
-                }
-               
-            })}
+            if(getValue > limit[0].three_c_max_bet ){
+                $("#ErrorC"+idas).html('Bet should not be greater than'+limit[0].three_c_max_bet);
+                getValue = limit[0].three_c_max_bet
+            }else if(getValue < limit[0].three_c_min_bet ){
+                $("#ErrorC"+idas).html('Bet should not be less than'+limit[0].three_c_min_bet);
+                getValue = limit[0].three_c_min_bet
+            }
+            else{
+                $("#ErrorC"+idas).html('');
+            }
+            
             localStateDataForChange = { ...localStateDataForChange, _3c: { value: getValue, disabled: 0 } };
 
 
@@ -276,6 +269,10 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
             }
 
         } else if (operationField == 'delete') {
+            $("#ErrorBig"+idas).html('');
+            $("#ErrorSmall"+idas).html('');
+            $("#ErrorC"+idas).html('');
+            $("#ErrorA"+idas).html('');
             localStateDataForChange = { ...localStateDataForChange, number: { value: "", disabled: 0 } };
             localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 0 } };
             localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 0 } };
@@ -355,58 +352,55 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
         return boxing ;
     }
 
+    const getPermutation = (_getNumber) => {
+        let returnPermutation = 0;
+        let uniqueAges = getStringUniqueCharactors(_getNumber);
 
-const getPermutation = (_getNumber) => {
-       let returnPermutation = 0;
-       let uniqueAges = getStringUniqueCharactors(_getNumber);
-
-        if(_getNumber.length == 3){
-            if(uniqueAges.length == 3)
-             returnPermutation = 6;
-            else  if(uniqueAges.length == 2)
-            returnPermutation = 3;
-            else  if(uniqueAges.length == 1)
-            returnPermutation = 1;
-        } else if(_getNumber.length == 4){
-            if(uniqueAges.length == 4)
-             returnPermutation = 24;
-            else  if(uniqueAges.length == 3)
-            returnPermutation = 12 ;
-            else  if(uniqueAges.length == 2)
-            returnPermutation = 6;
-            else  if(uniqueAges.length == 1)
-            returnPermutation = 1;
-        }
-        return returnPermutation;
-}
-
-const getStringUniqueCharactors  = (_getNumber) => {
-      const unique = (value, index, self) => {
-        return self.indexOf(value) === index
-      }
-        const number = _getNumber;
-        let myFunc = num => Number(num);
-        var intArr = Array.from(String(number), myFunc);
-        const uniqueAges = intArr.filter(unique);
-        return uniqueAges;
-}
-
-
-const  checkPalindrome = (string) =>{
-     const len = string.length;
-    for (let i = 0; i < len / 2; i++) {
-        if (string[i] !== string[len - 1 - i]) {
-            return false;
-        }
+            if(_getNumber.length == 3){
+                if(uniqueAges.length == 3)
+                returnPermutation = 6;
+                else  if(uniqueAges.length == 2)
+                returnPermutation = 3;
+                else  if(uniqueAges.length == 1)
+                returnPermutation = 1;
+            } else if(_getNumber.length == 4){
+                if(uniqueAges.length == 4)
+                returnPermutation = 24;
+                else  if(uniqueAges.length == 3)
+                returnPermutation = 12 ;
+                else  if(uniqueAges.length == 2)
+                returnPermutation = 6;
+                else  if(uniqueAges.length == 1)
+                returnPermutation = 1;
+            }
+            return returnPermutation;
     }
-    return true;
-}
 
-//console.log('11111111111111111111111111111111111111111111111111');
+    const getStringUniqueCharactors  = (_getNumber) => {
+        const unique = (value, index, self) => {
+            return self.indexOf(value) === index
+        }
+            const number = _getNumber;
+            let myFunc = num => Number(num);
+            var intArr = Array.from(String(number), myFunc);
+            const uniqueAges = intArr.filter(unique);
+            return uniqueAges;
+    }
+
+    const  checkPalindrome = (string) =>{
+        const len = string.length;
+        for (let i = 0; i < len / 2; i++) {
+            if (string[i] !== string[len - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 useEffect(() => {
     numberInputHandler('', '');
   },[_gameCount]);
+  
 
     return (
         
@@ -427,40 +421,57 @@ useEffect(() => {
                     maxLength={4}
                     minLength={3}
                     onChange={(e) => numberInputHandler(e.target.value, 'number')}
-                />
-                
-                
+                /> 
             </td>
+            {/* big*/}
             <td>
                 <input type="text" className="form-control-custom"
-                    onChange={(e) => numberInputHandler(e.target.value, 'big')}
+                    onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
+                    id={"BigText"+ids}
+                    onBlur={(i) => hideError(ids)}
                     maxLength={4}
                     minLength={3}
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
                     disabled={localStateInitData && localStateInitData.big && localStateInitData.big.disabled ? true : false}
-                />  
-            </td>{/* big*/}
+                    />  
+                    <small style={{color: 'red'}} id={"ErrorBig"+ids}></small>
+            </td>
+            {/* small*/}
             <td><input type="text" className="form-control-custom"
-                onChange={(e) => numberInputHandler(e.target.value, 'small')}
+                onChange={(e) => numberInputHandler(e.target.value, 'small', ids)}
+                id={"SmallText"+ids}
+                onBlur={(i) => hideError(ids)}
                 maxLength={4}
                 minLength={3}
                 value={localStateInitData && localStateInitData.small && localStateInitData.small.value ? localStateInitData.small.value : ""}
                 disabled={localStateInitData && localStateInitData.small && localStateInitData.small.disabled ? true : false}
-            /></td>{/* small*/}
+                />
+                <small style={{color: 'red'}} id={"ErrorSmall"+ids}></small>
+            </td>
+            {/* 3A*/}
             <td><input type="text" className="form-control-custom"
-                onChange={(e) => numberInputHandler(e.target.value, '_3a')}
+                onChange={(e) => numberInputHandler(e.target.value, '_3a', ids)}
+                id={"AText"+ids}
+                onBlur={(i) => hideError(ids)}
                 maxLength={4}
                 minLength={3}
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
-            /></td>{/* 3A*/}
+                />
+                <small style={{color: 'red'}} id={"ErrorA"+ids}></small>
+            </td>
+            {/* 3C*/}
             <td><input type="text" className="form-control-custom"
-                onChange={(e) => numberInputHandler(e.target.value, '_3c')}
+                onChange={(e) => numberInputHandler(e.target.value, '_3c', ids)}
+                id={"CText"+ids}
+                onBlur={(i) => hideError(ids)}
                 maxLength={4}
                 minLength={3}
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
-            /></td>{/* 3C*/}
+                />
+                <small style={{color: 'red'}} id={"ErrorC"+ids}></small>
+            </td>
             <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
                     <button type="button" className={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_disabled ? 'btn-custom-small-disabled me-1' : localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_value ? 'btn-custom-small me-1 active-bet-type' : 'btn-custom-small me-1'} disabled={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_disabled ? true : false} title={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_disabled ? "Disabled" : "Enabled"} onClick={(e) => numberInputHandler(1, 'box')}>{t('B')}</button>
