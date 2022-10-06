@@ -96,6 +96,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
     const [loadpageCounter, setLoadpageCounter] = useState(1);
     const [bettingInputsDataParent, setLocalStateInitDataParent] = useState(bettingInputsData);
     const [activeGame, setActive] = useState(false);
+    const [activeGameAll, setActiveAll] = useState(false);
 
     const updateBettingInputsData = (itemName,getNewChild) => {
         let bettingInputsDataParentNew = bettingInputsDataParent;
@@ -156,6 +157,18 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
   function closeModal() {
     setIsOpen(false);
   }
+
+    const selectAllDate = () => {
+      if(activeGameAll){
+        alert(activeGameAll);
+      }
+    }
+    
+    useEffect(() => {
+        selectAllDate();
+    }, [activeGameAll]);
+
+    console.log(activeGameAll);
     return(
         <>
           <ToastContainer />
@@ -202,10 +215,10 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                 >   
                   <div className="d-flex my-3">
                       <div className="round-h5">
-                          <input type="checkbox" id="acheckbox1" />
+                          <input checked={`${activeGameAll ? "checked":""}`} onChange={() => setActiveAll(!activeGameAll)} type="checkbox" id="acheckbox1" />
                           <label htmlFor="acheckbox1"></label>
                       </div>
-                      <label onClick={() => selectAllDate() } className="small" htmlFor="acheckbox1"><b>Select All</b></label>
+                      <label className="small" htmlFor="acheckbox1"><b>Select All</b></label>
                   </div>
                   
               {bettingInitData.map((item) => (<DateAndGameOptionMob key={'dateAndGameOption'+item.id}
