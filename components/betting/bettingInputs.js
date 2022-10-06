@@ -354,22 +354,22 @@ useEffect(() => {
                 
             </td>
             <td>
-                <input type="text" className="form-control-custom"
+                <input type="text" className="form-control-custom text-end"
                     onChange={(e) => numberInputHandler(e.target.value, 'big')}
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
                     disabled={localStateInitData && localStateInitData.big && localStateInitData.big.disabled ? true : false}
                 /></td>{/* big*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, 'small')}
                 value={localStateInitData && localStateInitData.small && localStateInitData.small.value ? localStateInitData.small.value : ""}
                 disabled={localStateInitData && localStateInitData.small && localStateInitData.small.disabled ? true : false}
             /></td>{/* small*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, '_3a')}
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
             /></td>{/* 3A*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, '_3c')}
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
@@ -384,7 +384,7 @@ useEffect(() => {
                 </div>
             </td>
             <td>
-                <input type="text" className="form-control-custom"  value={localStateInitData && localStateInitData.amount && localStateInitData.amount.value ? localStateInitData.amount.value : ""} disabled={localStateInitData && localStateInitData.amount && localStateInitData.amount.disabled ? true : false} />
+                <input type="text" className="form-control-custom text-end"  value={localStateInitData && localStateInitData.amount && localStateInitData.amount.value ? localStateInitData.amount.value : ""} disabled={localStateInitData && localStateInitData.amount && localStateInitData.amount.disabled ? true : false} />
             </td>
             <td>
                 <button type="button" className="btn-delete-small" onClick={(e) => numberInputHandler('', 'delete')}>
