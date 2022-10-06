@@ -250,3 +250,14 @@ footer.logo {
   margin-bottom: 120px;
 }
 }
+
+@media screen and (max-width: 480px) {
+  .device_detect_for_desktop {
+    display: none;
+  }
+}
+@media screen and (min-width: 480px) {
+  .device_detect_for_mobile {
+    display: none;    
+  }
+}
