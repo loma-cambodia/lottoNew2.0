@@ -110,7 +110,7 @@ const Header = ({datauser}) => {
                               {/* <a  href="#">Betting</a> */}
                             </li>
                             <li class="dropdown-desktop">
-                            <a href="#" >History</a>
+                            <a href="#" >{t('History')}</a>
                             <ul class="sub-menu-desktop">
                                 <li><Link href="/bettingNew">{t('Betting')}</Link></li>
                                 <li><Link href="/bettingList">{t('History')}</Link></li>

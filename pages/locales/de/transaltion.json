@@ -103,5 +103,12 @@
     "P":"P",
     "Bet_Successful":"投注成功",
 
-    "win_big":"成为大赢家"
+    "win_big":"成为大赢家",
+    "BETTING_LIST":"BETTING_LIST",
+    "Select Date Range":"Select Date Range",
+    "Ticket No":"Ticket No",
+    "Company":"公司",
+    "Game":"游戏",
+    "Reset":"重置",
+    "Commission":"委员会"
 }

@@ -103,5 +103,13 @@
     "P":"P",
     "Bet_Successful":"Bet Successful",
 
-    "win_big":"WIN BIG"
+    "win_big":"WIN BIG",
+
+    "BETTING_LIST":"BETTING_LIST",
+    "Select_Date_Range":"Select Date Range",
+    "Ticket_No":"Ticket No",
+    "Company":"Company",
+    "Game":"Game",
+    "Reset":"Reset",
+    "Commission":"Commission"
 }

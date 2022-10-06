@@ -56,7 +56,7 @@ const ListFilter = () => {
                     <div class="row">
                     <div class="col-md-3 col-12">
                     <div class="form-group">
-                        <label class="fw-bold mb-2">Select Date Range</label>
+                        <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
                         {/* <div id="reportrange" class="daterangepickerstyle">
                             <i class="fa-regular fa-calendar me-2"></i>
                             <span></span> <i class="fa fa-caret-down ms-auto"></i>
@@ -80,13 +80,13 @@ const ListFilter = () => {
                     </div>
                     <div class="col-md-2 col-6">
                     <div class="form-group">
-                        <label for="transactionid" class="fw-bold mb-2">Ticket No</label>
+                        <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
                         <input type="text" class="form-control-custom-big" name="transationid"/>
                     </div>
                     </div>
                     <div class="col-md-2 col-6">
                     <div class="form-group">
-                        <label for="transactionid" class="fw-bold mb-2">Game</label>
+                        <label for="transactionid" class="fw-bold mb-2">{t('Game')}</label>
                         <select type="text" class="form-control-custom-big" name="transationid">
                             <option>4D</option>
                             <option>3D</option>
@@ -95,7 +95,7 @@ const ListFilter = () => {
                     </div>
                     <div class="col-md-2 col-6">
                     <div class="form-group">
-                        <label for="transactionid" class="fw-bold mb-2">Company</label>
+                        <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
                         <select type="text" class="form-control-custom-big" name="transationid">
                             <option>Toto</option>
                             <option>Magnum</option>
@@ -107,8 +107,8 @@ const ListFilter = () => {
                     <div class="col-md-3">
                     <div class="form-group">
                         <label class="d-block">&nbsp;</label>
-                        <button type="button" class="btn-custom-curve2 w-auto">Search</button>
-                        <button type="button" class="btn-custom-curve1">Reset</button>
+                        <button type="button" class="btn-custom-curve2 w-auto">{t('Search')}</button>
+                        <button type="button" class="btn-custom-curve1">{t('Reset')}</button>
                     </div>
 
                     </div>

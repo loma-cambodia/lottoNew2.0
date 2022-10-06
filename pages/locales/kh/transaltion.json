@@ -103,5 +103,12 @@
     "P":"p",
     "Bet_Successful":"ការភ្នាល់ទទួលបានជោគជ័យ",
 
-    "win_big":"ក្លាយជាអ្នកឈ្នះដ៏ធំ"
+    "win_big":"ក្លាយជាអ្នកឈ្នះដ៏ធំ",
+    "BETTING_LIST":"BETTING_LIST",
+    "Select Date Range":"Select Date Range",
+    "Ticket No":"Ticket No",
+    "Company":"ក្រុមហ៊ុន",
+    "Game":"ហ្គេម",
+    "Reset":"កំណត់ឡើងវិញ",
+    "Commission":"គណៈកម្មការ"
 }
