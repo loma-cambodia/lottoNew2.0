@@ -26,7 +26,7 @@ import Filter from "../components/results/filter";
             
             <Header datauser={datauser}/>
             {/*--Mobile Menu--*/}
-            <div id="mySidepanel" className="sidepanel">
+            {/* <div id="mySidepanel" className="sidepanel">
                 <a href="javascript:void(0)" className="closebtn" onclick="closeNav()">&times;</a>
                 <ul className="list-unstyled">
                     <li><a href="#">Home</a></li>
@@ -35,13 +35,13 @@ import Filter from "../components/results/filter";
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Home</a></li>
                 </ul>
-            </div>
+            </div> */}
             {/*--Mobile Menu-*/}
             <Banner2/>
             <section class="page-content py-3">
                 <div class="container">
                 <Filter/>
-                    <Result/>
+                <Result/>
                 </div>
             </section>   
             <Footer/>

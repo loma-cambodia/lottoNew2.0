@@ -184,7 +184,7 @@ const BettingOptionSelectionForMob = ({_bettingDatesStore}) => {
 
                 </button>             
             </div> */}
-            {bettingInputsDataParent.map((item) => (<BettingInputsForMob key={'bettingInputs'+item.name} item={item} activeGame={activeGame}/>) )}      
+            {/* {bettingInputsDataParent.map((item) => (<BettingInputsForMob key={'bettingInputs'+item.name} item={item} activeGame={activeGame}/>) )}       */}
               <Modal
                   isOpen={modalIsOpen}
                   onAfterOpen={afterOpenModal}
