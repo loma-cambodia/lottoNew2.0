@@ -2639,3 +2639,8 @@ span.name-gp {
       margin-bottom: 15px;
   }
 }
+
+
+input.form-control.text-right-for-amount {
+  text-align: end;
+}
