@@ -102,14 +102,16 @@
     "M":"M",
     "P":"P",
     "Bet_Successful":"Bet Successful",
-
     "win_big":"WIN BIG",
 
-    "BETTING_LIST":"BETTING_LIST",
-    "Select_Date_Range":"Select Date Range",
-    "Ticket_No":"Ticket No",
+    "select_game_and_date":"SELECT DATE & GAME",
+    "3D_Bet_Number":"3D Bet Number",
+    "4D_Bet_Number":"4D Bet Number",
+    "Box":"Box",
+    "iBox":"iBox",
+    "Reverse":"Reverse",
+    "Select_All":"Select All",
     "Company":"Company",
-    "Game":"Game",
     "Reset":"Reset",
-    "Commission":"Commission"
+    "BET":"BET"
 }

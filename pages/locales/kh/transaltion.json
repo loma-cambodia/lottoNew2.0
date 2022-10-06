@@ -102,13 +102,16 @@
     "M":"m",
     "P":"p",
     "Bet_Successful":"ការភ្នាល់ទទួលបានជោគជ័យ",
-
     "win_big":"ក្លាយជាអ្នកឈ្នះដ៏ធំ",
-    "BETTING_LIST":"BETTING_LIST",
-    "Select Date Range":"Select Date Range",
-    "Ticket No":"Ticket No",
+
+    "select_game_and_date":"ជ្រើសរើសកាលបរិច្ឆេទនិងក្រុមហ៊ុន",
+    "3D_Bet_Number":"3D លេខភ្នាល់",
+    "4D_Bet_Number":"4D លេខភ្នាល់",
+    "Box":"Box",
+    "iBox":"iBox",
+    "Reverse":"បញ្ច្រាស",
+    "Select_All":"ជ្រើសរើស​ទាំងអស់",
     "Company":"ក្រុមហ៊ុន",
-    "Game":"ហ្គេម",
     "Reset":"កំណត់ឡើងវិញ",
-    "Commission":"គណៈកម្មការ"
+    "BET":"ភ្នាល់"
 }

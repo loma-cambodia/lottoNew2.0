@@ -8,13 +8,11 @@ const initialState = {
 export default function(state = initialState, action){
 
     switch(action.type){
-
         case "GET_LOGIN_DETAILS":
         return {
             ...state,
-            dates:action.payload,
+            auth:action.payload,
             loading:false
-
         }
         case "TRANSACTION_DETAILS":
             return {

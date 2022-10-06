@@ -34,13 +34,7 @@ export const lotterySubmit = (sendData, callback) => async dispatch => {
             headers: headers
           });
         console.log('res:tickets:',res);
-        // dispatch( {
-        //     type: "GET_DATES2",
-        //     payload: res.data.data
-        // });
-
-        //return callback(res.data);
-        return callback({'message': 'in catch condition', statusCode:201});
+        return callback({'message': 'Success', data:res.data.data, statusCode:res.status});
 
     }
     catch(e){
