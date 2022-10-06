@@ -146,7 +146,7 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: changeValue, reverse_disabled: 0 } };
 
         } else if (operationField == 'big') {
-            if (!getValue.match("^[0-9]*$")) {
+            if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
             {limit.map(i =>{
@@ -169,18 +169,16 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
            
             localStateDataForChange = { ...localStateDataForChange, big: { value: getValue, disabled: 0 } };
         } else if (operationField == 'small') {
-            if (!getValue.match("^[0-9]*$")) {
+            if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
             {limit.map(i =>{
                 if(getValue > i.small_max_bet ){
-                    console.log("XXXXXXXX")
                     let max = i.small_max_bet[0]
                     getValue = max;
                     return false;
                 }
                 if(getValue < i.small_min_bet ){
-                    console.log("!!!!!!!!")
                     let min = i.small_min_bet[0]
                     getValue = min;
                     return false;
@@ -189,7 +187,7 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
             })}
             localStateDataForChange = { ...localStateDataForChange, small: { value: getValue, disabled: 0 } };
         } else if (operationField == '_3a') {
-            if (!getValue.match("^[0-9]*$")) {
+            if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
             {limit.map(i =>{
@@ -232,7 +230,7 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
             }
 
         } else if (operationField == '_3c') {
-            if (!getValue.match("^[0-9]*$")) {
+            if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
             {limit.map(i =>{
@@ -411,9 +409,11 @@ useEffect(() => {
   },[_gameCount]);
 
     return (
+        
         <tr>
             <td>
                 <span className="sno">{item.name}</span>
+                
             </td>
             <td>
                 {/* <input type="text" className="form-control-custom"
@@ -422,32 +422,42 @@ useEffect(() => {
                     minLength={3}
                     onChange={(e) => numberInputHandler(e.target.value, 'number')}
                 /> */}
-                <input type="number" className="form-control-custom"
+                <input type="text" className="form-control-custom"
                     value={localStateInitData && localStateInitData.number && localStateInitData.number.value ? localStateInitData.number.value : ""}
-                    maxLength={limit.big_min_bet}
+                    maxLength={4}
                     minLength={3}
                     onChange={(e) => numberInputHandler(e.target.value, 'number')}
                 />
                 
+                
             </td>
             <td>
-                <input type="number" className="form-control-custom"
+                <input type="text" className="form-control-custom"
                     onChange={(e) => numberInputHandler(e.target.value, 'big')}
+                    maxLength={4}
+                    minLength={3}
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
                     disabled={localStateInitData && localStateInitData.big && localStateInitData.big.disabled ? true : false}
-                /></td>{/* big*/}
-            <td><input type="number" className="form-control-custom"
+                />  
+            </td>{/* big*/}
+            <td><input type="text" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, 'small')}
+                maxLength={4}
+                minLength={3}
                 value={localStateInitData && localStateInitData.small && localStateInitData.small.value ? localStateInitData.small.value : ""}
                 disabled={localStateInitData && localStateInitData.small && localStateInitData.small.disabled ? true : false}
             /></td>{/* small*/}
-            <td><input type="number" className="form-control-custom"
+            <td><input type="text" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, '_3a')}
+                maxLength={4}
+                minLength={3}
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
             /></td>{/* 3A*/}
-            <td><input type="number" className="form-control-custom"
+            <td><input type="text" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, '_3c')}
+                maxLength={4}
+                minLength={3}
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
             /></td>{/* 3C*/}
@@ -461,7 +471,7 @@ useEffect(() => {
                 </div>
             </td>
             <td>
-                <input type="text" className="form-control-custom"  value={localStateInitData && localStateInitData.amount && localStateInitData.amount.value ? localStateInitData.amount.value : ""} disabled={localStateInitData && localStateInitData.amount && localStateInitData.amount.disabled ? true : false} />
+                <input type="text" className="form-control-custom text-end"  value={localStateInitData && localStateInitData.amount && localStateInitData.amount.value ? localStateInitData.amount.value : ""} disabled={localStateInitData && localStateInitData.amount && localStateInitData.amount.disabled ? true : false} />
             </td>
             <td>
                 <button type="button" className="btn-delete-small" onClick={(e) => numberInputHandler('', 'delete')}>
