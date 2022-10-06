@@ -6,8 +6,8 @@ import BettingOptionSelection from '../components/betting/bettingOptionSelection
 import {getBettingDates,lotterySubmit} from '../store/actions/bettingActions';
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 import BettingOptionSelectionForMob from '../components/betting/bettingOptionSelectionForMob';
+import styles from '../styles/Home.module.css'
 
 import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
 export default function BettingNew({datauser}) {
@@ -43,22 +43,20 @@ export default function BettingNew({datauser}) {
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
       <Header datauser={datauser}/>
-    
-      <BrowserView>
-        <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/> 
-      </BrowserView>
-     
-      <MobileView className="container">
-        <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore}/>
-      </MobileView> 
-
-     <Footer/>
-      <script src="assets/js/jquery.min.js"></script>
-      <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
-      <script src="assets/js/owl.carousel.js"></script>
-      <script src="assets/js/main.js"></script>
-    {/*--Footer--*/}
-</>
-      
+        <div className={styles.device_detect_for_desktop}>
+          <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
+        </div> 
+        <div className="container">
+            <div className={styles.device_detect_for_mobile}> 
+              <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore}/>
+            </div>
+        </div>
+      <Footer/>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/owl.carousel.js"></script>
+        <script src="assets/js/main.js"></script>
+      {/*--Footer--*/}
+    </>
   )
 }

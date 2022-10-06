@@ -17,12 +17,12 @@ async function handler(req, res) {
             //       "language": 'en'
             // }
 
-          //  const objectWithData = {
-           //         "customer_name": "Dileep Maurya",
-           //         "customer_id":  111,
-           //         "merchant_id":  1,
-            //        "language":  'kh',
-             //   }
+        //    const objectWithData = {
+        //            "customer_name": "Dileep Maurya",
+        //            "customer_id":  112,
+        //            "merchant_id":  1,
+        //            "language":  'en',
+        //        }
 
 
 

@@ -243,10 +243,24 @@ footer.logo {
 
 .errorJpg img{
 }
-
+.device_detect_for_desktop {
+  display: block;
+}
+.device_detect_for_mobile {
+  display: none;
+}
 @media (max-width:767px){
 .errorJpg img{
   height: 50vh!important;
   margin-bottom: 120px;
 }
+}
+
+@media(max-width:580px) {
+  .device_detect_for_desktop {
+    display: none;
+  }
+  .device_detect_for_mobile {
+    display: block;
+  }
 }
