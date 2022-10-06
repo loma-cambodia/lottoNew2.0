@@ -85,6 +85,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
         setC3Value('');
     }
     const resetAllData = () => {
+        // alert('pppp');
         allClearData();
     }
 
@@ -369,7 +370,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
                             <input 
                                 inputMode='none'
                                 type="text" 
-                                className="form-control" 
+                                className="form-control text-right-for-amount" 
                                 placeholder={t('Big_Bet')}
                                 value={bigValue}
                                 onClick={() => setCurserPointer('big')} 
@@ -379,7 +380,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
                             <input 
                                 inputMode='none'
                                 type="text" 
-                                className="form-control"
+                                className="form-control text-right-for-amount"
                                 placeholder={t('Small_Bet')}
                                 value={smallValue}
                                 onClick={() => setCurserPointer('small')} 
@@ -407,7 +408,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
                             <input 
                                 inputMode='none'
                                 type="text" 
-                                className="form-control"
+                                className="form-control text-right-for-amount"
                                 value={a3Value} 
                                 onChange={(e) => numberInputHandler(e.target.value, '_3a')}
                                 // value={localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : ""}
@@ -419,7 +420,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
                             <input 
                                 inputMode='none'
                                 type="text" 
-                                className="form-control"
+                                className="form-control text-right-for-amount"
                                 value={c3Value} 
                                 onChange={(e) => numberInputHandler(e.target.value, '_3c')}
                                 // value={localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : ""}
