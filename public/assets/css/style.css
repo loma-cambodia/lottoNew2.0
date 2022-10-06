@@ -2578,3 +2578,49 @@ span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
 span.name-gp {
   white-space: nowrap;
 }
+.btn-yellow {
+  display: inline-block;
+}
+.sd-text-part .clearfix {
+  margin-bottom: 15px;
+}
+@media (max-width:1200px) {
+  .wb-text-part .slider-big-text {
+      font-size: 65px;
+  }
+  .wb-text-part p.text-white.fs-5 {
+      font-size: 15px !important;
+  }
+  .wb-text-part h3 {
+      font-size: 45px;
+      margin-bottom: 30px;
+  }
+}
+
+@media (max-width:768px) {
+  .wb-text-part p.text-uppercase.color-1.fs-5 {
+      font-size: 14px !important;
+  }
+  .wb-text-part .slider-big-text {
+      font-size: 42px;
+  }
+  .wb-text-part h3 {
+      font-size: 35px;
+      margin-bottom: 20px;
+  }
+}
+@media (max-width:575px) {
+  .wb-text-part {
+      text-align: center;
+      padding: 23px 0;
+  }
+  .sd-text-part .d-inline-flex.align-items-center.mb-4 {
+      margin-bottom: 15px !important;
+  }
+  .sd-text-part p.small {
+      margin-bottom: 5px;
+  }
+  .sd-text-part h3 {
+      margin-bottom: 15px;
+  }
+}
