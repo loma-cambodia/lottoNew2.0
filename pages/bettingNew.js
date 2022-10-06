@@ -16,8 +16,10 @@ export default function BettingNew({datauser}) {
        useEffect(() => {
           dispatch(getBettingDates());
       },[dispatch]);
-      const lotterySubmitRecords = () => {
+      const lotterySubmitRecords = (setData) => {
+        console.log('lotterySubmitRecords',setData);
         dispatch(lotterySubmit( setData, response =>{
+          console.log('callBack:',response);
         }));
       }
       let bettingDatesStore = useSelector(state => state.betting.dates);
@@ -34,7 +36,7 @@ export default function BettingNew({datauser}) {
       <Header datauser={datauser}/>
 
       <BrowserView>
-        <BettingOptionSelection _bettingDatesStore={bettingDatesStore}/> 
+        <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _lotterySubmitRecords={lotterySubmitRecords}/> 
       </BrowserView>
      
       <MobileView className="container">

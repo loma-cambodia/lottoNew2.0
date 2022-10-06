@@ -5,7 +5,9 @@ import ModalA from '../modal/modalA';
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import {getBettingDates,lotterySubmit} from '../../store/actions/bettingActions';
+import { useDispatch, useSelector } from "react-redux";
+import Modal from 'react-modal';
 
     //   Dummy Ticket Data for Modal Use.
       let ticketSubmissionData = [
@@ -50,6 +52,20 @@ import 'react-toastify/dist/ReactToastify.css';
         },
 
       ];
+
+      const customStyles = {
+        content: {
+          top: '45%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          width: '30%',
+          borderRadius: '12px',
+        },
+      };  
+
 let localStateInitData = {
     number: { value: "", disabled: 0 },
     big: { value: "", disabled: 0 }, 
@@ -77,7 +93,39 @@ let dateAndGameOptionData = [1,2,3,4];
 
 const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
     let dateAndGameOptionData = [];
+
+
+
+//  Model code 
+
+const [modalIsOpen, setIsOpen] = React.useState(false);
+    function openModal() {
+        setIsOpen(true);
+      }
+      function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        // subtitle.style.color = '#f00';
+      }
+      function closeModal() {
+        setIsOpen(false);
+      }
+    
+    function openModal() {
+      setIsOpen(true);
+    }
+    function afterOpenModal() {
+      // references are now sync'd and can be accessed.
+      // subtitle.style.color = '#f00';
+    }
+    function closeModal() {
+      setIsOpen(false);
+    }
+// End model cod e
+
+
+
     
       if(_bettingDatesStore){
 
@@ -142,12 +190,71 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
         let _bettingInitData = bettingInitData;
         let _bettingInputsDataParent = bettingInputsDataParent;
 
+        let game_dates = [];
+        let options = [];
+        _bettingInitData.map(item => {
+            let tempObj = {};
+            let games = [];
+            item && item.games && item.games.map(itemGame => {
+                if(itemGame.selected)
+                  games.push(itemGame.id);
+            });
+
+            tempObj['date'] =  item.date;
+            tempObj['games'] =  games;
+            if(item.selected)
+               game_dates.push(tempObj); 
+        })
+
+        _bettingInputsDataParent && _bettingInputsDataParent.map(item => {
+            let tempObj = {};
+            
+            tempObj['number'] = item.dataInit && item.dataInit.number && item.dataInit.number.value ? item.dataInit.number.value : '';
+            tempObj['big_bet'] = item.dataInit && item.dataInit.big && item.dataInit.big.value ? parseFloat(item.dataInit.big.value).toFixed(2) : 0.00;
+            tempObj['small_bet'] = item.dataInit && item.dataInit.small && item.dataInit.small.value ? parseFloat(item.dataInit.small.value).toFixed(2)  : 0;
+            tempObj['3a_bet'] = item.dataInit && item.dataInit._3a && item.dataInit._3a.value ? parseFloat(item.dataInit._3a.value).toFixed(2)  : 0;
+            tempObj['3c_bet'] = item.dataInit && item.dataInit._3c && item.dataInit._3c.value ? parseFloat(item.dataInit._3c.value).toFixed(2)  : 0;
+            tempObj['box'] = item.dataInit && item.dataInit.bet_type && item.dataInit.bet_type.box_value ? 'on' : 'off';
+            tempObj['ibox'] = item.dataInit && item.dataInit.bet_type && item.dataInit.bet_type.i_box_value ? 'on' : 'off';
+            tempObj['reverse'] = item.dataInit && item.dataInit.bet_type && item.dataInit.bet_type.reverse_value ? 'on' : 'off';
+            tempObj['amount'] = item.dataInit.amount.value ? parseFloat(item.dataInit.amount.value).toFixed(2)  : 0;
+            //{"number":"1112","big_bet":"10000","small_bet":"10000","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","amount":"792"}
+           if(item.dataInit && item.dataInit.number && item.dataInit.number.value)
+               options.push(tempObj);
+        })
+
         console.log('_bettingInitData:',_bettingInitData);
         console.log('_bettingInputsDataParent:',_bettingInputsDataParent);
+        console.log('game_dates:',game_dates);
+        console.log('options:',options);
 
 
-     ///  let dataSubmit = {customer_id:"1", enterprise_id:"11", datesGamesData:bettingInitData, InputsData:bettingInputsDataParent}
-      //  _lotterySubmitRecords(dataSubmit)
+
+       // return false;
+
+       let dataSubmit = {member_id:4, merchant_id:1, game_dates, options}
+      //  _lotterySubmitRecords(dataSubmit);
+
+         dispatch(lotterySubmit(dataSubmit, response =>{
+                
+            if(response.statusCode  == 201  || response.statusCode  == 200 ){
+                openModal();
+
+            }else {
+
+                
+            }
+
+          }));
+
+    //    const lotterySubmitRecords = (dataSubmit) => {
+            // console.log('dataSubmit',dataSubmit);
+            //  dispatch(lotterySubmit(dataSubmit, response =>{
+                
+            //    console.log('callBack:',response);
+
+            //  }));
+        //  }
       
 
     } 
@@ -200,6 +307,9 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
       }
 
 
+    
+
+
     return(
         <>
         <ToastContainer />
@@ -248,7 +358,10 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                     </td>
                     <td colSpan="2">
                             <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> 
-                            {/* <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button> */}
+                             {/* <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
+                             {/* <button onClick={openModal}  type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
+                            {/* <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
+
                             {/* <button  onClick={e => { showModal();  }}> show Modal </button> */}
                             
                     </td>
@@ -488,6 +601,118 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
          </div> */}
         {/* MODAL F */}
         {/* End Modal */}
+
+
+        <Modal
+                  isOpen={modalIsOpen}
+                  onAfterOpen={afterOpenModal}
+                  onRequestClose={closeModal}
+                  style={customStyles}
+                  contentLabel="Example Modal"
+              >   
+                
+                <div className="modal-content card">
+                            <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
+                                <h5 className="modal-title" id="bettingModal">
+                                {t('Bet_Successful')}
+                                </h5>
+                            </div>
+                            <div className="modal-body" >
+                                <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
+                                    <div class="row">
+                                        <div class="col-8 col-sm-8">
+                                            <p>{t('Total')}</p>
+                                            <p>{t('Accepted_bet_amount')}</p>
+                                            <p>{t('Rebate')}</p>
+                                            <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
+                                        </div>
+                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
+                                            <p>{totalAmount}.00</p>
+                                            <p>165.00</p>
+                                            <p>35.00</p>
+                                            <p style={{fontWeight:'bold'}}>148.50</p>
+                                        </div>
+                                    </div>
+                                    <hr></hr>
+                                    <div><h5>Rejected Bet</h5></div>
+                                    <div className="row text-center table-responsive " style={{height:"250px"}}>
+                                    <table className="table table-bordered table-striped mb-0">
+                                        <tbody style={{fontWeight:'bold'}}>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('M')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('P')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-15</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('P')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-15</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('M')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('P')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-15</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('M')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('M')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">27/09</th>
+                                            <td>{t('M')}</td>
+                                            <td>1234</td>
+                                            <td>{t('Big')}</td>
+                                            <td className="text-danger">-20</td>
+                                            <td className="text-danger">{t('Over_Limit')}</td>
+                                            </tr>
+                                           
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style={{justifyContent:'center'}}>
+                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={closeModal}>OK</button>
+                            </div>
+                        </div>
+            </Modal>
 </section>
 </>
     )
