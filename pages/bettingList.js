@@ -5,6 +5,8 @@ import Header from '../components/common/header';
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import styles from '../styles/Home.module.css'
+import ListBanner from '../components/BettingList/Banner';
+import ListTable from '../components/BettingList/BettingListTable';
 
 export default function BettingList({datauser}) {
 
@@ -26,30 +28,14 @@ export default function BettingList({datauser}) {
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
       <Header datauser={datauser}/>
-      {/* <div>
-        <section class="custom-breadcrumb">
-            <div class="container">
-                <div class="breadcrumb-heading">
-                    <h1>BETTING LIST</h1>
-                </div>
-                <div class="breadcrumb-list">
-                    <ul>
-                        <li>
-                            <a href="#">Home</span></a>
-                        </li>
-                        <li><span>Betting List</span></li>
-                    </ul>
-                </div>
-            </div>
-           
-        </section>
-      </div> */}
-      
+      <ListBanner/>
+      <ListTable/>
       <Footer/>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
         <script src="assets/js/owl.carousel.js"></script>
         <script src="assets/js/main.js"></script>
+        
       {/*--Footer--*/}
     </>
   )
