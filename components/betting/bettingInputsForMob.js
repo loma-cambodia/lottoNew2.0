@@ -1,7 +1,20 @@
 import React, { useState,useEffect } from "react";
 
 const BettingInputsForMob = ({ item,activeGame }) => {
-    
+
+    let localStateInitData = item.dataInit;
+    const [localStateData, setLocalStateData] = useState(localStateInitData);
+    const [pageLoadCount, setPageLoadCount] = useState(1);
+
+    /////////////////////////////////////
+
+    const [curserPointer, setCurserPointer] = React.useState('');
+    const [numberValue4D, setNumberValue4D] = React.useState('');
+    const [numberValue3D, setNumberValue3D] = React.useState('');
+    const [bigValue, setBigValue] = React.useState('');
+    const [smallValue, setSmallValue] = React.useState('');
+    const [a3Value, setA3Value] = React.useState('');
+    const [c3Value, setC3Value] = React.useState('');
     const [activeTypeGame, setActiveTypeGame] = useState(false);
 
     useEffect(() => {
@@ -18,19 +31,6 @@ const BettingInputsForMob = ({ item,activeGame }) => {
         }
         allClearData();
     }
-
-    const [curserPointer, setCurserPointer] = React.useState('');
-    const [numberValue4D, setNumberValue4D] = React.useState('');
-    const [numberValue3D, setNumberValue3D] = React.useState('');
-    const [bigValue, setBigValue] = React.useState('');
-    const [smallValue, setSmallValue] = React.useState('');
-    const [a3Value, setA3Value] = React.useState('');
-    const [c3Value, setC3Value] = React.useState('');
-  
-    let localStateInitData = item.dataInit;
-    const [localStateData, setLocalStateData] = useState(localStateInitData);
-
-    const [pageLoadCount, setPageLoadCount] = useState(1);
 
     const setAllData = (getValue) => {
         if(activeGame == false){
@@ -157,8 +157,9 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                threeDAmount = true;
         }
         return threeDAmount;
-   } 
+    } 
 
+    ////////////////////////////////////////
     const numberInputHandler = (getValue, operationField) => {
         let localStateDataForChange = item.dataInit;
     

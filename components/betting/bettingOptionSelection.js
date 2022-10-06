@@ -91,7 +91,10 @@ let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}},
 
 let dateAndGameOptionData = [1,2,3,4];
 
-const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
+const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit}) => {
+    let betLimit = _betLimit;
+    
+    
     const { t } = useTranslation();
     const dispatch = useDispatch();
     let dateAndGameOptionData = [];
@@ -333,21 +336,23 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
                 <tr>
                     <th className="border-0"></th>
                     <th className="border-0">{t('Number')}</th>
-                    <th className="border-0">{t('Big_Bet')}</th>
-                    <th className="border-0">{t('Small_Bet')}</th>
-                    <th className="border-0">{t('3')} {t('A')}</th>
-                    <th className="border-0">{t('3')} {t('C')}</th>
-                    <th className="border-0">{t('Bet_Type')}</th>
-                    <th className="border-0">{t('Amount')}</th>
+                    <th className="border-0 text-end">{t('Big_Bet')}</th>
+                    <th className="border-0 text-end">{t('Small_Bet')}</th>
+                    <th className="border-0 text-end">{t('3')}{t('A')}</th>
+                    <th className="border-0 text-end">{t('3')}{t('C')}</th>
+                    <th className="border-0 text-center">{t('Bet_Type')}</th>
+                    <th className="border-0 text-end">{t('Amount')}</th>
                     <th className="border-0"></th>
                 </tr>
                 
-                {bettingInputsDataParent.map((item) => (<BettingInputs key={'bettingInputs'+item.name} 
+                {bettingInputsDataParent.map((item,ids) => (<BettingInputs key={'bettingInputs'+item.name} 
+                ids={ids}
                                                          item={item} 
                                                          _updateBettingInputsData = {updateBettingInputsData}
                                                          _loadpageCounter = {loadpageCounter}
                                                          _setLoadpageCounter = {setLoadpageCounter}
                                                          _gameCount={gameCount}
+                                                         _limit={betLimit}
                  />) )}
                 <tr>
                     <td colSpan="6">

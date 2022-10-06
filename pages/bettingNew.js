@@ -6,14 +6,17 @@ import BettingOptionSelection from '../components/betting/bettingOptionSelection
 import {getBettingDates,lotterySubmit} from '../store/actions/bettingActions';
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 import BettingOptionSelectionForMob from '../components/betting/bettingOptionSelectionForMob';
+import styles from '../styles/Home.module.css'
 
+import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
 export default function BettingNew({datauser}) {
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
        useEffect(() => {
+        dispatch(userTransactionDetails());
           dispatch(getBettingDates());
       },[dispatch]);
       const lotterySubmitRecords = (setData) => {
@@ -22,7 +25,15 @@ export default function BettingNew({datauser}) {
           console.log('callBack:',response);
         }));
       }
+
+      //BET LIMIT-----
+      const state = useSelector(state => state);
+      state.auth.transactions
+      let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
+      let betLimit = transactions && transactions.bet_limit && transactions.bet_limit.limit_settings ? transactions.bet_limit.limit_settings : {};
+      // -------------
       let bettingDatesStore = useSelector(state => state.betting.dates);
+      
   return (
     <>
       <Head>
@@ -34,6 +45,7 @@ export default function BettingNew({datauser}) {
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
       <Header datauser={datauser}/>
+<<<<<<< HEAD
 
       <BrowserView>
         <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _lotterySubmitRecords={lotterySubmitRecords}/> 
@@ -51,5 +63,22 @@ export default function BettingNew({datauser}) {
     {/*--Footer--*/}
 </>
       
+=======
+        <div className={styles.device_detect_for_desktop}>
+          <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
+        </div> 
+        <div className="container">
+            <div className={styles.device_detect_for_mobile}> 
+              <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore}/>
+            </div>
+        </div>
+      <Footer/>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/owl.carousel.js"></script>
+        <script src="assets/js/main.js"></script>
+      {/*--Footer--*/}
+    </>
+>>>>>>> 51d41aa6bec089f60f3488b787a585ee3382ffa5
   )
 }
