@@ -2,8 +2,10 @@ import React, { useState,useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
 
-const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLoadpageCounter,_gameCount }) => {
-
+const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLoadpageCounter,_gameCount,_limit}) => {
+    let betLimit = _limit;
+    let limit = betLimit;
+    console.log("DATA-BETTING:",limit)
     const { t } = useTranslation();
     const [active, setActive] = useState(false);
     let localStateInitData = item.dataInit;
@@ -144,10 +146,67 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: changeValue, reverse_disabled: 0 } };
 
         } else if (operationField == 'big') {
+            if (!getValue.match("^[0-9]*$")) {
+                return false;
+            }
+            {limit.map(i =>{
+                if(getValue > i.big_max_bet ){
+                    let max = i.big_max_bet[0]
+                    getValue = max;
+                    return false;
+                }
+                if(getValue < i.big_min_bet ){
+                    let min = i.big_min_bet[0]
+                    getValue = min;
+                    return false;
+                }
+               
+            })}
+            // if(getValue > limit.big_max_bet){
+            //     return false;
+            // }
+            
+           
             localStateDataForChange = { ...localStateDataForChange, big: { value: getValue, disabled: 0 } };
         } else if (operationField == 'small') {
+            if (!getValue.match("^[0-9]*$")) {
+                return false;
+            }
+            {limit.map(i =>{
+                if(getValue > i.small_max_bet ){
+                    console.log("XXXXXXXX")
+                    let max = i.small_max_bet[0]
+                    getValue = max;
+                    return false;
+                }
+                if(getValue < i.small_min_bet ){
+                    console.log("!!!!!!!!")
+                    let min = i.small_min_bet[0]
+                    getValue = min;
+                    return false;
+                }
+               
+            })}
             localStateDataForChange = { ...localStateDataForChange, small: { value: getValue, disabled: 0 } };
         } else if (operationField == '_3a') {
+            if (!getValue.match("^[0-9]*$")) {
+                return false;
+            }
+            {limit.map(i =>{
+                if(getValue > i.three_a_max_bet ){
+                    console.log("XXXXXXXX")
+                    let max = i.three_a_max_bet[0]
+                    getValue = max;
+                    return false;
+                }
+                if(getValue < i.three_a_min_bet ){
+                    console.log("!!!!!!!!")
+                    let min = i.three_a_min_bet[0]
+                    getValue = min;
+                    return false;
+                }
+               
+            })}
             localStateDataForChange = { ...localStateDataForChange, _3a: { value: getValue, disabled: 0 } };
 
             let number_value = localStateDataForChange['number']['value'];
@@ -173,6 +232,24 @@ const BettingInputs = ({ item, _updateBettingInputsData, _loadpageCounter,_setLo
             }
 
         } else if (operationField == '_3c') {
+            if (!getValue.match("^[0-9]*$")) {
+                return false;
+            }
+            {limit.map(i =>{
+                if(getValue > i.three_c_max_bet ){
+                    console.log("XXXXXXXX")
+                    let max = i.three_c_max_bet[0]
+                    getValue = max;
+                    return false;
+                }
+                if(getValue < i.three_c_min_bet ){
+                    console.log("!!!!!!!!")
+                    let min = i.three_c_min_bet[0]
+                    getValue = min;
+                    return false;
+                }
+               
+            })}
             localStateDataForChange = { ...localStateDataForChange, _3c: { value: getValue, disabled: 0 } };
 
 
@@ -347,7 +424,7 @@ useEffect(() => {
                 /> */}
                 <input type="number" className="form-control-custom"
                     value={localStateInitData && localStateInitData.number && localStateInitData.number.value ? localStateInitData.number.value : ""}
-                    maxLength={4}
+                    maxLength={limit.big_min_bet}
                     minLength={3}
                     onChange={(e) => numberInputHandler(e.target.value, 'number')}
                 />

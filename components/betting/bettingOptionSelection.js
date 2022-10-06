@@ -75,7 +75,11 @@ let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}},
 
 let dateAndGameOptionData = [1,2,3,4];
 
-const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
+const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit}) => {
+    let betLimit = _betLimit;
+    console.log("DATA-BETTING:",betLimit)
+    
+    
     const { t } = useTranslation();
     let dateAndGameOptionData = [];
     
@@ -213,6 +217,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                                          _loadpageCounter = {loadpageCounter}
                                                          _setLoadpageCounter = {setLoadpageCounter}
                                                          _gameCount={gameCount}
+                                                         _limit={betLimit}
                  />) )}
                 <tr>
                     <td colSpan="6">
