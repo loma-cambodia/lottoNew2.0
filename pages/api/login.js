@@ -34,7 +34,6 @@ async function handler(req, res) {
              "merchant_id":  req.body.enterprise_id,
              "language":  req.body.language,
          }
-
         
         const userData = await fetch('http://api.kk-lotto.com:8080/api/member-login', {
             method: 'POST',
