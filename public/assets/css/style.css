@@ -2589,6 +2589,11 @@ span.name-gp {
 .sd-text-part .clearfix {
   margin-bottom: 15px;
 }
+@media (max-width:1400px) {
+  .wb-text-part .slider-big-text {
+    font-size: 90px;
+}
+}
 @media (max-width:1200px) {
   .wb-text-part .slider-big-text {
       font-size: 60px;
