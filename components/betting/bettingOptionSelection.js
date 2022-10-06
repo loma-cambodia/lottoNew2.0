@@ -75,7 +75,11 @@ let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}},
 
 let dateAndGameOptionData = [1,2,3,4];
 
-const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
+const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit}) => {
+    let betLimit = _betLimit;
+    console.log("DATA-BETTING:",betLimit)
+    
+    
     const { t } = useTranslation();
     let dateAndGameOptionData = [];
     
@@ -138,6 +142,14 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
 
     const lotterySubmitRecordsCallAction = () => {
+        console.log('lotterySubmitRecordsCallAction');
+        let _bettingInitData = bettingInitData;
+        let _bettingInputsDataParent = bettingInputsDataParent;
+
+        console.log('_bettingInitData:',_bettingInitData);
+        console.log('_bettingInputsDataParent:',_bettingInputsDataParent);
+
+
      ///  let dataSubmit = {customer_id:"1", enterprise_id:"11", datesGamesData:bettingInitData, InputsData:bettingInputsDataParent}
       //  _lotterySubmitRecords(dataSubmit)
       
@@ -173,6 +185,23 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
             totalAmount += parseInt(item.dataInit.amount.value)
         }
       });
+
+
+      const showTostyFy = () => {
+
+         toast.error('Please Fill number,bet amount first !', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+
+        });
+
+
+      }
 
 
     return(
@@ -213,15 +242,18 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                                          _loadpageCounter = {loadpageCounter}
                                                          _setLoadpageCounter = {setLoadpageCounter}
                                                          _gameCount={gameCount}
+                                                         _limit={betLimit}
                  />) )}
                 <tr>
                     <td colSpan="6">
                         {t('Total_Stake')} {totalAmount}
                     </td>
-                    <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>{t('clear')}</button></td>
+                    <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>{t('clear')}</button>
+                       {/* <button type="button" className="btn-custom-curve1 me-1" onClick={showTostyFy}>test </button> */}
+                    </td>
                     <td colSpan="2">
-                            {/* <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> */}
-                            <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button>
+                            <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> 
+                            {/* <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button> */}
                             {/* <button  onClick={e => { showModal();  }}> show Modal </button> */}
                             
                     </td>

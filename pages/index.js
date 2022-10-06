@@ -33,7 +33,7 @@ const state = useSelector(state => state);
 
       let winnerResultDetails = state && state.home && state.home.winnerResultDetails ? state.home.winnerResultDetails : [];
 
-
+  
 
 
 
