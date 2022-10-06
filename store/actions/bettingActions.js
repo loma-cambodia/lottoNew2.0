@@ -1,11 +1,12 @@
-import axios from 'axios'
+import axios from 'axios';
+let API_BASEURL = '';
 
 
   export const getBettingDates = () => async dispatch => {
     
     try{
     //    const res = await axios.get(`http://uat.kk-lotto.com/b2b/api/dates`);
-    const res = await axios.get(`http://api.kk-lotto.com:8080/api/dates/all`);
+    const res = await axios.get(`http://api.kk-lotto.com:8080/frontend-api/dates/all`);
         console.log('res:',res);
         dispatch( {
             type: "GET_DATES",
@@ -30,7 +31,7 @@ export const lotterySubmit = (sendData, callback) => async dispatch => {
         const headers = {
             'Content-Type': 'application/json'
           }
-        const res = await axios.post(`http://api.kk-lotto.com:8080/api/tickets`,sendData,{
+        const res = await axios.post(`http://api.kk-lotto.com:8080/frontend-api/tickets`,sendData,{
             headers: headers
           });
         console.log('res:tickets:',res);

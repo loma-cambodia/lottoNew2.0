@@ -12,6 +12,9 @@ import Banner from '../components/betting/banner';
 import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
 export default function BettingNew({datauser}) {
 
+
+  console.log('BettingNew:datauser:',datauser);
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
@@ -19,16 +22,18 @@ export default function BettingNew({datauser}) {
         dispatch(userTransactionDetails());
           dispatch(getBettingDates());
       },[dispatch]);
-      const lotterySubmitRecords = (setData) => {
-        console.log('lotterySubmitRecords',setData);
-        dispatch(lotterySubmit( setData, response =>{
-          console.log('callBack:',response);
-        }));
-      }
 
-      //BET LIMIT-----
+      useEffect(() => {
+        console.log('111111111111111');
+        dispatch({
+          type: "GET_LOGIN_DETAILS",
+          payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
+      })
+      }, [datauser])
+
       const state = useSelector(state => state);
-      state.auth.transactions
+
+
       let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
       let betLimit = transactions && transactions.bet_limit && transactions.bet_limit.limit_settings ? transactions.bet_limit.limit_settings : {};
       // -------------
