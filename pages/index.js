@@ -14,6 +14,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
 export default function Home({datauser}) {
+
+
   const [active, setActive] = useState(false);
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -23,6 +25,17 @@ useEffect(() => {
   dispatch(userTransactionDetails());
   dispatch(winnerResultDetails2());
 }, [])
+
+
+
+useEffect(() => {
+  console.log('index:datauser:',datauser);
+
+  dispatch({
+    type: "GET_LOGIN_DETAILS",
+    payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
+})
+}, [datauser])
 
 
 const state = useSelector(state => state);

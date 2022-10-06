@@ -34,9 +34,9 @@ function MyApp({ Component, pageProps,user }) {
 
 
 
-  const [data, setData] = useState([{abc:'1'}])
+  const [data, setData] = useState([{}])
   //const [isLoading, setLoading] = useState(false)
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
   //  setLoading(true)
