@@ -10,11 +10,11 @@ const Announcement = () => {
      {/*--Announcement--*/}
   <section className="announcement ">
     <div className="container">
-        <div className="news-wrapper d-inline-flex align-item-center">
+        <div className="news-wrapper d-inline-flex align-item-center" id="myDIV">
             <div className="announcement-block-icon">
                 <div className="annoncement-icon">
                     <span className="icon-img-announcement"><img src="assets/images/icons/announcement-icon-white.png" alt="" className="img-fluid"/></span>
-                    <span class="text-announcement"><span class="announcement-text">Announcement</span> <span class="toggle-icon-news" onclick="myFunction()" type="button"><i className="fa fa-plus"></i></span></span>
+                    <span class="text-announcement"><span class="announcement-text">Announcement</span> <span class="toggle-icon-news" onClick={() => myFunction() } type="button">+</span></span>
                 </div>
             </div>
             <div className="marque-div">
