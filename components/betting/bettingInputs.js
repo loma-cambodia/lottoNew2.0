@@ -5,11 +5,11 @@ import { useTranslation } from "react-i18next";
 const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_setLoadpageCounter,_gameCount,_limit}) => {
     let betLimit = _limit;
     let limit = betLimit;
+    
     console.log("DATA-BETTING:",limit)
     const { t } = useTranslation();
     const [active, setActive] = useState(false);
     let localStateInitData = item.dataInit;
-
 
     const calculate3DAmountEnable = (getValue,operationField,) =>{
         let threeDAmount = false;
@@ -39,6 +39,12 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         }
         return threeDAmount;
    } 
+   const hideError = (ids) => {
+    $("#ErrorBig"+ids).html('');
+    $("#ErrorSmall"+ids).html('');
+    $("#ErrorC"+ids).html('');
+    $("#ErrorA"+ids).html('');
+   }
 // console.log('sushil', limit[0].small_max_bet);
     const numberInputHandler = (getValue, operationField,idas) => {
         let localStateDataForChange ={ ...item.dataInit};
@@ -150,15 +156,16 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
+
             
             if(getValue > limit[0].big_max_bet ){
                 $("#ErrorBig"+idas).html('Max Bet is '+limit[0].big_max_bet);
                 getValue = limit[0].big_max_bet
-                
                
             }else if(getValue < limit[0].big_min_bet ){
                 getValue = limit[0].big_min_bet
                 $("#ErrorBig"+idas).html('Minimum Bet is '+limit[0].big_min_bet);
+                
             }
             else{
                 $("#ErrorBig"+idas).html('');
@@ -457,6 +464,7 @@ const  checkPalindrome = (string) =>{
 useEffect(() => {
     numberInputHandler('', '');
   },[_gameCount]);
+  
 
     return (
         
@@ -481,8 +489,11 @@ useEffect(() => {
                 
             </td>
             <td>
+              
                 <input type="text" className="form-control-custom"
                     onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
+                    id={"BigText"+ids}
+                    onBlur={(i) => hideError(ids)}
                     maxLength={4}
                     minLength={3}
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
@@ -492,6 +503,8 @@ useEffect(() => {
             </td>{/* big*/}
             <td><input type="text" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, 'small', ids)}
+                id={"SmallText"+ids}
+                onBlur={(i) => hideError(ids)}
                 maxLength={4}
                 minLength={3}
                 value={localStateInitData && localStateInitData.small && localStateInitData.small.value ? localStateInitData.small.value : ""}
@@ -503,6 +516,8 @@ useEffect(() => {
 
             <td><input type="text" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, '_3a', ids)}
+                id={"AText"+ids}
+                onBlur={(i) => hideError(ids)}
                 maxLength={4}
                 minLength={3}
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
@@ -512,6 +527,8 @@ useEffect(() => {
             </td>{/* 3A*/}
             <td><input type="text" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, '_3c', ids)}
+                id={"CText"+ids}
+                onBlur={(i) => hideError(ids)}
                 maxLength={4}
                 minLength={3}
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
