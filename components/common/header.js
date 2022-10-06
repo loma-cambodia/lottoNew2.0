@@ -114,10 +114,13 @@ const Header = ({datauser}) => {
                             <Link href="/bettingNew">{t('Betting')}</Link>
                               {/* <a  href="#">Betting</a> */}
                             </li>
-                            <li>
-                            <Link href="/transaction">{t('History')}</Link>
-                              {/* <a href="#" >History</a> */}
-                            </li>
+                            <li class="dropdown-desktop">
+                            <a href="#" >{t('History')}</a>
+                            <ul class="sub-menu-desktop">
+                                <li><Link href="/bettingNew">{t('Betting')}</Link></li>
+                                <li><Link href="/bettingList">{t('History')}</Link></li>
+                            </ul>
+                          </li>
                             <li>
                               <Link href="/results" >{t('Result')}</Link>
                             </li>

@@ -161,8 +161,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 getValue = limit[0].big_max_bet
                
             }else if(getValue < limit[0].big_min_bet ){
-                getValue = limit[0].big_min_bet
                 $("#ErrorBig"+idas).html('Bet should not be less than '+limit[0].big_min_bet);
+                getValue = ''
                 
             }
             else{
@@ -180,7 +180,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }else if(getValue < limit[0].small_min_bet ){
 
                 $("#ErrorSmall"+idas).html('Bet should not be less than'+limit[0].small_min_bet);
-                getValue = limit[0].small_min_bet
+                getValue = ''
             }
             else{
                 $("#ErrorSmall"+idas).html('');
@@ -196,7 +196,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 getValue = limit[0].three_a_max_bet
             }else if(getValue < limit[0].three_a_min_bet ){
                 $("#ErrorA"+idas).html('Bet should not be less than'+limit[0].three_a_min_bet);
-                getValue = limit[0].three_a_min_bet
+                getValue = ''
             }
             else{
                 $("#ErrorA"+idas).html('');
@@ -235,7 +235,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 getValue = limit[0].three_c_max_bet
             }else if(getValue < limit[0].three_c_min_bet ){
                 $("#ErrorC"+idas).html('Bet should not be less than'+limit[0].three_c_min_bet);
-                getValue = limit[0].three_c_min_bet
+                getValue = ''
             }
             else{
                 $("#ErrorC"+idas).html('');
