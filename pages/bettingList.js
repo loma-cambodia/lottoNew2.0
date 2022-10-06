@@ -26,7 +26,25 @@ export default function BettingList({datauser}) {
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
       <Header datauser={datauser}/>
-        <div className='text-center'>HELLOO</div>
+      {/* <div>
+        <section class="custom-breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-heading">
+                    <h1>BETTING LIST</h1>
+                </div>
+                <div class="breadcrumb-list">
+                    <ul>
+                        <li>
+                            <a href="#">Home</span></a>
+                        </li>
+                        <li><span>Betting List</span></li>
+                    </ul>
+                </div>
+            </div>
+           
+        </section>
+      </div> */}
+      
       <Footer/>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
