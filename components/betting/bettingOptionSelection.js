@@ -233,7 +233,7 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
 
 
 
-       // return false;
+        return false;
 
        let dataSubmit = {member_id:4, merchant_id:1, game_dates, options}
       //  _lotterySubmitRecords(dataSubmit);

@@ -45,25 +45,6 @@ export default function BettingNew({datauser}) {
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
       <Header datauser={datauser}/>
-<<<<<<< HEAD
-
-      <BrowserView>
-        <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _lotterySubmitRecords={lotterySubmitRecords}/> 
-      </BrowserView>
-     
-      <MobileView className="container">
-        <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore}/>
-      </MobileView> 
-
-     <Footer/>
-      <script src="assets/js/jquery.min.js"></script>
-      <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
-      <script src="assets/js/owl.carousel.js"></script>
-      <script src="assets/js/main.js"></script>
-    {/*--Footer--*/}
-</>
-      
-=======
         <div className={styles.device_detect_for_desktop}>
           <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
         </div> 
@@ -79,6 +60,5 @@ export default function BettingNew({datauser}) {
         <script src="assets/js/main.js"></script>
       {/*--Footer--*/}
     </>
->>>>>>> 51d41aa6bec089f60f3488b787a585ee3382ffa5
   )
 }
