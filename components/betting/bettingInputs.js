@@ -146,16 +146,20 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: changeValue, reverse_disabled: 0 } };
 
         } else if (operationField == 'big') {
+            
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
+            
             if(getValue > limit[0].big_max_bet ){
                 $("#ErrorBig"+idas).html('Max Bet is '+limit[0].big_max_bet);
-                return false;
+                getValue = limit[0].big_max_bet
+                
+               
             }else if(getValue < limit[0].big_min_bet ){
+                getValue = limit[0].big_min_bet
                 $("#ErrorBig"+idas).html('Minimum Bet is '+limit[0].big_min_bet);
             }
-            
             else{
                 $("#ErrorBig"+idas).html('');
             }
@@ -184,9 +188,11 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
             if(getValue > limit[0].small_max_bet ){
                 $("#ErrorSmall"+idas).html('Max Bet is '+limit[0].small_max_bet);
-                return false;
+                getValue = limit[0].small_max_bet
             }else if(getValue < limit[0].small_min_bet ){
+
                 $("#ErrorSmall"+idas).html('Minimum Bet is '+limit[0].small_min_bet);
+                getValue = limit[0].small_min_bet
             }
             else{
                 $("#ErrorSmall"+idas).html('');
@@ -212,9 +218,10 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
             if(getValue > limit[0].three_a_max_bet ){
                 $("#ErrorA"+idas).html('Max Bet is '+limit[0].three_a_max_bet);
-                return false;
+                getValue = limit[0].three_a_max_bet
             }else if(getValue < limit[0].three_a_min_bet ){
                 $("#ErrorA"+idas).html('Minimum Bet is  '+limit[0].three_a_min_bet);
+                getValue = limit[0].three_a_min_bet
             }
             else{
                 $("#ErrorA"+idas).html('');
@@ -264,9 +271,10 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
             if(getValue > limit[0].three_c_max_bet ){
                 $("#ErrorC"+idas).html('Max Bet is '+limit[0].three_c_max_bet);
-                return false;
+                getValue = limit[0].three_c_max_bet
             }else if(getValue < limit[0].three_c_min_bet ){
                 $("#ErrorC"+idas).html('Minimum Bet is '+limit[0].three_c_min_bet);
+                getValue = limit[0].three_c_min_bet
             }
             else{
                 $("#ErrorC"+idas).html('');
@@ -314,6 +322,10 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
 
         } else if (operationField == 'delete') {
+            $("#ErrorBig"+idas).html('');
+            $("#ErrorSmall"+idas).html('');
+            $("#ErrorC"+idas).html('');
+            $("#ErrorA"+idas).html('');
             localStateDataForChange = { ...localStateDataForChange, number: { value: "", disabled: 0 } };
             localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 0 } };
             localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 0 } };
