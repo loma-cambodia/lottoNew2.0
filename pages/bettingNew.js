@@ -19,8 +19,10 @@ export default function BettingNew({datauser}) {
         dispatch(userTransactionDetails());
           dispatch(getBettingDates());
       },[dispatch]);
-      const lotterySubmitRecords = () => {
+      const lotterySubmitRecords = (setData) => {
+        console.log('lotterySubmitRecords',setData);
         dispatch(lotterySubmit( setData, response =>{
+          console.log('callBack:',response);
         }));
       }
 

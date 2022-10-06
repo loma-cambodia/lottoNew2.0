@@ -25,22 +25,14 @@ const Header = ({datauser}) => {
    if(auth && auth.lang){
     language = auth.lang;
    }else {
-    language = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.name ? datauser.user.data.language.name : 'en'
+    language = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
    }
 
   const { t } = useTranslation();
   const [langType, setLangType] = useState(language);
- //const [langType, setLangType] = useState('ch');
-  // useEffect(() => {
-  //   let currentLang = localStorage.getItem('lang');
-  //   i18n.changeLanguage(currentLang);
-  //  // setLangType(currentLang);
-  // }, [langType])
-
+ 
   useEffect(() => {
-   // let currentLang = localStorage.getItem('lang');
     i18n.changeLanguage(language);
-   // setLangType(currentLang);
   }, [language])
 
 
@@ -48,9 +40,6 @@ const Header = ({datauser}) => {
   const changeLangm = (l) => {
     return () => {
         i18n.changeLanguage(l);
-        //localStorage.setItem('lang', l);
-      //  setLangType(l);
-
       dispatch( {
         type: "CHANGE_LANGUAGE",
         payload: l

@@ -1,9 +1,11 @@
 import axios from 'axios'
 
+
   export const getBettingDates = () => async dispatch => {
     
     try{
-        const res = await axios.get(`http://uat.kk-lotto.com/b2b/api/dates`);
+    //    const res = await axios.get(`http://uat.kk-lotto.com/b2b/api/dates`);
+    const res = await axios.get(`http://api.kk-lotto.com:8080/api/dates/all`);
         console.log('res:',res);
         dispatch( {
             type: "GET_DATES",
@@ -20,25 +22,36 @@ import axios from 'axios'
 }
 
 export const lotterySubmit = (sendData, callback) => async dispatch => {
+
+    console.log('lotterySubmit');
+   // return false;
     
     try{
-        const res = await axios.post(`http://uat.kk-lotto.com/b2b/api/lottery-store`,sendData);
-        console.log('res:',res);
-        dispatch( {
-            type: "GET_DATES2",
-            payload: res.data.data
-        });
+        const headers = {
+            'Content-Type': 'application/json'
+          }
+        const res = await axios.post(`http://api.kk-lotto.com:8080/api/tickets`,sendData,{
+            headers: headers
+          });
+        console.log('res:tickets:',res);
+        // dispatch( {
+        //     type: "GET_DATES2",
+        //     payload: res.data.data
+        // });
 
-        return callback(res.data);
+        //return callback(res.data);
+        return callback({'message': 'in catch condition', statusCode:201});
 
     }
     catch(e){
-        dispatch( {
-            type: "USERS_ERROR",
-            payload: console.log(e),
-        });
+        // dispatch( {
+        //     type: "USERS_ERROR",
+        //     payload: console.log(e),
+        // });
 
        // return callback(res.data);
+       console.log('catch:USERS_ERROR',e);
+       return callback({'message': 'Problem in server,try after some time', statusCode:401});
     }
 
 }
