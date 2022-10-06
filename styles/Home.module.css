@@ -243,7 +243,12 @@ footer.logo {
 
 .errorJpg img{
 }
-
+.device_detect_for_desktop {
+  display: block;
+}
+.device_detect_for_mobile {
+  display: none;
+}
 @media (max-width:767px){
 .errorJpg img{
   height: 50vh!important;
@@ -251,13 +256,11 @@ footer.logo {
 }
 }
 
-@media screen and (max-width: 480px) {
+@media(max-width:580px) {
   .device_detect_for_desktop {
     display: none;
   }
-}
-@media screen and (min-width: 480px) {
   .device_detect_for_mobile {
-    display: none;    
+    display: block;
   }
 }
