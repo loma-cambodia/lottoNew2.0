@@ -10,6 +10,7 @@ import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detec
 import BettingOptionSelectionForMob from '../components/betting/bettingOptionSelectionForMob';
 
 export default function BettingNew({datauser}) {
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
@@ -20,7 +21,11 @@ export default function BettingNew({datauser}) {
         dispatch(lotterySubmit( setData, response =>{
         }));
       }
+      
+const state = useSelector(state => state);
+      console.log("BETTING->",state.auth)
       let bettingDatesStore = useSelector(state => state.betting.dates);
+      
   return (
     <>
       <Head>
@@ -32,7 +37,7 @@ export default function BettingNew({datauser}) {
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
       <Header datauser={datauser}/>
-
+    
       <BrowserView>
         <BettingOptionSelection _bettingDatesStore={bettingDatesStore}/> 
       </BrowserView>

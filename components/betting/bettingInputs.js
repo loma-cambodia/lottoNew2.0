@@ -345,7 +345,7 @@ useEffect(() => {
                     minLength={3}
                     onChange={(e) => numberInputHandler(e.target.value, 'number')}
                 /> */}
-                <input type="text" className="form-control-custom"
+                <input type="number" className="form-control-custom"
                     value={localStateInitData && localStateInitData.number && localStateInitData.number.value ? localStateInitData.number.value : ""}
                     maxLength={4}
                     minLength={3}
@@ -354,22 +354,22 @@ useEffect(() => {
                 
             </td>
             <td>
-                <input type="text" className="form-control-custom"
+                <input type="number" className="form-control-custom"
                     onChange={(e) => numberInputHandler(e.target.value, 'big')}
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
                     disabled={localStateInitData && localStateInitData.big && localStateInitData.big.disabled ? true : false}
                 /></td>{/* big*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="number" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, 'small')}
                 value={localStateInitData && localStateInitData.small && localStateInitData.small.value ? localStateInitData.small.value : ""}
                 disabled={localStateInitData && localStateInitData.small && localStateInitData.small.disabled ? true : false}
             /></td>{/* small*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="number" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, '_3a')}
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
             /></td>{/* 3A*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="number" className="form-control-custom"
                 onChange={(e) => numberInputHandler(e.target.value, '_3c')}
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
