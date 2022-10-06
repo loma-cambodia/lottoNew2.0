@@ -18,6 +18,11 @@ const Header = ({datauser}) => {
   
    const dispatch = useDispatch();
    let auth = useSelector(state => state.auth);
+
+
+   console.log('Header:auth:',auth);
+
+
    let language = '';
 
    
