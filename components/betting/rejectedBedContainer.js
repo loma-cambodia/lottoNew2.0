@@ -7,7 +7,7 @@ else
     return (
         <>
         <div><h5>Rejected Bet</h5></div>
-        <div className="row text-center table-responsive " style={{height:"250px"}}>
+        <div className="row text-center table-responsive">
         <table className="table table-bordered table-striped mb-0">
         <tbody style={{fontWeight:'bold'}}>
             {dataRecords && dataRecords.map((item,i) => {

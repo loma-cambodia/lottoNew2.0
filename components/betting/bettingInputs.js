@@ -344,16 +344,16 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
          // rollingNumber
 
      if(getRow && getRow.big && getRow.big.value) 
-      total_sum += parseInt(getRow.big.value);
+      total_sum += parseFloat(getRow.big.value).toFixed(2);
 
       if(getRow && getRow.small && getRow.small.value) 
-      total_sum += parseInt(getRow.small.value);
+      total_sum += parseFloat(getRow.small.value).toFixed(2);
 
       if(getRow && getRow._3a && getRow._3a.value) 
-      total_sum += parseInt(getRow._3a.value);
+      total_sum += parseFloat(getRow._3a.value).toFixed(2);
 
       if(getRow && getRow._3c && getRow._3c.value) 
-      total_sum += parseInt(getRow._3c.value);
+      total_sum += parseFloat(getRow._3c.value).toFixed(2);
 
 
 
@@ -375,6 +375,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         totalAmount = totalAmount * 10;  
 
     }
+
+    console.log('totalAmount:1', totalAmount);
           
       return totalAmount;
     }
