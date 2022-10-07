@@ -188,9 +188,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 return false;
             }
 
-          
-
-            
             if(getValue > big_max_bet ){
                 $("#ErrorBig"+idas).html('Bet should not be greater than '+big_max_bet);
                 $("#ErrorBig"+idas).css('visibility', 'visible')

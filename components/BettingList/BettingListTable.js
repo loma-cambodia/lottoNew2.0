@@ -52,7 +52,8 @@ const ListTable = (_tickets) => {
         
             console.log(e.target.value,"###")
             if (e.target.value) {
-                fetch(`${API_BASE_URL}/?member_id=4&ticket_no=`+e.target.value)
+                fetch(`${API_BASE_URL}ticket/?member_id=4&ticket_no=`+e.target.value)
+                // fetch(`${API_BASE_URL}/ticket/?member_id=4&ticket_no=`+e.target.value)
                     .then(response => {
                         return response.json()
                     })

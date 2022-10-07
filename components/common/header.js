@@ -14,6 +14,7 @@ import Link from 'next/link';
 
 
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 const Header = ({datauser}) => {
   
    const dispatch = useDispatch();
@@ -35,7 +36,10 @@ const Header = ({datauser}) => {
 
   const { t } = useTranslation();
   const [langType, setLangType] = useState(language);
- 
+  const router = useRouter()
+  const {id} = router.query
+
+  console.log("LINK",id)
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language])
@@ -115,13 +119,19 @@ const Header = ({datauser}) => {
                             <Link href="/bettingNew">{t('Betting')}</Link>
                               {/* <a  href="#">Betting</a> */}
                             </li>
-                            <li class="dropdown-desktop">
-                            <a href="#" >{t('History')}</a>
+                            <li>
+                            <Link href="/bettingList">
+                              {t('BettingList')} 
+                              {/* Betting List */}
+                              </Link>
+                            </li>
+                            {/* <li class="dropdown-desktop">
+                            <a href="#" >{t('History')} </a>
                             <ul class="sub-menu-desktop">
                                 <li><Link href="/bettingNew">{t('Betting')}</Link></li>
                                 <li><Link href="/bettingList">{t('History')}</Link></li>
                             </ul>
-                          </li>
+                          </li> */}
                             <li>
                               <Link href="/results" >{t('Result')}</Link>
                             </li>
