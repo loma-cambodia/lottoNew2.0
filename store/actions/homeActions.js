@@ -2,8 +2,13 @@ import axios from 'axios'
 
   export const userTransactionDetails = () => async dispatch => {
     console.log('userTransactionDetails');
+    const headers = {
+        'Content-Type': 'application/json'
+      }
     try{
-        const res = await axios.get(`http://api.kk-lotto.com:8080/api/merchant/1`);
+        const res = await axios.get(`http://api.kk-lotto.com:8080/api/merchant/1`,{
+            headers: headers
+          });
         //console.log('res:',res);
         dispatch( {
             type: "TRANSACTION_DETAILS",

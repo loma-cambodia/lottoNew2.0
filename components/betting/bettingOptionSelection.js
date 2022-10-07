@@ -129,6 +129,12 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
     function closeModal() {
       setIsOpen(false);
     }
+
+    const modelCloseCustom = () => {
+        setIsOpen(false);
+        clearAllRecords();
+
+    }
 // End model cod e
 
 
@@ -189,6 +195,7 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
 
                         setLocalStateInitDataParent(bettingInputsData2);
                         setLoadpageCounter(loadpageCounter + 1);
+                        setBettingInitData([]);
     }
 
 
@@ -668,7 +675,7 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
                                 </div>
                             </div>
                             <div class="modal-footer" style={{justifyContent:'center'}}>
-                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={closeModal}>OK</button>
+                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
                             </div>
                         </div>
             </Modal>

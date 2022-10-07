@@ -96,6 +96,7 @@ const Header = ({datauser}) => {
    
     return (
       <>
+      <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
         <header className="header-top" data-spy="affix" data-offset-top="197">
           <div className="container">
               <div className="d-flex align-items-center">
@@ -106,18 +107,21 @@ const Header = ({datauser}) => {
                   </div>
                   <div className="desktop-menu me-auto">
                           <ul className="desktop-menu-list">
-                            <li>
-                            <Link className="active"  href="/">{t('Homepage')}</Link>
+                            <li className="active">
+                            <Link   href="/">{t('Homepage')}</Link>
                               {/* <a className="active" href="#">Home</a> */}
                             </li>
                             <li>
                             <Link href="/bettingNew">{t('Betting')}</Link>
                               {/* <a  href="#">Betting</a> */}
                             </li>
-                            <li>
-                            <Link href="/transaction">{t('History')}</Link>
-                              {/* <a href="#" >History</a> */}
-                            </li>
+                            <li class="dropdown-desktop">
+                            <a href="#" >{t('History')}</a>
+                            <ul class="sub-menu-desktop">
+                                <li><Link href="/bettingNew">{t('Betting')}</Link></li>
+                                <li><Link href="/bettingList">{t('History')}</Link></li>
+                            </ul>
+                          </li>
                             <li>
                               <Link href="/results" >{t('Result')}</Link>
                             </li>

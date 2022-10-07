@@ -161,8 +161,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 getValue = limit[0].big_max_bet
                
             }else if(getValue < limit[0].big_min_bet ){
-                getValue = limit[0].big_min_bet
                 $("#ErrorBig"+idas).html('Bet should not be less than '+limit[0].big_min_bet);
+                getValue = ''
                 
             }
             else{
@@ -180,7 +180,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }else if(getValue < limit[0].small_min_bet ){
 
                 $("#ErrorSmall"+idas).html('Bet should not be less than'+limit[0].small_min_bet);
-                getValue = limit[0].small_min_bet
+                getValue = ''
             }
             else{
                 $("#ErrorSmall"+idas).html('');
@@ -196,7 +196,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 getValue = limit[0].three_a_max_bet
             }else if(getValue < limit[0].three_a_min_bet ){
                 $("#ErrorA"+idas).html('Bet should not be less than'+limit[0].three_a_min_bet);
-                getValue = limit[0].three_a_min_bet
+                getValue = ''
             }
             else{
                 $("#ErrorA"+idas).html('');
@@ -235,7 +235,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 getValue = limit[0].three_c_max_bet
             }else if(getValue < limit[0].three_c_min_bet ){
                 $("#ErrorC"+idas).html('Bet should not be less than'+limit[0].three_c_min_bet);
-                getValue = limit[0].three_c_min_bet
+                getValue = ''
             }
             else{
                 $("#ErrorC"+idas).html('');
@@ -278,6 +278,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 0 } };
             localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 0 } };
             localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 0 } };
+            localStateDataForChange = { ...localStateDataForChange, amount: { value: "", disabled: 1 } };
             localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
         }
 
@@ -425,7 +426,7 @@ useEffect(() => {
             </td>
             {/* big*/}
             <td>
-                <input type="text" className="form-control-custom"
+                <input type="text" className="form-control-custom text-end"
                     onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
                     id={"BigText"+ids}
                     onBlur={(i) => hideError(ids)}
@@ -434,10 +435,10 @@ useEffect(() => {
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
                     disabled={localStateInitData && localStateInitData.big && localStateInitData.big.disabled ? true : false}
                     />  
-                    <small style={{color: 'red'}} id={"ErrorBig"+ids}></small>
+                    <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorBig"+ids}></small>
             </td>
             {/* small*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, 'small', ids)}
                 id={"SmallText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -446,10 +447,10 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData.small && localStateInitData.small.value ? localStateInitData.small.value : ""}
                 disabled={localStateInitData && localStateInitData.small && localStateInitData.small.disabled ? true : false}
                 />
-                <small style={{color: 'red'}} id={"ErrorSmall"+ids}></small>
+                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorSmall"+ids}></small>
             </td>
             {/* 3A*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, '_3a', ids)}
                 id={"AText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -458,10 +459,10 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
                 />
-                <small style={{color: 'red'}} id={"ErrorA"+ids}></small>
+                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorA"+ids}></small>
             </td>
             {/* 3C*/}
-            <td><input type="text" className="form-control-custom"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, '_3c', ids)}
                 id={"CText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -470,7 +471,7 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
                 />
-                <small style={{color: 'red'}} id={"ErrorC"+ids}></small>
+                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorC"+ids}></small>
             </td>
             <td>
                 <div className="btn-group" role="group" aria-label="Basic example">

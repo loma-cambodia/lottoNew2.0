@@ -17,6 +17,8 @@ async function handler(req, res) {
             //       "language": 'en'
             // }
 
+
+    
        //    const objectWithData = {
         //           "customer_name": "Dileep Maurya",
          //          "customer_id":  112,
@@ -25,10 +27,6 @@ async function handler(req, res) {
           //     }
 
 
-
-                //fdfdkfdkfdflkdlfkf
-
-            ////   2222222222222222222222222222222222222222
 
          const objectWithData = {
              "customer_name": req.body.customer_name,
