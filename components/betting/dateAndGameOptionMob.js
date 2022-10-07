@@ -71,7 +71,9 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                     <label htmlFor={item.id} onClick={() => selectUnSelectgame(item.id,'','parent')}></label>
                 </div>
                 <label className= {`${item.selected ? " selected-dt-h5  date-time-small":" date-time-small"}`} htmlFor={item.id} onClick={() => selectUnSelectgame(item.id,'','parent')}>
-                    <small>{item.date}{item.day}</small>
+                    <small>{item.date}</small>
+                    <br />
+                    <b>{item.day}</b>
                 </label>
                 <div className="select-gp p-2">
                     

@@ -5,7 +5,7 @@ import FinalDataContainer from './finalDataContainer';
 const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
     _bettingInitData}) => {
     const { t } = useTranslation();
-        console.log('_bettingInitData:',_bettingInitData);
+        // console.log('_bettingInitData:',_bettingInitData);
     let bettingInitData = _bettingInitData;
     let localStateInitData = item.dataInit;
     const [localStateData, setLocalStateData] = useState(localStateInitData);
@@ -68,18 +68,22 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
       if(curserPointer == 'big'){
           let bigVal = bigValue.toString();
           setBigValue(bigVal+getValue)
+          numberInputHandler(bigVal+getValue, 'big')
       }   
       if(curserPointer == 'small'){
           let smallVal = smallValue.toString();
           setSmallValue(smallVal+getValue)
+          numberInputHandler(smallVal+getValue, 'small')
       }   
       if(curserPointer == '3a'){
           let a3Val = a3Value.toString();
           setA3Value(a3Val+getValue)
+          numberInputHandler(a3Val+getValue, '_3a')
       }   
       if(curserPointer == '3c'){
           let c3Val = c3Value.toString();
           setC3Value(c3Val+getValue)
+          numberInputHandler(c3Val+getValue, '_3c')
       }    
     }
     const allClearData = () => {
@@ -355,55 +359,90 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         setLocalStateData(localStateDataForChange);
         setPageLoadCount(pageLoadCount + 1);
     }
-    const previewSubmitData = () => {
-
-        // let day = '';
-
-        // console.log(day);
-        // console.log(game);
+    const previewSubmitData = (getAction = 'add', getIndex = 0) => {
 
         let finalSubmitData = _finalSubmitData;
-        
-        
-        bettingInitData.map(item => {
-            if(item.selected){
-                let day = item.day;
-                let game = '';
-                item.games.map(itemGame => {
-                    if(itemGame.selected){
-                        game += itemGame.name.charAt(0);
+        // alert(finalSubmitData.length);
+
+        console.log('getAction',getIndex);
+
+        if(getAction == 'remove'){
+            finalSubmitData = finalSubmitData.filter((item,id) => id != getIndex);
+        }
+
+        if(finalSubmitData.length < 10){
+            bettingInitData.map(item => {
+                if(item.selected){
+                    let day = item.date;
+                    let game = '';
+                    item.games.map(itemGame => {
+                        if(itemGame.selected){
+                            game += itemGame.name.charAt(0);
+                        }
+                    })
+
+                    let  localStateDataForChange = {};
+
+                    let amount1 = '';
+                    let amount2 = '';
+
+                    if(localStateData && localStateData.big && localStateData.big.value){
+                        amount1 = localStateData.big.value;
+                    }else if(localStateData && localStateData._3a && localStateData._3a.value){
+                        amount1 = localStateData._3a.value;
                     }
-                })
+                    if(localStateData && localStateData.small && localStateData.small.value){
+                        amount2 = localStateData.small.value;
+                    }else if(localStateData && localStateData._3c && localStateData._3c.value){
+                        amount2 = localStateData._3c.value;
+                    }
 
-                let  localStateDataForChange = {};
-                localStateDataForChange['number'] = localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : "";
-                let amount1 = '';
-                let amount2 = '';
-                if(localStateData && localStateData.big && localStateData.big.value){
-                    amount1 = localStateData.big.value;
-                }else if(localStateData && localStateData.small && localStateData.small.value){
-                    amount1 = localStateData.big.value;
+                    
+                    let bet_type = '';
+
+                    if(localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled == 0 && localStateData.bet_type.box_value == 1){
+                        bet_type = 'B';
+                    }
+                    else if(localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled == 0 && localStateData.bet_type.i_box_value == 1){
+                        bet_type = 'I';
+                    }
+                    else if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled == 0 && localStateData.bet_type.reverse_value == 1){
+                        bet_type = 'R';
+                    }else{
+                        bet_type = 'Null';
+                    }
+
+
+
+
+
+                    localStateDataForChange['number'] = localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : "";
+                    localStateDataForChange['amount1'] = amount1;
+                    localStateDataForChange['amount2'] = amount2;
+                    localStateDataForChange['date'] = day;
+                    localStateDataForChange['company'] = game;
+                    localStateDataForChange['bet_type'] = bet_type;
+            
+
+                    // if(localStateDataForChange['number'] == ''){
+                    //     alert('Please Enter Number')
+                    // }else if(localStateDataForChange['amount1'] == '' || localStateDataForChange['amount2']){
+                    //     alert('Please Enter Number')
+                    // }
+                    // else if(localStateDataForChange['date'] == ''){
+                    //     alert('amount2')
+                    // }else if(localStateDataForChange['company'] == ''){
+                    //     alert('company')
+                    // }
+                    // else{
+                        finalSubmitData.push(localStateDataForChange);
+                    // }           
                 }
-                if(localStateData && localStateData.big && localStateData.big.value){
-                    amount2 = localStateData.big.value;
-                }else if(localStateData && localStateData._3a && localStateData._3a.value){
-                    amount2 = localStateData.big.value;
-                }
+            });
+        }
 
-                localStateDataForChange['amount1'] = amount1;
-                localStateDataForChange['amount2'] = amount2;
-
-                localStateDataForChange['_3a'] = localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : "";
-                localStateDataForChange['_3c'] = localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : "";
-        
-                localStateDataForChange['date'] = day;
-                localStateDataForChange['company'] = game;
-        
-                finalSubmitData.push(localStateDataForChange);
-                
-
-            }
-        });
+        // console.log("bet_typesssss:",localStateData);
+        // console.log("bet_type:",bet_type);
 
         _setFinalSubmitData(finalSubmitData);
         setPageLoadCount(pageLoadCount + 1);
@@ -629,7 +668,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark"  onClick={() => previewSubmitData()} style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark"  onClick={() => previewSubmitData('','')} style={{ width:'100%' }}>
                             <b>+</b>
                         </button>
                     </div>

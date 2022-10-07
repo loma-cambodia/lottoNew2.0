@@ -5,6 +5,10 @@ const FinalDataContainer = ({_previewSubmitData, finalSubmitData,_bettingInitDat
     // console.log('FinalDataContainer:_bettingInitData:',_bettingInitData);
     // console.log('finalSubmitData:',finalSubmitData);
 
+    const removeRowData = (id) => {
+        alert(id.id)
+    }
+
     return (
         <div className="border mt-2">
                 <div className="" style={{ height: '250px' }}>
@@ -26,14 +30,14 @@ const FinalDataContainer = ({_previewSubmitData, finalSubmitData,_bettingInitDat
                             return(
                                 <tr key={id}>
                                     <td className="text-center">{id+1}</td>
-                                    <td className="text-center">{item.date}</td>
+                                    <td className="text-center">{item.date.replace(/, .*/,'')}</td>
                                     <td className="text-center">{item.company}</td>
                                     <td className="text-center">{item.number}</td>
                                     <td className="text-center">{item.amount1}</td>
                                     <td className="text-center">{item.amount2}</td>
-                                    <td className="text-center">B</td>
-                                    <td>
-                                        <img className="img-fluid" src="images\betting\12121121.png" alt="" style={{ width: '18px' }}  />
+                                    <td className="text-center">{item.bet_type}</td>
+                                    <td onClick={() => _previewSubmitData('remove',id)}>
+                                        <img className="img-fluid" src="images\betting\12121121.png" alt="" style={{ width: '18px' }} />1111
                                     </td>
                                 </tr>
                                 )
