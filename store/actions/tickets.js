@@ -3,7 +3,7 @@ const API_BASE_URL = process.env.apiUrl
 export const getTicketData = () => async (dispatch) => {
   try {
     const res = await axios.get(
-      `${API_BASE_URL}/ticket/1?member_id=4`
+      `${API_BASE_URL}/ticket/?member_id=4`
     )
     dispatch({
       type: 'GET_TICKETS',

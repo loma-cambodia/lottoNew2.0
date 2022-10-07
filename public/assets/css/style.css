@@ -2374,6 +2374,9 @@
   font-size: 12px;
   }
   }
+  .footer-logo img{
+    max-width: 150px;
+  }
   @media (max-width: 650px) {
   .footer-links ul {
   text-align: right;
@@ -2383,6 +2386,9 @@
   }
   .footer-logo {
   max-width: 90px;
+  }
+  .footer-logo img{
+    max-width: 100px;
   }
   .footer-links ul li a {
   padding: 0 0px;
