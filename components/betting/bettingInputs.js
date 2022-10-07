@@ -155,13 +155,16 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 return false;
             }
 
+           let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
+           let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
+
             
-            if(getValue > limit[0].big_max_bet ){
-                $("#ErrorBig"+idas).html('Bet should not be greater than '+limit[0].big_max_bet);
-                getValue = limit[0].big_max_bet
+            if(getValue > big_max_bet ){
+                $("#ErrorBig"+idas).html('Bet should not be greater than '+big_max_bet);
+                getValue = big_max_bet
                
-            }else if(getValue < limit[0].big_min_bet ){
-                $("#ErrorBig"+idas).html('Bet should not be less than '+limit[0].big_min_bet);
+            }else if(getValue < big_min_bet ){
+                $("#ErrorBig"+idas).html('Bet should not be less than '+big_min_bet);
                 getValue = ''
                 
             }

@@ -7,14 +7,14 @@ import { useTranslation } from "react-i18next";
 import styles from '../styles/Home.module.css'
 import ListBanner from '../components/BettingList/Banner';
 import ListTable from '../components/BettingList/BettingListTable';
-
+import {getTicketData} from '../store/actions/tickets';
 export default function BettingList({datauser}) {
 
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
        useEffect(() => {
-        
+        dispatch(getTicketData());
       },[dispatch]);
       
   return (
