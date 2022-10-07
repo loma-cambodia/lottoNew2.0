@@ -72,7 +72,9 @@ let localStateInitData = {
 };
 
 let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}}];
-const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
+const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit}) => {
+    let betLimit = _betLimit;
+
     const { t } = useTranslation();
     let dateAndGameOptionData = [];
       if(_bettingDatesStore){
@@ -248,6 +250,25 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
 
     // console.log("bettingInitData:",bettingInitData)
 
+
+    bettingInitData && bettingInitData.map(item => {
+        
+      if(item.selected == true){
+      item.games.map(itemGame => {
+          if(itemGame.selected)
+             gameCount++; 
+      })
+
+      }
+      
+    });
+
+      let totalAmounta = 0;
+      bettingInputsDataParent && bettingInputsDataParent.map(item => {
+        if(item.dataInit.amount.value){
+          totalAmounta += parseInt(item.dataInit.amount.value)
+        }
+      });
     return(
         <>
           <ToastContainer />
@@ -284,6 +305,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                                     _finalSubmitData={finalSubmitData}
                                                     _setFinalSubmitData={setFinalSubmitData}
                                                     _bettingInitData={bettingInitData}
+                                                    _limit={betLimit}
             />) )}
 
 
