@@ -281,7 +281,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
               <OpenModalComponent bettingInitDataShow={bettingInitData} />
 
             </div>      
-          {bettingInputsDataParent.map((item) => (<BettingInputsForMob key={'bettingInputs'+item.name} 
+            {bettingInputsDataParent.map((item) => (<BettingInputsForMob key={'bettingInputs'+item.name} 
                                                     item={item} 
                                                     activeGameType={activeGameType}
                                                     _updateBettingInputsData = {updateBettingInputsData}

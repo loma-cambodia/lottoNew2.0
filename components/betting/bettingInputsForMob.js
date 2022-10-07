@@ -8,6 +8,10 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
     const [localStateData, setLocalStateData] = useState(localStateInitData);
     const [pageLoadCount, setPageLoadCount] = useState(1);
 
+
+    // console.log("localStateData:lotto",localStateData)
+
+
     /////////////////////////////////////
 
     const [curserPointer, setCurserPointer] = React.useState('');
@@ -153,7 +157,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
         }
         return threeDAmount;
     } 
-
+    // console.log("localStateData",localStateData);
+    
     ////////////////////////////////////////
     const numberInputHandler = (getValue, operationField) => {
         let localStateDataForChange = item.dataInit;
