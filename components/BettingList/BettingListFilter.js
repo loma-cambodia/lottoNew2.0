@@ -84,7 +84,7 @@ const ListFilter = () => {
                         <input type="text" class="form-control-custom-big" name="transationid"/>
                     </div>
                     </div>
-                    <div class="col-md-2 col-6">
+                    {/* <div class="col-md-2 col-6">
                     <div class="form-group">
                         <label for="transactionid" class="fw-bold mb-2">{t('Game')}</label>
                         <select type="text" class="form-control-custom-big" name="transationid">
@@ -102,7 +102,7 @@ const ListFilter = () => {
                             <option>Da ma cai</option>
                         </select>
                     </div>
-                    </div>
+                    </div> */}
 
                     <div class="col-md-3">
                     <div class="form-group">

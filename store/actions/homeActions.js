@@ -24,6 +24,7 @@ let API_BASE_URL = process.env.apiUrl;
 
 }
 
+
 export const winnerResultDetails = () => async dispatch => {
     console.log('userTransactionDetails');
     try{

@@ -43,10 +43,12 @@ import userReducer from './userReducers'; // Need to delete
 import bettingReducers from './bettingReducers';
 import authReducers from './authReducers';
 import homeReducers from './homeReducers';
+import ticketReducers from './ticketReducers';
 
 export default combineReducers({
   users: userReducer,
   betting:bettingReducers,
   auth:authReducers,
-  home:homeReducers
+  home:homeReducers,
+  tickets:ticketReducers
 })
