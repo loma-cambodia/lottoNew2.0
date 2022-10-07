@@ -1,19 +1,18 @@
 import axios from 'axios'
-
-  export const getTicketData = () => async dispatch => {
-    
-    try{
-        const res = await axios.get(`http://api.kk-lotto.com:8080/api/ticket/1?member_id=4`);
-        dispatch( {
-            type: "GET_TICKETS",
-            payload: res.data.data
-        })
-    }
-    catch(e){
-        dispatch( {
-            type: "Get_Tickets_Error",
-            payload: console.log(e),
-        })
-    }
-
+const API_BASE_URL = process.env.apiUrl
+export const getTicketData = () => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      `${API_BASE_URL}/ticket/1?member_id=4`
+    )
+    dispatch({
+      type: 'GET_TICKETS',
+      payload: res.data.data,
+    })
+  } catch (e) {
+    dispatch({
+      type: 'Get_Tickets_Error',
+      payload: console.log(e),
+    })
+  }
 }
