@@ -8,7 +8,6 @@ import styles from '../styles/Home.module.css'
 import ListBanner from '../components/BettingList/Banner';
 import ListTable from '../components/BettingList/BettingListTable';
 import {getTicketData} from '../store/actions/tickets';
-import ListFilter from '../components/BettingList/BettingListFilter';
 export default function BettingList({datauser}) {
 // console.log("TICKETLIST",datauser);
   const { t } = useTranslation();
@@ -38,29 +37,8 @@ export default function BettingList({datauser}) {
       <ListBanner/>
       <section class="page-content custom-padding">
     <div class="container">
-        <ListFilter/>
-            <div class="table-responsive my-3">
-                <table class="table small table-bordered">
-                    <thead>
-                        <tr>
-                            <th>{t('No')}.</th>
-                            <th class="text-start">Ticket No</th>
-                            <th class="text-start">Bet No.</th>
-                            <th class="text-center">{t('Date')}</th>
-                            <th class="text-center">Draw Date</th>
-                            <th class="text-center">Betting Type</th>
-                            {/* <th class="text-center">{t('Company')}</th> */}
-                            <th class="text-end">Gross Amt.</th>
-                            <th class="text-end">{t('Commission')}</th>
-                            <th class="text-end">Net Amt.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <ListTable _tickets={tickets}/>
-                    </tbody>
-                    
-                </table>
-            </div>
+        {/* <ListFilter/> */}
+        <ListTable _tickets={tickets}/>
         <div class="clearfix d-flex align-items-center justify-content-center">
             <div class="pagination:container">
                 <div class="pagination:number arrow">
