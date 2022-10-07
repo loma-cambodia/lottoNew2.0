@@ -40,44 +40,14 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
    } 
    const hideError = (ids) => {
     $("#ErrorBig"+ids).html('');
-    $("#ErrorBig"+ids).css('visibility', 'hidden')
-
     $("#ErrorSmall"+ids).html('');
-    $("#ErrorSmall"+ids).css('visibility', 'hidden')
-
     $("#ErrorC"+ids).html('');
-    $("#ErrorC"+ids).css('visibility', 'hidden')
-
     $("#ErrorA"+ids).html('');
-    $("#ErrorA"+ids).css('visibility', 'hidden')
-
    }
     const numberInputHandler = (getValue, operationField,idas) => {
         let localStateDataForChange ={ ...item.dataInit};
 
         let threeDAmout = calculate3DAmountEnable(getValue,operationField);
-
-            let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
-            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
-
-            let small_max_bet  = limit && limit.length > 0 && limit[0].small_max_bet ?  limit[0].small_max_bet : 0;
-            let small_min_bet  = limit && limit.length > 0 && limit[0].small_min_bet ?  limit[0].small_min_bet : 0;
-
-            let three_a_max_bet  = limit && limit.length > 0 && limit[0].three_a_max_bet ?  limit[0].three_a_max_bet : 0;
-            let three_a_min_bet  = limit && limit.length > 0 && limit[0].three_a_min_bet ?  limit[0].three_a_min_bet : 0;
-
-            let three_c_max_bet  = limit && limit.length > 0 && limit[0].three_c_max_bet ?  limit[0].three_c_max_bet : 0;
-            let three_c_min_bet  = limit && limit.length > 0 && limit[0].three_c_min_bet ?  limit[0].three_c_min_bet : 0;
-
-            // 
-            // let big_max_bet  = 100;
-            // let big_min_bet = 0;
-            // let small_max_bet  = 100;
-            // let small_min_bet = 0; 
-            // let three_a_max_bet  = 100;
-            // let three_a_min_bet = 0;
-            // let three_c_max_bet  = 100;
-            // let  three_c_min_bet = 0;
 
         if (operationField == 'number') {
 
@@ -89,9 +59,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (getValue && getValue.match(/r/i) && (getValue.toLowerCase().match(/r/g).length == 2 || getValue.toLowerCase().match(/r/g).length == 3 || getValue.toLowerCase().match(/r/g).length == 4)) {
                 return false;
             }
-
-            
-
 
              localStateDataForChange = { ...localStateDataForChange, number: { value: getValue, disabled: 0 } };
             if (getValue.length == 1 || getValue.length == 2) {
@@ -188,25 +155,21 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 return false;
             }
 
-          
+           let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
+           let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
 
             
             if(getValue > big_max_bet ){
                 $("#ErrorBig"+idas).html('Bet should not be greater than '+big_max_bet);
-                $("#ErrorBig"+idas).css('visibility', 'visible')
-
                 getValue = big_max_bet
                
             }else if(getValue < big_min_bet ){
-                getValue = big_min_bet
                 $("#ErrorBig"+idas).html('Bet should not be less than '+big_min_bet);
-                $("#ErrorBig"+idas).css('visibility', 'visible')
-
                 getValue = ''
+                
             }
             else{
                 $("#ErrorBig"+idas).html('');
-                $("#ErrorBig"+idas).css('visibility', 'hidden')
             }
            
             localStateDataForChange = { ...localStateDataForChange, big: { value: getValue, disabled: 0 } };
@@ -214,25 +177,16 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
+            if(getValue > limit[0].small_max_bet ){
+                $("#ErrorSmall"+idas).html('Bet should not be greater than'+limit[0].small_max_bet);
+                getValue = limit[0].small_max_bet
+            }else if(getValue < limit[0].small_min_bet ){
 
-           
-
-            if(getValue > small_max_bet ){
-                $("#ErrorSmall"+idas).html('Bet should not be greater than '+small_max_bet);
-                $("#ErrorSmall"+idas).css('visibility', 'visible')
-
-                getValue = small_max_bet
-            }else if(getValue < small_min_bet ){
-
-                $("#ErrorSmall"+idas).html('Bet should not be less than '+small_min_bet);
-                $("#ErrorSmall"+idas).css('visibility', 'visible')
-
+                $("#ErrorSmall"+idas).html('Bet should not be less than'+limit[0].small_min_bet);
                 getValue = ''
             }
             else{
                 $("#ErrorSmall"+idas).html('');
-                $("#ErrorSmall"+idas).css('visibility', 'hidden')
-
             }
 
             localStateDataForChange = { ...localStateDataForChange, small: { value: getValue, disabled: 0 } };
@@ -240,23 +194,15 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-
-            
-
-            if(getValue > three_a_max_bet ){
-                $("#ErrorA"+idas).html('Bet should not be greater than '+three_a_max_bet);
-                $("#ErrorA"+idas).css('visibility', 'visible')
-                getValue = three_a_max_bet
-            }else if(getValue < three_a_min_bet ){
-                $("#ErrorA"+idas).html('Bet should not be less than '+three_a_min_bet);
-                $("#ErrorA"+idas).css('visibility', 'visible')
-
+            if(getValue > limit[0].three_a_max_bet ){
+                $("#ErrorA"+idas).html('Bet should not be greater than'+limit[0].three_a_max_bet);
+                getValue = limit[0].three_a_max_bet
+            }else if(getValue < limit[0].three_a_min_bet ){
+                $("#ErrorA"+idas).html('Bet should not be less than'+limit[0].three_a_min_bet);
                 getValue = ''
             }
             else{
                 $("#ErrorA"+idas).html('');
-                $("#ErrorA"+idas).css('visibility', 'hidden')
-
             }
            
             localStateDataForChange = { ...localStateDataForChange, _3a: { value: getValue, disabled: 0 } };
@@ -287,24 +233,15 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-
-           
-
-            if(getValue > three_c_max_bet ){
-                $("#ErrorC"+idas).html('Bet should not be greater than '+three_c_max_bet);
-                $("#ErrorC"+idas).css('visibility', 'visible')
-
-                getValue = three_c_max_bet
-            }else if(getValue < three_c_min_bet ){
-                $("#ErrorC"+idas).html('Bet should not be less than '+three_c_min_bet);
-                $("#ErrorC"+idas).css('visibility', 'visible')
-
+            if(getValue > limit[0].three_c_max_bet ){
+                $("#ErrorC"+idas).html('Bet should not be greater than'+limit[0].three_c_max_bet);
+                getValue = limit[0].three_c_max_bet
+            }else if(getValue < limit[0].three_c_min_bet ){
+                $("#ErrorC"+idas).html('Bet should not be less than'+limit[0].three_c_min_bet);
                 getValue = ''
             }
             else{
                 $("#ErrorC"+idas).html('');
-                $("#ErrorC"+idas).css('visibility', 'hidden')
-
             }
             
             localStateDataForChange = { ...localStateDataForChange, _3c: { value: getValue, disabled: 0 } };
@@ -375,31 +312,23 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
          // rollingNumber
 
-     if(getRow && getRow.big && getRow.big.value){ 
-        total_sum = total_sum + parseFloat(getRow.big.value);
-     }
-
-      console.log('total_sum:',total_sum)
+     if(getRow && getRow.big && getRow.big.value) 
+      total_sum += parseInt(getRow.big.value);
 
       if(getRow && getRow.small && getRow.small.value) 
-      total_sum = total_sum + parseFloat(getRow.small.value);
+      total_sum += parseInt(getRow.small.value);
 
       if(getRow && getRow._3a && getRow._3a.value) 
-      total_sum = total_sum + parseFloat(getRow._3a.value);
+      total_sum += parseInt(getRow._3a.value);
 
       if(getRow && getRow._3c && getRow._3c.value) 
-      total_sum = total_sum + parseFloat(getRow._3c.value);
-
-      //console.log('total_sum:',total_sum);
+      total_sum += parseInt(getRow._3c.value);
 
 
 
       let totalAmount =  0;
-      //_gameCount = 1;
       if(_gameCount && total_sum)
       totalAmount = _gameCount * total_sum  
-
-      //console.log('totalAmount:',totalAmount);
 
       if(bet_type == 'box'){
         let totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
@@ -415,8 +344,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         totalAmount = totalAmount * 10;  
 
     }
-
-   // console.log('totalAmount:', totalAmount);
           
       return totalAmount;
     }
@@ -477,20 +404,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 useEffect(() => {
     numberInputHandler('', '');
   },[_gameCount]);
-
-
-  const MoneyFormatDisplay = (theInput, getCase) => {
-    //Do something with the input
-    let getInput = theInput;
-    if(getCase == 1){
-     if(getInput)
-       return theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
-     else 
-       return '';
-    }else{
-       return parseFloat(lottery.slave_net_amount).toFixed(2)
-    }
- };
   
 
     return (
@@ -515,8 +428,8 @@ useEffect(() => {
                 /> 
             </td>
             {/* big*/}
-            <td style={{position:'relative'}}>
-                <input type="text" className="form-control-custom"
+            <td>
+                <input type="text" className="form-control-custom text-end"
                     onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
                     id={"BigText"+ids}
                     onBlur={(i) => hideError(ids)}
@@ -525,11 +438,10 @@ useEffect(() => {
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
                     disabled={localStateInitData && localStateInitData.big && localStateInitData.big.disabled ? true : false}
                     />  
-                    <span className="betTip" id={"ErrorBig"+ids}></span>
+                    <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorBig"+ids}></small>
             </td>
             {/* small*/}
-            <td style={{position:'relative'}}>
-                <input type="text" className="form-control-custom text-end"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, 'small', ids)}
                 id={"SmallText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -538,12 +450,10 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData.small && localStateInitData.small.value ? localStateInitData.small.value : ""}
                 disabled={localStateInitData && localStateInitData.small && localStateInitData.small.disabled ? true : false}
                 />
-                <span className="betTip" id={"ErrorSmall"+ids}></span>
-
+                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorSmall"+ids}></small>
             </td>
             {/* 3A*/}
-            <td style={{position:'relative'}}>
-                <input type="text" className="form-control-custom text-end"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, '_3a', ids)}
                 id={"AText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -552,11 +462,10 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
                 />
-                <span className="betTip" id={"ErrorA"+ids}></span>
+                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorA"+ids}></small>
             </td>
             {/* 3C*/}
-            <td style={{position:'relative'}}>
-                <input type="text" className="form-control-custom text-end"
+            <td><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, '_3c', ids)}
                 id={"CText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -565,7 +474,7 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
                 />
-                <span className="betTip" id={"ErrorC"+ids}></span>
+                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorC"+ids}></small>
             </td>
             <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
@@ -577,7 +486,7 @@ useEffect(() => {
                 </div>
             </td>
             <td>
-                <input type="text" className="form-control-custom text-end"  value={localStateInitData && localStateInitData.amount && localStateInitData.amount.value ? MoneyFormatDisplay(localStateInitData.amount.value, 1) : ""} disabled={localStateInitData && localStateInitData.amount && localStateInitData.amount.disabled ? true : false} />
+                <input type="text" className="form-control-custom text-end"  value={localStateInitData && localStateInitData.amount && localStateInitData.amount.value ? localStateInitData.amount.value : ""} disabled={localStateInitData && localStateInitData.amount && localStateInitData.amount.disabled ? true : false} />
             </td>
             <td>
                 <button type="button" className="btn-delete-small" onClick={(e) => numberInputHandler('', 'delete')}>
