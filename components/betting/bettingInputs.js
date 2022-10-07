@@ -57,27 +57,27 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
         let threeDAmout = calculate3DAmountEnable(getValue,operationField);
 
-            // let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
-            // let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
+            let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
+            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
 
-            // let small_max_bet  = limit && limit.length > 0 && limit[0].small_max_bet ?  limit[0].small_max_bet : 0;
-            // let small_min_bet  = limit && limit.length > 0 && limit[0].small_min_bet ?  limit[0].small_min_bet : 0;
+            let small_max_bet  = limit && limit.length > 0 && limit[0].small_max_bet ?  limit[0].small_max_bet : 0;
+            let small_min_bet  = limit && limit.length > 0 && limit[0].small_min_bet ?  limit[0].small_min_bet : 0;
 
-            // let three_a_max_bet  = limit && limit.length > 0 && limit[0].three_a_max_bet ?  limit[0].three_a_max_bet : 0;
-            // let three_a_min_bet  = limit && limit.length > 0 && limit[0].three_a_min_bet ?  limit[0].three_a_min_bet : 0;
+            let three_a_max_bet  = limit && limit.length > 0 && limit[0].three_a_max_bet ?  limit[0].three_a_max_bet : 0;
+            let three_a_min_bet  = limit && limit.length > 0 && limit[0].three_a_min_bet ?  limit[0].three_a_min_bet : 0;
 
-            // let three_c_max_bet  = limit && limit.length > 0 && limit[0].three_c_max_bet ?  limit[0].three_c_max_bet : 0;
-            // let three_c_min_bet  = limit && limit.length > 0 && limit[0].three_c_min_bet ?  limit[0].three_c_min_bet : 0;
+            let three_c_max_bet  = limit && limit.length > 0 && limit[0].three_c_max_bet ?  limit[0].three_c_max_bet : 0;
+            let three_c_min_bet  = limit && limit.length > 0 && limit[0].three_c_min_bet ?  limit[0].three_c_min_bet : 0;
 
             // 
-            let big_max_bet  = 100;
-            let big_min_bet = 0;
-            let small_max_bet  = 100;
-            let small_min_bet = 0; 
-            let three_a_max_bet  = 100;
-            let three_a_min_bet = 0;
-            let three_c_max_bet  = 100;
-            let  three_c_min_bet = 0;
+            // let big_max_bet  = 100;
+            // let big_min_bet = 0;
+            // let small_max_bet  = 100;
+            // let small_min_bet = 0; 
+            // let three_a_max_bet  = 100;
+            // let three_a_min_bet = 0;
+            // let three_c_max_bet  = 100;
+            // let  three_c_min_bet = 0;
 
         if (operationField == 'number') {
 
@@ -516,7 +516,7 @@ useEffect(() => {
             </td>
             {/* big*/}
             <td style={{position:'relative'}}>
-                <input type="text" className="form-control-custom"
+                <input type="text" className="form-control-custom text-end"
                     onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
                     id={"BigText"+ids}
                     onBlur={(i) => hideError(ids)}
