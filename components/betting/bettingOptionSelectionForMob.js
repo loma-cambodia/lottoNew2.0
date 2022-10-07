@@ -98,6 +98,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
     const [activeGameType, setActive] = useState(false);
     const [activeGameAll, setActiveAll] = useState(false);
 
+    const [finalSubmitData, setFinalSubmitData] = useState([]);
+
     const updateBettingInputsData = (itemName,getNewChild) => {
         let bettingInputsDataParentNew = bettingInputsDataParent;
         bettingInputsDataParentNew.map(item => {
@@ -161,6 +163,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
   }
 
     const selectAllDate = () => {
+      let dateAndGameOptionDataNew = [];
       if(activeGameAll){      
         if(_bettingDatesStore){
           _bettingDatesStore.map(item => {
@@ -169,12 +172,13 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                   "day": item.day,
                   "date" : item.date,
                   "selected": true,
-                  "games": item.games.map(itemGame => {
-                      itemGame.selected = true;
-                      return itemGame;
+                  "games":item.games.map(itemGame => {
+                    let itemGameNew = {...itemGame};
+                    itemGameNew = {...itemGameNew, selected:true} 
+                    return itemGameNew;
                   })
-                }
-                dateAndGameOptionData.push(tempObject);
+              }
+              dateAndGameOptionDataNew.push(tempObject);
           });
         }
       }else{      
@@ -185,29 +189,27 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                   "day": item.day,
                   "date" : item.date,
                   "selected": false,
-                  "games": item.games.map(itemGame => {
-                      itemGame.selected = false;
-                      return itemGame;
+                  "games":item.games.map(itemGame => {
+                    let itemGameNew = {...itemGame};
+                    itemGameNew = {...itemGameNew, selected:false} 
+                    return itemGameNew;
                   })
                 }
-                dateAndGameOptionData.push(tempObject);
+                dateAndGameOptionDataNew.push(tempObject);
           });
         }
       }
-     setBettingInitData(dateAndGameOptionData);
+     setBettingInitData(dateAndGameOptionDataNew);
+    //  console.log("dateAndGameOptionData",dateAndGameOptionData);
     }
     
     useEffect(() => {
-       // selectAllDate();
+       selectAllDate();
     }, [activeGameAll]);
 
-// console.log('sushil',bettingInitData);
+console.log('sushil',bettingInitData);
 
     function OpenModalComponent({bettingInitDataShow}){
-      if(gameSelectOrNot){
-        console.log('sushil',bettingInitDataShow);
-      }
-      
       if(!gameSelectOrNot){
         return(
           <>
@@ -223,37 +225,28 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
           <>
             <div className="form-group">
               <button onClick={openModal} className="form-control custom-i-dg py-1 d-flex align-items-center down-arrow" style={{ background: '-webkit-linear-gradient( 90deg, rgb(253,184,3) 0%, rgb(247,234,120) 100%)', fontSize: '12px', flexDirection:'row',flexWrap:'nowrap', overflowX:'auto' }}> 
-     
-              {bettingInitDataShow.map((item,id) => (
-                <div key={id}>
-                  {item.selected ? <>
-                    <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>
-                    {item.selected ? (item.day) : ''} &nbsp;
-                      {item.games.map((itemGame,ids) => (
-                        <b key={ids}>
-                          {itemGame.selected ? (itemGame.name.charAt(0)) : ''}
-                        </b>
-                      ) )}
-                    </span>
-                  </> : ''}
-                </div>
-              ) )}
-
-                 
-                {/* <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>21-09 MPT</span> 
-                <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>21-09 MPT</span> 
-                <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>21-09 MPT</span> 
-                <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>21-09 MPT</span> 
-                <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>21-09 MPT</span>  */}
-              
-                  {/* <img className="img-fluid" src="images\betting\1111111.png" alt="" style={{ width: '20px',float: 'right', marginTop:'5px' }}  /> */}
-
+                {bettingInitDataShow.map((item,id) => (
+                  <div key={id}>
+                    {item.selected ? <>
+                      <span className='border-doted rounded p-1 mr-1 small' style={{minWidth:'75px'}}>
+                      {item.selected ? (item.day) : ''} &nbsp;
+                        {item.games.map((itemGame,ids) => (
+                          <b key={ids}>
+                            {itemGame.selected ? (itemGame.name.charAt(0)) : ''}
+                          </b>
+                        ) )}
+                      </span>
+                    </> : ''}
+                  </div>
+                ))}
               </button>             
             </div>
           </>
         )
       }
     }
+
+    // console.log("bettingInitData:",bettingInitData)
 
     return(
         <>
@@ -288,6 +281,9 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                                                     _loadpageCounter = {loadpageCounter}
                                                     _setLoadpageCounter = {setLoadpageCounter}
                                                     _gameCount={gameCount}
+                                                    _finalSubmitData={finalSubmitData}
+                                                    _setFinalSubmitData={setFinalSubmitData}
+                                                    _bettingInitData={bettingInitData}
             />) )}
 
 
