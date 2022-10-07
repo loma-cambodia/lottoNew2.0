@@ -2699,3 +2699,8 @@ span.name-gp {
                   left: 65%;
                   }
               }
+
+
+              input.form-control.text-right-for-amount {
+                text-align: right;
+            }

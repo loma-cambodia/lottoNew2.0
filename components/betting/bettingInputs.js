@@ -513,7 +513,7 @@ useEffect(() => {
             </td>
             {/* big*/}
             <td style={{position:'relative'}}>
-                <input type="text" className="form-control-custom"
+                <input type="text" className="form-control-custom text-end"
                     onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
                     id={"BigText"+ids}
                     onBlur={(i) => hideError(ids)}

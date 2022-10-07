@@ -1,12 +1,22 @@
 import React, { useState,useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import FinalDataContainer from './finalDataContainer';
 
-const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
+const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
+    _bettingInitData}) => {
     const { t } = useTranslation();
-
+        // console.log('_bettingInitData:',_bettingInitData);
+    let bettingInitData = _bettingInitData;
     let localStateInitData = item.dataInit;
     const [localStateData, setLocalStateData] = useState(localStateInitData);
+    const [mainSubmitData, setMainSubmitData] = useState([]);
     const [pageLoadCount, setPageLoadCount] = useState(1);
+
+    const [totalAmount, setTotalAmount] = useState('');
+
+
+    // console.log("localStateData:lotto",localStateData)
+
 
     /////////////////////////////////////
 
@@ -61,18 +71,22 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
       if(curserPointer == 'big'){
           let bigVal = bigValue.toString();
           setBigValue(bigVal+getValue)
+          numberInputHandler(bigVal+getValue, 'big')
       }   
       if(curserPointer == 'small'){
           let smallVal = smallValue.toString();
           setSmallValue(smallVal+getValue)
+          numberInputHandler(smallVal+getValue, 'small')
       }   
       if(curserPointer == '3a'){
           let a3Val = a3Value.toString();
           setA3Value(a3Val+getValue)
+          numberInputHandler(a3Val+getValue, '_3a')
       }   
       if(curserPointer == '3c'){
           let c3Val = c3Value.toString();
           setC3Value(c3Val+getValue)
+          numberInputHandler(c3Val+getValue, '_3c')
       }    
     }
     const allClearData = () => {
@@ -153,7 +167,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
         }
         return threeDAmount;
     } 
-
+    // console.log("localStateData",bettingInitData);
+    
     ////////////////////////////////////////
     const numberInputHandler = (getValue, operationField) => {
         let localStateDataForChange = item.dataInit;
@@ -347,6 +362,117 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
         setLocalStateData(localStateDataForChange);
         setPageLoadCount(pageLoadCount + 1);
     }
+    const previewSubmitData = (getAction, getIndex = 0) => {
+        let finalSubmitData = _finalSubmitData;
+        if(getAction == 'remove'){
+            finalSubmitData = finalSubmitData.filter((item,id) => id != getIndex);
+        }
+        if(finalSubmitData.length < 10 && getAction == 'add'){
+            bettingInitData.map(item => {
+                if(item.selected){
+                    let day = item.date;
+                    let game = '';
+                    item.games.map(itemGame => {
+                        if(itemGame.selected){
+                            game += itemGame.abbreviation;
+                        }
+                    })
+
+                    let  localStateDataForChange = {};
+
+                    let amount1 = '';
+                    let amount2 = '';
+
+                    if(localStateData && localStateData.big && localStateData.big.value){
+                        amount1 = localStateData.big.value;
+                    }else if(localStateData && localStateData._3a && localStateData._3a.value){
+                        amount1 = localStateData._3a.value;
+                    }
+                    if(localStateData && localStateData.small && localStateData.small.value){
+                        amount2 = localStateData.small.value;
+                    }else if(localStateData && localStateData._3c && localStateData._3c.value){
+                        amount2 = localStateData._3c.value;
+                    }
+                    
+                    let bet_type = '';
+
+                    if(localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled == 0 && localStateData.bet_type.box_value == 1){
+                        bet_type = 'B';
+                    }
+                    else if(localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled == 0 && localStateData.bet_type.i_box_value == 1){
+                        bet_type = 'I';
+                    }
+                    else if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled == 0 && localStateData.bet_type.reverse_value == 1){
+                        bet_type = 'R';
+                    }else{
+                        bet_type = 'S';
+                    }
+
+                    localStateDataForChange['number'] = localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : "";
+                    localStateDataForChange['amount1'] = amount1;
+                    localStateDataForChange['amount2'] = amount2;
+                    localStateDataForChange['date'] = day;
+                    localStateDataForChange['company'] = game;
+                    localStateDataForChange['bet_type'] = bet_type;
+            
+
+
+                    let _mainSubmitData = {
+                            "game_dates":
+                            [
+                                {
+                                    "date":"08 Oct, 2022",
+                                    "games":[1,2]
+                                }
+                        
+                            ],
+                            "options":[
+                            {
+                                "number":"123",
+                                "big_bet":"0.0",
+                                "small_bet":0,
+                                "3a_bet":22,
+                                "3c_bet":33,
+                                "box":"off",
+                                "ibox":"off",
+                                "reverse":"off",
+                                "amount":"480.00"
+                            }
+                        ]
+                    }
+
+
+                    mainSubmitData.push(_mainSubmitData);
+                    setMainSubmitData(_mainSubmitData);
+
+                    if(localStateDataForChange['number'] == ""){
+                        alert('Please Enter Number')
+                    }else if(localStateDataForChange['amount1'] == '' || localStateDataForChange['amount2'] == ''){
+                        alert('Please Enter Amount')
+                    }
+                    else if(localStateDataForChange['date'] == ''){
+                        alert('amount2')
+                    }else if(localStateDataForChange['company'] == ''){
+                        alert('company')
+                    }
+                    else{
+                        finalSubmitData.push(localStateDataForChange);
+                    }           
+                }
+            });
+
+            let  localStateDataForChangeTotalAmount = '';
+            localStateDataForChangeTotalAmount ='10000';
+            setTotalAmount(localStateDataForChangeTotalAmount);
+
+        }
+        _setFinalSubmitData(finalSubmitData);
+
+        setLocalStateData('');
+        allClearData();
+        setPageLoadCount(pageLoadCount + 1);
+    }
+// console.log('ooooooooo',mainSubmitData)
     return (
         
         <>
@@ -479,78 +605,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
                 </div>
             </div>
             
-            <div className="border mt-2">
-                <div className="" style={{ height: '180px' }}>
-                    <table className="table-borderless" style={{ width: '100%' }}>
-                        <thead className="text-light" style={{ background: '#e91d25', fontSize: '12px' }}>
-                            <tr>
-                                <td className="text-center">#</td>
-                                <td className="text-center">{t('Date')}</td>
-                                <td className="text-center">{t('Company')}</td>
-                                <td className="text-center">{t('Number')}</td>
-                                <td className="text-center">B/3A</td>
-                                <td className="text-center">S/3C</td>
-                                <td className="text-center">{t('Bet_Type')}</td>
-                                <td className="text-center"></td>
-                            </tr>
-                        </thead>
-                        <tbody style={{ fontSize: '12px' }}>
-                            <tr>
-                                <td className="text-center">01</td>
-                                <td className="text-center">21/09</td>
-                                <td className="text-center">MPT</td>
-                                <td className="text-center">123R</td>
-                                <td className="text-center">15465</td>
-                                <td className="text-center">99999</td>
-                                <td className="text-center">B</td>
-                                <td>
-                                    <img className="img-fluid" src="images\betting\12121121.png" alt="" style={{ width: '18px' }}  />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="text-center">02</td>
-                                <td className="text-center">21/09</td>
-                                <td className="text-center">MPT</td>
-                                <td className="text-center">123R</td>
-                                <td className="text-center">15465</td>
-                                <td className="text-center">99999</td>
-                                <td className="text-center">I</td>
-                                <td>
-                                    <img className="img-fluid" src="images\betting\12121121.png" alt="" style={{ width: '18px' }}  />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="text-center">03</td>
-                                <td className="text-center">21/09</td>
-                                <td className="text-center">MPT</td>
-                                <td className="text-center">123R</td>
-                                <td className="text-center">15465</td>
-                                <td className="text-center">99999</td>
-                                <td className="text-center">R</td>
-                                <td>
-                                    <img className="img-fluid" src="images\betting\12121121.png" alt="" style={{ width: '18px' }}  />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="text-center">04</td>
-                                <td className="text-center">21/09</td>
-                                <td className="text-center">MPT</td>
-                                <td className="text-center">123R</td>
-                                <td className="text-center">15465</td>
-                                <td className="text-center">99999</td>
-                                <td className="text-center">S</td>
-                                <td>
-                                    <img className="img-fluid" src="images\betting\12121121.png" alt="" style={{ width: '18px' }}  />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div className="row text-light container-fluid m-auto" style={{  background: '#e91d25' }}>
-                    <div className="col-6">{t('Total')} {t('Amount')}</div>
-                    <div className="col-6" style={{ textAlign: 'end' }}>1500</div>
-                </div>
-            </div>
+            <FinalDataContainer _previewSubmitData={previewSubmitData} finalSubmitData={_finalSubmitData} _bettingInitData={bettingInitData} totalAmount={totalAmount}/>
+
+            
                     
             <div className="mt-2">
                 <div className="row">
@@ -636,7 +693,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button className="btn btn-outline-dark"  onClick={() => previewSubmitData('add','')} style={{ width:'100%' }}>
                             <b>+</b>
                         </button>
                     </div>
