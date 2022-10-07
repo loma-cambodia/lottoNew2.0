@@ -3,7 +3,7 @@ import axios from 'axios'
   export const getTicketData = () => async dispatch => {
     
     try{
-        const res = await axios.get(`http://api.kk-lotto.com:8080/api/ticket/1?member_id=4`);
+        const res = await axios.get(`http://api.kk-lotto.com:8080/api/ticket/?member_id=4`);
         dispatch( {
             type: "GET_TICKETS",
             payload: res.data.data

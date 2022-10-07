@@ -51,7 +51,7 @@ const ListTable = (_tickets) => {
         
             console.log(e.target.value,"###")
             if (e.target.value) {
-                fetch('http://api.kk-lotto.com:8080/api/ticket/1?member_id=4&ticket_no=' + e.target.value)
+                fetch(`http://api.kk-lotto.com:8080/api/ticket/1?member_id=4&ticket_no=`+e.target.value)
                     .then(response => {
                         return response.json()
                     })
@@ -59,7 +59,7 @@ const ListTable = (_tickets) => {
                         if (data.success == true) {
                             setTicketList(data.data)
                         }
-                        console.log("GET TICKET-->-->",data)
+                        console.log("GET TICKET-->-->",ticketList.data)
                     })
                 setstartRef(e.target.value);
             }
@@ -160,19 +160,36 @@ const ListTable = (_tickets) => {
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    {ticketList.length ? 
                             <tr>
-                                <td>{ticket.id}</td>
+                                <td>{ticketList.id}</td>
+                                <td class="text-start"><Link href="/TicketDetails"><a >{ticketList.ticket_no}</a></Link></td>
+                                <td class="text-start">{ticketList.bet_number}</td>
+                                <td class="text-center" >{ticketList.created_at}</td>
+                                <td class="text-center">{ticketList.betting_date}</td>
+                                <td class="text-center">{ticketList.bet_type}</td>
+                                {/* <td class="text-center">{gameName}</td> */}
+                                <td class="text-end">{ticketList.total_amount}</td>
+                                <td class="text-end">{ticketList.rebate_amount}</td>
+                                <td class="text-end">{ticketList.net_amount}</td>
+                            </tr>
+                            :
+                            <tr>
+                                <td>{ticket._tickets.id}</td>
                                 <td class="text-start"><Link href="/TicketDetails"><a >{ticket._tickets.ticket_no}</a></Link></td>
                                 <td class="text-start">{ticket._tickets.bet_number}</td>
                                 <td class="text-center" >{ticket._tickets.created_at}</td>
                                 <td class="text-center">{ticket._tickets.betting_date}</td>
                                 <td class="text-center">{ticket._tickets.bet_type}</td>
-                                {/* <td class="text-center">{gameName}</td> */}
                                 <td class="text-end">{ticket._tickets.total_amount}</td>
                                 <td class="text-end">{ticket._tickets.rebate_amount}</td>
                                 <td class="text-end">{ticket._tickets.net_amount}</td>
-                            </tr>
+                            </tr>}
+
+                             
+                       
+                           
+                            
                     </tbody>
                     
                 </table>
