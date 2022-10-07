@@ -1,12 +1,14 @@
-import axios from 'axios'
+import axios from 'axios';
+//let API_BASE_URL = 'http://api.kk-lotto.com:8080/api';
+let API_BASE_URL = process.env.apiUrl;
 
 
   export const getBettingDates = () => async dispatch => {
     
     try{
     //    const res = await axios.get(`http://uat.kk-lotto.com/b2b/api/dates`);
-    const res = await axios.get(`http://api.kk-lotto.com:8080/api/dates/all`);
-        console.log('res:',res);
+    const res = await axios.get(`${API_BASE_URL}/dates/all`);
+       // console.log('res:',res);
         dispatch( {
             type: "GET_DATES",
             payload: res.data.data
@@ -30,17 +32,11 @@ export const lotterySubmit = (sendData, callback) => async dispatch => {
         const headers = {
             'Content-Type': 'application/json'
           }
-        const res = await axios.post(`http://api.kk-lotto.com:8080/api/tickets`,sendData,{
+        const res = await axios.post(`${API_BASE_URL}/tickets`,sendData,{
             headers: headers
           });
         console.log('res:tickets:',res);
-        // dispatch( {
-        //     type: "GET_DATES2",
-        //     payload: res.data.data
-        // });
-
-        //return callback(res.data);
-        return callback({'message': 'in catch condition', statusCode:201});
+        return callback({'message': 'Success', data:res.data.data, statusCode:res.status});
 
     }
     catch(e){

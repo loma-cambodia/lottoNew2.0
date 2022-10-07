@@ -1,6 +1,8 @@
 import React, { useState,useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
-const BettingInputsForMob = ({ item,activeGame }) => {
+const BettingInputsForMob = ({ item,activeGame,activeGameType }) => {
+    const { t } = useTranslation();
 
     let localStateInitData = item.dataInit;
     const [localStateData, setLocalStateData] = useState(localStateInitData);
@@ -15,20 +17,12 @@ const BettingInputsForMob = ({ item,activeGame }) => {
     const [smallValue, setSmallValue] = React.useState('');
     const [a3Value, setA3Value] = React.useState('');
     const [c3Value, setC3Value] = React.useState('');
-    const [activeTypeGame, setActiveTypeGame] = useState(false);
 
     useEffect(() => {
         findWitchTypeOfGame();
-    }, [activeGame]);
+    }, [activeGameType]);
 
     function findWitchTypeOfGame(){
-        setActiveTypeGame(activeGame);
-        if(activeGame == false){
-            // alert('3d');
-        }
-        if(activeGame == true){
-            // alert('4d');
-        }
         allClearData();
     }
 
@@ -91,6 +85,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
         setC3Value('');
     }
     const resetAllData = () => {
+        // alert('pppp');
         allClearData();
     }
 
@@ -355,14 +350,14 @@ const BettingInputsForMob = ({ item,activeGame }) => {
     return (
         
         <>
-            {activeTypeGame ? 
+            {activeGameType ? 
                 <>  
                     <div className="row">
                         <div className="col-6" style={{ padding: '-1px' }}>
                             <input type="text" 
                                 inputMode='none'
                                 className="form-control" 
-                                placeholder="4D Bet Number" 
+                                placeholder={t('4D_Bet_Number')}
                                 value={numberValue4D}  
                                 onClick={() => setCurserPointer('number4d')} 
                                 // value={localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : ""}
@@ -375,8 +370,8 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                             <input 
                                 inputMode='none'
                                 type="text" 
-                                className="form-control" 
-                                placeholder="Big" 
+                                className="form-control text-right-for-amount" 
+                                placeholder={t('Big_Bet')}
                                 value={bigValue}
                                 onClick={() => setCurserPointer('big')} 
                             />
@@ -385,8 +380,8 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                             <input 
                                 inputMode='none'
                                 type="text" 
-                                className="form-control" 
-                                placeholder="Small" 
+                                className="form-control text-right-for-amount"
+                                placeholder={t('Small_Bet')}
                                 value={smallValue}
                                 onClick={() => setCurserPointer('small')} 
                             />
@@ -400,7 +395,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                             <input type="text" 
                                 inputMode='none'
                                 className="form-control" 
-                                placeholder="3D Bet Number" 
+                                placeholder={t('3D_Bet_Number')}
                                 value={numberValue3D}  
                                 onClick={() => setCurserPointer('number3d')} 
                                 // value={localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : ""}
@@ -413,7 +408,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                             <input 
                                 inputMode='none'
                                 type="text" 
-                                className="form-control"
+                                className="form-control text-right-for-amount"
                                 value={a3Value} 
                                 onChange={(e) => numberInputHandler(e.target.value, '_3a')}
                                 // value={localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : ""}
@@ -425,7 +420,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                             <input 
                                 inputMode='none'
                                 type="text" 
-                                className="form-control"
+                                className="form-control text-right-for-amount"
                                 value={c3Value} 
                                 onChange={(e) => numberInputHandler(e.target.value, '_3c')}
                                 // value={localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : ""}
@@ -449,7 +444,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
 
                       onClick={(e) => numberInputHandler(1, 'box')}
                      >
-                        <img className="img-fluid" src="images\betting\0000.png" alt="" style={{ width: '20px' }} /> Box
+                        <img className="img-fluid" src="images\betting\0000.png" alt="" style={{ width: '20px' }} /> {t('Box')}
                     </label>
                 </div>
                 <div className="col-4">
@@ -463,7 +458,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                         
                         onClick={(e) => numberInputHandler(1, 'ibox')}
                     >
-                        <img className="img-fluid" src="images\betting\000000.png" alt="" style={{ width: '20px' }} /> iBox
+                        <img className="img-fluid" src="images\betting\000000.png" alt="" style={{ width: '20px' }} /> {t('iBox')}
                     </label>            
                 </div>
                 <div className="col-4" style={{ padding: '0' }}>
@@ -479,7 +474,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                         
                         onClick={(e) => numberInputHandler(1, 'reverse')}
                     >
-                        <img className="img-fluid" src="images\betting\00000000.png" alt="" style={{ width: '20px' }} /> Reverse
+                        <img className="img-fluid" src="images\betting\00000000.png" alt="" style={{ width: '20px' }} /> {t('Reverse')}
                     </label>                       
                 </div>
             </div>
@@ -490,12 +485,12 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                         <thead className="text-light" style={{ background: '#e91d25', fontSize: '12px' }}>
                             <tr>
                                 <td className="text-center">#</td>
-                                <td className="text-center">Date</td>
-                                <td className="text-center">CO</td>
-                                <td className="text-center">Number</td>
+                                <td className="text-center">{t('Date')}</td>
+                                <td className="text-center">{t('Company')}</td>
+                                <td className="text-center">{t('Number')}</td>
                                 <td className="text-center">B/3A</td>
                                 <td className="text-center">S/3C</td>
-                                <td className="text-center">Bet Type</td>
+                                <td className="text-center">{t('Bet_Type')}</td>
                                 <td className="text-center"></td>
                             </tr>
                         </thead>
@@ -552,7 +547,7 @@ const BettingInputsForMob = ({ item,activeGame }) => {
                     </table>
                 </div>
                 <div className="row text-light container-fluid m-auto" style={{  background: '#e91d25' }}>
-                    <div className="col-6">Total Amount</div>
+                    <div className="col-6">{t('Total')} {t('Amount')}</div>
                     <div className="col-6" style={{ textAlign: 'end' }}>1500</div>
                 </div>
             </div>
@@ -651,12 +646,12 @@ const BettingInputsForMob = ({ item,activeGame }) => {
             <div className="mt-2 mb-2 row">
                 <div className='col-6'>
                     <button className="form-control" onClick={() => resetAllData()} style={{ background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
-                        <b>Reset</b> 
+                        <b>{t('Reset')}</b> 
                     </button> 
                 </div>
                 <div className='col-6'>
                     <button className="form-control text-light" style={{ background: '#e91d25' }}> 
-                        <b>BET</b> 
+                        <b>{t('BET')}</b> 
                     </button> 
                 </div>            
             </div> 

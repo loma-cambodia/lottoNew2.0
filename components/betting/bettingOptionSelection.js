@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {getBettingDates,lotterySubmit} from '../../store/actions/bettingActions';
 import { useDispatch, useSelector } from "react-redux";
+import RejectedBedContainer from './rejectedBedContainer';
 import Modal from 'react-modal';
 
     //   Dummy Ticket Data for Modal Use.
@@ -100,7 +101,10 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
     let dateAndGameOptionData = [];
 
 
+    const auth = useSelector(state => state.auth);
 
+
+    const [resultData, setResultData] = React.useState({});
 //  Model code 
 
 const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -124,6 +128,12 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
     }
     function closeModal() {
       setIsOpen(false);
+    }
+
+    const modelCloseCustom = () => {
+        setIsOpen(false);
+        clearAllRecords();
+
     }
 // End model cod e
 
@@ -185,11 +195,11 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
 
                         setLocalStateInitDataParent(bettingInputsData2);
                         setLoadpageCounter(loadpageCounter + 1);
+                        setBettingInitData([]);
     }
 
 
     const lotterySubmitRecordsCallAction = () => {
-        console.log('lotterySubmitRecordsCallAction');
         let _bettingInitData = bettingInitData;
         let _bettingInputsDataParent = bettingInputsDataParent;
 
@@ -226,21 +236,47 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
                options.push(tempObj);
         })
 
-        console.log('_bettingInitData:',_bettingInitData);
-        console.log('_bettingInputsDataParent:',_bettingInputsDataParent);
-        console.log('game_dates:',game_dates);
-        console.log('options:',options);
+    
+        if(game_dates.length == 0){
+            toast.error('Please choose at least one date selection!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+            pauseOnHover: true,draggable: true,progress: undefined});
+            return false;
+        }
+
+        if(game_dates && game_dates[0].games && game_dates[0].games.length == 0){
+            toast.error('Please select game first!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+            return false;
+        }
+
+
+        if(options && options.length == 0){
+            toast.error('Please select atleat one number!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+            return false;
+        }
 
 
 
-        return false;
+        
 
-       let dataSubmit = {member_id:4, merchant_id:1, game_dates, options}
-      //  _lotterySubmitRecords(dataSubmit);
+       let dataSubmit = {member_id:auth.auth.customer_id, merchant_id:auth.auth.merchant_id, game_dates, options};
+       dataSubmit['member_id'] = auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
+       dataSubmit['merchant_id'] = auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id: 0;
+
 
          dispatch(lotterySubmit(dataSubmit, response =>{
                 
+          
+
+
             if(response.statusCode  == 201  || response.statusCode  == 200 ){
+
+                setResultData(response.data)
+
+             //   {"member_id":4,"merchant_id":1,"game_dates":[{"date":"08 Oct, 2022","games":[1]}],"options":[{"number":"4321","big_bet":"20.00","small_bet":"10.00","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","reverse":"off","amount":"720.00"}]}
+
+
                 openModal();
 
             }else {
@@ -250,16 +286,8 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
 
           }));
 
-    //    const lotterySubmitRecords = (dataSubmit) => {
-            // console.log('dataSubmit',dataSubmit);
-            //  dispatch(lotterySubmit(dataSubmit, response =>{
-                
-            //    console.log('callBack:',response);
 
-            //  }));
-        //  }
       
-
     } 
     
 
@@ -632,89 +660,22 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
                                             <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
                                         </div>
                                         <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
-                                            <p>{totalAmount}.00</p>
-                                            <p>165.00</p>
-                                            <p>35.00</p>
-                                            <p style={{fontWeight:'bold'}}>148.50</p>
+                                            <p>{resultData && resultData.total ? resultData.total : 0 }</p>
+                                            <p>{resultData && resultData.acp_bet ? resultData.acp_bet : 0 }</p>
+                                            <p>{resultData && resultData.rebat ? resultData.rebat : 0 }</p>
+                                            <p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? resultData.netAmount : 0 }</p>
                                         </div>
                                     </div>
                                     <hr></hr>
-                                    <div><h5>Rejected Bet</h5></div>
-                                    <div className="row text-center table-responsive " style={{height:"250px"}}>
-                                    <table className="table table-bordered table-striped mb-0">
-                                        <tbody style={{fontWeight:'bold'}}>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('M')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('P')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-15</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('P')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-15</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('M')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('P')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-15</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('M')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('M')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('M')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                           
-                                        </tbody>
-                                    </table>
-                                    </div>
+                                    
+                                    
+                                    <RejectedBedContainer dataRecords ={resultData && resultData.rejected ? resultData.rejected : []}/>
+                                   
+                                    
                                 </div>
                             </div>
                             <div class="modal-footer" style={{justifyContent:'center'}}>
-                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={closeModal}>OK</button>
+                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
                             </div>
                         </div>
             </Modal>
