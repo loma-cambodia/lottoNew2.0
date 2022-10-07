@@ -40,6 +40,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
    } 
    const hideError = (ids) => {
     $("#ErrorBig"+ids).html('');
+    $("#ErrorBig"+ids).css('visibility', 'hidden')
+
     $("#ErrorSmall"+ids).html('');
     $("#ErrorC"+ids).html('');
     $("#ErrorA"+ids).html('');
@@ -158,12 +160,14 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             
             if(getValue > limit[0].big_max_bet ){
                 $("#ErrorBig"+idas).html('Bet should not be greater than '+limit[0].big_max_bet);
+                $("#ErrorBig"+idas).css('visibility', 'visible')
+
                 getValue = limit[0].big_max_bet
                
             }else if(getValue < limit[0].big_min_bet ){
                 getValue = limit[0].big_min_bet
                 $("#ErrorBig"+idas).html('Bet should not be less than '+limit[0].big_min_bet);
-                
+                $("#ErrorBig"+idas).css('visibility', 'visible')
             }
             else{
                 $("#ErrorBig"+idas).html('');
@@ -424,7 +428,7 @@ useEffect(() => {
                 /> 
             </td>
             {/* big*/}
-            <td>
+            <td style={{position:'relative'}}>
                 <input type="text" className="form-control-custom"
                     onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
                     id={"BigText"+ids}
@@ -434,7 +438,10 @@ useEffect(() => {
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
                     disabled={localStateInitData && localStateInitData.big && localStateInitData.big.disabled ? true : false}
                     />  
-                    <small style={{color: 'red'}} id={"ErrorBig"+ids}></small>
+                    <span className="betTip" style={{
+                                }} 
+                            id={"ErrorBig"+ids}>
+                    </span>
             </td>
             {/* small*/}
             <td><input type="text" className="form-control-custom"
