@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env:{
-    siteUrl:'http://sit.kk-lotto.com/b2b'
+    apiUrl:'http://api.kk-lotto.com:8080/api'
   }
 }
 
