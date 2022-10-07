@@ -47,9 +47,9 @@ export default function BettingList({datauser}) {
                             <th class="text-start">Ticket No</th>
                             <th class="text-start">Bet No.</th>
                             <th class="text-center">{t('Date')}</th>
-                            <th class="text-center">{t('Game')}</th>
+                            <th class="text-center">Draw Date</th>
                             <th class="text-center">Betting Type</th>
-                            <th class="text-center">{t('Company')}</th>
+                            {/* <th class="text-center">{t('Company')}</th> */}
                             <th class="text-end">Gross Amt.</th>
                             <th class="text-end">{t('Commission')}</th>
                             <th class="text-end">Net Amt.</th>
