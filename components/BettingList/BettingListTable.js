@@ -45,23 +45,25 @@ const ListTable = (_tickets) => {
         ['This Year']: [moment().startOf('year')],
       });
 
-      const [ticketNumber, setTicketNumber] = useState("");
-      const [foundTicket, setFoundTicket] = useState(ticket)
+      const [ticketList, setTicketList] = useState([]);
+      const [startRef, setstartRef] = useState();
       function GetTicketNumber(e) {
-        const keyword = e.target.value;
-     
-        if (e.target.value !== "") {
-            const results = ticket.filter((item) => {
-              return item.ticket_no.toLowerCase().startsWith(keyword.toLowerCase());
-              // Use the toLowerCase() method to make it case-insensitive
-            });
-            console.log("NOT EMPTY")
-            setFoundTicket(results);
-          } else {
-            console.log(e.target.value)
-            setFoundTicket(ticket);
-            // If the text field is empty, show all users
-          }
+        
+            console.log(e.target.value,"###")
+            if (e.target.value) {
+                fetch('http://api.kk-lotto.com:8080/api/ticket/1?member_id=4&ticket_no=' + e.target.value)
+                    .then(response => {
+                        return response.json()
+                    })
+                    .then(data => {
+                        if (data.success == true) {
+                            setTicketList(data.data)
+                        }
+                        console.log("GET TICKET-->-->",data)
+                    })
+                setstartRef(e.target.value);
+            }
+            console.log("STARTREF-->",setstartRef)
         }
         
       function formatDate(date) {
