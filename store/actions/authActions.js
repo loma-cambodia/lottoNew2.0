@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+let API_BASE_URL = process.env.apiUrl;
   export const getLogin = () => async dispatch => {
     
     try{
