@@ -79,6 +79,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 
                 localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 1 } };
                 localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 1 } };
+
+                
                 let uniqueAges = getStringUniqueCharactors(getValue);
                 let isPalindrom =  checkPalindrome(getValue);
                 if (getValue.includes("R") || getValue.includes("r")) 
@@ -133,6 +135,9 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
         } else if (operationField == 'box') {
           let changeValue = localStateDataForChange['bet_type']['box_value'] ? 0 : 1;
+
+         // localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue);
+
           if (localStateDataForChange['number']['value'])
              localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: changeValue, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
 
@@ -295,6 +300,29 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         _setLoadpageCounter(_loadpageCounter + 1);
     }
 
+
+
+
+      const changeBoxValues = (localStateDataForChange, boxName, boxValue) => {
+
+        let _localStateDataForChange = localStateDataForChange; 
+        let getValue = _localStateDataForChange['number']['value'];
+
+       // if(boxName )
+        let uniqueAges = getStringUniqueCharactors(getValue);
+        let isPalindrom =  checkPalindrome(getValue);
+        if (getValue.includes("R") || getValue.includes("r")) 
+        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+        else if (uniqueAges.length == 1) 
+        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+        else if (isPalindrom) 
+        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+        else 
+        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 0 } };
+      
+        return _localStateDataForChange;
+    } 
+
     const calculationOfTotalAmount = (getRow) => {
       let bet_type = '';
       let total_sum = 0;
@@ -428,7 +456,7 @@ useEffect(() => {
                 /> 
             </td>
             {/* big*/}
-            <td>
+            <td style={{position:'relative'}}>
                 <input type="text" className="form-control-custom text-end"
                     onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
                     id={"BigText"+ids}

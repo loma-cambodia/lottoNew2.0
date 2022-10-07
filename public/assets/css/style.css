@@ -2651,7 +2651,7 @@ span.name-gp {
                           white-space: nowrap;
                           line-height: 1;
                           text-align: center;
-                          top: -100%;
+                          top: -90%;
                           background: #e32e7a;
                           border: 1px solid #ddd;
                           visibility: hidden;
@@ -2681,7 +2681,7 @@ span.name-gp {
                       }
 
                      
-            span[id^=ErrorBig]::after {
+            /* span[id^=ErrorBig]::after {
               left: 30%;
               }
               @media (max-width:1400px) and (min-width:1200px) {
@@ -2703,4 +2703,4 @@ span.name-gp {
 
               input.form-control.text-right-for-amount {
                 text-align: right;
-            }
+            } */
