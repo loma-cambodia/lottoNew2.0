@@ -232,7 +232,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords}) => {
                       {item.selected ? (item.date).replace(/, .*/,'') : ''} &nbsp;
                         {item.games.map((itemGame,ids) => (
                           <b key={ids}>
-                            {itemGame.selected ? (itemGame.name.charAt(0)) : ''}
+                            {itemGame.selected ? (itemGame.abbreviation) : ''}
                           </b>
                         ) )}
                       </span>

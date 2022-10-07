@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-const FinalDataContainer = ({_previewSubmitData, finalSubmitData,_bettingInitData}) => {
+const FinalDataContainer = ({_previewSubmitData, finalSubmitData,_bettingInitData,totalAmount}) => {
     const { t } = useTranslation();
 
     // console.log('FinalDataContainer:_bettingInitData:',_bettingInitData);
-    // console.log('finalSubmitData:',finalSubmitData);
+    console.log('finalSubmitData:',finalSubmitData);
 
     const removeRowData = (id) => {
         alert(id.id)
@@ -30,25 +30,24 @@ const FinalDataContainer = ({_previewSubmitData, finalSubmitData,_bettingInitDat
                             return(
                                 <tr key={id}>
                                     <td className="text-center">{id+1}</td>
-                                    <td className="text-center">{item.date.replace(/, .*/,'')}</td>
+                                    <td className="text-center">{(item.date).replace(/, .*/,'')}</td>
                                     <td className="text-center">{item.company}</td>
                                     <td className="text-center">{item.number}</td>
                                     <td className="text-center">{item.amount1}</td>
                                     <td className="text-center">{item.amount2}</td>
                                     <td className="text-center">{item.bet_type}</td>
                                     <td onClick={() => _previewSubmitData('remove',id)}>
-                                        <img className="img-fluid" src="images\betting\12121121.png" alt="" style={{ width: '18px' }} />1111
+                                        <img className="img-fluid" src="images\betting\12121121.png" alt="" style={{ width: '18px' }} />
                                     </td>
                                 </tr>
                                 )
                             })}
-
                         </tbody>
                     </table>
                 </div>
                 <div className="row text-light container-fluid m-auto" style={{  background: '#e91d25' }}>
                     <div className="col-6">{t('Total')} {t('Amount')}</div>
-                    <div className="col-6" style={{ textAlign: 'end' }}>1500</div>
+                    <div className="col-6" style={{ textAlign: 'end' }}>{totalAmount ? totalAmount : '0.00'}</div>
                 </div>
             </div>
     );
