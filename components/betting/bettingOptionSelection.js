@@ -375,6 +375,19 @@ const [apiResponce,  setApiResponce] = React.useState('success');
 
       }
 
+      const MoneyFormatDisplay = (theInput, getCase) => {
+        //Do something with the input
+        let getInput = theInput;
+        if(getCase == 1){
+         if(getInput)
+           return theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+         else 
+           return '';
+        }else{
+           return parseFloat(lottery.slave_net_amount).toFixed(2)
+        }
+     };
+
 
     
 
@@ -703,10 +716,10 @@ const [apiResponce,  setApiResponce] = React.useState('success');
                                             <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
                                         </div>
                                         <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
-                                            <p>{resultData && resultData.total ? resultData.total : 0 }</p>
-                                            <p>{resultData && resultData.acp_bet ? resultData.acp_bet : 0 }</p>
-                                            <p>{resultData && resultData.rebat ? resultData.rebat : 0 }</p>
-                                            <p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? resultData.netAmount : 0 }</p>
+                                            <p>{resultData && resultData.total ? MoneyFormatDisplay(resultData.total, 1) : 0 }</p>
+                                            <p>{resultData && resultData.acp_bet ? MoneyFormatDisplay(resultData.acp_bet,1) : 0 }</p>
+                                            <p>{resultData && resultData.rebat ? MoneyFormatDisplay(resultData.rebat,1) : 0 }</p>
+                                            <p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount,1) : 0 }</p>
                                         </div>
                                     </div>) : (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>)}
                                     <hr></hr>
