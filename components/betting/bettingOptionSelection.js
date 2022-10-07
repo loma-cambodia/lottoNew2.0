@@ -216,19 +216,33 @@ const [apiResponce,  setApiResponce] = React.useState('success');
 
         let game_dates = [];
         let options = [];
-        _bettingInitData.map(item => {
-            let tempObj = {};
-            let games = [];
-            item && item.games && item.games.map(itemGame => {
-                if(itemGame.selected)
-                  games.push(itemGame.id);
-            });
 
-            tempObj['date'] =  item.date;
-            tempObj['games'] =  games;
-            if(item.selected)
-               game_dates.push(tempObj); 
-        })
+
+
+
+        // "game_dates":[
+        //     {
+        //         "date":"08 Oct, 2022",
+        //         "games":[1,2]
+        //         "options":[{"number":"1112","big_bet":"10","small_bet":"10","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","reverse":"off","amount":"160"}]
+                
+        //     },
+        //     {
+        //         "date":"09 Oct, 2022",
+        //         "games":[1,3]
+        //         "options":[{"number":"1112","big_bet":"40000","small_bet":"50000","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","reverse":"off","amount":"80"}]
+                
+        //     },
+        //     {
+        //         "date":"11 Oct, 2022",
+        //         "games":[1,2,3]
+        //         "options":[{"number":"2245","big_bet":"10","small_bet":"10","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","reverse":"off","amount":"?"}]
+                
+        //     }
+        // ]
+
+
+
 
         _bettingInputsDataParent && _bettingInputsDataParent.map(item => {
             let tempObj = {};
@@ -246,6 +260,25 @@ const [apiResponce,  setApiResponce] = React.useState('success');
            if(item.dataInit && item.dataInit.number && item.dataInit.number.value)
                options.push(tempObj);
         })
+
+
+        _bettingInitData.map(item => {
+            let tempObj = {};
+            let games = [];
+            item && item.games && item.games.map(itemGame => {
+                if(itemGame.selected)
+                  games.push(itemGame.id);
+            });
+
+            tempObj['date'] =  item.date;
+            tempObj['games'] =  games;
+            tempObj['options'] =  options;
+            
+            if(item.selected)
+               game_dates.push(tempObj); 
+        })
+
+       
 
     
         if(game_dates.length == 0){
@@ -271,7 +304,7 @@ const [apiResponce,  setApiResponce] = React.useState('success');
 
         
 
-       let dataSubmit = {member_id:auth.auth.customer_id, merchant_id:auth.auth.merchant_id, game_dates, options};
+       let dataSubmit = {member_id:auth.auth.customer_id, merchant_id:auth.auth.merchant_id, game_dates};
        dataSubmit['member_id'] = auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
        dataSubmit['merchant_id'] = auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id: 0;
 
