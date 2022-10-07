@@ -11,7 +11,7 @@ const { t } = useTranslation();
         <div className="footer-row">
             <div className="footer-logo">
                 <a href="#">
-                    <img src="assets/images/logo-footer.png" className="img-fluid"/>
+                    <img src="assets/images/logo-footer.png" style={{maxHeight: '100px!important'}} className="img-fluid"/>
                 </a>
             </div>
             <div className="footer-links ms-auto">

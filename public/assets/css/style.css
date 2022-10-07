@@ -2639,8 +2639,57 @@ span.name-gp {
       margin-bottom: 15px;
   }
 }
-
-
-input.form-control.text-right-for-amount {
-  text-align: end;
+.betTip{
+   position: 'absolute';
+                          display: block;
+                          white-space: nowrap;
+                          line-height: 1;
+                          text-align: center;
+                          top: -100%;
+                          background: #e32e7a;
+                          border: 1px solid #ddd;
+                          visibility: hidden;
+                          font-size: 12px;
+                          border-radius: 5px;
+                          color: white;
+                          padding: 10px 15px 10px 15px;
+                          position: absolute;
+                          right:5%
 }
+      @media (max-width:690px) {
+        .betTip{
+          padding: 2px;
+          top: -130%;
+          white-space: normal;
+      }
+      }
+        .betTip::after{
+          content: "";
+          position: absolute;
+          top: 100%;
+          /* left: 10%; */
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: #e32e7a transparent transparent transparent;
+                      }
+
+                     
+            span[id^=ErrorBig]::after {
+              left: 30%;
+              }
+              @media (max-width:1400px) and (min-width:1200px) {
+                span[id^=ErrorBig]::after {
+                  left: 45%;
+                  }
+              }
+              @media (max-width:1199px) and (min-width:890px)  {
+                span[id^=ErrorBig]::after {
+                  left: 55%;
+                  }
+              }
+              @media (max-width:889px) and (min-width:691px) {
+                span[id^=ErrorBig]::after {
+                  left: 65%;
+                  }
+              }
