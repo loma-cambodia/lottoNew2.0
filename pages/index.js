@@ -29,8 +29,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-  console.log('index:datauser:',datauser);
-
+  //console.log('index:datauser:',datauser);
   dispatch({
     type: "GET_LOGIN_DETAILS",
     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
