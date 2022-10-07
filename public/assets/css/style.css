@@ -2678,5 +2678,29 @@ span.name-gp {
           border-width: 5px;
           border-style: solid;
           border-color: #e32e7a transparent transparent transparent;
-        }
-              
+                      }
+
+                     
+            /* span[id^=ErrorBig]::after {
+              left: 30%;
+              }
+              @media (max-width:1400px) and (min-width:1200px) {
+                span[id^=ErrorBig]::after {
+                  left: 45%;
+                  }
+              }
+              @media (max-width:1199px) and (min-width:890px)  {
+                span[id^=ErrorBig]::after {
+                  left: 55%;
+                  }
+              }
+              @media (max-width:889px) and (min-width:691px) {
+                span[id^=ErrorBig]::after {
+                  left: 65%;
+                  }
+              }
+
+
+              input.form-control.text-right-for-amount {
+                text-align: right;
+            } */

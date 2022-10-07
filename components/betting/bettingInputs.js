@@ -57,6 +57,28 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
         let threeDAmout = calculate3DAmountEnable(getValue,operationField);
 
+            let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
+            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
+
+            let small_max_bet  = limit && limit.length > 0 && limit[0].small_max_bet ?  limit[0].small_max_bet : 0;
+            let small_min_bet  = limit && limit.length > 0 && limit[0].small_min_bet ?  limit[0].small_min_bet : 0;
+
+            let three_a_max_bet  = limit && limit.length > 0 && limit[0].three_a_max_bet ?  limit[0].three_a_max_bet : 0;
+            let three_a_min_bet  = limit && limit.length > 0 && limit[0].three_a_min_bet ?  limit[0].three_a_min_bet : 0;
+
+            let three_c_max_bet  = limit && limit.length > 0 && limit[0].three_c_max_bet ?  limit[0].three_c_max_bet : 0;
+            let three_c_min_bet  = limit && limit.length > 0 && limit[0].three_c_min_bet ?  limit[0].three_c_min_bet : 0;
+
+            // 
+            // let big_max_bet  = 100;
+            // let big_min_bet = 0;
+            // let small_max_bet  = 100;
+            // let small_min_bet = 0; 
+            // let three_a_max_bet  = 100;
+            // let three_a_min_bet = 0;
+            // let three_c_max_bet  = 100;
+            // let  three_c_min_bet = 0;
+
         if (operationField == 'number') {
 
 
@@ -67,6 +89,9 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (getValue && getValue.match(/r/i) && (getValue.toLowerCase().match(/r/g).length == 2 || getValue.toLowerCase().match(/r/g).length == 3 || getValue.toLowerCase().match(/r/g).length == 4)) {
                 return false;
             }
+
+            
+
 
              localStateDataForChange = { ...localStateDataForChange, number: { value: getValue, disabled: 0 } };
             if (getValue.length == 1 || getValue.length == 2) {
@@ -163,19 +188,18 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 return false;
             }
 
-           let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
-           let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
+          
 
             
-            if(getValue > limit[0].big_max_bet ){
-                $("#ErrorBig"+idas).html('Bet should not be greater than '+limit[0].big_max_bet);
+            if(getValue > big_max_bet ){
+                $("#ErrorBig"+idas).html('Bet should not be greater than '+big_max_bet);
                 $("#ErrorBig"+idas).css('visibility', 'visible')
 
-                getValue = limit[0].big_max_bet
+                getValue = big_max_bet
                
-            }else if(getValue < limit[0].big_min_bet ){
-                getValue = limit[0].big_min_bet
-                $("#ErrorBig"+idas).html('Bet should not be less than '+limit[0].big_min_bet);
+            }else if(getValue < big_min_bet ){
+                getValue = big_min_bet
+                $("#ErrorBig"+idas).html('Bet should not be less than '+big_min_bet);
                 $("#ErrorBig"+idas).css('visibility', 'visible')
 
                 getValue = ''
@@ -190,14 +214,17 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            if(getValue > limit[0].small_max_bet ){
-                $("#ErrorSmall"+idas).html('Bet should not be greater than '+limit[0].small_max_bet);
+
+           
+
+            if(getValue > small_max_bet ){
+                $("#ErrorSmall"+idas).html('Bet should not be greater than '+small_max_bet);
                 $("#ErrorSmall"+idas).css('visibility', 'visible')
 
-                getValue = limit[0].small_max_bet
-            }else if(getValue < limit[0].small_min_bet ){
+                getValue = small_max_bet
+            }else if(getValue < small_min_bet ){
 
-                $("#ErrorSmall"+idas).html('Bet should not be less than '+limit[0].small_min_bet);
+                $("#ErrorSmall"+idas).html('Bet should not be less than '+small_min_bet);
                 $("#ErrorSmall"+idas).css('visibility', 'visible')
 
                 getValue = ''
@@ -213,13 +240,15 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            if(getValue > limit[0].three_a_max_bet ){
-                $("#ErrorA"+idas).html('Bet should not be greater than '+limit[0].three_a_max_bet);
-                $("#ErrorA"+idas).css('visibility', 'visible')
 
-                getValue = limit[0].three_a_max_bet
-            }else if(getValue < limit[0].three_a_min_bet ){
-                $("#ErrorA"+idas).html('Bet should not be less than '+limit[0].three_a_min_bet);
+            
+
+            if(getValue > three_a_max_bet ){
+                $("#ErrorA"+idas).html('Bet should not be greater than '+three_a_max_bet);
+                $("#ErrorA"+idas).css('visibility', 'visible')
+                getValue = three_a_max_bet
+            }else if(getValue < three_a_min_bet ){
+                $("#ErrorA"+idas).html('Bet should not be less than '+three_a_min_bet);
                 $("#ErrorA"+idas).css('visibility', 'visible')
 
                 getValue = ''
@@ -258,13 +287,16 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            if(getValue > limit[0].three_c_max_bet ){
-                $("#ErrorC"+idas).html('Bet should not be greater than '+limit[0].three_c_max_bet);
+
+           
+
+            if(getValue > three_c_max_bet ){
+                $("#ErrorC"+idas).html('Bet should not be greater than '+three_c_max_bet);
                 $("#ErrorC"+idas).css('visibility', 'visible')
 
-                getValue = limit[0].three_c_max_bet
-            }else if(getValue < limit[0].three_c_min_bet ){
-                $("#ErrorC"+idas).html('Bet should not be less than '+limit[0].three_c_min_bet);
+                getValue = three_c_max_bet
+            }else if(getValue < three_c_min_bet ){
+                $("#ErrorC"+idas).html('Bet should not be less than '+three_c_min_bet);
                 $("#ErrorC"+idas).css('visibility', 'visible')
 
                 getValue = ''
@@ -343,23 +375,31 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
          // rollingNumber
 
-     if(getRow && getRow.big && getRow.big.value) 
-      total_sum += parseInt(getRow.big.value);
+     if(getRow && getRow.big && getRow.big.value){ 
+        total_sum = total_sum + parseFloat(getRow.big.value);
+     }
+
+      console.log('total_sum:',total_sum)
 
       if(getRow && getRow.small && getRow.small.value) 
-      total_sum += parseInt(getRow.small.value);
+      total_sum = total_sum + parseFloat(getRow.small.value);
 
       if(getRow && getRow._3a && getRow._3a.value) 
-      total_sum += parseInt(getRow._3a.value);
+      total_sum = total_sum + parseFloat(getRow._3a.value);
 
       if(getRow && getRow._3c && getRow._3c.value) 
-      total_sum += parseInt(getRow._3c.value);
+      total_sum = total_sum + parseFloat(getRow._3c.value);
+
+      //console.log('total_sum:',total_sum);
 
 
 
       let totalAmount =  0;
+      //_gameCount = 1;
       if(_gameCount && total_sum)
       totalAmount = _gameCount * total_sum  
+
+      //console.log('totalAmount:',totalAmount);
 
       if(bet_type == 'box'){
         let totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
@@ -375,6 +415,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         totalAmount = totalAmount * 10;  
 
     }
+
+   // console.log('totalAmount:', totalAmount);
           
       return totalAmount;
     }
@@ -435,6 +477,20 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 useEffect(() => {
     numberInputHandler('', '');
   },[_gameCount]);
+
+
+  const MoneyFormatDisplay = (theInput, getCase) => {
+    //Do something with the input
+    let getInput = theInput;
+    if(getCase == 1){
+     if(getInput)
+       return theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+     else 
+       return '';
+    }else{
+       return parseFloat(lottery.slave_net_amount).toFixed(2)
+    }
+ };
   
 
     return (
@@ -521,7 +577,7 @@ useEffect(() => {
                 </div>
             </td>
             <td>
-                <input type="text" className="form-control-custom text-end"  value={localStateInitData && localStateInitData.amount && localStateInitData.amount.value ? localStateInitData.amount.value : ""} disabled={localStateInitData && localStateInitData.amount && localStateInitData.amount.disabled ? true : false} />
+                <input type="text" className="form-control-custom text-end"  value={localStateInitData && localStateInitData.amount && localStateInitData.amount.value ? MoneyFormatDisplay(localStateInitData.amount.value, 1) : ""} disabled={localStateInitData && localStateInitData.amount && localStateInitData.amount.disabled ? true : false} />
             </td>
             <td>
                 <button type="button" className="btn-delete-small" onClick={(e) => numberInputHandler('', 'delete')}>

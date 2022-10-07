@@ -64,6 +64,7 @@ import Modal from 'react-modal';
           transform: 'translate(-50%, -50%)',
           width: '30%',
           borderRadius: '12px',
+          padding:0
         },
       };  
 
@@ -108,6 +109,10 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
 //  Model code 
 
 const [modalIsOpen, setIsOpen] = React.useState(false);
+const [apiResponce,  setApiResponce] = React.useState('success');
+
+
+
     function openModal() {
         setIsOpen(true);
       }
@@ -132,8 +137,14 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
 
     const modelCloseCustom = () => {
         setIsOpen(false);
-        clearAllRecords();
+        if(apiResponce == 'success')
+          clearAllRecords();
 
+    }
+
+    const modelOpenCustom = (isStatus) => {
+         setApiResponce(isStatus);
+         setIsOpen(true);
     }
 // End model cod e
 
@@ -271,17 +282,11 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
 
 
             if(response.statusCode  == 201  || response.statusCode  == 200 ){
-
                 setResultData(response.data)
-
-             //   {"member_id":4,"merchant_id":1,"game_dates":[{"date":"08 Oct, 2022","games":[1]}],"options":[{"number":"4321","big_bet":"20.00","small_bet":"10.00","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","reverse":"off","amount":"720.00"}]}
-
-
-                openModal();
+                modelOpenCustom('success');
 
             }else {
-
-                
+                modelOpenCustom('failure');
             }
 
           }));
@@ -390,9 +395,12 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
                        {/* <button type="button" className="btn-custom-curve1 me-1" onClick={showTostyFy}>test </button> */}
                     </td>
                     <td colSpan="2">
-                            <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> 
-                             {/* <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
-                             {/* <button onClick={openModal}  type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
+                             <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> 
+                              {/* <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
+
+                              {/* <button onClick={() => modelOpenCustom('Probem in server')}  type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
+                              {/* <button type="button" className="btn-custom-curve2" onClick={() => modelOpenCustom('Probem in server')}>Submit</button>  */}
+                               {/* <button onClick={openModal}  type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
                             {/* <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
 
                             {/* <button  onClick={e => { showModal();  }}> show Modal </button> */}
@@ -646,13 +654,15 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
                 
                 <div className="modal-content card">
                             <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
-                                <h5 className="modal-title" id="bettingModal">
-                                {t('Bet_Successful')}
+                                <h5 className="modal-title" id="bettingModal" style={{height: '70px',paddingLeft:'10px'}}>
+                                {/*t('Bet_Successful')*/}
+                                { apiResponce == 'success' ? 'Bet_Successful' : 'Bet Failed '}
                                 </h5>
                             </div>
                             <div className="modal-body" >
                                 <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
-                                    <div class="row">
+                                    {apiResponce == 'success' ? 
+                                    (<div class="row">
                                         <div class="col-8 col-sm-8">
                                             <p>{t('Total')}</p>
                                             <p>{t('Accepted_bet_amount')}</p>
@@ -665,7 +675,7 @@ const [modalIsOpen, setIsOpen] = React.useState(false);
                                             <p>{resultData && resultData.rebat ? resultData.rebat : 0 }</p>
                                             <p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? resultData.netAmount : 0 }</p>
                                         </div>
-                                    </div>
+                                    </div>) : (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>)}
                                     <hr></hr>
                                     
                                     
