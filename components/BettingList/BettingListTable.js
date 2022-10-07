@@ -5,6 +5,7 @@ import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from "react-i18next";
+const API_BASE_URL = process.env.apiUrl;
 const ListTable = (_tickets) => {
     
  let ticket = _tickets
@@ -51,7 +52,7 @@ const ListTable = (_tickets) => {
         
             console.log(e.target.value,"###")
             if (e.target.value) {
-                fetch(`http://api.kk-lotto.com:8080/api/ticket/1?member_id=4&ticket_no=`+e.target.value)
+                fetch(`${API_BASE_URL}/?member_id=4&ticket_no=`+e.target.value)
                     .then(response => {
                         return response.json()
                     })
