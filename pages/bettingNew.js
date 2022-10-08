@@ -24,7 +24,7 @@ export default function BettingNew({datauser}) {
       },[dispatch]);
 
       useEffect(() => {
-        console.log('111111111111111');
+       // console.log('111111111111111');
         dispatch({
           type: "GET_LOGIN_DETAILS",
           payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}

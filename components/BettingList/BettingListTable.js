@@ -5,8 +5,10 @@ import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from "react-i18next";
+//import {searchTicketData} from '../store/actions/tickets';
+import { getTicketData } from "../../store/actions/tickets";
 const API_BASE_URL = process.env.apiUrl;
-const ListTable = (_tickets) => {
+const ListTable = ({_tickets, _GetTicketNumber}) => {
     
  let ticket = [_tickets]
  let temp_tickets = [1,2,3,4]
@@ -20,7 +22,7 @@ temp_tickets.map(item =>{
 console.log('TICKETSSSS: ',ticket)
  let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
  console.log("Parent Ticket:",ticket)
- console.log("Child Tickets:",ticketSlaves)
+//  console.log("Child Tickets:",ticketSlaves)
     const { t } = useTranslation();
     const c = new Date();
     const msdate = formatDate(c);
@@ -57,26 +59,8 @@ console.log('TICKETSSSS: ',ticket)
 
       const [ticketList, setTicketList] = useState([]);
       const [startRef, setstartRef] = useState();
-      function GetTicketNumber(e) {
-        
-            console.log(e.target.value,"###")
-            if (e.target.value) {
-                fetch(`${API_BASE_URL}/ticket?member_id=4&ticket_no=`+e.target.value)
-
-                // fetch(`http://api.kk-lotto.com:8080/api/ticket/?member_id=4`)
-                    .then(response => {
-                        return response.json()
-                    })
-                    .then(data => {
-                        if (data.success == true) {
-                            setTicketList(data.data)
-                        }
-                        console.log("GET TICKET-->-->",ticketList.data)
-                    })
-                setstartRef(e.target.value);
-            }
-            console.log("STARTREF-->",setstartRef)
-        }
+      const ticketStatus = ''
+      const GetTicketNumber = _GetTicketNumber
         
       function formatDate(date) {
         var d = new Date(date),
@@ -121,7 +105,9 @@ console.log('TICKETSSSS: ',ticket)
                     <div class="col-md-2 col-6">
                     <div class="form-group">
                         <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                        <input type="text" onChange={(event) =>
+                        {/* <input type="text" onChange={(event) =>
+                                            GetTicketNumber(event)} class="form-control-custom-big" name="transationid"/> */}
+                        <input type="text"   onChange={(event) =>
                                             GetTicketNumber(event)} class="form-control-custom-big" name="transationid"/>
                     </div>
                     </div>
@@ -188,17 +174,16 @@ console.log('TICKETSSSS: ',ticket)
                             :
                             
                             <tr>
-                                <td>{ticket._tickets.id}</td>
-                                <td class="text-start"><Link href="/TicketDetails"><a >{ticket._tickets.ticket_no}</a></Link></td>
-                                <td class="text-start">{ticket._tickets.bet_number}</td>
-                                <td class="text-center" >{ticket._tickets.created_at}</td>
-                                <td class="text-center">{ticket._tickets.betting_date}</td>
-                                <td class="text-center">{ticket._tickets.bet_type}</td>
-                                <td class="text-end">{ticket._tickets.total_amount}</td>
-                                <td class="text-end">{ticket._tickets.rebate_amount}</td>
-                                <td class="text-end">{ticket._tickets.net_amount}</td>
-                            </tr>
-                            }
+                                <td>{ticket.id}</td>
+                                <td class="text-start"><Link href="/TicketDetails"><a >{ticket.ticket_no}</a></Link></td>
+                                <td class="text-start">{ticket.bet_number}</td>
+                                <td class="text-center" >{ticket.created_at}</td>
+                                <td class="text-center">{ticket.betting_date}</td>
+                                <td class="text-center">{ticket.bet_type}</td>
+                                <td class="text-end">{ticket.total_amount}</td>
+                                <td class="text-end">{ticket.rebate_amount}</td>
+                                <td class="text-end">{ticket.net_amount}</td>
+                            </tr>}
 
                              
                        

@@ -5,16 +5,15 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+
 import React, { useEffect, useState } from 'react';
 import i18n from '../../components/i18n';
-
 import PropTypes from 'prop-types';
-
 import Link from 'next/link';
 
-
+import {useRouter} from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
+
 const Header = ({datauser}) => {
   
    const dispatch = useDispatch();
@@ -22,6 +21,9 @@ const Header = ({datauser}) => {
 
 
    console.log('Header:auth:',auth);
+    // Calling useRouter() hook
+   // const router = useRouter().pathname
+    //console.log('pathname: ',router)
 
    let language = '';
 
