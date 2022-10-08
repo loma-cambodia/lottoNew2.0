@@ -24,7 +24,7 @@ const customStyles = {
   }; 
 
 const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
-    _bettingInitData,_limit}) => {
+    _bettingInitData,_limit,_gameCount}) => {
     let limit = _limit;
     console.log('aaaaaa',limit);
     const auth = useSelector(state => state.auth);
@@ -32,7 +32,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
     const dispatch = useDispatch();
 
-        // console.log('_bettingInitData:',_bettingInitData);
+        console.log('_gameCount:',_gameCount);
     let bettingInitData = _bettingInitData;
     let localStateInitData = item.dataInit;
     const [localStateData, setLocalStateData] = useState(localStateInitData);
@@ -45,7 +45,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [apiResponce,  setApiResponce] = React.useState('success');
-    // console.log("localStateData:lotto",localStateData)
+    console.log("localStateData:lotto",localStateData)
 
 
     /////////////////////////////////////
@@ -228,6 +228,91 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         return true;
     }
     
+    const totalBoxingCalculation = (getNumber) => {
+        let _getNumber = getNumber;
+        let boxing = 0;
+        if(_getNumber)
+        boxing = getPermutation(_getNumber);
+        return boxing ;
+    }
+    
+    const getPermutation = (_getNumber) => {
+        let returnPermutation = 0;
+        let uniqueAges = getStringUniqueCharactors(_getNumber);
+
+            if(_getNumber.length == 3){
+                if(uniqueAges.length == 3)
+                returnPermutation = 6;
+                else  if(uniqueAges.length == 2)
+                returnPermutation = 3;
+                else  if(uniqueAges.length == 1)
+                returnPermutation = 1;
+            } else if(_getNumber.length == 4){
+                if(uniqueAges.length == 4)
+                returnPermutation = 24;
+                else  if(uniqueAges.length == 3)
+                returnPermutation = 12 ;
+                else  if(uniqueAges.length == 2)
+                returnPermutation = 6;
+                else  if(uniqueAges.length == 1)
+                returnPermutation = 1;
+            }
+            return returnPermutation;
+    }
+
+    const calculationOfTotalAmount = (getRow) => {
+        let bet_type = '';
+        let total_sum = 0;
+        if(getRow && getRow.bet_type && getRow.bet_type.box_value) 
+           bet_type = 'box';
+        else if(getRow && getRow.bet_type && getRow.bet_type.i_box_value) 
+           bet_type = 'ibox';
+        else if(getRow && getRow.bet_type && getRow.bet_type.reverse_value) 
+           bet_type = 'reverse';
+        else if(getRow && getRow.number && getRow.number.value){
+            if (getRow.number.value.includes("R") || getRow.number.value.includes("r")) 
+                bet_type = 'rolling';  
+        } 
+           
+  
+           // rollingNumber
+  
+       if(getRow && getRow.big && getRow.big.value) 
+        total_sum += parseInt(getRow.big.value);
+  
+        if(getRow && getRow.small && getRow.small.value) 
+        total_sum += parseInt(getRow.small.value);
+  
+        if(getRow && getRow._3a && getRow._3a.value) 
+        total_sum += parseInt(getRow._3a.value);
+  
+        if(getRow && getRow._3c && getRow._3c.value) 
+        total_sum += parseInt(getRow._3c.value);
+  
+  
+  
+        let totalAmount =  0;
+        if(_gameCount && total_sum)
+        totalAmount = _gameCount * total_sum  
+  
+        if(bet_type == 'box'){
+          let totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
+        if(totalBoxing)
+          totalAmount = totalAmount * totalBoxing;  
+  
+        }else if(bet_type == 'reverse'){
+  
+          totalAmount = totalAmount * 2;  
+  
+      }else if(bet_type == 'rolling'){
+  
+          totalAmount = totalAmount * 10;  
+  
+      }
+            
+        return totalAmount;
+    }
+  
     const numberInputHandler = (getValue, operationField) => {
         let localStateDataForChange = item.dataInit;
     
@@ -307,6 +392,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 localStateDataForChange['_3c'] = { value: "", disabled: 0 }
                 localStateDataForChange['bet_type'] =  { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }
 
+                let uniqueAges = getStringUniqueCharactors(getValue);
+                let isPalindrom =  checkPalindrome(getValue);
 
                 if (getValue.includes("R") || getValue.includes("r")) {
                     localStateDataForChange['_3a'] = { value: "", disabled: 1 }
@@ -315,7 +402,25 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     localStateDataForChange['bet_type']['i_box_disabled'] = 1;
                     localStateDataForChange['bet_type']['reverse_disabled'] = 1;
 
-                } else {
+                } 
+                else  if (uniqueAges.length == 1) {
+
+                    localStateDataForChange['_3a'] = { value: "", disabled: 1 }
+                    localStateDataForChange['_3c'] = { value: "", disabled: 1 }
+                    localStateDataForChange['bet_type']['box_disabled'] = 1;
+                    localStateDataForChange['bet_type']['i_box_disabled'] = 1;
+                    localStateDataForChange['bet_type']['reverse_disabled'] = 1;
+
+                } else  if (isPalindrom) {
+
+                    localStateDataForChange['_3a'] = { value: "", disabled: 1 }
+                    localStateDataForChange['_3c'] = { value: "", disabled: 1 }
+                    localStateDataForChange['bet_type']['box_disabled'] = 0;
+                    localStateDataForChange['bet_type']['i_box_disabled'] = 0;
+                    localStateDataForChange['bet_type']['reverse_disabled'] = 1;
+
+                }
+                else {
 
                     if (threeDAmout) {
                         localStateDataForChange['_3a'] = { value: "", disabled: 0 }
@@ -540,6 +645,11 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             localStateDataForChange['_3c'] = { value: "", disabled: 0 }
             localStateDataForChange['bet_type'] = { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }
         }
+
+        let totalAmount = calculationOfTotalAmount(localStateDataForChange);
+            if(totalAmount)
+                localStateDataForChange = { ...localStateDataForChange, amount: { value: totalAmount, disabled: 1 } };
+
         setLocalStateData(localStateDataForChange);
         setPageLoadCount(pageLoadCount + 1);
     }
@@ -599,7 +709,12 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     localStateDataForChange['date'] = day;
                     localStateDataForChange['company'] = game;
                     localStateDataForChange['bet_type'] = bet_type;
-            
+
+                    let amountTotal = localStateData && localStateData.amount && localStateData.amount.value ? localStateData.amount.value : "0";
+              
+                    
+                    localStateDataForChange['amountTotal'] = amountTotal;
+                    
                     let _mainSubmitData = {
                                             "date":day,
                                             "games":gameArr,
@@ -614,7 +729,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                                             "box":localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled == 0 && localStateData.bet_type.box_value == 1 ? "on" : "off",
                                                             "ibox":localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled == 0 && localStateData.bet_type.i_box_value == 1 ? "on" : "off",
                                                             "reverse":localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled == 0 && localStateData.bet_type.reverse_value == 1 ? "on" : "off",
-                                                            "amount": "1000"
+                                                            "amount": amountTotal
                                                         }
                                                     ]  
                                           }
@@ -662,14 +777,21 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
             let  localStateDataForChangeTotalAmount = '';
             localStateDataForChangeTotalAmount ='10000';
-
-            setTotalAmount(localStateDataForChangeTotalAmount);
             if(x==1){
                 setLocalStateData('');
                 allClearData();
             }
         }
         _setFinalSubmitData(finalSubmitData);
+
+        var slackTotalAmount = 0;
+        finalSubmitData.map(itemAmount => {
+            // console.log('itemAmount',itemAmount);
+            slackTotalAmount = slackTotalAmount+itemAmount.amountTotal; 
+        })
+
+        setTotalAmount(slackTotalAmount);
+
         setPageLoadCount(pageLoadCount + 1);
     }
 

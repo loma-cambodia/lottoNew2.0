@@ -126,23 +126,24 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
             setBettingInitData(dateAndGameOptionData)
         }
       });
+
       let gameCount = 0;
       let gameSelectOrNot = false;
-      bettingInitData && bettingInitData.map(item => {
-            if(item.selected == true){
-            item.games.map(itemGame => {
-                if(itemGame.selected)
-                  gameSelectOrNot=true;
-                   gameCount++; 
-            })
-        }
-      });
-      let totalAmount = 0;
-      bettingInputsDataParent && bettingInputsDataParent.map(item => {
-        if(item.dataInit.amount.value){
-            totalAmount += parseInt(item.dataInit.amount.value)
-        }
-      });
+      // bettingInitData && bettingInitData.map(item => {
+      //       if(item.selected == true){
+      //       item.games.map(itemGame => {
+      //           if(itemGame.selected)
+      //             gameSelectOrNot=true;
+      //              gameCount++; 
+      //       })
+      //   }
+      // });
+      // let totalAmount = 0;
+      // bettingInputsDataParent && bettingInputsDataParent.map(item => {
+      //   if(item.dataInit.amount.value){
+      //       totalAmount += parseInt(item.dataInit.amount.value)
+      //   }
+      // });
 
 
           
@@ -211,7 +212,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
 
 // console.log('sushil',bettingInitData);
 
-    function OpenModalComponent({bettingInitDataShow}){
+  function OpenModalComponent({bettingInitDataShow}){
       if(!gameSelectOrNot){
         return(
           <>
@@ -246,7 +247,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
           </>
         )
       }
-    }
+  }
 
     // console.log("bettingInitData:",bettingInitData)
 
@@ -263,12 +264,12 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
       
     });
 
-      let totalAmounta = 0;
-      bettingInputsDataParent && bettingInputsDataParent.map(item => {
-        if(item.dataInit.amount.value){
-          totalAmounta += parseInt(item.dataInit.amount.value)
-        }
-      });
+    //   let totalAmounta = 0;
+    //   bettingInputsDataParent && bettingInputsDataParent.map(item => {
+    //         if(item.dataInit.amount.value){
+    //           totalAmounta += parseInt(item.dataInit.amount.value)
+    //         }
+    //   });
     return(
         <>
           <ToastContainer />
@@ -301,11 +302,11 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
                                                     _updateBettingInputsData = {updateBettingInputsData}
                                                     _loadpageCounter = {loadpageCounter}
                                                     _setLoadpageCounter = {setLoadpageCounter}
-                                                    _gameCount={gameCount}
                                                     _finalSubmitData={finalSubmitData}
                                                     _setFinalSubmitData={setFinalSubmitData}
                                                     _bettingInitData={bettingInitData}
                                                     _limit={betLimit}
+                                                    _gameCount={gameCount}
             />) )}
 
 
