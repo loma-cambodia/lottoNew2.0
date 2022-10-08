@@ -38,11 +38,15 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         }
         return threeDAmount;
    } 
-   const hideError = (ids) => {
-    $("#ErrorBig"+ids).html('');
-    $("#ErrorSmall"+ids).html('');
-    $("#ErrorC"+ids).html('');
-    $("#ErrorA"+ids).html('');
+   const hideError = (ids) => {	
+    $("#ErrorBig"+ids).html('');	
+    $("#ErrorBig"+ids).css('visibility', 'hidden')	
+    $("#ErrorSmall"+ids).html('');	
+    $("#ErrorSmall"+ids).css('visibility', 'hidden')	
+    $("#ErrorC"+ids).html('');	
+    $("#ErrorC"+ids).css('visibility', 'hidden')	
+    $("#ErrorA"+ids).html('');	
+    $("#ErrorA"+ids).css('visibility', 'hidden')	
    }
     const numberInputHandler = (getValue, operationField,idas) => {
         let localStateDataForChange ={ ...item.dataInit};
@@ -348,17 +352,16 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
          // rollingNumber
 
      if(getRow && getRow.big && getRow.big.value) 
-      total_sum += parseInt(getRow.big.value);
+     total_sum = total_sum + parseFloat(getRow.big.value);
 
       if(getRow && getRow.small && getRow.small.value) 
-      total_sum += parseInt(getRow.small.value);
+      total_sum = total_sum + parseFloat(getRow.big.value);
 
       if(getRow && getRow._3a && getRow._3a.value) 
-      total_sum += parseInt(getRow._3a.value);
+      total_sum = total_sum + parseFloat(getRow.big.value);
 
       if(getRow && getRow._3c && getRow._3c.value) 
-      total_sum += parseInt(getRow._3c.value);
-
+      total_sum = total_sum + parseFloat(getRow.big.value);
 
 
       let totalAmount =  0;
@@ -439,6 +442,20 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 useEffect(() => {
     numberInputHandler('', '');
   },[_gameCount]);
+
+
+  const MoneyFormatDisplay = (theInput, getCase) => {
+    //Do something with the input
+    let getInput = theInput;
+    if(getCase == 1){
+     if(getInput)
+       return theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+     else 
+       return '';
+    }else{
+       return parseFloat(lottery.slave_net_amount).toFixed(2)
+    }
+ };
   
 
     return (
@@ -473,10 +490,12 @@ useEffect(() => {
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
                     disabled={localStateInitData && localStateInitData.big && localStateInitData.big.disabled ? true : false}
                     />  
-                    <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorBig"+ids}></small>
+                 <span className="betTip" id={"ErrorBig"+ids}></span>
+
+
             </td>
             {/* small*/}
-            <td><input type="text" className="form-control-custom text-end"
+            <td style={{position:'relative'}}><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, 'small', ids)}
                 id={"SmallText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -485,10 +504,10 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData.small && localStateInitData.small.value ? localStateInitData.small.value : ""}
                 disabled={localStateInitData && localStateInitData.small && localStateInitData.small.disabled ? true : false}
                 />
-                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorSmall"+ids}></small>
+                <span className="betTip" id={"ErrorSmall"+ids}></span>
             </td>
             {/* 3A*/}
-            <td><input type="text" className="form-control-custom text-end"
+            <td style={{position:'relative'}}><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, '_3a', ids)}
                 id={"AText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -497,10 +516,10 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
                 />
-                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorA"+ids}></small>
+                <span className="betTip" id={"ErrorSmall"+ids}></span>
             </td>
             {/* 3C*/}
-            <td><input type="text" className="form-control-custom text-end"
+            <td style={{position:'relative'}}><input type="text" className="form-control-custom text-end"
                 onChange={(e) => numberInputHandler(e.target.value, '_3c', ids)}
                 id={"CText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -509,7 +528,7 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
                 />
-                <small style={{color: 'red', fontSize:'12px', lineHeight: '1', display:'block'}} id={"ErrorC"+ids}></small>
+               <span className="betTip" id={"ErrorSmall"+ids}></span>
             </td>
             <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
@@ -521,7 +540,7 @@ useEffect(() => {
                 </div>
             </td>
             <td>
-                <input type="text" className="form-control-custom text-end"  value={localStateInitData && localStateInitData.amount && localStateInitData.amount.value ? localStateInitData.amount.value : ""} disabled={localStateInitData && localStateInitData.amount && localStateInitData.amount.disabled ? true : false} />
+                <input type="text" className="form-control-custom text-end"  value={localStateInitData && localStateInitData.amount && localStateInitData.amount.value ? MoneyFormatDisplay(localStateInitData.amount.value,1) : ""} disabled={localStateInitData && localStateInitData.amount && localStateInitData.amount.disabled ? true : false} />
             </td>
             <td>
                 <button type="button" className="btn-delete-small" onClick={(e) => numberInputHandler('', 'delete')}>
