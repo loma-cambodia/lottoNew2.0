@@ -2,14 +2,30 @@ import React, { useState,useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import FinalDataContainer from './finalDataContainer';
 import {getBettingDates,lotterySubmit} from '../../store/actions/bettingActions';
+import RejectedBedContainer from './rejectedBedContainer';
 
+import Modal from 'react-modal';
 import { useDispatch, useSelector } from "react-redux";
+
+const customStyles = {
+    content: {
+      top: '45%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      width: '98%',
+      borderRadius: '12px',
+      padding:0
+    },
+  }; 
 
 const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
     _bettingInitData,_limit}) => {
     let limit = _limit;
-    console.log('aaaaaa',limit);
-
+    // console.log('aaaaaa',limit);
+    const auth = useSelector(state => state.auth);
     const { t } = useTranslation();
 
     const dispatch = useDispatch();
@@ -20,10 +36,13 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     const [localStateData, setLocalStateData] = useState(localStateInitData);
     const [mainSubmitData, setMainSubmitData] = useState([]);
     const [pageLoadCount, setPageLoadCount] = useState(1);
-
+    
     const [totalAmount, setTotalAmount] = useState('');
 
+    const [resultData, setResultData] = React.useState({});
 
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [apiResponce,  setApiResponce] = React.useState('success');
     // console.log("localStateData:lotto",localStateData)
 
 
@@ -110,6 +129,10 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     const resetAllData = () => {
         // alert('pppp');
         allClearData();
+        setLocalStateData([])
+        setMainSubmitData([]);
+        _setFinalSubmitData([]);
+        setTotalAmount('');
     }
 
     const singleClearData = () => {
@@ -378,13 +401,16 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             finalSubmitData = finalSubmitData.filter((item,id) => id != getIndex);
         }
         if(finalSubmitData.length < 10 && getAction == 'add'){
+            var x = 0;
             bettingInitData.map(item => {
                 if(item.selected){
                     let day = item.date;
                     let game = '';
+                    let gameArr = [];
                     item.games.map(itemGame => {
                         if(itemGame.selected){
                             game += itemGame.abbreviation;
+                            gameArr.push(itemGame.id);
                         }
                     })
 
@@ -426,66 +452,44 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     localStateDataForChange['bet_type'] = bet_type;
             
                     let _mainSubmitData = {
-                        "game_dates":[
-                            {
-                                "date":"08 Oct, 2022",
-                                "games":[1,2],
-                                "options":
-                                        [
-                                            {
-                                                "number":"1112",
-                                                "big_bet":"10",
-                                                "small_bet":"10",
-                                                "3a_bet":0,
-                                                "3c_bet":0,
-                                                "box":"on",
-                                                "ibox":"off",
-                                                "reverse":"off",
-                                                "amount":"160"
-                                            }
-                                        ]  
-                            }
-                        ]
-                    }
+                                            "date":day,
+                                            "games":gameArr,
+                                            "options":
+                                                    [
+                                                        {
+                                                            "number": localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : "",
+                                                            "big_bet":localStateData && localStateData.big && localStateData.big.value ? localStateData.big.value : "0",
+                                                            "small_bet":localStateData && localStateData.small && localStateData.small.value ? localStateData.small.value : "0",
+                                                            "3a_bet":localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : "0",
+                                                            "3c_bet":localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : "0",
+                                                            "box":localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled == 0 && localStateData.bet_type.box_value == 1 ? "on" : "off",
+                                                            "ibox":localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled == 0 && localStateData.bet_type.i_box_value == 1 ? "on" : "off",
+                                                            "reverse":localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled == 0 && localStateData.bet_type.reverse_value == 1 ? "on" : "off",
+                                                            "amount": "1000"
+                                                        }
+                                                    ]  
+                                          }
 
-                    // let _mainSubmitData = {
-                    //         "game_dates":
-                    //         [
-                    //             {
-                    //                 "date":"08 Oct, 2022",
-                    //                 "games":[1,2]
-                    //             }
-                        
-                    //         ],
-                    //         "options":[
-                    //         {
-                    //             "number":"123",
-                    //             "big_bet":"0.0",
-                    //             "small_bet":0,
-                    //             "3a_bet":22,
-                    //             "3c_bet":33,
-                    //             "box":"off",
-                    //             "ibox":"off",
-                    //             "reverse":"off",
-                    //             "amount":"480.00"
-                    //         }
-                    //     ]
-                    // }
 
                     if(localStateDataForChange['number'] == ""){
                         alert('Please Enter Number')
+                        return false;
                     }else if(localStateDataForChange['amount1'] == '' || localStateDataForChange['amount2'] == ''){
                         alert('Please Enter Amount')
+                        return false;
                     }
                     else if(localStateDataForChange['date'] == ''){
                         alert('amount2')
+                        return false;
                     }else if(localStateDataForChange['company'] == ''){
                         alert('company')
+                        return false;
                     }
                     else{
                         finalSubmitData.push(localStateDataForChange);
 
                         mainSubmitData.push(_mainSubmitData);
+                        x = 1;
                         // setMainSubmitData(_mainSubmitData);
                     }           
                 }
@@ -493,25 +497,60 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
             let  localStateDataForChangeTotalAmount = '';
             localStateDataForChangeTotalAmount ='10000';
-            setTotalAmount(localStateDataForChangeTotalAmount);
 
+            setTotalAmount(localStateDataForChangeTotalAmount);
+            if(x==1){
+                setLocalStateData('');
+                allClearData();
+            }
         }
         _setFinalSubmitData(finalSubmitData);
-
-        setLocalStateData('');
-        allClearData();
         setPageLoadCount(pageLoadCount + 1);
     }
 
 
+
+    
+
+    function openModal() {
+        setIsOpen(true);
+      }
+      function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        // subtitle.style.color = '#f00';
+      }
+      function closeModal() {
+        setIsOpen(false);
+      }
+    
+
+    const modelCloseCustom = () => {
+        setIsOpen(false);
+        if(apiResponce == 'success')
+        resetAllData();
+    }
+    const modelOpenCustom = (isStatus) => {
+        setApiResponce(isStatus);
+        setIsOpen(true);
+   }
+
     const lotterySubmitRecordsCallActionMob = () => {
-        console.log('ooooooooo',mainSubmitData)
-        dispatch(lotterySubmit(mainSubmitData, response =>{
+        // console.log('ooooooooo',mainSubmitData)
+        let game_dates = mainSubmitData;
+        let saveLOttoData = {
+            "member_id":auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,
+            "merchant_id":auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id: 0,
+            game_dates
+        }
+        
+        console.log('saveLOttoData',saveLOttoData)
+        dispatch(lotterySubmit(saveLOttoData, response =>{
             if(response.statusCode  == 201  || response.statusCode  == 200 ){
                 setResultData(response.data)
-                
+                modelOpenCustom('success');
+
             }else {
-                
+                modelOpenCustom('failure');
             }
           }));
     } 
@@ -756,6 +795,56 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     </button> 
                 </div>            
             </div> 
+
+
+
+            
+
+        <Modal
+                  isOpen={modalIsOpen}
+                  onAfterOpen={afterOpenModal}
+                  onRequestClose={closeModal}
+                  style={customStyles}
+                  contentLabel="Example Modal"
+              >   
+                
+                <div className="modal-content card">
+                            <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
+                                <h5 className="modal-title" id="bettingModal" style={{height: '70px',paddingLeft:'10px'}}>
+                                {/*t('Bet_Successful')*/}
+                                { apiResponce == 'success' ? 'Bet_Successful' : 'Bet Failed '}
+                                </h5>
+                            </div>
+                            <div className="modal-body" >
+                                <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
+                                    {apiResponce == 'success' ? 
+                                    (<div class="row">
+                                        <div class="col-6 col-sm-8">
+                                            <p>{t('Total')}</p>
+                                            <p>{t('Accepted_bet_amount')}</p>
+                                            <p>{t('Rebate')}</p>
+                                            <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
+                                        </div>
+                                        <div class="col-6 col-sm-4" style={{textAlign:'right'}}>
+                                            <p>{resultData && resultData.total ? parseFloat(resultData.total).toFixed(2) : 0 }</p>
+                                            <p>{resultData && resultData.acp_bet ? parseFloat(resultData.acp_bet).toFixed(2) : 0 }</p>
+                                            <p>{resultData && resultData.rebat ? parseFloat(resultData.rebat).toFixed(2) : 0 }</p>
+                                            <p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? parseFloat(resultData.netAmount).toFixed(2) : 0 }</p>
+                                        </div>
+                                    </div>) : (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>)}
+                                    <hr></hr>
+                                    
+                                    
+                                    <RejectedBedContainer dataRecords ={resultData && resultData.rejected ? resultData.rejected : []}/>
+                                   
+                                    
+                                </div>
+                            </div>
+                            <div class="modal-footer" style={{justifyContent:'center'}}>
+                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
+                            </div>
+                        </div>
+            </Modal>
         </>
     );
 
