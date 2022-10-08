@@ -712,6 +712,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
                     let amountTotal = localStateData && localStateData.amount && localStateData.amount.value ? localStateData.amount.value : "0";
               
+                    // console.log('amount1',localStateDataForChange['amount1']);
                     
                     localStateDataForChange['amountTotal'] = amountTotal;
                     
@@ -742,7 +743,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         pauseOnHover: true,draggable: true,progress: undefined});
 
                         return false;
-                    }else if(localStateDataForChange['amount1'] == '' || localStateDataForChange['amount2'] == ''){
+                    }else if(amountTotal == 0){
 
                         toast.error('Please Enter Amount', 
                         {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,

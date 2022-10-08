@@ -213,6 +213,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
 // console.log('sushil',bettingInitData);
 
   function OpenModalComponent({bettingInitDataShow}){
+    // console.log('bettingInitDataShow',gameSelectOrNot);
       if(!gameSelectOrNot){
         return(
           <>
@@ -258,6 +259,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
       item.games.map(itemGame => {
           if(itemGame.selected)
              gameCount++; 
+             gameSelectOrNot=true;
       })
 
       }
