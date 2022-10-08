@@ -15,12 +15,12 @@ async function handler(req, res) {
   //       "language": 'en'
   // }
 
-  //    const objectWithData = {
-  //           "customer_name": "Dileep Maurya",
-  //          "customer_id":  112,
-  //         "merchant_id":  1,
-  //         "language":  'en',
-  //     }
+    //  const objectWithData = {
+    //         "customer_name": "Dileep Maurya",
+    //        "customer_id":  112,
+    //       "merchant_id":  1,
+    //       "language":  'en',
+    //   }
 
   const objectWithData = {
     customer_name: req.body.customer_name,
@@ -30,7 +30,7 @@ async function handler(req, res) {
   }
 
   //   try {
-  const userData = await fetch(`${process.env.API_BASE_URL}/member-login`, {
+  const userData = await fetch(`${process.env.apiUrl}/member-login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
