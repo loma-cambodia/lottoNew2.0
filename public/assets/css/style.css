@@ -2681,29 +2681,24 @@ span.name-gp {
                       }
 
                      
-            /* span[id^=ErrorBig]::after {
-              left: 30%;
-              }
-              @media (max-width:1400px) and (min-width:1200px) {
-                span[id^=ErrorBig]::after {
-                  left: 45%;
-                  }
-              }
-              @media (max-width:1199px) and (min-width:890px)  {
-                span[id^=ErrorBig]::after {
-                  left: 55%;
-                  }
-              }
-              @media (max-width:889px) and (min-width:691px) {
-                span[id^=ErrorBig]::after {
-                  left: 65%;
-                  }
-              }
+.active-header a{
+  color: #bc2263!important;
+  font-weight: bold;
+}
+.active-dropdown-header{
+  color: #bc2263!important;
+  font-weight: bold;
+  text-decoration: underline!important;
+}
 
+.active-header-mobile a{
+  font-weight: bold;
+}
 
-              input.form-control.text-right-for-amount {
-                text-align: right;
-            } */
-            input.form-control.text-right-for-amount {
-              text-align: right;
-          }
+.active-dropdown-header{
+  font-weight: bold;
+  text-decoration: underline!important;
+}
+input.form-control.text-right-for-amount {
+  text-align: right;
+}

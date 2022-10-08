@@ -5,16 +5,15 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+
 import React, { useEffect, useState } from 'react';
 import i18n from '../../components/i18n';
-
 import PropTypes from 'prop-types';
-
 import Link from 'next/link';
 
-
+import {useRouter} from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
+
 const Header = ({datauser}) => {
   
    const dispatch = useDispatch();
@@ -22,7 +21,9 @@ const Header = ({datauser}) => {
 
 
    console.log('Header:auth:',auth);
-
+    // Calling useRouter() hook
+   // const router = useRouter().pathname
+    //console.log('pathname: ',router)
 
    let language = '';
 
@@ -111,11 +112,11 @@ const Header = ({datauser}) => {
                   </div>
                   <div className="desktop-menu me-auto">
                           <ul className="desktop-menu-list">
-                            <li >
-                            <Link  className="active" href="/">{t('Homepage')}</Link>
+                            <li className= {`${router === "/" ? "active-header":""}`}>
+                            <Link className= "active" href="/">{t('Homepage')}</Link>
                               {/* <a className="active" href="#">Home</a> */}
                             </li>
-                            <li>
+                            <li className= {`${router === "/bettingNew" ? "active-header":""}`}>
                             <Link href="/bettingNew">{t('Betting')}</Link>
                               {/* <a  href="#">Betting</a> */}
                             </li>
@@ -129,7 +130,7 @@ const Header = ({datauser}) => {
                             <a href="#" >{t('History')} </a>
                             <ul class="sub-menu-desktop">
                                 <li><Link href="/bettingNew">{t('Betting')}</Link></li>
-                                <li><Link href="/bettingList">{t('History')}</Link></li>
+                                <li className= {`${router === "/bettingList" ? "active-header":""}`}><Link href="/bettingList">{t('History')}</Link></li>
                             </ul>
                           </li> */}
                             <li>
@@ -198,7 +199,7 @@ const Header = ({datauser}) => {
             <a href="javascript:void(0)" className="closebtn" onClick={() => closeNav() } >&times;</a>
               <div className="mobile-menu-list">
                   <ul className="list-unstyled">
-                      <li>
+                      <li className= {`${router === "/" ? "active-header-mobile":""}`}>
                         <Link className="active"  href="/">{t('Homepage')}</Link>  
                       </li>
                       {/* <li className="submenu-mobile">
@@ -214,13 +215,13 @@ const Header = ({datauser}) => {
                               </ul>
                             </div>
                       </li> */}
-                      <li>
+                      <li className= {`${router === "/bettingNew" ? "active-header-mobile":""}`}>
                           <Link href="/bettingNew">{t('Betting')}</Link>
                       </li>
-                      <li>
+                      <li className= {`${router === "/transaction" ? "active-header-mobile":""}`}>
                         <Link href="/transaction">{t('History')}</Link>
                       </li>
-                      <li>
+                      <li className= {`${router === "/results" ? "active-header-mobile":""}`}>
                         <Link href="/results" >{t('Result')}</Link>  
                       </li>
                   </ul>
