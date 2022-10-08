@@ -6,6 +6,7 @@ export const getTicketData = () => async (dispatch) => {
     const res = await axios.get(
       `${API_BASE_URL}/ticket/?member_id=4`
     )
+    console.log("TICKET-DATA-->>",res)
     dispatch({
       type: 'GET_TICKETS',
       payload: res.data.data,
