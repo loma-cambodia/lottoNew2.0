@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import styles from '../styles/Home.module.css'
 import ListBanner from '../components/BettingList/Banner';
 import ListTable from '../components/BettingList/BettingListTable';
-import {getTicketData} from '../store/actions/tickets';
+import {getTicketData,searchTicketData} from '../store/actions/tickets';
 export default function BettingList({datauser}) {
 // console.log("TICKETLIST",datauser);
   const { t } = useTranslation();
@@ -15,13 +15,25 @@ export default function BettingList({datauser}) {
   const [active, setActive] = useState(false);
        useEffect(() => {
         dispatch(getTicketData());
+        dispatch(searchTicketData());
       },[dispatch]);
       
       const state = useSelector(state => state);
       let tickets = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
       let ticketSlave = tickets.ticket_slave
-      // console.log("STATE_TICKETS:",tickets)
+       console.log("tickets:",tickets)
 
+
+
+      
+      const ticketSearch = []
+      const GetTicketNumber = (e) => {
+
+         console.log("##1231231232#",e.target.value)
+        dispatch(searchTicketData(e.target.value));
+        console.log("##%%%%%%#",state)
+        
+        }
 
   return (
     <>
@@ -38,7 +50,7 @@ export default function BettingList({datauser}) {
       <section class="page-content custom-padding">
     <div class="container">
         {/* <ListFilter/> */}
-        <ListTable _tickets={tickets}/>
+         <ListTable _tickets={tickets} _GetTicketNumber={GetTicketNumber}/> 
         <div class="clearfix d-flex align-items-center justify-content-center">
             <div class="pagination:container">
                 <div class="pagination:number arrow">
