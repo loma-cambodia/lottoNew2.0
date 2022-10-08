@@ -52,9 +52,9 @@ const ListTable = (_tickets) => {
         
             console.log(e.target.value,"###")
             if (e.target.value) {
-                // fetch(`${API_BASE_URL}ticket/?member_id=4&ticket_no=`+e.target.value)
+                fetch(`${API_BASE_URL}/ticket?member_id=4&ticket_no=`+e.target.value)
 
-                fetch(`http://api.kk-lotto.com:8080/api/ticket/?member_id=4`)
+                // fetch(`http://api.kk-lotto.com:8080/api/ticket/?member_id=4`)
                     .then(response => {
                         return response.json()
                     })

@@ -11,7 +11,7 @@ const ListBanner = () => {
         <section class="custom-breadcrumb">
         <div class="container">
             <div class="breadcrumb-heading">
-                <h1>BETTING LIST</h1>
+                <h1>{t('BettingList')} </h1>
             </div>
             <div class="breadcrumb-list">
                 <ul>
