@@ -823,7 +823,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
    }
 
     const lotterySubmitRecordsCallActionMob = () => {
-        // console.log('ooooooooo',mainSubmitData)
+        console.log('ooooooooo',mainSubmitData)
         let game_dates = mainSubmitData;
         let saveLOttoData = {
             "member_id":auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,
