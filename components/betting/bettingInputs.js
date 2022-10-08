@@ -170,15 +170,20 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             
             if(getValue > big_max_bet ){
                 $("#ErrorBig"+idas).html('Bet should not be greater than '+big_max_bet);
+                $("#ErrorBig"+idas).css('visibility', 'visible')	
+
                 getValue = big_max_bet
                
-            }else if(getValue < big_min_bet ){
+            }else if(getValue == 0 ){
                 $("#ErrorBig"+idas).html('Bet should not be less than '+big_min_bet);
+
                 getValue = ''
                 
             }
             else{
                 $("#ErrorBig"+idas).html('');
+                $("#ErrorBig"+idas).css('visibility', 'hidden')	
+
             }
            
             localStateDataForChange = { ...localStateDataForChange, big: { value: getValue, disabled: 0 } };
@@ -188,14 +193,19 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
             if(getValue > limit[0].small_max_bet ){
                 $("#ErrorSmall"+idas).html('Bet should not be greater than'+limit[0].small_max_bet);
+                $("#ErrorSmall"+idas).css('visibility', 'visible');
+
                 getValue = limit[0].small_max_bet
             }else if(getValue < limit[0].small_min_bet ){
 
                 $("#ErrorSmall"+idas).html('Bet should not be less than'+limit[0].small_min_bet);
+
                 getValue = ''
             }
             else{
                 $("#ErrorSmall"+idas).html('');
+                $("#ErrorSmall"+idas).css('visibility', 'hidden');
+
             }
 
             localStateDataForChange = { ...localStateDataForChange, small: { value: getValue, disabled: 0 } };
@@ -205,13 +215,18 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
             if(getValue > limit[0].three_a_max_bet ){
                 $("#ErrorA"+idas).html('Bet should not be greater than'+limit[0].three_a_max_bet);
+                $("#ErrorA"+idas).css('visibility', 'visible');
+
                 getValue = limit[0].three_a_max_bet
             }else if(getValue < limit[0].three_a_min_bet ){
                 $("#ErrorA"+idas).html('Bet should not be less than'+limit[0].three_a_min_bet);
+
                 getValue = ''
             }
             else{
                 $("#ErrorA"+idas).html('');
+                $("#ErrorA"+idas).css('visibility', 'hidden');
+
             }
            
             localStateDataForChange = { ...localStateDataForChange, _3a: { value: getValue, disabled: 0 } };
@@ -244,13 +259,18 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
             if(getValue > limit[0].three_c_max_bet ){
                 $("#ErrorC"+idas).html('Bet should not be greater than'+limit[0].three_c_max_bet);
+                $("#ErrorC"+idas).css('visibility','visible');
+
                 getValue = limit[0].three_c_max_bet
             }else if(getValue < limit[0].three_c_min_bet ){
                 $("#ErrorC"+idas).html('Bet should not be less than'+limit[0].three_c_min_bet);
+
                 getValue = ''
             }
             else{
                 $("#ErrorC"+idas).html('');
+                $("#ErrorC"+idas).css('visibility','hidden');
+
             }
             
             localStateDataForChange = { ...localStateDataForChange, _3c: { value: getValue, disabled: 0 } };
@@ -516,7 +536,7 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
                 />
-                <span className="betTip" id={"ErrorSmall"+ids}></span>
+                <span className="betTip" id={"ErrorA"+ids}></span>
             </td>
             {/* 3C*/}
             <td style={{position:'relative'}}><input type="text" className="form-control-custom text-end"
@@ -528,7 +548,7 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
                 />
-               <span className="betTip" id={"ErrorSmall"+ids}></span>
+               <span className="betTip" id={"ErrorC"+ids}></span>
             </td>
             <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
