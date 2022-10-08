@@ -10,16 +10,10 @@ import { getTicketData } from "../../store/actions/tickets";
 const API_BASE_URL = process.env.apiUrl;
 const ListTable = ({_tickets, _GetTicketNumber}) => {
     
- let ticket = [_tickets]
- let temp_tickets = [1,2,3,4]
+ let ticket = _tickets
 
-temp_tickets.map(item =>{
-    let tempObject = {_tickets: {
-        "id": item
-      }}
-      ticket.push(tempObject)
-})
 console.log('TICKETSSSS: ',ticket)
+
  let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
  console.log("Parent Ticket:",ticket)
 //  console.log("Child Tickets:",ticketSlaves)
@@ -172,18 +166,21 @@ console.log('TICKETSSSS: ',ticket)
                                 <td class="text-end">{ticketList.net_amount}</td>
                             </tr>
                             :
-                            
+                            ticket.map(item =>(
                             <tr>
-                                <td>{ticket.id}</td>
-                                <td class="text-start"><Link href="/TicketDetails"><a >{ticket.ticket_no}</a></Link></td>
-                                <td class="text-start">{ticket.bet_number}</td>
-                                <td class="text-center" >{ticket.created_at}</td>
-                                <td class="text-center">{ticket.betting_date}</td>
-                                <td class="text-center">{ticket.bet_type}</td>
-                                <td class="text-end">{ticket.total_amount}</td>
-                                <td class="text-end">{ticket.rebate_amount}</td>
-                                <td class="text-end">{ticket.net_amount}</td>
-                            </tr>}
+                                <td>{item.id}</td>
+                                <td class="text-start"><Link href="/TicketDetails"><a >{item.ticket_no}</a></Link></td>
+                                <td class="text-start">{item.bet_number}</td>
+                                <td class="text-center" >{item.created_at}</td>
+                                <td class="text-center">{item.betting_date}</td>
+                                <td class="text-center">{item.bet_type}</td>
+                                <td class="text-end">{item.total_amount}</td>
+                                <td class="text-end">{item.rebate_amount}</td>
+                                <td class="text-end">{item.net_amount}</td>
+                            </tr>
+                            ))
+                            
+                            }
 
                              
                        
