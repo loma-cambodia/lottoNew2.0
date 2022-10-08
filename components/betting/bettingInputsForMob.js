@@ -204,6 +204,30 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     // console.log("localStateData",bettingInitData);
     
     ////////////////////////////////////////
+
+
+    
+    const getStringUniqueCharactors  = (_getNumber) => {
+        const unique = (value, index, self) => {
+            return self.indexOf(value) === index
+        }
+            const number = _getNumber;
+            let myFunc = num => Number(num);
+            var intArr = Array.from(String(number), myFunc);
+            const uniqueAges = intArr.filter(unique);
+            return uniqueAges;
+    }
+
+    const  checkPalindrome = (string) =>{
+        const len = string.length;
+        for (let i = 0; i < len / 2; i++) {
+            if (string[i] !== string[len - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     const numberInputHandler = (getValue, operationField) => {
         let localStateDataForChange = item.dataInit;
     
@@ -240,6 +264,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 localStateDataForChange['bet_type']['i_box_disabled'] = 0;
                 localStateDataForChange['bet_type']['reverse_disabled'] = 0;
 
+                let uniqueAges = getStringUniqueCharactors(getValue);
+                let isPalindrom =  checkPalindrome(getValue);
 
                 if (getValue.includes("R") || getValue.includes("r")) {
                     localStateDataForChange['big'] = { value: "", disabled: 1 }
@@ -248,7 +274,26 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     localStateDataForChange['bet_type']['i_box_disabled'] = 1;
                     localStateDataForChange['bet_type']['reverse_disabled'] = 1;
 
-                } else {
+                }
+                else if (uniqueAges.length == 1) {
+                    
+                    localStateDataForChange['big'] = { value: "", disabled: 1 }
+                    localStateDataForChange['small'] = { value: "", disabled: 1 }
+                    localStateDataForChange['bet_type']['box_disabled'] = 1;
+                    localStateDataForChange['bet_type']['i_box_disabled'] = 1;
+                    localStateDataForChange['bet_type']['reverse_disabled'] = 1;
+                    
+                }
+                else if (isPalindrom) {
+                    
+                    localStateDataForChange['big'] = { value: "", disabled: 1 }
+                    localStateDataForChange['small'] = { value: "", disabled: 1 }
+                    localStateDataForChange['bet_type']['box_disabled'] = 0;
+                    localStateDataForChange['bet_type']['i_box_disabled'] = 1;
+                    localStateDataForChange['bet_type']['reverse_disabled'] = 1;
+
+                }
+                else {
                     localStateDataForChange['big'] = { value: "", disabled: 1 }
                     localStateDataForChange['small'] = { value: "", disabled: 1 }
                     localStateDataForChange['bet_type']['i_box_disabled'] = 1;
@@ -300,7 +345,12 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 localStateDataForChange['_3c'] = { value: "", disabled: 0 }
                 localStateDataForChange['bet_type'] = { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }
             }
-        } else if (operationField == 'box') {
+        } 
+        
+        
+        
+        
+        else if (operationField == 'box') {
             if (localStateDataForChange['number']['value'])
             // alert('box');
                 localStateDataForChange['bet_type']['box_value'] = localStateDataForChange['bet_type']['box_value'] ? 0 : 1;
@@ -916,7 +966,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
             
 
-        <Modal
+            <Modal
                   isOpen={modalIsOpen}
                   onAfterOpen={afterOpenModal}
                   onRequestClose={closeModal}
@@ -926,9 +976,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 
                 <div className="modal-content card">
                             <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
-                                <h5 className="modal-title" id="bettingModal" style={{height: '70px',paddingLeft:'10px'}}>
+                                <h5 className="modal-title" id="bettingModal" style={{height: '40px',paddingLeft:'10px'}}>
                                 {/*t('Bet_Successful')*/}
-                                { apiResponce == 'success' ? 'Bet_Successful' : 'Bet Failed '}
+                                { apiResponce == 'success' ? t('Bet_Successful') : 'Bet Failed '}
                                 </h5>
                             </div>
                             <div className="modal-body" >
