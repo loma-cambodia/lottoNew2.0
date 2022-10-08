@@ -216,19 +216,33 @@ const [apiResponce,  setApiResponce] = React.useState('success');
 
         let game_dates = [];
         let options = [];
-        _bettingInitData.map(item => {
-            let tempObj = {};
-            let games = [];
-            item && item.games && item.games.map(itemGame => {
-                if(itemGame.selected)
-                  games.push(itemGame.id);
-            });
 
-            tempObj['date'] =  item.date;
-            tempObj['games'] =  games;
-            if(item.selected)
-               game_dates.push(tempObj); 
-        })
+
+
+
+        // "game_dates":[
+        //     {
+        //         "date":"08 Oct, 2022",
+        //         "games":[1,2]
+        //         "options":[{"number":"1112","big_bet":"10","small_bet":"10","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","reverse":"off","amount":"160"}]
+                
+        //     },
+        //     {
+        //         "date":"09 Oct, 2022",
+        //         "games":[1,3]
+        //         "options":[{"number":"1112","big_bet":"40000","small_bet":"50000","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","reverse":"off","amount":"80"}]
+                
+        //     },
+        //     {
+        //         "date":"11 Oct, 2022",
+        //         "games":[1,2,3]
+        //         "options":[{"number":"2245","big_bet":"10","small_bet":"10","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","reverse":"off","amount":"?"}]
+                
+        //     }
+        // ]
+
+
+
 
         _bettingInputsDataParent && _bettingInputsDataParent.map(item => {
             let tempObj = {};
@@ -246,6 +260,25 @@ const [apiResponce,  setApiResponce] = React.useState('success');
            if(item.dataInit && item.dataInit.number && item.dataInit.number.value)
                options.push(tempObj);
         })
+
+
+        _bettingInitData.map(item => {
+            let tempObj = {};
+            let games = [];
+            item && item.games && item.games.map(itemGame => {
+                if(itemGame.selected)
+                  games.push(itemGame.id);
+            });
+
+            tempObj['date'] =  item.date;
+            tempObj['games'] =  games;
+            tempObj['options'] =  options;
+            
+            if(item.selected)
+               game_dates.push(tempObj); 
+        })
+
+       
 
     
         if(game_dates.length == 0){
@@ -271,7 +304,7 @@ const [apiResponce,  setApiResponce] = React.useState('success');
 
         
 
-       let dataSubmit = {member_id:auth.auth.customer_id, merchant_id:auth.auth.merchant_id, game_dates, options};
+       let dataSubmit = {member_id:auth.auth.customer_id, merchant_id:auth.auth.merchant_id, game_dates};
        dataSubmit['member_id'] = auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
        dataSubmit['merchant_id'] = auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id: 0;
 
@@ -341,6 +374,19 @@ const [apiResponce,  setApiResponce] = React.useState('success');
 
 
       }
+
+      const MoneyFormatDisplay = (theInput, getCase) => {
+        //Do something with the input
+        let getInput = theInput;
+        if(getCase == 1){
+         if(getInput)
+           return theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+         else 
+           return '';
+        }else{
+           return parseFloat(lottery.slave_net_amount).toFixed(2)
+        }
+     };
 
 
     
@@ -670,10 +716,10 @@ const [apiResponce,  setApiResponce] = React.useState('success');
                                             <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
                                         </div>
                                         <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
-                                            <p>{resultData && resultData.total ? resultData.total : 0 }</p>
-                                            <p>{resultData && resultData.acp_bet ? resultData.acp_bet : 0 }</p>
-                                            <p>{resultData && resultData.rebat ? resultData.rebat : 0 }</p>
-                                            <p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? resultData.netAmount : 0 }</p>
+                                            <p>{resultData && resultData.total ? MoneyFormatDisplay(resultData.total, 1) : 0 }</p>
+                                            <p>{resultData && resultData.acp_bet ? MoneyFormatDisplay(resultData.acp_bet,1) : 0 }</p>
+                                            <p>{resultData && resultData.rebat ? MoneyFormatDisplay(resultData.rebat,1) : 0 }</p>
+                                            <p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount,1) : 0 }</p>
                                         </div>
                                     </div>) : (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>)}
                                     <hr></hr>

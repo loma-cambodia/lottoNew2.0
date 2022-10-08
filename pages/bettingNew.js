@@ -56,7 +56,7 @@ export default function BettingNew({datauser}) {
         </div> 
         <div className="container">
             <div className={styles.device_detect_for_mobile}> 
-              <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore}/>
+              <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
             </div>
         </div>
       <Footer/>
