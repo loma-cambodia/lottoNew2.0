@@ -4,14 +4,14 @@ import axios from 'axios'
 //const API_BASE_URL = 'http://api.kk-lotto.com:8080/api';
 //http://api.kk-lotto.com:8080/frontend-api
 //http://api.kk-lotto.com:8080/frontend-api/ticket?member_id=4
-export const getTicketData = () => async (dispatch) => {
+export const getTicketData = (id) => async (dispatch) => {
   try {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     }
     const res = await axios.get(
-      `${API_BASE_URL}/ticket?member_id=4`,{
+      `${API_BASE_URL}/ticket?member_id=${id}`,{
         headers: headers,
       }
     )
@@ -28,14 +28,14 @@ export const getTicketData = () => async (dispatch) => {
   }
 }
 
-export const searchTicketData = (ticket_no) => async (dispatch) => {
+export const searchTicketData = ({ticketNumber},{id}) => async (dispatch) => {
   try {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     }
     const res = await axios.get(
-      `${API_BASE_URL}/ticket?member_id=4&ticket_no=${ticket_no}`,{
+      `${API_BASE_URL}/ticket?member_id=${id}&ticket_no=${ticketNumber}`,{
         headers: headers,
       }
     )

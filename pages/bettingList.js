@@ -12,28 +12,31 @@ export default function BettingList({datauser}) {
 // console.log("TICKETLIST",datauser);
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [active, setActive] = useState(false);
-       useEffect(() => {
-        dispatch(getTicketData());
-      },[dispatch]);
+
+  
       
       const state = useSelector(state => state);
       let tickets = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
       let ticketSlave = tickets.ticket_slave
        console.log("tickets:",tickets)
-
+       let id = datauser && datauser.user && datauser.user.data && datauser.user.data.id;
+       
+       const [active, setActive] = useState(false);
+       useEffect(() => {
+        dispatch(getTicketData(id));
+      },[dispatch]);
 
 
       
       const ticketSearch = []
       const GetTicketNumber = (e) => {
-
-         console.log("##1231231232#",e.target.value)
-        dispatch(searchTicketData(e.target.value));
+        const ticketNumber = e.target.value
+         console.log("##1231231232#",ticketNumber)
+        dispatch(searchTicketData({ticketNumber},{id}));
         console.log("##%%%%%%#",state)
         
         }
-
+        
   return (
     <>
       <Head>
