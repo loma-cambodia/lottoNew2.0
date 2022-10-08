@@ -4,6 +4,8 @@ import FinalDataContainer from './finalDataContainer';
 import {getBettingDates,lotterySubmit} from '../../store/actions/bettingActions';
 import RejectedBedContainer from './rejectedBedContainer';
 
+import { ToastContainer, toast } from 'react-toastify';
+
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -24,7 +26,7 @@ const customStyles = {
 const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
     _bettingInitData,_limit}) => {
     let limit = _limit;
-    // console.log('aaaaaa',limit);
+    console.log('aaaaaa',limit);
     const auth = useSelector(state => state.auth);
     const { t } = useTranslation();
 
@@ -317,11 +319,83 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             // alert('reverse');
                 localStateDataForChange['bet_type']['reverse_value'] = localStateDataForChange['bet_type']['reverse_value'] ? 0 : 1;
         } else if (operationField == 'big') {
+
+            let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
+            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
+            if(getValue > big_max_bet ){
+
+                toast.error('Bet should not be greater than '+big_max_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = big_max_bet;
+               
+            }else if(getValue < big_min_bet ){
+
+                toast.error('Bet should not be less than '+big_min_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+                
+                getValue = big_min_bet;
+                
+            }
+            // else{
+            //     $("#ErrorBig"+idas).html('');
+            // }
+            setBigValue(getValue);
             localStateDataForChange['big']['value'] = getValue;
         } else if (operationField == 'small') {
+
+            let small_max_bet  = limit && limit.length > 0 && limit[0].small_max_bet ?  limit[0].small_max_bet : 0;
+            let small_min_bet  = limit && limit.length > 0 && limit[0].small_min_bet ?  limit[0].small_min_bet : 0;
+            if(getValue > small_max_bet ){
+
+                toast.error('Bet should not be greater than '+small_max_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = small_max_bet;
+               
+            }else if(getValue < small_min_bet ){
+
+                toast.error('Bet should not be less than '+small_min_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = small_min_bet;
+                
+            }
+            // else{
+            //     $("#ErrorBig"+idas).html('');
+            // }
+            setSmallValue(getValue);
             localStateDataForChange['small']['value'] = getValue;
         } else if (operationField == '_3a') {
 
+
+            let three_a_max_bet  = limit && limit.length > 0 && limit[0].three_a_max_bet ?  limit[0].three_a_max_bet : 0;
+            let three_a_min_bet  = limit && limit.length > 0 && limit[0].three_a_min_bet ?  limit[0].three_a_min_bet : 0;
+            if(getValue > three_a_max_bet ){
+                
+                toast.error('Bet should not be greater than '+three_a_max_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = three_a_max_bet;
+               
+            }else if(getValue < three_a_min_bet ){
+
+                toast.error('Bet should not be less than '+three_a_min_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = three_a_min_bet;
+                
+            }
+            // else{
+            //     $("#ErrorBig"+idas).html('');
+            // }
+            setA3Value(getValue);
 
             localStateDataForChange['_3a']['value'] = getValue;
 
@@ -355,6 +429,31 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             }
 
         } else if (operationField == '_3c') {
+
+
+            let three_c_max_bet  = limit && limit.length > 0 && limit[0].three_c_max_bet ?  limit[0].three_c_max_bet : 0;
+            let three_c_min_bet  = limit && limit.length > 0 && limit[0].three_c_min_bet ?  limit[0].three_c_min_bet : 0;
+            if(getValue > three_c_max_bet ){
+
+                toast.error('Bet should not be greater than '+three_c_max_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = three_c_max_bet;
+               
+            }else if(getValue < three_c_min_bet ){
+
+                toast.error('Bet should not be less than '+three_c_min_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = three_c_min_bet;
+                
+            }
+            // else{
+            //     $("#ErrorBig"+idas).html('');
+            // }
+            setC3Value(getValue);
             localStateDataForChange['_3c']['value'] = getValue;
 
 
@@ -472,19 +571,35 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
 
                     if(localStateDataForChange['number'] == ""){
-                        alert('Please Enter Number')
+
+                        toast.error('Please Enter Number', 
+                        {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                        pauseOnHover: true,draggable: true,progress: undefined});
+
                         return false;
                     }else if(localStateDataForChange['amount1'] == '' || localStateDataForChange['amount2'] == ''){
-                        alert('Please Enter Amount')
+
+                        toast.error('Please Enter Amount', 
+                        {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                        pauseOnHover: true,draggable: true,progress: undefined});
+                        
                         return false;
                     }
-                    else if(localStateDataForChange['date'] == ''){
-                        alert('amount2')
-                        return false;
-                    }else if(localStateDataForChange['company'] == ''){
-                        alert('company')
-                        return false;
-                    }
+                    // else if(localStateDataForChange['date'] == ''){
+
+                    //     toast.error('Please Enter Number', 
+                    //     {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                    //     pauseOnHover: true,draggable: true,progress: undefined});
+                    //     alert('amount2')
+                    //     return false;
+                    // }else if(localStateDataForChange['company'] == ''){
+
+                    //     toast.error('Please Enter Number', 
+                    //     {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                    //     pauseOnHover: true,draggable: true,progress: undefined});
+                    //     alert('company')
+                    //     return false;
+                    // }
                     else{
                         finalSubmitData.push(localStateDataForChange);
 
@@ -559,6 +674,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     return (
         
         <>
+        <ToastContainer />
             {activeGameType ? 
                 <>  
                     <div className="row">
