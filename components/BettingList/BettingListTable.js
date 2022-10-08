@@ -8,7 +8,16 @@ import { useTranslation } from "react-i18next";
 const API_BASE_URL = process.env.apiUrl;
 const ListTable = (_tickets) => {
     
- let ticket = _tickets
+ let ticket = [_tickets]
+ let temp_tickets = [1,2,3,4]
+
+temp_tickets.map(item =>{
+    let tempObject = {_tickets: {
+        "id": item
+      }}
+      ticket.push(tempObject)
+})
+console.log('TICKETSSSS: ',ticket)
  let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
  console.log("Parent Ticket:",ticket)
  console.log("Child Tickets:",ticketSlaves)
@@ -177,6 +186,7 @@ const ListTable = (_tickets) => {
                                 <td class="text-end">{ticketList.net_amount}</td>
                             </tr>
                             :
+                            
                             <tr>
                                 <td>{ticket._tickets.id}</td>
                                 <td class="text-start"><Link href="/TicketDetails"><a >{ticket._tickets.ticket_no}</a></Link></td>
@@ -187,7 +197,8 @@ const ListTable = (_tickets) => {
                                 <td class="text-end">{ticket._tickets.total_amount}</td>
                                 <td class="text-end">{ticket._tickets.rebate_amount}</td>
                                 <td class="text-end">{ticket._tickets.net_amount}</td>
-                            </tr>}
+                            </tr>
+                            }
 
                              
                        
