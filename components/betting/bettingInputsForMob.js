@@ -1,10 +1,19 @@
 import React, { useState,useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import FinalDataContainer from './finalDataContainer';
+import {getBettingDates,lotterySubmit} from '../../store/actions/bettingActions';
+
+import { useDispatch, useSelector } from "react-redux";
 
 const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
-    _bettingInitData}) => {
+    _bettingInitData,_limit}) => {
+    let limit = _limit;
+    console.log('aaaaaa',limit);
+
     const { t } = useTranslation();
+
+    const dispatch = useDispatch();
+
         // console.log('_bettingInitData:',_bettingInitData);
     let bettingInitData = _bettingInitData;
     let localStateInitData = item.dataInit;
@@ -363,6 +372,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         setPageLoadCount(pageLoadCount + 1);
     }
     const previewSubmitData = (getAction, getIndex = 0) => {
+        // alert(getAction)
         let finalSubmitData = _finalSubmitData;
         if(getAction == 'remove'){
             finalSubmitData = finalSubmitData.filter((item,id) => id != getIndex);
@@ -415,35 +425,52 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     localStateDataForChange['company'] = game;
                     localStateDataForChange['bet_type'] = bet_type;
             
-
-
                     let _mainSubmitData = {
-                            "game_dates":
-                            [
-                                {
-                                    "date":"08 Oct, 2022",
-                                    "games":[1,2]
-                                }
-                        
-                            ],
-                            "options":[
+                        "game_dates":[
                             {
-                                "number":"123",
-                                "big_bet":"0.0",
-                                "small_bet":0,
-                                "3a_bet":22,
-                                "3c_bet":33,
-                                "box":"off",
-                                "ibox":"off",
-                                "reverse":"off",
-                                "amount":"480.00"
+                                "date":"08 Oct, 2022",
+                                "games":[1,2],
+                                "options":
+                                        [
+                                            {
+                                                "number":"1112",
+                                                "big_bet":"10",
+                                                "small_bet":"10",
+                                                "3a_bet":0,
+                                                "3c_bet":0,
+                                                "box":"on",
+                                                "ibox":"off",
+                                                "reverse":"off",
+                                                "amount":"160"
+                                            }
+                                        ]  
                             }
                         ]
                     }
 
-
-                    mainSubmitData.push(_mainSubmitData);
-                    setMainSubmitData(_mainSubmitData);
+                    // let _mainSubmitData = {
+                    //         "game_dates":
+                    //         [
+                    //             {
+                    //                 "date":"08 Oct, 2022",
+                    //                 "games":[1,2]
+                    //             }
+                        
+                    //         ],
+                    //         "options":[
+                    //         {
+                    //             "number":"123",
+                    //             "big_bet":"0.0",
+                    //             "small_bet":0,
+                    //             "3a_bet":22,
+                    //             "3c_bet":33,
+                    //             "box":"off",
+                    //             "ibox":"off",
+                    //             "reverse":"off",
+                    //             "amount":"480.00"
+                    //         }
+                    //     ]
+                    // }
 
                     if(localStateDataForChange['number'] == ""){
                         alert('Please Enter Number')
@@ -457,6 +484,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     }
                     else{
                         finalSubmitData.push(localStateDataForChange);
+
+                        mainSubmitData.push(_mainSubmitData);
+                        // setMainSubmitData(_mainSubmitData);
                     }           
                 }
             });
@@ -472,7 +502,21 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         allClearData();
         setPageLoadCount(pageLoadCount + 1);
     }
-// console.log('ooooooooo',mainSubmitData)
+
+
+    const lotterySubmitRecordsCallActionMob = () => {
+        console.log('ooooooooo',mainSubmitData)
+        dispatch(lotterySubmit(mainSubmitData, response =>{
+            if(response.statusCode  == 201  || response.statusCode  == 200 ){
+                setResultData(response.data)
+                
+            }else {
+                
+            }
+          }));
+    } 
+
+
     return (
         
         <>
@@ -706,7 +750,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         <b>{t('Reset')}</b> 
                     </button> 
                 </div>
-                <div className='col-6'>
+                <div onClick={() => lotterySubmitRecordsCallActionMob()} className='col-6'>
                     <button className="form-control text-light" style={{ background: '#e91d25' }}> 
                         <b>{t('BET')}</b> 
                     </button> 

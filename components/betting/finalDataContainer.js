@@ -3,11 +3,7 @@ const FinalDataContainer = ({_previewSubmitData, finalSubmitData,_bettingInitDat
     const { t } = useTranslation();
 
     // console.log('FinalDataContainer:_bettingInitData:',_bettingInitData);
-    console.log('finalSubmitData:',finalSubmitData);
-
-    const removeRowData = (id) => {
-        alert(id.id)
-    }
+    // console.log('finalSubmitData:',finalSubmitData);
 
     return (
         <div className="border mt-2">
