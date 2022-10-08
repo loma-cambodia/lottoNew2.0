@@ -2699,3 +2699,6 @@ span.name-gp {
   font-weight: bold;
   text-decoration: underline!important;
 }
+input.form-control.text-right-for-amount {
+  text-align: right;
+}
