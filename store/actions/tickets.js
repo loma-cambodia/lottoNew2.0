@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 const API_BASE_URL = process.env.apiUrl
 export const getTicketData = () => async (dispatch) => {
   try {
