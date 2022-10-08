@@ -53,6 +53,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
         let threeDAmout = calculate3DAmountEnable(getValue,operationField);
 
+      //  console.log('1111111111111111111111111');
+
         if (operationField == 'number') {
 
 
@@ -138,6 +140,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
             }
         } else if (operationField == 'box') {
+
+          console.log('box');
           let changeValue = localStateDataForChange['bet_type']['box_value'] ? 0 : 1;
 
           localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue);
@@ -148,15 +152,17 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
         } else if (operationField == 'ibox') {
             let changeValue = localStateDataForChange['bet_type']['i_box_value'] ? 0 : 1;
-            if (localStateDataForChange['number']['value'])
-            localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: changeValue, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
+            localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue);
+          //  if (localStateDataForChange['number']['value'])
+            //localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: changeValue, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
 
 
         } else if (operationField == 'reverse') {
 
                 let changeValue = localStateDataForChange['bet_type']['reverse_value'] ? 0 : 1;
-                if (localStateDataForChange['number']['value'])
-                localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: changeValue, reverse_disabled: 0 } };
+                localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue);
+             //   if (localStateDataForChange['number']['value'])
+             //   localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: changeValue, reverse_disabled: 0 } };
 
         } else if (operationField == 'big') {
             
@@ -345,6 +351,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
         let uniqueAges = getStringUniqueCharactors(getValue);
         let isPalindrom =  checkPalindrome(getValue);
+        if(getValue.length == 3){
         if (getValue.includes("R") || getValue.includes("r")) 
         _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 1, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 1 } };
         else if (uniqueAges.length == 1) 
@@ -354,6 +361,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         else 
         _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 0, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 0 } };
       
+        }
+        console.log('changeBoxValues:_localStateDataForChange:',_localStateDataForChange);
         return _localStateDataForChange;
     } 
 
