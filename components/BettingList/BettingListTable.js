@@ -149,7 +149,8 @@ const ListTable = ({_tickets, _GetTicketNumber}) => {
                         </tr>
                     </thead>
                     <tbody>
-                    {ticketList.length ? 
+                        
+                    {/* {ticketList.length ? 
                             <tr>
                                 <td>{ticketList.id}</td>
                                 <td class="text-start"><Link href="/TicketDetails"><a >{ticketList.ticket_no}</a></Link></td>
@@ -157,7 +158,6 @@ const ListTable = ({_tickets, _GetTicketNumber}) => {
                                 <td class="text-center" >{ticketList.created_at}</td>
                                 <td class="text-center">{ticketList.betting_date}</td>
                                 <td class="text-center">{ticketList.bet_type}</td>
-                                {/* <td class="text-center">{gameName}</td> */}
                                 <td class="text-end">{ticketList.total_amount}</td>
                                 <td class="text-end">{ticketList.rebate_amount}</td>
                                 <td class="text-end">{ticketList.net_amount}</td>
@@ -173,7 +173,8 @@ const ListTable = ({_tickets, _GetTicketNumber}) => {
                                 <td class="text-end">{ticket.total_amount}</td>
                                 <td class="text-end">{ticket.rebate_amount}</td>
                                 <td class="text-end">{ticket.net_amount}</td>
-                            </tr>}
+                            </tr>
+                            } */}
 
                              
                        

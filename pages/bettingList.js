@@ -15,7 +15,6 @@ export default function BettingList({datauser}) {
   const [active, setActive] = useState(false);
        useEffect(() => {
         dispatch(getTicketData());
-        dispatch(searchTicketData());
       },[dispatch]);
       
       const state = useSelector(state => state);

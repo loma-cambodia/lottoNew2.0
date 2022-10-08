@@ -15,6 +15,13 @@ export default function(state = initialState, action){
             loading:false
 
         }
+        case "GET_SEARCH_TICKETS":
+        return {
+            ...state,
+            search:action.payload,
+            loading:false
+
+        }
         default: return state
     }
 
