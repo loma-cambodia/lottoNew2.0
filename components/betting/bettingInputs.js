@@ -141,27 +141,27 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
         } else if (operationField == 'box') {
 
-          console.log('box');
+       //   console.log('box');
           let changeValue = localStateDataForChange['bet_type']['box_value'] ? 0 : 1;
 
           localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue);
 
-        //  if (localStateDataForChange['number']['value'])
-       //      localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: changeValue, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
+        // if (localStateDataForChange['number']['value'])
+        //    localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: changeValue, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
 
 
         } else if (operationField == 'ibox') {
             let changeValue = localStateDataForChange['bet_type']['i_box_value'] ? 0 : 1;
             localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue);
-          //  if (localStateDataForChange['number']['value'])
-            //localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: changeValue, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
+           // if (localStateDataForChange['number']['value'])
+          //  localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: changeValue, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
 
 
         } else if (operationField == 'reverse') {
 
                 let changeValue = localStateDataForChange['bet_type']['reverse_value'] ? 0 : 1;
                 localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue);
-             //   if (localStateDataForChange['number']['value'])
+              //  if (localStateDataForChange['number']['value'])
              //   localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: changeValue, reverse_disabled: 0 } };
 
         } else if (operationField == 'big') {
@@ -325,6 +325,9 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
           localStateDataForChange = { ...localStateDataForChange, amount: { value: totalAmount, disabled: 1 } };
 
 
+          console.log('localStateDataForChange:',localStateDataForChange);
+
+
 
         _updateBettingInputsData(item.name,localStateDataForChange);
         _setLoadpageCounter(_loadpageCounter + 1);
@@ -367,6 +370,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
     } 
 
     const calculationOfTotalAmount = (getRow) => {
+
+        console.log('getRow:', getRow);
       let bet_type = '';
       let total_sum = 0;
       if(getRow && getRow.bet_type && getRow.bet_type.box_value) 
@@ -384,21 +389,31 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
          // rollingNumber
 
      if(getRow && getRow.big && getRow.big.value) 
-     total_sum = total_sum + parseFloat(getRow.big.value);
+       total_sum = total_sum + parseFloat(getRow.big.value);
+
+      // console.log('total_sum:', total_sum);
 
       if(getRow && getRow.small && getRow.small.value) 
-      total_sum = total_sum + parseFloat(getRow.big.value);
+      total_sum = total_sum + parseFloat(getRow.small.value);
+
+      //console.log('total_sum:', total_sum);
 
       if(getRow && getRow._3a && getRow._3a.value) 
-      total_sum = total_sum + parseFloat(getRow.big.value);
+      total_sum = total_sum + parseFloat(getRow._3a.value);
+
+      //console.log('total_sum:', total_sum);
 
       if(getRow && getRow._3c && getRow._3c.value) 
-      total_sum = total_sum + parseFloat(getRow.big.value);
+      total_sum = total_sum + parseFloat(getRow._3c.value);
+
+      //console.log('total_sum:', total_sum);
 
 
       let totalAmount =  0;
       if(_gameCount && total_sum)
       totalAmount = _gameCount * total_sum  
+
+     // console.log('totalAmount:', totalAmount);
 
       if(bet_type == 'box'){
         let totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
@@ -414,6 +429,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         totalAmount = totalAmount * 10;  
 
     }
+
+   // console.log('totalAmount:', totalAmount);
           
       return totalAmount;
     }
