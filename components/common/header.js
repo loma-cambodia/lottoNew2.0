@@ -13,20 +13,23 @@ import Link from 'next/link';
 
 import {useRouter} from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
+import {getLogin} from '../../store/actions/authActions';
 
-const Header = ({datauser}) => {
-  
+const Header = ({datauser,_auth}) => {
+
    const dispatch = useDispatch();
-   let auth = useSelector(state => state.auth);
+   let auth = _auth;
 
+  //  console.log('Header:auth:',auth);
 
-   console.log('Header:auth:',auth);
+  //  console.log('Header:datauser:',datauser);
+
+  //  console.log('Header:auth:',auth);
+
     // Calling useRouter() hook
    
 
    let language = '';
-
-   
 
    if(auth && auth.lang){
     language = auth.lang;
@@ -55,6 +58,13 @@ const Header = ({datauser}) => {
     })
     }
   }
+
+
+  const loginAPICall = () => {
+    
+    dispatch(getLogin());
+  }
+
 
   function LangTypeFun({langTypeVal}){
     // alert(langTypeVal)
@@ -110,6 +120,7 @@ const Header = ({datauser}) => {
                       </a>
                   </div>
                   <div className="desktop-menu me-auto">
+                   
                           <ul className="desktop-menu-list">
                             <li className= {`${router.pathname === "/" ? "active-header":""}`}>
                             <Link className= "active" href="/">{t('Homepage')}</Link>
@@ -140,13 +151,13 @@ const Header = ({datauser}) => {
                   <div className="right-part-menu">
                       <ul className="right-part-list">
                           <li>
-                              <span className="text-end mb-0 user-details"><span className="user-id text-black" >{datauser && datauser.user && datauser.user.data  && datauser.user.data.name ? datauser.user.data.name[0].toUpperCase() + datauser.user.data.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>
+                              <span className="text-end mb-0 user-details"><span className="user-id text-black" >{auth && auth.auth  && auth.auth.name ? auth.auth.name[0].toUpperCase() + auth.auth.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>
                                 
-                              { datauser && datauser.user && datauser.user.data && datauser.user.data && datauser.user.data.wallet && datauser.user.data.wallet.amount ? parseFloat(datauser.user.data.wallet.amount).toFixed(2)  : "0.00" }
+                              { auth && auth.auth && auth && auth.auth.wallet && auth.auth.wallet.amount ? parseFloat(auth.auth.wallet.amount).toFixed(2)  : "0.00" }
                                 
                               </span> <span className="badge badge-yellow text-black">
                             
-                                { datauser && datauser.user && datauser.user.data && datauser.user.data.merchant && datauser.user.data.merchant.currency && datauser.user.data.merchant.currency.code ? datauser.user.data.merchant.currency.code  : "USD" }
+                                { auth  && auth.auth && auth.auth.merchant && auth.auth.merchant.currency && auth.auth.merchant.currency.code ? auth.auth.merchant.currency.code  : "USD" }
 
                               </span></span>
                           </li>

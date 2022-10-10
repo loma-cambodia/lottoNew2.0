@@ -13,8 +13,6 @@ import {userTransactionDetails, winnerResultDetails2} from '../store/actions/hom
 export default function BettingNew({datauser}) {
 
 
-  console.log('BettingNew:datauser:',datauser);
-
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
@@ -32,12 +30,16 @@ export default function BettingNew({datauser}) {
       }, [datauser])
 
       const state = useSelector(state => state);
+      const auth = useSelector(state => state.auth);
 
 
       let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
       let betLimit = transactions && transactions.bet_limit && transactions.bet_limit.limit_settings ? transactions.bet_limit.limit_settings : {};
       // -------------
       let bettingDatesStore = useSelector(state => state.betting.dates);
+
+      
+      
       
   return (
     <>
@@ -49,11 +51,12 @@ export default function BettingNew({datauser}) {
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
-      <Header datauser={datauser}/>
+      <Header datauser={datauser} _auth={auth}/>
       <Banner/>
-        <div className={styles.device_detect_for_desktop}>
-          <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
-        </div> 
+          <div className={styles.device_detect_for_desktop}>
+          
+          <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit} _auth={auth}/>
+        </div>  
         <div className="container">
             <div className={styles.device_detect_for_mobile}> 
               <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
