@@ -9,16 +9,16 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
         if(work == 'child'){
             newArr = bettingInitData.map(obj => {
                 if (obj.id === dateId && obj.selected) {
-                return {...obj, "games":obj.games.map(itemGame => {
-                    let itemGameNew = {...itemGame};
-                    if(itemGame.id == gameId){
-                        if(itemGameNew.selected)
-                        itemGameNew = {...itemGameNew, selected:false}
-                        else
-                        itemGameNew = {...itemGameNew, selected:true}  
-                    }
-                    return itemGameNew;
-                })};
+                    return {...obj, "games":obj.games.map(itemGame => {
+                        let itemGameNew = {...itemGame};
+                        if(itemGame.id == gameId){
+                            if(itemGameNew.selected)
+                            itemGameNew = {...itemGameNew, selected:false}
+                            else
+                            itemGameNew = {...itemGameNew, selected:true}  
+                        }
+                        return itemGameNew;
+                    })};
                 }
                 return obj;
             });

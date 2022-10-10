@@ -24,7 +24,7 @@ const customStyles = {
   }; 
 
 const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
-    _bettingInitData,_limit,_gameCount}) => {
+    _bettingInitData,_limit,_gameCount,_setBettingInitData,_setActiveAll}) => {
     let limit = _limit;
     // console.log('aaaaaa',limit);
     const auth = useSelector(state => state.auth);
@@ -79,41 +79,78 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 return false;
             }
         }
-
         if(curserPointer == 'number4d'){
             let numberVal = numberValue4D.toString();
-            let mainDataVal = numberVal+getValue;
-            if(mainDataVal.length == 5){
-                return false;
+            if (numberVal.includes("R")){
+                if(getValue == "R"){
+                    return false;
+                }else{
+                    let mainDataVal = numberVal+getValue;
+                    if(mainDataVal.length == 5){
+                        return false;
+                    }
+                    setNumberValue4D(mainDataVal)
+                    numberInputHandler(mainDataVal, 'number')
+                }
+            }else{
+                let mainDataVal = numberVal+getValue;
+                if(mainDataVal.length == 5){
+                    return false;
+                }
+                setNumberValue4D(mainDataVal)
+                numberInputHandler(mainDataVal, 'number')
             }
-            setNumberValue4D(mainDataVal)
-            numberInputHandler(mainDataVal, 'number')
         }
         if(curserPointer == 'number3d'){
             let numberVal = numberValue3D.toString();
-            let mainDataVal = numberVal+getValue;
-            if(mainDataVal.length == 4){
-                return false;
+            if (numberVal.includes("R")){
+                if(getValue == "R"){
+                    return false;
+                }else{
+                    let mainDataVal = numberVal+getValue;
+                    if(mainDataVal.length == 4){
+                        return false;
+                    }
+                    setNumberValue3D(mainDataVal)
+                    numberInputHandler(mainDataVal, 'number')
+                }
+            }else{
+                let mainDataVal = numberVal+getValue;
+                if(mainDataVal.length == 4){
+                    return false;
+                }
+                setNumberValue3D(mainDataVal)
+                numberInputHandler(mainDataVal, 'number')
             }
-            setNumberValue3D(mainDataVal)
-            numberInputHandler(mainDataVal, 'number')
         }  
       if(curserPointer == 'big'){
+          if(getValue == 'R'){
+             return false;
+          }
           let bigVal = bigValue.toString();
           setBigValue(bigVal+getValue)
           numberInputHandler(bigVal+getValue, 'big')
       }   
       if(curserPointer == 'small'){
+          if(getValue == 'R'){
+            return false;
+          }
           let smallVal = smallValue.toString();
           setSmallValue(smallVal+getValue)
           numberInputHandler(smallVal+getValue, 'small')
       }   
       if(curserPointer == '3a'){
+        if(getValue == 'R'){
+          return false;
+        }
           let a3Val = a3Value.toString();
           setA3Value(a3Val+getValue)
           numberInputHandler(a3Val+getValue, '_3a')
       }   
       if(curserPointer == '3c'){
+        if(getValue == 'R'){
+          return false;
+        }
           let c3Val = c3Value.toString();
           setC3Value(c3Val+getValue)
           numberInputHandler(c3Val+getValue, '_3c')
@@ -135,6 +172,25 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         setMainSubmitData([]);
         _setFinalSubmitData([]);
         setTotalAmount('');
+        _setActiveAll(false);
+        let dateAndGameOptionData = [];
+        if(bettingInitData){
+        bettingInitData.map(item => {
+            let tempObject = { 
+                "id": item.id,
+                "day": item.day,
+                "date" : item.date,
+                "selected": false,
+                "games": item.games.map(itemGame => {
+                    itemGame.selected = false;
+                    return itemGame;
+                })
+                }
+                dateAndGameOptionData.push(tempObject);
+        });
+
+        }
+        _setBettingInitData(dateAndGameOptionData);
     }
 
     const singleClearData = () => {
@@ -659,7 +715,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         if(finalSubmitData.length < 10 && getAction == 'add'){
             var x = 0;
             bettingInitData.map(item => {
-                if(item.selected){
+                if(item.selected && item.date){
                     let day = item.date;
                     let game = '';
                     let gameArr = [];
@@ -669,107 +725,88 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                             gameArr.push(itemGame.id);
                         }
                     })
-
-                    let  localStateDataForChange = {};
-
-                    let amount1 = '';
-                    let amount2 = '';
-
-                    if(localStateData && localStateData.big && localStateData.big.value){
-                        amount1 = localStateData.big.value;
-                    }else if(localStateData && localStateData._3a && localStateData._3a.value){
-                        amount1 = localStateData._3a.value;
-                    }
-                    if(localStateData && localStateData.small && localStateData.small.value){
-                        amount2 = localStateData.small.value;
-                    }else if(localStateData && localStateData._3c && localStateData._3c.value){
-                        amount2 = localStateData._3c.value;
-                    }
-                    
-                    let bet_type = '';
-
-                    if(localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled == 0 && localStateData.bet_type.box_value == 1){
-                        bet_type = 'B';
-                    }
-                    else if(localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled == 0 && localStateData.bet_type.i_box_value == 1){
-                        bet_type = 'I';
-                    }
-                    else if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled == 0 && localStateData.bet_type.reverse_value == 1){
-                        bet_type = 'R';
-                    }else{
-                        bet_type = 'S';
-                    }
-
-                    localStateDataForChange['number'] = localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : "";
-                    localStateDataForChange['amount1'] = amount1;
-                    localStateDataForChange['amount2'] = amount2;
-                    localStateDataForChange['date'] = day;
-                    localStateDataForChange['company'] = game;
-                    localStateDataForChange['bet_type'] = bet_type;
-
-                    let amountTotal = localStateData && localStateData.amount && localStateData.amount.value ? localStateData.amount.value : "0";
-              
-                    // console.log('amount1',localStateDataForChange['amount1']);
-                    
-                    localStateDataForChange['amountTotal'] = amountTotal;
-                    
-                    let _mainSubmitData = {
-                                            "date":day,
-                                            "games":gameArr,
-                                            "options":
-                                                    [
-                                                        {
-                                                            "number": localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : "",
-                                                            "big_bet":localStateData && localStateData.big && localStateData.big.value ? localStateData.big.value : "0",
-                                                            "small_bet":localStateData && localStateData.small && localStateData.small.value ? localStateData.small.value : "0",
-                                                            "3a_bet":localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : "0",
-                                                            "3c_bet":localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : "0",
-                                                            "box":localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled == 0 && localStateData.bet_type.box_value == 1 ? "on" : "off",
-                                                            "ibox":localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled == 0 && localStateData.bet_type.i_box_value == 1 ? "on" : "off",
-                                                            "reverse":localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled == 0 && localStateData.bet_type.reverse_value == 1 ? "on" : "off",
-                                                            "amount": amountTotal
-                                                        }
-                                                    ]  
-                                          }
-
-
-                    if(localStateDataForChange['number'] == ""){
-
-                        toast.error('Please Enter Number', 
-                        {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                        pauseOnHover: true,draggable: true,progress: undefined});
-
-                        return false;
-                    }else if(amountTotal == 0){
-
-                        toast.error('Please Enter Amount', 
-                        {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                        pauseOnHover: true,draggable: true,progress: undefined});
+                    if(gameArr.length > 0){
+                        let  localStateDataForChange = {};
+    
+                        let amount1 = '';
+                        let amount2 = '';
+    
+                        if(localStateData && localStateData.big && localStateData.big.value){
+                            amount1 = localStateData.big.value;
+                        }else if(localStateData && localStateData._3a && localStateData._3a.value){
+                            amount1 = localStateData._3a.value;
+                        }
+                        if(localStateData && localStateData.small && localStateData.small.value){
+                            amount2 = localStateData.small.value;
+                        }else if(localStateData && localStateData._3c && localStateData._3c.value){
+                            amount2 = localStateData._3c.value;
+                        }
                         
-                        return false;
-                    }
-                    // else if(localStateDataForChange['date'] == ''){
-
-                    //     toast.error('Please Enter Number', 
-                    //     {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                    //     pauseOnHover: true,draggable: true,progress: undefined});
-                    //     alert('amount2')
-                    //     return false;
-                    // }else if(localStateDataForChange['company'] == ''){
-
-                    //     toast.error('Please Enter Number', 
-                    //     {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                    //     pauseOnHover: true,draggable: true,progress: undefined});
-                    //     alert('company')
-                    //     return false;
-                    // }
-                    else{
-                        finalSubmitData.push(localStateDataForChange);
-
-                        mainSubmitData.push(_mainSubmitData);
-                        x = 1;
-                        // setMainSubmitData(_mainSubmitData);
-                    }           
+                        let bet_type = '';
+    
+                        if(localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled == 0 && localStateData.bet_type.box_value == 1){
+                            bet_type = 'B';
+                        }
+                        else if(localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled == 0 && localStateData.bet_type.i_box_value == 1){
+                            bet_type = 'I';
+                        }
+                        else if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled == 0 && localStateData.bet_type.reverse_value == 1){
+                            bet_type = 'R';
+                        }else{
+                            bet_type = 'S';
+                        }
+    
+                        localStateDataForChange['number'] = localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : "";
+                        localStateDataForChange['amount1'] = amount1;
+                        localStateDataForChange['amount2'] = amount2;
+                        localStateDataForChange['date'] = day;
+                        localStateDataForChange['company'] = game;
+                        localStateDataForChange['bet_type'] = bet_type;
+    
+                        let amountTotal = localStateData && localStateData.amount && localStateData.amount.value ? localStateData.amount.value : "0";
+                  
+                        // console.log('amount1',localStateDataForChange['amount1']);
+                        
+                        localStateDataForChange['amountTotal'] = amountTotal;
+                        
+                        let _mainSubmitData = {
+                                                "date":day,
+                                                "games":gameArr,
+                                                "options":
+                                                        [
+                                                            {
+                                                                "number": localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : "",
+                                                                "big_bet":localStateData && localStateData.big && localStateData.big.value ? localStateData.big.value : "0",
+                                                                "small_bet":localStateData && localStateData.small && localStateData.small.value ? localStateData.small.value : "0",
+                                                                "3a_bet":localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : "0",
+                                                                "3c_bet":localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : "0",
+                                                                "box":localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled == 0 && localStateData.bet_type.box_value == 1 ? "on" : "off",
+                                                                "ibox":localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled == 0 && localStateData.bet_type.i_box_value == 1 ? "on" : "off",
+                                                                "reverse":localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled == 0 && localStateData.bet_type.reverse_value == 1 ? "on" : "off",
+                                                                "amount": amountTotal
+                                                            }
+                                                        ]  
+                                              }
+    
+                        if(localStateDataForChange['number'] == ""){
+                            toast.error('Please Enter Number', 
+                            {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                            pauseOnHover: true,draggable: true,progress: undefined});
+                            return false;
+                        }else if(amountTotal == 0){
+                            toast.error('Please Enter Amount', 
+                            {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                            pauseOnHover: true,draggable: true,progress: undefined});
+                            return false;
+                        }
+                        else{
+                            finalSubmitData.push(localStateDataForChange);
+    
+                            mainSubmitData.push(_mainSubmitData);
+                            x = 1;
+                            // setMainSubmitData(_mainSubmitData);
+                        }  
+                    }         
                 }
             });
 
@@ -833,9 +870,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 modelOpenCustom('success');
 
             }else {
-                // console.log("resultDataaa:",response.data)
-                // console.log('response.data',response.messages);
-                toast.error('Bet should not be less than', 
+                // console.log('responseresponse',response)
+                toast.error(response.message, 
                 {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
                 pauseOnHover: true,draggable: true,progress: undefined});
                 modelOpenCustom('failure');
