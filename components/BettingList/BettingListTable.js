@@ -119,68 +119,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
     
     console.log('childDataTickets',childDataTickets);
 
-<<<<<<< HEAD
-                      
-                        
-                            <DateRangePicker
-                                ref={keyRef}
-                                onApply={handleApply1}
-                                onCancel={keyRef}
-                                initialSettings={{ ranges }}
-                            >
-                                <input type="text" className="daterangepickerstyle" />
-                            </DateRangePicker>
-                      
-
-
-                    </div>                    
-                    </div>
-                    <div class="col-md-2 col-6">
-                    <div class="form-group">
-                        <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                        {/* <input type="text" onChange={(event) =>
-                                            GetTicketNumber(event)} class="form-control-custom-big" name="transationid"/> */}
-                        <input type="text"   onChange={(event) =>
-                                            GetTicketNumber(event)} class="form-control-custom-big" name="transationid"/>
-                    </div>
-                    </div>
-                    {/* <div class="col-md-2 col-6">
-                    <div class="form-group">
-                        <label for="transactionid" class="fw-bold mb-2">{t('Game')}</label>
-                        <select type="text" class="form-control-custom-big" name="transationid">
-                            <option>4D</option>
-                            <option>3D</option>
-                        </select>
-                    </div>
-                    </div>
-                    <div class="col-md-2 col-6">
-                    <div class="form-group">
-                        <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
-                        <select type="text" class="form-control-custom-big" name="transationid">
-                            <option>Toto</option>
-                            <option>Magnum</option>
-                            <option>Da ma cai</option>
-                        </select>
-                    </div>
-                    </div> */}
-
-                    <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="d-block">&nbsp;</label>
-                        <button type="button" class="btn-custom-curve2 w-auto">{t('Search')}</button>
-                        <button type="button" class="btn-custom-curve1">{t('Reset')}</button>
-                    </div>
-
-                    </div>
-                    </div>
-                    </div>
-        <div class="table-responsive my-3">
-=======
     function ShowTableDataParent({tickets}){
         if(tickets.length > 0){
             return (
                 <>
->>>>>>> 33ed5a1841beada5cda55a33535794a85504443b
                 <table class="table small table-bordered">
                     <thead>
                         <tr>
@@ -197,37 +139,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                         </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
-                    {ticketList.length ? 
-                            <tr>
-                                <td>{ticketList.id}</td>
-                                <td class="text-start"><Link href="/TicketDetails"><a >{ticketList.ticket_no}</a></Link></td>
-                                <td class="text-start">{ticketList.bet_number}</td>
-                                <td class="text-center" >{ticketList.created_at}</td>
-                                <td class="text-center">{ticketList.betting_date}</td>
-                                <td class="text-center">{ticketList.bet_type}</td>
-                                {/* <td class="text-center">{gameName}</td> */}
-                                <td class="text-end">{ticketList.total_amount}</td>
-                                <td class="text-end">{ticketList.rebate_amount}</td>
-                                <td class="text-end">{ticketList.net_amount}</td>
-                            </tr>
-                            :
-                            ticket.map(item =>(
-                            <tr>
-                                <td>{item.id}</td>
-                                <td class="text-start"><Link href="/TicketDetails"><a >{item.ticket_no}</a></Link></td>
-                                <td class="text-start">{item.bet_number}</td>
-                                <td class="text-center" >{item.created_at}</td>
-                                <td class="text-center">{item.betting_date}</td>
-                                <td class="text-center">{item.bet_type}</td>
-                                <td class="text-end">{item.total_amount}</td>
-                                <td class="text-end">{item.rebate_amount}</td>
-                                <td class="text-end">{item.net_amount}</td>
-                            </tr>
-                            ))
-                            
-                            }
-=======
                     {ticket.map((item,i) =>(
                         <tr>
                             <td>{i + 1}</td>
@@ -236,7 +147,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                             <td class="text-center">{item.betting_date}</td>
                             {/* <td class="text-center">{item.game_type}</td> */}
                             <td class="text-end"></td>
->>>>>>> 33ed5a1841beada5cda55a33535794a85504443b
 
                             <td class="text-end">{item.rebate_amount}</td>
                             <td class="text-end">{item.total_bet_net_amount}</td>
@@ -247,19 +157,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                     ))}
                     </tbody>
                 </table>
-<<<<<<< HEAD
-            </div>
-        
-               
-           
-           
-       
-             
-      
-                            
-               
-        </>
-=======
                 <div class="clearfix d-flex align-items-center justify-content-center">
                     <div class="pagination:container">
                         <div class="pagination:number arrow">
@@ -488,7 +385,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
              
 
     </>
->>>>>>> 33ed5a1841beada5cda55a33535794a85504443b
     )
 }
 export default ListTable;
