@@ -132,7 +132,7 @@ const Header = ({datauser}) => {
                                 <li className= {`${router === "/bettingList" ? "active-header":""}`}><Link href="/bettingList">{t('History')}</Link></li>
                             </ul>
                           </li> */}
-                            <li>
+                            <li className= {`${router.pathname === "/results" ? "active-header":""}`}>
                               <Link href="/results" >{t('Result')}</Link>
                             </li>
                           </ul>
