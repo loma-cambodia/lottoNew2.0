@@ -2715,3 +2715,30 @@ span.name-gp {
 input.form-control.text-right-for-amount {
   text-align: right;
 }
+
+.pagination1 {
+  /* display: inline-block; */
+  width: 100%;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
+}
+
+.pagination1 li a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination1 li.selected {
+  background-color: #408588;
+  color: white;
+  border-radius: 60%;
+}
+.pagination1 a:hover:not(.active) {
+  background-color: #408588; 
+  color: white;
+  border-radius: 60%;
+}
