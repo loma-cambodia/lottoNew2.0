@@ -13,7 +13,7 @@ export const getTicketData = (id) => async (dispatch) => {
       'Access-Control-Allow-Origin': '*',
     }
     const res = await axios.get(
-      `${API_BASE_URL}/ticket?member_id=7`,{
+      `${API_BASE_URL}/betList?member_id=7`,{
         headers: headers,
       }
     )
@@ -40,6 +40,32 @@ export const searchTicketData = (ticketNumber) => async (dispatch) => {
     //console.log('ticketNumber:', ticketNumber);
     const res = await axios.get(
       `${API_BASE_URL}/ticket?member_id=7&ticket_no=${ticketNumber}`,{
+        headers: headers,
+      }
+    )
+    console.log("SEARCH TICKET-->>",res)
+    dispatch({
+      type: 'GET_SEARCH_TICKETS_CHILD',
+      payload: res.data.data,
+    })
+  } catch (e) {
+    dispatch({
+      type: 'Get_Tickets_Error',
+      payload: console.log(e),
+    })
+  }
+}
+
+export const getLotteryDetailsList = (ticketNumber) => async (dispatch) => {
+  try {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    }
+
+    console.log('getLotteryDetailsList:ticketNumber:', ticketNumber);
+    const res = await axios.get(
+      `${API_BASE_URL}/betListById?id=${ticketNumber}`,{
         headers: headers,
       }
     )

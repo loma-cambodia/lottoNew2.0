@@ -6,9 +6,10 @@ import 'bootstrap-daterangepicker/daterangepicker.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from "react-i18next";
 
-import {getTicketData,searchTicketData} from '../../store/actions/tickets';
+import {getTicketData,searchTicketData, getLotteryDetailsList} from '../../store/actions/tickets';
 
 import { useDispatch, useSelector, } from "react-redux";
+import ReactPaginate from 'react-paginate';
 
 const API_BASE_URL = process.env.apiUrl;
 const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
@@ -16,8 +17,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
  let ticket = _tickets;
 
 
- console.log('ListTable:_tickets',_tickets);
- console.log('ListTable:_ticketsChild',_ticketsChild);
+
+
 
  let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
 
@@ -36,6 +37,34 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
         startDate: moment(msdate),
         endDate: moment(medate),
       });
+
+
+      const itemsPerPage  = 5;
+      const [currentItems, setCurrentItems] = useState(null);
+      const [pageCount, setPageCount] = useState(5);
+      const [itemOffset, setItemOffset] = useState(0);
+
+
+
+
+
+      useEffect(() => {
+        const endOffset = itemOffset + itemsPerPage;
+        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+        setCurrentItems(_tickets.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(_tickets.length / itemsPerPage));
+      }, []);
+
+
+    //   useEffect(() => {
+    //     const endOffset = itemOffset + itemsPerPage;
+    //     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    //     setCurrentItems(Pkglottery1.slice(itemOffset, endOffset));
+    //     setPageCount(Math.ceil(Pkglottery1.length / itemsPerPage));
+    //   }, [itemOffset, itemsPerPage, Pkglottery1]);
+
+
+
     const handleApply1 = (event, picker) => {
         setDates1({
           startDate: picker.startDate,
@@ -82,7 +111,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
      console.log('BettingListTable:state',state)
 
     const childShowTable = (ticketId) =>{
-        const state12 = dispatch(searchTicketData(ticketId));
+        const state12 = dispatch(getLotteryDetailsList(ticketId));
         let ticketsssss = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
         setChildDataTickets(ticketsssss);
         setParentAction(false);
@@ -101,8 +130,24 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
         setParentAction(true);
         setSearchAction(true);
     }
+
+    //const handlePageClick = () => {};
+
+    
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % Pkglottery1.length;
+        console.log(
+          `User requested page number ${event.selected}, which is offset ${newOffset}`
+
+        );
+        setItemOffset(newOffset);
+      };
     
     console.log('childDataTickets',childDataTickets);
+
+    console.log('currentItems',currentItems);
+
+    
 
     function ShowTableDataParent({tickets}){
         if(tickets.length > 0){
@@ -124,10 +169,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                         </tr>
                     </thead>
                     <tbody>
-                    {ticket.map((item,i) =>(
+                    {currentItems && currentItems.map((item,i) =>(
                         <tr>
                             <td>{i + 1}</td>
-                            <td class="text-start"><a className="btn btn-link" onClick={() => childShowTable(item.ticket_no)} >{item.ticket_no}</a></td>
+                            <td class="text-start"><a className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</a></td>
                             <td class="text-center" >{item.created_at}</td>
                             <td class="text-center">{item.betting_date}</td>
                             {/* <td class="text-center">{item.game_type}</td> */}
@@ -143,7 +188,19 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                     </tbody>
                 </table>
                 <div class="clearfix d-flex align-items-center justify-content-center">
-                    <div class="pagination:container">
+
+                <ReactPaginate
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+                className="pagination1"
+            />
+
+                    {/* <div class="pagination:container">
                         <div class="pagination:number arrow">
                         <svg width="18" height="18">
                         </svg>
@@ -173,7 +230,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                         <svg width="18" height="18">
                         </svg>
                         </div>
-                    </div>
+                    </div> */}
               
                     <svg class="hide">
                         <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
@@ -189,8 +246,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
     function ShowTableDataChild({tickets}){
         
         if(tickets.length > 0){
-            let ticket_slave = tickets[0].ticket_slave;
-            let drow_date = tickets[0].betting_date;
+            //let ticket_slave = tickets[0].ticket_slave;
+          //  let drow_date = tickets[0].betting_date;
+          let drow_date = '--';
+
             let companyGame = '';
             function gameName(e){
                 if(e == 1){
@@ -235,7 +294,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                     </thead>
                     <tbody>
                 
-                        {ticket_slave.map((item,id) =>(
+                        {tickets.map((item,id) =>(
                                 
                                 
                             <tr key={id}>
@@ -366,6 +425,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
 
             <div class="table-responsive my-3">
                 {parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
+
+
             </div>  
              
 
