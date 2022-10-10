@@ -2545,13 +2545,13 @@ span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
   border: 1px solid #fdb803 !important;
 }
 
-.filter-text .text-filter {
-  display: none;
-  }
 @media (max-width:692px) {
   .smallLetter{
       font-size: 1.30rem;
   }
+  .filter-text .text-filter {
+    display: none;
+    }
 }
 @media only screen and (max-width:768px)  {
   .errorBg{
@@ -2701,4 +2701,34 @@ span.name-gp {
 }
 input.form-control.text-right-for-amount {
   text-align: right;
+}
+.result-filter{
+  min-height: 38px;
+}
+.DMC{
+    background-color: #df3948;
+}
+.DMC .s-and-c {
+  background-color: #1c377c;
+}
+.card.DMC {
+  border: 2px solid #c42026;
+}
+.Magnum{
+  background-color: #ffc107 ;
+}
+.Magnum .s-and-c {
+  background-color: #f17e00;
+}
+.card.Magnum {
+  border: 2px solid #f17e00;
+}
+.TOTO{
+  background-color: #df3948 ;
+}
+.TOTO .s-and-c {
+  background-color: #000;
+}
+.card.TOTO {
+  border: 2px solid #000;
 }
