@@ -93,7 +93,15 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
 
       const [parentAction, setParentAction] = useState(true);
 
+      const [dateRange, setDateRange] = useState('');
+
+      const [ticketNo, setTicketNo] = useState('');
+
       const GetTicketNumber = _GetTicketNumber
+
+      useEffect(() => {
+        console.log(ticketNo)
+      }, [ticketNo])
         
       function formatDate(date) {
         var d = new Date(date),
@@ -118,13 +126,13 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
         setSearchAction(false);
     }
 
-    const ticketNumber = (event) =>{
-        const val = event.target.value;
-        const state12 = dispatch(searchTicketData(val));
-        let ticketsssss = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
-        
-        console.log("TicketNumber STATE:",val)
-    }
+    // const ticketNumber = (event) =>{
+    //     const val = event.target.value;
+    //     // const state12 = dispatch(searchTicketData(val));
+    //     // let ticketsssss = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
+    //     GetTicketNumber(val)
+    //     console.log("TicketNumber STATE:",val)
+    // }
     
     const backButton = () =>{
         setParentAction(true);
@@ -135,13 +143,19 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
 
     
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % Pkglottery1.length;
+        const newOffset = (event.selected * itemsPerPage) % _tickets.length;
         console.log(
           `User requested page number ${event.selected}, which is offset ${newOffset}`
 
         );
         setItemOffset(newOffset);
       };
+
+      const searchGetListonFilter = () => {
+         console.log('searchGetListonFilter');
+        _GetTicketNumber(dateRange,ticketNo);
+        console.log('searchGetListonFilter',dateRange,ticketNo);
+      }
     
     console.log('childDataTickets',childDataTickets);
 
@@ -335,24 +349,29 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                             <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                 <DateRangePicker
                                     ref={keyRef}
-                                    onApply={handleApply1}
+                                    onApply={(e)=>setDateRange(e.target.value)}
                                     onCancel={keyRef}
+                                    value={dateRange}
                                     initialSettings={{ ranges }}
                                 >
-                                    <input type="text" className="daterangepickerstyle" />
+                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
                                 </DateRangePicker>
                         </div>                    
                     </div>
                     <div class="col-md-2 col-6">
                         <div class="form-group">
                             <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                            <input type="text" onChange={(event) => ticketNumber(event)} class="form-control-custom-big" name="transationid"/>
+                            {/* <input type="text" onChange={(event) => ticketNumber(event)} class="form-control-custom-big" name="transationid"/> */}
+                            
+                            <input type="text" onChange={(e)=>{ 
+                                 setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+                            {/* <input type="text"   class="form-control-custom-big" /> */}
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="d-block">&nbsp;</label>
-                            <button type="button" class="btn-custom-curve2 w-auto">{t('Search')}</button>
+                            <button type="button" class="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
                             <button type="button" class="btn-custom-curve1">{t('Reset')}</button>
                         </div>
                     </div>
@@ -421,8 +440,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
     return (
         <>
 
-            {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> }
-
+            {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}
+            <SearchAbleFormParent /> 
             <div class="table-responsive my-3">
                 {parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
 
