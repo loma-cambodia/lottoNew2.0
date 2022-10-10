@@ -41,22 +41,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
           startDate: picker.startDate,
           endDate: picker.endDate,
         });
-<<<<<<< HEAD
-
-        console.log("<--START: ",dates1.startDate._d)
-        console.log("<--END: ",dates1.endDate._d)
-
-      };
-
-      const searchTicketDate =(dateStart,dateEnd) => {
-        
-      }
-=======
         console.log("<--START: ",dates1)
         console.log("<--END: ",dates1.endDate._d)
       };
 
->>>>>>> 33ed5a1841beada5cda55a33535794a85504443b
     
       const [ranges, setRanges] = useState({
         ['Today']: [moment().subtract(0, 'days'), moment().add(0, 'days')],
@@ -69,10 +57,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
       });
 
       const [ticketList, setTicketList] = useState([]);
-<<<<<<< HEAD
-=======
       const [childDataTickets, setChildDataTickets] = useState([]);
->>>>>>> 33ed5a1841beada5cda55a33535794a85504443b
       const [startRef, setstartRef] = useState();
       
       const [searchAction, setSearchAction] = useState(true);
