@@ -26,13 +26,13 @@ const customStyles = {
 const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
     _bettingInitData,_limit,_gameCount}) => {
     let limit = _limit;
-    console.log('aaaaaa',limit);
+    // console.log('aaaaaa',limit);
     const auth = useSelector(state => state.auth);
     const { t } = useTranslation();
 
     const dispatch = useDispatch();
 
-        console.log('_gameCount:',_gameCount);
+        // console.log('_gameCount:',_gameCount);
     let bettingInitData = _bettingInitData;
     let localStateInitData = item.dataInit;
     const [localStateData, setLocalStateData] = useState(localStateInitData);
@@ -45,7 +45,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [apiResponce,  setApiResponce] = React.useState('success');
-    console.log("localStateData:lotto",localStateData)
+    // console.log("localStateData:lotto",localStateData)
 
 
     /////////////////////////////////////
@@ -823,7 +823,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
    }
 
     const lotterySubmitRecordsCallActionMob = () => {
-        console.log('ooooooooo',mainSubmitData)
+        // console.log('ooooooooo',mainSubmitData)
         let game_dates = mainSubmitData;
         let saveLOttoData = {
             "member_id":auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,
@@ -838,12 +838,13 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 modelOpenCustom('success');
 
             }else {
+                // console.log("resultDataaa:",response.data)
                 modelOpenCustom('failure');
             }
           }));
     } 
 
-
+// console.log("resultDataaa:",resultData)
     return (
         
         <>
