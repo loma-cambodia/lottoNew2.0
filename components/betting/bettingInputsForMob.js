@@ -345,19 +345,22 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
   
   
         let totalAmount =  0;
-        if(_gameCount && total_sum)
-        totalAmount = _gameCount * total_sum  
-  
-        if(bet_type == 'box'){
-          let totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
-        if(totalBoxing)
-          totalAmount = totalAmount * totalBoxing;  
-        }else if(bet_type == 'reverse'){
+        let totalBoxing =  0;
+        if(_gameCount && total_sum){
+            totalAmount = _gameCount * total_sum 
+        } 
+        if(bet_type == 'reverse'){
           totalAmount = totalAmount * 2;  
         }
         if(bet_type == 'rolling'){
             totalAmount = totalAmount * 10;  
         }  
+        if(bet_type == 'box'){
+            totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
+        }
+        if(totalBoxing){
+            totalAmount = totalAmount * totalBoxing;  
+        }
         console.log(totalAmount); 
         return totalAmount;
     }
@@ -783,8 +786,12 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                                             }
                                                         ]  
                                               }
-    
-                        if(localStateDataForChange['number'] == ""){
+                        if(localStateDataForChange['number'].length < 3){
+                            toast.error('Please Enter Valid Number', 
+                            {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                            pauseOnHover: true,draggable: true,progress: undefined});
+                            return false;
+                        }else if(localStateDataForChange['number'] == ""){
                             toast.error('Please Enter Number', 
                             {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
                             pauseOnHover: true,draggable: true,progress: undefined});
@@ -806,8 +813,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 }
             });
 
-            let  localStateDataForChangeTotalAmount = '';
-            localStateDataForChangeTotalAmount ='10000';
             if(x==1){
                 setLocalStateData('');
                 allClearData();
