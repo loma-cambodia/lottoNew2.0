@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {getBettingDates,lotterySubmit} from '../../store/actions/bettingActions';
+import {getLogin} from '../../store/actions/authActions';
 import { useDispatch, useSelector } from "react-redux";
 import RejectedBedContainer from './rejectedBedContainer';
 import Modal from 'react-modal';
@@ -62,7 +63,7 @@ import Modal from 'react-modal';
           bottom: 'auto',
           marginRight: '-50%',
           transform: 'translate(-50%, -50%)',
-          width: '30%',
+          width: 'fit-content',
           borderRadius: '12px',
           padding:0
         },
@@ -93,7 +94,7 @@ let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}},
 
 let dateAndGameOptionData = [1,2,3,4];
 
-const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit}) => {
+const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit,_auth}) => {
     let betLimit = _betLimit;
     
     
@@ -102,14 +103,24 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
     let dateAndGameOptionData = [];
 
 
-    const auth = useSelector(state => state.auth);
+    const auth = _auth;
+    console.log('BettingOptionSelection:auth:',auth);
 
+    let objectWithData2 = {
+        "customer_name": auth.auth.customer_name,
+        "customer_id":  auth.auth.customer_id,
+        "merchant_id":  auth.auth.merchant_id,
+        "language":   auth.lang
+     } 
+    console.log('BettingOptionSelection:objectWithData2:',objectWithData2);
 
     const [resultData, setResultData] = React.useState({});
 //  Model code 
 
 const [modalIsOpen, setIsOpen] = React.useState(false);
+//const [modalIsOpen, setIsOpen] = React.useState(true);
 const [apiResponce,  setApiResponce] = React.useState('success');
+//const [apiResponce,  setApiResponce] = React.useState('aaaaaaaaaaaaaaaaaaaa aaaaaaa');
 
 
 
@@ -219,31 +230,6 @@ const [apiResponce,  setApiResponce] = React.useState('success');
 
 
 
-
-        // "game_dates":[
-        //     {
-        //         "date":"08 Oct, 2022",
-        //         "games":[1,2]
-        //         "options":[{"number":"1112","big_bet":"10","small_bet":"10","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","reverse":"off","amount":"160"}]
-                
-        //     },
-        //     {
-        //         "date":"09 Oct, 2022",
-        //         "games":[1,3]
-        //         "options":[{"number":"1112","big_bet":"40000","small_bet":"50000","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","reverse":"off","amount":"80"}]
-                
-        //     },
-        //     {
-        //         "date":"11 Oct, 2022",
-        //         "games":[1,2,3]
-        //         "options":[{"number":"2245","big_bet":"10","small_bet":"10","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","reverse":"off","amount":"?"}]
-                
-        //     }
-        // ]
-
-
-
-
         _bettingInputsDataParent && _bettingInputsDataParent.map(item => {
             let tempObj = {};
             
@@ -279,8 +265,6 @@ const [apiResponce,  setApiResponce] = React.useState('success');
         })
 
        
-
-    
         if(game_dates.length == 0){
             toast.error('Please choose at least one date selection!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
             pauseOnHover: true,draggable: true,progress: undefined});
@@ -300,33 +284,41 @@ const [apiResponce,  setApiResponce] = React.useState('success');
             return false;
         }
 
-
-
-        
-
        let dataSubmit = {member_id:auth.auth.customer_id, merchant_id:auth.auth.merchant_id, game_dates};
        dataSubmit['member_id'] = auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
        dataSubmit['merchant_id'] = auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id: 0;
 
-
          dispatch(lotterySubmit(dataSubmit, response =>{
-                
-          
-
-
+            
             if(response.statusCode  == 201  || response.statusCode  == 200 ){
                 setResultData(response.data)
                 modelOpenCustom('success');
+                loginAPICall();
 
             }else {
                 modelOpenCustom('failure');
             }
 
           }));
-
-
       
     } 
+
+
+    const loginAPICall = () => {
+         //   let 
+
+         // auth
+         console.log('loginAPICall');
+         let objectWithData = {
+            "customer_name": auth && auth.auth && auth.auth.customer_name ? auth.auth.customer_name : '',
+            "customer_id":  auth && auth.auth && auth.auth.customer_id ? auth.auth.customer_id : 0,
+            "merchant_id":  auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0,
+            "language":   auth && auth.lang ? auth.lang : 'en'
+         } 
+        dispatch(getLogin(objectWithData));
+      }
+
+    
     
 
     useEffect(() => {
@@ -398,6 +390,7 @@ const [apiResponce,  setApiResponce] = React.useState('success');
         <section className="page-content custom-padding">
          <div className="container">
           <div className="row justify-content-center">
+          
             {/* {dateAndGameOptionData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item} item={item}/>) )} */}
           {bettingInitData.map((item) => (<DateAndGameOption key={'dateAndGameOption'+item.id}
                                                   item={item} 
@@ -442,254 +435,16 @@ const [apiResponce,  setApiResponce] = React.useState('success');
                     </td>
                     <td colSpan="2">
                              <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> 
-                              {/* <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
-
-                              {/* <button onClick={() => modelOpenCustom('Probem in server')}  type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
-                              {/* <button type="button" className="btn-custom-curve2" onClick={() => modelOpenCustom('Probem in server')}>Submit</button>  */}
-                               {/* <button onClick={openModal}  type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
-                            {/* <button onClick={lotterySubmitRecordsCallAction}  data-bs-toggle="modal" data-bs-target="#bettingModal" type="button" className="btn-custom-curve2">{t('submit')}</button>  */}
-
-                            {/* <button  onClick={e => { showModal();  }}> show Modal </button> */}
+                              
                             
                     </td>
                 </tr>
                 </tbody>
             </table>
+            {/* <button onClick={() => loginAPICall()}> API Call </button> */}
         </div>
     </div>
-    {/* <ModalA show={state.show}/> */}
-     {/* Modal*/}
-     
-                {/* MODAL A */}
-                {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
-                    <div className="modal-dialog modal-md">
-                        <div className="modal-content">
-                            <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
-                                <h5 className="modal-title" id="bettingModal">
-                                    Bet Successful
-                                </h5>
-                            </div>
-                            <div className="modal-body" >
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-8">
-                                            <p>Total bet amount</p>
-                                            <p>Accepted bet amount</p>
-                                            <p>Rebate</p>
-                                            <p style={{fontWeight:'bold'}}>Net Amount</p>
-                                        </div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
-                                            <p>200.00</p>
-                                            <p>200.00</p>
-                                            <p>20.00</p>
-                                            <p style={{fontWeight:'bold'}}>180.00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer" style={{justifyContent:'center'}}>
-                            <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-                {/* MODAL B */}
-
-
-                <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
-                    <div className="modal-dialog modal-md">
-                        <div className="modal-content">
-                            <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
-                                <h5 className="modal-title" id="bettingModal">
-                                {t('Bet_Successful')}
-                                </h5>
-                            </div>
-                            <div className="modal-body" >
-                                <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-8">
-                                            <p>{t('Total')}</p>
-                                            <p>{t('Accepted_bet_amount')}</p>
-                                            <p>{t('Rebate')}</p>
-                                            <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
-                                        </div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
-                                            <p>{totalAmount}.00</p>
-                                            <p>165.00</p>
-                                            <p>35.00</p>
-                                            <p style={{fontWeight:'bold'}}>148.50</p>
-                                        </div>
-                                    </div>
-                                    <hr></hr>
-                                    <div><h5>Rejected Bet</h5></div>
-                                    <div className="row text-center table-responsive " style={{height:"250px"}}>
-                                    <table className="table table-bordered table-striped mb-0">
-                                        <tbody style={{fontWeight:'bold'}}>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('M')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('P')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-15</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('P')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-15</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('M')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('P')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-15</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('M')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('M')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">27/09</th>
-                                            <td>{t('M')}</td>
-                                            <td>1234</td>
-                                            <td>{t('Big')}</td>
-                                            <td className="text-danger">-20</td>
-                                            <td className="text-danger">{t('Over_Limit')}</td>
-                                            </tr>
-                                           
-                                        </tbody>
-                                    </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer" style={{justifyContent:'center'}}>
-                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            {/* MODAL B */}
-            {/* MODAL C */}
-            {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
-                    <div className="modal-dialog modal-md">
-                        <div className="modal-content">
-                            <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
-                                <h5 className="modal-title" id="bettingModal">
-                                    Bet Failed
-                                </h5>
-                            </div>
-                            <div className="modal-body" >
-                                <div class="container-fluid text-center">
-                                    <h5>The market already closed</h5>
-                                </div>
-                            </div>
-                            <div class="modal-footer" style={{justifyContent:'center'}}>
-                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
-                            </div>
-                        </div>
-                    </div>
-            </div> */}
-            {/* MODAL C */}
-            {/* MODAL D */}
-            {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
-                <div className="modal-dialog modal-md">
-                    <div className="modal-content">
-                       <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
-                            <h5 className="modal-title" id="bettingModal">
-                                Bet Failed
-                            </h5>
-                        </div>
-                        <div className="modal-body" >
-                            <div class="container-fluid text-center">
-                            <h5>Your credit is insufficient.</h5>
-                            </div>
-                        </div>
-                        <div class="modal-footer" style={{justifyContent:'center'}}>
-                            <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
-                        </div>
-                    </div>
-                </div>
-             </div> */}
-        {/* MODAL D */}
-        {/* MODAL E */}
-        {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
-            <div className="modal-dialog modal-md">
-                <div className="modal-content">
-                   <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
-                        <h5 className="modal-title" id="bettingModal">
-                            Bet Failed
-                        </h5>
-                    </div>
-                    <div className="modal-body" >
-                        <div class="container-fluid text-center">
-                        <h5>The selected company already closed</h5>
-                        </div>
-                    </div>
-                    <div class="modal-footer" style={{justifyContent:'center'}}>
-                        <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
-                    </div>
-                </div>
-            </div>
-         </div> */}
-        {/* MODAL E */}
-          {/* MODAL F */}
-          {/* <div className="modal fade" id="bettingModal" tabIndex="-1" aria-labelledby="bettingModal" aria-hidden="true" >
-            <div className="modal-dialog modal-md">
-                <div className="modal-content">
-                    <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
-                        <h5 className="modal-title" id="bettingModal">
-                            Bet Failed
-                        </h5>
-                    </div>
-                    <div className="modal-body" >
-                        <div class="container-fluid text-center">
-                        <h5>Bet is not allowed.</h5>
-                        <h5>Please contact your merchant.</h5>
-                        </div>
-                    </div>
-                    <div class="modal-footer" style={{justifyContent:'center'}}>
-                        <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
-                    </div>
-                </div>
-            </div>
-         </div> */}
-        {/* MODAL F */}
-        {/* End Modal */}
-
-
+    
         <Modal
                   isOpen={modalIsOpen}
                   onAfterOpen={afterOpenModal}
@@ -697,32 +452,30 @@ const [apiResponce,  setApiResponce] = React.useState('success');
                   style={customStyles}
                   contentLabel="Example Modal"
               >   
-                
-                <div className="modal-content card">
-                            <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
-                                <h5 className="modal-title" id="bettingModal" style={{height: '70px',paddingLeft:'10px'}}>
+                {/* <div className='modal-dialog modal-sm'> */}
+                <div className='modal-dialog'>
+                <div className="modal-content">
+                            <div className="modal-header text-white px-2 py-3" style={{backgroundColor:'#bc2263'}}>
+                                <h5 className="modal-title" id="bettingModal" style={{paddingLeft:'10px'}}>
                                 {/*t('Bet_Successful')*/}
                                 { apiResponce == 'success' ? 'Bet_Successful' : 'Bet Failed '}
                                 </h5>
                             </div>
-                            <div className="modal-body" >
+                            <div className="modal-body p-3" >
                                 <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
                                     {apiResponce == 'success' ? 
                                     (<div class="row">
-                                        <div class="col-8 col-sm-8">
-                                            <p>{t('Total')}</p>
-                                            <p>{t('Accepted_bet_amount')}</p>
-                                            <p>{t('Rebate')}</p>
-                                            <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
-                                        </div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
-                                            <p>{resultData && resultData.total ? MoneyFormatDisplay(resultData.total, 1) : 0 }</p>
-                                            <p>{resultData && resultData.acp_bet ? MoneyFormatDisplay(resultData.acp_bet,1) : 0 }</p>
-                                            <p>{resultData && resultData.rebat ? MoneyFormatDisplay(resultData.rebat,1) : 0 }</p>
-                                            <p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount,1) : 0 }</p>
-                                        </div>
+                                        <div class="col-8 col-sm-8"><p>{t('Total')}</p></div>
+                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.total ? MoneyFormatDisplay(resultData.total, 1) : 0 }</p></div>
+                                        <div class="col-8 col-sm-8"><p>{t('Accepted_bet_amount')}</p></div>
+                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.acp_bet ? MoneyFormatDisplay(resultData.acp_bet,1) : 0 }</p></div>
+                                        <div class="col-8 col-sm-8"><p>{t('Rebate')}</p></div>
+                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.rebat ? MoneyFormatDisplay(resultData.rebat,1) : 0 }</p></div>
+                                        <div class="col-8 col-sm-8"><p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p></div>
+                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount,1) : 0 }</p></div>
+                                        
                                     </div>) : (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>)}
-                                    <hr></hr>
+                                    
                                     
                                     
                                     <RejectedBedContainer dataRecords ={resultData && resultData.rejected ? resultData.rejected : []}/>
@@ -730,9 +483,10 @@ const [apiResponce,  setApiResponce] = React.useState('success');
                                     
                                 </div>
                             </div>
-                            <div class="modal-footer" style={{justifyContent:'center'}}>
+                            <div class="modal-footer px-2 py-3 border-top" style={{justifyContent:'center'}}>
                                 <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
                             </div>
+                        </div>
                         </div>
             </Modal>
 </section>

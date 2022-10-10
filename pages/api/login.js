@@ -1,11 +1,13 @@
 //import { withIronSession } from git "next-iron-session";
 import { withIronSessionApiRoute } from 'iron-session/next'
 
-let ttl = 60 + 10800 // 3 hours
+//let ttl = 60 + 10800 // 3 hours
 //let ttl = 60 + 60; //  60 seconds
 
+let ttl = 60 + 32400 // 9 hours
+
 async function handler(req, res) {
-  const body = req.body
+  const body = req.body;
 
   ///   const objectWithData = {
   //     "customer_name": "Sushil Gupta",
@@ -15,21 +17,21 @@ async function handler(req, res) {
   //       "language": 'en'
   // }
 
-    //  const objectWithData = {
-    //         "customer_name": "Dileep Maurya",
-    //        "customer_id":  112,
-    //       "merchant_id":  1,
-    //       "language":  'en',
-    //   }
+     const objectWithData = {
+            "customer_name": "Dileep Maurya",
+           "customer_id":  112,
+          "merchant_id":  1,
+          "language":  'en',
+      }
 
   
 
-  const objectWithData = {
-    customer_name: req.body.customer_name,
-    customer_id: req.body.customer_id,
-    merchant_id: req.body.enterprise_id,
-    language: req.body.language,
-  }
+  // const objectWithData = {
+  //   customer_name: req.body.customer_name,
+  //   customer_id: req.body.customer_id,
+  //   merchant_id: req.body.enterprise_id,
+  //   language: req.body.language,
+  // }
  
   //   try {
   const userData = await fetch(`${process.env.apiUrl}/member-login`, {
