@@ -53,6 +53,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
         let threeDAmout = calculate3DAmountEnable(getValue,operationField);
 
+      //  console.log('1111111111111111111111111');
+
         if (operationField == 'number') {
 
 
@@ -138,26 +140,40 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
             }
         } else if (operationField == 'box') {
+
+       //   console.log('box');
           let changeValue = localStateDataForChange['bet_type']['box_value'] ? 0 : 1;
-
-          //localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue);
-
-          if (localStateDataForChange['number']['value'])
-             localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: changeValue, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
+          let number_value = localStateDataForChange['number']['value'];
+          if(number_value.length == 3)
+          localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue,threeDAmout);
+          else {
+              if (localStateDataForChange['number']['value'])
+                localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: changeValue, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
+          }
+        
 
 
         } else if (operationField == 'ibox') {
             let changeValue = localStateDataForChange['bet_type']['i_box_value'] ? 0 : 1;
+            let number_value = localStateDataForChange['number']['value'];
+            if(number_value.length == 3)
+            localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue,threeDAmout);
+            else {
             if (localStateDataForChange['number']['value'])
             localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: changeValue, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
+            }
 
 
         } else if (operationField == 'reverse') {
 
                 let changeValue = localStateDataForChange['bet_type']['reverse_value'] ? 0 : 1;
+                let number_value = localStateDataForChange['number']['value'];
+            if(number_value.length == 3)
+                localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue,threeDAmout);
+                else {
                 if (localStateDataForChange['number']['value'])
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: changeValue, reverse_disabled: 0 } };
-
+            }
         } else if (operationField == 'big') {
             
             if (!getValue.match("^[0-9-.]*$")) {
@@ -170,15 +186,20 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             
             if(getValue > big_max_bet ){
                 $("#ErrorBig"+idas).html('Bet should not be greater than '+big_max_bet);
+                $("#ErrorBig"+idas).css('visibility', 'visible')	
+
                 getValue = big_max_bet
                
-            }else if(getValue < big_min_bet ){
+            }else if(getValue == 0 ){
                 $("#ErrorBig"+idas).html('Bet should not be less than '+big_min_bet);
+
                 getValue = ''
                 
             }
             else{
                 $("#ErrorBig"+idas).html('');
+                $("#ErrorBig"+idas).css('visibility', 'hidden')	
+
             }
            
             localStateDataForChange = { ...localStateDataForChange, big: { value: getValue, disabled: 0 } };
@@ -188,14 +209,19 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
             if(getValue > limit[0].small_max_bet ){
                 $("#ErrorSmall"+idas).html('Bet should not be greater than'+limit[0].small_max_bet);
+                $("#ErrorSmall"+idas).css('visibility', 'visible');
+
                 getValue = limit[0].small_max_bet
             }else if(getValue < limit[0].small_min_bet ){
 
                 $("#ErrorSmall"+idas).html('Bet should not be less than'+limit[0].small_min_bet);
+
                 getValue = ''
             }
             else{
                 $("#ErrorSmall"+idas).html('');
+                $("#ErrorSmall"+idas).css('visibility', 'hidden');
+
             }
 
             localStateDataForChange = { ...localStateDataForChange, small: { value: getValue, disabled: 0 } };
@@ -205,13 +231,18 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
             if(getValue > limit[0].three_a_max_bet ){
                 $("#ErrorA"+idas).html('Bet should not be greater than'+limit[0].three_a_max_bet);
+                $("#ErrorA"+idas).css('visibility', 'visible');
+
                 getValue = limit[0].three_a_max_bet
             }else if(getValue < limit[0].three_a_min_bet ){
                 $("#ErrorA"+idas).html('Bet should not be less than'+limit[0].three_a_min_bet);
+
                 getValue = ''
             }
             else{
                 $("#ErrorA"+idas).html('');
+                $("#ErrorA"+idas).css('visibility', 'hidden');
+
             }
            
             localStateDataForChange = { ...localStateDataForChange, _3a: { value: getValue, disabled: 0 } };
@@ -244,13 +275,18 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
             if(getValue > limit[0].three_c_max_bet ){
                 $("#ErrorC"+idas).html('Bet should not be greater than'+limit[0].three_c_max_bet);
+                $("#ErrorC"+idas).css('visibility','visible');
+
                 getValue = limit[0].three_c_max_bet
             }else if(getValue < limit[0].three_c_min_bet ){
                 $("#ErrorC"+idas).html('Bet should not be less than'+limit[0].three_c_min_bet);
+
                 getValue = ''
             }
             else{
                 $("#ErrorC"+idas).html('');
+                $("#ErrorC"+idas).css('visibility','hidden');
+
             }
             
             localStateDataForChange = { ...localStateDataForChange, _3c: { value: getValue, disabled: 0 } };
@@ -299,6 +335,9 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
           localStateDataForChange = { ...localStateDataForChange, amount: { value: totalAmount, disabled: 1 } };
 
 
+          console.log('localStateDataForChange:',localStateDataForChange);
+
+
 
         _updateBettingInputsData(item.name,localStateDataForChange);
         _setLoadpageCounter(_loadpageCounter + 1);
@@ -307,34 +346,65 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
 
 
-      const changeBoxValues = (localStateDataForChange, boxName, boxValue) => {
+      const changeBoxValues = (localStateDataForChange, betTypeName, betTypeValue, threeDAmout) => {
 
         let _localStateDataForChange = localStateDataForChange; 
         let getValue = _localStateDataForChange['number']['value'];
+        let box_value = 0;
+        let i_box_value = 0;
+        let reverse_value = 0;
 
-        if(boxName  == 'box'){
-            boxValue = boxValue;
-        }else {
-
+        if(betTypeName  == 'box'){
+            box_value = betTypeValue;
+        }else if(betTypeName  == 'ibox'){
+            i_box_value = betTypeValue;
+        }else if(betTypeName  == 'reverse'){
+            reverse_value = betTypeValue;
         }
-
-
 
         let uniqueAges = getStringUniqueCharactors(getValue);
         let isPalindrom =  checkPalindrome(getValue);
+        if(getValue.length == 3){
         if (getValue.includes("R") || getValue.includes("r")) 
-        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 1, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 1 } };
         else if (uniqueAges.length == 1) 
-        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 1, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 1 } };
         else if (isPalindrom) 
-        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 0, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 1 } };
         else 
-        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 0 } };
+        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 0, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 0 } };
       
+        }else if(getValue.length == 4 && false){
+
+                if (getValue.includes("R") || getValue.includes("r")) {
+                    _localStateDataForChange = { ..._localStateDataForChange, _3a: { value: "", disabled: 1 } };
+                    _localStateDataForChange = { ..._localStateDataForChange, _3c: { value: "", disabled: 1 } };
+                    _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+
+
+                } else  if (uniqueAges.length == 1) {
+                    _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+                } else  if (isPalindrom) {
+                    _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 1 } };
+                } else {
+                    _localStateDataForChange = { ..._localStateDataForChange, _3a: { value: "", disabled: 0 } };
+                    _localStateDataForChange = { ..._localStateDataForChange, _3c: { value: "", disabled: 0 } };
+                    if (threeDAmout) {
+                        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+                    } else {
+                        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
+                    }
+                }
+        }
+
+
+        console.log('changeBoxValues:_localStateDataForChange:',_localStateDataForChange);
         return _localStateDataForChange;
     } 
 
     const calculationOfTotalAmount = (getRow) => {
+
+        console.log('getRow:', getRow);
       let bet_type = '';
       let total_sum = 0;
       if(getRow && getRow.bet_type && getRow.bet_type.box_value) 
@@ -352,21 +422,31 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
          // rollingNumber
 
      if(getRow && getRow.big && getRow.big.value) 
-     total_sum = total_sum + parseFloat(getRow.big.value);
+       total_sum = total_sum + parseFloat(getRow.big.value);
+
+      // console.log('total_sum:', total_sum);
 
       if(getRow && getRow.small && getRow.small.value) 
-      total_sum = total_sum + parseFloat(getRow.big.value);
+      total_sum = total_sum + parseFloat(getRow.small.value);
+
+      //console.log('total_sum:', total_sum);
 
       if(getRow && getRow._3a && getRow._3a.value) 
-      total_sum = total_sum + parseFloat(getRow.big.value);
+      total_sum = total_sum + parseFloat(getRow._3a.value);
+
+      //console.log('total_sum:', total_sum);
 
       if(getRow && getRow._3c && getRow._3c.value) 
-      total_sum = total_sum + parseFloat(getRow.big.value);
+      total_sum = total_sum + parseFloat(getRow._3c.value);
+
+      //console.log('total_sum:', total_sum);
 
 
       let totalAmount =  0;
       if(_gameCount && total_sum)
       totalAmount = _gameCount * total_sum  
+
+     // console.log('totalAmount:', totalAmount);
 
       if(bet_type == 'box'){
         let totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
@@ -382,6 +462,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         totalAmount = totalAmount * 10;  
 
     }
+
+   // console.log('totalAmount:', totalAmount);
           
       return totalAmount;
     }
@@ -516,7 +598,7 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
                 />
-                <span className="betTip" id={"ErrorSmall"+ids}></span>
+                <span className="betTip" id={"ErrorA"+ids}></span>
             </td>
             {/* 3C*/}
             <td style={{position:'relative'}}><input type="text" className="form-control-custom text-end"
@@ -528,7 +610,7 @@ useEffect(() => {
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
                 />
-               <span className="betTip" id={"ErrorSmall"+ids}></span>
+               <span className="betTip" id={"ErrorC"+ids}></span>
             </td>
             <td>
                 <div className="btn-group" role="group" aria-label="Basic example">

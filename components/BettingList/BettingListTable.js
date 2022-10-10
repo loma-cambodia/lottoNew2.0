@@ -36,10 +36,15 @@ console.log('TICKETSSSS: ',ticket)
           startDate: picker.startDate,
           endDate: picker.endDate,
         });
-        console.log("<--START: ",dates1)
+
+        console.log("<--START: ",dates1.startDate._d)
         console.log("<--END: ",dates1.endDate._d)
+
       };
 
+      const searchTicketDate =(dateStart,dateEnd) => {
+        
+      }
     
       const [ranges, setRanges] = useState({
         ['Today']: [moment().subtract(0, 'days'), moment().add(0, 'days')],

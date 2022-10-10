@@ -354,7 +354,7 @@ const [apiResponce,  setApiResponce] = React.useState('success');
       let totalAmount = 0;
       bettingInputsDataParent && bettingInputsDataParent.map(item => {
         if(item.dataInit.amount.value){
-            totalAmount += parseInt(item.dataInit.amount.value)
+            totalAmount = totalAmount + parseFloat(item.dataInit.amount.value);
         }
       });
 
@@ -435,7 +435,7 @@ const [apiResponce,  setApiResponce] = React.useState('success');
                  />) )}
                 <tr>
                     <td colSpan="6">
-                        {t('Total_Stake')} {totalAmount}
+                        {t('Total_Stake')}: {MoneyFormatDisplay(totalAmount,1)}
                     </td>
                     <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>{t('clear')}</button>
                        {/* <button type="button" className="btn-custom-curve1 me-1" onClick={showTostyFy}>test </button> */}
