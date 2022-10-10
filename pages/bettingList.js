@@ -8,18 +8,25 @@ import styles from '../styles/Home.module.css'
 import ListBanner from '../components/BettingList/Banner';
 import ListTable from '../components/BettingList/BettingListTable';
 import {getTicketData,searchTicketData} from '../store/actions/tickets';
+import ReactPaginate from 'react-paginate';
+
 export default function BettingList({datauser}) {
+
+  const [pageCount, setPageCount] = useState(0);
+
 // console.log("TICKETLIST",datauser);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
        useEffect(() => {
         dispatch(getTicketData());
-        dispatch(searchTicketData());
+        // dispatch(searchTicketData());
       },[dispatch]);
       
       const state = useSelector(state => state);
       let tickets = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
+      let ticketsChild = state && state.tickets && state.tickets.ticketsChild ? state.tickets.ticketsChild : [];
+
       let ticketSlave = tickets.ticket_slave
        console.log("tickets:",tickets)
 
@@ -28,13 +35,21 @@ export default function BettingList({datauser}) {
       
       const ticketSearch = []
       const GetTicketNumber = (e) => {
-
-         console.log("##1231231232#",e.target.value)
-        dispatch(searchTicketData(e.target.value));
+        console.log("##1231231232#",e.target.value)
+        const ticketNumber = e.target.value;
+        dispatch(searchTicketData(ticketNumber));
         console.log("##%%%%%%#",state)
         
         }
 
+        const handlePageClick = (event) => {
+          const newOffset = (event.selected * itemsPerPage) % Pkglottery1.length;
+          console.log(
+            `User requested page number ${event.selected}, which is offset ${newOffset}`
+  
+          );
+          setItemOffset(newOffset);
+        };
   return (
     <>
       <Head>
@@ -50,12 +65,33 @@ export default function BettingList({datauser}) {
       <section class="page-content custom-padding">
     <div class="container">
         {/* <ListFilter/> */}
-         <ListTable _tickets={tickets} _GetTicketNumber={GetTicketNumber}/> 
-        <div class="clearfix d-flex align-items-center justify-content-center">
+         <ListTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber}/> 
+
+
+
+         {/* <div id='forPackageSection1' className="" style={{background:'whitesmoke'}} > */}
+
+            {/* {pageCount > 0 ? */}
+
+            {/* <ReactPaginate
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+                className="pagination1"
+            /> */}
+
+              {/* : null }  */}
+
+        {/* </div> */}
+
+        {/* <div class="clearfix d-flex align-items-center justify-content-center">
             <div class="pagination:container">
                 <div class="pagination:number arrow">
                   <svg width="18" height="18">
-                    {/* <use xlink:href="#left" /> */}
                   </svg>
                   <span class="arrow:text">Previous</span> 
                 </div>
@@ -81,7 +117,6 @@ export default function BettingList({datauser}) {
                 
                 <div class="pagination:number arrow">
                   <svg width="18" height="18">
-                    {/* <use xlink:href="#right" /> */}
                   </svg>
                 </div>
               </div>
@@ -90,7 +125,7 @@ export default function BettingList({datauser}) {
                 <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
                 <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
               </svg>
-        </div>
+        </div> */}
     </div>
 </section>
       
