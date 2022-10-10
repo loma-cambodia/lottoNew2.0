@@ -20,7 +20,7 @@ export default function BettingList({datauser}) {
   const [active, setActive] = useState(false);
        useEffect(() => {
         dispatch(getTicketData());
-        // dispatch(searchTicketData());
+        dispatch(searchTicketData());
       },[dispatch]);
       
       const state = useSelector(state => state);
@@ -34,12 +34,10 @@ export default function BettingList({datauser}) {
 
       
       const ticketSearch = []
-      const GetTicketNumber = (e) => {
-        console.log("##1231231232#",e.target.value)
-        const ticketNumber = e.target.value;
-        dispatch(searchTicketData(ticketNumber));
+      const GetTicketNumber = (dateRange,ticketNo) => {
+       // const number = e.target.value
+        dispatch(searchTicketData(dateRange,ticketNo));
         console.log("##%%%%%%#",state)
-        
         }
 
         const handlePageClick = (event) => {
