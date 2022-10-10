@@ -17,7 +17,6 @@ export default function BettingList({datauser}) {
       
       const state = useSelector(state => state);
       let tickets = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
-      let ticketSlave = tickets.ticket_slave
        console.log("tickets:",tickets)
        let id = datauser && datauser.user && datauser.user.data && datauser.user.data.id;
        
@@ -52,6 +51,8 @@ export default function BettingList({datauser}) {
       <section class="page-content custom-padding">
     <div class="container">
         {/* <ListFilter/> */}
+        
+     
          <ListTable _tickets={tickets} _GetTicketNumber={GetTicketNumber}/> 
         <div class="clearfix d-flex align-items-center justify-content-center">
             <div class="pagination:container">

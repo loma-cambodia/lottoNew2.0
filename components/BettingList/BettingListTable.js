@@ -16,7 +16,7 @@ console.log('TICKETSSSS: ',ticket)
 
  let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
  console.log("Parent Ticket:",ticket)
-//  console.log("Child Tickets:",ticketSlaves)
+ console.log("Child Tickets:",ticketSlaves)
     const { t } = useTranslation();
     const c = new Date();
     const msdate = formatDate(c);
@@ -36,7 +36,7 @@ console.log('TICKETSSSS: ',ticket)
           startDate: picker.startDate,
           endDate: picker.endDate,
         });
-        console.log("<--START: ",dates1.startDate._d)
+        console.log("<--START: ",dates1)
         console.log("<--END: ",dates1.endDate._d)
       };
 
@@ -135,6 +135,75 @@ console.log('TICKETSSSS: ',ticket)
                     </div>
                     </div>
                     </div>
+                    <div>
+                    <button type="button" class="btn btn-outline-warning">Warning</button>
+                    <div class="table-responsive my-3">
+                <table class="table small table-bordered">
+                    <thead>
+                        <tr>
+                            <th>{t('Number')}</th>
+                            <th class="text-start">Detail Number</th>
+                            <th class="text-start">Draw ID</th>
+                            <th class="text-center">Betting Time</th>
+                            <th class="text-center">Draw Date</th>
+                            <th class="text-center">Game</th>
+                            <th class="text-center">{t('Company')}</th>
+                            <th class="text-end">Bet Number</th>
+                            <th class="text-end">Big</th>
+                            <th class="text-end">Small</th>
+                            <th class="text-end">3A</th>
+                            <th class="text-end">3C</th>
+                            <th class="text-end">Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    {ticketList.length ? 
+                            <tr>
+                                <td>{ticketList.id}</td>
+                                <td class="text-start"><Link href="/TicketDetails/"><a >{ticketList.ticket_no}</a></Link></td>
+                                <td class="text-start">{ticketList.bet_number}</td>
+                                <td class="text-center" >{ticketList.created_at}</td>
+                                <td class="text-center">{ticketList.betting_date}</td>
+                                <td class="text-center">{ticketList.bet_type}</td>
+                                <td class="text-end">{ticketList.total_amount}</td>
+                                <td class="text-end">{ticketList.rebate_amount}</td>
+                                <td class="text-end">{ticketList.net_amount}</td>
+                                <td class="text-center">A</td>
+                                <td class="text-end">B</td>
+                                <td class="text-end">C</td>
+                                <td class="text-end">D</td>
+                            </tr>
+                            :
+                            ticket.map(item =>(
+                            <tr>
+                                <td>{item.id}</td>
+                                <td class="text-start"><Link href="/TicketDetails"><a >{item.ticket_no}</a></Link></td>
+                                <td class="text-start">{item.bet_number}</td>
+                                <td class="text-center" >{item.created_at}</td>
+                                <td class="text-center">{item.betting_date}</td>
+                                <td class="text-center">{item.bet_type}</td>
+                                <td class="text-end">{item.total_amount}</td>
+                                <td class="text-end">{item.rebate_amount}</td>
+                                <td class="text-end">{item.net_amount}</td>
+                                <td class="text-center">A</td>
+                                <td class="text-end">B</td>
+                                <td class="text-end">C</td>
+                                <td class="text-end">D</td>
+                            </tr>
+                            ))
+                            
+                             }
+
+                             
+                       
+                           
+                            
+                    </tbody>
+                    
+                </table>
+            </div>
+                    </div>
         <div class="table-responsive my-3">
                 <table class="table small table-bordered">
                     <thead>
@@ -156,7 +225,7 @@ console.log('TICKETSSSS: ',ticket)
                     {ticketList.length ? 
                             <tr>
                                 <td>{ticketList.id}</td>
-                                <td class="text-start"><Link href="/TicketDetails"><a >{ticketList.ticket_no}</a></Link></td>
+                                <td class="text-start"><Link href="/TicketDetails/"><a >{ticketList.ticket_no}</a></Link></td>
                                 <td class="text-start">{ticketList.bet_number}</td>
                                 <td class="text-center" >{ticketList.created_at}</td>
                                 <td class="text-center">{ticketList.betting_date}</td>
@@ -169,7 +238,8 @@ console.log('TICKETSSSS: ',ticket)
                             ticket.map(item =>(
                             <tr>
                                 <td>{item.id}</td>
-                                <td class="text-start"><Link href="/TicketDetails"><a >{item.ticket_no}</a></Link></td>
+                                {/* <td class="text-start"><Link href="/TicketDetails"><a >{item.ticket_no}</a></Link></td> */}
+                                 <td class="text-start"><button type="button"  class="btn btn-warning" >{item.ticket_no}</button></td>
                                 <td class="text-start">{item.bet_number}</td>
                                 <td class="text-center" >{item.created_at}</td>
                                 <td class="text-center">{item.betting_date}</td>
@@ -190,7 +260,26 @@ console.log('TICKETSSSS: ',ticket)
                     
                 </table>
             </div>
-        
+          
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
                
            
            
