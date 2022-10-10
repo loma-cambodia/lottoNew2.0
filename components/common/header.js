@@ -27,8 +27,7 @@ const Header = ({datauser,_auth}) => {
   //  console.log('Header:auth:',auth);
 
     // Calling useRouter() hook
-   // const router = useRouter().pathname
-    //console.log('pathname: ',router)
+   
 
    let language = '';
 
@@ -123,15 +122,15 @@ const Header = ({datauser,_auth}) => {
                   <div className="desktop-menu me-auto">
                    
                           <ul className="desktop-menu-list">
-                            <li className= {`${router === "/" ? "active-header":""}`}>
+                            <li className= {`${router.pathname === "/" ? "active-header":""}`}>
                             <Link className= "active" href="/">{t('Homepage')}</Link>
                               {/* <a className="active" href="#">Home</a> */}
                             </li>
-                            <li className= {`${router === "/bettingNew" ? "active-header":""}`}>
+                            <li className= {`${router.pathname === "/bettingNew" ? "active-header":""}`}>
                             <Link href="/bettingNew">{t('Betting')}</Link>
                               {/* <a  href="#">Betting</a> */}
                             </li>
-                            <li>
+                            <li className= {`${router.pathname === "/bettingList" ? "active-header":""}`}>
                             <Link href="/bettingList">
                               {t('BettingList')} 
                               {/* Betting List */}
@@ -144,7 +143,7 @@ const Header = ({datauser,_auth}) => {
                                 <li className= {`${router === "/bettingList" ? "active-header":""}`}><Link href="/bettingList">{t('History')}</Link></li>
                             </ul>
                           </li> */}
-                            <li>
+                            <li className= {`${router.pathname === "/results" ? "active-header":""}`}>
                               <Link href="/results" >{t('Result')}</Link>
                             </li>
                           </ul>
@@ -210,7 +209,7 @@ const Header = ({datauser,_auth}) => {
             <a href="javascript:void(0)" className="closebtn" onClick={() => closeNav() } >&times;</a>
               <div className="mobile-menu-list">
                   <ul className="list-unstyled">
-                      <li className= {`${router === "/" ? "active-header-mobile":""}`}>
+                      <li className= {`${router.pathname === "/" ? "active-header-mobile":""}`}>
                         <Link className="active"  href="/">{t('Homepage')}</Link>  
                       </li>
                       {/* <li className="submenu-mobile">
@@ -226,13 +225,13 @@ const Header = ({datauser,_auth}) => {
                               </ul>
                             </div>
                       </li> */}
-                      <li className= {`${router === "/bettingNew" ? "active-header-mobile":""}`}>
+                      <li className= {`${router.pathname === "/bettingNew" ? "active-header-mobile":""}`}>
                           <Link href="/bettingNew">{t('Betting')}</Link>
                       </li>
-                      <li className= {`${router === "/transaction" ? "active-header-mobile":""}`}>
+                      <li className= {`${router.pathname === "/transaction" ? "active-header-mobile":""}`}>
                         <Link href="/transaction">{t('History')}</Link>
                       </li>
-                      <li className= {`${router === "/results" ? "active-header-mobile":""}`}>
+                      <li className= {`${router.pathname === "/results" ? "active-header-mobile":""}`}>
                         <Link href="/results" >{t('Result')}</Link>  
                       </li>
                   </ul>

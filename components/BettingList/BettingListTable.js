@@ -11,11 +11,11 @@ const API_BASE_URL = process.env.apiUrl;
 const ListTable = ({_tickets, _GetTicketNumber}) => {
     
  let ticket = _tickets
+ const [ticketList, setTicketList] = React.useState(_tickets);
 
-console.log('TICKETSSSS: ',ticket)
-
- let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
- console.log("Parent Ticket:",ticket)
+let dateFilteredTickets = [] 
+ let ticketSlaves = ticketList && ticketList.ticket_slave ? ticketList.ticket_slave: []
+ console.log("Parent Ticket:",ticketList)
 //  console.log("Child Tickets:",ticketSlaves)
     const { t } = useTranslation();
     const c = new Date();
@@ -32,19 +32,36 @@ console.log('TICKETSSSS: ',ticket)
         endDate: moment(medate),
       });
     const handleApply1 = (event, picker) => {
+        let currentDate = picker
         setDates1({
           startDate: picker.startDate,
           endDate: picker.endDate,
         });
 
-        console.log("<--START: ",dates1.startDate._d)
-        console.log("<--END: ",dates1.endDate._d)
+        console.log("<--START: ",currentDate.startDate._d)
+        console.log("<--END: ",currentDate.endDate._d)
 
+
+        searchTicketDate(currentDate.startDate._d,currentDate.endDate._d)
       };
 
       const searchTicketDate =(dateStart,dateEnd) => {
-        
-      }
+        // let start = moment(dateStart).format('YYYY-MM-DD')
+        // let end = moment(dateEnd).format('YYYY-MM-DD')
+
+        ticket.map(item=>{
+            let itemDate = new Date(item.created_at)
+
+            if(itemDate>=dateStart && itemDate <= dateEnd)
+            {
+                console.log('is in between ',itemDate)
+                dateFilteredTickets.push(item)
+            }
+    })
+    console.log('dateFilteredTickets ', dateFilteredTickets)
+console.log(dateFilteredTickets.length)
+        dateFilteredTickets.length == 0 ? setTicketList("no dates"): setTicketList(dateFilteredTickets);
+    }
     
       const [ranges, setRanges] = useState({
         ['Today']: [moment().subtract(0, 'days'), moment().add(0, 'days')],
@@ -56,7 +73,7 @@ console.log('TICKETSSSS: ',ticket)
         ['This Year']: [moment().startOf('year')],
       });
 
-      const [ticketList, setTicketList] = useState([]);
+      const [isLoading, setLoading] = React.useState(false)
       const [startRef, setstartRef] = useState();
       const ticketStatus = ''
       const GetTicketNumber = _GetTicketNumber
@@ -72,6 +89,16 @@ console.log('TICKETSSSS: ',ticket)
             day = '0' + day;
         return [year, month, day].join('-');
     }
+
+    useEffect(() => {
+        ticket = _tickets
+        if(ticketList.length == 0 ){
+            setTicketList(ticket)
+            console.log("setTicketList is run: ")
+        }
+        console.log("TICKETLIST: ", ticketList)
+        console.log("TICKETS: ", ticket)
+      },[_tickets]);
     return (
         <>
         
@@ -133,7 +160,7 @@ console.log('TICKETSSSS: ',ticket)
                     <div class="col-md-3">
                     <div class="form-group">
                         <label class="d-block">&nbsp;</label>
-                        <button type="button" class="btn-custom-curve2 w-auto">{t('Search')}</button>
+                        <button type="button" class="btn-custom-curve2 w-auto mx-2">{t('Search')}</button>
                         <button type="button" class="btn-custom-curve1">{t('Reset')}</button>
                     </div>
 
@@ -157,34 +184,24 @@ console.log('TICKETSSSS: ',ticket)
                         </tr>
                     </thead>
                     <tbody>
-                    {ticketList.length ? 
-                            <tr>
-                                <td>{ticketList.id}</td>
-                                <td class="text-start"><Link href="/TicketDetails"><a >{ticketList.ticket_no}</a></Link></td>
-                                <td class="text-start">{ticketList.bet_number}</td>
-                                <td class="text-center" >{ticketList.created_at}</td>
-                                <td class="text-center">{ticketList.betting_date}</td>
-                                <td class="text-center">{ticketList.bet_type}</td>
-                                {/* <td class="text-center">{gameName}</td> */}
-                                <td class="text-end">{ticketList.total_amount}</td>
-                                <td class="text-end">{ticketList.rebate_amount}</td>
-                                <td class="text-end">{ticketList.net_amount}</td>
-                            </tr>
-                            :
-                            ticket.map(item =>(
-                            <tr>
+                    { Array.isArray(ticketList) ?
+                    ticketList.map((item,key) =>(
+                        <tr>
                                 <td>{item.id}</td>
                                 <td class="text-start"><Link href="/TicketDetails"><a >{item.ticket_no}</a></Link></td>
                                 <td class="text-start">{item.bet_number}</td>
-                                <td class="text-center" >{item.created_at}</td>
-                                <td class="text-center">{item.betting_date}</td>
+                                <td class="text-center" >{ moment(item.created_at).format('MM/DD/YYYY')}</td>
+                                <td class="text-center">{moment(item.betting_date).format('MM/DD/YYYY')}</td>
                                 <td class="text-center">{item.bet_type}</td>
                                 <td class="text-end">{item.total_amount}</td>
                                 <td class="text-end">{item.rebate_amount}</td>
                                 <td class="text-end">{item.net_amount}</td>
                             </tr>
-                            ))
-                            
+                    ))
+                    :
+                    <tr>
+                       <td className="text-center" colSpan={9}>No Tickets Found</td>
+                    </tr>
                             }
 
                              
@@ -194,16 +211,7 @@ console.log('TICKETSSSS: ',ticket)
                     </tbody>
                     
                 </table>
-            </div>
-        
-               
-           
-           
-       
-             
-      
-                            
-               
+            </div>           
         </>
     )
 }

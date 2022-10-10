@@ -11,7 +11,7 @@ export const getTicketData = () => async (dispatch) => {
       'Access-Control-Allow-Origin': '*',
     }
     const res = await axios.get(
-      `${API_BASE_URL}/ticket?member_id=1`,{
+      `${API_BASE_URL}/ticket?member_id=7`,{
         headers: headers,
       }
     )
