@@ -53,7 +53,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
         console.log(`Loading items from ${itemOffset} to ${endOffset}`);
         setCurrentItems(_tickets.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(_tickets.length / itemsPerPage));
-      }, []);
+      }, [itemOffset,itemsPerPage,_tickets]);
 
 
     //   useEffect(() => {
