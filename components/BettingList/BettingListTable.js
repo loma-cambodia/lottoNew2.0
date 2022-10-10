@@ -15,6 +15,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
     
  let ticket = _tickets;
 
+
+ console.log('ListTable:_tickets',_tickets);
+ console.log('ListTable:_ticketsChild',_ticketsChild);
+
  let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
 
     const { t } = useTranslation();
@@ -120,9 +124,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                         </tr>
                     </thead>
                     <tbody>
-                    {ticket.map(item =>(
+                    {ticket.map((item,i) =>(
                         <tr>
-                            <td>{item.id}</td>
+                            <td>{i + 1}</td>
                             <td class="text-start"><a className="btn btn-link" onClick={() => childShowTable(item.ticket_no)} >{item.ticket_no}</a></td>
                             <td class="text-center" >{item.created_at}</td>
                             <td class="text-center">{item.betting_date}</td>
