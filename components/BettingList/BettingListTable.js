@@ -92,6 +92,8 @@ console.log(dateFilteredTickets.length)
 
     useEffect(() => {
         ticket = _tickets
+        setTicketList(_tickets)
+
         if(ticketList.length == 0 ){
             setTicketList(ticket)
             console.log("setTicketList is run: ")
