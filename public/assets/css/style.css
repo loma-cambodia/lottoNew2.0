@@ -2715,3 +2715,12 @@ span.name-gp {
 input.form-control.text-right-for-amount {
   text-align: right;
 }
+
+@media(max-width:580px) {
+  .breadcrumb-list {
+    display: none;
+  }
+  .custom-breadcrumb {
+    padding: 1px 0;
+  }
+}
