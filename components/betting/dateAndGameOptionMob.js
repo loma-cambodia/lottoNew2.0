@@ -3,24 +3,6 @@ import React, { useState, useEffect } from 'react';
 
 const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageCounter,_setLoadpageCounter}) => {
     
-    // const [initData, setInitData] = useState(item);
-    // const [active, setActive] = useState(false);
-
-
-    // const getDateName =(dateString) => {
-    //     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    //     var d = new Date(dateString);
-    //     var dayName = days[d.getDay()];
-    //     return dayName
-    // }
-
-    // const findArrayIndex = (arr,gId) =>{
-    //     const index = arr.findIndex(object => {
-    //         return object.id == gId;
-    //       });
-    //       return index;
-    // }
-
     const selectUnSelectgame =(dateId,gameId, work)=>{
         let bettingInitData =  _bettingInitData;
         let newArr = [];

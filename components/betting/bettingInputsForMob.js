@@ -273,9 +273,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             if (getRow.number.value.includes("R") || getRow.number.value.includes("r")) 
                 bet_type = 'rolling';  
         } 
-           
-  
-           // rollingNumber
   
        if(getRow && getRow.big && getRow.big.value) 
         total_sum += parseInt(getRow.big.value);
@@ -823,14 +820,12 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
    }
 
     const lotterySubmitRecordsCallActionMob = () => {
-        // console.log('ooooooooo',mainSubmitData)
         let game_dates = mainSubmitData;
         let saveLOttoData = {
             "member_id":auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,
             "merchant_id":auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id: 0,
             game_dates
         }
-        
         console.log('saveLOttoData',saveLOttoData)
         dispatch(lotterySubmit(saveLOttoData, response =>{
             if(response.statusCode  == 201  || response.statusCode  == 200 ){
@@ -839,6 +834,10 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
             }else {
                 // console.log("resultDataaa:",response.data)
+                // console.log('response.data',response.messages);
+                toast.error('Bet should not be less than', 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
                 modelOpenCustom('failure');
             }
           }));
