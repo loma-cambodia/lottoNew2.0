@@ -1,6 +1,7 @@
 
 const initialState = {
     tickets:[],
+    ticketsChild:[],
     searchTickets:[],
     loading:true
 }
@@ -23,6 +24,13 @@ export default function(state = initialState, action){
             loading:false
 
         }
+        case "GET_SEARCH_TICKETS_CHILD":
+            return {
+                ...state,
+                ticketsChild:action.payload,
+                loading:false
+    
+            }
         default: return state
     }
 
