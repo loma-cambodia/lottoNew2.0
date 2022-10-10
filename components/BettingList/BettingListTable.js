@@ -84,6 +84,14 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
         setParentAction(false);
         setSearchAction(false);
     }
+
+    const ticketNumber = (event) =>{
+        const val = event.target.value;
+        const state12 = dispatch(searchTicketData(val));
+        let ticketsssss = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
+        
+        console.log("TicketNumber STATE:",val)
+    }
     
     const backButton = () =>{
         setParentAction(true);
@@ -105,6 +113,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                             <th class="text-center">Draw Date</th>
                             {/* <th class="text-center">Game</th> */}
                             <th class="text-center">{t('Company')}</th>
+                            <th class="text-start">Rebate Amount</th>
+                            <th class="text-start">Net Amount</th>
                             <th class="text-end">Bet Number</th>
                             <th class="text-end">Total Amount</th>
                         </tr>
@@ -118,6 +128,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                             <td class="text-center">{item.betting_date}</td>
                             {/* <td class="text-center">{item.game_type}</td> */}
                             <td class="text-end"></td>
+
+                            <td class="text-end">{item.rebate_amount}</td>
+                            <td class="text-end">{item.total_bet_net_amount}</td>
+
                             <td class="text-end">{item.bet_number}</td>
                             <td class="text-end">{item.total_amount}</td>
                         </tr>
@@ -173,6 +187,23 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
         if(tickets.length > 0){
             let ticket_slave = tickets[0].ticket_slave;
             let drow_date = tickets[0].betting_date;
+            let companyGame = '';
+            function gameName(e){
+                if(e == 1){
+                    return(
+                        companyGame = "Toto"
+                    )
+                   
+                }else if(e == 2){
+                    return(
+                        companyGame = "Magnum"
+                    )
+                }else{
+                    return(
+                        companyGame = "Da Ma Cai"
+                    )
+                }
+            }
             return (
                 <>
                 <button onClick={() => backButton() } className="btn btn-warning">Back</button>
@@ -180,25 +211,47 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                     <thead>
                         <tr>
                             <th>{t('No.')}</th>
-                            <th class="text-start">Ticket Number</th>
+                            <th class="text-start">Detail Number</th>
+                            {/* <th class="text-start">Detail Number</th> */}
                             <th class="text-center">Betting Time</th>
                             <th class="text-center">Draw Date</th>
                             <th class="text-center">Game</th>
                             <th class="text-center">{t('Company')}</th>
                             <th class="text-end">Bet Number</th>
+
+                            <th class="text-start">Big Bet</th>
+                            <th class="text-start">Small Bet</th>
+                            <th class="text-start">3A</th>
+                            <th class="text-start">3C</th>
+
+                            <th class="text-start">Rebate Amount</th>
+                            <th class="text-start">Net Amount</th>
                             <th class="text-end">Total Amount</th>
                         </tr>
                     </thead>
                     <tbody>
+                
                         {ticket_slave.map((item,id) =>(
+                                
+                                
                             <tr key={id}>
                                 <td>{id+1}</td>
                                 <td class="text-start"><a >{item.child_ticket_no}</a></td>
                                 <td class="text-center" >{item.created_at}</td>
                                 <td class="text-center">{drow_date}</td>
                                 <td class="text-center">{item.game_type}</td>
-                                <td class="text-end">{item.total_amount}</td>
+                                <td class="text-end">{gameName(item.game_play_id)}</td>
                                 <td class="text-end">{item.lottery_number}</td>
+
+                                <td class="text-end">{item.big_bet_amount}</td>
+                                <td class="text-end">{item.small_bet_amount}</td>
+                                <td class="text-end">{item.three_a_amount}</td>
+                                <td class="text-end">{item.three_c_amount}</td>
+
+
+
+                                <td class="text-end">{item.rebate_amount}</td>
+                                <td class="text-end">{item.bet_net_amount}</td>
                                 <td class="text-end">{item.bet_amount}</td>
                             </tr>
                         ))}
@@ -230,7 +283,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                     <div class="col-md-2 col-6">
                         <div class="form-group">
                             <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                            <input type="text" onChange={(event) => GetTicketNumber(event)} class="form-control-custom-big" name="transationid"/>
+                            <input type="text" onChange={(event) => ticketNumber(event)} class="form-control-custom-big" name="transationid"/>
                         </div>
                     </div>
                     <div class="col-md-3">

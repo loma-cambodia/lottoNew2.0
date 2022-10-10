@@ -1,20 +1,35 @@
 import axios from 'axios'
 let API_BASE_URL = process.env.apiUrl;
-  export const getLogin = () => async dispatch => {
+  export const getLogin = (objectWithData) => async dispatch => {
     
     try{
-        const res = await axios.get(`http://uat.kk-lotto.com/b2b/api/dates`);
-        console.log('res:',res);
-        dispatch( {
-            type: "GET_DATES",
-            payload: res.data.data
+
+        // const objectWithData = {
+        //              "customer_name": "Dileep Maurya",
+        //             "customer_id":  112,
+        //            "merchant_id":  1,
+        //            "language":  'en',
+        //        } 
+
+               const headers = {
+                'Content-Type': 'application/json',
+              }
+
+        const res = await axios.post(`${API_BASE_URL}/member-login`,objectWithData,{headers: headers});
+        console.log('getLogin:res:',res);
+
+
+        dispatch({
+            type: "GET_LOGIN_DETAILS",
+            payload: res && res.data && res.data.data ? res.data.data : {}
         })
     }
     catch(e){
-        dispatch( {
-            type: "USERS_ERROR",
-            payload: console.log(e),
-        })
+        console.log(e)
+        // dispatch( {
+        //     type: "GET_LOGIN_ERROR",
+        //     payload: console.log(e),
+        // })
     }
 
 }
