@@ -7,7 +7,7 @@ const FinalDataContainer = ({_previewSubmitData, finalSubmitData,_bettingInitDat
 
     return (
         <div className="border mt-2">
-                <div className="" style={{ height: '250px' }}>
+                <div className="" style={{ height: '150px', overflowY: 'scroll' }}>
                     <table className="table-borderless" style={{ width: '100%' }}>
                         <thead className="text-light" style={{ background: '#e91d25', fontSize: '12px' }}>
                             <tr>
