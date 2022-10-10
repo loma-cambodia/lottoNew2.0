@@ -282,14 +282,24 @@ const [isLoading,  setIsLoading] = React.useState(false);
          dispatch(lotterySubmit(dataSubmit, response =>{
             
             if(response.statusCode  == 201  || response.statusCode  == 200 ){
-                setResultData(response.data)
-                modelOpenCustom('success');
-                loginAPICall();
 
-               // setIsLoading(false);
+                if(response.data.message_id == 200){
+
+                    setResultData(response.data)
+                    modelOpenCustom('success');
+                    loginAPICall();
+
+                }else {
+
+                    modelOpenCustom(response.data.messages);
+
+                }
+               
 
             }else {
-                modelOpenCustom('failure');
+                console.log('response:',response);
+
+                modelOpenCustom(response.message);
                // setIsLoading(false);
             }
             setIsLoading(false);
@@ -478,17 +488,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                                         <div class="col-8 col-sm-8"><p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p></div>
                                         <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount,1) : 0 }</p></div>
                                         
-                                    </div>) : (<div class="row">
-                                        <div class="col-8 col-sm-8"><p>{t('Total')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>100</p></div>
-                                        <div class="col-8 col-sm-8"><p>{t('Accepted_bet_amount')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>200</p></div>
-                                        <div class="col-8 col-sm-8"><p>{t('Rebate')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>300</p></div>
-                                        <div class="col-8 col-sm-8"><p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p style={{fontWeight:'bold'}}>10</p></div>
-                                        
-                                    </div>)}
+                                    </div>) : (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>)}
                                     
                                     
                                     {/* (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>) */}
