@@ -38,6 +38,7 @@ useEffect(() => {
 
 
 const state = useSelector(state => state);
+const auth = useSelector(state => state.auth);
 
       state.auth.transactions
 
@@ -60,9 +61,10 @@ const state = useSelector(state => state);
           <link href="assets/css/style.css" rel="stylesheet"/>
           <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
-          <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
+          <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet"/>
       </Head>
-      <Header datauser={datauser}/>
+      <Header datauser={datauser}  _auth={auth}/>
+        {/* <Header datauser={datauser} _auth={auth}/> */}
       {/*--Mobile Menu--*/}
       <div id="mySidepanel" className="sidepanel">
           <a href="javascript:void(0)" className="closebtn">&times;</a>
