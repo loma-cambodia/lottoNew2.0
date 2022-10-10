@@ -74,6 +74,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
         console.log("<--END: ",dates1.endDate._d)
       };
 
+     
     
       const [ranges, setRanges] = useState({
         ['Today']: [moment().subtract(0, 'days'), moment().add(0, 'days')],
@@ -85,6 +86,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
         ['This Year']: [moment().startOf('year')],
       });
 
+     // cosnt { startDate: '1/1/2014', endDate: '3/1/2014' }
+
       const [ticketList, setTicketList] = useState([]);
       const [childDataTickets, setChildDataTickets] = useState([]);
       const [startRef, setstartRef] = useState();
@@ -93,7 +96,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
 
       const [parentAction, setParentAction] = useState(true);
 
-      const [dateRange, setDateRange] = useState('');
+      const [dateRange, setDateRange] = useState('10/10/2022-10/10/2022');
 
       const [ticketNo, setTicketNo] = useState('');
 
@@ -152,14 +155,28 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
       };
 
       const searchGetListonFilter = () => {
-         console.log('searchGetListonFilter');
         _GetTicketNumber(dateRange,ticketNo);
         console.log('searchGetListonFilter',dateRange,ticketNo);
       }
-    
+      const reset = () => {
+        dateRange = ""
+        ticketNo = ""
+        
+    }
+
+    const onApplyData = (e) => {
+
+        console.log('onApplyData:e',e );
+
+    }
+
     console.log('childDataTickets',childDataTickets);
 
     console.log('currentItems',currentItems);
+
+    console.log('ranges:',ranges);
+
+    
 
     
 
@@ -349,10 +366,11 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                             <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                 <DateRangePicker
                                     ref={keyRef}
-                                    onApply={(e)=>setDateRange(e.target.value)}
+                                     onApply={(e)=>onApplyData(e)}
                                     onCancel={keyRef}
                                     value={dateRange}
-                                    initialSettings={{ ranges }}
+                                    initialSettings={{ startDate: dateRange.split('-')[0], endDate: dateRange.split('-')[1] }}
+                                    onChange={(e)=>setDateRange(e.target.value)}
                                 >
                                     <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
                                 </DateRangePicker>
@@ -372,7 +390,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                         <div class="form-group">
                             <label class="d-block">&nbsp;</label>
                             <button type="button" class="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
-                            <button type="button" class="btn-custom-curve1">{t('Reset')}</button>
+                            <button type="button" class="btn-custom-curve1" onClick={()=>reset()}>{t('Reset')}</button>
                         </div>
                     </div>
                 </div>
