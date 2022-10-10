@@ -2591,12 +2591,12 @@ span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
   content: '';
   width: 20px;
   height: 20px;
-  background: #f7df68 url(../images/icons/dow_arrow-black.png);
+  background: rgb(253 184 3) url(../images/icons/dow_arrow-black.png);
   background-repeat: no-repeat;
   background-size: cover;
   right: 5px;
   top: 5px;
-  z-index: 9999;
+  z-index: 0;
   position: absolute;
 }
 span.name-gp {
