@@ -57,11 +57,11 @@ export default function BettingNew({datauser}) {
           
           <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit} _auth={auth}/>
         </div>  
-        {/* <div className="container">
+        <div className="container">
             <div className={styles.device_detect_for_mobile}> 
               <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
             </div>
-        </div> */}
+        </div>
       <Footer/>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
