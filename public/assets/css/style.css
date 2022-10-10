@@ -1278,6 +1278,19 @@
   background-color: #fff;
   color: #bc2263;
   }
+
+  .btn-custom-curve3 {
+    border: 1px solid #bc2263;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #fff;
+    color: #bc2263;
+    text-transform: uppercase;
+    border-radius: 20px 0;
+    transition: 0.5s;
+    width: 100%;
+    }
+
   .form-control-custom-big {
   border: 1px solid #ddd;
   background: #fff;
@@ -2702,33 +2715,38 @@ span.name-gp {
 input.form-control.text-right-for-amount {
   text-align: right;
 }
-.result-filter{
-  min-height: 38px;
+
+.pagination1 {
+  /* display: inline-block; */
+  width: 100%;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
 }
-.DMC{
-    background-color: #df3948;
+
+.pagination1 li a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
 }
-.DMC .s-and-c {
-  background-color: #1c377c;
+
+.pagination1 li.selected {
+  background-color: #408588;
+  color: white;
+  border-radius: 60%;
 }
-.card.DMC {
-  border: 2px solid #c42026;
+.pagination1 a:hover:not(.active) {
+  background-color: #408588; 
+  color: white;
+  border-radius: 60%;
 }
-.Magnum{
-  background-color: #ffc107 ;
-}
-.Magnum .s-and-c {
-  background-color: #f17e00;
-}
-.card.Magnum {
-  border: 2px solid #f17e00;
-}
-.TOTO{
-  background-color: #df3948 ;
-}
-.TOTO .s-and-c {
-  background-color: #000;
-}
-.card.TOTO {
-  border: 2px solid #000;
+@media(max-width:580px) {
+  .breadcrumb-list {
+    display: none;
+  }
+  .custom-breadcrumb {
+    padding: 1px 0;
+  }
 }
