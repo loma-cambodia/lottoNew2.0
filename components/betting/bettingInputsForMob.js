@@ -326,7 +326,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         else if(getRow && getRow.bet_type && getRow.bet_type.reverse_value) 
            bet_type = 'reverse';
         else if(getRow && getRow.number && getRow.number.value){
-            if (getRow.number.value.includes("R") || getRow.number.value.includes("r")) 
+            if (getRow.number.value.includes("R")) 
                 bet_type = 'rolling';  
         } 
   
@@ -352,17 +352,13 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
           let totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
         if(totalBoxing)
           totalAmount = totalAmount * totalBoxing;  
-  
         }else if(bet_type == 'reverse'){
-  
           totalAmount = totalAmount * 2;  
-  
-      }else if(bet_type == 'rolling'){
-  
-          totalAmount = totalAmount * 10;  
-  
-      }
-            
+        }
+        if(bet_type == 'rolling'){
+            totalAmount = totalAmount * 10;  
+        }  
+        console.log(totalAmount); 
         return totalAmount;
     }
   
