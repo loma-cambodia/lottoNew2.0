@@ -2,29 +2,50 @@ import React, { useState,useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import FinalDataContainer from './finalDataContainer';
 import {getBettingDates,lotterySubmit} from '../../store/actions/bettingActions';
+import RejectedBedContainer from './rejectedBedContainer';
 
+import { ToastContainer, toast } from 'react-toastify';
+
+import Modal from 'react-modal';
 import { useDispatch, useSelector } from "react-redux";
 
+const customStyles = {
+    content: {
+      top: '45%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      width: '98%',
+      borderRadius: '12px',
+      padding:0
+    },
+  }; 
+
 const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
-    _bettingInitData,_limit}) => {
+    _bettingInitData,_limit,_gameCount}) => {
     let limit = _limit;
     console.log('aaaaaa',limit);
-
+    const auth = useSelector(state => state.auth);
     const { t } = useTranslation();
 
     const dispatch = useDispatch();
 
-        // console.log('_bettingInitData:',_bettingInitData);
+        console.log('_gameCount:',_gameCount);
     let bettingInitData = _bettingInitData;
     let localStateInitData = item.dataInit;
     const [localStateData, setLocalStateData] = useState(localStateInitData);
     const [mainSubmitData, setMainSubmitData] = useState([]);
     const [pageLoadCount, setPageLoadCount] = useState(1);
-
+    
     const [totalAmount, setTotalAmount] = useState('');
 
+    const [resultData, setResultData] = React.useState({});
 
-    // console.log("localStateData:lotto",localStateData)
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [apiResponce,  setApiResponce] = React.useState('success');
+    console.log("localStateData:lotto",localStateData)
 
 
     /////////////////////////////////////
@@ -110,6 +131,10 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     const resetAllData = () => {
         // alert('pppp');
         allClearData();
+        setLocalStateData([])
+        setMainSubmitData([]);
+        _setFinalSubmitData([]);
+        setTotalAmount('');
     }
 
     const singleClearData = () => {
@@ -179,6 +204,115 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     // console.log("localStateData",bettingInitData);
     
     ////////////////////////////////////////
+
+
+    
+    const getStringUniqueCharactors  = (_getNumber) => {
+        const unique = (value, index, self) => {
+            return self.indexOf(value) === index
+        }
+            const number = _getNumber;
+            let myFunc = num => Number(num);
+            var intArr = Array.from(String(number), myFunc);
+            const uniqueAges = intArr.filter(unique);
+            return uniqueAges;
+    }
+
+    const  checkPalindrome = (string) =>{
+        const len = string.length;
+        for (let i = 0; i < len / 2; i++) {
+            if (string[i] !== string[len - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    const totalBoxingCalculation = (getNumber) => {
+        let _getNumber = getNumber;
+        let boxing = 0;
+        if(_getNumber)
+        boxing = getPermutation(_getNumber);
+        return boxing ;
+    }
+    
+    const getPermutation = (_getNumber) => {
+        let returnPermutation = 0;
+        let uniqueAges = getStringUniqueCharactors(_getNumber);
+
+            if(_getNumber.length == 3){
+                if(uniqueAges.length == 3)
+                returnPermutation = 6;
+                else  if(uniqueAges.length == 2)
+                returnPermutation = 3;
+                else  if(uniqueAges.length == 1)
+                returnPermutation = 1;
+            } else if(_getNumber.length == 4){
+                if(uniqueAges.length == 4)
+                returnPermutation = 24;
+                else  if(uniqueAges.length == 3)
+                returnPermutation = 12 ;
+                else  if(uniqueAges.length == 2)
+                returnPermutation = 6;
+                else  if(uniqueAges.length == 1)
+                returnPermutation = 1;
+            }
+            return returnPermutation;
+    }
+
+    const calculationOfTotalAmount = (getRow) => {
+        let bet_type = '';
+        let total_sum = 0;
+        if(getRow && getRow.bet_type && getRow.bet_type.box_value) 
+           bet_type = 'box';
+        else if(getRow && getRow.bet_type && getRow.bet_type.i_box_value) 
+           bet_type = 'ibox';
+        else if(getRow && getRow.bet_type && getRow.bet_type.reverse_value) 
+           bet_type = 'reverse';
+        else if(getRow && getRow.number && getRow.number.value){
+            if (getRow.number.value.includes("R") || getRow.number.value.includes("r")) 
+                bet_type = 'rolling';  
+        } 
+           
+  
+           // rollingNumber
+  
+       if(getRow && getRow.big && getRow.big.value) 
+        total_sum += parseInt(getRow.big.value);
+  
+        if(getRow && getRow.small && getRow.small.value) 
+        total_sum += parseInt(getRow.small.value);
+  
+        if(getRow && getRow._3a && getRow._3a.value) 
+        total_sum += parseInt(getRow._3a.value);
+  
+        if(getRow && getRow._3c && getRow._3c.value) 
+        total_sum += parseInt(getRow._3c.value);
+  
+  
+  
+        let totalAmount =  0;
+        if(_gameCount && total_sum)
+        totalAmount = _gameCount * total_sum  
+  
+        if(bet_type == 'box'){
+          let totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
+        if(totalBoxing)
+          totalAmount = totalAmount * totalBoxing;  
+  
+        }else if(bet_type == 'reverse'){
+  
+          totalAmount = totalAmount * 2;  
+  
+      }else if(bet_type == 'rolling'){
+  
+          totalAmount = totalAmount * 10;  
+  
+      }
+            
+        return totalAmount;
+    }
+  
     const numberInputHandler = (getValue, operationField) => {
         let localStateDataForChange = item.dataInit;
     
@@ -215,6 +349,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 localStateDataForChange['bet_type']['i_box_disabled'] = 0;
                 localStateDataForChange['bet_type']['reverse_disabled'] = 0;
 
+                let uniqueAges = getStringUniqueCharactors(getValue);
+                let isPalindrom =  checkPalindrome(getValue);
 
                 if (getValue.includes("R") || getValue.includes("r")) {
                     localStateDataForChange['big'] = { value: "", disabled: 1 }
@@ -223,7 +359,26 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     localStateDataForChange['bet_type']['i_box_disabled'] = 1;
                     localStateDataForChange['bet_type']['reverse_disabled'] = 1;
 
-                } else {
+                }
+                else if (uniqueAges.length == 1) {
+                    
+                    localStateDataForChange['big'] = { value: "", disabled: 1 }
+                    localStateDataForChange['small'] = { value: "", disabled: 1 }
+                    localStateDataForChange['bet_type']['box_disabled'] = 1;
+                    localStateDataForChange['bet_type']['i_box_disabled'] = 1;
+                    localStateDataForChange['bet_type']['reverse_disabled'] = 1;
+                    
+                }
+                else if (isPalindrom) {
+                    
+                    localStateDataForChange['big'] = { value: "", disabled: 1 }
+                    localStateDataForChange['small'] = { value: "", disabled: 1 }
+                    localStateDataForChange['bet_type']['box_disabled'] = 0;
+                    localStateDataForChange['bet_type']['i_box_disabled'] = 1;
+                    localStateDataForChange['bet_type']['reverse_disabled'] = 1;
+
+                }
+                else {
                     localStateDataForChange['big'] = { value: "", disabled: 1 }
                     localStateDataForChange['small'] = { value: "", disabled: 1 }
                     localStateDataForChange['bet_type']['i_box_disabled'] = 1;
@@ -237,6 +392,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 localStateDataForChange['_3c'] = { value: "", disabled: 0 }
                 localStateDataForChange['bet_type'] =  { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }
 
+                let uniqueAges = getStringUniqueCharactors(getValue);
+                let isPalindrom =  checkPalindrome(getValue);
 
                 if (getValue.includes("R") || getValue.includes("r")) {
                     localStateDataForChange['_3a'] = { value: "", disabled: 1 }
@@ -245,7 +402,25 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     localStateDataForChange['bet_type']['i_box_disabled'] = 1;
                     localStateDataForChange['bet_type']['reverse_disabled'] = 1;
 
-                } else {
+                } 
+                else  if (uniqueAges.length == 1) {
+
+                    localStateDataForChange['_3a'] = { value: "", disabled: 1 }
+                    localStateDataForChange['_3c'] = { value: "", disabled: 1 }
+                    localStateDataForChange['bet_type']['box_disabled'] = 1;
+                    localStateDataForChange['bet_type']['i_box_disabled'] = 1;
+                    localStateDataForChange['bet_type']['reverse_disabled'] = 1;
+
+                } else  if (isPalindrom) {
+
+                    localStateDataForChange['_3a'] = { value: "", disabled: 1 }
+                    localStateDataForChange['_3c'] = { value: "", disabled: 1 }
+                    localStateDataForChange['bet_type']['box_disabled'] = 0;
+                    localStateDataForChange['bet_type']['i_box_disabled'] = 0;
+                    localStateDataForChange['bet_type']['reverse_disabled'] = 1;
+
+                }
+                else {
 
                     if (threeDAmout) {
                         localStateDataForChange['_3a'] = { value: "", disabled: 0 }
@@ -275,7 +450,12 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 localStateDataForChange['_3c'] = { value: "", disabled: 0 }
                 localStateDataForChange['bet_type'] = { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }
             }
-        } else if (operationField == 'box') {
+        } 
+        
+        
+        
+        
+        else if (operationField == 'box') {
             if (localStateDataForChange['number']['value'])
             // alert('box');
                 localStateDataForChange['bet_type']['box_value'] = localStateDataForChange['bet_type']['box_value'] ? 0 : 1;
@@ -294,11 +474,83 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             // alert('reverse');
                 localStateDataForChange['bet_type']['reverse_value'] = localStateDataForChange['bet_type']['reverse_value'] ? 0 : 1;
         } else if (operationField == 'big') {
+
+            let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
+            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
+            if(getValue > big_max_bet ){
+
+                toast.error('Bet should not be greater than '+big_max_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = big_max_bet;
+               
+            }else if(getValue < big_min_bet ){
+
+                toast.error('Bet should not be less than '+big_min_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+                
+                getValue = big_min_bet;
+                
+            }
+            // else{
+            //     $("#ErrorBig"+idas).html('');
+            // }
+            setBigValue(getValue);
             localStateDataForChange['big']['value'] = getValue;
         } else if (operationField == 'small') {
+
+            let small_max_bet  = limit && limit.length > 0 && limit[0].small_max_bet ?  limit[0].small_max_bet : 0;
+            let small_min_bet  = limit && limit.length > 0 && limit[0].small_min_bet ?  limit[0].small_min_bet : 0;
+            if(getValue > small_max_bet ){
+
+                toast.error('Bet should not be greater than '+small_max_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = small_max_bet;
+               
+            }else if(getValue < small_min_bet ){
+
+                toast.error('Bet should not be less than '+small_min_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = small_min_bet;
+                
+            }
+            // else{
+            //     $("#ErrorBig"+idas).html('');
+            // }
+            setSmallValue(getValue);
             localStateDataForChange['small']['value'] = getValue;
         } else if (operationField == '_3a') {
 
+
+            let three_a_max_bet  = limit && limit.length > 0 && limit[0].three_a_max_bet ?  limit[0].three_a_max_bet : 0;
+            let three_a_min_bet  = limit && limit.length > 0 && limit[0].three_a_min_bet ?  limit[0].three_a_min_bet : 0;
+            if(getValue > three_a_max_bet ){
+                
+                toast.error('Bet should not be greater than '+three_a_max_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = three_a_max_bet;
+               
+            }else if(getValue < three_a_min_bet ){
+
+                toast.error('Bet should not be less than '+three_a_min_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = three_a_min_bet;
+                
+            }
+            // else{
+            //     $("#ErrorBig"+idas).html('');
+            // }
+            setA3Value(getValue);
 
             localStateDataForChange['_3a']['value'] = getValue;
 
@@ -332,6 +584,31 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             }
 
         } else if (operationField == '_3c') {
+
+
+            let three_c_max_bet  = limit && limit.length > 0 && limit[0].three_c_max_bet ?  limit[0].three_c_max_bet : 0;
+            let three_c_min_bet  = limit && limit.length > 0 && limit[0].three_c_min_bet ?  limit[0].three_c_min_bet : 0;
+            if(getValue > three_c_max_bet ){
+
+                toast.error('Bet should not be greater than '+three_c_max_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = three_c_max_bet;
+               
+            }else if(getValue < three_c_min_bet ){
+
+                toast.error('Bet should not be less than '+three_c_min_bet, 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined});
+
+                getValue = three_c_min_bet;
+                
+            }
+            // else{
+            //     $("#ErrorBig"+idas).html('');
+            // }
+            setC3Value(getValue);
             localStateDataForChange['_3c']['value'] = getValue;
 
 
@@ -368,6 +645,11 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             localStateDataForChange['_3c'] = { value: "", disabled: 0 }
             localStateDataForChange['bet_type'] = { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }
         }
+
+        let totalAmount = calculationOfTotalAmount(localStateDataForChange);
+            if(totalAmount)
+                localStateDataForChange = { ...localStateDataForChange, amount: { value: totalAmount, disabled: 1 } };
+
         setLocalStateData(localStateDataForChange);
         setPageLoadCount(pageLoadCount + 1);
     }
@@ -378,13 +660,16 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             finalSubmitData = finalSubmitData.filter((item,id) => id != getIndex);
         }
         if(finalSubmitData.length < 10 && getAction == 'add'){
+            var x = 0;
             bettingInitData.map(item => {
                 if(item.selected){
                     let day = item.date;
                     let game = '';
+                    let gameArr = [];
                     item.games.map(itemGame => {
                         if(itemGame.selected){
                             game += itemGame.abbreviation;
+                            gameArr.push(itemGame.id);
                         }
                     })
 
@@ -424,68 +709,68 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     localStateDataForChange['date'] = day;
                     localStateDataForChange['company'] = game;
                     localStateDataForChange['bet_type'] = bet_type;
-            
-                    let _mainSubmitData = {
-                        "game_dates":[
-                            {
-                                "date":"08 Oct, 2022",
-                                "games":[1,2],
-                                "options":
-                                        [
-                                            {
-                                                "number":"1112",
-                                                "big_bet":"10",
-                                                "small_bet":"10",
-                                                "3a_bet":0,
-                                                "3c_bet":0,
-                                                "box":"on",
-                                                "ibox":"off",
-                                                "reverse":"off",
-                                                "amount":"160"
-                                            }
-                                        ]  
-                            }
-                        ]
-                    }
 
-                    // let _mainSubmitData = {
-                    //         "game_dates":
-                    //         [
-                    //             {
-                    //                 "date":"08 Oct, 2022",
-                    //                 "games":[1,2]
-                    //             }
-                        
-                    //         ],
-                    //         "options":[
-                    //         {
-                    //             "number":"123",
-                    //             "big_bet":"0.0",
-                    //             "small_bet":0,
-                    //             "3a_bet":22,
-                    //             "3c_bet":33,
-                    //             "box":"off",
-                    //             "ibox":"off",
-                    //             "reverse":"off",
-                    //             "amount":"480.00"
-                    //         }
-                    //     ]
-                    // }
+                    let amountTotal = localStateData && localStateData.amount && localStateData.amount.value ? localStateData.amount.value : "0";
+              
+                    // console.log('amount1',localStateDataForChange['amount1']);
+                    
+                    localStateDataForChange['amountTotal'] = amountTotal;
+                    
+                    let _mainSubmitData = {
+                                            "date":day,
+                                            "games":gameArr,
+                                            "options":
+                                                    [
+                                                        {
+                                                            "number": localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : "",
+                                                            "big_bet":localStateData && localStateData.big && localStateData.big.value ? localStateData.big.value : "0",
+                                                            "small_bet":localStateData && localStateData.small && localStateData.small.value ? localStateData.small.value : "0",
+                                                            "3a_bet":localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : "0",
+                                                            "3c_bet":localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : "0",
+                                                            "box":localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled == 0 && localStateData.bet_type.box_value == 1 ? "on" : "off",
+                                                            "ibox":localStateData && localStateData.bet_type && localStateData.bet_type.i_box_disabled == 0 && localStateData.bet_type.i_box_value == 1 ? "on" : "off",
+                                                            "reverse":localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled == 0 && localStateData.bet_type.reverse_value == 1 ? "on" : "off",
+                                                            "amount": amountTotal
+                                                        }
+                                                    ]  
+                                          }
+
 
                     if(localStateDataForChange['number'] == ""){
-                        alert('Please Enter Number')
-                    }else if(localStateDataForChange['amount1'] == '' || localStateDataForChange['amount2'] == ''){
-                        alert('Please Enter Amount')
+
+                        toast.error('Please Enter Number', 
+                        {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                        pauseOnHover: true,draggable: true,progress: undefined});
+
+                        return false;
+                    }else if(amountTotal == 0){
+
+                        toast.error('Please Enter Amount', 
+                        {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                        pauseOnHover: true,draggable: true,progress: undefined});
+                        
+                        return false;
                     }
-                    else if(localStateDataForChange['date'] == ''){
-                        alert('amount2')
-                    }else if(localStateDataForChange['company'] == ''){
-                        alert('company')
-                    }
+                    // else if(localStateDataForChange['date'] == ''){
+
+                    //     toast.error('Please Enter Number', 
+                    //     {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                    //     pauseOnHover: true,draggable: true,progress: undefined});
+                    //     alert('amount2')
+                    //     return false;
+                    // }else if(localStateDataForChange['company'] == ''){
+
+                    //     toast.error('Please Enter Number', 
+                    //     {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                    //     pauseOnHover: true,draggable: true,progress: undefined});
+                    //     alert('company')
+                    //     return false;
+                    // }
                     else{
                         finalSubmitData.push(localStateDataForChange);
 
                         mainSubmitData.push(_mainSubmitData);
+                        x = 1;
                         // setMainSubmitData(_mainSubmitData);
                     }           
                 }
@@ -493,25 +778,67 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
             let  localStateDataForChangeTotalAmount = '';
             localStateDataForChangeTotalAmount ='10000';
-            setTotalAmount(localStateDataForChangeTotalAmount);
-
+            if(x==1){
+                setLocalStateData('');
+                allClearData();
+            }
         }
         _setFinalSubmitData(finalSubmitData);
 
-        setLocalStateData('');
-        allClearData();
+        var slackTotalAmount = 0;
+        finalSubmitData.map(itemAmount => {
+            // console.log('itemAmount',itemAmount);
+            slackTotalAmount = slackTotalAmount+itemAmount.amountTotal; 
+        })
+
+        setTotalAmount(slackTotalAmount);
+
         setPageLoadCount(pageLoadCount + 1);
     }
 
 
+
+    
+
+    function openModal() {
+        setIsOpen(true);
+      }
+      function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        // subtitle.style.color = '#f00';
+      }
+      function closeModal() {
+        setIsOpen(false);
+      }
+    
+
+    const modelCloseCustom = () => {
+        setIsOpen(false);
+        if(apiResponce == 'success')
+        resetAllData();
+    }
+    const modelOpenCustom = (isStatus) => {
+        setApiResponce(isStatus);
+        setIsOpen(true);
+   }
+
     const lotterySubmitRecordsCallActionMob = () => {
         console.log('ooooooooo',mainSubmitData)
-        dispatch(lotterySubmit(mainSubmitData, response =>{
+        let game_dates = mainSubmitData;
+        let saveLOttoData = {
+            "member_id":auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,
+            "merchant_id":auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id: 0,
+            game_dates
+        }
+        
+        console.log('saveLOttoData',saveLOttoData)
+        dispatch(lotterySubmit(saveLOttoData, response =>{
             if(response.statusCode  == 201  || response.statusCode  == 200 ){
                 setResultData(response.data)
-                
+                modelOpenCustom('success');
+
             }else {
-                
+                modelOpenCustom('failure');
             }
           }));
     } 
@@ -520,6 +847,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     return (
         
         <>
+        <ToastContainer />
             {activeGameType ? 
                 <>  
                     <div className="row">
@@ -756,6 +1084,56 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     </button> 
                 </div>            
             </div> 
+
+
+
+            
+
+            <Modal
+                  isOpen={modalIsOpen}
+                  onAfterOpen={afterOpenModal}
+                  onRequestClose={closeModal}
+                  style={customStyles}
+                  contentLabel="Example Modal"
+              >   
+                
+                <div className="modal-content card">
+                            <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
+                                <h5 className="modal-title" id="bettingModal" style={{height: '40px',paddingLeft:'10px'}}>
+                                {/*t('Bet_Successful')*/}
+                                { apiResponce == 'success' ? t('Bet_Successful') : 'Bet Failed '}
+                                </h5>
+                            </div>
+                            <div className="modal-body" >
+                                <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
+                                    {apiResponce == 'success' ? 
+                                    (<div class="row">
+                                        <div class="col-6 col-sm-8">
+                                            <p>{t('Total')}</p>
+                                            <p>{t('Accepted_bet_amount')}</p>
+                                            <p>{t('Rebate')}</p>
+                                            <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
+                                        </div>
+                                        <div class="col-6 col-sm-4" style={{textAlign:'right'}}>
+                                            <p>{resultData && resultData.total ? parseFloat(resultData.total).toFixed(2) : 0 }</p>
+                                            <p>{resultData && resultData.acp_bet ? parseFloat(resultData.acp_bet).toFixed(2) : 0 }</p>
+                                            <p>{resultData && resultData.rebat ? parseFloat(resultData.rebat).toFixed(2) : 0 }</p>
+                                            <p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? parseFloat(resultData.netAmount).toFixed(2) : 0 }</p>
+                                        </div>
+                                    </div>) : (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>)}
+                                    <hr></hr>
+                                    
+                                    
+                                    <RejectedBedContainer dataRecords ={resultData && resultData.rejected ? resultData.rejected : []}/>
+                                   
+                                    
+                                </div>
+                            </div>
+                            <div class="modal-footer" style={{justifyContent:'center'}}>
+                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
+                            </div>
+                        </div>
+            </Modal>
         </>
     );
 
