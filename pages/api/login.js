@@ -16,8 +16,8 @@ async function handler(req, res) {
   // }
 
     //  const objectWithData = {
-    //         "customer_name": "Dileep Maurya",
-    //        "customer_id":  112,
+    //         "customer_name": "Atul",
+    //        "customer_id":  1403,
     //       "merchant_id":  1,
     //       "language":  'en',
     //   }
