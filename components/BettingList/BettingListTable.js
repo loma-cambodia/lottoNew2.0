@@ -12,8 +12,7 @@ const ListTable = ({_tickets, _GetTicketNumber}) => {
     
  let ticket = _tickets
 
-console.log('TICKETSSSS: ',ticket)
-
+let dateFilteredTickets = [] 
  let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
  console.log("Parent Ticket:",ticket)
 //  console.log("Child Tickets:",ticketSlaves)
@@ -39,12 +38,25 @@ console.log('TICKETSSSS: ',ticket)
 
         console.log("<--START: ",dates1.startDate._d)
         console.log("<--END: ",dates1.endDate._d)
-
+        searchTicketDate(dates1.startDate._d,dates1.endDate._d)
       };
 
       const searchTicketDate =(dateStart,dateEnd) => {
-        
-      }
+        // let start = moment(dateStart).format('YYYY-MM-DD')
+        // let end = moment(dateEnd).format('YYYY-MM-DD')
+
+        console.log('searchTicketDate')
+        ticket.map(item=>{
+            let itemDate = new Date(item.created_at)
+            if(itemDate>=dateStart && itemDate <= dateEnd)
+            {
+                console.log('is in between ',itemDate)
+                dateFilteredTickets.push(item)
+            }
+    })
+    console.log('dateFilteredTickets ', dateFilteredTickets)
+        ticket = dateFilteredTickets;
+    }
     
       const [ranges, setRanges] = useState({
         ['Today']: [moment().subtract(0, 'days'), moment().add(0, 'days')],
@@ -133,7 +145,7 @@ console.log('TICKETSSSS: ',ticket)
                     <div class="col-md-3">
                     <div class="form-group">
                         <label class="d-block">&nbsp;</label>
-                        <button type="button" class="btn-custom-curve2 w-auto">{t('Search')}</button>
+                        <button type="button" class="btn-custom-curve2 w-auto mx-2">{t('Search')}</button>
                         <button type="button" class="btn-custom-curve1">{t('Reset')}</button>
                     </div>
 
@@ -176,8 +188,8 @@ console.log('TICKETSSSS: ',ticket)
                                 <td>{item.id}</td>
                                 <td class="text-start"><Link href="/TicketDetails"><a >{item.ticket_no}</a></Link></td>
                                 <td class="text-start">{item.bet_number}</td>
-                                <td class="text-center" >{item.created_at}</td>
-                                <td class="text-center">{item.betting_date}</td>
+                                <td class="text-center" >{ moment(item.created_at).format('MM/DD/YYYY')}</td>
+                                <td class="text-center">{moment(item.betting_date).format('MM/DD/YYYY')}</td>
                                 <td class="text-center">{item.bet_type}</td>
                                 <td class="text-end">{item.total_amount}</td>
                                 <td class="text-end">{item.rebate_amount}</td>
