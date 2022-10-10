@@ -1278,6 +1278,19 @@
   background-color: #fff;
   color: #bc2263;
   }
+
+  .btn-custom-curve3 {
+    border: 1px solid #bc2263;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #fff;
+    color: #bc2263;
+    text-transform: uppercase;
+    border-radius: 20px 0;
+    transition: 0.5s;
+    width: 100%;
+    }
+
   .form-control-custom-big {
   border: 1px solid #ddd;
   background: #fff;

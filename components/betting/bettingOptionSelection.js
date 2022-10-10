@@ -10,6 +10,7 @@ import {getLogin} from '../../store/actions/authActions';
 import { useDispatch, useSelector } from "react-redux";
 import RejectedBedContainer from './rejectedBedContainer';
 import Modal from 'react-modal';
+// import loader from 'assets/images/loader.gif';
 
     //   Dummy Ticket Data for Modal Use.
       let ticketSubmissionData = [
@@ -70,12 +71,12 @@ import Modal from 'react-modal';
       };  
 
 let localStateInitData = {
-    number: { value: "", disabled: 0 },
-    big: { value: "", disabled: 0 }, 
-    small: { value: "", disabled: 0 },
-    _3a: { value: "", disabled: 0 },
-    _3c: { value: "", disabled: 0 },
-    bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 },
+    number: { value: "", disabled: 1 },
+    big: { value: "", disabled: 1 }, 
+    small: { value: "", disabled: 1 },
+    _3a: { value: "", disabled: 1 },
+    _3c: { value: "", disabled: 1 },
+    bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 },
     amount: { value: "", disabled: 1 }
 };
 
@@ -96,32 +97,21 @@ let dateAndGameOptionData = [1,2,3,4];
 
 const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit,_auth}) => {
     let betLimit = _betLimit;
-    
-    
     const { t } = useTranslation();
     const dispatch = useDispatch();
     let dateAndGameOptionData = [];
 
-
     const auth = _auth;
-    console.log('BettingOptionSelection:auth:',auth);
 
-    let objectWithData2 = {
-        "customer_name": auth.auth.customer_name,
-        "customer_id":  auth.auth.customer_id,
-        "merchant_id":  auth.auth.merchant_id,
-        "language":   auth.lang
-     } 
-    console.log('BettingOptionSelection:objectWithData2:',objectWithData2);
 
     const [resultData, setResultData] = React.useState({});
-//  Model code 
 
 const [modalIsOpen, setIsOpen] = React.useState(false);
 //const [modalIsOpen, setIsOpen] = React.useState(true);
 const [apiResponce,  setApiResponce] = React.useState('success');
 //const [apiResponce,  setApiResponce] = React.useState('aaaaaaaaaaaaaaaaaaaa aaaaaaa');
 
+const [isLoading,  setIsLoading] = React.useState(false);
 
 
     function openModal() {
@@ -287,6 +277,7 @@ const [apiResponce,  setApiResponce] = React.useState('success');
        let dataSubmit = {member_id:auth.auth.customer_id, merchant_id:auth.auth.merchant_id, game_dates};
        dataSubmit['member_id'] = auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
        dataSubmit['merchant_id'] = auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id: 0;
+       setIsLoading(true);
 
          dispatch(lotterySubmit(dataSubmit, response =>{
             
@@ -295,10 +286,13 @@ const [apiResponce,  setApiResponce] = React.useState('success');
                 modelOpenCustom('success');
                 loginAPICall();
 
+               // setIsLoading(false);
+
             }else {
                 modelOpenCustom('failure');
+               // setIsLoading(false);
             }
-
+            setIsLoading(false);
           }));
       
     } 
@@ -426,19 +420,29 @@ const [apiResponce,  setApiResponce] = React.useState('success');
                                                          _gameCount={gameCount}
                                                          _limit={betLimit}
                  />) )}
-                <tr>
+
+                 {isLoading ? (<tr>
+                    <td colSpan="5">
+                        {t('Total_Stake')}: {MoneyFormatDisplay(totalAmount,1)}
+                    </td>
+                    <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>{t('clear')}</button>
+                    </td>
+                    <td>
+                    <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50"/>
+                    </td>
+                    <td colSpan="2">
+                             <button type="button" className="btn-custom-curve2">Submit</button>   
+                    </td>
+                </tr>) : (<tr>
                     <td colSpan="6">
                         {t('Total_Stake')}: {MoneyFormatDisplay(totalAmount,1)}
                     </td>
                     <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>{t('clear')}</button>
-                       {/* <button type="button" className="btn-custom-curve1 me-1" onClick={showTostyFy}>test </button> */}
                     </td>
                     <td colSpan="2">
-                             <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button> 
-                              
-                            
+                             <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button>   
                     </td>
-                </tr>
+                </tr>)}
                 </tbody>
             </table>
             {/* <button onClick={() => loginAPICall()}> API Call </button> */}
@@ -474,10 +478,20 @@ const [apiResponce,  setApiResponce] = React.useState('success');
                                         <div class="col-8 col-sm-8"><p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p></div>
                                         <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount,1) : 0 }</p></div>
                                         
-                                    </div>) : (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>)}
+                                    </div>) : (<div class="row">
+                                        <div class="col-8 col-sm-8"><p>{t('Total')}</p></div>
+                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>100</p></div>
+                                        <div class="col-8 col-sm-8"><p>{t('Accepted_bet_amount')}</p></div>
+                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>200</p></div>
+                                        <div class="col-8 col-sm-8"><p>{t('Rebate')}</p></div>
+                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>300</p></div>
+                                        <div class="col-8 col-sm-8"><p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p></div>
+                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p style={{fontWeight:'bold'}}>10</p></div>
+                                        
+                                    </div>)}
                                     
                                     
-                                    
+                                    {/* (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>) */}
                                     <RejectedBedContainer dataRecords ={resultData && resultData.rejected ? resultData.rejected : []}/>
                                    
                                     
@@ -485,6 +499,7 @@ const [apiResponce,  setApiResponce] = React.useState('success');
                             </div>
                             <div class="modal-footer px-2 py-3 border-top" style={{justifyContent:'center'}}>
                                 <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
+                                {/* <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50"/> */}
                             </div>
                         </div>
                         </div>
