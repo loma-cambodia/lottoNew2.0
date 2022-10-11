@@ -389,7 +389,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                                 <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss')}</td>
                                 <td class="text-center">{drow_date}</td>
                                 <td class="text-center">{item.game_type}</td>
-                                <td class="text-end">{gameName(item.game_play_id)}</td>
+                                <td class="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
                                 <td class="text-start">{item.lottery_number}</td>
 
                                 <td class="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>

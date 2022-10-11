@@ -211,8 +211,8 @@ const Header = ({datauser,_auth}) => {
 
                           
                           <li className="menu-mobile">
-                              <button class="navbar-toggler" type="button" onClick={() => openNav() } >
-                                  <span class="navbar-toggler-icon"></span>
+                              <button className="navbar-toggler" type="button" onClick={() => openNav() } >
+                                  <span className="navbar-toggler-icon"></span>
                                 </button>
                           </li>
                       </ul>
