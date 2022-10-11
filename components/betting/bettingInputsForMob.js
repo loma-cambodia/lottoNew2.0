@@ -4,6 +4,8 @@ import FinalDataContainer from './finalDataContainer';
 import {getBettingDates,lotterySubmit} from '../../store/actions/bettingActions';
 import RejectedBedContainer from './rejectedBedContainer';
 
+import {getLogin} from '../../store/actions/authActions';
+
 import { ToastContainer, toast } from 'react-toastify';
 
 import Modal from 'react-modal';
@@ -301,16 +303,126 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         return true;
     }
     
+
+    
+
+
+    //////////////////////////////////////////////////////////
+
+
+
+    var firstDigit = 1;
+    var secondDigit = 1;
+    var thirdDigit = 1;
+    var fourthDigit = 1;
+
+    const witchTypesOf = (_getNumber) => {
+        var num = _getNumber;
+        var numArray = numberToArray(num);
+        var first = firstDigitFunction(numArray, firstDigit = 1);
+        var second = secondDigitFunction(numArray, secondDigit = 1);
+        var third = thirdDigitFunction(numArray, thirdDigit = 1);
+        var fourth = fourthDigitFunction(numArray, fourthDigit = 1);
+        if (typeof num === 'string') {
+            if (num.length == 4) {
+                if (first == 1 && second == 1 && third == 1 && fourth == 1) {
+                    return 24;
+                }
+                if (first == 2 || second == 2 || third == 2 || fourth == 2) {
+                    if (first == 2 && second == 2 && third == 2 && fourth == 2) {
+                        return 6;
+                    } else {
+                        return 12;
+                    }
+                }
+                if (first == 3 || second == 3 || third == 3 || fourth == 3) {
+                    return 4;
+                }
+            }
+        }
+        return 0;
+    }
+
+        
+    const firstDigitFunction = (numArray, firstDigit) => {
+        if (numArray) {
+            if (numArray[0] == numArray[1]) {
+                firstDigit++;
+            }
+            if (numArray[0] == numArray[2]) {
+                firstDigit++;
+            }
+            if (numArray[0] == numArray[3]) {
+                firstDigit++;
+            }
+            return firstDigit;
+        }
+    }
+    const secondDigitFunction = (numArray, secondDigit) => {
+        if (numArray) {
+            if (numArray[1] == numArray[0]) {
+                secondDigit++;
+            }
+            if (numArray[1] == numArray[2]) {
+                secondDigit++;
+            }
+            if (numArray[1] == numArray[3]) {
+                secondDigit++;
+            }
+            return secondDigit;
+        }
+    }
+    const thirdDigitFunction = (numArray, thirdDigit) => {
+        if (numArray) {
+            if (numArray[2] == numArray[1]) {
+                thirdDigit++;
+            }
+            if (numArray[2] == numArray[0]) {
+                thirdDigit++;
+            }
+            if (numArray[2] == numArray[3]) {
+                thirdDigit++;
+            }
+            return thirdDigit;
+        }
+    }
+    const fourthDigitFunction = (numArray, fourthDigit) => {
+        if (numArray) {
+            if (numArray[3] == numArray[1]) {
+                fourthDigit++;
+            }
+            if (numArray[3] == numArray[2]) {
+                fourthDigit++;
+            }
+            if (numArray[3] == numArray[0]) {
+                fourthDigit++;
+            }
+            return fourthDigit;
+        }
+    }
+
+    
+    const numberToArray = (num) => {
+        if (typeof num === 'string') {
+            var digits = num.toString().split('');
+            return digits.map(Number)
+        }
+    }
+
+
+    /////////////////////////////////////////////////////////////
     const totalBoxingCalculation = (getNumber) => {
         let _getNumber = getNumber;
         let boxing = 0;
-        if(_getNumber)
-        boxing = getPermutation(_getNumber);
+        if(_getNumber){
+            boxing = getPermutation(_getNumber);
+        }
+        // console.log('typeOfValtypeOfVal',boxing);
         return boxing ;
     }
-    
     const getPermutation = (_getNumber) => {
         let returnPermutation = 0;
+
         let uniqueAges = getStringUniqueCharactors(_getNumber);
 
             if(_getNumber.length == 3){
@@ -320,15 +432,24 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 returnPermutation = 3;
                 else  if(uniqueAges.length == 1)
                 returnPermutation = 1;
-            } else if(_getNumber.length == 4){
-                if(uniqueAges.length == 4)
-                returnPermutation = 24;
-                else  if(uniqueAges.length == 3)
-                returnPermutation = 12 ;
-                else  if(uniqueAges.length == 2)
-                returnPermutation = 6;
-                else  if(uniqueAges.length == 1)
-                returnPermutation = 1;
+            }
+            
+            else if(_getNumber.length == 4){
+                
+                let typeOfVal = witchTypesOf(_getNumber);
+                // console.log('typeOfValtypeOfVal',typeOfVal);
+
+                return typeOfVal;
+
+                // if(uniqueAges.length == 4){
+                //     returnPermutation = 24;
+                // }else  if(uniqueAges.length == 3){
+                //     returnPermutation = 12 ;
+                // }else  if(uniqueAges.length == 2){
+                //     returnPermutation = 4;
+                // }else  if(uniqueAges.length == 1){
+                //     returnPermutation = 1;
+                // }
             }
             return returnPermutation;
     }
@@ -817,7 +938,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         } 
                         if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled != 1 && localStateData.bet_type.reverse_value != 0) {
                             bet_type = 'reverse';
-                            alert('pppp');
+                            // alert('pppp');
                             console.log('localStateDatalocalStateData',localStateData);
                             totalAmountS = totalAmountS * 2; 
                         }
@@ -944,6 +1065,15 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         setIsOpen(true);
    }
 
+   const loginAPICall = () => {
+        let objectWithData = {
+        "customer_name": auth && auth.auth && auth.auth.customer_name ? auth.auth.customer_name : '',
+        "customer_id":  auth && auth.auth && auth.auth.customer_id ? auth.auth.customer_id : 0,
+        "merchant_id":  auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0,
+        "language":   auth && auth.lang ? auth.lang : 'en'
+        } 
+        dispatch(getLogin(objectWithData));
+    }
     const lotterySubmitRecordsCallActionMob = () => {
         let game_dates = mainSubmitData;
         let saveLOttoData = {
@@ -953,17 +1083,32 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         }
         console.log('saveLOttoData',saveLOttoData)
         dispatch(lotterySubmit(saveLOttoData, response =>{
-            if(response.statusCode  == 201  || response.statusCode  == 200 ){
-                setResultData(response.data)
-                modelOpenCustom('success');
-
+            
+            // console.log('response:',response);
+            if(response.message_id  == 201  || response.message_id  == 200 ){
+                
+                console.log('response:',response);
+                    setResultData(response.data)
+                    modelOpenCustom('success');
+                    loginAPICall();
             }else {
-                // console.log('responseresponse',response)
-                toast.error(response.message, 
-                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                pauseOnHover: true,draggable: true,progress: undefined});
-                modelOpenCustom('failure');
+                // toast.error(response.messages[0], 
+                // {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                // pauseOnHover: true,draggable: true,progress: undefined});
+                // console.log('response:',response);
+                modelOpenCustom(response.messages[0]);
             }
+            // setIsLoading(false);
+            // if(response.statusCode  == 201  || response.statusCode  == 200 ){
+            //     setResultData(response.data)
+            //     modelOpenCustom('success');
+
+            // }else {
+            //     toast.error(response.message, 
+            //     {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+            //     pauseOnHover: true,draggable: true,progress: undefined});
+            //     modelOpenCustom('failure');
+            // }
           }));
     } 
 
@@ -1283,22 +1428,22 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 </h5>
                             </div>
                             <div className="modal-body" >
-                                <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
+                                <div className="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
                                     {apiResponce == 'success' ? 
-                                    (<div class="row">
-                                        <div class="col-6 col-sm-8">
+                                    (<div className="row">
+                                        <div className="col-6 col-sm-8">
                                             <p>{t('Total')}</p>
                                             <p>{t('Accepted_bet_amount')}</p>
                                             <p>{t('Rebate')}</p>
                                             <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
                                         </div>
-                                        <div class="col-6 col-sm-4" style={{textAlign:'right'}}>
+                                        <div className="col-6 col-sm-4" style={{textAlign:'right'}}>
                                             <p>{resultData && resultData.total ? parseFloat(resultData.total).toFixed(2) : 0 }</p>
                                             <p>{resultData && resultData.acp_bet ? parseFloat(resultData.acp_bet).toFixed(2) : 0 }</p>
                                             <p>{resultData && resultData.rebat ? parseFloat(resultData.rebat).toFixed(2) : 0 }</p>
                                             <p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? parseFloat(resultData.netAmount).toFixed(2) : 0 }</p>
                                         </div>
-                                    </div>) : (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>)}
+                                    </div>) : (<div className="row"><div className="text-center top-50"></div><div className="text-center top-50">{apiResponce}</div></div>)}
                                     <hr></hr>
                                     
                                     
@@ -1307,7 +1452,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                     
                                 </div>
                             </div>
-                            <div class="modal-footer" style={{justifyContent:'center'}}>
+                            <div className="modal-footer" style={{justifyContent:'center'}}>
                                 <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
                             </div>
                         </div>
