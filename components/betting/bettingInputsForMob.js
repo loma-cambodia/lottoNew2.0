@@ -201,7 +201,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 let smallVal = smallValue.toString();
                 setSmallValue(smallVal+getValue)
                 numberInputHandler(smallVal+getValue, 'small')
-            }   
+            } 
+        }
+        if(numberValue3D.length == 3){ 
             if(curserPointer == '3a'){
                 if(getValue == 'R'){
                 return false;
