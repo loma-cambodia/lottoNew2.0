@@ -47,8 +47,54 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [apiResponce,  setApiResponce] = React.useState('success');
+
+    const [desableSubmitButton,  setDesableSubmitButton] = useState(false);
+
     // console.log("localStateData:lotto",localStateData)
 
+    function SubmitButtonShows(){
+        if(mainSubmitData.length != 0){
+            return(
+                <>
+                    <div onClick={() => lotterySubmitRecordsCallActionMob()} className='col-6'>
+                        <button disabled className="form-control text-light" style={{ background: '#e91d25' }}> 
+                            <b>{t('BET')}</b> 
+                        </button> 
+                    </div>
+                </>
+            );
+        }else{
+            return(
+                <>
+                    <div className='col-6'>
+                        <button disabled className="form-control text-light" style={{ background: 'black' }}> 
+                            <b>{t('BET')}</b> 
+                        </button> 
+                    </div>
+                </>
+            );
+        }
+    }
+    
+    // useEffect(() => {
+    //     if(mainSubmitData.length != 0){ 
+    //         setDesableSubmitButton(true);
+    //     }else{
+    //         setDesableSubmitButton(false);
+    //     }
+    // }, [mainSubmitData]);
+
+    // console.log('desableSubmitButton',desableSubmitButton)
+    // console.log('desableSubmitButton',mainSubmitData.length)
+    // function workOnSubmitDesabled(val){
+    //     setDesableSubmitButton(val);
+    // }
+    
+    // if(mainSubmitData.length > 0){
+    //     workOnSubmitDesabled(true);
+    // }else{
+    //     workOnSubmitDesabled(false);
+    // }
 
     /////////////////////////////////////
 
@@ -139,38 +185,40 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 numberInputHandler(mainDataVal, 'number')
             }
         }  
-      if(curserPointer == 'big'){
-          if(getValue == 'R'){
-             return false;
-          }
-          let bigVal = bigValue.toString();
-          setBigValue(bigVal+getValue)
-          numberInputHandler(bigVal+getValue, 'big')
-      }   
-      if(curserPointer == 'small'){
-          if(getValue == 'R'){
-            return false;
-          }
-          let smallVal = smallValue.toString();
-          setSmallValue(smallVal+getValue)
-          numberInputHandler(smallVal+getValue, 'small')
-      }   
-      if(curserPointer == '3a'){
-        if(getValue == 'R'){
-          return false;
+        if(numberValue4D.length == 4){
+            if(curserPointer == 'big'){
+                if(getValue == 'R'){
+                    return false;
+                }
+                let bigVal = bigValue.toString();
+                setBigValue(bigVal+getValue)
+                numberInputHandler(bigVal+getValue, 'big')
+            }   
+            if(curserPointer == 'small'){
+                if(getValue == 'R'){
+                    return false;
+                }
+                let smallVal = smallValue.toString();
+                setSmallValue(smallVal+getValue)
+                numberInputHandler(smallVal+getValue, 'small')
+            }   
+            if(curserPointer == '3a'){
+                if(getValue == 'R'){
+                return false;
+                }
+                let a3Val = a3Value.toString();
+                setA3Value(a3Val+getValue)
+                numberInputHandler(a3Val+getValue, '_3a')
+            }   
+            if(curserPointer == '3c'){
+                if(getValue == 'R'){
+                return false;
+                }
+                let c3Val = c3Value.toString();
+                setC3Value(c3Val+getValue)
+                numberInputHandler(c3Val+getValue, '_3c')
+            } 
         }
-          let a3Val = a3Value.toString();
-          setA3Value(a3Val+getValue)
-          numberInputHandler(a3Val+getValue, '_3a')
-      }   
-      if(curserPointer == '3c'){
-        if(getValue == 'R'){
-          return false;
-        }
-          let c3Val = c3Value.toString();
-          setC3Value(c3Val+getValue)
-          numberInputHandler(c3Val+getValue, '_3c')
-      }    
     }
     const allClearData = () => {
         setCurserPointer('');
@@ -692,8 +740,15 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             if(getValue > small_max_bet ){
 
                 toast.error('Bet should not be greater than '+small_max_bet, 
-                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                pauseOnHover: true,draggable: true,progress: undefined});
+                {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: false,
+                    draggable: false,
+                    progress: undefined
+                });
 
                 getValue = small_max_bet;
                
@@ -901,12 +956,12 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         localStateDataForChange['company'] = game;
                         localStateDataForChange['bet_type'] = bet_type;
     
-///////////////////////////total Amount
+                        ///////////////////////////total Amount
 
 
 
 
-                    // const calculationOfTotalAmount = (getRow,gameCounts) => {
+                        // const calculationOfTotalAmount = (getRow,gameCounts) => {
                         
                         let total_sum = 0;
                         if(localStateData && localStateData.big && localStateData.big.value) {
@@ -954,7 +1009,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
                        totalAmountS;
 
-////////////////////////////////////////
+                        ////////////////////////////////////////
 
                         let amountTotal = 0;
                         let totalAmount = totalAmountS;
@@ -1401,13 +1456,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         <b>{t('Reset')}</b> 
                     </button> 
                 </div>
-                <div onClick={() => lotterySubmitRecordsCallActionMob()} className='col-6'>
-                    <button className="form-control text-light" style={{ background: '#e91d25' }}> 
-                        <b>{t('BET')}</b> 
-                    </button> 
-                </div>            
+                <SubmitButtonShows />        
             </div> 
-
+            {/* desableSubmitButton */}
 
 
             
