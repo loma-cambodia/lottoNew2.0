@@ -4,6 +4,8 @@ import FinalDataContainer from './finalDataContainer';
 import {getBettingDates,lotterySubmit} from '../../store/actions/bettingActions';
 import RejectedBedContainer from './rejectedBedContainer';
 
+import {getLogin} from '../../store/actions/authActions';
+
 import { ToastContainer, toast } from 'react-toastify';
 
 import Modal from 'react-modal';
@@ -1063,6 +1065,15 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         setIsOpen(true);
    }
 
+   const loginAPICall = () => {
+        let objectWithData = {
+        "customer_name": auth && auth.auth && auth.auth.customer_name ? auth.auth.customer_name : '',
+        "customer_id":  auth && auth.auth && auth.auth.customer_id ? auth.auth.customer_id : 0,
+        "merchant_id":  auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0,
+        "language":   auth && auth.lang ? auth.lang : 'en'
+        } 
+        dispatch(getLogin(objectWithData));
+    }
     const lotterySubmitRecordsCallActionMob = () => {
         let game_dates = mainSubmitData;
         let saveLOttoData = {
@@ -1072,17 +1083,27 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         }
         console.log('saveLOttoData',saveLOttoData)
         dispatch(lotterySubmit(saveLOttoData, response =>{
-            if(response.statusCode  == 201  || response.statusCode  == 200 ){
-                setResultData(response.data)
-                modelOpenCustom('success');
 
+            
+            if(response.message_id  == 201  || response.message_id  == 200 ){
+                    setResultData(response.data)
+                    modelOpenCustom('success');
+                    loginAPICall();
             }else {
-                // console.log('responseresponse',response)
-                toast.error(response.message, 
-                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                pauseOnHover: true,draggable: true,progress: undefined});
-                modelOpenCustom('failure');
+                console.log('response:',response);
+                modelOpenCustom(response.messages[0]);
             }
+            setIsLoading(false);
+            // if(response.statusCode  == 201  || response.statusCode  == 200 ){
+            //     setResultData(response.data)
+            //     modelOpenCustom('success');
+
+            // }else {
+            //     toast.error(response.message, 
+            //     {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+            //     pauseOnHover: true,draggable: true,progress: undefined});
+            //     modelOpenCustom('failure');
+            // }
           }));
     } 
 
