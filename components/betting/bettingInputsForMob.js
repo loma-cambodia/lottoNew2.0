@@ -817,7 +817,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         } 
                         if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled != 1 && localStateData.bet_type.reverse_value != 0) {
                             bet_type = 'reverse';
-                            alert('pppp');
+                            // alert('pppp');
                             console.log('localStateDatalocalStateData',localStateData);
                             totalAmountS = totalAmountS * 2; 
                         }
