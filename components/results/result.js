@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
 
 import React, { useState, useEffect } from "react";
+import moment from 'moment';
 
-const Result = () => {
+const Result = ({_initDate}) => {
   const { t } = useTranslation();
   const _results = [
     {'id':0,
@@ -18,18 +19,20 @@ const Result = () => {
     'img':"assets/images/icons/toto.png"
     }
   ]
-  const [initDate, setDate] = useState();
 
-  const dateFilter = (date) =>{
-          
-  }
+  const getDateName =(dateString) => {
+    var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var d = new Date(dateString);
+    var dayName = days[d.getDay()];
+    return dayName
+}
     return (
         <>
       <div className="accordion my-3 custom-accordion" id="accordionExample">
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingThree">
             <button className="accordion-button" type="button">
-              <span>{t('Past_Draw_Result')}: 28/09/2022 (WED)</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
+              <span>{t('Past_Draw_Result')}:  {moment(_initDate).format('MM/DD/YYYY')}  ({getDateName(_initDate)})</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
             </button>
           </h2>
           <div id="collapseThree" className="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">

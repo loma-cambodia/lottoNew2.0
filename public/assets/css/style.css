@@ -2750,3 +2750,36 @@ input.form-control.text-right-for-amount {
     padding: 1px 0;
   }
 }
+.result-filter{
+  min-height: 38px;
+}
+.DMC{
+    background-color: #df3948;
+}
+.DMC .s-and-c {
+  background-color: #1c377c;
+}
+.card.DMC {
+  border: 2px solid #c42026;
+}
+.Magnum{
+  background-color: #ffc107 ;
+}
+.Magnum .s-and-c {
+  background-color: #f17e00;
+}
+.card.Magnum {
+  border: 2px solid #f17e00;
+}
+.TOTO{
+  background-color: #df3948 ;
+}
+.TOTO .s-and-c {
+  background-color: #000;
+}
+.card.TOTO {
+  border: 2px solid #000;
+}
+.react-datepicker-wrapper input[type="text"]{
+  height: 38px;
+}

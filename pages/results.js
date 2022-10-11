@@ -12,6 +12,14 @@ import Filter from "../components/results/filter";
     const { t } = useTranslation();
     const [active, setActive] = useState(false)
 
+
+    const [initDate, setDate] = useState("10-10-2022");
+
+    console.log('initDate: ',initDate)
+    const dateFilter = (date) =>{
+          
+  }
+
     return (
         <>
             <Head>
@@ -40,8 +48,8 @@ import Filter from "../components/results/filter";
             <Banner2/>
             <section class="page-content py-3">
                 <div class="container">
-                <Filter/>
-                <Result/>
+                <Filter _setDate = {setDate}/>
+                <Result _initDate={initDate}/>
                 </div>
             </section>   
             <Footer/>
