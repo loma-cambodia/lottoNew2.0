@@ -3,6 +3,7 @@ import Link from "next/link";
 import moment from 'moment';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from "react-i18next";
 
@@ -12,9 +13,10 @@ import { useDispatch, useSelector, } from "react-redux";
 import ReactPaginate from 'react-paginate';
 
 const API_BASE_URL = process.env.apiUrl;
-const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
+const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     
  let ticket = _tickets;
+ let auth = _auth;
 
 
 
@@ -27,6 +29,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
     const c = new Date();
     const msdate = formatDate(c);
     const medate = formatDate(c);
+
+    console.log('msdate:',msdate);
+
+
     const keyRef = useRef();
     const [dates1, setDates1] = useState({
       startDate: moment(msdate),
@@ -46,11 +52,20 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
 
 
 
+      const [fromDate, setFromDate] = useState(new Date('2022-10-12'));
+      const [toDate, setToDate] = useState(new Date());
+
+
+
+     //   console.log('fromDate:',fromDate);
+     //   console.log('toDate:',toDate);
+
+
 
 
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+     //   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
         setCurrentItems(_tickets.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(_tickets.length / itemsPerPage));
       }, [itemOffset,itemsPerPage,_tickets]);
@@ -70,8 +85,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
           startDate: picker.startDate,
           endDate: picker.endDate,
         });
-        console.log("<--START: ",dates1)
-        console.log("<--END: ",dates1.endDate._d)
+       // console.log("<--START: ",dates1)
+       // console.log("<--END: ",dates1.endDate._d)
       };
 
      
@@ -86,7 +101,31 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
         ['This Year']: [moment().startOf('year')],
       });
 
-     // cosnt { startDate: '1/1/2014', endDate: '3/1/2014' }
+      console.log("ranges: ",ranges);
+
+    //   const range = {
+    //     Today: [moment(), moment()],
+    //     Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
+    //     "Last 7 Days": [moment().subtract(6, "days"), moment()],
+    //     "Last 30 Days": [moment().subtract(29, "days"), moment()],
+    //     "This Month": [moment().startOf("month"), moment().endOf("month")],
+    //     "Last Month": [
+    //       moment()
+    //         .subtract(1, "month")
+    //         .startOf("month"),
+    //       moment()
+    //         .subtract(1, "month")
+    //         .endOf("month")
+    //     ],
+    //     "Last Year": [
+    //       moment()
+    //         .subtract(1, "year")
+    //         .startOf("year"),
+    //       moment()
+    //         .subtract(1, "year")
+    //         .endOf("year")
+    //     ]
+    //   };
 
       const [ticketList, setTicketList] = useState([]);
       const [childDataTickets, setChildDataTickets] = useState([]);
@@ -102,9 +141,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
 
       const GetTicketNumber = _GetTicketNumber
 
-      useEffect(() => {
-        console.log(ticketNo)
-      }, [ticketNo])
+    //  useEffect(() => {
+      //  console.log(ticketNo)
+   //   }, [ticketNo])
         
       function formatDate(date) {
         var d = new Date(date),
@@ -119,7 +158,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
     }
 
     const state = useSelector(state => state);
-     console.log('BettingListTable:state',state)
+     //console.log('BettingListTable:state',state)
 
     const childShowTable = (ticketId) =>{
         const state12 = dispatch(getLotteryDetailsList(ticketId));
@@ -147,32 +186,85 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
     
     const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % _tickets.length;
-        console.log(
-          `User requested page number ${event.selected}, which is offset ${newOffset}`
+       console.log(
+         `User requested page number ${event.selected}, which is offset ${newOffset}`
 
-        );
+       );
         setItemOffset(newOffset);
       };
 
       const searchGetListonFilter = () => {
-        _GetTicketNumber(dateRange,ticketNo);
-        console.log('searchGetListonFilter',dateRange,ticketNo);
+
+         let _fromDate = fromDate;
+         let _toDate = toDate;
+         const d = new Date();
+         let dateToday = d.toISOString();
+         if(typeof _fromDate == 'string'){
+            _fromDate = _fromDate.split('T')[0];
+            _toDate = _toDate.split('T')[0];
+         }else {
+            _fromDate = dateToday.split('T')[0];
+            _toDate = dateToday.split('T')[0];
+
+         }
+         _fromDate = concertDateFormat(_fromDate);
+         _toDate = concertDateFormat(_toDate);;
+
+         let newDateRange = _fromDate + '-' + _toDate;
+
+         console.log('newDateRange:',newDateRange);
+         console.log('ticketNo:',ticketNo);
+         
+
+        let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
+
+        _GetTicketNumber(member_id,newDateRange,ticketNo);
+  
       }
-      const reset = () => {
-        dateRange = ""
-        ticketNo = ""
-        
-    }
 
-    const onApplyData = (e) => {
 
-        console.log('onApplyData:e',e );
+      const concertDateFormat = (getDate) => {
+        let _getDate = getDate.split('-');
+         return _getDate[2]+'/'+_getDate[1]+'/'+_getDate[0];
+      } 
 
-    }
 
-    console.log('childDataTickets',childDataTickets);
 
-    console.log('currentItems',currentItems);
+      const handleEvent = (event, picker) => {
+      //  console.log("start: ", picker.startDate._d);
+      //  console.log("end: ", picker.endDate._d);
+        setFromDate(picker.startDate._d.toISOString());
+        setToDate(picker.endDate._d.toISOString());
+      };
+
+
+      const resetFilter = () => {
+
+        const d = new Date();
+        setFromDate(d);
+        setToDate(d);
+        setTicketNo('');
+        location.reload();
+      }
+
+      let initData = { startDate: '1/1/2014', endDate: '3/1/2014' };
+
+      const MoneyFormatDisplay = (theInput, getCase) => {
+        //Do something with the input
+        let getInput = theInput;
+        if(getCase == 1){
+         if(getInput)
+           return theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+         else 
+           return '';
+        }else{
+           return parseFloat(lottery.slave_net_amount).toFixed(2)
+        }
+     };
+      
+
+      
+    
 
     console.log('ranges:',ranges);
 
@@ -204,22 +296,29 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                         <tr>
                             <td>{i + 1}</td>
                             <td class="text-start"><a className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</a></td>
-                            <td class="text-center" >{item.created_at}</td>
+                            <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss')}</td>
                             <td class="text-center">{item.betting_date}</td>
                             {/* <td class="text-center">{item.game_type}</td> */}
-                            <td class="text-end"></td>
+                            <td class="text-end">
+                            {
+                               item.games && item.games.map((item,i) =>(
+                                  item.abbreviation
+                               )
+                               ) 
+                            }
+                          </td>
 
-                            <td class="text-end">{item.rebate_amount}</td>
-                            <td class="text-end">{item.total_bet_net_amount}</td>
+                            <td class="text-end">{ item.rebate_amount ? MoneyFormatDisplay(item.rebate_amount, 1) : 0}</td>
+                            <td class="text-end">{MoneyFormatDisplay(item.total_bet_net_amount, 1)}</td>
 
-                            <td class="text-end">{item.bet_number}</td>
-                            <td class="text-end">{item.total_amount}</td>
+                            <td class="text-end">{MoneyFormatDisplay(item.bet_number, 1)}</td>
+                            <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
                 <div class="clearfix d-flex align-items-center justify-content-center">
-
+              { pageCount > 1 ?
                 <ReactPaginate
                 breakLabel="..."
                 nextLabel="Next >" 
@@ -229,7 +328,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                 previousLabel="< Previous"
                 renderOnZeroPageCount={null}
                 className="pagination"
-            />
+            /> : null }
 
                      {/* <div class="pagination:container">
                         <div class="pagination:number arrow">
@@ -331,7 +430,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
                             <tr key={id}>
                                 <td>{id+1}</td>
                                 <td class="text-start"><a >{item.child_ticket_no}</a></td>
-                                <td class="text-center" >{item.created_at}</td>
+                                <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss')}</td>
                                 <td class="text-center">{drow_date}</td>
                                 <td class="text-center">{item.game_type}</td>
                                 <td class="text-end">{gameName(item.game_play_id)}</td>
@@ -357,46 +456,11 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
 
         }
     }
-    function SearchAbleFormParent(){
-        return (
-            <div class="clearfix curved-card">
-                <div class="row">
-                    <div class="col-md-3 col-12">
-                        <div class="form-group">
-                            <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
-                                <DateRangePicker
-                                    ref={keyRef}
-                                     onApply={(e)=>onApplyData(e)}
-                                    onCancel={keyRef}
-                                    value={dateRange}
-                                    initialSettings={{ startDate: dateRange.split('-')[0], endDate: dateRange.split('-')[1] }}
-                                    onChange={(e)=>setDateRange(e.target.value)}
-                                >
-                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
-                                </DateRangePicker>
-                        </div>                    
-                    </div>
-                    <div class="col-md-2 col-6">
-                        <div class="form-group">
-                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                            {/* <input type="text" onChange={(event) => ticketNumber(event)} class="form-control-custom-big" name="transationid"/> */}
-                            
-                            <input type="text" onChange={(e)=>{ 
-                                 setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
-                            {/* <input type="text"   class="form-control-custom-big" /> */}
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="d-block">&nbsp;</label>
-                            <button type="button" class="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
-                            <button type="button" class="btn-custom-curve1" onClick={()=>reset()}>{t('Reset')}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+    // function SearchAbleFormParent(){
+    //     return (
+            
+    //     );
+    // }
 
     function SearchAbleFormChild(){
         return (
@@ -459,7 +523,91 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber}) => {
         <>
 
             {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}
-            <SearchAbleFormParent /> 
+            {/* <SearchAbleFormParent />  */}
+            {searchAction ? (
+            <div class="clearfix curved-card">
+                <div class="row">
+                    <div class="col-md-3 col-12">
+                        <div class="form-group">
+                            <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
+                                <DateRangePicker
+                                    ref={keyRef}
+                                    onCancel={keyRef}
+                                    initialSettings={{ ranges }}
+                                    onEvent={handleEvent}
+                                >
+                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
+                                </DateRangePicker>
+                        </div>                    
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <div class="form-group">
+                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
+                            <input type="text" onChange={(e)=>{ 
+                                 setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="d-block">&nbsp;</label>
+                            <button type="button" class="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
+                            <button type="button" class="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    ) :
+    (<div class="clearfix curved-card">
+    <div class="row">
+        <div class="col-md-3 col-12">
+            <div class="form-group">
+                <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
+                <DateRangePicker
+                                    ref={keyRef}
+                                    onCancel={keyRef}
+                                    initialSettings={{ ranges }}
+                                    onEvent={handleEvent}
+                                >
+                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
+                                </DateRangePicker>
+            </div>                    
+        </div>
+        <div class="col-md-2 col-6">
+            <div class="form-group">
+                <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
+                <input type="text" onChange={(e)=>{ 
+                                 setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+            </div>
+        </div>
+        <div class="col-md-2 col-6">
+            <div class="form-group">
+                <label for="transactionid" class="fw-bold mb-2">{t('Game')}</label>
+                <select type="text" class="form-control-custom-big" name="transationid">
+                    <option>4D</option>
+                    <option>3D</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2 col-6">
+            <div class="form-group">
+                <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
+                <select type="text" class="form-control-custom-big" name="transationid">
+                    <option>Toto</option>
+                    <option>Magnum</option>
+                    <option>Da ma cai</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="d-block">&nbsp;</label>
+                <button type="button" class="btn-custom-curve2 w-auto">{t('Search')}</button>
+                <button type="button" class="btn-custom-curve1">{t('Reset')}</button>
+            </div>
+        </div>
+    </div>
+</div>)}
+
             <div class="table-responsive my-3">
                 {parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
 

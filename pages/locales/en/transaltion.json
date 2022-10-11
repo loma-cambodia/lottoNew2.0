@@ -115,5 +115,8 @@
     "Reset":"Reset",
     "BET":"BET",
     "BettingList":" Betting List",
-    "betting_history":"Betting History"
+    "betting_history":"Betting History",
+    "Select_Date_Range":"Select Date Range", 
+    "Ticket_No":"Ticket No"
+
 }
