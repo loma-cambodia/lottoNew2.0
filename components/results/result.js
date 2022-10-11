@@ -68,7 +68,7 @@ useEffect(() => {
               <span>{t('Past_Draw_Result')}:  {moment(_initDate).format('MM/DD/YYYY')}  ({getDateName(_initDate)})</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
             </button>
           </h2>
-          <div id="collapseThree" className="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div id="collapseThree" className="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style={{minHeight: '45vh'}}>
             <div className="accordion-body">
               <div className="row">
               {!initResult.length == 0 ?
@@ -187,7 +187,7 @@ useEffect(() => {
                 </div>
                 ))
                 :
-                <div className="text-center">
+                <div className="text-center" style={{minWidth: '50vh'}}>
                   <span>There is no draw on this date</span>
                 </div>
                 }
