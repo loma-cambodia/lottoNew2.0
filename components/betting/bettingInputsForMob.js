@@ -815,7 +815,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         if(localStateData && localStateData.bet_type && localStateData.bet_type.i_box_value){
                             bet_type = 'ibox';
                         } 
-                        if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_value) {
+                        if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled != 1) {
                             bet_type = 'reverse';
                             totalAmountS = totalAmountS * 2; 
                         }
@@ -868,7 +868,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                                         ]  
                                               }
 
-                        // console.log('_mainSubmitData',_mainSubmitData)
+                        console.log('_mainSubmitData',_mainSubmitData)
 
                         if(localStateDataForChange['number'].length < 3){
                             toast.error('Please Enter Valid Number', 
