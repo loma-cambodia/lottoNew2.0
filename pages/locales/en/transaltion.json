@@ -114,5 +114,8 @@
     "Company":"Company",
     "Reset":"Reset",
     "BET":"BET",
-    "BettingList":" Betting List"
+    "BettingList":" Betting List",
+    "Select_Date_Range":"Select Date Range", 
+    "Ticket_No":"Ticket No"
+
 }

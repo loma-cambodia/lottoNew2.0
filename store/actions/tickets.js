@@ -13,7 +13,7 @@ export const getTicketData = (id) => async (dispatch) => {
       'Access-Control-Allow-Origin': '*',
     }
     const res = await axios.get(
-      `${API_BASE_URL}/betList?member_id=7`,{
+      `${API_BASE_URL}/betList?member_id=${id}&ticket_status:UNSETTLE`,{
         headers: headers,
       }
     )
@@ -30,7 +30,7 @@ export const getTicketData = (id) => async (dispatch) => {
   }
 }
 
-export const searchTicketData = (date_range, ticketNumber) => async (dispatch) => {
+export const searchTicketData = (member_id,date_range, ticketNumber) => async (dispatch) => {
   try {
     const headers = {
       'Content-Type': 'application/json',
@@ -42,8 +42,18 @@ export const searchTicketData = (date_range, ticketNumber) => async (dispatch) =
      date_range = date_range.replace(" ", "");
      date_range = date_range.replace(" ", "");
 
-    const res = await axios.get(
-      `${API_BASE_URL}/betList?member_id=7&ticket_no=${ticketNumber}&date_range=${date_range}`,{
+    // let urlHit = `${API_BASE_URL}/betList?member_id=1&ticket_no=${ticketNumber}&date_range=${date_range}&ticket_status:UNSETTLED`;
+
+     let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status:UNSETTLED`;
+     if(ticketNumber)
+     urlHit += `&ticket_no=${ticketNumber}`;
+
+     if(date_range)
+     urlHit += `&date_range=${date_range}`;
+
+
+
+    const res = await axios.get(`${urlHit}`,{
         headers: headers,
       }
     )

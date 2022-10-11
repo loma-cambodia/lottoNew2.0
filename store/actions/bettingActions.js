@@ -46,7 +46,7 @@ export const lotterySubmit = (sendData, callback) => async (dispatch) => {
     console.log('catch:USERS_ERROR', e);
 
     let message = ''
-    if(e.response.data.messages){
+    if(e && e.response && e.response.data && e.response.data.messages){
       message = e.response.data.messages;
     }else 
     message = 'Problem in server,try after some time';

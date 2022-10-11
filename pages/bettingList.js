@@ -17,27 +17,39 @@ export default function BettingList({datauser}) {
 // console.log("TICKETLIST",datauser);
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
+
+  console.log('BettingList:auth:',auth);
+
   const [active, setActive] = useState(false);
+
+
        useEffect(() => {
-        dispatch(getTicketData());
-        dispatch(searchTicketData());
-      },[dispatch]);
+        dispatch(getTicketData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
+        //dispatch(searchTicketData());
+      },[dispatch,auth]);
+
+
+      useEffect(() => {
+       // console.log('111111111111111');
+        dispatch({
+          type: "GET_LOGIN_DETAILS",
+          payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
+      })
+      }, [datauser])
       
       const state = useSelector(state => state);
       let tickets = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
       let ticketsChild = state && state.tickets && state.tickets.ticketsChild ? state.tickets.ticketsChild : [];
 
       let ticketSlave = tickets.ticket_slave
-       console.log("tickets:",tickets)
-
-
-
+   //    console.log("tickets:",tickets)
       
       const ticketSearch = []
-      const GetTicketNumber = (dateRange,ticketNo) => {
+      const GetTicketNumber = (member_id,dateRange,ticketNo) => {
        // const number = e.target.value
-        dispatch(searchTicketData(dateRange,ticketNo));
-        console.log("##%%%%%%#",state)
+        dispatch(searchTicketData(member_id,dateRange,ticketNo));
+       // console.log("##%%%%%%#",state)
         }
 
         const handlePageClick = (event) => {
@@ -63,7 +75,7 @@ export default function BettingList({datauser}) {
       <section class="page-content custom-padding">
     <div class="container">
         {/* <ListFilter/> */}
-         <ListTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber}/> 
+         <ListTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth}/> 
 
 
 
