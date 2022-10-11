@@ -815,8 +815,10 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         if(localStateData && localStateData.bet_type && localStateData.bet_type.i_box_value){
                             bet_type = 'ibox';
                         } 
-                        if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled != 1) {
+                        if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled != 1 && localStateData.bet_type.reverse_value != 0) {
                             bet_type = 'reverse';
+                            alert('pppp');
+                            console.log('localStateDatalocalStateData',localStateData);
                             totalAmountS = totalAmountS * 2; 
                         }
                         if(localStateData && localStateData.number && localStateData.number.value){
@@ -1157,7 +1159,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
             
                     
-            <div className="mt-2">
+            <div className="forTuchPad mt-2">
                 <div className="row">
                     <div className="col-3">
                         <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(1)}>
