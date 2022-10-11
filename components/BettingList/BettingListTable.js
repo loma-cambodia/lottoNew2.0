@@ -262,15 +262,21 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                                ) 
                             }
                           </td>
-                          <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
+                          <td class="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
 
                             <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
-                            <td class="text-end">{MoneyFormatDisplay(item.total_bet_net_amount, 1)}</td>
+                            <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
 
                             
                             
                         </tr>
                     ))}
+
+                      {currentItems && currentItems.length == 0 ?(
+                            <tr>
+                                <td colSpan={9}>No Data Found!</td>
+                            </tr>
+                        ): null}
                     </tbody>
                 </table>
                 <div class="clearfix d-flex align-items-center justify-content-center">
@@ -326,6 +332,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                 </>
             );
         }else{
+            return (<><h1>No Data Found!</h1></>)
 
         }
     }
@@ -381,8 +388,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                     <tbody>
                 
                         {tickets.map((item,id) =>(
-                                
-                                
                             <tr key={id}>
                                 <td>{id+1}</td>
                                 <td class="text-start"><a >{item.child_ticket_no}</a></td>
@@ -401,6 +406,12 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                                 <td class="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
                             </tr>
                         ))}
+
+                    {tickets.length == 0 ?(
+                            <tr key={id}>
+                                <td colSpan={14}>{id+1}</td>
+                            </tr>
+                        ): null}
                     </tbody>
                 </table>
                 </>
