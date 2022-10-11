@@ -1,10 +1,14 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
 import Banner2 from "../components/results/banner2";
 import Result from "../components/results/result";
 import { useTranslation } from "react-i18next";
+
+import { useDispatch, useSelector } from "react-redux";
+import {getResults} from '../store/actions/resultActions';
+
 // import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import Filter from "../components/results/filter";
@@ -15,11 +19,16 @@ import Filter from "../components/results/filter";
 
     const [initDate, setDate] = useState("10-10-2022");
 
-    console.log('initDate: ',initDate)
-    const dateFilter = (date) =>{
-          
-  }
+    const dispatch = useDispatch();
+    
+        console.log('initDate in results: ',initDate)
 
+
+        const dateFilter = (date) =>{
+            
+    }
+    useEffect(() => {
+    },[]);
     return (
         <>
             <Head>
@@ -46,8 +55,8 @@ import Filter from "../components/results/filter";
             </div> */}
             {/*--Mobile Menu-*/}
             <Banner2/>
-            <section class="page-content py-3">
-                <div class="container">
+            <section className="page-content py-3">
+                <div className="container">
                 <Filter _setDate = {setDate}/>
                 <Result _initDate={initDate}/>
                 </div>

@@ -2753,13 +2753,13 @@ input.form-control.text-right-for-amount {
 .result-filter{
   min-height: 38px;
 }
-.DMC{
+.damacai{
     background-color: #df3948;
 }
-.DMC .s-and-c {
+.damacai .s-and-c {
   background-color: #1c377c;
 }
-.card.DMC {
+.card.damacai {
   border: 2px solid #c42026;
 }
 .Magnum{
@@ -2771,17 +2771,20 @@ input.form-control.text-right-for-amount {
 .card.Magnum {
   border: 2px solid #f17e00;
 }
-.TOTO{
+.Toto{
   background-color: #df3948 ;
 }
-.TOTO .s-and-c {
+.Toto .s-and-c {
   background-color: #000;
 }
-.card.TOTO {
+.card.Toto {
   border: 2px solid #000;
 }
 .react-datepicker-wrapper input[type="text"]{
   height: 38px;
+}
+.react-datepicker__day.react-datepicker__day--highlighted{
+  background-color: #bf2262;
 }
 /* ---------- Pagination Css --------- */
 .pagination li a {

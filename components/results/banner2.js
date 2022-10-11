@@ -8,7 +8,7 @@ const Banner2 = () => {
         <section className="custom-breadcrumb">
         <div className="container">
             <div className="breadcrumb-heading">
-                <h1 class="text-uppercase">{t('Past_Draw_Result')}</h1>
+                <h1 className="text-uppercase">{t('Past_Draw_Result')}</h1>
             </div>
             <div className="breadcrumb-list">
                 <ul>
