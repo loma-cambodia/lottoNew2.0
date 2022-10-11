@@ -31,7 +31,7 @@ export const lotterySubmit = (sendData, callback) => async (dispatch) => {
       headers: headers,
     })
     console.log('res:tickets:', res)
-
+    
       if(res.data.message_id  == 200){
 
         return callback({
@@ -64,8 +64,16 @@ export const lotterySubmit = (sendData, callback) => async (dispatch) => {
     // });
 
     // return callback(res.data);
-    console.log('catch:Error:e:', e);
 
+    console.log('catch:Error:e:', e.response.data.messages);
+
+    return callback({
+      message: 'Failed',
+      messages:e.response.data.messages,
+      message_id:e.response.data.message_id,
+      data: [],
+      statusCode: e.response.status,
+    })
     // let message = ''
     // if(e && e.response && e.response.data && e.response.data.messages){
     //   message = e.response.data.messages;
