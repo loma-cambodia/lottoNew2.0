@@ -2591,12 +2591,12 @@ span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
   content: '';
   width: 20px;
   height: 20px;
-  background: #f7df68 url(../images/icons/dow_arrow-black.png);
+  background: rgb(253 184 3) url(../images/icons/dow_arrow-black.png);
   background-repeat: no-repeat;
   background-size: cover;
   right: 5px;
   top: 5px;
-  z-index: 9999;
+  z-index: 0;
   position: absolute;
 }
 span.name-gp {
@@ -2782,4 +2782,25 @@ input.form-control.text-right-for-amount {
 }
 .react-datepicker-wrapper input[type="text"]{
   height: 38px;
+}
+/* ---------- Pagination Css --------- */
+.pagination li a {
+  background:#efefef;
+  border-radius: 5px;
+  margin-right: 5px;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+}
+.pagination li a:hover {
+  background: #dc3545;
+  color: #fff !important;
+}
+.pagination li.selected a {
+  background: #dc3545;
+  color: #fff !important;
+}
+.pagination li:last-child a {
+  margin-right: 0;
 }

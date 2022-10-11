@@ -30,22 +30,26 @@ export const getTicketData = (id) => async (dispatch) => {
   }
 }
 
-export const searchTicketData = (ticketNumber) => async (dispatch) => {
+export const searchTicketData = (date_range, ticketNumber) => async (dispatch) => {
   try {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     }
-
+   /// const date = date_range.replace(/\s+/g, '-');
     //console.log('ticketNumber:', ticketNumber);
+
+     date_range = date_range.replace(" ", "");
+     date_range = date_range.replace(" ", "");
+
     const res = await axios.get(
-      `${API_BASE_URL}/ticket?member_id=7&ticket_no=${ticketNumber}`,{
+      `${API_BASE_URL}/betList?member_id=7&ticket_no=${ticketNumber}&date_range=${date_range}`,{
         headers: headers,
       }
     )
     console.log("SEARCH TICKET-->>",res)
     dispatch({
-      type: 'GET_SEARCH_TICKETS_CHILD',
+      type: 'GET_SEARCH_TICKETS',
       payload: res.data.data,
     })
   } catch (e) {

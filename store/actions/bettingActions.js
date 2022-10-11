@@ -43,9 +43,15 @@ export const lotterySubmit = (sendData, callback) => async (dispatch) => {
     // });
 
     // return callback(res.data);
-    console.log('catch:USERS_ERROR', e)
+    console.log('catch:USERS_ERROR', e);
+
+    let message = ''
+    if(e.response.data.messages){
+      message = e.response.data.messages;
+    }else 
+    message = 'Problem in server,try after some time';
     return callback({
-      message: 'Problem in server,try after some time',
+      message: message,
       statusCode: 401,
     })
   }

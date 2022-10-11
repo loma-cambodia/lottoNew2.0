@@ -238,7 +238,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
                           <b key={ids}>
                             {itemGame.selected ? (itemGame.abbreviation) : ''}
                           </b>
-                        ) )}
+                        ))}
                       </span>
                     </> : ''}
                   </div>
@@ -250,28 +250,16 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
       }
   }
 
-    // console.log("bettingInitData:",bettingInitData)
-
-
     bettingInitData && bettingInitData.map(item => {
-        
       if(item.selected == true){
-      item.games.map(itemGame => {
-          if(itemGame.selected)
-             gameCount++; 
-             gameSelectOrNot=true;
-      })
-
+        item.games.map(itemGame => {
+            if(itemGame.selected)
+              gameCount++; 
+              gameSelectOrNot=true;
+        })
       }
-      
     });
 
-    //   let totalAmounta = 0;
-    //   bettingInputsDataParent && bettingInputsDataParent.map(item => {
-    //         if(item.dataInit.amount.value){
-    //           totalAmounta += parseInt(item.dataInit.amount.value)
-    //         }
-    //   });
     return(
         <>
           <ToastContainer />
@@ -309,6 +297,8 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
                                                     _bettingInitData={bettingInitData}
                                                     _limit={betLimit}
                                                     _gameCount={gameCount}
+                                                    _setBettingInitData={setBettingInitData}
+                                                    _setActiveAll={setActiveAll}
             />) )}
 
 
