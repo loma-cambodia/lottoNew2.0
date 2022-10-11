@@ -28,11 +28,11 @@ const [initResult, setResult] = useState([]);
 console.log('inititresult in result: ',initResult)
 
     const getDrawResults = () =>{
-    const dataSubmit = moment(_initDate).format('YYYY-MM-DD')
-    console.log('dataSubmit date:   ',moment(_initDate).format('YYYY-MM-DD'));
-
-    dispatch(getResults(dataSubmit, response =>{
-      console.log('inside dispatch dataSubmit date:   ',dataSubmit);
+    // const dataSubmit = moment(_initDate).format('YYYY-MM-DD')
+    // console.log('dataSubmit date:   ',moment(_initDate).format('YYYY-MM-DD'));
+    console.log('_initDate befre dispatch:   ',_initDate)
+    dispatch(getResults(_initDate, response =>{
+      // console.log('inside dispatch dataSubmit date:   ',dataSubmit);
 
         if(response.statusCode  == 201  || response.statusCode  == 200 ){
 
@@ -65,7 +65,21 @@ useEffect(() => {
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingThree">
             <button className="accordion-button" type="button">
-              <span>{t('Past_Draw_Result')}:  {moment(_initDate).format('MM/DD/YYYY')}  ({getDateName(_initDate)})</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
+             {
+              _initDate === undefined ?
+              <div>
+              <span>Latest Draw Result:</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
+              </div> 
+              :
+              !initResult .length == 0 ?
+            <div>
+            <span>{t('Past_Draw_Result')}:  {moment(initResult[0].result_date).format('MM/DD/YYYY')}  ({getDateName(initResult[0].result_date)})</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
+            </div>    
+            :
+            <div>
+            <span>No Draw Result</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
+            </div> 
+              }
             </button>
           </h2>
           <div id="collapseThree" className="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style={{minHeight: '45vh'}}>
