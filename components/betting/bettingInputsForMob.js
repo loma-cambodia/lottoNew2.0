@@ -51,12 +51,26 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     /////////////////////////////////////
 
     const [curserPointer, setCurserPointer] = React.useState('');
+
     const [numberValue4D, setNumberValue4D] = React.useState('');
     const [numberValue3D, setNumberValue3D] = React.useState('');
     const [bigValue, setBigValue] = React.useState('');
     const [smallValue, setSmallValue] = React.useState('');
     const [a3Value, setA3Value] = React.useState('');
     const [c3Value, setC3Value] = React.useState('');
+
+
+        
+    
+    // const [numberValue4DBorder, setNumberValue4DBorder] = React.useState(true);
+    // const [numberValue3DBorder, setNumberValue3DBorder] = React.useState(false);
+    // const [bigValueBorder, setBigValueBorder] = React.useState(false);
+    // const [smallValueBorder, setSmallValueBorder] = React.useState(false);
+    // const [a3ValueBorder, setA3ValueBorder] = React.useState(false);
+    // const [c3ValueBorder, setC3ValueBorder] = React.useState(false);
+
+
+
 
     useEffect(() => {
         findWitchTypeOfGame();
@@ -249,7 +263,10 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
              } 
             
         }else  if (operationField == 'number') {
-          
+            setBigValue('');
+            setSmallValue('');
+            setA3Value('');
+            setC3Value('');
             
         }else {
             if ( (localStateDataForChange['_3a']['value'] || localStateDataForChange['_3c']['value']))
@@ -316,52 +333,48 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             return returnPermutation;
     }
 
-    const calculationOfTotalAmount = (getRow) => {
+    const calculationOfTotalAmount = (getRow,gameCounts) => {
         let bet_type = '';
         let total_sum = 0;
-        if(getRow && getRow.bet_type && getRow.bet_type.box_value) 
-           bet_type = 'box';
-        else if(getRow && getRow.bet_type && getRow.bet_type.i_box_value) 
-           bet_type = 'ibox';
-        else if(getRow && getRow.bet_type && getRow.bet_type.reverse_value) 
-           bet_type = 'reverse';
-        else if(getRow && getRow.number && getRow.number.value){
-            if (getRow.number.value.includes("R")) 
-                bet_type = 'rolling';  
-        } 
-  
-       if(getRow && getRow.big && getRow.big.value) 
-        total_sum += parseInt(getRow.big.value);
-  
-        if(getRow && getRow.small && getRow.small.value) 
-        total_sum += parseInt(getRow.small.value);
-  
-        if(getRow && getRow._3a && getRow._3a.value) 
-        total_sum += parseInt(getRow._3a.value);
-  
-        if(getRow && getRow._3c && getRow._3c.value) 
-        total_sum += parseInt(getRow._3c.value);
-  
-  
-  
-        let totalAmount =  0;
-        let totalBoxing =  0;
-        if(_gameCount && total_sum){
-            totalAmount = _gameCount * total_sum 
-        } 
-        if(bet_type == 'reverse'){
-          totalAmount = totalAmount * 2;  
+        if(getRow && getRow.big && getRow.big.value) {
+            total_sum += parseInt(getRow.big.value);
         }
-        if(bet_type == 'rolling'){
-            totalAmount = totalAmount * 10;  
-        }  
-        if(bet_type == 'box'){
+        if(getRow && getRow.small && getRow.small.value) {
+            total_sum += parseInt(getRow.small.value);
+        }
+        if(getRow && getRow._3a && getRow._3a.value) {
+            total_sum += parseInt(getRow._3a.value);
+        }
+        if(getRow && getRow._3c && getRow._3c.value) {
+            total_sum += parseInt(getRow._3c.value);
+        }
+        var totalAmount =  total_sum && total_sum ? total_sum : '0' ;
+        let totalBoxing =  0;
+        if(gameCounts != ''){
+            console.log(total_sum)
+            console.log(_gameCount)
+            totalAmount = gameCounts * totalAmount ;
+        } 
+        if(getRow && getRow.bet_type && getRow.bet_type.box_value) {
+            bet_type = 'box';
             totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
         }
+        if(getRow && getRow.bet_type && getRow.bet_type.i_box_value){
+            bet_type = 'ibox';
+        } 
+        if(getRow && getRow.bet_type && getRow.bet_type.reverse_value) {
+            bet_type = 'reverse';
+            totalAmount = totalAmount * 2; 
+        }
+        if(getRow && getRow.number && getRow.number.value){
+            if (getRow.number.value.includes("R")) {
+                bet_type = 'rolling';
+                totalAmount = totalAmount * 10;  
+            }    
+        } 
         if(totalBoxing){
             totalAmount = totalAmount * totalBoxing;  
         }
-        console.log(totalAmount); 
         return totalAmount;
     }
   
@@ -698,13 +711,16 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             localStateDataForChange['bet_type'] = { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }
         }
 
-        let totalAmount = calculationOfTotalAmount(localStateDataForChange);
-            if(totalAmount)
-                localStateDataForChange = { ...localStateDataForChange, amount: { value: totalAmount, disabled: 1 } };
+        // let totalAmount = sscalculationOfTotalAmount(localStateDataForChange,'');
+        //     if(totalAmount)
+        //         localStateDataForChange = { ...localStateDataForChange, amount: { value: totalAmount, disabled: 1 } };
 
         setLocalStateData(localStateDataForChange);
         setPageLoadCount(pageLoadCount + 1);
     }
+    
+    // console.log('_mainSubmitData',localStateData);
+
     const previewSubmitData = (getAction, getIndex = 0) => {
         // alert(getAction)
         let finalSubmitData = _finalSubmitData;
@@ -729,7 +745,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     
                         let amount1 = '';
                         let amount2 = '';
-    
+                        
+                        console.log('_mainSubmitData',localStateData);
+
                         if(localStateData && localStateData.big && localStateData.big.value){
                             amount1 = localStateData.big.value;
                         }else if(localStateData && localStateData._3a && localStateData._3a.value){
@@ -762,11 +780,76 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         localStateDataForChange['company'] = game;
                         localStateDataForChange['bet_type'] = bet_type;
     
-                        let amountTotal = localStateData && localStateData.amount && localStateData.amount.value ? localStateData.amount.value : "0";
+///////////////////////////total Amount
+
+
+
+
+                    // const calculationOfTotalAmount = (getRow,gameCounts) => {
+                        
+                        let total_sum = 0;
+                        if(localStateData && localStateData.big && localStateData.big.value) {
+                            total_sum += parseInt(localStateData.big.value);
+                        }
+                        if(localStateData && localStateData.small && localStateData.small.value) {
+                            total_sum += parseInt(localStateData.small.value);
+                        }
+                        if(localStateData && localStateData._3a && localStateData._3a.value) {
+                            total_sum += parseInt(localStateData._3a.value);
+                        }
+                        if(localStateData && localStateData._3c && localStateData._3c.value) {
+                            total_sum += parseInt(localStateData._3c.value);
+                        }
+
+                        var totalAmountS =  total_sum && total_sum ? total_sum : '0' ;
+                        let totalBoxing =  0;
+                        if(gameArr.length != ''){
+                            console.log(total_sum)
+                            console.log(_gameCount)
+                            totalAmountS = gameArr.length * totalAmountS ;
+                        } 
+                        if(localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled == 0 && localStateData.bet_type.box_value == 1) {
+                            bet_type = 'box';
+                            totalBoxing = totalBoxingCalculation(localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : 0);
+                        }
+                        if(localStateData && localStateData.bet_type && localStateData.bet_type.i_box_value){
+                            bet_type = 'ibox';
+                        } 
+                        if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled != 1 && localStateData.bet_type.reverse_value != 0) {
+                            bet_type = 'reverse';
+                            alert('pppp');
+                            console.log('localStateDatalocalStateData',localStateData);
+                            totalAmountS = totalAmountS * 2; 
+                        }
+                        if(localStateData && localStateData.number && localStateData.number.value){
+                            if (localStateData.number.value.includes("R")) {
+                                bet_type = 'rolling';
+                                totalAmountS = totalAmountS * 10;  
+                            }    
+                        } 
+                        if(totalBoxing){
+                            totalAmountS = totalAmountS * totalBoxing;  
+                        }
+
+                       totalAmountS;
+
+////////////////////////////////////////
+
+                        let amountTotal = 0;
+                        let totalAmount = totalAmountS;
+                        if(totalAmount){
+                            localStateDataForChange['amountTotal'] = totalAmount;
+                            amountTotal = totalAmount;
+                        }else{
+                            localStateDataForChange['amountTotal'] = 0;
+                            amountTotal = 0;
+                        }
+
+                        // let amountTotal = localStateData && localStateData.amount && localStateData.amount.value ? localStateData.amount.value : "0";
                   
                         // console.log('amount1',localStateDataForChange['amount1']);
                         
-                        localStateDataForChange['amountTotal'] = amountTotal;
+                        // localStateDataForChange['amountTotal'] = amountTotal;
                         
                         let _mainSubmitData = {
                                                 "date":day,
@@ -786,6 +869,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                                             }
                                                         ]  
                                               }
+
+                        console.log('_mainSubmitData',_mainSubmitData)
+
                         if(localStateDataForChange['number'].length < 3){
                             toast.error('Please Enter Valid Number', 
                             {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
@@ -821,8 +907,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         _setFinalSubmitData(finalSubmitData);
 
         var slackTotalAmount = 0;
+        
         finalSubmitData.map(itemAmount => {
-            // console.log('itemAmount',itemAmount);
+            console.log('itemAmount',itemAmount);
             slackTotalAmount = slackTotalAmount+itemAmount.amountTotal; 
         })
 
@@ -880,6 +967,54 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
           }));
     } 
 
+    const backForwaordCap = (work) => {
+        // alert(curserPointer);
+        if(work=='front'){
+            if(curserPointer=='number4d'){
+                setCurserPointer('big');
+            }
+            if(curserPointer=='big'){
+                setCurserPointer('small');
+            }
+            if(curserPointer=='small'){
+                setCurserPointer('number4d');
+            }
+
+            
+            if(curserPointer=='number3d'){
+                setCurserPointer('3a');
+            }
+            if(curserPointer=='3a'){
+                setCurserPointer('3c');
+            }
+            if(curserPointer=='3c'){
+                setCurserPointer('number3d');
+            }
+        }
+        if(work=='back'){
+            if(curserPointer=='number4d'){
+                setCurserPointer('small');
+            }
+            if(curserPointer=='big'){
+                setCurserPointer('number4d');
+            }
+            if(curserPointer=='small'){
+                setCurserPointer('big');
+            }   
+            
+            if(curserPointer=='number3d'){
+                setCurserPointer('3c');
+            }
+            if(curserPointer=='3a'){
+                setCurserPointer('number3d');
+            }
+            if(curserPointer=='3c'){
+                setCurserPointer('3a');
+            }         
+        }
+    }
+
+
 // console.log("resultDataaa:",resultData)
     return (
         
@@ -898,7 +1033,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 // value={localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : ""}
                                 maxLength={4}
                                 minLength={3}
-                                onChange={(e) => numberInputHandler(e.target.value, 'number')}
+                                // onChange={(e) => numberInputHandler(e.target.value, 'number')}
+                                style={{ border: curserPointer == 'number4d' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
                         <div className="col-3" style={{ padding: '0px' }}>
@@ -909,6 +1045,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 placeholder={t('Big_Bet')}
                                 value={bigValue}
                                 onClick={() => setCurserPointer('big')} 
+                                style={{ border: curserPointer == 'big' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
                         <div className="col-3" style={{ padding: '-0.9px' }}>
@@ -919,6 +1056,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 placeholder={t('Small_Bet')}
                                 value={smallValue}
                                 onClick={() => setCurserPointer('small')} 
+                                style={{ border: curserPointer == 'small' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
                     </div>
@@ -936,7 +1074,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 // value={localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : ""}
                                 maxLength={3}
                                 minLength={3}
-                                onChange={(e) => numberInputHandler(e.target.value, 'number')}
+                                // onChange={(e) => numberInputHandler(e.target.value, 'number')}
+                                style={{ border: curserPointer == 'number3d' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
                         <div className="col-3" style={{ padding: '0px' }}>
@@ -945,10 +1084,11 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 type="text" 
                                 className="form-control text-right-for-amount"
                                 value={a3Value} 
-                                onChange={(e) => numberInputHandler(e.target.value, '_3a')}
+                                // onChange={(e) => numberInputHandler(e.target.value, '_3a')}
                                 // value={localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : ""}
                                 placeholder="3A"
                                 onClick={() => setCurserPointer('3a')}
+                                style={{ border: curserPointer == '3a' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
                         <div className="col-3" style={{ padding: '-0.9px' }}>  
@@ -957,10 +1097,11 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 type="text" 
                                 className="form-control text-right-for-amount"
                                 value={c3Value} 
-                                onChange={(e) => numberInputHandler(e.target.value, '_3c')}
+                                // onChange={(e) => numberInputHandler(e.target.value, '_3c')}
                                 // value={localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : ""}
                                 placeholder="3C" 
                                 onClick={() => setCurserPointer('3c')}
+                                style={{ border: curserPointer == '3c' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
                     </div>
@@ -1018,7 +1159,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
             
                     
-            <div className="mt-2">
+            <div className="forTuchPad mt-2">
                 <div className="row">
                     <div className="col-3">
                         <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => setAllData(1)}>
@@ -1087,7 +1228,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 </div>
                 <div className="row mt-2">
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button onClick={() => backForwaordCap('back') } className="btn btn-outline-dark" style={{ width:'100%' }}>
                             <img className="img-fluid" src="images\betting\12569.png" alt="" style={{ width: '22px' }} />
                         </button>
                     </div>
@@ -1097,7 +1238,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         </button>
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-outline-dark" style={{ width:'100%' }}>
+                        <button onClick={() => backForwaordCap('front') } className="btn btn-outline-dark" style={{ width:'100%' }}>
                             <img className="img-fluid" src="images\betting\1256.png" alt="" style={{ width: '22px' }} />
                         </button>
                     </div>

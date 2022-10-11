@@ -2807,3 +2807,11 @@ input.form-control.text-right-for-amount {
 .pagination li:last-child a {
   margin-right: 0;
 }
+
+.forTuchPad .btn:focus-visible { 
+  background-color: white !important; 
+}
+.forTuchPad .btn:first-child:hover, .forTuchPad :not(.btn-check)+.btn:hover {
+  color: #000 !important;
+  background-color: #fff !important;
+}
