@@ -2558,13 +2558,13 @@ span.outer-circle-gp.selected-gp-h5 span.inner-circle-gp img {
   border: 1px solid #fdb803 !important;
 }
 
-.filter-text .text-filter {
-  display: none;
-  }
 @media (max-width:692px) {
   .smallLetter{
       font-size: 1.30rem;
   }
+  .filter-text .text-filter {
+    display: none;
+    }
 }
 @media only screen and (max-width:768px)  {
   .errorBg{
@@ -2750,7 +2750,42 @@ input.form-control.text-right-for-amount {
     padding: 1px 0;
   }
 }
-
+.result-filter{
+  min-height: 38px;
+}
+.P{
+    background-color: #df3948;
+}
+.P .s-and-c {
+  background-color: #1c377c;
+}
+.card.P {
+  border: 2px solid #c42026;
+}
+.M{
+  background-color: #ffc107 ;
+}
+.M .s-and-c {
+  background-color: #f17e00;
+}
+.card.M {
+  border: 2px solid #f17e00;
+}
+.T{
+  background-color: #df3948 ;
+}
+.T .s-and-c {
+  background-color: #000;
+}
+.card.T {
+  border: 2px solid #000;
+}
+.react-datepicker-wrapper input[type="text"]{
+  height: 38px;
+}
+.react-datepicker__day.react-datepicker__day--highlighted{
+  background-color: #bf2262;
+}
 /* ---------- Pagination Css --------- */
 .pagination li a {
   background:#efefef;
