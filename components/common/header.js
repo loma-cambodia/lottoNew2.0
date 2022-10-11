@@ -15,6 +15,7 @@ import {useRouter} from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
 import {getLogin} from '../../store/actions/authActions';
 
+
 const Header = ({datauser,_auth}) => {
 
    const dispatch = useDispatch();
@@ -61,9 +62,15 @@ const Header = ({datauser,_auth}) => {
 
 
   const loginAPICall = () => {
-    
-    dispatch(getLogin());
-  }
+
+    let objectWithData = {
+       "customer_name": auth && auth.auth && auth.auth.customer_name ? auth.auth.customer_name : '',
+       "customer_id":  auth && auth.auth && auth.auth.customer_id ? auth.auth.customer_id : 0,
+       "merchant_id":  auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0,
+       "language":   auth && auth.lang ? auth.lang : 'en'
+    } 
+   dispatch(getLogin(objectWithData));
+ }
 
 
   function LangTypeFun({langTypeVal}){
@@ -151,7 +158,9 @@ const Header = ({datauser,_auth}) => {
                   <div className="right-part-menu">
                       <ul className="right-part-list">
                           <li>
-                              <span className="text-end mb-0 user-details"><span className="user-id text-black" >{auth && auth.auth  && auth.auth.name ? auth.auth.name[0].toUpperCase() + auth.auth.name.substring(1)  : "" }</span><a href="#" className="reload-icon"><span ><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>
+                              <span className="text-end mb-0 user-details">
+                                <span className="user-id text-black" >{auth && auth.auth  && auth.auth.name ? auth.auth.name[0].toUpperCase() + auth.auth.name.substring(1)  : "" }</span>
+                                <a href="#" className="reload-icon"><span onClick={() => loginAPICall()}><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>
                                 
                               { auth && auth.auth && auth && auth.auth.wallet && auth.auth.wallet.amount ? parseFloat(auth.auth.wallet.amount).toFixed(2)  : "0.00" }
                                 

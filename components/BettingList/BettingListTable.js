@@ -57,11 +57,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
 
 
-     //   console.log('fromDate:',fromDate);
-     //   console.log('toDate:',toDate);
-
-
-
 
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
@@ -71,22 +66,12 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       }, [itemOffset,itemsPerPage,_tickets]);
 
 
-    //   useEffect(() => {
-    //     const endOffset = itemOffset + itemsPerPage;
-    //     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    //     setCurrentItems(Pkglottery1.slice(itemOffset, endOffset));
-    //     setPageCount(Math.ceil(Pkglottery1.length / itemsPerPage));
-    //   }, [itemOffset, itemsPerPage, Pkglottery1]);
-
-
 
     const handleApply1 = (event, picker) => {
         setDates1({
           startDate: picker.startDate,
           endDate: picker.endDate,
         });
-       // console.log("<--START: ",dates1)
-       // console.log("<--END: ",dates1.endDate._d)
       };
 
     
@@ -100,31 +85,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         ['This Year']: [moment().startOf('year')],
       });
 
-      console.log("ranges: ",ranges);
-
-    //   const range = {
-    //     Today: [moment(), moment()],
-    //     Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
-    //     "Last 7 Days": [moment().subtract(6, "days"), moment()],
-    //     "Last 30 Days": [moment().subtract(29, "days"), moment()],
-    //     "This Month": [moment().startOf("month"), moment().endOf("month")],
-    //     "Last Month": [
-    //       moment()
-    //         .subtract(1, "month")
-    //         .startOf("month"),
-    //       moment()
-    //         .subtract(1, "month")
-    //         .endOf("month")
-    //     ],
-    //     "Last Year": [
-    //       moment()
-    //         .subtract(1, "year")
-    //         .startOf("year"),
-    //       moment()
-    //         .subtract(1, "year")
-    //         .endOf("year")
-    //     ]
-    //   };
 
       const [ticketList, setTicketList] = useState([]);
       const [childDataTickets, setChildDataTickets] = useState([]);
@@ -140,10 +100,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
       const GetTicketNumber = _GetTicketNumber
 
-    //  useEffect(() => {
-      //  console.log(ticketNo)
-   //   }, [ticketNo])
-        
+
       function formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
@@ -167,13 +124,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         setSearchAction(false);
     }
 
-    // const ticketNumber = (event) =>{
-    //     const val = event.target.value;
-    //     // const state12 = dispatch(searchTicketData(val));
-    //     // let ticketsssss = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
-    //     GetTicketNumber(val)
-    //     console.log("TicketNumber STATE:",val)
-    // }
     
     const backButton = () =>{
         setParentAction(true);
@@ -187,7 +137,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         const newOffset = (event.selected * itemsPerPage) % _tickets.length;
        console.log(
          `User requested page number ${event.selected}, which is offset ${newOffset}`
-
        );
         setItemOffset(newOffset);
       };
