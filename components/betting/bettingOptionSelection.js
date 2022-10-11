@@ -280,16 +280,25 @@ const [isLoading,  setIsLoading] = React.useState(false);
        setIsLoading(true);
 
          dispatch(lotterySubmit(dataSubmit, response =>{
+
+            console.log('111:response:',response);
             
             if(response.statusCode  == 201  || response.statusCode  == 200 ){
 
+                console.log('if:response:',response);
+
                 if(response.data.message_id == 200){
+
+
+                    console.log('message_id:response:',response);
 
                     setResultData(response.data)
                     modelOpenCustom('success');
                     loginAPICall();
 
-                }else {
+                }else { 
+
+                    console.log('else:response:',response);
 
                     modelOpenCustom(response.data.messages);
 
