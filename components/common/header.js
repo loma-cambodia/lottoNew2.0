@@ -136,6 +136,12 @@ const Header = ({datauser,_auth}) => {
                               {/* Betting List */}
                               </Link>
                             </li>
+                            <li className= {`${router.pathname === "/settleList" ? "active-header":""}`}>
+                            <Link href="/settleList">
+                             Betting History
+                              {/* Betting List */}
+                              </Link>
+                            </li>
                             {/* <li class="dropdown-desktop">
                             <a href="#" >{t('History')} </a>
                             <ul class="sub-menu-desktop">

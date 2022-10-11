@@ -5,15 +5,15 @@ import axios from 'axios'
 //http://api.kk-lotto.com:8080/frontend-api
 //http://api.kk-lotto.com:8080/frontend-api/ticket?member_id=4
 export const getTicketData = (id) => async (dispatch) => {
- 
-  console.log('getTicketData:');
+ const userId = id
+  console.log('getTicketData:',userId);
   try {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     }
     const res = await axios.get(
-      `${API_BASE_URL}/betList?member_id=7`,{
+      `${API_BASE_URL}/betList?member_id=1&ticket_status=UNSETTLED`,{
         headers: headers,
       }
     )
@@ -43,7 +43,8 @@ export const searchTicketData = (date_range, ticketNumber) => async (dispatch) =
      date_range = date_range.replace(" ", "");
 
     const res = await axios.get(
-      `${API_BASE_URL}/betList?member_id=7&ticket_no=${ticketNumber}&date_range=${date_range}`,{
+      `${API_BASE_URL}/betList?member_id=1&ticket_status:UNSETTLED&ticket_no=${ticketNumber}&date_range=${date_range}`,{
+        // `${API_BASE_URL}/betList?member_id=1&ticket_no=${ticketNumber}`,{
         headers: headers,
       }
     )

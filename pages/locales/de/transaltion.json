@@ -114,5 +114,6 @@
     "Company":"公司",
     "Reset":"重置",
     "BET":"投注",
-    "BettingList":"投注单"
+    "BettingList":"投注单",
+    "betting_history":"投注历史"
 }
