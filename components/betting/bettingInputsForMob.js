@@ -832,11 +832,11 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         }
         _setFinalSubmitData(finalSubmitData);
 
-        var slackTotalAmount = 0;
-        finalSubmitData.map(itemAmount => {
-            // console.log('itemAmount',itemAmount);
-            slackTotalAmount = slackTotalAmount+itemAmount.amountTotal; 
-        })
+        var slackTotalAmount = localStateData && localStateData.amount && localStateData.amount.value ? localStateData.amount.value : "0";
+        // finalSubmitData.map(itemAmount => {
+        //     // console.log('itemAmount',itemAmount);
+            slackTotalAmount = slackTotalAmount; 
+        // })
 
         setTotalAmount(slackTotalAmount);
 
