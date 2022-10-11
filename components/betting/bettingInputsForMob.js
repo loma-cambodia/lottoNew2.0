@@ -902,6 +902,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         let finalSubmitData = _finalSubmitData;
         if(getAction == 'remove'){
             finalSubmitData = finalSubmitData.filter((item,id) => id != getIndex);
+            if(finalSubmitData.length == 0){
+                setMainSubmitData([]);
+            }
         }
         if(finalSubmitData.length < 10 && getAction == 'add'){
             var x = 0;
