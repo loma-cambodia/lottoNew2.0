@@ -45,7 +45,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       });
 
 
-      const itemsPerPage  = 5;
+      const itemsPerPage  = 25;
       const [currentItems, setCurrentItems] = useState(null);
       const [pageCount, setPageCount] = useState(5);
       const [itemOffset, setItemOffset] = useState(0);
@@ -54,11 +54,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
       const [fromDate, setFromDate] = useState(new Date('2022-10-12'));
       const [toDate, setToDate] = useState(new Date());
-
-
-
-     //   console.log('fromDate:',fromDate);
-     //   console.log('toDate:',toDate);
 
 
 
@@ -71,22 +66,12 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       }, [itemOffset,itemsPerPage,_tickets]);
 
 
-    //   useEffect(() => {
-    //     const endOffset = itemOffset + itemsPerPage;
-    //     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    //     setCurrentItems(Pkglottery1.slice(itemOffset, endOffset));
-    //     setPageCount(Math.ceil(Pkglottery1.length / itemsPerPage));
-    //   }, [itemOffset, itemsPerPage, Pkglottery1]);
-
-
 
     const handleApply1 = (event, picker) => {
         setDates1({
           startDate: picker.startDate,
           endDate: picker.endDate,
         });
-       // console.log("<--START: ",dates1)
-       // console.log("<--END: ",dates1.endDate._d)
       };
 
     
@@ -100,31 +85,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         ['This Year']: [moment().startOf('year')],
       });
 
-      console.log("ranges: ",ranges);
-
-    //   const range = {
-    //     Today: [moment(), moment()],
-    //     Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
-    //     "Last 7 Days": [moment().subtract(6, "days"), moment()],
-    //     "Last 30 Days": [moment().subtract(29, "days"), moment()],
-    //     "This Month": [moment().startOf("month"), moment().endOf("month")],
-    //     "Last Month": [
-    //       moment()
-    //         .subtract(1, "month")
-    //         .startOf("month"),
-    //       moment()
-    //         .subtract(1, "month")
-    //         .endOf("month")
-    //     ],
-    //     "Last Year": [
-    //       moment()
-    //         .subtract(1, "year")
-    //         .startOf("year"),
-    //       moment()
-    //         .subtract(1, "year")
-    //         .endOf("year")
-    //     ]
-    //   };
 
       const [ticketList, setTicketList] = useState([]);
       const [childDataTickets, setChildDataTickets] = useState([]);
@@ -140,10 +100,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
       const GetTicketNumber = _GetTicketNumber
 
-    //  useEffect(() => {
-      //  console.log(ticketNo)
-   //   }, [ticketNo])
-        
+
       function formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
@@ -167,13 +124,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         setSearchAction(false);
     }
 
-    // const ticketNumber = (event) =>{
-    //     const val = event.target.value;
-    //     // const state12 = dispatch(searchTicketData(val));
-    //     // let ticketsssss = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
-    //     GetTicketNumber(val)
-    //     console.log("TicketNumber STATE:",val)
-    // }
     
     const backButton = () =>{
         setParentAction(true);
@@ -187,7 +137,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         const newOffset = (event.selected * itemsPerPage) % _tickets.length;
        console.log(
          `User requested page number ${event.selected}, which is offset ${newOffset}`
-
        );
         setItemOffset(newOffset);
       };
@@ -252,10 +201,14 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         //Do something with the input
         let getInput = theInput;
         if(getCase == 1){
-         if(getInput)
-           return theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
-         else 
-           return '';
+         if(getInput){
+
+           let newStr = theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+           newStr = parseFloat(newStr).toFixed(2);
+           return newStr;
+
+         }else 
+           return '0.00';
         }else{
            return parseFloat(lottery.slave_net_amount).toFixed(2)
         }
@@ -275,26 +228,28 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                     <thead>
                         <tr>
                             <th>{t('No.')}</th>
-                            <th class="text-start">Ticket Number</th>
+                            <th class="text-center">Ticket Number</th>
                             <th class="text-center">Betting Time</th>
                             <th class="text-center">Draw Date</th>
-                            {/* <th class="text-center">Game</th> */}
-                            <th class="text-center">{t('Company')}</th>
-                            <th class="text-start">Rebate Amount</th>
-                            <th class="text-start">Net Amount</th>
-                            <th class="text-end">Bet Number</th>
-                            <th class="text-end">Total Amount</th>
+                            <th class="text-start">Bet Number</th>
+                            <th class="text-start">{t('Company')}</th>
+                            <th class="text-end">Total</th>
+                            <th class="text-end">Rebate</th>
+                            <th class="text-end">Net</th>
+                            
+                            
                         </tr>
                     </thead>
                     <tbody>
                     {currentItems && currentItems.map((item,i) =>(
                         <tr>
                             <td>{i + 1}</td>
-                            <td class="text-start"><a className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</a></td>
+                            {/* <td class="text-center"><span className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td> */}
+                            <td class="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
                             <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss')}</td>
                             <td class="text-center">{item.betting_date}</td>
-                            {/* <td class="text-center">{item.game_type}</td> */}
-                            <td class="text-end">
+                            <td class="text-start">{item.bet_number}</td>
+                            <td class="text-start">
                             {
                                item.games && item.games.map((item,i) =>(
                                   item.abbreviation
@@ -302,12 +257,13 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                                ) 
                             }
                           </td>
+                          <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
 
-                            <td class="text-end">{ item.rebate_amount ? MoneyFormatDisplay(item.rebate_amount, 1) : 0}</td>
+                            <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.total_bet_net_amount, 1)}</td>
 
-                            <td class="text-end">{MoneyFormatDisplay(item.bet_number, 1)}</td>
-                            <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
+                            
+                            
                         </tr>
                     ))}
                     </tbody>
@@ -405,15 +361,15 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                             <th class="text-center">Draw Date</th>
                             <th class="text-center">Game</th>
                             <th class="text-center">{t('Company')}</th>
-                            <th class="text-end">Bet Number</th>
+                            <th class="text-start">Bet Number</th>
 
-                            <th class="text-start">Big Bet</th>
-                            <th class="text-start">Small Bet</th>
-                            <th class="text-start">3A</th>
-                            <th class="text-start">3C</th>
+                            <th class="text-end">Big Bet</th>
+                            <th class="text-end">Small Bet</th>
+                            <th class="text-end">3A</th>
+                            <th class="text-end">3C</th>
 
-                            <th class="text-start">Rebate Amount</th>
-                            <th class="text-start">Net Amount</th>
+                            <th class="text-end">Rebate Amount</th>
+                            <th class="text-end">Net Amount</th>
                             <th class="text-end">Total Amount</th>
                         </tr>
                     </thead>
@@ -429,18 +385,15 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                                 <td class="text-center">{drow_date}</td>
                                 <td class="text-center">{item.game_type}</td>
                                 <td class="text-end">{gameName(item.game_play_id)}</td>
-                                <td class="text-end">{item.lottery_number}</td>
+                                <td class="text-start">{item.lottery_number}</td>
 
-                                <td class="text-end">{item.big_bet_amount}</td>
-                                <td class="text-end">{item.small_bet_amount}</td>
-                                <td class="text-end">{item.three_a_amount}</td>
-                                <td class="text-end">{item.three_c_amount}</td>
-
-
-
-                                <td class="text-end">{item.rebate_amount}</td>
-                                <td class="text-end">{item.bet_net_amount}</td>
-                                <td class="text-end">{item.bet_amount}</td>
+                                <td class="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
+                                <td class="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
+                                <td class="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
+                                <td class="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
+                                <td class="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
+                                <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+                                <td class="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
                             </tr>
                         ))}
                     </tbody>

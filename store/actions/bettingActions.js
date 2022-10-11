@@ -31,11 +31,32 @@ export const lotterySubmit = (sendData, callback) => async (dispatch) => {
       headers: headers,
     })
     console.log('res:tickets:', res)
-    return callback({
-      message: 'Success',
-      data: res.data.data,
-      statusCode: res.status,
-    })
+    
+      if(res.data.message_id  == 200){
+
+        return callback({
+          message: 'Success',
+          messages:res.data.messages,
+          message_id:res.data.message_id,
+          data: res.data.data,
+          statusCode: res.status,
+        })
+
+      }else{
+
+        return callback({
+          message: 'Success',
+          messages:res.data.messages,
+          message_id:res.data.message_id,
+          data: [],
+          statusCode: res.status,
+        })
+
+      }
+
+
+
+    
   } catch (e) {
     // dispatch( {
     //     type: "USERS_ERROR",
@@ -43,16 +64,24 @@ export const lotterySubmit = (sendData, callback) => async (dispatch) => {
     // });
 
     // return callback(res.data);
-    console.log('catch:USERS_ERROR', e);
 
-    let message = ''
-    if(e && e.response && e.response.data && e.response.data.messages){
-      message = e.response.data.messages;
-    }else 
-    message = 'Problem in server,try after some time';
+    console.log('catch:Error:e:', e.response.data.messages);
+
     return callback({
-      message: message,
-      statusCode: 401,
+      message: 'Failed',
+      messages:e.response.data.messages,
+      message_id:e.response.data.message_id,
+      data: [],
+      statusCode: e.response.status,
     })
+    // let message = ''
+    // if(e && e.response && e.response.data && e.response.data.messages){
+    //   message = e.response.data.messages;
+    // }else 
+    // message = 'Problem in server,try after some time';
+    // return callback({
+    //   message: message,
+    //   statusCode: 401,
+    // })
   }
 }

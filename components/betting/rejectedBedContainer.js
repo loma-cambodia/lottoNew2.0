@@ -1,6 +1,33 @@
 const RejectedBedContainer = ({dataRecords}) => {
 
-    
+    {/* big
+: 
+"Big"
+big_bet_amount
+: 
+50
+date
+: 
+"2022-10-12"
+number
+: 
+"1689"
+small_bet_amount
+: 
+0
+three_a
+: 
+"3A"
+three_a_amount
+: 
+0
+three_c
+: 
+"3C"
+three_c_amount
+: 
+0*/}
+
 if(dataRecords && dataRecords.length == 0)
   return (<></>);
 else 

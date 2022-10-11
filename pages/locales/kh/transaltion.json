@@ -116,5 +116,7 @@
     "BET":"ភ្នាល់",
     "BettingList":"បញ្ជីភ្នាល់",
     "Select_Date_Range":"Select Date Range", 
-    "Ticket_No":"Ticket No"
+    "Ticket_No":"Ticket No",
+    "bet_successful":"Bet Successful",
+    "bet_failed":"Bet Failed"
 }

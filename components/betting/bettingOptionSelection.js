@@ -283,12 +283,11 @@ const [isLoading,  setIsLoading] = React.useState(false);
 
             console.log('111:response:',response);
             
-            if(response.statusCode  == 201  || response.statusCode  == 200 ){
+            if(response.message_id  == 201  || response.message_id  == 200 ){
 
                 console.log('if:response:',response);
 
-                if(response.data.message_id == 200){
-
+               // if(response.data.message_id == 200){
 
                     console.log('message_id:response:',response);
 
@@ -296,19 +295,19 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     modelOpenCustom('success');
                     loginAPICall();
 
-                }else { 
+                // }else { 
 
-                    console.log('else:response:',response);
+                //     console.log('else:response:',response);
 
-                    modelOpenCustom(response.data.messages);
+                //     modelOpenCustom(response.data.messages);
 
-                }
+                // }
                
 
             }else {
                 console.log('response:',response);
 
-                modelOpenCustom(response.message);
+                modelOpenCustom(response.messages[0]);
                // setIsLoading(false);
             }
             setIsLoading(false);
@@ -481,7 +480,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                             <div className="modal-header text-white px-2 py-3" style={{backgroundColor:'#bc2263'}}>
                                 <h5 className="modal-title" id="bettingModal" style={{paddingLeft:'10px'}}>
                                 {/*t('Bet_Successful')*/}
-                                { apiResponce == 'success' ? 'Bet_Successful' : 'Bet Failed '}
+                                { apiResponce == 'success' ? t('bet_successful') : t('bet_failed')}
                                 </h5>
                             </div>
                             <div className="modal-body p-3" >
