@@ -319,48 +319,60 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     const calculationOfTotalAmount = (getRow) => {
         let bet_type = '';
         let total_sum = 0;
-        if(getRow && getRow.bet_type && getRow.bet_type.box_value) 
-           bet_type = 'box';
-        else if(getRow && getRow.bet_type && getRow.bet_type.i_box_value) 
-           bet_type = 'ibox';
-        else if(getRow && getRow.bet_type && getRow.bet_type.reverse_value) 
-           bet_type = 'reverse';
-        else if(getRow && getRow.number && getRow.number.value){
-            if (getRow.number.value.includes("R")) 
-                bet_type = 'rolling';  
-        } 
-  
-       if(getRow && getRow.big && getRow.big.value) 
-        total_sum += parseInt(getRow.big.value);
-  
-        if(getRow && getRow.small && getRow.small.value) 
-        total_sum += parseInt(getRow.small.value);
-  
-        if(getRow && getRow._3a && getRow._3a.value) 
-        total_sum += parseInt(getRow._3a.value);
-  
-        if(getRow && getRow._3c && getRow._3c.value) 
-        total_sum += parseInt(getRow._3c.value);
-  
-  
-  
-        let totalAmount =  0;
-        let totalBoxing =  0;
-        if(_gameCount && total_sum){
-            totalAmount = _gameCount * total_sum 
-        } 
-        if(bet_type == 'reverse'){
-          totalAmount = totalAmount * 2;  
+        if(getRow && getRow.big && getRow.big.value) {
+                total_sum += parseInt(getRow.big.value);
         }
-        if(bet_type == 'rolling'){
-            totalAmount = totalAmount * 10;  
-        }  
-        if(bet_type == 'box'){
+        if(getRow && getRow.small && getRow.small.value) {
+            total_sum += parseInt(getRow.small.value);
+        }
+        if(getRow && getRow._3a && getRow._3a.value) {
+            total_sum += parseInt(getRow._3a.value);
+        }
+        if(getRow && getRow._3c && getRow._3c.value) {
+            total_sum += parseInt(getRow._3c.value);
+        }
+        var totalAmount =  total_sum && total_sum ? total_sum : '0' ;
+        let totalBoxing =  0;
+        if(_gameCount){
+            console.log(total_sum)
+            console.log(_gameCount)
+            totalAmount = _gameCount * totalAmount ;
+        } 
+
+
+        
+        if(getRow && getRow.bet_type && getRow.bet_type.box_value) {
+            bet_type = 'box';
             totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
         }
+        if(getRow && getRow.bet_type && getRow.bet_type.i_box_value){
+            bet_type = 'ibox';
+        } 
+        if(getRow && getRow.bet_type && getRow.bet_type.reverse_value) {
+            bet_type = 'reverse';
+            totalAmount = totalAmount * 2; 
+        }
+        if(getRow && getRow.number && getRow.number.value){
+            if (getRow.number.value.includes("R")) {
+                bet_type = 'rolling';
+                totalAmount = totalAmount * 10;  
+            }    
+        } 
         if(totalBoxing){
             totalAmount = totalAmount * totalBoxing;  
         }
+        // if(bet_type == 'reverse'){
+        //   totalAmount = totalAmount * 2;  
+        // } 
+        // if(bet_type == 'box'){
+        //     totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
+        // }
+        // if(totalBoxing){
+        //     totalAmount = totalAmount * totalBoxing;  
+        // }
+        // if(bet_type == 'rolling'){
+        //     totalAmount = totalAmount * 10;  
+        // } 
         console.log(totalAmount); 
         return totalAmount;
     }
@@ -820,11 +832,11 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         }
         _setFinalSubmitData(finalSubmitData);
 
-        var slackTotalAmount = 0;
-        finalSubmitData.map(itemAmount => {
-            // console.log('itemAmount',itemAmount);
-            slackTotalAmount = slackTotalAmount+itemAmount.amountTotal; 
-        })
+        var slackTotalAmount = localStateData && localStateData.amount && localStateData.amount.value ? localStateData.amount.value : "0";
+        // finalSubmitData.map(itemAmount => {
+        //     // console.log('itemAmount',itemAmount);
+            slackTotalAmount = slackTotalAmount; 
+        // })
 
         setTotalAmount(slackTotalAmount);
 
