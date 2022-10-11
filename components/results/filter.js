@@ -11,7 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import {getResults} from '../../store/actions/resultActions';
 
 const Filter = ({_setDate}) => {
-    const [startDate, setStartDate] = useState(new Date('2022-10-05'));
+    const [startDate, setStartDate] = useState();
 
     console.log('startDate in filter: ', startDate)
     const pickDate = () =>{
@@ -106,7 +106,6 @@ const Filter = ({_setDate}) => {
                 selected={startDate} 
                 onChange={(date) => {setStartDate(date), _setDate(date)}} 
                 excludeDates={[new Date(), subDays(new Date(), 1)]} 
-                placeholderText="Select a date other than today or yesterday"
                 highlightDates={highlightWithRanges}
                 maxDate={new Date()}
                 />

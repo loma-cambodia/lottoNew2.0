@@ -17,7 +17,7 @@ import Filter from "../components/results/filter";
     const [active, setActive] = useState(false)
 
 
-    const [initDate, setDate] = useState('10-05-2022');
+    const [initDate, setDate] = useState(new Date());
 
     const dispatch = useDispatch();
 
