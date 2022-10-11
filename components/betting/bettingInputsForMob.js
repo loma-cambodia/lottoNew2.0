@@ -1083,17 +1083,22 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         }
         console.log('saveLOttoData',saveLOttoData)
         dispatch(lotterySubmit(saveLOttoData, response =>{
-
             
+            // console.log('response:',response);
             if(response.message_id  == 201  || response.message_id  == 200 ){
+                
+                console.log('response:',response);
                     setResultData(response.data)
                     modelOpenCustom('success');
                     loginAPICall();
             }else {
-                console.log('response:',response);
+                // toast.error(response.messages[0], 
+                // {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                // pauseOnHover: true,draggable: true,progress: undefined});
+                // console.log('response:',response);
                 modelOpenCustom(response.messages[0]);
             }
-            setIsLoading(false);
+            // setIsLoading(false);
             // if(response.statusCode  == 201  || response.statusCode  == 200 ){
             //     setResultData(response.data)
             //     modelOpenCustom('success');
