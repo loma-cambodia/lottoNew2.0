@@ -145,7 +145,7 @@ const Header = ({datauser,_auth}) => {
                             </li>
                             <li className= {`${router.pathname === "/settleList" ? "active-header":""}`}>
                             <Link href="/settleList">
-                             Betting History
+                             {t('betting_history')}
                               {/* Betting List */}
                               </Link>
                             </li>

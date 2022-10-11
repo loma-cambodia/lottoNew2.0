@@ -289,7 +289,9 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
             }
             return (
                 <>
+                <div>
                 <button onClick={() => backButton() } className="btn btn-warning">Back</button>
+                </div>
                 <table class="table small table-bordered">
                     <thead>
                         <tr>
@@ -339,6 +341,7 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                         ))}
                     </tbody>
                 </table>
+                
                 </>
             );
         }else{
