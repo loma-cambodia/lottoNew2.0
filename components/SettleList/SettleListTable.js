@@ -124,6 +124,7 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
         //  let newOffset = Math.ceil(selected * itemsPerPage);
        
         setItemOffset(newOffset);
+        
       };
 
       const searchGetListonFilter = () => {
@@ -229,9 +230,9 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                                ) 
                             }
                           </td>
-                          <td class="text-end">{item.total_bet_amount.toFixed(2)}</td>
-                            <td class="text-end">{item.rebate_amount.toFixed(2)}</td>
-                            <td class="text-end">{item.total_bet_net_amount.toFixed(2)}</td>
+                          <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
+                            <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
+                            <td class="text-end">{MoneyFormatDisplay(item.net_amount, 1)}</td>
 
                            
                         </tr>
@@ -253,6 +254,7 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                 pageLinkClassName="pagination"
                 pageStartIndex='1'
                 // activeClassName={"pagination__link--active"}
+                
             /> : null }
               
                     <svg class="hide">
@@ -263,7 +265,27 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                 </>
             );
         }else{
-
+            return(
+            <table class="table small table-bordered">
+                    <thead>
+                    <tr>
+                             <th>{t('No.')}</th>
+                            <th class="text-start">Ticket Number</th>
+                            <th class="text-start">Bet Number</th>
+                            <th class="text-center">Betting Time</th>
+                            <th class="text-center">Draw Date</th>
+                            {/* <th class="text-center">Game</th> */}
+                            <th class="text-center">{t('Company')}</th>
+                            <th class="text-end">Total Amount</th>
+                            <th class="text-start">Rebate Amount</th>
+                            <th class="text-start">Net Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-center" >
+                        <h2>DATA NOT FOUND</h2>
+                    
+                    </tbody>
+                </table>)
         }
     }
     function ShowTableDataChild({tickets}){
@@ -332,8 +354,6 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                                 <td class="text-end">{item.three_a_amount}</td>
                                 <td class="text-end">{item.three_c_amount}</td>
 
-
-                                
                                 <td class="text-end">{item.bet_amount}</td>
                                 <td class="text-end">{item.rebate_amount}</td>
                                 <td class="text-end">{item.bet_net_amount}</td>
