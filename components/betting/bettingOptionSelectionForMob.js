@@ -324,6 +324,11 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
                                                     _loadpageCounter = {loadpageCounter}
                                                     _setLoadpageCounter = {setLoadpageCounter}
                   />) )}
+                  <div className="modal-footer mt-2" style={{justifyContent:'center'}}>
+                    <button onClick={() => closeModal() } type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn btn-sm text-white">
+                      OK
+                    </button>
+                  </div>
               </Modal>
           </section>
         </>
