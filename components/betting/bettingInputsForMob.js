@@ -62,12 +62,12 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
         
     
-    const [numberValue4DBorder, setNumberValue4DBorder] = React.useState(true);
-    const [numberValue3DBorder, setNumberValue3DBorder] = React.useState(false);
-    const [bigValueBorder, setBigValueBorder] = React.useState(false);
-    const [smallValueBorder, setSmallValueBorder] = React.useState(false);
-    const [a3ValueBorder, setA3ValueBorder] = React.useState(false);
-    const [c3ValueBorder, setC3ValueBorder] = React.useState(false);
+    // const [numberValue4DBorder, setNumberValue4DBorder] = React.useState(true);
+    // const [numberValue3DBorder, setNumberValue3DBorder] = React.useState(false);
+    // const [bigValueBorder, setBigValueBorder] = React.useState(false);
+    // const [smallValueBorder, setSmallValueBorder] = React.useState(false);
+    // const [a3ValueBorder, setA3ValueBorder] = React.useState(false);
+    // const [c3ValueBorder, setC3ValueBorder] = React.useState(false);
 
 
 
@@ -263,7 +263,10 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
              } 
             
         }else  if (operationField == 'number') {
-          
+            setBigValue('');
+            setSmallValue('');
+            setA3Value('');
+            setC3Value('');
             
         }else {
             if ( (localStateDataForChange['_3a']['value'] || localStateDataForChange['_3c']['value']))
@@ -715,6 +718,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         setLocalStateData(localStateDataForChange);
         setPageLoadCount(pageLoadCount + 1);
     }
+    
+    // console.log('_mainSubmitData',localStateData);
+
     const previewSubmitData = (getAction, getIndex = 0) => {
         // alert(getAction)
         let finalSubmitData = _finalSubmitData;
@@ -739,7 +745,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     
                         let amount1 = '';
                         let amount2 = '';
-    
+                        
+                        console.log('_mainSubmitData',localStateData);
+
                         if(localStateData && localStateData.big && localStateData.big.value){
                             amount1 = localStateData.big.value;
                         }else if(localStateData && localStateData._3a && localStateData._3a.value){
@@ -859,6 +867,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                                             }
                                                         ]  
                                               }
+
+                        // console.log('_mainSubmitData',_mainSubmitData)
+
                         if(localStateDataForChange['number'].length < 3){
                             toast.error('Please Enter Valid Number', 
                             {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
