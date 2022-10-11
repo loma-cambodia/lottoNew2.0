@@ -2753,31 +2753,31 @@ input.form-control.text-right-for-amount {
 .result-filter{
   min-height: 38px;
 }
-.damacai{
+.P{
     background-color: #df3948;
 }
-.damacai .s-and-c {
+.P .s-and-c {
   background-color: #1c377c;
 }
-.card.damacai {
+.card.P {
   border: 2px solid #c42026;
 }
-.Magnum{
+.M{
   background-color: #ffc107 ;
 }
-.Magnum .s-and-c {
+.M .s-and-c {
   background-color: #f17e00;
 }
-.card.Magnum {
+.card.M {
   border: 2px solid #f17e00;
 }
-.Toto{
+.T{
   background-color: #df3948 ;
 }
-.Toto .s-and-c {
+.T .s-and-c {
   background-color: #000;
 }
-.card.Toto {
+.card.T {
   border: 2px solid #000;
 }
 .react-datepicker-wrapper input[type="text"]{

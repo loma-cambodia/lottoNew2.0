@@ -7,7 +7,7 @@ import Result from "../components/results/result";
 import { useTranslation } from "react-i18next";
 
 import { useDispatch, useSelector } from "react-redux";
-import {getResults} from '../store/actions/resultActions';
+import {getResults,getLatestResultDate} from '../store/actions/resultActions';
 
 // import styles from '../styles/Home.module.css';
 import Link from 'next/link';
@@ -17,9 +17,31 @@ import Filter from "../components/results/filter";
     const [active, setActive] = useState(false)
 
 
-    const [initDate, setDate] = useState("10-10-2022");
+    const [initDate, setDate] = useState('10-05-2022');
 
     const dispatch = useDispatch();
+
+    const getlatestDrawResultsDate = () =>{
+    
+        dispatch(getLatestResultDate( response =>{
+    
+            if(response.statusCode  == 201  || response.statusCode  == 200 ){
+    
+            if(response.statusCode == 200){
+    
+                console.log('latestDate: ',response.data);
+                 let latestDate = response.data
+                 setDate(latestDate)
+            }else {
+                console.log(response.data.messages);
+    
+            }
+            }else {
+            console.log('response:',response);
+            // setIsLoading(false);
+        }
+    }))
+    }
     
         console.log('initDate in results: ',initDate)
 
@@ -28,6 +50,7 @@ import Filter from "../components/results/filter";
             
     }
     useEffect(() => {
+        // getlatestDrawResultsDate()
     },[]);
     return (
         <>

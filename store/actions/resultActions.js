@@ -7,7 +7,10 @@ export const getResults = (sendData,callback) => async (dispatch) => {
     const headers = {
       'Content-Type': 'application/json',
     }
-    const res = await axios.get(`${API_BASE_URL}/results/get-by-date`, sendData, {
+    let urlHit = `${API_BASE_URL}/results/get-by-date?date=${sendData}`;
+    console.log('resultactions', urlHit)
+
+    const res = await axios.get(urlHit, {
       headers: headers,
     })
     console.log('res:results:', res)
@@ -31,40 +34,34 @@ export const getResults = (sendData,callback) => async (dispatch) => {
   }
 }
 
-export const lotterySubmit = (sendData, callback) => async (dispatch) => {
-  console.log('lotterySubmit')
-  // return false;
-
+export const getLatestResultDate = (callback) => async (dispatch) => {
   try {
     const headers = {
       'Content-Type': 'application/json',
     }
-    const res = await axios.post(`${API_BASE_URL}/tickets`, sendData, {
+    let urlHit = `${API_BASE_URL}/results/get-by-date`;
+    console.log('resultactions', urlHit)
+
+    const res = await axios.get(urlHit, {
       headers: headers,
     })
-    console.log('res:tickets:', res)
+    console.log('res:results:', res)
     return callback({
       message: 'Success',
-      data: res.data.data,
+      data: res.data[0].result_date,
       statusCode: res.status,
     })
   } catch (e) {
-    // dispatch( {
-    //     type: "USERS_ERROR",
-    //     payload: console.log(e),
-    // });
-
-    // return callback(res.data);
     console.log('catch:USERS_ERROR', e);
 
-    let message = ''
-    if(e.response.data.messages){
-      message = e.response.data.messages;
-    }else 
-    message = 'Problem in server,try after some time';
-    return callback({
-      message: message,
-      statusCode: 401,
-    })
+    // let message = ''
+    // if(e.response){
+    //   message = e.response
+    // }else 
+    // message = 'Problem in server,try after some time';
+    // return callback({
+    //   message: message,
+    //   statusCode: 401,
+    // })
   }
 }
