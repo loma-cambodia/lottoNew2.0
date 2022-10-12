@@ -11,6 +11,8 @@ import { useDispatch, useSelector, } from "react-redux";
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 
+import styles from '../../styles/Home.module.css';
+
 const API_BASE_URL = process.env.apiUrl;
 const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     
@@ -248,18 +250,18 @@ const handlePageClick = (event) => {
         if(currentItems && currentItems.length > 0){
             return (
                 <>
-                <table class="table small table-bordered">
+                <table className="table small table-bordered">
                     <thead>
                         <tr>
                             <th>{t('No.')}</th>
-                            <th class="text-center">Ticket Number</th>
-                            <th class="text-center">Betting Time</th>
-                            <th class="text-center">Draw Date</th>
-                            <th class="text-start">Bet Number</th>
-                            <th class="text-start">{t('Company')}</th>
-                            <th class="text-end">Total</th>
-                            <th class="text-end">Rebate</th>
-                            <th class="text-end">Net</th>
+                            <th className="text-center">Ticket Number</th>
+                            <th className="text-center">Betting Time</th>
+                            <th className="text-center">Draw Date</th>
+                            <th className="text-start">Bet Number</th>
+                            <th className="text-start">{t('Company')}</th>
+                            <th className="text-end">Total</th>
+                            <th className="text-end">Rebate</th>
+                            <th className="text-end">Net</th>
                             
                             
                         </tr>
@@ -268,12 +270,12 @@ const handlePageClick = (event) => {
                     {currentItems && currentItems.map((item,i) =>(
                         <tr key={i}>
                             <td>{i + 1}</td>
-                            {/* <td class="text-center"><span className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td> */}
-                            <td class="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
-                            <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
-                            <td class="text-center">{item.betting_date}</td>
-                            <td class="text-start">{item.bet_number}</td>
-                            <td class="text-start">
+                            {/* <td className="text-center"><span className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td> */}
+                            <td className="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
+                            <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
+                            <td className="text-center">{item.betting_date}</td>
+                            <td className="text-start">{item.bet_number}</td>
+                            <td className="text-start">
                             {
                                item.games && item.games.map((item,i) =>(
                                   item.abbreviation
@@ -281,9 +283,9 @@ const handlePageClick = (event) => {
                                ) 
                             }
                           </td>
-                            <td class="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
-                            <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
-                            <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
+                            <td className="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
+                            <td className="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
+                            <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
 
                             
                             
@@ -291,7 +293,7 @@ const handlePageClick = (event) => {
                     ))}
                     </tbody>
                 </table>
-                <div class="clearfix d-flex align-items-center justify-content-center">
+                <div className="clearfix d-flex align-items-center justify-content-center">
 
                        { pageCount > 1 ?
                 <ReactPaginate
@@ -305,7 +307,7 @@ const handlePageClick = (event) => {
                 className="pagination"
             /> : null } 
             
-                    <svg class="hide">
+                    <svg className="hide">
                         <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
                         <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
                     </svg>
@@ -347,25 +349,25 @@ const handlePageClick = (event) => {
             return (
                 <>
                 <button onClick={() => backButton() } className="btn btn-warning">Back</button>
-                <table class="table small table-bordered">
+                <table className="table small table-bordered">
                     <thead>
                         <tr>
                             <th>{t('No.')}</th>
-                            <th class="text-start">Detail Number</th>
-                            {/* <th class="text-start">Detail Number</th> */}
-                            <th class="text-center">Betting Time</th>
-                            <th class="text-center">Draw Date</th>
-                            <th class="text-center">Game</th>
-                            <th class="text-center">{t('Company')}</th>
-                            <th class="text-start">Bet Number</th>
+                            <th className="text-start">Detail Number</th>
+                            {/* <th className="text-start">Detail Number</th> */}
+                            <th className="text-center">Betting Time</th>
+                            <th className="text-center">Draw Date</th>
+                            <th className="text-center">Game</th>
+                            <th className="text-center">{t('Company')}</th>
+                            <th className="text-start">Bet Number</th>
 
-                            <th class="text-end">Big</th>
-                            <th class="text-end">Small</th>
-                            <th class="text-end">3A</th>
-                            <th class="text-end">3C</th>
-                            <th class="text-end">Total</th>
-                            <th class="text-end">Rebate</th>
-                            <th class="text-end">Net</th>
+                            <th className="text-end">Big</th>
+                            <th className="text-end">Small</th>
+                            <th className="text-end">3A</th>
+                            <th className="text-end">3C</th>
+                            <th className="text-end">Total</th>
+                            <th className="text-end">Rebate</th>
+                            <th className="text-end">Net</th>
                            
                         </tr>
                     </thead>
@@ -374,20 +376,20 @@ const handlePageClick = (event) => {
                         {tickets.map((item,id) =>(
                             <tr key={id}>
                                 <td>{id+1}</td>
-                                <td class="text-start"><a >{item.child_ticket_no}</a></td>
-                                <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
-                                <td class="text-center">{item.ticket.betting_date}</td>
-                                <td class="text-center">{item.game_type}</td>
-                                <td class="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
-                                <td class="text-start">{item.lottery_number}</td>
+                                <td className="text-start"><a >{item.child_ticket_no}</a></td>
+                                <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
+                                <td className="text-center">{item.ticket.betting_date}</td>
+                                <td className="text-center">{item.game_type}</td>
+                                <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
+                                <td className="text-start">{item.lottery_number}</td>
 
-                                <td class="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
-                                <td class="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
-                                <td class="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
-                                <td class="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
-                                <td class="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
-                                <td class="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
-                                <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+                                <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
+                                <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
+                                <td className="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
+                                <td className="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
+                                <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
+                                <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
+                                <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
                               
                             </tr>
                         ))}
@@ -416,11 +418,11 @@ const handlePageClick = (event) => {
     function SearchAbleFormChild(){
         return (
             
-            <div class="clearfix curved-card">
-                <div class="row">
-                    <div class="col-md-3 col-12">
-                        <div class="form-group">
-                            <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
+            <div className="clearfix curved-card">
+                <div className="row">
+                    <div className="col-md-3 col-12">
+                        <div className="form-group">
+                            <label className="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                 <DateRangePicker
                                     ref={keyRef}
                                     onApply={handleApply1}
@@ -431,43 +433,46 @@ const handlePageClick = (event) => {
                                 </DateRangePicker>
                         </div>                    
                     </div>
-                    <div class="col-md-2 col-6">
-                        <div class="form-group">
-                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                            <input type="text" onChange={(event) => GetTicketNumber(event)} class="form-control-custom-big" name="transationid"/>
+                    <div className="col-md-2 col-6">
+                        <div className="form-group">
+                            <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
+                            <input type="text" onChange={(event) => GetTicketNumber(event)} className="form-control-custom-big" name="transationid"/>
                         </div>
                     </div>
-                    <div class="col-md-2 col-6">
-                        <div class="form-group">
-                            <label for="transactionid" class="fw-bold mb-2">{t('Game')}</label>
-                            <select type="text" class="form-control-custom-big" name="transationid">
+                    <div className="col-md-2 col-6">
+                        <div className="form-group">
+                            <label for="transactionid" className="fw-bold mb-2">{t('Game')}</label>
+                            <select type="text" className="form-control-custom-big" name="transationid">
                                 <option>4D</option>
                                 <option>3D</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-2 col-6">
-                        <div class="form-group">
-                            <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
-                            <select type="text" class="form-control-custom-big" name="transationid">
+                    <div className="col-md-2 col-6">
+                        <div className="form-group">
+                            <label for="transactionid" className="fw-bold mb-2">{t('Company')}</label>
+                            <select type="text" className="form-control-custom-big" name="transationid">
                                 <option>Toto</option>
                                 <option>Magnum</option>
                                 <option>Da ma cai</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="d-block">&nbsp;</label>
-                            <button type="button" class="btn-custom-curve2 w-auto">{t('Search')}</button>
-                            <button type="button" class="btn-custom-curve1">{t('Reset')}</button>
+                    <div className="col-md-3">
+                        <div className="form-group">
+                            <label className="d-block">&nbsp;</label>
+                            <button type="button" className="btn-custom-curve2 w-auto">{t('Search')}</button>
+                            <button type="button" className="btn-custom-curve1">{t('Reset')}</button>
                         </div>
                     </div>
                 </div>
             </div>
         );
     }
-
+    
+    const openFilterForMob = () => {
+        $('.hideAndShowForMobileView').toggle("slide");
+    }
 
     return (
         <>
@@ -475,97 +480,140 @@ const handlePageClick = (event) => {
                 {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}
                 {/* <SearchAbleFormParent />  */}
             <div className='showForMobileViewSearch'>
-                <div class="clearfix curved-card">
-                    {searchAction ? (
-                            <div class="row">
-                                <div class="col-md-3 col-12">
-                                    <div class="form-group">
-                                        <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
-                                            <DateRangePicker
-                                                ref={keyRef}
-                                                onCancel={keyRef}
-                                                initialSettings={{ ranges }}
-                                                onEvent={handleEvent}
-                                            >
-                                                <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
-                                            </DateRangePicker>
-                                    </div>                    
-                                </div>
-                                <div class="col-md-2 col-6">
-                                    <div class="form-group">
-                                        <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                                        <input type="text" onChange={(e)=>{ 
-                                            setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+                <div className="clearfix curved-card">
+                    <div className={styles.device_detect_for_mobile}>
+                        <div className="form-group">
+                            <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
+                                <b>BETTING LIST REPORT</b>
+                                <img 
+                                    onClick={() => openFilterForMob()}
+                                    className="img-fluid" 
+                                    src="images\betting\1111111.png" 
+                                    alt="" 
+                                    style={{ width: '20px', float: 'right', marginTop: '5px' }} />
+                            </button>
+                        </div>
+                    </div>
+                    <div className={styles.device_detect_for_desktop+' hideAndShowForMobileView'}>
+                        {searchAction ? (
+                                <div className="row">
+                                    <div className="col-md-3 col-12">
+                                        <div className="form-group">
+                                            <label className="fw-bold mb-2">{t('Select_Date_Range')}</label>
+                                                <DateRangePicker
+                                                    ref={keyRef}
+                                                    onCancel={keyRef}
+                                                    initialSettings={{ ranges }}
+                                                    onEvent={handleEvent}
+                                                >
+                                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
+                                                </DateRangePicker>
+                                        </div>                    
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="d-block">&nbsp;</label>
-                                        <button type="button" class="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
-                                        <button type="button" class="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
+                                    <div className="col-md-2 col-12">
+                                        <div className="form-group">
+                                            <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
+                                            <input type="text" onChange={(e)=>{ 
+                                                setTicketNo(e.target.value)}}  className="form-control-custom-big" value={ticketNo} name="transationid"/>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        ) 
-                        :
-                        (
-                            <div class="row">
-                            
-                                <div class="col-md-2 col-6">
-                                    <div class="form-group">
-                                        <label for="transactionid" class="fw-bold mb-2">Detail Number</label>
-                                        <input type="text" onChange={(e)=>{ 
-                                                        setDetailNo(e.target.value)}}  class="form-control-custom-big" value={detailNo} name="transationid"/>
+                                    
+                                    <div className={styles.device_detect_for_mobile+" col-md-12 col-12"}>
+                                        <div className='row'>
+                                            <div className='col-md-6 col-6'>
+                                                <label className="d-block">&nbsp;</label>
+                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
+                                            </div>
+                                            <div className='col-md-6 col-6'>
+                                                <label className="d-block">&nbsp;</label>
+                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2 col-6">
-                                    <div class="form-group">
-                                        <label for="transactionid" class="fw-bold mb-2">{t('Game')}</label>
-                                        {/* <select type="text" class="form-control-custom-big" name="transationid">
-                                            <option>All</option>
-                                            <option>4D</option>
-                                            <option>3D</option>
-                                        </select> */}
-                                        {/* <Select options={optionsGameType} value =''/> */}
 
-                                        <Select 
-                                            options={optionsGameType} 
-                                            defaultValue = { { value: '', label: 'All' }} 
-                                            value = {filterGameType}
-                                            onChange={value => setFilterGameType(value)}
-                                            />
+                                    <div className={styles.device_detect_for_desktop+" col-md-12"}>
+                                        <div className="form-group">
+                                            <label className="d-block">&nbsp;</label>
+                                            <button type="button" className="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2 col-6">
-                                    <div class="form-group">
-                                        <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
-                                        {/* <select type="text" class="form-control-custom-big" name="transationid">
-                                            <option>All</option>
-                                            <option>Toto</option>
-                                            <option>Magnum</option>
-                                            <option>Da ma cai</option>
-                                        </select> */}
-                                        <Select 
-                                            options={optionsGamesName} 
-                                            defaultValue = { { value: '', label: 'All' }} 
-                                            value = {filterGamesName}
-                                            onChange={value => setFilterGamesName(value)}
-                                            />
+                            ) 
+                            :
+                            (
+                                <div className="row">
+                                
+                                    <div className="col-md-2 col-12">
+                                        <div className="form-group">
+                                            <label for="transactionid" className="fw-bold mb-2">Detail Number</label>
+                                            <input type="text" onChange={(e)=>{ 
+                                                            setDetailNo(e.target.value)}}  className="form-control-custom-big" value={detailNo} name="transationid"/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-2 col-12">
+                                        <div className="form-group">
+                                            <label for="transactionid" className="fw-bold mb-2">{t('Game')}</label>
+                                            {/* <select type="text" className="form-control-custom-big" name="transationid">
+                                                <option>All</option>
+                                                <option>4D</option>
+                                                <option>3D</option>
+                                            </select> */}
+                                            {/* <Select options={optionsGameType} value =''/> */}
+
+                                            <Select 
+                                                options={optionsGameType} 
+                                                defaultValue = { { value: '', label: 'All' }} 
+                                                value = {filterGameType}
+                                                onChange={value => setFilterGameType(value)}
+                                                />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-2 col-12">
+                                        <div className="form-group">
+                                            <label for="transactionid" className="fw-bold mb-2">{t('Company')}</label>
+                                            {/* <select type="text" className="form-control-custom-big" name="transationid">
+                                                <option>All</option>
+                                                <option>Toto</option>
+                                                <option>Magnum</option>
+                                                <option>Da ma cai</option>
+                                            </select> */}
+                                            <Select 
+                                                options={optionsGamesName} 
+                                                defaultValue = { { value: '', label: 'All' }} 
+                                                value = {filterGamesName}
+                                                onChange={value => setFilterGamesName(value)}
+                                                />
+                                        </div>
+                                    </div>
+                                    
+                                    <div className={styles.device_detect_for_mobile+" col-12"}>
+                                        <div className='row'>
+                                            <div className='col-md-6 col-6'>
+                                                <label className="d-block">&nbsp;</label>
+                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')} aaaa</button>
+                                            </div>
+                                            <div className='col-md-6 col-6'>
+                                                <label className="d-block">&nbsp;</label>
+                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.device_detect_for_desktop+" col-md-3"}>
+                                        <div className="form-group">
+                                            <label className="d-block">&nbsp;</label>
+                                            <button type="button" className="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="d-block">&nbsp;</label>
-                                        <button type="button" class="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
-                                        <button type="button" class="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    }
+                            )
+                        }
+                    </div>
                 </div>
             </div>
-            <div class="table-responsive my-3">
+            <div className="table-responsive my-3">
                 {parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
             </div>  
              

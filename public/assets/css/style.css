@@ -2829,3 +2829,7 @@ input.form-control.text-right-for-amount {
   outline: 0 !important;
   box-shadow: none !important;
 }
+
+input.daterangepickerstyle {
+  width: 100%;
+}
