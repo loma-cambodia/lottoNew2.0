@@ -70,16 +70,38 @@ export const searchTicketData = (member_id,date_range, ticketNumber) => async (d
   }
 }
 
-export const getLotteryDetailsList = (ticketNumber) => async (dispatch) => {
+export const getLotteryDetailsList = (getData) => async (dispatch) => {
+
+
+  let ticketId = getData.ticketId;
+  let child_ticket_no = getData.child_ticket_no;
+  let game_play_id = getData.game_play_id;
+  let game_type = getData.game_type;
+
   try {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     }
 
-    console.log('getLotteryDetailsList:ticketNumber:', ticketNumber);
+
+
+    console.log('getLotteryDetailsList:ticketId:', ticketId);
+
+    let URL = `${API_BASE_URL}/betListById?id=${ticketId}`;
+
+    if(child_ticket_no)
+    URL += `&child_ticket_no=${child_ticket_no}`;
+
+    if(game_play_id)
+    URL += `&game_play_id=${game_play_id}`;
+
+    if(game_type)
+    URL += `&game_type=${game_type}`;
+
+
     const res = await axios.get(
-      `${API_BASE_URL}/betListById?id=${ticketNumber}`,{
+      `${URL}`,{
         headers: headers,
       }
     )
