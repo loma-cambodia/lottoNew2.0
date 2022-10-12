@@ -96,3 +96,34 @@ export const getLotteryDetailsList = (ticketNumber) => async (dispatch) => {
   }
 }
 
+export const filterLotteryDetailsList = (ticketNumber,company,childTicketNo) => async (dispatch) => {
+  try{
+    const headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    }
+
+    let url = `${API_BASE_URL}/betListById?id=${ticketNumber}`;
+    if(childTicketNo){
+      url += `&child_ticket_no=${childTicketNo}`;
+    }
+    if(company){
+      url += `&game_play_id=${company}`
+    }
+    const res = await axios.get(`${url}`,{
+      headers: headers,
+    }
+   )
+  console.log("FILTER_TICKET-->>",res)
+    dispatch({
+      type: 'GET_FILTER_CHILD_TICKETS',
+      payload: res.data.data,
+    })  
+  }catch (e){
+    dispatch({
+      type: 'Get_Tickets_Error',
+      payload: console.log(e),
+    })
+  }
+}
+

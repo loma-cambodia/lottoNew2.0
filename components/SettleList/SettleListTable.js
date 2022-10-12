@@ -184,10 +184,14 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
       const Decimal = (theInput, getCase) => {
         let getInput = theInput;
         if(getCase == 1){
-         if(getInput)
-           return theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
-         else 
-           return '';
+         if(getInput){
+
+           let newStr = theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+           newStr = parseFloat(newStr).toFixed(2);
+           return newStr;
+
+         }else 
+           return '0.00';
         }else{
            return parseFloat(lottery.slave_net_amount).toFixed(2)
         }
@@ -201,30 +205,27 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                     <thead>
                         <tr>
                             <th>{t('No.')}</th>
-                            <th class="text-start">Ticket Number</th>
-                            <th class="text-start">Bet Number</th>
+                            <th class="text-center">Ticket Number</th>
                             <th class="text-center">Betting Time</th>
                             <th class="text-center">Draw Date</th>
+                            <th class="text-center">Bet Number</th>
                             {/* <th class="text-center">Game</th> */}
                             <th class="text-center">{t('Company')}</th>
-                            <th class="text-end">Total Amount</th>
-                            <th class="text-start">Rebate Amount</th>
-                            <th class="text-start">Net Amount</th>
-                            <th class="text-start">Odds</th>
-                            <th class="text-start">Winning/Loss</th>
+                            <th class="text-center">Total</th>
+                            <th class="text-center">Rebate</th>
+                            <th class="text-center">Net</th>
+                            <th class="text-center">Winning/Loss</th>
                         </tr>
                     </thead>
                     <tbody>
                     {currentItems && currentItems.map((item,i) =>(
                         <tr key={i}>
                             <td>{i + 1}</td>
-                            <td class="text-start"><a className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</a></td>
-                            
-                            <td class="text-end">{item.bet_number}</td>
-                            <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss')}</td>
-                            <td class="text-center">{item.betting_date}</td>
-                            {/* <td class="text-center">{item.game_type}</td> */}
-                            <td class="text-end">
+                            <td class="text-center"><a className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</a></td>
+                            <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
+                            <td class="text-center">{item.draw_date}</td>
+                            <td class="text-center">{item.bet_number}</td>
+                            <td class="text-center">
                             {
                                item.games && item.games.map((item,i) =>(
                                   item.abbreviation
@@ -232,13 +233,11 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                                ) 
                             }
                           </td>
-                          <td class="text-end">{Decimal(item.total_amount, 1)}</td>
-                            <td class="text-end">{Decimal(item.rebate_amount, 1)}</td>
-                            <td class="text-end">{Decimal(item.bet_net_amount, 1)}</td>
+                          <td class="text-center">{Decimal(item.bet_amount, 1)}</td>
+                            <td class="text-center">{Decimal(item.rebate_amount, 1)}</td>
+                            <td class="text-center">{Decimal(item.bet_net_amount, 1)}</td>
+                            <td class="text-center">No data</td>
                             {/* <td class="text-end">{Decimal(item.bet_net_amount, 1)}</td> */}
-                            {/* <td class="text-end">{Decimal(item.bet_net_amount, 1)}</td> */}
-                            <td class="text-end">No Data</td>
-                            <td class="text-end">No Data</td>
 
                            
                         </tr>
@@ -282,11 +281,10 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                             <th class="text-center">Draw Date</th>
                             {/* <th class="text-center">Game</th> */}
                             <th class="text-center">{t('Company')}</th>
-                            <th class="text-end">Total Amount</th>
-                            <th class="text-start">Rebate Amount</th>
-                            <th class="text-start">Net Amount</th>
-                            <th class="text-start">Odds</th>
-                            <th class="text-start">Winning/Loss</th>
+                            <th class="text-end">Total</th>
+                            <th class="text-start">Rebate</th>
+                            <th class="text-start">Net</th>
+                            
                         </tr>
                     </thead>
                     <tbody align='center'>
@@ -331,18 +329,19 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                             {/* <th class="text-start">Detail Number</th> */}
                             <th class="text-center">Betting Time</th>
                             <th class="text-center">Draw Date</th>
-                            <th class="text-center">Game</th>
                             <th class="text-center">{t('Company')}</th>
-                            <th class="text-end">Bet Number</th>
+                            <th class="text-center">Bet Number</th>
 
-                            <th class="text-start">Big Bet</th>
-                            <th class="text-start">Small Bet</th>
+                            <th class="text-start">Big</th>
+                            <th class="text-start">Small</th>
                             <th class="text-start">3A</th>
                             <th class="text-start">3C</th>
                             
-                            <th class="text-end">Gross Amt.</th>
-                            <th class="text-start">Rebate Amount</th>
-                            <th class="text-start">Net Amount</th>
+                            <th class="text-center">Total</th>
+                            <th class="text-center">Rebate</th>
+                            <th class="text-center">Net</th>
+                            <th class="text-center">Odds</th>
+                            <th class="text-center">Winning/Loss</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -352,20 +351,21 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                             <tr key={id}>
                                 <td>{id+1}</td>
                                 <td class="text-start"><a >{item.child_ticket_no}</a></td>
-                                <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss')}</td>
+                                <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
                                 <td class="text-center">{item.ticket.draw_date}</td>
-                                <td class="text-center">{item.game_type}</td>
-                                <td class="text-end">{item.game.name}</td>
-                                <td class="text-end">{item.lottery_number}</td>
+                                <td class="text-center">{item.game.name}</td>
+                                <td class="text-center">{item.lottery_number}</td>
 
-                                <td class="text-end">{item.big_bet_amount}</td>
-                                <td class="text-end">{item.small_bet_amount}</td>
-                                <td class="text-end">{item.three_a_amount}</td>
-                                <td class="text-end">{item.three_c_amount}</td>
+                                <td class="text-center">{item.big_bet_amount}</td>
+                                <td class="text-center">{item.small_bet_amount}</td>
+                                <td class="text-center">{item.three_a_amount}</td>
+                                <td class="text-center">{item.three_c_amount}</td>
 
                                 <td class="text-end">{item.bet_amount}</td>
                                 <td class="text-end">{item.rebate_amount}</td>
                                 <td class="text-end">{item.bet_net_amount}</td>
+                                <td class="text-end">No Data</td>
+                                <td class="text-end"  style={{color:'red'}}>No Data </td>
                             </tr>
                         ))}
                     </tbody>
@@ -476,7 +476,7 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
     <div class="clearfix curved-card">
     <div class="row">
         <div class="col-md-3 col-12">
-            <div class="form-group">
+            {/* <div class="form-group">
                 <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
                 <DateRangePicker
                                     ref={keyRef}
@@ -486,23 +486,24 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                                 >
                                     <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
                                 </DateRangePicker>
-            </div>                    
+            </div>                     */}
         </div>
         <div class="col-md-2 col-6">
             <div class="form-group">
-                <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
+                {/* <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label> */}
+                <label for="transactionid" class="fw-bold mb-2">Detail Number</label> 
                 <input type="text" onChange={(e)=>{ 
                                  setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
             </div>
         </div>
         <div class="col-md-2 col-6">
-            <div class="form-group">
+            {/* <div class="form-group">
                 <label for="transactionid" class="fw-bold mb-2">{t('Game')}</label>
                 <select type="text" class="form-control-custom-big" name="transationid">
                     <option>4D</option>
                     <option>3D</option>
                 </select>
-            </div>
+            </div> */}
         </div>
         <div class="col-md-2 col-6">
             <div class="form-group">
