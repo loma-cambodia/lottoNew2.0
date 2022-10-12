@@ -45,7 +45,7 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
 
       const [fromDate, setFromDate] = useState(new Date('2022-10-12'));
       const [toDate, setToDate] = useState(new Date());
-
+      
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(_tickets.slice(itemOffset, endOffset));
@@ -181,7 +181,7 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
 
       let initData = { startDate: '1/1/2014', endDate: '3/1/2014' };
 
-      const MoneyFormatDisplay = (theInput, getCase) => {
+      const Decimal = (theInput, getCase) => {
         let getInput = theInput;
         if(getCase == 1){
          if(getInput)
@@ -210,6 +210,8 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                             <th class="text-end">Total Amount</th>
                             <th class="text-start">Rebate Amount</th>
                             <th class="text-start">Net Amount</th>
+                            <th class="text-start">Odds</th>
+                            <th class="text-start">Winning/Loss</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -230,9 +232,13 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                                ) 
                             }
                           </td>
-                          <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
-                            <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
-                            <td class="text-end">{MoneyFormatDisplay(item.net_amount, 1)}</td>
+                          <td class="text-end">{Decimal(item.total_amount, 1)}</td>
+                            <td class="text-end">{Decimal(item.rebate_amount, 1)}</td>
+                            <td class="text-end">{Decimal(item.bet_net_amount, 1)}</td>
+                            {/* <td class="text-end">{Decimal(item.bet_net_amount, 1)}</td> */}
+                            {/* <td class="text-end">{Decimal(item.bet_net_amount, 1)}</td> */}
+                            <td class="text-end">No Data</td>
+                            <td class="text-end">No Data</td>
 
                            
                         </tr>
@@ -279,11 +285,14 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                             <th class="text-end">Total Amount</th>
                             <th class="text-start">Rebate Amount</th>
                             <th class="text-start">Net Amount</th>
+                            <th class="text-start">Odds</th>
+                            <th class="text-start">Winning/Loss</th>
                         </tr>
                     </thead>
-                    <tbody className="text-center" >
-                        <h2>DATA NOT FOUND</h2>
-                    
+                    <tbody align='center'>
+                        <tr>
+                            <td colspan="11" >NO DATA FOUND</td>
+                        </tr>
                     </tbody>
                 </table>)
         }
@@ -462,7 +471,9 @@ const SettleTable  = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTabl
                 </div>
             </div>
     ) :
-    (<div class="clearfix curved-card">
+    (
+    // CHILD SEARCH
+    <div class="clearfix curved-card">
     <div class="row">
         <div class="col-md-3 col-12">
             <div class="form-group">

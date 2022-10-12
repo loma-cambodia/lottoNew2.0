@@ -227,19 +227,6 @@ const Header = ({datauser,_auth}) => {
                       <li className= {`${router.pathname === "/" ? "active-header-mobile":""}`}>
                         <Link className="active"  href="/">{t('Homepage')}</Link>  
                       </li>
-                      {/* <li className="submenu-mobile">
-                          <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" className="collapsed">Betting</a>
-                          <div className="collapse" id="collapseExample">
-                              <ul className="list-unstyled">
-                                  <li>
-                                      <Link href="/bettingNew">{t('Betting')}</Link>
-                                  </li>
-                                  <li>
-                                    <Link href="/transaction">{t('History')}</Link>
-                                  </li>
-                              </ul>
-                            </div>
-                      </li> */}
                       <li className= {`${router.pathname === "/bettingNew" ? "active-header-mobile":""}`}>
                           <Link href="/bettingNew">{t('Betting')}</Link>
                       </li>
@@ -248,6 +235,9 @@ const Header = ({datauser,_auth}) => {
                       </li>
                       <li className= {`${router.pathname === "/results" ? "active-header-mobile":""}`}>
                         <Link href="/results" >{t('Result')}</Link>  
+                      </li>
+                      <li className= {`${router.pathname === "/bettingList" ? "active-header-mobile":""}`}>
+                        <Link href="/bettingList" >{t('BettingList')}</Link>  
                       </li>
                   </ul>
               </div>
