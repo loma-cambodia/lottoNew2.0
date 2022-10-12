@@ -254,7 +254,7 @@ const handlePageClick = (event) => {
                 )
             }else if(e <= 0){
                 return(
-                    {color:"red"}
+                    {color:"red",fontWeight:"bold"}
                 )
             }
         }
@@ -369,7 +369,7 @@ const handlePageClick = (event) => {
                     )
                 }else if(e <= 0){
                     return(
-                        {color:"red"}
+                        {color:"red",fontWeight:"bold"}
                     )
                 }
             }
