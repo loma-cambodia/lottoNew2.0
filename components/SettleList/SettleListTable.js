@@ -265,7 +265,7 @@ const handlePageClick = (event) => {
                     <thead>
                         <tr>
                             <th>{t('No.')}</th>
-                            <th class="text-start">Ticket Number</th>
+                            <th class="text-center">Ticket Number</th>
                             <th class="text-center">Betting Time</th>
                             <th class="text-center">Draw Date</th>
                             <th class="text-center">Bet Number</th>
@@ -282,7 +282,7 @@ const handlePageClick = (event) => {
                     {currentItems && currentItems.map((item,i) =>(
                         <tr key={i}>
                             <td>{i + 1}</td>
-                            <td class="text-start" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
+                            <td class="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
                             <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
                             <td class="text-center">{item.betting_date}</td>
                             <td class="text-center">{item.bet_number}</td>
@@ -545,10 +545,11 @@ const handlePageClick = (event) => {
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="d-block">&nbsp;</label>
-                            <button type="button" class="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
+                            <button type="button" class="btn-custom-curve2 w-auto m-2" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
                             <button type="button" class="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
                         </div>
                     </div>
+                   
                 </div>
             </div>
     ) :

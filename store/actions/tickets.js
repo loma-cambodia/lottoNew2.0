@@ -123,15 +123,11 @@ export const filterLotteryDetailsList = (getData) => async (dispatch) => {
   let child_ticket_no = getData.child_ticket_no;
   let game_play_id = getData.game_play_id;
   let game_type = getData.game_type;
-
   try {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     }
-
-    console.log('filterLotteryDetailsList:', ticketId);
-
     let URL = `${API_BASE_URL}/betListById?id=${ticketId}`;
 
     if(child_ticket_no)
@@ -142,7 +138,6 @@ export const filterLotteryDetailsList = (getData) => async (dispatch) => {
 
     if(game_type)
     URL += `&game_type=${game_type}`;
-
 
     const res = await axios.get(
       `${URL}`,{
