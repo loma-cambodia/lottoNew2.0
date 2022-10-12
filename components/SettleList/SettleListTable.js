@@ -244,13 +244,20 @@ const handlePageClick = (event) => {
         function winParent(e){
             if (e > 0){
                 return(
-                    {color:"green"}
+                    {color:"green",fontWeight:"bold"}
                 )
-            }else if(e <= 0){
+            }else if(e < 0){
                 return(
                     {color:"red",fontWeight:"bold"}
                 )
             }
+        }
+        
+        function winLose(net,win){
+            const wl = net - win
+            return(
+                MoneyFormatDisplay(wl,1)
+            )
         }
         if(currentItems && currentItems.length > 0){
             return (
@@ -268,7 +275,7 @@ const handlePageClick = (event) => {
                             <th class="text-end">{t('Total')}</th>
                             <th class="text-end">{t('Rebate')}</th>
                             <th class="text-end">{t('Net')}</th>
-                            <th class="text-center">{t('Winning_Amount')}</th>
+                            <th class="text-center">{t('winning')}</th>
                             <th class="text-center">{t('Winning_Loss')}</th>
                             
                             
@@ -294,8 +301,8 @@ const handlePageClick = (event) => {
                             <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
-                            <td class="text-center"  style={{color:'green',fontWeight:"bold"}}>10.00</td>
-                            <td class="text-center"  style={{color:'red',fontWeight:"bold"}}>0.00</td>
+                                <td class="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                            <td class="text-center"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
 
                             
                             
@@ -363,13 +370,19 @@ const handlePageClick = (event) => {
             function winChild(e){
                 if (e > 0){
                     return(
-                        {color:"green"}
+                        {color:"green",fontWeight:"bold"}
                     )
                 }else if(e <= 0){
                     return(
                         {color:"red",fontWeight:"bold"}
                     )
                 }
+            }
+            function winLoseChild(net,win){
+                const wl = net - win
+                return(
+                    MoneyFormatDisplay(wl,1)
+                )
             }
             return (
                 <>
@@ -379,27 +392,23 @@ const handlePageClick = (event) => {
               
                 <table class="table small table-bordered">
                     <thead>
-                           
                         <tr>
                             <th>{t('No')}</th>
                             <th class="text-start">{t('Detail_Number')}</th>
-                            {/* <th class="text-start">Detail Number</th> */}
                             <th class="text-center">{t('Betting_Time')}</th>
                             <th class="text-center">{t('Draw_Date')}</th>
                             <th class="text-center">{t('game')}</th>
                             <th class="text-center">{t('Company')}</th>
                             <th class="text-center">{t('Bet_Number')}</th>
-
                             <th class="text-center">{t('Big')}</th>
                             <th class="text-center">{t('Small_Bet')}</th>
                             <th class="text-center">3A</th>
                             <th class="text-center">3C</th>
-
                             <th class="text-end">{t('Total')}</th>
                             <th class="text-end">{t('Rebate')}</th>
                             <th class="text-end">{t('Net')}</th>
-                            
-                            <th class="text-end">{t('Odds')}</th>
+                            {/* <th class="text-end">{t('Odds')}</th> */}
+                            <th class="text-center">{t('winning')}</th>
                             <th class="text-center">{t('Winning_Loss')}</th>
                         </tr>
                     </thead>
@@ -422,9 +431,11 @@ const handlePageClick = (event) => {
                                 <td class="text-center">{MoneyFormatDisplay(item.bet_amount,1)}</td>
                                 <td class="text-center">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
                                 <td class="text-center">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
-                                <td class="text-end">{t('no_data')}</td>
-                                
+                                {/* <td class="text-end">0.00</td> */}
+                               
                                 <td class="text-end"  style={winChild(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                            <td class="text-center"  style={winChild(winLoseChild(item.winning_amount,item.bet_net_amount))}>{winLoseChild(item.winning_amount,item.bet_net_amount)}</td>
+                                
                                
                             </tr>
                         ))}

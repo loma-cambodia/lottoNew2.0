@@ -43,7 +43,7 @@
     "heading_lotto":"快速选择您自己的号码",
     "smalltext_lotto":"彩票",
     "Net_Amount":"净额",
-    "Total":"全部的",
+    "Total":"总金额",
     "Result":"结果",
     "Bet_Details":"投注详情",
     "Success":"成功",
@@ -133,6 +133,7 @@
     "no_data_found":"查无数据",
     "no_data":"没有数据",
     "game":"游戏",
-    "back":"背部"
+    "back":"返回",
+    "winning":"中奖金额"
 
 }
