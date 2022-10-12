@@ -8,6 +8,7 @@ import styles from '../styles/Home.module.css'
 import WinngListBanner from '../components/Winning/Banner';
 import ListTable from '../components/BettingList/BettingListTable';
 import {getTicketData,searchTicketData} from '../store/actions/reportActions';
+import {getWinningData} from '../store/actions/winninglistActions';
 
 import ReactPaginate from 'react-paginate';
 
@@ -26,35 +27,53 @@ export default function WinningList({datauser}) {
   console.log('WinningList:auth:',auth);
 
   const [active, setActive] = useState(false);
+  const [winningList, setWinningList] = useState([]);
 
+
+  const getWinningList = () =>{
+    console.log('auth in getwinninglist:',auth.auth.id);
+
+    dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0 , response =>{
+      // console.log('inside dispatch dataSubmit date:   ',dataSubmit);
+
+        if(response.statusCode  == 201  || response.statusCode  == 200 ){
+
+        if(response.statusCode == 200){
+
+            console.log('results response in winning page:',response.data.data.data);
+            setWinningList(response.data.data.data)
+            // setWinningList([1,2,3,4,5])
+            
+        }else {
+            console.log(response.data.messages);
+
+        }
+        }else {
+        console.log('response:',response);
+        // setIsLoading(false);
+    }
+}))
+}
 
        useEffect(() => {
-        dispatch(getTicketData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
-        //dispatch(searchTicketData());
-      },[dispatch,auth]);
+        getWinningList();
+      },[auth]);
 
 
       useEffect(() => {
-       // console.log('111111111111111');
         dispatch({
           type: "GET_LOGIN_DETAILS",
           payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
       })
       }, [datauser])
       
-      const state = useSelector(state => state);
-      let tickets = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
-      let ticketsChild = state && state.tickets && state.tickets.ticketsChild ? state.tickets.ticketsChild : [];
 
-      let ticketSlave = tickets.ticket_slave
-   //    console.log("tickets:",tickets)
       
-      const ticketSearch = []
-      const GetTicketNumber = (member_id,dateRange,ticketNo) => {
-       // const number = e.target.value
-        dispatch(searchTicketData(member_id,dateRange,ticketNo));
-       // console.log("##%%%%%%#",state)
-        }
+      const state = useSelector(state => state);
+      console.log("state after getwinningdata: ", state)
+      
+      
+      
 
         const handlePageClick = (event) => {
           const newOffset = (event.selected * itemsPerPage) % Pkglottery1.length;
@@ -84,19 +103,61 @@ export default function WinningList({datauser}) {
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th class="text-start">Ticket No</th>
-                            <th class="text-start">Bet No.</th>
-                            <th class="text-center">Date</th>
+                            <th class="text-start">Detail Number</th>
+                            <th class="text-start">Betting Time</th>
+                            <th class="text-center">Draw Date</th>
                             <th class="text-center">Game</th>
                             <th class="text-center">Betting Type</th>
                             <th class="text-center">Company</th>
-                            <th class="text-end">Gross Amt.</th>
-                            <th class="text-end">Commission</th>
-                            <th class="text-end">Net Amt.</th>
+                            <th class="text-end">Bet Number</th>
+                            <th class="text-end">Big</th>
+                            <th class="text-end">3A</th>
+                            <th class="text-end">3C</th>
+                            <th class="text-end">Odds</th>
+                            <th class="text-end">Rebate</th>
+                            <th class="text-end">Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                   { console.log("map is :", winningList)}
+
+                    {winningList ? winningList.map((item)=>(
+                      <tr>
+                            <td >{item.id}</td>
+                            <td class="text-start" ><a href="href">{item.child_ticket_no}</a></td>
+                            <td class="text-start" >{item.betting_date}</td>
+                            <td class="text-center" >{item.ticket.draw_date}</td>
+                            <td class="text-center">3D</td>
+                            <td class="text-center">B</td>
+                            <td class="text-center">Magnum</td>
+                            <td class="text-end">100.08</td>
+                            <td class="text-end">10%</td>
+                            <td class="text-end">90.07</td>
+                            <td class="text-end">90.07</td>
+                            <td class="text-end">90.07</td>
+                            <td class="text-end">90.07</td>
+                            <td class="text-end">90.07</td>
+                      </tr>
+                    )) :
+                    <span>Nothing</span>
+                  }
+                   {/* <tr>
+                            <td rowspan="2">1</td>
+                            <td class="text-start" rowspan="2"><a href="href">BRN0000001</a></td>
+                            <td class="text-start" rowspan="2">1234</td>
+                            <td class="text-center" rowspan="2">2022-09-21<br/>11:36:45</td>
+                            <td class="text-center">3D</td>
+                            <td class="text-center">B</td>
+                            <td class="text-center">Magnum</td>
+                            <td class="text-end">100.08</td>
+                            <td class="text-end">10%</td>
+                            <td class="text-end">90.07</td>
+                            <td class="text-end">90.07</td>
+                            <td class="text-end">90.07</td>
+                            <td class="text-end">90.07</td>
+                            <td class="text-end">90.07</td>
+                      </tr> */}
+                        {/* <tr>
                             <td rowspan="2">1</td>
                             <td class="text-start" rowspan="2"><a href="href">BRN0000001</a></td>
                             <td class="text-start" rowspan="2">1234</td>
@@ -141,127 +202,7 @@ export default function WinningList({datauser}) {
                             <td class="text-end">100.08</td>
                             <td class="text-end">10%</td>
                             <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            <td>13</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
+                        </tr> */}
                     </tbody>
                 </table>
             </div>

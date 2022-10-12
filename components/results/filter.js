@@ -96,7 +96,7 @@ const Filter = ({_setDate}) => {
         }
       ];
 
-      console.log('highlightWithRanges ',highlightWithRanges)
+      // console.log('highlightWithRanges ',highlightWithRanges)
 
 
       
