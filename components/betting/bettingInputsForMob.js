@@ -130,6 +130,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     }
 
     const setAllData = (getValue) => {
+        hideErrorAmount();
         if(activeGame == false){
             // alert('3d');
             if(getValue.length == 4){
@@ -558,8 +559,12 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         $("#ErrorC").html('');	
         $("#ErrorC").css('visibility', 'hidden')	
         $("#ErrorA").html('');	
-        $("#ErrorA").css('visibility', 'hidden')	
-       }
+        $("#ErrorA").css('visibility', 'hidden')      
+    }
+    const hideErrorAmount = () => {
+        $("#amountAsNull").html('');	
+        $("#amountAsNull").css('visibility', 'hidden')
+    }
     const numberInputHandler = (getValue, operationField) => {
         let localStateDataForChange = item.dataInit;
     
@@ -889,7 +894,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     }
     
     // console.log('_mainSubmitData',localStateData);
-
     const previewSubmitData = (getAction, getIndex = 0) => {
         // alert(getAction)
         let finalSubmitData = _finalSubmitData;
@@ -1050,17 +1054,26 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                             pauseOnHover: true,draggable: true,progress: undefined});
                             return false;
                         }else if(localStateDataForChange['number'] == ""){
-                            toast.error('Please Enter Number', 
-                            {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                            pauseOnHover: true,draggable: true,progress: undefined});
+
+                            // $("#ErrorBig").html('Please Enter Number');
+                            // $("#ErrorBig").css('visibility', 'visible')
+
+                            // toast.error('Please Enter Number', 
+                            // {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                            // pauseOnHover: true,draggable: true,progress: undefined});
                             return false;
                         }else if(amountTotal == 0){
-                            toast.error('Please Enter Amount', 
-                            {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                            pauseOnHover: true,draggable: true,progress: undefined});
+                            $("#amountAsNull").html('Please Enter Amount');
+                            $("#amountAsNull").css('visibility', 'visible');
+
+                            // toast.error('Please Enter Amount', 
+                            // {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                            // pauseOnHover: true,draggable: true,progress: undefined});
                             return false;
                         }
                         else{
+                            $("#amountAsNull").html('');
+                            $("#amountAsNull").css('visibility', 'hidden');
                             finalSubmitData.push(localStateDataForChange);
     
                             mainSubmitData.push(_mainSubmitData);
@@ -1214,12 +1227,12 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
 // console.log("resultDataaa:",resultData)
     return (
-        
+       
         <>
         <ToastContainer />
             {activeGameType ? 
                 <>  
-                    <div className="row">
+                    <div className="row" onClick={() => hideError()}>
                         <div className="col-6" style={{ padding: '-1px' }}>
                             <input type="text" 
                                 inputMode='none'
@@ -1248,6 +1261,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                             />
                             {/* <span className="betTip" id="ErrorSmall0">4536456456456</span> */}
                             <span className="betTip" id={'ErrorBig'}></span>
+                            <span className="betTip" id={'amountAsNull'}></span>
                         </div>
                         <div style={{position:'relative',padding: '-0.9px'}} className="col-3">
                             <input 
@@ -1261,12 +1275,13 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 style={{ border: curserPointer == 'small' ? ' 2px solid #bc2263' : '' }}
                             />
                             <span className="betTip" id={'ErrorSmall'}></span>
+                            <span className="betTip" id={'amountAsNull'}></span>
                         </div>
                     </div>
                 </> : 
                 
                 <>
-                    <div className="row">
+                    <div onClick={() => hideError()} className="row">
                         <div className="col-6" style={{ padding: '-1px' }}>
                             <input type="text" 
                                 inputMode='none'
@@ -1296,6 +1311,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 style={{ border: curserPointer == '3a' ? ' 2px solid #bc2263' : '' }}
                             />
                             <span className="betTip" id={'ErrorA'}></span>
+                            <span className="betTip" id={'amountAsNull'}></span>
                         </div>
                         <div style={{position:'relative',padding: '-0.9px'}} className="col-3">  
                             <input 
@@ -1311,12 +1327,13 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 style={{ border: curserPointer == '3c' ? ' 2px solid #bc2263' : '' }}
                             />
                             <span className="betTip" id={'ErrorC'}></span>
+                            <span className="betTip" id={'amountAsNull'}></span>
                         </div>
                     </div>
                 </>  
             }
 
-            <div className="row mt-2">
+            <div onClick={() => hideError()} className="row mt-2">
                 <div className="col-4">
                     <label htmlFor="forBoxValue"
 
@@ -1362,8 +1379,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     </label>                       
                 </div>
             </div>
-            
-            <FinalDataContainer _previewSubmitData={previewSubmitData} finalSubmitData={_finalSubmitData} _bettingInitData={bettingInitData} totalAmount={totalAmount}/>
+            <div onClick={() => hideError()}>
+                <FinalDataContainer _previewSubmitData={previewSubmitData} finalSubmitData={_finalSubmitData} _bettingInitData={bettingInitData} totalAmount={totalAmount}/>
+            </div>
 
             
                     
@@ -1458,7 +1476,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 </div>
             </div>
 
-            <div className="mt-2 mb-2 row">
+            <div onClick={() => hideError()} className="mt-2 mb-2 row">
                 <div className='col-6'>
                     <button className="form-control" onClick={() => resetAllData()} style={{ background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
                         <b>{t('Reset')}</b> 
