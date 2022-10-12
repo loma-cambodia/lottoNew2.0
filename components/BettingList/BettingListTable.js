@@ -133,6 +133,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         setChildDataTickets(ticketsssss);
         setParentAction(false);
         setSearchAction(false);
+        
+        // $('.hideAndShowForMobileView').toggle("slide");
     }
 
     
@@ -168,7 +170,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
 
         _GetTicketNumber(member_id,newDateRange,ticketNo);
-  
+        $('.hideAndShowForMobileView').toggle("slide");
       }
 
 
@@ -250,68 +252,91 @@ const handlePageClick = (event) => {
         if(currentItems && currentItems.length > 0){
             return (
                 <>
-                <table className="table small table-bordered">
-                    <thead>
-                        <tr>
-                            <th>{t('No.')}</th>
-                            <th className="text-center">Ticket Number</th>
-                            <th className="text-center">Betting Time</th>
-                            <th className="text-center">Draw Date</th>
-                            <th className="text-start">Bet Number</th>
-                            <th className="text-start">{t('Company')}</th>
-                            <th className="text-end">Total</th>
-                            <th className="text-end">Rebate</th>
-                            <th className="text-end">Net</th>
-                            
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {currentItems && currentItems.map((item,i) =>(
-                        <tr key={i}>
-                            <td>{i + 1}</td>
-                            {/* <td className="text-center"><span className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td> */}
-                            <td className="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
-                            <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
-                            <td className="text-center">{item.betting_date}</td>
-                            <td className="text-start">{item.bet_number}</td>
-                            <td className="text-start">
-                            {
-                               item.games && item.games.map((item,i) =>(
-                                  item.abbreviation
-                               )
-                               ) 
-                            }
-                          </td>
-                            <td className="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
-                            <td className="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
-                            <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
+                    <div className={styles.device_detect_for_mobile}>
+                        <table className="mob-table mb-3">
+                            <thead>
+                                <tr>
+                                    <th><span>Ticket Number<br />Betting Time</span></th>
+                                    <th><span>Draw Date<br />Bet Number</span></th>
+                                    <th><span>{t('Company')}<br/>Total</span></th>
+                                    <th><span>Rebate<br/>Net</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {currentItems && currentItems.map((item,i) =>(
+                                    <tr key={i}>
+                                        <td><span><a  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</a><br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</span></td>
+                                        <td><span>{item.bet_number}<br />{item.betting_date}</span></td>
+                                        <td><span>{
+                                                    item.games && item.games.map((item,i) =>(
+                                                        item.abbreviation
+                                                    )) 
+                                                }<br />{MoneyFormatDisplay(item.bet_amount, 1)}</span></td>
+                                        <td><span>{MoneyFormatDisplay(item.rebate_amount, 1)}<br />{MoneyFormatDisplay(item.bet_net_amount, 1)}</span></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className={styles.device_detect_for_desktop}>
+                        <table className="table small table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>{t('No.')}</th>
+                                    <th className="text-center">Ticket Number</th>
+                                    <th className="text-center">Betting Time</th>
+                                    <th className="text-center">Draw Date</th>
+                                    <th className="text-start">Bet Number</th>
+                                    <th className="text-start">{t('Company')}</th>
+                                    <th className="text-end">Total</th>
+                                    <th className="text-end">Rebate</th>
+                                    <th className="text-end">Net</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {currentItems && currentItems.map((item,i) =>(
+                                <tr key={i}>
+                                    <td>{i + 1}</td>
+                                    {/* <td className="text-center"><span className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td> */}
+                                    <td className="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
+                                    <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
+                                    <td className="text-center">{item.betting_date}</td>
+                                    <td className="text-start">{item.bet_number}</td>
+                                    <td className="text-start">
+                                    {
+                                    item.games && item.games.map((item,i) =>(
+                                        item.abbreviation
+                                    )
+                                    ) 
+                                    }
+                                </td>
+                                    <td className="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
+                                    <td className="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
+                                    <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>                
+                    <div className="clearfix d-flex align-items-center justify-content-center">
 
-                            
-                            
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
-                <div className="clearfix d-flex align-items-center justify-content-center">
-
-                       { pageCount > 1 ?
-                <ReactPaginate
-                breakLabel="..."
-                nextLabel="Next >" 
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={pageCount}
-                previousLabel="< Previous"
-                renderOnZeroPageCount={null}
-                className="pagination"
-            /> : null } 
-            
-                    <svg className="hide">
-                        <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
-                        <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
-                    </svg>
-                </div>
+                        { pageCount > 1 ?
+                        <ReactPaginate
+                            breakLabel="..."
+                            nextLabel="Next >" 
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={5}
+                            pageCount={pageCount}
+                            previousLabel="< Previous"
+                            renderOnZeroPageCount={null}
+                            className="pagination"
+                        /> : null } 
+                
+                        <svg className="hide">
+                            <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
+                            <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
+                        </svg>
+                    </div>
                 </>
             );
         }else{
@@ -349,58 +374,64 @@ const handlePageClick = (event) => {
             return (
                 <>
                 <button onClick={() => backButton() } className="btn btn-warning">Back</button>
-                <table className="table small table-bordered">
-                    <thead>
-                        <tr>
-                            <th>{t('No.')}</th>
-                            <th className="text-start">Detail Number</th>
-                            {/* <th className="text-start">Detail Number</th> */}
-                            <th className="text-center">Betting Time</th>
-                            <th className="text-center">Draw Date</th>
-                            <th className="text-center">Game</th>
-                            <th className="text-center">{t('Company')}</th>
-                            <th className="text-start">Bet Number</th>
+                    <div className={styles.device_detect_for_mobile}>
+                        <table className="mob-table">
+                            <thead>
+                                <tr>
+                                    <th><span>Detail Number<br />Betting Time<br />Draw Date</span></th>
+                                    <th><span>Game<br />{t('Company')}<br />Bet Number</span></th>
+                                    <th><span>Big<br />Small<br />3A<br />3C</span></th>
+                                    <th><span>Total<br />Rebate<br />Net</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {tickets.map((item,id) =>(
+                                    <tr key={id}>
+                                        <td><span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.betting_date}</span></td>
+                                        <td><span>{item.game_type}<br />{item.game && item.game.name ? item.game.name : ""}<br />{item.lottery_number}</span></td>
+                                        <td><span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span></td>
+                                        <td><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
+                                    </tr>
+                                ))}
+                                {/* {tickets.length == 0 ?(
+                                    <tr key={id}>
+                                        <td colSpan={14}>{id+1}</td>
+                                    </tr>
+                                ): null} */}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className={styles.device_detect_for_desktop}>
+                        <table className="table small table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>{t('No.')}</th>
+                                    <th className="text-start">Detail Number</th>
+                                    {/* <th className="text-start">Detail Number</th> */}
+                                    <th className="text-center">Betting Time</th>
+                                    <th className="text-center">Draw Date</th>
+                                    <th className="text-center">Game</th>
+                                    <th className="text-center">{t('Company')}</th>
+                                    <th className="text-start">Bet Number</th>
 
-                            <th className="text-end">Big</th>
-                            <th className="text-end">Small</th>
-                            <th className="text-end">3A</th>
-                            <th className="text-end">3C</th>
-                            <th className="text-end">Total</th>
-                            <th className="text-end">Rebate</th>
-                            <th className="text-end">Net</th>
-                           
-                        </tr>
-                    </thead>
-                    <tbody>
-                
-                        {tickets.map((item,id) =>(
-                            <tr key={id}>
-                                <td>{id+1}</td>
-                                <td className="text-start"><a >{item.child_ticket_no}</a></td>
-                                <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
-                                <td className="text-center">{item.ticket.betting_date}</td>
-                                <td className="text-center">{item.game_type}</td>
-                                <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
-                                <td className="text-start">{item.lottery_number}</td>
+                                    <th className="text-end">Big</th>
+                                    <th className="text-end">Small</th>
+                                    <th className="text-end">3A</th>
+                                    <th className="text-end">3C</th>
+                                    <th className="text-end">Total</th>
+                                    <th className="text-end">Rebate</th>
+                                    <th className="text-end">Net</th>
+                                
+                                </tr>
 
-                                <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
-                                <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
-                                <td className="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
-                                <td className="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
-                                <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
-                                <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
-                                <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
-                              
-                            </tr>
-                        ))}
 
-                    {tickets.length == 0 ?(
-                            <tr key={id}>
-                                <td colSpan={14}>{id+1}</td>
-                            </tr>
-                        ): null}
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+
+                                
+                            </tbody>
+                        </table>
+                    </div>
                 </>
             );
         }else{
@@ -482,13 +513,13 @@ const handlePageClick = (event) => {
             <div className='showForMobileViewSearch'>
                 <div className="clearfix curved-card">
                     <div className={styles.device_detect_for_mobile}>
-                        <div className="form-group">
+                        <div className="form-group mb-0">
                             <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
                                 <b>BETTING LIST REPORT</b>
                                 <img 
                                     onClick={() => openFilterForMob()}
                                     className="img-fluid" 
-                                    src="images\betting\1111111.png" 
+                                    src="images\betting\filter-icon.png" 
                                     alt="" 
                                     style={{ width: '20px', float: 'right', marginTop: '5px' }} />
                             </button>
@@ -521,17 +552,21 @@ const handlePageClick = (event) => {
                                     <div className={styles.device_detect_for_mobile+" col-md-12 col-12"}>
                                         <div className='row'>
                                             <div className='col-md-6 col-6'>
-                                                <label className="d-block">&nbsp;</label>
-                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
+                                                {/* <label className="d-block">&nbsp;</label> */}
+                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2" onClick={()=>searchGetListonFilter()} >
+                                                    {t('Search')}
+                                                </button>
                                             </div>
                                             <div className='col-md-6 col-6'>
-                                                <label className="d-block">&nbsp;</label>
-                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
+                                                {/* <label className="d-block">&nbsp;</label> */}
+                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2" onClick={()=>resetFilter()}>
+                                                    {t('Reset')}
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className={styles.device_detect_for_desktop+" col-md-12"}>
+                                    <div className={styles.device_detect_for_desktop+" col-md-6"}>
                                         <div className="form-group">
                                             <label className="d-block">&nbsp;</label>
                                             <button type="button" className="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
@@ -590,12 +625,13 @@ const handlePageClick = (event) => {
                                     <div className={styles.device_detect_for_mobile+" col-12"}>
                                         <div className='row'>
                                             <div className='col-md-6 col-6'>
-                                                <label className="d-block">&nbsp;</label>
-                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')} aaaa</button>
+                                                {/* <label className="d-block">&nbsp;</label> */}
+                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
                                             </div>
                                             <div className='col-md-6 col-6'>
-                                                <label className="d-block">&nbsp;</label>
-                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
+                                                {/* <label className="d-block">&nbsp;</label> */}
+                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childDataReset()}>{t('Reset')}
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -614,7 +650,9 @@ const handlePageClick = (event) => {
                 </div>
             </div>
             <div className="table-responsive my-3">
+
                 {parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
+
             </div>  
              
 
