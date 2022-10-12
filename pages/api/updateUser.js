@@ -9,19 +9,19 @@ async function handler(req, res) {
   const body = req.body;
 
   
-//   const objectWithData = {
-//     customer_name: req.body.customer_name,
-//     customer_id: req.body.customer_id,
-//     merchant_id: req.body.enterprise_id,
-//     language: req.body.language,
-//   }
+  const objectWithData = {
+    customer_name: req.body.customer_name,
+    customer_id: req.body.customer_id,
+    merchant_id: req.body.enterprise_id,
+    language: req.body.language,
+  }
 
-const objectWithData = {
-    "customer_name": "Dileep Maurya",
-   "customer_id":  112,
-  "merchant_id":  1,
-  "language":  'en',
-}
+// const objectWithData = {
+//     "customer_name": "Dileep Maurya",
+//    "customer_id":  112,
+//   "merchant_id":  1,
+//   "language":  'en',
+// }
  
   
   const userData = await fetch(`${process.env.apiUrl}/member-login`, {
@@ -39,7 +39,7 @@ const objectWithData = {
     req.session.user = data
     await req.session.save()
     //res.redirect(307, '/')
-    res.send('You are Logged in, Please Go back')
+    res.send(data);
   } else {
     res.send('Worng Data')
   }
