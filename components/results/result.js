@@ -6,7 +6,7 @@ import moment from 'moment';
 import { useDispatch, useSelector } from "react-redux";
 import {getResults} from '../../store/actions/resultActions';
 
-const Result = ({_initDate, _setDate}) => {
+const Result = ({_initDate}) => {
   
   console.log('_initData in result: ',_initDate)
 
@@ -42,7 +42,6 @@ console.log('inititresult in result: ',initResult)
              let results = response.data.data
              drawResult = results
              setResult(drawResult)
-             _setDate(drawResult[0].result_date.format('YYYY-MM-DD'))
         }else {
             console.log(response.data.messages);
 

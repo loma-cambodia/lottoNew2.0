@@ -14,39 +14,43 @@ const Filter = ({_setDate}) => {
     const [startDate, setStartDate] = useState();
 
     console.log('startDate in filter: ', startDate)
-    const pickDate = () =>{
-        
-    }
-
+  
     const dispatch = useDispatch();
 
-    const [initResult, setResult] = useState([]);
+        const getLatestDrawDate = () =>{
 
-    console.log('inititresult in result: ',initResult)
+          let dataSubmit = undefined
+         dispatch(getResults(dataSubmit,response =>{
+            if(response.statusCode  == 201  || response.statusCode  == 200 ){
 
-    //     const getDrawResults = () =>{
-    //     const dataSubmit ={"date":moment(_initDate).format('YYYY/MM/DD')}
-    //     console.log('dataSubmit date:   ',moment(_initDate).format('YYYY/MM/DD'));
+            if(response.statusCode == 200){
 
-    //     dispatch(getResults(dataSubmit, response =>{
-    //         if(response.statusCode  == 201  || response.statusCode  == 200 ){
+                // console.log('results response in filter:',response.data);
+                let results = response.data.data
+                // setStartDate(results[0].result_date)
+                console.log('results response in filter:',results[0].result_date);
 
-    //         if(response.statusCode == 200){
-
-    //             console.log('results response:',response.data);
-    //             let results = response.data.data
-    //             return results
-    //         }else {
-    //             console.log(response.data.messages);
-
-    //         }
-    //         }else {
-    //         console.log('response:',response);
-    //         // setIsLoading(false);
-    //     }
-    // }))
+                setStartDate (new Date(results[0].result_date))
+            }else {
+                console.log(response.data.messages); 
+            }
+            }else {
+            console.log('response:',response);
+            // setIsLoading(false);
+        }
+    }))
+    }
+    // const getStartDate = () =>{
+    //   if (startDate === undefined)
+    //   {
+    //     return 
+    //   }
+    //   else 
+    //   {
+    //     console.log('startDate in getstartdate',startDate)
+    //    return startDate
+    //   }
     // }
-    
     const sundaysInMonth = ( m, y ) =>{
         var days = new Date( y,m,0 ).getDate();
         var sundays = [ 8 - (new Date( m +'/01/'+ y ).getDay()) ];
@@ -97,6 +101,7 @@ const Filter = ({_setDate}) => {
 
       
       useEffect(() => {
+        getLatestDrawDate()
       },[]);
     return (
         <>
@@ -109,6 +114,7 @@ const Filter = ({_setDate}) => {
             <div className="input-group date" style={{flexWrap: 'nowrap'}} id="datepicker">
                 {/* <input type="text" className="form-control" id="date"/> */}
                 <DatePicker 
+                dateFormat="dd/MM/yyyy"
                 selected={startDate} 
                 onChange={(date) => {setStartDate(date), _setDate(date)}} 
                 excludeDates={[addDays(new Date(), 1)]} 
