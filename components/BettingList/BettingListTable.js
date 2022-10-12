@@ -266,7 +266,7 @@ const handlePageClick = (event) => {
                     </thead>
                     <tbody>
                     {currentItems && currentItems.map((item,i) =>(
-                        <tr>
+                        <tr key={i}>
                             <td>{i + 1}</td>
                             {/* <td class="text-center"><span className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td> */}
                             <td class="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
@@ -472,100 +472,101 @@ const handlePageClick = (event) => {
     return (
         <>
 
-            {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}
-            {/* <SearchAbleFormParent />  */}
-            {searchAction ? (
-            <div class="clearfix curved-card">
-                <div class="row">
-                    <div class="col-md-3 col-12">
-                        <div class="form-group">
-                            <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
-                                <DateRangePicker
-                                    ref={keyRef}
-                                    onCancel={keyRef}
-                                    initialSettings={{ ranges }}
-                                    onEvent={handleEvent}
-                                >
-                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
-                                </DateRangePicker>
-                        </div>                    
-                    </div>
-                    <div class="col-md-2 col-6">
-                        <div class="form-group">
-                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                            <input type="text" onChange={(e)=>{ 
-                                 setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="d-block">&nbsp;</label>
-                            <button type="button" class="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
-                            <button type="button" class="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
-                        </div>
-                    </div>
+                {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}
+                {/* <SearchAbleFormParent />  */}
+            <div className='showForMobileViewSearch'>
+                <div class="clearfix curved-card">
+                    {searchAction ? (
+                            <div class="row">
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
+                                            <DateRangePicker
+                                                ref={keyRef}
+                                                onCancel={keyRef}
+                                                initialSettings={{ ranges }}
+                                                onEvent={handleEvent}
+                                            >
+                                                <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
+                                            </DateRangePicker>
+                                    </div>                    
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <div class="form-group">
+                                        <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
+                                        <input type="text" onChange={(e)=>{ 
+                                            setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="d-block">&nbsp;</label>
+                                        <button type="button" class="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
+                                        <button type="button" class="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        ) 
+                        :
+                        (
+                            <div class="row">
+                            
+                                <div class="col-md-2 col-6">
+                                    <div class="form-group">
+                                        <label for="transactionid" class="fw-bold mb-2">Detail Number</label>
+                                        <input type="text" onChange={(e)=>{ 
+                                                        setDetailNo(e.target.value)}}  class="form-control-custom-big" value={detailNo} name="transationid"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <div class="form-group">
+                                        <label for="transactionid" class="fw-bold mb-2">{t('Game')}</label>
+                                        {/* <select type="text" class="form-control-custom-big" name="transationid">
+                                            <option>All</option>
+                                            <option>4D</option>
+                                            <option>3D</option>
+                                        </select> */}
+                                        {/* <Select options={optionsGameType} value =''/> */}
+
+                                        <Select 
+                                            options={optionsGameType} 
+                                            defaultValue = { { value: '', label: 'All' }} 
+                                            value = {filterGameType}
+                                            onChange={value => setFilterGameType(value)}
+                                            />
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <div class="form-group">
+                                        <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
+                                        {/* <select type="text" class="form-control-custom-big" name="transationid">
+                                            <option>All</option>
+                                            <option>Toto</option>
+                                            <option>Magnum</option>
+                                            <option>Da ma cai</option>
+                                        </select> */}
+                                        <Select 
+                                            options={optionsGamesName} 
+                                            defaultValue = { { value: '', label: 'All' }} 
+                                            value = {filterGamesName}
+                                            onChange={value => setFilterGamesName(value)}
+                                            />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="d-block">&nbsp;</label>
+                                        <button type="button" class="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
+                                        <button type="button" class="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
-    ) :
-    (<div class="clearfix curved-card">
-    <div class="row">
-       
-        <div class="col-md-2 col-6">
-            <div class="form-group">
-                <label for="transactionid" class="fw-bold mb-2">Detail Number</label>
-                <input type="text" onChange={(e)=>{ 
-                                 setDetailNo(e.target.value)}}  class="form-control-custom-big" value={detailNo} name="transationid"/>
-            </div>
-        </div>
-        <div class="col-md-2 col-6">
-            <div class="form-group">
-                <label for="transactionid" class="fw-bold mb-2">{t('Game')}</label>
-                {/* <select type="text" class="form-control-custom-big" name="transationid">
-                    <option>All</option>
-                    <option>4D</option>
-                    <option>3D</option>
-                </select> */}
-                {/* <Select options={optionsGameType} value =''/> */}
-
-                <Select 
-                     options={optionsGameType} 
-                     defaultValue = { { value: '', label: 'All' }} 
-                     value = {filterGameType}
-                     onChange={value => setFilterGameType(value)}
-                     />
-            </div>
-        </div>
-        <div class="col-md-2 col-6">
-            <div class="form-group">
-                <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
-                {/* <select type="text" class="form-control-custom-big" name="transationid">
-                    <option>All</option>
-                    <option>Toto</option>
-                    <option>Magnum</option>
-                    <option>Da ma cai</option>
-                </select> */}
-                <Select 
-                     options={optionsGamesName} 
-                     defaultValue = { { value: '', label: 'All' }} 
-                     value = {filterGamesName}
-                     onChange={value => setFilterGamesName(value)}
-                     />
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="d-block">&nbsp;</label>
-                <button type="button" class="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
-                <button type="button" class="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
-            </div>
-        </div>
-    </div>
-</div>)}
-
             <div class="table-responsive my-3">
                 {parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
-
-
             </div>  
              
 
