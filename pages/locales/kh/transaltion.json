@@ -118,16 +118,22 @@
     "betting_history":"ប្រវត្តិភ្នាល់",
 
 
-    "Select_Date_Range":"Select Date Range", 
-    "Ticket_No":"Ticket No",
-    "bet_successful":"Bet Successful",
-    "bet_failed":"Bet Failed",
-    "Odds":"Odds",
-    "Ticket_Number":"Ticket Number",
-    "Betting_Time":"Betting Time",
-    "Draw_Date":"Draw Date",
-    "Bet_Number":"Bet Number",
-    "Net":"Net",
-    "Winning_Loss":"Winning/Loss",
-    "Detail_Number":"Detail Number"
+
+    "Select_Date_Range": "ម៉ោងភ្នាល់",
+    "Ticket_No": "លេខសំបុត្រ",
+    "bet_successful":" ភ្នាល់ជោគជ័យ",
+    "bet_failed":" ការភ្នាល់បរាជ័យ",
+    "Odds": "ហាងឆេង",
+    "Ticket_Number": "លេខសំបុត្រ",
+    "Betting_Time":"ម៉ោងភ្នាល់",
+    "Draw_Date": "កាលបរិច្ឆេទឆ្នោត",
+    "Bet_Number": "លេខភ្នាល់",
+    "Net": "ចំនួនទឹកប្រាក់សុទ្ធ",
+    "Winning_Loss": "ឈ្នះចាញ់",
+    "Detail_Number" : "លេខព័ត៌មានលម្អិតសំបុត្រ",
+    "no_data_found":"រកមិនឃើញទិន្នន័យទេ!",
+    "no_data":"្មាន ទិន្នន័យ",
+    "game":"ហ្គេម",
+    "back":"ត្រឡប់មកវិញ"
+
 }

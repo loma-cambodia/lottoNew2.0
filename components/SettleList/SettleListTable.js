@@ -264,16 +264,16 @@ const handlePageClick = (event) => {
                 <table class="table small table-bordered">
                     <thead>
                         <tr>
-                            <th>{t('No.')}</th>
-                            <th class="text-center">Ticket Number</th>
-                            <th class="text-center">Betting Time</th>
-                            <th class="text-center">Draw Date</th>
-                            <th class="text-center">Bet Number</th>
+                            <th>{t('No')}</th>
+                            <th class="text-center">{t('Ticket_No')}</th>
+                            <th class="text-center">{t('Betting_Time')}</th>
+                            <th class="text-center">{t('Draw_Date')}</th>
+                            <th class="text-center">{t('Bet_Number')}</th>
                             <th class="text-center">{t('Company')}</th>
-                            <th class="text-end">Total</th>
-                            <th class="text-end">Rebate</th>
-                            <th class="text-end">Net</th>
-                            <th class="text-center">Winning/Loss</th>
+                            <th class="text-end">{t('Total')}</th>
+                            <th class="text-end">{t('Rebate')}</th>
+                            <th class="text-end">{t('Net')}</th>
+                            <th class="text-center">{t('Winning_Loss')}</th>
                             
                             
                         </tr>
@@ -297,7 +297,7 @@ const handlePageClick = (event) => {
                             <td class="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
-                            <td class="text-center"  style={{color:'red'}}>No Data </td>
+                            <td class="text-center"  style={{color:'red'}}>{t('no_data')}</td>
 
                             
                             
@@ -334,7 +334,7 @@ const handlePageClick = (event) => {
             return(
                 <div className='alert alert-warning'>
                 <h3 className='text-center'>
-                    No Data Found!
+                   {t('no_data_found')}
                 </h3>
                </div>
                )
@@ -375,30 +375,31 @@ const handlePageClick = (event) => {
             }
             return (
                 <>
-                <button onClick={() => backButton() } className="btn btn-warning">Back</button>
+                <button onClick={() => backButton() } className="btn btn-warning">{t('back')}</button>
                 <table class="table small table-bordered">
                     <thead>
+                           
                         <tr>
-                            <th>{t('No.')}</th>
-                            <th class="text-start">Detail Number</th>
+                            <th>{t('No')}</th>
+                            <th class="text-start">{t('Detail_Number')}</th>
                             {/* <th class="text-start">Detail Number</th> */}
-                            <th class="text-center">Betting Time</th>
-                            <th class="text-center">Draw Date</th>
-                            <th class="text-center">Game</th>
+                            <th class="text-center">{t('Betting_Time')}</th>
+                            <th class="text-center">{t('Draw_Date')}</th>
+                            <th class="text-center">{t('game')}</th>
                             <th class="text-center">{t('Company')}</th>
-                            <th class="text-center">Bet Number</th>
+                            <th class="text-center">{t('Bet_Number')}</th>
 
-                            <th class="text-center">Big</th>
-                            <th class="text-center">Small</th>
+                            <th class="text-center">{t('Big')}</th>
+                            <th class="text-center">{t('Small_Bet')}</th>
                             <th class="text-center">3A</th>
                             <th class="text-center">3C</th>
 
-                            <th class="text-center">Total</th>
-                            <th class="text-center">Rebate</th>
-                            <th class="text-center">Net</th>
+                            <th class="text-end">{t('Total')}</th>
+                            <th class="text-end">{t('Rebate')}</th>
+                            <th class="text-end">{t('Net')}</th>
                             
                             <th class="text-end">{t('Odds')}</th>
-                            <th class="text-end">Winning/Loss</th>
+                            <th class="text-center">{t('Winning_Loss')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -420,7 +421,7 @@ const handlePageClick = (event) => {
                                 <td class="text-center">{MoneyFormatDisplay(item.bet_amount,1)}</td>
                                 <td class="text-center">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
                                 <td class="text-center">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
-                                <td class="text-end">No Data</td>
+                                <td class="text-end">{t('no_data')}</td>
                                 
                                 <td class="text-end"  style={winChild(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
                                
@@ -542,7 +543,7 @@ const handlePageClick = (event) => {
        
         <div class="col-md-2 col-6">
             <div class="form-group">
-                <label for="transactionid" class="fw-bold mb-2">Detail Number</label>
+                <label for="transactionid" class="fw-bold mb-2">{t('Detail_Number')}</label>
                 <input type="text" onChange={(e)=>{ 
                                  setDetailNo(e.target.value)}}  class="form-control-custom-big" value={detailNo} name="transationid"/>
             </div>
