@@ -42,7 +42,7 @@ console.log('inititresult in result: ',initResult)
              let results = response.data.data
              drawResult = results
              setResult(drawResult)
-             _setDate(drawResult[0].result_date)
+             _setDate(drawResult[0].result_date.format('YYYY-MM-DD'))
         }else {
             console.log(response.data.messages);
 
@@ -73,7 +73,7 @@ useEffect(() => {
               :
               !initResult .length == 0 ?
             <div>
-            <span>{t('Past_Draw_Result')}:  {moment(initResult[0].result_date).format('MM/DD/YYYY')}  ({getDateName(initResult[0].result_date)})</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
+            <span>{t('Past_Draw_Result')}:  {initResult[0].result_date} </span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
             </div>    
             :
             <div>
