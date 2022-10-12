@@ -240,12 +240,6 @@ const handlePageClick = (event) => {
     { value: '3', label: 'Toto'}
   ]
 
-
-
- 
-
-
-  
     function ShowTableDataParent({tickets}){
         function winParent(e){
             if (e > 0){
@@ -268,11 +262,13 @@ const handlePageClick = (event) => {
                             <th class="text-center">{t('Ticket_No')}</th>
                             <th class="text-center">{t('Betting_Time')}</th>
                             <th class="text-center">{t('Draw_Date')}</th>
+                            <th class="text-center">{t('Draw_Id')}</th>
                             <th class="text-center">{t('Bet_Number')}</th>
                             <th class="text-center">{t('Company')}</th>
                             <th class="text-end">{t('Total')}</th>
                             <th class="text-end">{t('Rebate')}</th>
                             <th class="text-end">{t('Net')}</th>
+                            <th class="text-center">{t('Winning_Amount')}</th>
                             <th class="text-center">{t('Winning_Loss')}</th>
                             
                             
@@ -285,6 +281,7 @@ const handlePageClick = (event) => {
                             <td class="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
                             <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
                             <td class="text-center">{item.betting_date}</td>
+                            <td class="text-center">12345</td>
                             <td class="text-center">{item.bet_number}</td>
                             <td class="text-center">
                             {
@@ -297,7 +294,8 @@ const handlePageClick = (event) => {
                             <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
-                            <td class="text-center"  style={{color:'red'}}>{t('no_data')}</td>
+                            <td class="text-center"  style={{color:'green'}}>10.00</td>
+                            <td class="text-center"  style={{color:'red'}}>0.00</td>
 
                             
                             
