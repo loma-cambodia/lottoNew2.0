@@ -164,9 +164,43 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
   }
   function afterOpenModal() {
   }
+
   function closeModal() {
     setIsOpen(false);
     hideError();
+    // alert('pppp');
+    // console.log('bettingInitDatabettingInitData',bettingInitData)
+  
+    let dateAndGameOptionDataNew = [];
+    if(_bettingDatesStore){
+      bettingInitData.map(item => {
+          let selectOrNot = false;
+          item.games.map(itemGame => {
+            if(itemGame.selected){
+              selectOrNot = true;
+            }
+          }) 
+          let tempObject = {};   
+          if(!selectOrNot){
+            tempObject = { 
+              "id": item.id,
+              "day": item.day,
+              "date" : item.date,
+              "selected": false,
+              "games":item.games.map(itemGame => {
+                let itemGameNew = {...itemGame};
+                itemGameNew = {...itemGameNew, selected:false} 
+                return itemGameNew;
+              })
+            }
+          }else{
+            tempObject = item;
+          }
+          dateAndGameOptionDataNew.push(tempObject);
+      });
+      setBettingInitData(dateAndGameOptionDataNew);
+    }
+    // console.log('itemGameitemGame',itemGame)
   }
 
     const selectAllDate = () => {
