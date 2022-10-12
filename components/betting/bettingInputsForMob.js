@@ -127,6 +127,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     function findWitchTypeOfGame(){
         allClearData();
         hideError();
+        hideErrorAmount();
     }
 
     const setAllData = (getValue) => {
