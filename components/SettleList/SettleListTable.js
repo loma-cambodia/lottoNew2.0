@@ -280,7 +280,7 @@ const handlePageClick = (event) => {
                             <td>{i + 1}</td>
                             <td class="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
                             <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
-                            <td class="text-center">{item.betting_date}</td>
+                            <td class="text-center">{item.draw_date}</td>
                             <td class="text-center">12345</td>
                             <td class="text-center">{item.bet_number}</td>
                             <td class="text-center">
@@ -294,8 +294,8 @@ const handlePageClick = (event) => {
                             <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
-                            <td class="text-center"  style={{color:'green'}}>10.00</td>
-                            <td class="text-center"  style={{color:'red'}}>0.00</td>
+                            <td class="text-center"  style={{color:'green',fontWeight:"bold"}}>10.00</td>
+                            <td class="text-center"  style={{color:'red',fontWeight:"bold"}}>0.00</td>
 
                             
                             
