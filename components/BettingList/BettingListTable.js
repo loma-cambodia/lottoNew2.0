@@ -242,9 +242,6 @@ const handlePageClick = (event) => {
 
 
 
- 
-
-
   
     function ShowTableDataParent({tickets}){
         if(currentItems && currentItems.length > 0){
@@ -315,7 +312,13 @@ const handlePageClick = (event) => {
                 </>
             );
         }else{
-            return (<><h1>No Data Found!</h1></>)
+            return (<>
+               <div className='alert alert-warning'>
+                <h3 className='text-center'>
+                    No Data Found!
+                </h3>
+               </div>
+            </>)
 
         }
     }
@@ -397,7 +400,13 @@ const handlePageClick = (event) => {
                 </>
             );
         }else{
-
+            return (<>
+                <div className='alert alert-warning'>
+                 <h3 className='text-center'>   
+                         No Data Found!
+                 </h3>
+                </div>
+             </>)   
         }
     }
 
