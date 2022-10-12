@@ -7,7 +7,8 @@ import { useTranslation } from "react-i18next";
 import styles from '../styles/Home.module.css'
 import ListBanner from '../components/BettingList/Banner';
 import ListTable from '../components/BettingList/BettingListTable';
-import {getTicketData,searchTicketData} from '../store/actions/tickets';
+import {getTicketData,searchTicketData} from '../store/actions/reportActions';
+
 import ReactPaginate from 'react-paginate';
 
 export default function BettingList({datauser}) {
