@@ -143,6 +143,12 @@ const Header = ({datauser,_auth}) => {
                               {/* Betting List */}
                               </Link>
                             </li>
+                            <li className= {`${router.pathname === "/winningList" ? "active-header":""}`}>
+                            <Link href="/winningList">
+                              {t('Winning')} 
+                              {/* Betting List */}
+                              </Link>
+                            </li>
                             {/* <li class="dropdown-desktop">
                             <a href="#" >{t('History')} </a>
                             <ul class="sub-menu-desktop">
@@ -226,6 +232,9 @@ const Header = ({datauser,_auth}) => {
                       </li>
                       <li className= {`${router.pathname === "/transaction" ? "active-header-mobile":""}`}>
                         <Link href="/transaction">{t('History')}</Link>
+                      </li>
+                      <li className= {`${router.pathname === "/winning" ? "active-header-mobile":""}`}>
+                            <Link href="/winning">{t('Winning')}</Link>
                       </li>
                       <li className= {`${router.pathname === "/results" ? "active-header-mobile":""}`}>
                         <Link href="/results" >{t('Result')}</Link>  

@@ -81,7 +81,7 @@ useEffect(() => {
               }
             </button>
           </h2>
-          <div id="collapseThree" className="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style={{minHeight: '45vh'}}>
+          <div id="collapseThree" className="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style={{minHeight: '60vh'}}>
             <div className="accordion-body">
               <div className="row">
               {!initResult.length == 0 ?
@@ -200,7 +200,7 @@ useEffect(() => {
                 </div>
                 ))
                 :
-                <div className="text-center" style={{minWidth: '50vh'}}>
+                <div className="text-center">
                   <span>There is no draw on this date</span>
                 </div>
                 }
