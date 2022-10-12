@@ -548,7 +548,17 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         }
         return totalAmount;
     }
-  
+    const hideError = () => {	
+        // alert('pppp');
+        $("#ErrorBig").html('');	
+        $("#ErrorBig").css('visibility', 'hidden')	
+        $("#ErrorSmall").html('');	
+        $("#ErrorSmall").css('visibility', 'hidden')	
+        $("#ErrorC").html('');	
+        $("#ErrorC").css('visibility', 'hidden')	
+        $("#ErrorA").html('');	
+        $("#ErrorA").css('visibility', 'hidden')	
+       }
     const numberInputHandler = (getValue, operationField) => {
         let localStateDataForChange = item.dataInit;
     
@@ -714,25 +724,18 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
             let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
             if(getValue > big_max_bet ){
-
-                toast.error('Bet should not be greater than '+big_max_bet, 
-                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                pauseOnHover: true,draggable: true,progress: undefined});
-
+                $("#ErrorBig").html('Bet should not be greater than '+big_max_bet);
+                $("#ErrorBig").css('visibility', 'visible')
                 getValue = big_max_bet;
-               
             }else if(getValue < big_min_bet ){
-
-                toast.error('Bet should not be less than '+big_min_bet, 
-                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                pauseOnHover: true,draggable: true,progress: undefined});
-                
+                $("#ErrorBig").html('Bet should not be less than '+big_min_bet);
+                $("#ErrorBig").css('visibility', 'visible')
                 getValue = big_min_bet;
-                
             }
-            // else{
-            //     $("#ErrorBig"+idas).html('');
-            // }
+            else{
+                $("#ErrorBig").html('');
+                $("#ErrorBig").css('visibility', 'hidden')
+            }
             setBigValue(getValue);
             localStateDataForChange['big']['value'] = getValue;
         } else if (operationField == 'small') {
@@ -741,31 +744,21 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             let small_min_bet  = limit && limit.length > 0 && limit[0].small_min_bet ?  limit[0].small_min_bet : 0;
             if(getValue > small_max_bet ){
 
-                toast.error('Bet should not be greater than '+small_max_bet, 
-                {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: false,
-                    draggable: false,
-                    progress: undefined
-                });
+                
+                $("#ErrorSmall").html('Bet should not be greater than '+small_max_bet);
+                $("#ErrorSmall").css('visibility', 'visible')
 
                 getValue = small_max_bet;
                
             }else if(getValue < small_min_bet ){
-
-                toast.error('Bet should not be less than '+small_min_bet, 
-                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                pauseOnHover: true,draggable: true,progress: undefined});
-
+                $("#ErrorSmall").html('Bet should not be less than '+small_min_bet);
+                $("#ErrorSmall").css('visibility', 'visible')
                 getValue = small_min_bet;
-                
             }
-            // else{
-            //     $("#ErrorBig"+idas).html('');
-            // }
+            else{
+                $("#ErrorSmall").html('');
+                $("#ErrorSmall").css('visibility', 'hidden')
+            }
             setSmallValue(getValue);
             localStateDataForChange['small']['value'] = getValue;
         } else if (operationField == '_3a') {
@@ -774,25 +767,23 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             let three_a_max_bet  = limit && limit.length > 0 && limit[0].three_a_max_bet ?  limit[0].three_a_max_bet : 0;
             let three_a_min_bet  = limit && limit.length > 0 && limit[0].three_a_min_bet ?  limit[0].three_a_min_bet : 0;
             if(getValue > three_a_max_bet ){
-                
-                toast.error('Bet should not be greater than '+three_a_max_bet, 
-                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                pauseOnHover: true,draggable: true,progress: undefined});
+
+                $("#ErrorA").html('Bet should not be greater than '+three_a_max_bet);
+                $("#ErrorA").css('visibility', 'visible')
 
                 getValue = three_a_max_bet;
                
             }else if(getValue < three_a_min_bet ){
-
-                toast.error('Bet should not be less than '+three_a_min_bet, 
-                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                pauseOnHover: true,draggable: true,progress: undefined});
+                $("#ErrorA").html('Bet should not be less than '+three_a_min_bet);
+                $("#ErrorA").css('visibility', 'visible')
 
                 getValue = three_a_min_bet;
                 
             }
-            // else{
-            //     $("#ErrorBig"+idas).html('');
-            // }
+            else{
+                $("#ErrorA").html('');
+                $("#ErrorA").css('visibility', 'hidden')
+            }
             setA3Value(getValue);
 
             localStateDataForChange['_3a']['value'] = getValue;
@@ -833,24 +824,23 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             let three_c_min_bet  = limit && limit.length > 0 && limit[0].three_c_min_bet ?  limit[0].three_c_min_bet : 0;
             if(getValue > three_c_max_bet ){
 
-                toast.error('Bet should not be greater than '+three_c_max_bet, 
-                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                pauseOnHover: true,draggable: true,progress: undefined});
+                $("#ErrorC").html('Bet should not be greater than '+three_c_max_bet);
+                $("#ErrorC").css('visibility', 'visible')
 
                 getValue = three_c_max_bet;
                
             }else if(getValue < three_c_min_bet ){
 
-                toast.error('Bet should not be less than '+three_c_min_bet, 
-                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                pauseOnHover: true,draggable: true,progress: undefined});
+                $("#ErrorC").html('Bet should not be less than '+three_c_min_bet);
+                $("#ErrorC").css('visibility', 'visible')
 
                 getValue = three_c_min_bet;
                 
             }
-            // else{
-            //     $("#ErrorBig"+idas).html('');
-            // }
+            else{
+                $("#ErrorC").html('');
+                $("#ErrorC").css('visibility', 'hidden')
+            }
             setC3Value(getValue);
             localStateDataForChange['_3c']['value'] = getValue;
 
@@ -1095,7 +1085,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         })
 
         setTotalAmount(slackTotalAmount);
-
+        hideError();
         setPageLoadCount(pageLoadCount + 1);
     }
 
@@ -1217,6 +1207,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 setCurserPointer('3a');
             }         
         }
+        hideError();
     }
 
 
@@ -1235,6 +1226,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 placeholder={t('4D_Bet_Number')}
                                 value={numberValue4D}  
                                 onClick={() => setCurserPointer('number4d')} 
+                                onBlur={() => hideError()}
                                 // value={localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : ""}
                                 maxLength={4}
                                 minLength={3}
@@ -1242,7 +1234,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 style={{ border: curserPointer == 'number4d' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
-                        <div className="col-3" style={{ padding: '0px' }}>
+                        <div style={{position:'relative',padding: '0px'}} className="col-3">
                             <input 
                                 inputMode='none'
                                 type="text" 
@@ -1250,10 +1242,13 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 placeholder={t('Big_Bet')}
                                 value={bigValue}
                                 onClick={() => setCurserPointer('big')} 
+                                onBlur={() => hideError()}
                                 style={{ border: curserPointer == 'big' ? ' 2px solid #bc2263' : '' }}
                             />
+                            {/* <span className="betTip" id="ErrorSmall0">4536456456456</span> */}
+                            <span className="betTip" id={'ErrorBig'}></span>
                         </div>
-                        <div className="col-3" style={{ padding: '-0.9px' }}>
+                        <div style={{position:'relative',padding: '-0.9px'}} className="col-3">
                             <input 
                                 inputMode='none'
                                 type="text" 
@@ -1261,8 +1256,10 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 placeholder={t('Small_Bet')}
                                 value={smallValue}
                                 onClick={() => setCurserPointer('small')} 
+                                onBlur={() => hideError()}
                                 style={{ border: curserPointer == 'small' ? ' 2px solid #bc2263' : '' }}
                             />
+                            <span className="betTip" id={'ErrorSmall'}></span>
                         </div>
                     </div>
                 </> : 
@@ -1276,6 +1273,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 placeholder={t('3D_Bet_Number')}
                                 value={numberValue3D}  
                                 onClick={() => setCurserPointer('number3d')} 
+                                onBlur={() => hideError()}
                                 // value={localStateData && localStateData.number && localStateData.number.value ? localStateData.number.value : ""}
                                 maxLength={3}
                                 minLength={3}
@@ -1283,7 +1281,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 style={{ border: curserPointer == 'number3d' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
-                        <div className="col-3" style={{ padding: '0px' }}>
+                        <div style={{position:'relative',padding: '0px'}} className="col-3">
                             <input 
                                 inputMode='none'
                                 type="text" 
@@ -1293,10 +1291,12 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 // value={localStateData && localStateData._3a && localStateData._3a.value ? localStateData._3a.value : ""}
                                 placeholder="3A"
                                 onClick={() => setCurserPointer('3a')}
+                                onBlur={() => hideError()}
                                 style={{ border: curserPointer == '3a' ? ' 2px solid #bc2263' : '' }}
                             />
+                            <span className="betTip" id={'ErrorA'}></span>
                         </div>
-                        <div className="col-3" style={{ padding: '-0.9px' }}>  
+                        <div style={{position:'relative',padding: '-0.9px'}} className="col-3">  
                             <input 
                                 inputMode='none'
                                 type="text" 
@@ -1306,8 +1306,10 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                 // value={localStateData && localStateData._3c && localStateData._3c.value ? localStateData._3c.value : ""}
                                 placeholder="3C" 
                                 onClick={() => setCurserPointer('3c')}
+                                onBlur={() => hideError()}
                                 style={{ border: curserPointer == '3c' ? ' 2px solid #bc2263' : '' }}
                             />
+                            <span className="betTip" id={'ErrorC'}></span>
                         </div>
                     </div>
                 </>  
