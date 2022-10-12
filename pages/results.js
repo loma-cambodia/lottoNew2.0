@@ -17,31 +17,10 @@ import Filter from "../components/results/filter";
     const [active, setActive] = useState(false)
 
 
-    const [initDate, setDate] = useState(new Date());
+    const [initDate, setDate] = useState();
 
     const dispatch = useDispatch();
 
-    const getlatestDrawResultsDate = () =>{
-    
-        dispatch(getLatestResultDate( response =>{
-    
-            if(response.statusCode  == 201  || response.statusCode  == 200 ){
-    
-            if(response.statusCode == 200){
-    
-                console.log('latestDate: ',response.data);
-                 let latestDate = response.data
-                 setDate(latestDate)
-            }else {
-                console.log(response.data.messages);
-    
-            }
-            }else {
-            console.log('response:',response);
-            // setIsLoading(false);
-        }
-    }))
-    }
     
         console.log('initDate in results: ',initDate)
 
