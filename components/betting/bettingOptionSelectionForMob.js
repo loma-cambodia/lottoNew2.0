@@ -146,23 +146,27 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
       // });
 
 
-          
-    function openModal() {
-      setIsOpen(true);
-    }
-    function afterOpenModal() {
-    }
-    function closeModal() {
-      setIsOpen(false);
-    }
-  
+      const hideError = () => {	
+        // alert('pppp');
+        $("#ErrorBig").html('');	
+        $("#ErrorBig").css('visibility', 'hidden')	
+        $("#ErrorSmall").html('');	
+        $("#ErrorSmall").css('visibility', 'hidden')	
+        $("#ErrorC").html('');	
+        $("#ErrorC").css('visibility', 'hidden')	
+        $("#ErrorA").html('');	
+        $("#ErrorA").css('visibility', 'hidden')	
+       }
+            
   function openModal() {
     setIsOpen(true);
+    hideError();
   }
   function afterOpenModal() {
   }
   function closeModal() {
     setIsOpen(false);
+    hideError();
   }
 
     const selectAllDate = () => {
@@ -265,7 +269,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
           <ToastContainer />
           <section>
             <div>
-              <div id={styles.checkboxes} className='row text-center'>
+              <div onBlur={() => hideError()} id={styles.checkboxes} className='row text-center'>
                   <div className='col-5'>
                       <input type="radio" id="3D" name="flexRadioDefault" onChange={() => setActive(!activeGameType)} checked={!activeGameType} />
                       <label htmlFor="3D">
