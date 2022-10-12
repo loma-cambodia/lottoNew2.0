@@ -14,14 +14,15 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
 import {getLogin} from '../../store/actions/authActions';
+import {twoDecimalPlaceWithoutRound} from './../Utils';
 
 
-const Header = ({datauser,_auth}) => {
+const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
 
    const dispatch = useDispatch();
    let auth = _auth;
 
-  //  console.log('Header:auth:',auth);
+    console.log('Header:auth:',auth);
 
   //  console.log('Header:datauser:',datauser);
 
@@ -60,16 +61,18 @@ const Header = ({datauser,_auth}) => {
     }
   }
 
+  
 
   const loginAPICall = () => {
 
     let objectWithData = {
        "customer_name": auth && auth.auth && auth.auth.customer_name ? auth.auth.customer_name : '',
-       "customer_id":  auth && auth.auth && auth.auth.customer_id ? auth.auth.customer_id : 0,
+       "customer_id":  auth && auth.auth && auth.auth.customer_id ? parseInt(auth.auth.customer_id) : 0,
        "merchant_id":  auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0,
        "language":   auth && auth.lang ? auth.lang : 'en'
     } 
    dispatch(getLogin(objectWithData));
+   setUpdateSessionData(updateSessionData + 1); 
  }
 
 
@@ -168,7 +171,7 @@ const Header = ({datauser,_auth}) => {
                                 <span className="user-id text-black" >{auth && auth.auth  && auth.auth.name ? auth.auth.name[0].toUpperCase() + auth.auth.name.substring(1)  : "" }</span>
                                 <a href="#" className="reload-icon"><span onClick={() => loginAPICall()}><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>
                                 
-                              { auth && auth.auth && auth && auth.auth.wallet && auth.auth.wallet.amount ? parseFloat(auth.auth.wallet.amount).toFixed(2)  : "0.00" }
+                              { auth && auth.auth && auth && auth.auth.wallet && auth.auth.wallet.amount ? twoDecimalPlaceWithoutRound(auth.auth.wallet.amount,1)  : "0.00" }
                                 
                               </span> <span className="badge badge-yellow text-black">
                             

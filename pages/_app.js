@@ -37,6 +37,7 @@ function MyApp({ Component, pageProps,user }) {
   const [data, setData] = useState([{}])
   //const [isLoading, setLoading] = useState(false)
   const [isLoading, setLoading] = useState(false);
+  const [updateSessionData, setUpdateSessionData]  =  useState(1);
 
   useEffect(() => {
   //  setLoading(true)
@@ -49,7 +50,7 @@ function MyApp({ Component, pageProps,user }) {
           localStorage.setItem("name", JSON.stringify(data.user));
         }
       })
-  }, [])
+  }, [updateSessionData])
 
 
   if (isLoading) return <p>Loading...</p>
@@ -65,7 +66,7 @@ function MyApp({ Component, pageProps,user }) {
           <link rel="icon" type="image/x-icon" href="assets/images/icons/150 x150-01.png" />
       </Head>
         <Provider store={store}>
-        <Component {...pageProps} datauser={data}/>
+        <Component {...pageProps} datauser={data}  updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
         </Provider>
       </> 
     );

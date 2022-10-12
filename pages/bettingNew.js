@@ -10,7 +10,7 @@ import BettingOptionSelectionForMob from '../components/betting/bettingOptionSel
 import styles from '../styles/Home.module.css'
 import Banner from '../components/betting/banner';
 import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
-export default function BettingNew({datauser}) {
+export default function BettingNew({datauser, updateSessionData, setUpdateSessionData}) {
 
 
   const { t } = useTranslation();
@@ -51,18 +51,18 @@ export default function BettingNew({datauser}) {
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
-      <Header datauser={datauser} _auth={auth}/>
+      <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <Banner/>
           <div className={styles.device_detect_for_desktop}>
           
-          <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit} _auth={auth}/>
+          <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
         </div>  
         <div className="container">
             <div className={styles.device_detect_for_mobile}> 
               <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
             </div>
         </div>
-      <div className={styles.device_detect_for_desktop}> 
+      <div className={styles.device_detect_for_mobile}> 
         <Footer/>
       </div>
         <script src="assets/js/jquery.min.js"></script>
