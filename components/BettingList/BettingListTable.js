@@ -1,37 +1,28 @@
+import React, { useState, useEffect, useRef } from 'react';
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
 import moment from 'moment';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
-
-import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from "react-i18next";
-
 import {getTicketData,searchTicketData, getLotteryDetailsList} from '../../store/actions/tickets';
-
 import { useDispatch, useSelector, } from "react-redux";
 import ReactPaginate from 'react-paginate';
+import Select from 'react-select';
 
 const API_BASE_URL = process.env.apiUrl;
 const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     
- let ticket = _tickets;
- let auth = _auth;
+    let ticket = _tickets;
+    let auth = _auth;
+    const items = _tickets;
 
-
-
-
-
- let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
-
+    let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const c = new Date();
     const msdate = formatDate(c);
     const medate = formatDate(c);
-
-    console.log('msdate:',msdate);
-
 
     const keyRef = useRef();
     const [dates1, setDates1] = useState({
@@ -39,31 +30,29 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       endDate: moment(medate),
     });
 
-    const [dates2, setDates2] = useState({
-        startDate: moment(msdate),
-        endDate: moment(medate),
-      });
 
-
-      const itemsPerPage  = 25;
+      const itemsPerPage  = 10;
+ 
       const [currentItems, setCurrentItems] = useState(null);
-      const [pageCount, setPageCount] = useState(5);
+      const [pageCount, setPageCount] = useState(0);
       const [itemOffset, setItemOffset] = useState(0);
-
-
-
+      const [seletedPage, setSeletedPage] = useState(1);
       const [fromDate, setFromDate] = useState(new Date('2022-10-12'));
       const [toDate, setToDate] = useState(new Date());
+      const [detailNo, setDetailNo] = useState('');
+      const [filterGamesName, setFilterGamesName] = useState({ value: '', label: 'All' });
+      const [filterGameType, setFilterGameType] = useState({ value: '', label: 'All' });
+      const [selectedticketId, setSelectedticketId] = useState('');
 
 
 
 
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-     //   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-        setCurrentItems(_tickets.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(_tickets.length / itemsPerPage));
-      }, [itemOffset,itemsPerPage,_tickets]);
+        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+        setCurrentItems(items.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(items.length / itemsPerPage));
+      }, [itemOffset, itemsPerPage,_tickets]);
 
 
 
@@ -100,6 +89,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
       const GetTicketNumber = _GetTicketNumber
 
+      
+
 
       function formatDate(date) {
         var d = new Date(date),
@@ -114,10 +105,26 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     }
 
     const state = useSelector(state => state);
-     //console.log('BettingListTable:state',state)
 
     const childShowTable = (ticketId) =>{
-        const state12 = dispatch(getLotteryDetailsList(ticketId));
+
+     //   detailNo
+      //  filterGamesName
+       // filterGameType
+
+       setSelectedticketId(ticketId);
+
+       let params = {ticketId};
+
+       params.child_ticket_no = detailNo;
+       params.game_play_id = filterGamesName.value;
+       params.game_type = filterGameType.value;
+
+       console.log('params:',params);
+       //return false;
+       
+    
+        const state12 = dispatch(getLotteryDetailsList(params));
         let ticketsssss = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
         setChildDataTickets(ticketsssss);
         setParentAction(false);
@@ -130,16 +137,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         setSearchAction(true);
     }
 
-    //const handlePageClick = () => {};
-
-    
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % _tickets.length;
-       console.log(
-         `User requested page number ${event.selected}, which is offset ${newOffset}`
-       );
-        setItemOffset(newOffset);
-      };
 
       const searchGetListonFilter = () => {
 
@@ -179,15 +176,12 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
 
       const handleEvent = (event, picker) => {
-      //  console.log("start: ", picker.startDate._d);
-      //  console.log("end: ", picker.endDate._d);
         setFromDate(picker.startDate._d.toISOString());
         setToDate(picker.endDate._d.toISOString());
       };
 
 
       const resetFilter = () => {
-
         const d = new Date();
         setFromDate(d);
         setToDate(d);
@@ -195,7 +189,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         location.reload();
       }
 
-      let initData = { startDate: '1/1/2014', endDate: '3/1/2014' };
 
       const MoneyFormatDisplay = (theInput, getCase) => {
         //Do something with the input
@@ -213,15 +206,47 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
            return parseFloat(lottery.slave_net_amount).toFixed(2)
         }
      };
-      
 
-      
-    
 
-    
 
+const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % items.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+
+  const childDataReset = () => {
+   setDetailNo('');
+   setFilterGamesName({ value: '', label: 'All' });
+   setFilterGameType({ value: '', label: 'All' });
+   setTimeout(childShowTable(selectedticketId), 5000);
+   
+  }
+
+
+  const optionsGameType = [
+    { value: '', label: 'All' },
+    { value: '3D', label: '3D' },
+    { value: '4D', label: '4D' }
+  ];
+
+  const optionsGamesName = [
+    { value: '', label: 'All' },
+    { value: '1', label: 'Magnum' },
+    { value: '2', label: 'Da ma cai' },
+    { value: '3', label: 'Toto'}
+  ]
+
+
+
+ 
+
+
+  
     function ShowTableDataParent({tickets}){
-        if(tickets.length > 0){
+        if(currentItems && currentItems.length > 0){
             return (
                 <>
                 <table class="table small table-bordered">
@@ -257,8 +282,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                                ) 
                             }
                           </td>
-                          <td class="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
-
+                            <td class="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
 
@@ -266,16 +290,11 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                             
                         </tr>
                     ))}
-
-                      {currentItems && currentItems.length == 0 ?(
-                            <tr>
-                                <td colSpan={9}>No Data Found!</td>
-                            </tr>
-                        ): null}
                     </tbody>
                 </table>
                 <div class="clearfix d-flex align-items-center justify-content-center">
-              { pageCount > 1 ?
+
+                       { pageCount > 1 ?
                 <ReactPaginate
                 breakLabel="..."
                 nextLabel="Next >" 
@@ -285,40 +304,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                 previousLabel="< Previous"
                 renderOnZeroPageCount={null}
                 className="pagination"
-            /> : null }
-
-                     {/* <div class="pagination:container">
-                        <div class="pagination:number arrow">
-                        <svg width="18" height="18">
-                        </svg>
-                        <span class="arrow:text">Previous</span> 
-                        </div>
-                        
-                        <div class="pagination:number">
-                        1
-                        </div>
-                        <div class="pagination:number">
-                        2
-                        </div>
-                        
-                        <div class="pagination:number pagination:active">
-                        3
-                        </div>
-                        
-                        <div class="pagination:number">
-                        4
-                        </div>
-                        
-                        <div class="pagination:number">
-                        540
-                        </div>
-                        
-                        <div class="pagination:number arrow">
-                        <svg width="18" height="18">
-                        </svg>
-                        </div>
-                    </div>  */}
-              
+            /> : null } 
+            
                     <svg class="hide">
                         <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
                         <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
@@ -334,10 +321,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     function ShowTableDataChild({tickets}){
         
         if(tickets.length > 0){
-            //let ticket_slave = tickets[0].ticket_slave;
-          //  let drow_date = tickets[0].betting_date;
           let drow_date = '--';
-
             let companyGame = '';
             function gameName(e){
                 if(e == 1){
@@ -415,11 +399,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
         }
     }
-    // function SearchAbleFormParent(){
-    //     return (
-            
-    //     );
-    // }
+
 
     function SearchAbleFormChild(){
         return (
@@ -476,7 +456,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         );
     }
 
-    // console.log("ticketList:sushil:",ticket)
 
     return (
         <>
@@ -518,50 +497,54 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     ) :
     (<div class="clearfix curved-card">
     <div class="row">
-        <div class="col-md-3 col-12">
-            <div class="form-group">
-                <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
-                <DateRangePicker
-                                    ref={keyRef}
-                                    onCancel={keyRef}
-                                    initialSettings={{ ranges }}
-                                    onEvent={handleEvent}
-                                >
-                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
-                                </DateRangePicker>
-            </div>                    
-        </div>
+       
         <div class="col-md-2 col-6">
             <div class="form-group">
-                <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
+                <label for="transactionid" class="fw-bold mb-2">Detail Number</label>
                 <input type="text" onChange={(e)=>{ 
-                                 setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+                                 setDetailNo(e.target.value)}}  class="form-control-custom-big" value={detailNo} name="transationid"/>
             </div>
         </div>
         <div class="col-md-2 col-6">
             <div class="form-group">
                 <label for="transactionid" class="fw-bold mb-2">{t('Game')}</label>
-                <select type="text" class="form-control-custom-big" name="transationid">
+                {/* <select type="text" class="form-control-custom-big" name="transationid">
+                    <option>All</option>
                     <option>4D</option>
                     <option>3D</option>
-                </select>
+                </select> */}
+                {/* <Select options={optionsGameType} value =''/> */}
+
+                <Select 
+                     options={optionsGameType} 
+                     defaultValue = { { value: '', label: 'All' }} 
+                     value = {filterGameType}
+                     onChange={value => setFilterGameType(value)}
+                     />
             </div>
         </div>
         <div class="col-md-2 col-6">
             <div class="form-group">
                 <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
-                <select type="text" class="form-control-custom-big" name="transationid">
+                {/* <select type="text" class="form-control-custom-big" name="transationid">
+                    <option>All</option>
                     <option>Toto</option>
                     <option>Magnum</option>
                     <option>Da ma cai</option>
-                </select>
+                </select> */}
+                <Select 
+                     options={optionsGamesName} 
+                     defaultValue = { { value: '', label: 'All' }} 
+                     value = {filterGamesName}
+                     onChange={value => setFilterGamesName(value)}
+                     />
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 <label class="d-block">&nbsp;</label>
-                <button type="button" class="btn-custom-curve2 w-auto">{t('Search')}</button>
-                <button type="button" class="btn-custom-curve1">{t('Reset')}</button>
+                <button type="button" class="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
+                <button type="button" class="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
             </div>
         </div>
     </div>
