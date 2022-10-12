@@ -56,37 +56,43 @@ const Filter = ({_setDate}) => {
         return sundays;
       }
 
-      
+      const getDates = (dateName) =>{
+         var start = moment('2022-01-01'), // Sept. 1st
+        end   = moment(new Date()) // Nov. 2nd
+          // Sun = 0
+          // Mon = 1
+          // Tue = 2
+          // Wed = 3
+          // Thu = 4
+          // Fri = 5
+          // Sat = 6
+
+        var result = [];
+        var current = start.clone();
+
+        while (current.day(7 + dateName).isBefore(end)) {
+          result.push(new Date(current.clone()));
+        }
+
+        // console.log(result.map(m =>new Date(m.format('YYYY-MM-DD'))));
+        // console.log('getDates ',result);
+        return result
+      }
+
+     
     const highlightWithRanges = [
         {
-          "react-datepicker__day--highlighted": [
-            new Date('2022-10-09'),
-            subDays(new Date('2022-10-09'),7),
-            subDays(new Date('2022-10-09'),14),
-            subDays(new Date('2022-10-09'),21),
-            subDays(new Date('2022-10-09'),28),
-            subDays(new Date('2022-10-09'),35),
-            subDays(new Date('2022-10-09'),42),
-            new Date('2022-10-12'),
-            subDays(new Date('2022-10-12'),7),
-            subDays(new Date('2022-10-12'),14),
-            subDays(new Date('2022-10-12'),21),
-            subDays(new Date('2022-10-12'),28),
-            subDays(new Date('2022-10-12'),35),
-            subDays(new Date('2022-10-12'),42),
-            new Date('2022-10-15'),
-            subDays(new Date('2022-10-15'),7),
-            subDays(new Date('2022-10-15'),14),
-            subDays(new Date('2022-10-15'),21),
-            subDays(new Date('2022-10-15'),28),
-            subDays(new Date('2022-10-15'),35),
-            subDays(new Date('2022-10-15'),42),
-          ],
-          
+          "react-datepicker__day--highlighted": getDates(0),      
+        },
+        {
+          "react-datepicker__day--highlighted": getDates(6),
+        },
+        {
+          "react-datepicker__day--highlighted": getDates(3),
         }
       ];
 
-      console.log(highlightWithRanges)
+      console.log('highlightWithRanges ',highlightWithRanges)
 
 
       
