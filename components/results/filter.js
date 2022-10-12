@@ -111,7 +111,7 @@ const Filter = ({_setDate}) => {
                 <DatePicker 
                 selected={startDate} 
                 onChange={(date) => {setStartDate(date), _setDate(date)}} 
-                excludeDates={[new Date(), subDays(new Date(), 1)]} 
+                excludeDates={[addDays(new Date(), 1)]} 
                 highlightDates={highlightWithRanges}
                 maxDate={new Date()}
                 />
