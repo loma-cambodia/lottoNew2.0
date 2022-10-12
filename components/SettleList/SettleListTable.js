@@ -294,7 +294,7 @@ const handlePageClick = (event) => {
                                ) 
                             }
                           </td>
-                            <td class="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
+                            <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
                             <td class="text-center"  style={{color:'red'}}>{t('no_data')}</td>
