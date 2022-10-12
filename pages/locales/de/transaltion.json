@@ -115,9 +115,19 @@
     "Reset":"重置",
     "BET":"投注",
     "BettingList":"投注单",
+    "betting_history":"投注历史",
+
+    
+    "Odds":"Odds",
     "Select_Date_Range":"Select Date Range", 
     "Ticket_No":"Ticket No",
     "bet_successful":"Bet Successful",
     "bet_failed":"Bet Failed",
-    "betting_history":"投注历史"
+    "Ticket_Number":"Ticket Number",
+    "Betting_Time":"Betting Time",
+    "Draw_Date":"Draw Date",
+    "Bet_Number":"Bet Number",
+    "Net":"Net",
+    "Winning_Loss":"Winning/Loss",
+    "Detail_Number":"Detail Number"
 }

@@ -5,7 +5,7 @@ import Header from '../components/common/header';
 import { useDispatch, useSelector, } from "react-redux";
 import { useTranslation } from "react-i18next";
 import styles from '../styles/Home.module.css'
-import {getTicketData,searchTicketData} from '../store/actions/tickets';
+import {getTicketData,searchTicketData} from '../store/actions/reportActions';
 import ReactPaginate from 'react-paginate';
 
 import SettleTable from '../components/SettleList/SettleListTable';

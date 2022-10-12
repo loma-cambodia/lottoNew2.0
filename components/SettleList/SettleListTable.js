@@ -5,7 +5,7 @@ import moment from 'moment';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import { useTranslation } from "react-i18next";
-import {getTicketData,searchTicketData, getLotteryDetailsList,filterLotteryDetailsList} from '../../store/actions/tickets';
+import {getTicketData,searchTicketData, getLotteryDetailsList,filterLotteryDetailsList} from '../../store/actions/reportActions';
 import { useDispatch, useSelector, } from "react-redux";
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
@@ -31,7 +31,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
     });
 
 
-      const itemsPerPage  = 5;
+      const itemsPerPage  = 10;
  
       const [currentItems, setCurrentItems] = useState(null);
       const [pageCount, setPageCount] = useState(0);
@@ -270,8 +270,8 @@ const handlePageClick = (event) => {
                             <th class="text-center">Draw Date</th>
                             <th class="text-center">Bet Number</th>
                             <th class="text-center">{t('Company')}</th>
-                            <th class="text-center">Total</th>
-                            <th class="text-center">Rebate</th>
+                            <th class="text-end">Total</th>
+                            <th class="text-end">Rebate</th>
                             <th class="text-end">Net</th>
                             <th class="text-center">Winning/Loss</th>
                             
@@ -294,8 +294,8 @@ const handlePageClick = (event) => {
                                ) 
                             }
                           </td>
-                            <td class="text-center">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
-                            <td class="text-center">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
+                            <td class="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
+                            <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
                             <td class="text-center"  style={{color:'red'}}>No Data </td>
 
@@ -413,7 +413,7 @@ const handlePageClick = (event) => {
                             <th class="text-center">Rebate</th>
                             <th class="text-center">Net</th>
                             
-                            <th class="text-end">Odds</th>
+                            <th class="text-end">{t('Odds')}</th>
                             <th class="text-end">Winning/Loss</th>
                         </tr>
                     </thead>

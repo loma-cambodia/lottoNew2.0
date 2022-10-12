@@ -116,9 +116,22 @@
     "BET":"BET",
     "BettingList":" Betting List",
     "betting_history":"Betting History",
+    "bet_successful":"Bet Successful",
+    "bet_failed":"Bet Failed",
+
+
+    "Odds":"Odds",
     "Select_Date_Range":"Select Date Range", 
     "Ticket_No":"Ticket No",
-    "bet_successful":"Bet Successful",
-    "bet_failed":"Bet Failed"
+    "Ticket_Number":"Ticket Number",
+    "Betting_Time":"Betting Time",
+    "Draw_Date":"Draw Date",
+    "Bet_Number":"Bet Number",
+    "Net":"Net",
+    "Winning_Loss":"Winning/Loss",
+    "Detail_Number":"Detail Number"
+
+
+
 
 }
