@@ -332,28 +332,12 @@ const handlePageClick = (event) => {
             );
         }else{
             return(
-                <table class="table small table-bordered">
-                        <thead>
-                        <tr>
-                                 <th>{t('No.')}</th>
-                                <th class="text-start">Ticket Number</th>
-                                <th class="text-start">Bet Number</th>
-                                <th class="text-center">Betting Time</th>
-                                <th class="text-center">Draw Date</th>
-                                {/* <th class="text-center">Game</th> */}
-                                <th class="text-center">{t('Company')}</th>
-                                <th class="text-end">Total</th>
-                                <th class="text-start">Rebate</th>
-                                <th class="text-start">Net</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody align='center'>
-                            <tr>
-                                <td colspan="11" >NO DATA FOUND</td>
-                            </tr>
-                        </tbody>
-                    </table>)
+                <div className='alert alert-warning'>
+                <h3 className='text-center'>
+                    No Data Found!
+                </h3>
+               </div>
+               )
 
         }
     }
