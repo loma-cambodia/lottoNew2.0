@@ -281,29 +281,13 @@ const [isLoading,  setIsLoading] = React.useState(false);
 
          dispatch(lotterySubmit(dataSubmit, response =>{
 
-            console.log('111:response:',response);
+          //  console.log('111:response:',response);
             
             if(response.message_id  == 201  || response.message_id  == 200 ){
-
-                console.log('if:response:',response);
-
-               // if(response.data.message_id == 200){
-
-                    console.log('message_id:response:',response);
 
                     setResultData(response.data)
                     modelOpenCustom('success');
                     loginAPICall();
-
-                // }else { 
-
-                //     console.log('else:response:',response);
-
-                //     modelOpenCustom(response.data.messages);
-
-                // }
-               
-
             }else {
                 console.log('response:',response);
 
@@ -317,10 +301,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
 
 
     const loginAPICall = () => {
-         //   let 
 
-         // auth
-         console.log('loginAPICall');
          let objectWithData = {
             "customer_name": auth && auth.auth && auth.auth.customer_name ? auth.auth.customer_name : '',
             "customer_id":  auth && auth.auth && auth.auth.customer_id ? auth.auth.customer_id : 0,
@@ -330,7 +311,6 @@ const [isLoading,  setIsLoading] = React.useState(false);
         dispatch(getLogin(objectWithData));
       }
 
-    
     
 
     useEffect(() => {

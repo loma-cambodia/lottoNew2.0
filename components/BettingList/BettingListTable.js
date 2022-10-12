@@ -5,7 +5,8 @@ import moment from 'moment';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import { useTranslation } from "react-i18next";
-import {getTicketData,searchTicketData, getLotteryDetailsList} from '../../store/actions/tickets';
+import {getLotteryDetailsList} from '../../store/actions/reportActions';
+
 import { useDispatch, useSelector, } from "react-redux";
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
@@ -268,7 +269,7 @@ const handlePageClick = (event) => {
                             <td>{i + 1}</td>
                             {/* <td class="text-center"><span className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td> */}
                             <td class="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
-                            <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss')}</td>
+                            <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
                             <td class="text-center">{item.betting_date}</td>
                             <td class="text-start">{item.bet_number}</td>
                             <td class="text-start">
@@ -357,14 +358,14 @@ const handlePageClick = (event) => {
                             <th class="text-center">{t('Company')}</th>
                             <th class="text-start">Bet Number</th>
 
-                            <th class="text-end">Big Bet</th>
-                            <th class="text-end">Small Bet</th>
+                            <th class="text-end">Big</th>
+                            <th class="text-end">Small</th>
                             <th class="text-end">3A</th>
                             <th class="text-end">3C</th>
-
-                            <th class="text-end">Rebate Amount</th>
-                            <th class="text-end">Net Amount</th>
-                            <th class="text-end">Total Amount</th>
+                            <th class="text-end">Total</th>
+                            <th class="text-end">Rebate</th>
+                            <th class="text-end">Net</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -373,8 +374,8 @@ const handlePageClick = (event) => {
                             <tr key={id}>
                                 <td>{id+1}</td>
                                 <td class="text-start"><a >{item.child_ticket_no}</a></td>
-                                <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss')}</td>
-                                <td class="text-center">{drow_date}</td>
+                                <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
+                                <td class="text-center">{item.ticket.betting_date}</td>
                                 <td class="text-center">{item.game_type}</td>
                                 <td class="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
                                 <td class="text-start">{item.lottery_number}</td>
@@ -383,9 +384,10 @@ const handlePageClick = (event) => {
                                 <td class="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
                                 <td class="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
                                 <td class="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
+                                <td class="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
                                 <td class="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
                                 <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
-                                <td class="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
+                              
                             </tr>
                         ))}
 
