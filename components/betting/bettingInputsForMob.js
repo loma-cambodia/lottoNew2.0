@@ -126,6 +126,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
     function findWitchTypeOfGame(){
         allClearData();
+        hideError();
     }
 
     const setAllData = (getValue) => {
@@ -989,7 +990,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled != 1 && localStateData.bet_type.reverse_value != 0) {
                             bet_type = 'reverse';
                             // alert('pppp');
-                            console.log('localStateDatalocalStateData',localStateData);
+                            // console.log('localStateDatalocalStateData',localStateData);
                             totalAmountS = totalAmountS * 2; 
                         }
                         if(localStateData && localStateData.number && localStateData.number.value){
@@ -1003,7 +1004,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         }
 
                        totalAmountS;
-
+                        // console.log('totalBoxingtotalBoxing',totalBoxing)
                         ////////////////////////////////////////
 
                         let amountTotal = 0;
@@ -1451,7 +1452,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     </div>
                     <div className="col-3">
                         <button className="btn btn-outline-dark"  onClick={() => previewSubmitData('add','')} style={{ width:'100%' }}>
-                            <b>+</b>
+                            <img className="img-fluid" src="images\betting\plus.png" alt="" style={{ width: '34px' }} />
                         </button>
                     </div>
                 </div>
