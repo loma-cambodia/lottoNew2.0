@@ -1,21 +1,21 @@
 import axios from 'axios'
-let API_BASE_URL = process.env.apiUrl;
+let API_BASE_URL = process.env.fronEndUrl;
   export const getLogin = (objectWithData) => async dispatch => {
     
     try{
 
-        // const objectWithData = {
-        //              "customer_name": "Dileep Maurya",
-        //             "customer_id":  112,
-        //            "merchant_id":  1,
-        //            "language":  'en',
-        //        } 
+        const objectWithData2 = {
+                     "customer_name": "Dileep Maurya",
+                    "customer_id":  112,
+                   "merchant_id":  1,
+                   "language":  'en',
+               } 
 
                const headers = {
                 'Content-Type': 'application/json',
               }
 
-        const res = await axios.post(`${API_BASE_URL}/member-login`,objectWithData,{headers: headers});
+        const res = await axios.post(`${API_BASE_URL}/api/updateUser`,objectWithData2,{headers: headers});
         console.log('getLogin:res:',res);
 
 
