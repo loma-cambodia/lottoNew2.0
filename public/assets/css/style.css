@@ -2833,3 +2833,32 @@ input.form-control.text-right-for-amount {
 input.daterangepickerstyle {
   width: 100%;
 }
+
+/* /////////////////////////////// bet list mobile view */
+
+
+table.mob-table {
+  border-collapse: collapse;
+  font-size: 10px;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+table.mob-table tr th {
+  text-align: left;
+}
+table.mob-table thead {
+  background-image: -moz-linear-gradient( 90deg, rgb(243,236,146) 0%, rgb(250,194,63) 100%);
+  background-image: -webkit-linear-gradient( 90deg, rgb(243,236,146) 0%, rgb(250,194,63) 100%);
+  background-image: -ms-linear-gradient( 90deg, rgb(243,236,146) 0%, rgb(250,194,63) 100%);
+  border-radius: 5px 5px 0 0;
+}
+table.mob-table tr th, table.mob-table tr td {
+  padding: 3px;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+table.mob-table tr th:last-child, table.mob-table tr td:last-child {
+  border-right: 0;
+}
