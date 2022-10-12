@@ -187,7 +187,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         setFromDate(d);
         setToDate(d);
         setTicketNo('');
-        location.reload();
+        // location.reload();
         _resetTable()
       }
 
@@ -375,7 +375,10 @@ const handlePageClick = (event) => {
             }
             return (
                 <>
-                <button onClick={() => backButton() } className="btn btn-warning">{t('back')}</button>
+                <div class="d-flex flex-row">
+                <div class="p-2">  <button onClick={() => backButton() } className="btn btn-warning ">{t('back')}</button></div>
+                </div>
+              
                 <table class="table small table-bordered">
                     <thead>
                            
