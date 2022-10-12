@@ -62,7 +62,9 @@ export default function BettingNew({datauser}) {
               <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
             </div>
         </div>
-      <Footer/>
+      <div className={styles.device_detect_for_desktop}> 
+        <Footer/>
+      </div>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
         <script src="assets/js/owl.carousel.js"></script>

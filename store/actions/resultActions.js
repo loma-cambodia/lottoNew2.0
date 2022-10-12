@@ -1,13 +1,23 @@
 import axios from 'axios'
+import moment from 'moment';
+
 //let API_BASE_URL = 'http://api.kk-lotto.com:8080/api';
 let API_BASE_URL = process.env.apiUrl
 
 export const getResults = (sendData,callback) => async (dispatch) => {
+  let urlHit = ''
+   
   try {
     const headers = {
       'Content-Type': 'application/json',
     }
-    let urlHit = `${API_BASE_URL}/results/get-by-date?date=${sendData}`;
+    if(sendData === undefined){
+      urlHit = `${API_BASE_URL}/results/get-by-date`;
+    }
+    else{
+      const dataSubmit = moment(sendData).format('YYYY-MM-DD')
+      urlHit = `${API_BASE_URL}/results/get-by-date?date=${dataSubmit}`;
+}
     console.log('resultactions', urlHit)
 
     const res = await axios.get(urlHit, {
