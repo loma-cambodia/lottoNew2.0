@@ -71,7 +71,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
        "merchant_id":  auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0,
        "language":   auth && auth.lang ? auth.lang : 'en'
     } 
-   dispatch(getLogin(objectWithData));
+  // dispatch(getLogin(objectWithData));
    setUpdateSessionData(updateSessionData + 1); 
  }
 
