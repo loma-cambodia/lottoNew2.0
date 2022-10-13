@@ -1138,6 +1138,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         "language":   auth && auth.lang ? auth.lang : 'en'
         } 
         dispatch(getLogin(objectWithData));
+        //setUpdateSessionData(updateSessionData + 1); 
     }
     const lotterySubmitRecordsCallActionMob = () => {
         let game_dates = mainSubmitData;
