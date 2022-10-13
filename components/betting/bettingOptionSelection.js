@@ -309,7 +309,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
             "language":   auth && auth.lang ? auth.lang : 'en'
          } 
         dispatch(getLogin(objectWithData));
-        setUpdateSessionData(updateSessionData + 1); 
+        //setUpdateSessionData(updateSessionData + 1); 
       }
 
     
