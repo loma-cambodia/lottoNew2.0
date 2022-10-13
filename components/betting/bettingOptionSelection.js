@@ -95,7 +95,7 @@ let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}},
 
 let dateAndGameOptionData = [1,2,3,4];
 
-const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit,_auth}) => {
+const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit,_auth, updateSessionData, setUpdateSessionData}) => {
     let betLimit = _betLimit;
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -309,6 +309,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
             "language":   auth && auth.lang ? auth.lang : 'en'
          } 
         dispatch(getLogin(objectWithData));
+        //setUpdateSessionData(updateSessionData + 1); 
       }
 
     

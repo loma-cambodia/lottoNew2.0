@@ -11,8 +11,8 @@ async function handler(req, res) {
   
   const objectWithData = {
     customer_name: req.body.customer_name,
-    customer_id: req.body.customer_id,
-    merchant_id: req.body.enterprise_id,
+    customer_id: parseInt(req.body.customer_id),
+    merchant_id: req.body.merchant_id,
     language: req.body.language,
   }
 
@@ -22,7 +22,8 @@ async function handler(req, res) {
 //   "merchant_id":  1,
 //   "language":  'en',
 // }
- 
+
+ console.log('objectWithData:',objectWithData);
   
   const userData = await fetch(`${process.env.apiUrl}/member-login`, {
     method: 'POST',

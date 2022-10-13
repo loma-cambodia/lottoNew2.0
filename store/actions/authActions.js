@@ -15,8 +15,8 @@ let API_BASE_URL = process.env.fronEndUrl;
                 'Content-Type': 'application/json',
               }
 
-        const res = await axios.post(`${API_BASE_URL}/api/updateUser`,objectWithData,{headers: headers});
-       // console.log('getLogin:res:',res);
+        const res = await axios.post(`/api/updateUser`,objectWithData,{headers: headers});
+        console.log('getLogin:res:',res);
 
 
         dispatch({
