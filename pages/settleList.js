@@ -5,7 +5,7 @@ import Header from '../components/common/header';
 import { useDispatch, useSelector, } from "react-redux";
 import { useTranslation } from "react-i18next";
 import styles from '../styles/Home.module.css'
-import {getTicketData,searchTicketData} from '../store/actions/reportActions';
+import {getTicketDataSettled,searchTicketData} from '../store/actions/reportActions';
 import ReactPaginate from 'react-paginate';
 
 import SettleTable from '../components/SettleList/SettleListTable';
@@ -22,7 +22,8 @@ export default function SettleList({datauser}) {
 
 
        useEffect(() => {
-        dispatch(getTicketData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
+        dispatch(getTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
+
       },[dispatch,auth]);
 
 
@@ -34,8 +35,9 @@ export default function SettleList({datauser}) {
       }, [datauser])
       
       const state = useSelector(state => state);
-      let tickets = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
-      let ticketsChild = state && state.tickets && state.tickets.ticketsChild ? state.tickets.ticketsChild : [];
+      let tickets = state && state.tickets && state.tickets.reportsSettleData ? state.tickets.reportsSettleData : [];
+      
+      let ticketsChild = state && state.tickets && state.tickets.reportsSettleChildData ? state.tickets.reportsSettleChildData : [];
 
       let ticketSlave = tickets.ticket_slave
       
@@ -53,7 +55,7 @@ export default function SettleList({datauser}) {
           setItemOffset(newOffset);
         };
         const resetTable = ()=>{
-          dispatch(getTicketData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
+          dispatch(getTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
         }
   return (
     <>

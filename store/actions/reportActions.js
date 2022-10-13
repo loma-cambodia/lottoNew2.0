@@ -13,8 +13,8 @@ export const getTicketData = (id) => async (dispatch) => {
       'Access-Control-Allow-Origin': '*',
     }
     const res = await axios.get(
-      // `${API_BASE_URL}/betList?member_id=${userId}&ticket_status:UNSETTLED`,{
-        `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=SETTLED`,{
+       `${API_BASE_URL}/betList?member_id=${userId}&ticket_status:UNSETTLED`,{
+     //   `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=SETTLED`,{
         headers: headers,
       }
     )
@@ -31,6 +31,34 @@ export const getTicketData = (id) => async (dispatch) => {
   }
 }
 
+
+export const getTicketDataSettled = (id) => async (dispatch) => {
+  const userId = id
+   console.log('getTicketData:',userId);
+   try {
+     const headers = {
+       'Content-Type': 'application/json',
+       'Access-Control-Allow-Origin': '*',
+     }
+     const res = await axios.get(
+       // `${API_BASE_URL}/betList?member_id=${userId}&ticket_status:UNSETTLED`,{
+         `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=SETTLED`,{
+         headers: headers,
+       }
+     )
+     //console.log("TICKET-DATA-->>",res)
+     dispatch({
+       type: 'GET_SETTLE_REPORTS',
+       payload: res.data.data,
+     })
+   } catch (e) {
+     dispatch({
+       type: 'Get_Tickets_Error',
+       payload: console.log(e),
+     })
+   }
+ }
+
 export const searchTicketData = (member_id,date_range, ticketNumber) => async (dispatch) => {
   try {
     const headers = {
@@ -45,8 +73,8 @@ export const searchTicketData = (member_id,date_range, ticketNumber) => async (d
 
     // let urlHit = `${API_BASE_URL}/betList?member_id=1&ticket_no=${ticketNumber}&date_range=${date_range}&ticket_status:UNSETTLED`;
 
-    //  let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status:UNSETTLED`;
-    let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status=SETTLED`
+    let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status:UNSETTLED`;
+   // let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status=SETTLED`
      if(ticketNumber)
      urlHit += `&ticket_no=${ticketNumber}`;
 
@@ -62,6 +90,48 @@ export const searchTicketData = (member_id,date_range, ticketNumber) => async (d
     console.log("SEARCH TICKET-->>",res)
     dispatch({
       type: 'GET_SEARCH_TICKETS',
+      payload: res.data.data,
+    })
+  } catch (e) {
+    dispatch({
+      type: 'Get_Tickets_Error',
+      payload: console.log(e),
+    })
+  }
+}
+
+
+export const searchTicketDataSettled = (member_id,date_range, ticketNumber) => async (dispatch) => {
+  try {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    }
+   /// const date = date_range.replace(/\s+/g, '-');
+    //console.log('ticketNumber:', ticketNumber);
+
+     date_range = date_range.replace(" ", "");
+     date_range = date_range.replace(" ", "");
+
+    // let urlHit = `${API_BASE_URL}/betList?member_id=1&ticket_no=${ticketNumber}&date_range=${date_range}&ticket_status:UNSETTLED`;
+
+   // let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status:UNSETTLED`;
+    let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status=SETTLED`
+     if(ticketNumber)
+     urlHit += `&ticket_no=${ticketNumber}`;
+
+     if(date_range)
+     urlHit += `&date_range=${date_range}`;
+
+
+
+    const res = await axios.get(`${urlHit}`,{
+        headers: headers,
+      }
+    )
+    console.log("SEARCH TICKET-->>",res)
+    dispatch({
+      type: 'GET_SETTLE_REPORTS',
       payload: res.data.data,
     })
   } catch (e) {
