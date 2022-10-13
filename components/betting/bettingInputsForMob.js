@@ -1152,7 +1152,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             // console.log('response:',response);
             if(response.message_id  == 201  || response.message_id  == 200 ){
                 
-                console.log('response:',response);
+                console.log('response:',response); 
                     setResultData(response.data)
                     modelOpenCustom('success');
                     loginAPICall();
