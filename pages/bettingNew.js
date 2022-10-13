@@ -55,7 +55,7 @@ export default function BettingNew({datauser, updateSessionData, setUpdateSessio
       <Banner/>
           <div className={styles.device_detect_for_desktop}>
           
-          <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
+          <BettingOptionSelection _bettingDatesStore={bettingDatesStore} _betLimit={betLimit} _auth={auth}/>
         </div>  
         <div className="container">
             <div className={styles.device_detect_for_mobile}> 
