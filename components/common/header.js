@@ -232,24 +232,24 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
             <a href="javascript:void(0)" className="closebtn" onClick={() => closeNav() } >&times;</a>
               <div className="mobile-menu-list">
                   <ul className="list-unstyled">
-                      <li className= {`${router.pathname === "/" ? "active-header-mobile":""}`}>
-                        <Link className="active"  href="/">{t('Homepage')}</Link>  
+                    <li className= {`${router.pathname === "/" ? "active-header-mobile":""}`}>
+                      <Link className="active"  href="/">{t('Homepage')}</Link>  
+                    </li>
+                    <li className= {`${router.pathname === "/bettingNew" ? "active-header-mobile":""}`}>
+                        <Link href="/bettingNew">{t('Betting')}</Link>
+                    </li>
+                    <li className= {`${router.pathname === "/bettingList" ? "active-header-mobile":""}`}>
+                        <Link href="/bettingList">{t('BettingList')}</Link>
+                    </li>
+                    <li className= {`${router.pathname === "/winningList" ? "active-header-mobile":""}`}>
+                            <Link href="/winningList">{t('Winning')}</Link>
                       </li>
-                      <li className= {`${router.pathname === "/bettingNew" ? "active-header-mobile":""}`}>
-                          <Link href="/bettingNew">{t('Betting')}</Link>
-                      </li>
-                      <li className= {`${router.pathname === "/transaction" ? "active-header-mobile":""}`}>
-                        <Link href="/transaction">{t('History')}</Link>
-                      </li>
-                      <li className= {`${router.pathname === "/winning" ? "active-header-mobile":""}`}>
-                            <Link href="/winning">{t('Winning')}</Link>
-                      </li>
-                      <li className= {`${router.pathname === "/results" ? "active-header-mobile":""}`}>
+                    <li className= {`${router.pathname === "/settleList" ? "active-header-mobile":""}`}>
+                        <Link href="/settleList" >{t('betting_history')}</Link>  
+                    </li>
+                    <li className= {`${router.pathname === "/results" ? "active-header-mobile":""}`}>
                         <Link href="/results" >{t('Result')}</Link>  
-                      </li>
-                      <li className= {`${router.pathname === "/bettingList" ? "active-header-mobile":""}`}>
-                        <Link href="/bettingList" >{t('BettingList')}</Link>  
-                      </li>
+                    </li>
                   </ul>
               </div>
         </div>

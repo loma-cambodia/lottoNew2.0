@@ -2885,3 +2885,16 @@ table.mob-table tr th:last-child, table.mob-table tr td:last-child {
 .winningFilterTall{
   height: 445px;
 }
+.daterangepicker .ranges li.active {
+  background-color: #bf2262 !important;
+  color: #fff;
+}
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: #bf2262 !important;
+  border-color: transparent;
+  color: #fff;
+}
+button.applyBtn.btn.btn-sm.btn-primary {
+  background-color: #bf2262 !important;
+  border-color: #bf2262 !important;
+}
