@@ -50,7 +50,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
 
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
       }, [itemOffset, itemsPerPage,_tickets]);
@@ -122,7 +121,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
        params.game_play_id = filterGamesName.value;
        params.game_type = filterGameType.value;
 
-       console.log('params:',params);
        //return false;
        
     
@@ -164,9 +162,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
 
          let newDateRange = _fromDate + '-' + _toDate;
 
-         console.log('newDateRange:',newDateRange);
-         console.log('ticketNo:',ticketNo);
-         
 
         let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
 
@@ -221,9 +216,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
 
 const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % items.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    
     setItemOffset(newOffset);
   };
 
@@ -288,18 +281,15 @@ const handlePageClick = (event) => {
                                         <td >
                                             <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk')} >
                                                 {item.ticket_no}
-                                            </span><br/>
+                                            </span>
+                                            <br/>
                                             {moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}<br/>
                                             {item.draw_date}
                                         </td>
                                         <td>
-                                            12345<br/>
+                                            {item.id}<br/>
                                             {item.bet_number}<br/>
-                                            {
-                                                item.games && item.games.map((item,i) =>(
-                                                    item.abbreviation
-                                                )) 
-                                            }
+                                            {item.games && item.games.map((item,i) =>(item.abbreviation))}
                                         </td>
                                         <td>
                                             {MoneyFormatDisplay(item.total_amount, 1)}<br/>
@@ -389,15 +379,16 @@ const handlePageClick = (event) => {
         }else{
             return(
                 <div className='alert alert-warning'>
-                <h3 className='text-center'>
-                   {t('no_data_found')}
-                </h3>
+                    <h3 className='text-center'>
+                    {t('no_data_found')}
+                    </h3>
                </div>
                )
 
         }
     }
-    function ShowTableDataChild({tickets}){
+    function ShowTableDataChild({tickets})
+    {
         
         if(tickets.length > 0){
           let drow_date = '--';
@@ -438,7 +429,7 @@ const handlePageClick = (event) => {
             return (
                 <>
                 <div class="d-flex flex-row">
-                <div class="p-2">  <button onClick={() => backButton() } className="btn btn-warning ">{t('back')}</button></div>
+                     <div class="p-2">  <button onClick={() => backButton() } className="btn btn-warning ">{t('back')}</button></div>
                 </div>
               
 
@@ -554,7 +545,8 @@ const handlePageClick = (event) => {
     }
 
 
-    function SearchAbleFormChild(){
+    function SearchAbleFormChild()
+    {
         return (
             
             <div class="clearfix curved-card">
@@ -562,12 +554,7 @@ const handlePageClick = (event) => {
                     <div class="col-md-3 col-12">
                         <div class="form-group">
                             <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
-                                <DateRangePicker
-                                    ref={keyRef}
-                                    onApply={handleApply1}
-                                    onCancel={keyRef}
-                                    initialSettings={{ ranges }}
-                                >
+                                <DateRangePicker ref={keyRef} onApply={handleApply1} onCancel={keyRef} initialSettings={{ ranges }} >
                                     <input type="text" className="daterangepickerstyle" />
                                 </DateRangePicker>
                         </div>                    
@@ -608,13 +595,13 @@ const handlePageClick = (event) => {
             </div>
         );
     }
-    const openFilterForMob = () => {
+    const openFilterForMob = () => 
+    {
         $('.hideAndShowForMobileView').toggle("slide");
     }
 
     return (
         <>
-
             {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}
             {/* <SearchAbleFormParent />  */}
             <div className='showForMobileViewSearch'>
@@ -638,12 +625,7 @@ const handlePageClick = (event) => {
                                     <div class="col-md-3 col-12">
                                         <div class="form-group">
                                             <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
-                                                <DateRangePicker
-                                                    ref={keyRef}
-                                                    onCancel={keyRef}
-                                                    initialSettings={{ ranges }}
-                                                    onEvent={handleEvent}
-                                                >
+                                                <DateRangePicker ref={keyRef} onCancel={keyRef} initialSettings={{ ranges }} onEvent={handleEvent} >
                                                     <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
                                                 </DateRangePicker>
                                         </div>                    
@@ -651,8 +633,7 @@ const handlePageClick = (event) => {
                                     <div class="col-md-2 col-12">
                                         <div class="form-group">
                                             <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                                            <input style={{ width: '100% !important' }} type="text" onChange={(e)=>{ 
-                                                setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+                                            <input style={{ width: '100% !important' }} type="text" onChange={(e)=>{setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
                                         </div>
                                     </div>
 
@@ -691,7 +672,6 @@ const handlePageClick = (event) => {
                             ) :
                             (
                                 <div class="row">
-                                
                                     <div class="col-md-2 col-12">
                                         <div class="form-group">
                                             <label for="transactionid" class="fw-bold mb-2">{t('Detail_Number')}</label>
@@ -718,9 +698,6 @@ const handlePageClick = (event) => {
                                         </div>
                                     </div>
 
-
-                                    
-                                    
                                     <div className={styles.device_detect_for_mobile+" col-12"}>
                                         <div className='row'>
                                             <div className='col-md-6 col-6'>
