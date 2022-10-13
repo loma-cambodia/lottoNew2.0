@@ -294,7 +294,7 @@ const handlePageClick = (event) => {
                                         </td>
                                         <td>
                                             <span>
-                                                {MoneyFormatDisplay(item.bet_amount, 1)}
+                                                {MoneyFormatDisplay(item.bet_amount, 1)}<br />
                                                 {MoneyFormatDisplay(item.rebate_amount, 1)}<br />
                                                 {MoneyFormatDisplay(item.bet_net_amount, 1)}
                                             </span>
@@ -406,7 +406,7 @@ const handlePageClick = (event) => {
                             <thead>
                                 <tr>
                                     <th><span>Detail Number<br />Betting Time<br />Draw Date</span></th>
-                                    <th><span>Game<br />{t('Company')}<br />Bet Number</span></th>
+                                    <th><span>Bet Number<br />Game<br />{t('Company')}</span></th>
                                     <th><span>Big<br />Small<br />3A<br />3C</span></th>
                                     <th><span>Total<br />Rebate<br />Net</span></th>
                                 </tr>
@@ -415,7 +415,7 @@ const handlePageClick = (event) => {
                                 {tickets.map((item,id) =>(
                                     <tr key={id}>
                                         <td><span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.betting_date}</span></td>
-                                        <td><span>{item.game_type}<br />{item.game && item.game.name ? item.game.name : ""}<br />{item.lottery_number}</span></td>
+                                        <td><span>{item.lottery_number} <br/> {item.game_type}<br />{item.game && item.game.name ? item.game.name : ""}</span></td>
                                         <td><span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span></td>
                                         <td><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
                                     </tr>
