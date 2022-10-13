@@ -50,6 +50,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
     const [desableSubmitButton,  setDesableSubmitButton] = useState(false);
 
+    const [isLoading,  setIsLoading] = React.useState(false);
+
     // console.log("localStateData:lotto",localStateData)
 
     function SubmitButtonShows(){
@@ -1147,6 +1149,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             "merchant_id":auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id: 0,
             game_dates
         }
+        setIsLoading(true);
         console.log('saveLOttoData',saveLOttoData)
         dispatch(lotterySubmit(saveLOttoData, response =>{
             
@@ -1164,6 +1167,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 // console.log('response:',response);
                 modelOpenCustom(response.messages[0]);
             }
+            setIsLoading(false);
             // setIsLoading(false);
             // if(response.statusCode  == 201  || response.statusCode  == 200 ){
             //     setResultData(response.data)
@@ -1334,6 +1338,17 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                     </div>
                 </>  
             }
+
+                {isLoading ? (
+                    <div className="loader-Mob-1">
+                        <div className="loader-Mob-2">
+                            <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50"/>
+                        </div>
+                    </div>) : (
+                    <div>
+                        
+                    </div>
+                )}
 
             <div onClick={() => hideError()} className="row mt-2">
                 <div className="col-4">
