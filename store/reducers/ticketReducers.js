@@ -1,7 +1,9 @@
 
 const initialState = {
-    tickets:[],
-    ticketsChild:[],
+    tickets:[],  // unsettled reports
+    reportsSettleData:[],  // settled report 
+    ticketsChild:[],   // unsettled child
+    reportsSettleChildData:[],   // unsettled child
     searchTickets:[],
     loading:true
 }
@@ -27,7 +29,7 @@ export default function(state = initialState, action){
         case "GET_SEARCH_TICKETS_CHILD":
             return {
                 ...state,
-                ticketsChild:action.payload,
+                reportsSettleChildData:action.payload,
                 loading:false
     
             }
@@ -35,6 +37,14 @@ export default function(state = initialState, action){
         return {
             ...state,
             ticketsChild:action.payload,
+            loading:false
+
+        }
+
+        case "GET_SETTLE_REPORTS":
+        return {
+            ...state,
+            reportsSettleData:action.payload,
             loading:false
 
         }
