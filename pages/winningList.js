@@ -8,7 +8,7 @@ import styles from '../styles/Home.module.css'
 import WinngListBanner from '../components/Winning/Banner';
 import ListTable from '../components/BettingList/BettingListTable';
 import {getTicketData,searchTicketData} from '../store/actions/reportActions';
-import {getWinningData} from '../store/actions/winninglistActions';
+import {getWinningData,filterWinningData} from '../store/actions/winninglistActions';
 import moment from 'moment';
 
 import ReactPaginate from 'react-paginate';
@@ -35,7 +35,8 @@ export default function WinningList({datauser}) {
   const [currentItems, setCurrentItems] = useState(null);
   const [itemOffset, setItemOffset] = useState(0);
 
-  
+  const [filterParams, setFilterParams] = useState({});
+ 
   const MoneyFormatDisplay = (theInput, getCase) => {
     //Do something with the input
     let getInput = theInput;
@@ -52,10 +53,11 @@ export default function WinningList({datauser}) {
        return parseFloat(lottery.slave_net_amount).toFixed(2)
     }
  };
+
   const getWinningList = () =>{
     console.log('auth in getwinninglist:',auth.auth.id);
 
-    dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0 , response =>{
+    dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0 ,filterParams? filterParams:'', response =>{
       // console.log('inside dispatch dataSubmit date:   ',dataSubmit);
 
         if(response.statusCode  == 201  || response.statusCode  == 200 ){
@@ -64,161 +66,8 @@ export default function WinningList({datauser}) {
 
             console.log('results response in winning page:',response.data);
             // setWinningList(response.data.data.data)
-            let res = {
-              "current_page": 1,
-              "data": [
-                  {
-                      "id": 121,
-                      "ticket_id": 1,
-                      "merchant_id": 1,
-                      "game_play_id": 1,
-                      "child_ticket_no": "C0000121",
-                      "lottery_number": "1234",
-                      "big_bet_amount": 1,
-                      "small_bet_amount": 1,
-                      "three_a_amount": 0,
-                      "three_c_amount": 0,
-                      "bet_amount": 2,
-                      "bet_net_amount": 1.4,
-                      "rebate_amount": 0.6,
-                      "rebate_percentage": 30,
-                      "game_type": "4D",
-                      "prize_type": "No",
-                      "bet_size": "Both",
-                      "winning_amount": 0,
-                      "status": "finished",
-                      "progress_status": "ACCPETED",
-                      "message": "",
-                      "created_at": "2022-10-11T11:28:49.000000Z",
-                      "updated_at": "2022-10-11T11:28:49.000000Z",
-                      "deleted_at": null,
-                      "odds": null,
-                      "ticket": {
-                          "id": 1,
-                          "member_id": 1,
-                          "merchant_id": 1,
-                          "ticket_no": "T0000001",
-                          "bet_number": "1234",
-                          "bet_type": 0,
-                          "total_amount": 1152,
-                          "net_amount": 0,
-                          "rebate_amount": 0,
-                          "rebate_percentage": 0,
-                          "betting_date": "2022-10-12",
-                          "draw_date": "2022-10-12",
-                          "ticket_status": "UNSETTLED",
-                          "progress_status": "IN_PROGRESS",
-                          "message": "",
-                          "created_at": "2022-10-11T11:17:18.000000Z",
-                          "updated_at": "2022-10-11T11:17:18.000000Z",
-                          "deleted_at": null
-                      },
-                      "game": {
-                          "id": 1,
-                          "name": "Magnum",
-                          "abbreviation": "M",
-                          "logo_path": "public/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png",
-                          "logo_url": "http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png",
-                          "status": "Active",
-                          "deleted_at": null,
-                          "created_at": "2022-10-11T11:03:49.000000Z",
-                          "updated_at": "2022-10-11T11:03:49.000000Z"
-                      }
-                  },
-                  
-              ],
-              "first_page_url": "http://localhost:8000/frontend-api/betListWinning?page=1",
-              "from": 1,
-              "last_page": 1,
-              "last_page_url": "http://localhost:8000/frontend-api/betListWinning?page=1",
-              "links": [
-                  {
-                      "url": null,
-                      "label": "&laquo; Previous",
-                      "active": false
-                  },
-                  {
-                      "url": "http://localhost:8000/frontend-api/betListWinning?page=1",
-                      "label": "1",
-                      "active": true
-                  },
-                  {
-                      "url": null,
-                      "label": "Next &raquo;",
-                      "active": false
-                  }
-              ],
-              "next_page_url": null,
-              "path": "http://localhost:8000/frontend-api/betListWinning",
-              "per_page": 15,
-              "prev_page_url": null,
-              "to": 1,
-              "total": 1
-          }
-          let data = {
-            "data": Array(22).fill ({
-              "id": 121,
-              "ticket_id": 1,
-              "merchant_id": 1,
-              "game_play_id": 1,
-              "child_ticket_no": "C0000121",
-              "lottery_number": "1234",
-              "big_bet_amount": 1,
-              "small_bet_amount": 1,
-              "three_a_amount": 0,
-              "three_c_amount": 0,
-              "bet_amount": 2,
-              "bet_net_amount": 1.4,
-              "rebate_amount": 0.6,
-              "rebate_percentage": 30,
-              "game_type": "4D",
-              "prize_type": "No",
-              "bet_size": "Both",
-              "winning_amount": 0,
-              "status": "finished",
-              "progress_status": "ACCPETED",
-              "message": "",
-              "created_at": "2022-10-11T11:28:49.000000Z",
-              "updated_at": "2022-10-11T11:28:49.000000Z",
-              "deleted_at": null,
-              "odds": null,
-              "ticket": {
-                  "id": 1,
-                  "member_id": 1,
-                  "merchant_id": 1,
-                  "ticket_no": "T0000001",
-                  "bet_number": "1234",
-                  "bet_type": 0,
-                  "total_amount": 1152,
-                  "net_amount": 0,
-                  "rebate_amount": 0,
-                  "rebate_percentage": 0,
-                  "betting_date": "2022-10-12",
-                  "draw_date": "2022-10-12",
-                  "ticket_status": "UNSETTLED",
-                  "progress_status": "IN_PROGRESS",
-                  "message": "",
-                  "created_at": "2022-10-11T11:17:18.000000Z",
-                  "updated_at": "2022-10-11T11:17:18.000000Z",
-                  "deleted_at": null
-              },
-              "game": {
-                  "id": 1,
-                  "name": "Magnum",
-                  "abbreviation": "M",
-                  "logo_path": "public/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png",
-                  "logo_url": "http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png",
-                  "status": "Active",
-                  "deleted_at": null,
-                  "created_at": "2022-10-11T11:03:49.000000Z",
-                  "updated_at": "2022-10-11T11:03:49.000000Z"
-              }
-          })
-              
-              
+            
           
-          }
-          console.log('results of data winning page:',data.data);
 
           setWinningList(response.data.data.data)
           // setWinningList(data.data)
@@ -234,6 +83,8 @@ export default function WinningList({datauser}) {
     }
 }))
 }
+
+
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
         console.log(`Loading items from ${itemOffset} to ${endOffset}`);
@@ -244,7 +95,7 @@ export default function WinningList({datauser}) {
 
        useEffect(() => {
         getWinningList();
-      },[auth]);
+      },[auth,filterParams]);
 
 
       useEffect(() => {
@@ -283,7 +134,7 @@ export default function WinningList({datauser}) {
       <WinngListBanner/>
       <section className="page-content custom-padding">
         <div className="container">
-        <Filter/>
+        <Filter _setFilterParams={setFilterParams} />
             <div className={`${pageCount > 1 ? "winningFilterTall":""} table-responsive my-3`}  >
                 <table className="table small table-bordered align-middle">
                 <thead>

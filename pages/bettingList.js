@@ -44,7 +44,7 @@ export default function BettingList({datauser}) {
       let ticketsChild = state && state.tickets && state.tickets.ticketsChild ? state.tickets.ticketsChild : [];
 
       let ticketSlave = tickets.ticket_slave
-       console.log("BettingList:state:",state)
+   //    console.log("tickets:",tickets)
       
       const ticketSearch = []
       const GetTicketNumber = (member_id,dateRange,ticketNo) => {

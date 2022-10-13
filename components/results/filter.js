@@ -28,9 +28,9 @@ const Filter = ({_setDate}) => {
                 // console.log('results response in filter:',response.data);
                 let results = response.data.data
                 // setStartDate(results[0].result_date)
-                console.log('results response in filter:',results[0].result_date);
+                // console.log('results response in filter:',results[0].result_date);
 
-                setStartDate (new Date(results[0].result_date))
+                setStartDate (new Date(results[0].result_date ? results[0].result_date :''))
             }else {
                 console.log(response.data.messages); 
             }

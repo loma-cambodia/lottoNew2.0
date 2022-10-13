@@ -7,14 +7,19 @@ import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
+import daterangepicker from 'bootstrap-daterangepicker';
 
 // import {getResults} from '../../store/actions/resultActions';
 
-const Filter = ({_setDate}) => {
-    const [startDate, setStartDate] = useState();
+const Filter = ({_setFilterParams}) => {
 
-    console.log('startDate in filter: ', startDate)
-  
+
+    const [dateRange, setDateRange] = useState('');
+    const [ticketNo, setTicketNo] = useState('');
+    const [prizeType, setPrizeType] = useState('');
+
+    const [active, setActive] = useState(false);
+
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const c = new Date();
@@ -27,49 +32,24 @@ const Filter = ({_setDate}) => {
       endDate: moment(medate),
     });
 
-    //     const getLatestDrawDate = () =>{
-
-    //       let dataSubmit = undefined
-    //      dispatch(getResults(dataSubmit,response =>{
-    //         if(response.statusCode  == 201  || response.statusCode  == 200 ){
-
-    //         if(response.statusCode == 200){
-
-    //             // console.log('results response in filter:',response.data);
-    //             let results = response.data.data
-    //             // setStartDate(results[0].result_date)
-    //             console.log('results response in filter:',results[0].result_date);
-
-    //             setStartDate (new Date(results[0].result_date))
-    //         }else {
-    //             console.log(response.data.messages); 
-    //         }
-    //         }else {
-    //         console.log('response:',response);
-    //         // setIsLoading(false);
-    //     }
-    // }))
-    // }
-    // const getStartDate = () =>{
-    //   if (startDate === undefined)
-    //   {
-    //     return 
-    //   }
-    //   else 
-    //   {
-    //     console.log('startDate in getstartdate',startDate)
-    //    return startDate
-    //   }
-    // }
     
 
-    const prizeTypleList = ['','P1','P2','P3','S1','S2','S3','S4','S5','S6','S7','S8','S9','S10','C1','C2','C3','C4','C5','C6','C7','C8','C9']
+    const prizeTypleList = ['','No','P1','P2','P3','S','C']
+
       const handleApply1 = (event, picker) => {
         setDates1({
           startDate: picker.startDate,
           endDate: picker.endDate,
         });
+
+        setDateRange({
+            startDate: picker.startDate,
+            endDate: picker.endDate,
+          })
       };
+
+        
+
 
       const [ranges, setRanges] = useState({
         ['Today']: [moment().subtract(0, 'days'), moment().add(0, 'days')],
@@ -92,7 +72,53 @@ const Filter = ({_setDate}) => {
             day = '0' + day;
         return [year, month, day].join('-');
     }
-      
+    const filterList =() =>{
+        const date = document.getElementById('daterangepicker');
+        let filter =''
+            if (date.value == ''){
+         filter = {
+                    'dateRange': '',
+                    'prizeType':prizeType,
+                    'ticketNo':ticketNo
+                    } 
+            }
+            else{
+                filter = {
+                    'dateRange': moment(dateRange.startDate).format('DD/MM/YYYY')+'-'+ moment(dateRange.endDate).format('DD/MM/YYYY'),
+                    'prizeType':prizeType,
+                    'ticketNo':ticketNo
+                    } 
+            }
+        
+
+            _setFilterParams(filter)
+        console.log('filter:', filter )
+        setDateRange('')
+        setPrizeType('')
+        setTicketNo('')
+    }
+
+    const resetFiletr = () => {
+        let filter = {
+            'dateRange': '',
+            'prizeType':'',
+            'ticketNo':''
+            } 
+
+            const date = document.getElementById('daterangepicker');
+            date.value = '';
+            setDateRange('')
+
+            const ticket = document.getElementById('ticket_no');
+            ticket.value = '';
+            const prize = document.getElementById('prize_type');
+            prize.value = '';
+
+            console.log('reset filter: ',filter)
+
+            _setFilterParams(filter)
+
+    }
       useEffect(() => {
       },[]);
     return (
@@ -108,20 +134,20 @@ const Filter = ({_setDate}) => {
                                     onCancel={keyRef}
                                     initialSettings={{ ranges }}
                                 >
-                                    <input type="text" className="daterangepickerstyle" />
+                                    <input id="daterangepicker" type="text" className="daterangepickerstyle" />
                                 </DateRangePicker>
                     </div>                    
                 </div>
                 <div class="col-md-2 col-6">
                     <div class="form-group">
                         <label for="transactionid" class="fw-bold mb-2">Ticket No</label>
-                        <input type="text" class="form-control-custom-big" name="transationid"/>
+                        <input id="ticket_no" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setTicketNo(event.target.value)}/>
                     </div>
                 </div>
                 <div class="col-md-2 col-6">
                     <div class="form-group">
                         <label for="transactionid" class="fw-bold mb-2">Prize Type</label>
-                        <select type="text" class="form-control-custom-big" name="transationid">
+                        <select id="prize_type" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setPrizeType(event.target.value)}>
                            { prizeTypleList.map((item,id)=>(
                                 <option>{item}</option>
                            ))}
@@ -142,8 +168,9 @@ const Filter = ({_setDate}) => {
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="d-block">&nbsp;</label>
-                        <button type="button" class="btn-custom-curve2 w-auto">Search</button>
-                        <button type="button" class="btn-custom-curve1">Reset</button>
+                        <button type="button" id="search" onClick={() => filterList()} class="btn-custom-curve2 w-auto mx-3">Search</button>
+                        <label></label>
+                        <button type="button" id="reset" class="btn-custom-curve1" onClick={() => resetFiletr()}>Reset</button>
                     </div>
                     
                 </div>
