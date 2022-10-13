@@ -34,7 +34,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     });
 
 
-      const itemsPerPage  = 10;
+      const itemsPerPage  = 25;
  
       const [currentItems, setCurrentItems] = useState(null);
       const [pageCount, setPageCount] = useState(0);
@@ -249,6 +249,8 @@ const handlePageClick = (event) => {
 
   
     function ShowTableDataParent({tickets}){
+
+        const currentPage = Math.round(itemOffset/itemsPerPage);
         if(currentItems && currentItems.length > 0){
             return (
                 <>
@@ -330,6 +332,7 @@ const handlePageClick = (event) => {
                             previousLabel="< Previous"
                             renderOnZeroPageCount={null}
                             className="pagination"
+                            forcePage={currentPage}
                         /> : null } 
                 
                         <svg className="hide">
@@ -427,9 +430,33 @@ const handlePageClick = (event) => {
 
                             </thead>
                             <tbody>
+                                {tickets.map((item,id) =>(
+                                    <tr key={id}>
+                                        <td>{id+1}</td>
+                                        <td className="text-start"><a >{item.child_ticket_no}</a></td>
+                                        <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
+                                        <td className="text-center">{item.ticket.betting_date}</td>
+                                        <td className="text-center">{item.game_type}</td>
+                                        <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
+                                        <td className="text-start">{item.lottery_number}</td>
 
-                                
-                            </tbody>
+                                        <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+                                    
+                                    </tr>
+                                ))}
+
+                            {tickets.length == 0 ?(
+                                    <tr key={id}>
+                                        <td colSpan={14}>{id+1}</td>
+                                    </tr>
+                                ): null}
+                        </tbody>
                         </table>
                     </div>
                 </>
