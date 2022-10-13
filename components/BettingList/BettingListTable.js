@@ -169,7 +169,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
 
         _GetTicketNumber(member_id,newDateRange,ticketNo);
-        $('.hideAndShowForMobileView').toggle("slide");
+        // $('.hideAndShowForMobileView').toggle("slide");
       }
 
 

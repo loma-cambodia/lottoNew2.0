@@ -62,7 +62,7 @@ export default function BettingNew({datauser, updateSessionData, setUpdateSessio
               <BettingOptionSelectionForMob _bettingDatesStore={bettingDatesStore} _betLimit={betLimit}/>
             </div>
         </div>
-      <div className={styles.device_detect_for_mobile}> 
+      <div className={styles.device_detect_for_desktop}> 
         <Footer/>
       </div>
         <script src="assets/js/jquery.min.js"></script>
