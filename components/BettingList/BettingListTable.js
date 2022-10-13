@@ -66,6 +66,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         });
       };
 
+     
     
       const [ranges, setRanges] = useState({
         ['Today']: [moment().subtract(0, 'days'), moment().add(0, 'days')],
@@ -86,7 +87,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
       const [parentAction, setParentAction] = useState(true);
 
-      const [dateRange, setDateRange] = useState('');
+      const [dateRange, setDateRange] = useState('10/10/2022-10/10/2022');
 
       const [ticketNo, setTicketNo] = useState('');
 
