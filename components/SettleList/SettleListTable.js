@@ -5,7 +5,7 @@ import moment from 'moment';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import { useTranslation } from "react-i18next";
-import {getTicketData,searchTicketData, getLotteryDetailsList,filterLotteryDetailsList} from '../../store/actions/reportActions';
+import {filterLotteryDetailsList} from '../../store/actions/reportActions';
 import { useDispatch, useSelector, } from "react-redux";
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
@@ -17,7 +17,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
     let auth = _auth;
     const items = _tickets;
 
-    let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const c = new Date();
@@ -136,6 +135,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
     const backButton = () =>{
         setParentAction(true);
         setSearchAction(true);
+        setDetailNo('');
+   setFilterGamesName({ value: '', label: 'All' });
     }
 
 
@@ -246,7 +247,7 @@ const handlePageClick = (event) => {
                 return(
                     {color:"green",fontWeight:"bold"}
                 )
-            }else if(e < 0){
+            }else if(e <= 0){
                 return(
                     {color:"red",fontWeight:"bold"}
                 )
@@ -285,7 +286,7 @@ const handlePageClick = (event) => {
                     {currentItems && currentItems.map((item,i) =>(
                         <tr key={i}>
                             <td>{i + 1}</td>
-                            <td class="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
+                            <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
                             <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
                             <td class="text-center">{item.draw_date}</td>
                             <td class="text-center">12345</td>
@@ -301,7 +302,7 @@ const handlePageClick = (event) => {
                             <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                             <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
-                                <td class="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                            <td class="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
                             <td class="text-center"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
 
                             
@@ -449,9 +450,21 @@ const handlePageClick = (event) => {
                 </table>
                 </>
             );
-        }else{
+            }else{
+                return(
+                    
+                    <div className='alert alert-warning'>
+                        <div class="d-flex justify-content-between">
+                        <button onClick={() => backButton() } className="btn btn-warning ">{t('back')}</button>
+                        </div>
+                    <h3 className='text-center'>
+                    {t('no_data_found')}
+                    </h3>
+                    
+                </div>
+                )
 
-        }
+            }
     }
 
 
