@@ -439,7 +439,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title="Clear All">{t('clear')}</button>
                     </td>
                     <td colSpan="2">
-                             <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction} title="Submit">Submit</button>   
+                             <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction} title="Submit">{t('submit')}</button>   
                     </td>
                 </tr>)}
                 </tbody>
