@@ -249,6 +249,7 @@ const handlePageClick = (event) => {
   ]
 
     function ShowTableDataParent({tickets}){
+        const currentPage = Math.round(itemOffset/itemsPerPage);
         function winParent(e){
             if (e > 0){
                 return(
@@ -321,7 +322,6 @@ const handlePageClick = (event) => {
                 <div class="clearfix d-flex align-items-center justify-content-center">
               { pageCount > 1 ?
                 <ReactPaginate
-                forcePage={pageCount}
                 breakLabel="..."
                 nextLabel="Next >" 
                 onPageChange={handlePageClick}
@@ -331,9 +331,8 @@ const handlePageClick = (event) => {
                 renderOnZeroPageCount={null}
                 className="pagination"
                 pageLinkClassName="pagination"
-                pageStartIndex='1'
+                forcePage={currentPage} 
                 // activeClassName={"pagination__link--active"}
-                
             /> : null }
               
                     <svg class="hide">

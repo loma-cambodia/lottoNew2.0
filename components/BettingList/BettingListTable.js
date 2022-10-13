@@ -420,16 +420,11 @@ const handlePageClick = (event) => {
                                         <td><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
                                     </tr>
                                 ))}
-                                {/* {tickets.length == 0 ?(
-                                    <tr key={id}>
-                                        <td colSpan={14}>{id+1}</td>
-                                    </tr>
-                                ): null} */}
                             </tbody>
                         </table>
                     </div>
                     <div className={styles.device_detect_for_desktop}>
-                        <table className="table small table-bordered">
+                        <table className="table small table-bordered mt-3">
                             <thead>
                                 <tr>
                                     <th>{t('No.')}</th>
@@ -488,6 +483,7 @@ const handlePageClick = (event) => {
         }else{
             return (<>
                 <div className='alert alert-warning'>
+                <button onClick={() => backButton() } className="btn btn-warning">Back</button>
                  <h3 className='text-center'>   
                          No Data Found!
                  </h3>
@@ -543,7 +539,7 @@ const handlePageClick = (event) => {
                     <div className="col-md-3">
                         <div className="form-group">
                             <label className="d-block">&nbsp;</label>
-                            <button type="button" className="btn-custom-curve2 w-auto">{t('Search')}</button>
+                            <button type="button" className="btn-custom-curve2 w-auto m-2">{t('Search')}</button>
                             <button type="button" className="btn-custom-curve1">{t('Reset')}</button>
                         </div>
                     </div>
@@ -609,7 +605,6 @@ const handlePageClick = (event) => {
                                                 </button>
                                             </div>
                                             <div className='col-md-6 col-6'>
-                                                {/* <label className="d-block">&nbsp;</label> */}
                                                 <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2" onClick={()=>resetFilter()}>
                                                     {t('Reset')}
                                                 </button>
@@ -640,13 +635,6 @@ const handlePageClick = (event) => {
                                     <div className="col-md-2 col-12">
                                         <div className="form-group">
                                             <label for="transactionid" className="fw-bold mb-2">{t('Game')}</label>
-                                            {/* <select type="text" className="form-control-custom-big" name="transationid">
-                                                <option>All</option>
-                                                <option>4D</option>
-                                                <option>3D</option>
-                                            </select> */}
-                                            {/* <Select options={optionsGameType} value =''/> */}
-
                                             <Select 
                                                 options={optionsGameType} 
                                                 defaultValue = { { value: '', label: 'All' }} 
@@ -658,12 +646,6 @@ const handlePageClick = (event) => {
                                     <div className="col-md-2 col-12">
                                         <div className="form-group">
                                             <label for="transactionid" className="fw-bold mb-2">{t('Company')}</label>
-                                            {/* <select type="text" className="form-control-custom-big" name="transationid">
-                                                <option>All</option>
-                                                <option>Toto</option>
-                                                <option>Magnum</option>
-                                                <option>Da ma cai</option>
-                                            </select> */}
                                             <Select 
                                                 options={optionsGamesName} 
                                                 defaultValue = { { value: '', label: 'All' }} 
