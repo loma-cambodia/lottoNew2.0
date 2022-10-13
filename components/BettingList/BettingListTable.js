@@ -278,23 +278,43 @@ const handlePageClick = (event) => {
                         <table className="mob-table mb-3">
                             <thead>
                                 <tr>
-                                    <th><span>Ticket Number<br />Betting Time</span></th>
-                                    <th><span>Draw Date<br />Bet Number</span></th>
-                                    <th><span>{t('Company')}<br/>Total</span></th>
-                                    <th><span>Rebate<br/>Net</span></th>
+                                    <th><span>Ticket Number<br />Betting Time<br/>Draw Date</span></th>
+                                    <th><span>Bet Number<br/>{t('Company')}</span></th>
+                                    {/* <th><span></span></th> */}
+                                    <th><span>Total<br/>Rebate<br/>Net</span></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {currentItems && currentItems.map((item,i) =>(
+                                    
                                     <tr key={i}>
-                                        <td><span><a  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forMob','unsettledList')} >{item.ticket_no}</a><br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</span></td>
-                                        <td><span>{item.bet_number}<br />{item.betting_date}</span></td>
-                                        <td><span>{
+                                        <td>
+                                            <span>
+                                                <a  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forMob')} >
+                                                    {item.ticket_no}
+                                                </a><br />
+                                                {moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />
+                                                {item.betting_date}
+                                            </span>
+                                        </td>
+                                        {/* <td><span>{item.bet_number}<br />{item.betting_date}</span></td> */}
+                                        <td>
+                                            {item.bet_number}<br/>
+                                            <span>
+                                                {
                                                     item.games && item.games.map((item,i) =>(
                                                         item.abbreviation
                                                     )) 
-                                                }<br />{MoneyFormatDisplay(item.bet_amount, 1)}</span></td>
-                                        <td><span>{MoneyFormatDisplay(item.rebate_amount, 1)}<br />{MoneyFormatDisplay(item.bet_net_amount, 1)}</span></td>
+                                                }
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                {MoneyFormatDisplay(item.bet_amount, 1)}<br />
+                                                {MoneyFormatDisplay(item.rebate_amount, 1)}<br />
+                                                {MoneyFormatDisplay(item.bet_net_amount, 1)}
+                                            </span>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -401,7 +421,7 @@ const handlePageClick = (event) => {
                             <thead>
                                 <tr>
                                     <th><span>Detail Number<br />Betting Time<br />Draw Date</span></th>
-                                    <th><span>Game<br />{t('Company')}<br />Bet Number</span></th>
+                                    <th><span>Bet Number<br />Game<br />{t('Company')}</span></th>
                                     <th><span>Big<br />Small<br />3A<br />3C</span></th>
                                     <th><span>Total<br />Rebate<br />Net</span></th>
                                 </tr>
@@ -410,7 +430,7 @@ const handlePageClick = (event) => {
                                 {tickets.map((item,id) =>(
                                     <tr key={id}>
                                         <td><span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.betting_date}</span></td>
-                                        <td><span>{item.game_type}<br />{item.game && item.game.name ? item.game.name : ""}<br />{item.lottery_number}</span></td>
+                                        <td><span>{item.lottery_number} <br/> {item.game_type}<br />{item.game && item.game.name ? item.game.name : ""}</span></td>
                                         <td><span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span></td>
                                         <td><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
                                     </tr>
