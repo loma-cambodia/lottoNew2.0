@@ -333,7 +333,7 @@ const handlePageClick = (event) => {
                                         <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk')} >{item.ticket_no}</span></td>
                                         <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
                                         <td class="text-center">{item.draw_date}</td>
-                                        <td class="text-center">{item.id}</td>
+                                        <td class="text-center">{item.draw_number}</td>
                                         <td class="text-center">{item.bet_number}</td>
                                         <td class="text-center">
                                         {
