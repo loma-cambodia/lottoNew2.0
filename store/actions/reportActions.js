@@ -218,7 +218,7 @@ export const filterLotteryDetailsList = (getData) => async (dispatch) => {
     )
     console.log("filterLotteryDetailsList TICKET-->>",res)
     dispatch({
-      type: 'GET_SEARCH_TICKETS_CHILD',
+      type: 'GET_FILTER_CHILD_TICKETS',
       payload: res.data.data,
     })
   } catch (e) {
