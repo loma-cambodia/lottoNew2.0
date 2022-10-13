@@ -189,10 +189,19 @@ const [isLoading,  setIsLoading] = React.useState(false);
     }
     
     const clearAllRecords = () => {
+        // let localStateInitData2 = {
+        //     number: { value: "", disabled: 0 }, big: { value: "", disabled: 0 }, small: { value: "", disabled: 0 }, _3a: { value: "", disabled: 0 }, _3c: { value: "", disabled: 0 },
+        //     bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }, amount: { value: "", disabled: 1 }
+        // };
         let localStateInitData2 = {
-            number: { value: "", disabled: 0 }, big: { value: "", disabled: 0 }, small: { value: "", disabled: 0 }, _3a: { value: "", disabled: 0 }, _3c: { value: "", disabled: 0 },
-            bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 }, amount: { value: "", disabled: 1 }
-        };
+          number: { value: "", disabled: 1 },
+          big: { value: "", disabled: 1 }, 
+          small: { value: "", disabled: 1 },
+          _3a: { value: "", disabled: 1 },
+          _3c: { value: "", disabled: 1 },
+          bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 },
+          amount: { value: "", disabled: 1 }
+      };
             let bettingInputsData2 = [ {name:'01',dataInit:{...localStateInitData2}},
                           {name:'02',dataInit:{...localStateInitData2}},
                           {name:'03',dataInit:{...localStateInitData2}},
