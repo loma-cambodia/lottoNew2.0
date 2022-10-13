@@ -12,9 +12,10 @@ import {getResults,getLatestResultDate} from '../store/actions/resultActions';
 // import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import Filter from "../components/results/filter";
- export default function Results({datauser}){
+ export default function Results({datauser,updateSessionData, setUpdateSessionData}){
     const { t } = useTranslation();
-    const [active, setActive] = useState(false)
+    const [active, setActive] = useState(false);
+    const auth = useSelector(state => state.auth);
 
 
     const [initDate, setDate] = useState();
@@ -43,7 +44,7 @@ import Filter from "../components/results/filter";
                 <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
             </Head>
             
-            <Header datauser={datauser}/>
+            <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
             {/*--Mobile Menu--*/}
             {/* <div id="mySidepanel" className="sidepanel">
                 <a href="javascript:void(0)" className="closebtn" onclick="closeNav()">&times;</a>

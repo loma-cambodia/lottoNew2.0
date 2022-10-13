@@ -10,7 +10,7 @@ import ReactPaginate from 'react-paginate';
 
 import SettleTable from '../components/SettleList/SettleListTable';
 import SettleBanner from '../components/SettleList/BannerSettle';
-export default function SettleList({datauser}) {
+export default function SettleList({datauser,updateSessionData, setUpdateSessionData}) {
 
   const [pageCount, setPageCount] = useState(0);
 
@@ -67,7 +67,8 @@ export default function SettleList({datauser}) {
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
-      <Header datauser={datauser} _auth={auth}/>
+      <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
+      
       <SettleBanner/>
       <section class="page-content custom-padding">
           <div class="container">
