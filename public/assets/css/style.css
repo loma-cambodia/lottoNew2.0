@@ -533,7 +533,7 @@
 
   .custom-padding {
     padding-top: 2rem;
-    padding-bottom: 4rem;
+    padding-bottom: 15rem;
     height: 100%;
   }
   .theme-tabs .theme-nav-tabs {
@@ -2861,4 +2861,23 @@ table.mob-table tr th, table.mob-table tr td {
 }
 table.mob-table tr th:last-child, table.mob-table tr td:last-child {
   border-right: 0;
+}
+.loader-Mob-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgb(255 255 255 / 90%);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+} 
+.loader-Mob-2 {
+  position: relative;
+  z-index: 2;
+  left: 50%;
+  width: 50px;
+  transform: translateX(-25px);
 }

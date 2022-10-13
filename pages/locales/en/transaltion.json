@@ -115,9 +115,30 @@
     "Reset":"Reset",
     "BET":"BET",
     "BettingList":" Betting List",
-    "Select_Date_Range":"Select Date Range", 
-    "Ticket_No":"Ticket No",
+    "betting_history":"Betting History",
+ 
+
+
+    "Select_Date_Range":"Bet time", 
+    "Ticket_No":"Ticket No.",
     "bet_successful":"Bet Successful",
-    "bet_failed":"Bet Failed"
+    "bet_failed":"Bet Failed",
+    "Odds":"Odds",
+    "Ticket_Number":"Ticket No.",
+    "Betting_Time":"Bet Time",
+    "Draw_Date":"Draw Date",
+    "Bet_Number":"Bet No.",
+    "Net": "Net",
+    "Winning_Loss": "W/L",
+    "Detail_Number":"Detail No.",
+    "no_data_found":"No Data Found!",
+    "no_data":"No Data",
+    "game":"Game",
+    "back":"Back",
+    "winning":"Winning"
+
+
+
+
 
 }

@@ -95,7 +95,7 @@ let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}},
 
 let dateAndGameOptionData = [1,2,3,4];
 
-const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit,_auth, updateSessionData, setUpdateSessionData}) => {
+const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLimit,_auth}) => {
     let betLimit = _betLimit;
     const { t } = useTranslation();
     const dispatch = useDispatch();

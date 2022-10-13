@@ -192,7 +192,13 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
                 getValue = big_max_bet
                
-            }else if(getValue == 0 ){
+            }else if(getValue < limit[0].big_min_bet ){
+
+                $("#ErrorSmall"+idas).html('Bet should not be less than'+limit[0].big_min_bet);
+
+                getValue = ''
+            }
+            else if(getValue == 0 ){
                 $("#ErrorBig"+idas).html('Bet should not be less than '+big_min_bet);
 
                 getValue = ''

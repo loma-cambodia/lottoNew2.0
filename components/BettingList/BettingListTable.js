@@ -34,7 +34,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     });
 
 
-      const itemsPerPage  = 10;
+      const itemsPerPage  = 25;
  
       const [currentItems, setCurrentItems] = useState(null);
       const [pageCount, setPageCount] = useState(0);
@@ -66,6 +66,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         });
       };
 
+     
     
       const [ranges, setRanges] = useState({
         ['Today']: [moment().subtract(0, 'days'), moment().add(0, 'days')],
@@ -86,7 +87,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
       const [parentAction, setParentAction] = useState(true);
 
-      const [dateRange, setDateRange] = useState('');
+      const [dateRange, setDateRange] = useState('10/10/2022-10/10/2022');
 
       const [ticketNo, setTicketNo] = useState('');
 
@@ -109,7 +110,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
     const state = useSelector(state => state);
 
-    const childShowTable = (ticketId) =>{
+    const childShowTable = (ticketId,work) =>{
 
      //   detailNo
       //  filterGamesName
@@ -132,7 +133,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         setChildDataTickets(ticketsssss);
         setParentAction(false);
         setSearchAction(false);
-        
+        if(work == 'forMob'){
+            $('.hideAndShowForMobileView').hide("slide");
+        }
         // $('.hideAndShowForMobileView').toggle("slide");
     }
 
@@ -143,7 +146,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     }
 
 
-      const searchGetListonFilter = () => {
+      const searchGetListonFilter = (work) => {
 
          let _fromDate = fromDate;
          let _toDate = toDate;
@@ -169,7 +172,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
 
         _GetTicketNumber(member_id,newDateRange,ticketNo);
-        $('.hideAndShowForMobileView').toggle("slide");
+        if(work == 'forMob'){
+            $('.hideAndShowForMobileView').toggle("slide");
+        }
+        // $('.hideAndShowForMobileView').toggle("slide");
       }
 
 
@@ -226,7 +232,7 @@ const handlePageClick = (event) => {
    setDetailNo('');
    setFilterGamesName({ value: '', label: 'All' });
    setFilterGameType({ value: '', label: 'All' });
-   setTimeout(childShowTable(selectedticketId), 5000);
+   setTimeout(childShowTable(selectedticketId,'work'), 5000);
    
   }
 
@@ -248,6 +254,8 @@ const handlePageClick = (event) => {
 
   
     function ShowTableDataParent({tickets}){
+
+        const currentPage = Math.round(itemOffset/itemsPerPage);
         if(currentItems && currentItems.length > 0){
             return (
                 <>
@@ -264,7 +272,7 @@ const handlePageClick = (event) => {
                             <tbody>
                                 {currentItems && currentItems.map((item,i) =>(
                                     <tr key={i}>
-                                        <td><span><a  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</a><br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</span></td>
+                                        <td><span><a  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forMob')} >{item.ticket_no}</a><br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</span></td>
                                         <td><span>{item.bet_number}<br />{item.betting_date}</span></td>
                                         <td><span>{
                                                     item.games && item.games.map((item,i) =>(
@@ -297,7 +305,7 @@ const handlePageClick = (event) => {
                                 <tr key={i}>
                                     <td>{i + 1}</td>
                                     {/* <td className="text-center"><span className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td> */}
-                                    <td className="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
+                                    <td className="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk')} >{item.ticket_no}</span></td>
                                     <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
                                     <td className="text-center">{item.betting_date}</td>
                                     <td className="text-start">{item.bet_number}</td>
@@ -329,6 +337,7 @@ const handlePageClick = (event) => {
                             previousLabel="< Previous"
                             renderOnZeroPageCount={null}
                             className="pagination"
+                            forcePage={currentPage}
                         /> : null } 
                 
                         <svg className="hide">
@@ -426,9 +435,33 @@ const handlePageClick = (event) => {
 
                             </thead>
                             <tbody>
+                                {tickets.map((item,id) =>(
+                                    <tr key={id}>
+                                        <td>{id+1}</td>
+                                        <td className="text-start"><a >{item.child_ticket_no}</a></td>
+                                        <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
+                                        <td className="text-center">{item.ticket.betting_date}</td>
+                                        <td className="text-center">{item.game_type}</td>
+                                        <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
+                                        <td className="text-start">{item.lottery_number}</td>
 
-                                
-                            </tbody>
+                                        <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+                                    
+                                    </tr>
+                                ))}
+
+                            {tickets.length == 0 ?(
+                                    <tr key={id}>
+                                        <td colSpan={14}>{id+1}</td>
+                                    </tr>
+                                ): null}
+                        </tbody>
                         </table>
                     </div>
                 </>
@@ -552,7 +585,7 @@ const handlePageClick = (event) => {
                                         <div className='row'>
                                             <div className='col-md-6 col-6'>
                                                 {/* <label className="d-block">&nbsp;</label> */}
-                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2" onClick={()=>searchGetListonFilter()} >
+                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2" onClick={()=>searchGetListonFilter('forMob')} >
                                                     {t('Search')}
                                                 </button>
                                             </div>
@@ -568,7 +601,7 @@ const handlePageClick = (event) => {
                                     <div className={styles.device_detect_for_desktop+" col-md-6"}>
                                         <div className="form-group">
                                             <label className="d-block">&nbsp;</label>
-                                            <button type="button" className="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter('forDesk')} >{t('Search')}</button>
                                             <button type="button" className="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
                                         </div>
                                     </div>
@@ -625,7 +658,7 @@ const handlePageClick = (event) => {
                                         <div className='row'>
                                             <div className='col-md-6 col-6'>
                                                 {/* <label className="d-block">&nbsp;</label> */}
-                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
+                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childShowTable(selectedticketId,'forMob')}>{t('Search')}</button>
                                             </div>
                                             <div className='col-md-6 col-6'>
                                                 {/* <label className="d-block">&nbsp;</label> */}
@@ -638,7 +671,7 @@ const handlePageClick = (event) => {
                                     <div className={styles.device_detect_for_desktop+" col-md-3"}>
                                         <div className="form-group">
                                             <label className="d-block">&nbsp;</label>
-                                            <button type="button" className="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId,'forDesk')}>{t('Search')}</button>
                                             <button type="button" className="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
                                         </div>
                                     </div>
