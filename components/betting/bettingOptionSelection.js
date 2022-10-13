@@ -424,22 +424,22 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     <td colSpan="5">
                         {t('Total_Stake')}: {MoneyFormatDisplay(totalAmount,1)}
                     </td>
-                    <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>{t('clear')}</button>
+                    <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title="Clear All">{t('clear')}</button>
                     </td>
                     <td>
                     <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50"/>
                     </td>
                     <td colSpan="2">
-                             <button type="button" className="btn-custom-curve2">Submit</button>   
+                             <button type="button" className="btn-custom-curve2" title="Submit">Submit</button>   
                     </td>
                 </tr>) : (<tr>
                     <td colSpan="6">
                         {t('Total_Stake')}: {MoneyFormatDisplay(totalAmount,1)}
                     </td>
-                    <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords}>{t('clear')}</button>
+                    <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title="Clear All">{t('clear')}</button>
                     </td>
                     <td colSpan="2">
-                             <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction}>Submit</button>   
+                             <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction} title="Submit">Submit</button>   
                     </td>
                 </tr>)}
                 </tbody>
