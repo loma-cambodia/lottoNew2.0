@@ -5,7 +5,7 @@ import Header from '../components/common/header';
 import { useDispatch, useSelector, } from "react-redux";
 import { useTranslation } from "react-i18next";
 import styles from '../styles/Home.module.css'
-import {getTicketDataSettled,searchTicketData} from '../store/actions/reportActions';
+import {getTicketDataSettled,searchTicketData, searchTicketDataSettled} from '../store/actions/reportActions';
 import ReactPaginate from 'react-paginate';
 
 import SettleTable from '../components/SettleList/SettleListTable';
@@ -43,7 +43,7 @@ export default function SettleList({datauser}) {
       
       const ticketSearch = []
       const GetTicketNumber = (member_id,dateRange,ticketNo) => {
-        dispatch(searchTicketData(member_id,dateRange,ticketNo));
+        dispatch(searchTicketDataSettled(member_id,dateRange,ticketNo));
         }
 
         const handlePageClick = (event) => {
