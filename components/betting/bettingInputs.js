@@ -185,6 +185,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
            let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
 
+
             
             if(getValue > big_max_bet ){
                 $("#ErrorBig"+idas).html('Bet should not be greater than '+big_max_bet);
@@ -292,7 +293,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            if(getValue > limit[0].three_c_max_bet ){
+            if(getValue > limit[0].three_c_max_bet ){   
                 $("#ErrorC"+idas).html('Bet should not be greater than'+limit[0].three_c_max_bet);
                 $("#ErrorC"+idas).css('visibility','visible');
 
