@@ -10,6 +10,8 @@ import { useDispatch, useSelector, } from "react-redux";
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 
+import styles from '../../styles/Home.module.css';
+
 const API_BASE_URL = process.env.apiUrl;
 const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable}) => {
     
@@ -106,7 +108,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
 
     const state = useSelector(state => state);
 
-    const childShowTable = (ticketId) =>{
+    const childShowTable = (ticketId,work) =>{
 
      //   detailNo
       //  filterGamesName
@@ -129,6 +131,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         setChildDataTickets(ticketsssss);
         setParentAction(false);
         setSearchAction(false);
+        if(work == 'forMob'){
+            $('.hideAndShowForMobileView').hide("slide");
+        }
     }
 
     
@@ -140,7 +145,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
     }
 
 
-      const searchGetListonFilter = () => {
+    const searchGetListonFilter = (work) => {
 
          let _fromDate = fromDate;
          let _toDate = toDate;
@@ -166,8 +171,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
 
         _GetTicketNumber(member_id,newDateRange,ticketNo);
-  
-      }
+        if(work == 'forMob'){
+            $('.hideAndShowForMobileView').hide("slide");
+        }
+    }
 
 
       const concertDateFormat = (getDate) => {
@@ -221,7 +228,7 @@ const handlePageClick = (event) => {
   };
 
   const childDataReset = () => {
-    childShowTable(selectedticketId)
+    childShowTable(selectedticketId,'forDesk')
    setDetailNo('');
    setFilterGamesName({ value: '', label: 'All' });
 //    setTimeout(childShowTable(selectedticketId), 5000);
@@ -264,75 +271,118 @@ const handlePageClick = (event) => {
         if(currentItems && currentItems.length > 0){
             return (
                 <>
-                <table class="table small table-bordered">
-                    <thead>
-                        <tr>
-                            <th>{t('No')}</th>
-                            <th class="text-center">{t('Ticket_No')}</th>
-                            <th class="text-center">{t('Betting_Time')}</th>
-                            <th class="text-center">{t('Draw_Date')}</th>
-                            <th class="text-center">{t('Draw_Id')}</th>
-                            <th class="text-center">{t('Bet_Number')}</th>
-                            <th class="text-center">{t('Company')}</th>
-                            <th class="text-end">{t('Total')}</th>
-                            <th class="text-end">{t('Rebate')}</th>
-                            <th class="text-end">{t('Net')}</th>
-                            <th class="text-center">{t('winning')}</th>
-                            <th class="text-center">{t('Winning_Loss')}</th>
-                            
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {currentItems && currentItems.map((item,i) =>(
-                        <tr key={i}>
-                            <td>{i + 1}</td>
-                            <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td>
-                            <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
-                            <td class="text-center">{item.draw_date}</td>
-                            <td class="text-center">12345</td>
-                            <td class="text-center">{item.bet_number}</td>
-                            <td class="text-center">
-                            {
-                               item.games && item.games.map((item,i) =>(
-                                  item.abbreviation
-                               )
-                               ) 
-                            }
-                          </td>
-                            <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
-                            <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
-                            <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
-                            <td class="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
-                            <td class="text-center"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
 
-                            
-                            
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
-                <div class="clearfix d-flex align-items-center justify-content-center">
-              { pageCount > 1 ?
-                <ReactPaginate
-                breakLabel="..."
-                nextLabel="Next >" 
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={pageCount}
-                previousLabel="< Previous"
-                renderOnZeroPageCount={null}
-                className="pagination"
-                pageLinkClassName="pagination"
-                forcePage={currentPage} 
-                // activeClassName={"pagination__link--active"}
-            /> : null }
-              
-                    <svg class="hide">
-                        <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
-                        <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
-                    </svg>
-                </div>
+                    <div className={styles.device_detect_for_mobile}>
+                        <table className="mob-table mb-3">
+                            <thead>
+                                <tr>
+                                    <th><span>{t('Ticket_No')}<br />{t('Betting_Time')}<br/>{t('Draw_Date')}</span></th>
+                                    <th><span>{t('Draw_Id')}<br/>{t('Bet_Number')}<br/>{t('Company')}</span></th>
+                                    <th><span>{t('Total')}<br/>{t('Rebate')}<br/>{t('Net')}</span></th>
+                                    <th><span>{t('winning')}<br/>{t('Winning_Loss')}</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {currentItems && currentItems.map((item,i) =>(
+                                    <tr key={i}>
+                                        <td>
+                                            <span>
+                                                <a  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forMob')} >
+                                                    {item.ticket_no}
+                                                </a><br />
+                                                {moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />
+                                                {item.betting_date}
+                                            </span>
+                                        </td>
+                                        {/* <td><span>{item.bet_number}<br />{item.betting_date}</span></td> */}
+                                        <td>
+                                            {item.bet_number}<br/>
+                                            <span>
+                                                {
+                                                    item.games && item.games.map((item,i) =>(
+                                                        item.abbreviation
+                                                    )) 
+                                                }
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                {MoneyFormatDisplay(item.bet_amount, 1)}<br />
+                                                {MoneyFormatDisplay(item.rebate_amount, 1)}<br />
+                                                {MoneyFormatDisplay(item.bet_net_amount, 1)}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className={styles.device_detect_for_desktop}>
+                        <table class="table small table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>{t('No')}</th>
+                                    <th class="text-center">{t('Ticket_No')}</th>
+                                    <th class="text-center">{t('Betting_Time')}</th>
+                                    <th class="text-center">{t('Draw_Date')}</th>
+                                    <th class="text-center">{t('Draw_Id')}</th>
+                                    <th class="text-center">{t('Bet_Number')}</th>
+                                    <th class="text-center">{t('Company')}</th>
+                                    <th class="text-end">{t('Total')}</th>
+                                    <th class="text-end">{t('Rebate')}</th>
+                                    <th class="text-end">{t('Net')}</th>
+                                    <th class="text-center">{t('winning')}</th>
+                                    <th class="text-center">{t('Winning_Loss')}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {currentItems && currentItems.map((item,i) =>(
+                                    <tr key={i}>
+                                        <td>{i + 1}</td>
+                                        <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk')} >{item.ticket_no}</span></td>
+                                        <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
+                                        <td class="text-center">{item.draw_date}</td>
+                                        <td class="text-center">12345</td>
+                                        <td class="text-center">{item.bet_number}</td>
+                                        <td class="text-center">
+                                        {
+                                        item.games && item.games.map((item,i) =>(
+                                            item.abbreviation
+                                        )
+                                        ) 
+                                        }
+                                    </td>
+                                        <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
+                                        <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
+                                        <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
+                                        <td class="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                                        <td class="text-center"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clearfix d-flex align-items-center justify-content-center">
+                        { pageCount > 1 ?
+                            <ReactPaginate
+                            breakLabel="..."
+                            nextLabel="Next >" 
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={5}
+                            pageCount={pageCount}
+                            previousLabel="< Previous"
+                            renderOnZeroPageCount={null}
+                            className="pagination"
+                            pageLinkClassName="pagination"
+                            forcePage={currentPage} 
+                            // activeClassName={"pagination__link--active"}
+                        /> : null }
+                
+                        <svg class="hide">
+                            <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
+                            <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
+                        </svg>
+                    </div>
                 </>
             );
         }else{
@@ -521,93 +571,159 @@ const handlePageClick = (event) => {
             </div>
         );
     }
-
+    const openFilterForMob = () => {
+        $('.hideAndShowForMobileView').toggle("slide");
+    }
 
     return (
         <>
 
             {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}
             {/* <SearchAbleFormParent />  */}
-            {searchAction ? (
-            <div class="clearfix curved-card">
-                <div class="row">
-                    <div class="col-md-3 col-12">
-                        <div class="form-group">
-                            <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
-                                <DateRangePicker
-                                    ref={keyRef}
-                                    onCancel={keyRef}
-                                    initialSettings={{ ranges }}
-                                    onEvent={handleEvent}
-                                >
-                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
-                                </DateRangePicker>
-                        </div>                    
-                    </div>
-                    <div class="col-md-2 col-6">
-                        <div class="form-group">
-                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                            <input type="text" onChange={(e)=>{ 
-                                 setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+            <div className='showForMobileViewSearch'>
+                <div className="clearfix curved-card">
+                    <div className={styles.device_detect_for_mobile}>
+                        <div className="form-group mb-0">
+                            <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
+                                <b>BETTING HISTORY REPORT</b>
+                                <img 
+                                    onClick={() => openFilterForMob()}
+                                    className="img-fluid" 
+                                    src="images\betting\filter-icon.png" 
+                                    alt="" 
+                                    style={{ width: '20px', float: 'right', marginTop: '5px' }} />
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="d-block">&nbsp;</label>
-                            <button type="button" class="btn-custom-curve2 w-auto m-2" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
-                            <button type="button" class="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
-                        </div>
+                    <div className={styles.device_detect_for_desktop+' hideAndShowForMobileView'}>
+                        {searchAction ? (
+                                <div class="row">
+                                    <div class="col-md-3 col-12">
+                                        <div class="form-group">
+                                            <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
+                                                <DateRangePicker
+                                                    ref={keyRef}
+                                                    onCancel={keyRef}
+                                                    initialSettings={{ ranges }}
+                                                    onEvent={handleEvent}
+                                                >
+                                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
+                                                </DateRangePicker>
+                                        </div>                    
+                                    </div>
+                                    <div class="col-md-2 col-12">
+                                        <div class="form-group">
+                                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
+                                            <input style={{ width: '100% !important' }} type="text" onChange={(e)=>{ 
+                                                setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.device_detect_for_mobile+" col-md-12 col-12"}>
+                                        <div className='row'>
+                                            <div className='col-md-6 col-6'>
+                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2" onClick={()=>searchGetListonFilter('forMob')} >
+                                                    {t('Search')}
+                                                </button>
+                                            </div>
+                                            <div className='col-md-6 col-6'>
+                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2" onClick={()=>resetFilter()}>
+                                                    {t('Reset')}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="d-block">&nbsp;</label>
+                                            <button type="button" class="btn-custom-curve2 w-auto m-2" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
+                                            <button type="button" class="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
+                                        </div>
+                                    </div> */}
+                                    
+                                    <div className={styles.device_detect_for_desktop+" col-md-3"}>
+                                        <div className="form-group">
+                                            <label className="d-block">&nbsp;</label>
+                                            <button type="button" className="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter('forDesk')} >{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            ) :
+                            (
+                                <div class="row">
+                                
+                                    <div class="col-md-2 col-6">
+                                        <div class="form-group">
+                                            <label for="transactionid" class="fw-bold mb-2">{t('Detail_Number')}</label>
+                                            <input type="text" onChange={(e)=>{ 
+                                                            setDetailNo(e.target.value)}}  class="form-control-custom-big" value={detailNo} name="transationid"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-2 col-6">
+                                        <div class="form-group">
+                                            <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
+                                            {/* <select type="text" class="form-control-custom-big" name="transationid">
+                                                <option>All</option>
+                                                <option>Toto</option>
+                                                <option>Magnum</option>
+                                                <option>Da ma cai</option>
+                                            </select> */}
+                                            <Select 
+                                                options={optionsGamesName} 
+                                                defaultValue = { { value: '', label: 'All' }} 
+                                                value = {filterGamesName}
+                                                onChange={value => setFilterGamesName(value)}
+                                                />
+                                        </div>
+                                    </div>
+
+
+                                    
+                                    
+                                    <div className={styles.device_detect_for_mobile+" col-12"}>
+                                        <div className='row'>
+                                            <div className='col-md-6 col-6'>
+                                                {/* <label className="d-block">&nbsp;</label> */}
+                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childShowTable(selectedticketId,'forMob')}>{t('Search')}</button>
+                                            </div>
+                                            <div className='col-md-6 col-6'>
+                                                {/* <label className="d-block">&nbsp;</label> */}
+                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childDataReset()}>{t('Reset')}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.device_detect_for_desktop+" col-md-3"}>
+                                        <div className="form-group">
+                                            <label className="d-block">&nbsp;</label>
+                                            <button type="button" className="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId,'forDesk')}>{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
+                                        </div>
+                                    </div>
+
+                                    {/* <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="d-block">&nbsp;</label>
+                                            <button type="button" class="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
+                                            <button type="button" class="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
+                                        </div>
+                                    </div> */}
+                                </div>
+                            )
+                        }
                     </div>
-                   
                 </div>
             </div>
-    ) :
-    (<div class="clearfix curved-card">
-    <div class="row">
-       
-        <div class="col-md-2 col-6">
-            <div class="form-group">
-                <label for="transactionid" class="fw-bold mb-2">{t('Detail_Number')}</label>
-                <input type="text" onChange={(e)=>{ 
-                                 setDetailNo(e.target.value)}}  class="form-control-custom-big" value={detailNo} name="transationid"/>
-            </div>
-        </div>
-        
-        <div class="col-md-2 col-6">
-            <div class="form-group">
-                <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
-                {/* <select type="text" class="form-control-custom-big" name="transationid">
-                    <option>All</option>
-                    <option>Toto</option>
-                    <option>Magnum</option>
-                    <option>Da ma cai</option>
-                </select> */}
-                <Select 
-                     options={optionsGamesName} 
-                     defaultValue = { { value: '', label: 'All' }} 
-                     value = {filterGamesName}
-                     onChange={value => setFilterGamesName(value)}
-                     />
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="d-block">&nbsp;</label>
-                <button type="button" class="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
-                <button type="button" class="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
-            </div>
-        </div>
-    </div>
-</div>)}
 
             <div class="table-responsive my-3">
                 {parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
-
-
             </div>  
-             
-
-    </>
+        </>
     )
 }
 export default ListTable;
