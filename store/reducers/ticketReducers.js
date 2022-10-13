@@ -3,7 +3,7 @@ const initialState = {
     tickets:[],  // unsettled reports
     reportsSettleData:[],  // settled report 
     ticketsChild:[],   // unsettled child
-    reportsSettleChildData:[],   // unsettled child
+    reportsSettleChildData:[],   // settled child
     searchTickets:[],
     loading:true
 }
@@ -29,14 +29,14 @@ export default function(state = initialState, action){
         case "GET_SEARCH_TICKETS_CHILD":
             return {
                 ...state,
-                reportsSettleChildData:action.payload,
+                ticketsChild:action.payload,  
                 loading:false
     
             }
         case "GET_FILTER_CHILD_TICKETS":
         return {
             ...state,
-            ticketsChild:action.payload,
+            reportsSettleChildData:action.payload,
             loading:false
 
         }
