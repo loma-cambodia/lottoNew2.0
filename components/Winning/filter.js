@@ -117,7 +117,7 @@ const Filter = ({_setDate}) => {
                         <input type="text" class="form-control-custom-big" name="transationid"/>
                     </div>
                 </div>
-                <div class="col-md-2 col-6">
+                {/* <div class="col-md-2 col-6">
                     <div class="form-group">
                         <label for="transactionid" class="fw-bold mb-2">Game</label>
                         <select type="text" class="form-control-custom-big" name="transationid">
@@ -127,8 +127,8 @@ const Filter = ({_setDate}) => {
                             <option>Transaction type 4</option>
                         </select>
                     </div>
-                </div>
-                <div class="col-md-2 col-6">
+                </div> */}
+                {/* <div class="col-md-2 col-6">
                     <div class="form-group">
                         <label for="transactionid" class="fw-bold mb-2">Company</label>
                         <select type="text" class="form-control-custom-big" name="transationid">
@@ -137,7 +137,7 @@ const Filter = ({_setDate}) => {
                             <option>Da ma cai</option>
                         </select>
                     </div>
-                </div>
+                </div> */}
 
                 <div class="col-md-3">
                     <div class="form-group">

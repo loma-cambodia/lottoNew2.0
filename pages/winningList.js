@@ -28,7 +28,7 @@ export default function WinningList({datauser}) {
   const [active, setActive] = useState(false);
   const [winningList, setWinningList] = useState([]);
 
-  const itemsPerPage  = 5;
+  const itemsPerPage  = 10;
 
   const [pageCount, setPageCount] = useState(0);
   const [currentItems, setCurrentItems] = useState(null);
@@ -140,7 +140,7 @@ export default function WinningList({datauser}) {
               "total": 1
           }
           let data = {
-            "data": Array(15).fill ({
+            "data": Array(22).fill ({
               "id": 121,
               "ticket_id": 1,
               "merchant_id": 1,
@@ -268,8 +268,8 @@ export default function WinningList({datauser}) {
       <section className="page-content custom-padding">
         <div className="container">
         <Filter/>
-            <div className="table-responsive my-3">
-                <table className="table small table-bordered">
+            <div className={`${pageCount > 1 ? "winningFilterTall":""} table-responsive my-3`}  >
+                <table className="table small table-bordered align-middle">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -325,7 +325,7 @@ export default function WinningList({datauser}) {
                     </tbody>
                 </table>
             </div>
-            <div>
+            <div className='d-flex justify-content-center'>
             { pageCount > 1 ?
                         <ReactPaginate
                             breakLabel="..."

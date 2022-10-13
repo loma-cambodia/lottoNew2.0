@@ -2881,3 +2881,7 @@ table.mob-table tr th:last-child, table.mob-table tr td:last-child {
   width: 50px;
   transform: translateX(-25px);
 }
+
+.winningFilterTall{
+  height: 445px;
+}
