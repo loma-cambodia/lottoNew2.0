@@ -285,31 +285,32 @@ const handlePageClick = (event) => {
                             <tbody>
                                 {currentItems && currentItems.map((item,i) =>(
                                     <tr key={i}>
-                                        <td>
-                                            <span>
-                                                <a  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forMob')} >
-                                                    {item.ticket_no}
-                                                </a><br />
-                                                {moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />
-                                                {item.betting_date}
-                                            </span>
+                                        <td >
+                                            <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk')} >
+                                                {item.ticket_no}
+                                            </span><br/>
+                                            {moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}<br/>
+                                            {item.draw_date}
                                         </td>
-                                        {/* <td><span>{item.bet_number}<br />{item.betting_date}</span></td> */}
                                         <td>
+                                            12345<br/>
                                             {item.bet_number}<br/>
-                                            <span>
-                                                {
-                                                    item.games && item.games.map((item,i) =>(
-                                                        item.abbreviation
-                                                    )) 
-                                                }
-                                            </span>
+                                            {
+                                                item.games && item.games.map((item,i) =>(
+                                                    item.abbreviation
+                                                )) 
+                                            }
                                         </td>
                                         <td>
-                                            <span>
-                                                {MoneyFormatDisplay(item.bet_amount, 1)}<br />
-                                                {MoneyFormatDisplay(item.rebate_amount, 1)}<br />
-                                                {MoneyFormatDisplay(item.bet_net_amount, 1)}
+                                            {MoneyFormatDisplay(item.total_amount, 1)}<br/>
+                                            {MoneyFormatDisplay(item.rebate_amount, 1)}<br/>
+                                            {MoneyFormatDisplay(item.bet_net_amount, 1)}
+                                        </td>
+                                        <td>
+                                            <span style={winParent(item.winning_amount)}>
+                                                {MoneyFormatDisplay(item.winning_amount,1)}</span><br/>
+                                            <span style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>
+                                                {winLose(item.winning_amount,item.bet_net_amount)}
                                             </span>
                                         </td>
                                     </tr>
@@ -440,63 +441,99 @@ const handlePageClick = (event) => {
                 <div class="p-2">  <button onClick={() => backButton() } className="btn btn-warning ">{t('back')}</button></div>
                 </div>
               
-                <table class="table small table-bordered">
-                    <thead>
-                        <tr>
-                            <th>{t('No')}</th>
-                            <th class="text-start">{t('Detail_Number')}</th>
-                            <th class="text-center">{t('Betting_Time')}</th>
-                            <th class="text-center">{t('Draw_Date')}</th>
-                            <th class="text-center">{t('game')}</th>
-                            <th class="text-center">{t('Company')}</th>
-                            <th class="text-center">{t('Bet_Number')}</th>
-                            <th class="text-center">{t('Big')}</th>
-                            <th class="text-center">{t('Small_Bet')}</th>
-                            <th class="text-center">3A</th>
-                            <th class="text-center">3C</th>
-                            <th class="text-end">{t('Total')}</th>
-                            <th class="text-end">{t('Rebate')}</th>
-                            <th class="text-end">{t('Net')}</th>
-                            {/* <th class="text-end">{t('Odds')}</th> */}
-                            <th class="text-center">{t('winning')}</th>
-                            <th class="text-center">{t('Winning_Loss')}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+
+
+                <div className={styles.device_detect_for_mobile}>
+                    <table className="mob-table">
+                        <thead>
+                            <tr>
+                                <th><span>{t('Detail_Number')}<br />{t('Betting_Time')}<br />{t('Draw_Date')}</span></th>
+                                <th><span>{t('Bet_Number')}<br />{t('game')}<br/>{t('Company')}<br /></span></th>
+                                <th><span>{t('Big')}<br />{t('Small_Bet')}<br />3A<br />3C</span></th>
+                                <th><span>{t('Total')}<br />{t('Rebate')}<br />{t('Net')}</span></th>
+                                <th>{t('winning')}<br/>{t('Winning_Loss')}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {tickets.map((item,id) =>(
+                                <tr key={id}>
+                                    <td><span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.betting_date}</span></td>
+                                    <td><span>{item.lottery_number} <br/> {item.game_type}<br />{item.game && item.game.name ? item.game.name : ""}</span></td>
+                                    <td><span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span></td>
+                                    <td><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
+                                    <td>
+                                        <span style={winChild(item.winning_amount)}>
+                                            {MoneyFormatDisplay(item.winning_amount,1)}
+                                        </span><br/>
+                                        <span style={winChild(winLoseChild(item.winning_amount,item.bet_net_amount))}>
+                                            {winLoseChild(item.winning_amount,item.bet_net_amount)}
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
                 
-                        {tickets.map((item,id) =>(
-                            <tr key={id}>
-                                <td>{id+1}</td>
-                                <td class="text-start"><a >{item.child_ticket_no}</a></td>
-                                <td class="text-start" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
-                                <td class="text-center">{item.ticket.draw_date}</td>
-                                <td class="text-center">{item.game_type}</td>
-                                <td class="text-center">{item.game && item.game.name ? item.game.name : ""}</td>
-                                <td class="text-center">{item.lottery_number}</td>
+                <div className={styles.device_detect_for_desktop}>
+                    <table class="table small table-bordered">
+                        <thead>
+                            <tr>
+                                <th>{t('No')}</th>
+                                <th class="text-start">{t('Detail_Number')}</th>
+                                <th class="text-center">{t('Betting_Time')}</th>
+                                <th class="text-center">{t('Draw_Date')}</th>
+                                <th class="text-center">{t('game')}</th>
+                                <th class="text-center">{t('Company')}</th>
+                                <th class="text-center">{t('Bet_Number')}</th>
+                                <th class="text-center">{t('Big')}</th>
+                                <th class="text-center">{t('Small_Bet')}</th>
+                                <th class="text-center">3A</th>
+                                <th class="text-center">3C</th>
+                                <th class="text-end">{t('Total')}</th>
+                                <th class="text-end">{t('Rebate')}</th>
+                                <th class="text-end">{t('Net')}</th>
+                                {/* <th class="text-end">{t('Odds')}</th> */}
+                                <th class="text-center">{t('winning')}</th>
+                                <th class="text-center">{t('Winning_Loss')}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    
+                            {tickets.map((item,id) =>(
+                                <tr key={id}>
+                                    <td>{id+1}</td>
+                                    <td class="text-start"><a >{item.child_ticket_no}</a></td>
+                                    <td class="text-start" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
+                                    <td class="text-center">{item.ticket.draw_date}</td>
+                                    <td class="text-center">{item.game_type}</td>
+                                    <td class="text-center">{item.game && item.game.name ? item.game.name : ""}</td>
+                                    <td class="text-center">{item.lottery_number}</td>
 
-                                <td class="text-center">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
-                                <td class="text-center">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
-                                <td class="text-center">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
-                                <td class="text-center">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
-                                <td class="text-center">{MoneyFormatDisplay(item.bet_amount,1)}</td>
-                                <td class="text-center">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
-                                <td class="text-center">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
-                                {/* <td class="text-end">0.00</td> */}
-                               
-                                <td class="text-end"  style={winChild(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
-                            <td class="text-center"  style={winChild(winLoseChild(item.winning_amount,item.bet_net_amount))}>{winLoseChild(item.winning_amount,item.bet_net_amount)}</td>
+                                    <td class="text-center">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
+                                    <td class="text-center">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
+                                    <td class="text-center">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
+                                    <td class="text-center">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
+                                    <td class="text-center">{MoneyFormatDisplay(item.bet_amount,1)}</td>
+                                    <td class="text-center">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
+                                    <td class="text-center">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+                                    {/* <td class="text-end">0.00</td> */}
                                 
-                               
-                            </tr>
-                        ))}
+                                    <td class="text-end"  style={winChild(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                                <td class="text-center"  style={winChild(winLoseChild(item.winning_amount,item.bet_net_amount))}>{winLoseChild(item.winning_amount,item.bet_net_amount)}</td>
+                                    
+                                
+                                </tr>
+                            ))}
 
-                    {tickets.length == 0 ?(
-                            <tr key={id}>
-                                <td colSpan={14}>{id+1}</td>
-                            </tr>
-                        ): null}
-                    </tbody>
-                </table>
+                        {tickets.length == 0 ?(
+                                <tr key={id}>
+                                    <td colSpan={14}>{id+1}</td>
+                                </tr>
+                            ): null}
+                        </tbody>
+                    </table>
+                </div>
                 </>
             );
             }else{
@@ -655,7 +692,7 @@ const handlePageClick = (event) => {
                             (
                                 <div class="row">
                                 
-                                    <div class="col-md-2 col-6">
+                                    <div class="col-md-2 col-12">
                                         <div class="form-group">
                                             <label for="transactionid" class="fw-bold mb-2">{t('Detail_Number')}</label>
                                             <input type="text" onChange={(e)=>{ 
@@ -663,7 +700,7 @@ const handlePageClick = (event) => {
                                         </div>
                                     </div>
                                     
-                                    <div class="col-md-2 col-6">
+                                    <div class="col-md-2 col-12">
                                         <div class="form-group">
                                             <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
                                             {/* <select type="text" class="form-control-custom-big" name="transationid">
