@@ -343,7 +343,7 @@ const handlePageClick = (event) => {
                                         <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk')} >{item.ticket_no}</span></td>
                                         <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
                                         <td class="text-center">{item.draw_date}</td>
-                                        <td class="text-center">12345</td>
+                                        <td class="text-center">{item.id}</td>
                                         <td class="text-center">{item.bet_number}</td>
                                         <td class="text-center">
                                         {
@@ -659,7 +659,7 @@ const handlePageClick = (event) => {
                                     <div className={styles.device_detect_for_mobile+" col-md-12 col-12"}>
                                         <div className='row'>
                                             <div className='col-md-6 col-6'>
-                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2" onClick={()=>searchGetListonFilter('forMob')} >
+                                                <button style={{ width: '100% !important' }} type="button" className="btn-custom-curve2 " onClick={()=>searchGetListonFilter('forMob')} >
                                                     {t('Search')}
                                                 </button>
                                             </div>
@@ -682,7 +682,7 @@ const handlePageClick = (event) => {
                                     <div className={styles.device_detect_for_desktop+" col-md-3"}>
                                         <div className="form-group">
                                             <label className="d-block">&nbsp;</label>
-                                            <button type="button" className="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter('forDesk')} >{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve2 w-auto  m-2" onClick={()=>searchGetListonFilter('forDesk')} >{t('Search')}</button>
                                             <button type="button" className="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
                                         </div>
                                     </div>
