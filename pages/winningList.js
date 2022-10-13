@@ -16,7 +16,7 @@ import ReactPaginate from 'react-paginate';
 import Filter from "../components/Winning/filter";
 
 
-export default function WinningList({datauser}) {
+export default function WinningList({datauser,updateSessionData, setUpdateSessionData}) {
 
 
 // console.log("TICKETLIST",datauser);
@@ -130,7 +130,7 @@ export default function WinningList({datauser}) {
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
-      <Header datauser={datauser}/>
+      <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <WinngListBanner/>
       <section className="page-content custom-padding">
         <div className="container">
