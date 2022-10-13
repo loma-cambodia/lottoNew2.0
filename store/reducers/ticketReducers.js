@@ -31,6 +31,13 @@ export default function(state = initialState, action){
                 loading:false
     
             }
+        case "GET_FILTER_CHILD_TICKETS":
+        return {
+            ...state,
+            ticketsChild:action.payload,
+            loading:false
+
+        }
         default: return state
     }
 

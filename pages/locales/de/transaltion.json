@@ -43,7 +43,7 @@
     "heading_lotto":"快速选择您自己的号码",
     "smalltext_lotto":"彩票",
     "Net_Amount":"净额",
-    "Total":"全部的",
+    "Total":"总金额",
     "Result":"结果",
     "Bet_Details":"投注详情",
     "Success":"成功",
@@ -115,8 +115,25 @@
     "Reset":"重置",
     "BET":"投注",
     "BettingList":"投注单",
-    "Select_Date_Range":"Select Date Range", 
-    "Ticket_No":"Ticket No",
-    "bet_successful":"Bet Successful",
-    "bet_failed":"Bet Failed"
+    "betting_history":"投注历史",
+
+
+   "Select_Date_Range":"下注时间", 
+    "Ticket_No":"注单号",
+    "bet_successful":"投注成功",
+    "bet_failed":"投注失败",
+    "Odds":"赔率",
+    "Ticket_Number":"注单号",
+    "Betting_Time":"下注时间",
+    "Draw_Date":"开彩日期",
+    "Bet_Number":"投注号码",
+    "Net":"净金额",
+    "Winning_Loss":"输赢",
+    "Detail_Number":"注单明细号",
+    "no_data_found":"查无数据",
+    "no_data":"没有数据",
+    "game":"游戏",
+    "back":"返回",
+    "winning":"中奖金额"
+
 }
