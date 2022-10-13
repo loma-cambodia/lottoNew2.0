@@ -2898,3 +2898,11 @@ button.applyBtn.btn.btn-sm.btn-primary {
   background-color: #bf2262 !important;
   border-color: #bf2262 !important;
 }
+.winningAmount{
+  font-weight: bold;
+  color: green;
+}
+.losingAmount{
+  font-weight: bold;
+  color: red;
+}
