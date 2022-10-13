@@ -6,7 +6,7 @@ import moment from 'moment';
 import { useDispatch, useSelector } from "react-redux";
 import {getResults} from '../../store/actions/resultActions';
 
-const Result = ({_initDate, _setDate}) => {
+const Result = ({_initDate}) => {
   
   console.log('_initData in result: ',_initDate)
 
@@ -42,7 +42,6 @@ console.log('inititresult in result: ',initResult)
              let results = response.data.data
              drawResult = results
              setResult(drawResult)
-             _setDate(drawResult[0].result_date.format('YYYY-MM-DD'))
         }else {
             console.log(response.data.messages);
 
@@ -82,7 +81,7 @@ useEffect(() => {
               }
             </button>
           </h2>
-          <div id="collapseThree" className="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style={{minHeight: '45vh'}}>
+          <div id="collapseThree" className="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style={{minHeight: '60vh'}}>
             <div className="accordion-body">
               <div className="row">
               {!initResult.length == 0 ?
@@ -201,7 +200,7 @@ useEffect(() => {
                 </div>
                 ))
                 :
-                <div className="text-center" style={{minWidth: '50vh'}}>
+                <div className="text-center">
                   <span>There is no draw on this date</span>
                 </div>
                 }

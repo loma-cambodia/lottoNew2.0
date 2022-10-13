@@ -146,6 +146,11 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                               {/* Betting List */}
                               </Link>
                             </li>
+                            <li className= {`${router.pathname === "/winningList" ? "active-header":""}`}>
+                            <Link href="/winningList">
+                              {t('Winning')} 
+                              </Link>
+                              </li>
                             <li className= {`${router.pathname === "/settleList" ? "active-header":""}`}>
                             <Link href="/settleList">  
                              {t('betting_history')}
@@ -236,6 +241,9 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                     <li className= {`${router.pathname === "/bettingList" ? "active-header-mobile":""}`}>
                         <Link href="/bettingList">{t('BettingList')}</Link>
                     </li>
+                    <li className= {`${router.pathname === "/winningList" ? "active-header-mobile":""}`}>
+                            <Link href="/winningList">{t('Winning')}</Link>
+                      </li>
                     <li className= {`${router.pathname === "/settleList" ? "active-header-mobile":""}`}>
                         <Link href="/settleList" >{t('betting_history')}</Link>  
                     </li>

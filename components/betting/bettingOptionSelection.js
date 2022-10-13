@@ -233,7 +233,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
             tempObj['reverse'] = item.dataInit && item.dataInit.bet_type && item.dataInit.bet_type.reverse_value ? 'on' : 'off';
             tempObj['amount'] = item.dataInit.amount.value ? parseFloat(item.dataInit.amount.value).toFixed(2)  : 0;
             //{"number":"1112","big_bet":"10000","small_bet":"10000","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","amount":"792"}
-           if(item.dataInit && item.dataInit.number && item.dataInit.number.value)
+           if(item.dataInit && item.dataInit.number && item.dataInit.number.value && (item.dataInit.big.value || item.dataInit.small.value || item.dataInit._3a.value || item.dataInit._3c.value))
                options.push(tempObj);
         })
 
@@ -439,7 +439,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title="Clear All">{t('clear')}</button>
                     </td>
                     <td colSpan="2">
-                             <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction} title="Submit">Submit</button>   
+                             <button type="button" className="btn-custom-curve2" onClick ={lotterySubmitRecordsCallAction} title="Submit">{t('submit')}</button>   
                     </td>
                 </tr>)}
                 </tbody>
