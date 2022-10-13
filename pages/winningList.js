@@ -9,6 +9,7 @@ import WinngListBanner from '../components/Winning/Banner';
 import ListTable from '../components/BettingList/BettingListTable';
 import {getTicketData,searchTicketData} from '../store/actions/reportActions';
 import {getWinningData} from '../store/actions/winninglistActions';
+import moment from 'moment';
 
 import ReactPaginate from 'react-paginate';
 
@@ -35,7 +36,22 @@ export default function WinningList({datauser}) {
   const [itemOffset, setItemOffset] = useState(0);
 
   
+  const MoneyFormatDisplay = (theInput, getCase) => {
+    //Do something with the input
+    let getInput = theInput;
+    if(getCase == 1){
+     if(getInput){
 
+       let newStr = theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+       newStr = parseFloat(newStr).toFixed(2);
+       return newStr;
+
+     }else 
+       return '0.00';
+    }else{
+       return parseFloat(lottery.slave_net_amount).toFixed(2)
+    }
+ };
   const getWinningList = () =>{
     console.log('auth in getwinninglist:',auth.auth.id);
 
@@ -204,8 +220,8 @@ export default function WinningList({datauser}) {
           }
           console.log('results of data winning page:',data.data);
 
-          // setWinningList(response.data.data.data)
-          setWinningList(data.data)
+          setWinningList(response.data.data.data)
+          // setWinningList(data.data)
 
             
         }else {
@@ -270,25 +286,64 @@ export default function WinningList({datauser}) {
         <Filter/>
             <div className={`${pageCount > 1 ? "winningFilterTall":""} table-responsive my-3`}  >
                 <table className="table small table-bordered align-middle">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th className="text-start">Detail Number</th>
-                            <th className="text-start">Betting Time</th>
-                            <th className="text-center">Draw Date</th>
-                            <th className="text-center">Game</th>
-                            <th className="text-center">Betting Type</th>
-                            <th className="text-center">Company</th>
-                            <th className="text-end">Bet Number</th>
-                            <th className="text-end">Big</th>
-                            <th className="text-end">3A</th>
-                            <th className="text-end">3C</th>
-                            <th className="text-end">Odds</th>
-                            <th className="text-end">Rebate</th>
-                            <th className="text-end">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <thead>
+                                <tr>
+                                    <th>{t('No.')}</th>
+                                    <th className="text-start">Detail Number</th>
+                                    {/* <th className="text-start">Detail Number</th> */}
+                                    <th className="text-center">Betting Time</th>
+                                    <th className="text-center">Draw Date</th>
+                                    <th className="text-center">Game</th>
+                                    <th className="text-center">{t('Company')}</th>
+                                    <th className="text-start">Bet Number</th>
+
+                                    <th className="text-end">Big</th>
+                                    <th className="text-end">Small</th>
+                                    <th className="text-end">3A</th>
+                                    <th className="text-end">3C</th>
+                                    <th className="text-end">Total</th>
+                                    <th className="text-end">Rebate</th>
+                                    <th className="text-end">Net</th>
+                                    <th className="text-end">Win Amount</th>
+                                    <th className="text-end">Win/Lose</th>
+                                
+                                </tr>
+
+
+                            </thead>
+                            <tbody>
+                            {console.log('length: ',winningList.length)}
+
+                                {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>(
+                                    <tr key={id}>
+                                        <td>{id+1}</td>
+                                        <td className="text-start"><a >{item.child_ticket_no}</a></td>
+                                        <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
+                                        <td className="text-center">{item.ticket.betting_date}</td>
+                                        <td className="text-center">{item.game_type}</td>
+                                        <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
+                                        <td className="text-start">{item.lottery_number}</td>
+
+                                        <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount - item.winning_amount,1)}</td>
+                                    
+                                    </tr>
+                                ))
+                              :<tr className='text-center'>
+                                    <td colSpan={16}>No results</td>
+                              </tr>
+                              }
+
+          
+                        </tbody>
+                    {/* <tbody>
                     {currentItems ? currentItems.map((item,id)=>(
                       <tr key={id}>
                             <td >
@@ -322,7 +377,7 @@ export default function WinningList({datauser}) {
 
                     </tr>
                   }
-                    </tbody>
+                    </tbody> */}
                 </table>
             </div>
             <div className='d-flex justify-content-center'>

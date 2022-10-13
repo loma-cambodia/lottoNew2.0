@@ -63,6 +63,7 @@ const Filter = ({_setDate}) => {
     // }
     
 
+    const prizeTypleList = ['','P1','P2','P3','S1','S2','S3','S4','S5','S6','S7','S8','S9','S10','C1','C2','C3','C4','C5','C6','C7','C8','C9']
       const handleApply1 = (event, picker) => {
         setDates1({
           startDate: picker.startDate,
@@ -117,17 +118,16 @@ const Filter = ({_setDate}) => {
                         <input type="text" class="form-control-custom-big" name="transationid"/>
                     </div>
                 </div>
-                {/* <div class="col-md-2 col-6">
+                <div class="col-md-2 col-6">
                     <div class="form-group">
-                        <label for="transactionid" class="fw-bold mb-2">Game</label>
+                        <label for="transactionid" class="fw-bold mb-2">Prize Type</label>
                         <select type="text" class="form-control-custom-big" name="transationid">
-                            <option>Transaction type 1</option>
-                            <option>Transaction type 2</option>
-                            <option>Transaction type 3</option>
-                            <option>Transaction type 4</option>
+                           { prizeTypleList.map((item,id)=>(
+                                <option>{item}</option>
+                           ))}
                         </select>
                     </div>
-                </div> */}
+                </div>
                 {/* <div class="col-md-2 col-6">
                     <div class="form-group">
                         <label for="transactionid" class="fw-bold mb-2">Company</label>
