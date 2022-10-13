@@ -11,7 +11,7 @@ import {getTicketData,searchTicketData} from '../store/actions/reportActions';
 
 import ReactPaginate from 'react-paginate';
 
-export default function BettingList({datauser}) {
+export default function BettingList({datauser, updateSessionData, setUpdateSessionData}) {
 
   const [pageCount, setPageCount] = useState(0);
 
@@ -71,7 +71,8 @@ export default function BettingList({datauser}) {
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
           <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
-      <Header datauser={datauser}/>
+      {/* <Header datauser={datauser}/> */}
+      <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <ListBanner/>
       <section class="page-content custom-padding">
     <div class="container">

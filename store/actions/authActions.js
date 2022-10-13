@@ -16,7 +16,7 @@ let API_BASE_URL = process.env.fronEndUrl;
               }
 
         const res = await axios.post(`/api/updateUser`,objectWithData,{headers: headers});
-        console.log('getLogin:res:',res);
+       // console.log('getLogin:res:',res);
 
 
         dispatch({
