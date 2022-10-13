@@ -271,75 +271,118 @@ const handlePageClick = (event) => {
         if(currentItems && currentItems.length > 0){
             return (
                 <>
-                <table class="table small table-bordered">
-                    <thead>
-                        <tr>
-                            <th>{t('No')}</th>
-                            <th class="text-center">{t('Ticket_No')}</th>
-                            <th class="text-center">{t('Betting_Time')}</th>
-                            <th class="text-center">{t('Draw_Date')}</th>
-                            <th class="text-center">{t('Draw_Id')}</th>
-                            <th class="text-center">{t('Bet_Number')}</th>
-                            <th class="text-center">{t('Company')}</th>
-                            <th class="text-end">{t('Total')}</th>
-                            <th class="text-end">{t('Rebate')}</th>
-                            <th class="text-end">{t('Net')}</th>
-                            <th class="text-center">{t('winning')}</th>
-                            <th class="text-center">{t('Winning_Loss')}</th>
-                            
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {currentItems && currentItems.map((item,i) =>(
-                        <tr key={i}>
-                            <td>{i + 1}</td>
-                            <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk')} >{item.ticket_no}</span></td>
-                            <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
-                            <td class="text-center">{item.draw_date}</td>
-                            <td class="text-center">12345</td>
-                            <td class="text-center">{item.bet_number}</td>
-                            <td class="text-center">
-                            {
-                               item.games && item.games.map((item,i) =>(
-                                  item.abbreviation
-                               )
-                               ) 
-                            }
-                          </td>
-                            <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
-                            <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
-                            <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
-                            <td class="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
-                            <td class="text-center"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
 
-                            
-                            
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
-                <div class="clearfix d-flex align-items-center justify-content-center">
-              { pageCount > 1 ?
-                <ReactPaginate
-                breakLabel="..."
-                nextLabel="Next >" 
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={pageCount}
-                previousLabel="< Previous"
-                renderOnZeroPageCount={null}
-                className="pagination"
-                pageLinkClassName="pagination"
-                forcePage={currentPage} 
-                // activeClassName={"pagination__link--active"}
-            /> : null }
-              
-                    <svg class="hide">
-                        <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
-                        <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
-                    </svg>
-                </div>
+                    <div className={styles.device_detect_for_mobile}>
+                        <table className="mob-table mb-3">
+                            <thead>
+                                <tr>
+                                    <th><span>{t('Ticket_No')}<br />{t('Betting_Time')}<br/>{t('Draw_Date')}</span></th>
+                                    <th><span>{t('Draw_Id')}<br/>{t('Bet_Number')}<br/>{t('Company')}</span></th>
+                                    <th><span>{t('Total')}<br/>{t('Rebate')}<br/>{t('Net')}</span></th>
+                                    <th><span>{t('winning')}<br/>{t('Winning_Loss')}</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {currentItems && currentItems.map((item,i) =>(
+                                    <tr key={i}>
+                                        <td>
+                                            <span>
+                                                <a  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forMob')} >
+                                                    {item.ticket_no}
+                                                </a><br />
+                                                {moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />
+                                                {item.betting_date}
+                                            </span>
+                                        </td>
+                                        {/* <td><span>{item.bet_number}<br />{item.betting_date}</span></td> */}
+                                        <td>
+                                            {item.bet_number}<br/>
+                                            <span>
+                                                {
+                                                    item.games && item.games.map((item,i) =>(
+                                                        item.abbreviation
+                                                    )) 
+                                                }
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                {MoneyFormatDisplay(item.bet_amount, 1)}<br />
+                                                {MoneyFormatDisplay(item.rebate_amount, 1)}<br />
+                                                {MoneyFormatDisplay(item.bet_net_amount, 1)}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className={styles.device_detect_for_desktop}>
+                        <table class="table small table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>{t('No')}</th>
+                                    <th class="text-center">{t('Ticket_No')}</th>
+                                    <th class="text-center">{t('Betting_Time')}</th>
+                                    <th class="text-center">{t('Draw_Date')}</th>
+                                    <th class="text-center">{t('Draw_Id')}</th>
+                                    <th class="text-center">{t('Bet_Number')}</th>
+                                    <th class="text-center">{t('Company')}</th>
+                                    <th class="text-end">{t('Total')}</th>
+                                    <th class="text-end">{t('Rebate')}</th>
+                                    <th class="text-end">{t('Net')}</th>
+                                    <th class="text-center">{t('winning')}</th>
+                                    <th class="text-center">{t('Winning_Loss')}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {currentItems && currentItems.map((item,i) =>(
+                                    <tr key={i}>
+                                        <td>{i + 1}</td>
+                                        <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk')} >{item.ticket_no}</span></td>
+                                        <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
+                                        <td class="text-center">{item.draw_date}</td>
+                                        <td class="text-center">12345</td>
+                                        <td class="text-center">{item.bet_number}</td>
+                                        <td class="text-center">
+                                        {
+                                        item.games && item.games.map((item,i) =>(
+                                            item.abbreviation
+                                        )
+                                        ) 
+                                        }
+                                    </td>
+                                        <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
+                                        <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
+                                        <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
+                                        <td class="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                                        <td class="text-center"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clearfix d-flex align-items-center justify-content-center">
+                        { pageCount > 1 ?
+                            <ReactPaginate
+                            breakLabel="..."
+                            nextLabel="Next >" 
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={5}
+                            pageCount={pageCount}
+                            previousLabel="< Previous"
+                            renderOnZeroPageCount={null}
+                            className="pagination"
+                            pageLinkClassName="pagination"
+                            forcePage={currentPage} 
+                            // activeClassName={"pagination__link--active"}
+                        /> : null }
+                
+                        <svg class="hide">
+                            <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
+                            <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
+                        </svg>
+                    </div>
                 </>
             );
         }else{
