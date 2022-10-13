@@ -110,19 +110,35 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
     const state = useSelector(state => state);
 
-    const childShowTable = (ticketId,work) =>{
+    const childShowTable = (ticketId,work,actionFrom) =>{
 
-     //   detailNo
-      //  filterGamesName
-       // filterGameType
+     
+        //actionFrom // unsettledList, serach_button , reset_button
 
-       setSelectedticketId(ticketId);
+        
+
+       // setDetailNo('');
+      //  setFilterGamesName({ value: '', label: 'All' });
+       // setFilterGameType({ value: '', label: 'All' });
+        setSelectedticketId(ticketId);
 
        let params = {ticketId};
 
-       params.child_ticket_no = detailNo;
-       params.game_play_id = filterGamesName.value;
-       params.game_type = filterGameType.value;
+       if(actionFrom == 'unsettledList' || actionFrom == 'reset_button' ){
+
+            setDetailNo('');
+            setFilterGamesName({ value: '', label: 'All' });
+            setFilterGameType({ value: '', label: 'All' });
+
+           params.child_ticket_no = '';
+           params.game_play_id = '';
+           params.game_type = '';
+
+       }else {
+           params.child_ticket_no = detailNo;
+           params.game_play_id = filterGamesName.value;
+           params.game_type = filterGameType.value;
+       }
 
        console.log('params:',params);
        //return false;
@@ -136,7 +152,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         if(work == 'forMob'){
             $('.hideAndShowForMobileView').hide("slide");
         }
-        // $('.hideAndShowForMobileView').toggle("slide");
     }
 
     
@@ -271,6 +286,7 @@ const handlePageClick = (event) => {
                             </thead>
                             <tbody>
                                 {currentItems && currentItems.map((item,i) =>(
+                                    
                                     <tr key={i}>
                                         <td>
                                             <span>
@@ -323,8 +339,7 @@ const handlePageClick = (event) => {
                             {currentItems && currentItems.map((item,i) =>(
                                 <tr key={i}>
                                     <td>{i + 1}</td>
-                                    {/* <td className="text-center"><span className="btn btn-link" onClick={() => childShowTable(item.id)} >{item.ticket_no}</span></td> */}
-                                    <td className="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk')} >{item.ticket_no}</span></td>
+                                    <td className="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','unsettledList')} >{item.ticket_no}</span></td>
                                     <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
                                     <td className="text-center">{item.betting_date}</td>
                                     <td className="text-start">{item.bet_number}</td>
@@ -615,7 +630,7 @@ const handlePageClick = (event) => {
                                     <div className={styles.device_detect_for_desktop+" col-md-6"}>
                                         <div className="form-group">
                                             <label className="d-block">&nbsp;</label>
-                                            <button type="button" className="btn-custom-curve2 w-auto" onClick={()=>searchGetListonFilter('forDesk')} >{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve2 w-auto m-2" onClick={()=>searchGetListonFilter('forDesk')} >{t('Search')}</button>
                                             <button type="button" className="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
                                         </div>
                                     </div>
@@ -659,11 +674,11 @@ const handlePageClick = (event) => {
                                         <div className='row'>
                                             <div className='col-md-6 col-6'>
                                                 {/* <label className="d-block">&nbsp;</label> */}
-                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childShowTable(selectedticketId,'forMob')}>{t('Search')}</button>
+                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childShowTable(selectedticketId,'forMob', 'serach_button')}>{t('Search')}</button>
                                             </div>
                                             <div className='col-md-6 col-6'>
                                                 {/* <label className="d-block">&nbsp;</label> */}
-                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childDataReset()}>{t('Reset')}
+                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() =>childShowTable(selectedticketId,'forMob', 'reset_button')}>{t('Reset')}
                                                 </button>
                                             </div>
                                         </div>
@@ -672,8 +687,8 @@ const handlePageClick = (event) => {
                                     <div className={styles.device_detect_for_desktop+" col-md-3"}>
                                         <div className="form-group">
                                             <label className="d-block">&nbsp;</label>
-                                            <button type="button" className="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId,'forDesk')}>{t('Search')}</button>
-                                            <button type="button" className="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
+                                            <button type="button" className="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId,'forDesk', 'serach_button')}>{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve1" onClick = {() => childShowTable(selectedticketId,'forDesk', 'reset_button')}>{t('Reset')}</button>
                                         </div>
                                     </div>
                                 </div>
