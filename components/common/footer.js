@@ -19,10 +19,9 @@ const { t } = useTranslation();
                     <ul className="list-inline">
                         <li className="list-inline-item"><Link className="active"  href="/"><a>{t('Homepage')}</a></Link></li>
                         {/* <li className="list-inline-item"><Link href="/bettingNew"><a>{t('Betting')}</a></Link></li> */}
-                        <li className="list-inline-item"><Link href="/settleList"><a>{t('History')}</a></Link></li>
-                        <li className="list-inline-item"><Link href="/results"><a>{t('Result')}</a></Link></li>
-                        <li className="list-inline-item"><Link href="/bettingNew"><a>{t('Play_Lottery')}</a></Link></li>
                         <li className="list-inline-item"><Link href="/bettingList"><a>{t('BettingList')}</a></Link></li>
+                        <li className="list-inline-item"><Link href="/settleList"><a>{t('betting_history')}</a></Link></li>
+                        <li className="list-inline-item"><Link href="/results"><a>{t('Result')}</a></Link></li>
                     </ul>
                 </div>
                 {/* <div className="clearfix my-3">
