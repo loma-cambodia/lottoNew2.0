@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import React,{ useState,useEffect } from "react";
 import Notfound from './403';
 import { withIronSessionSsr } from "iron-session/next";
+import NextNProgress from "nextjs-progressbar";
 
 export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req }) {
@@ -64,7 +65,14 @@ function MyApp({ Component, pageProps,user }) {
       <>
         <Head>
           <link rel="icon" type="image/x-icon" href="assets/images/icons/150 x150-01.png" />
-      </Head>
+        </Head>
+        <NextNProgress
+          color="#bc2263"
+          startPosition={0.3}
+          stopDelayMs={200}
+          height={3}
+          showOnShallow={true}
+        />
         <Provider store={store}>
         <Component {...pageProps} datauser={data}  updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
         </Provider>
