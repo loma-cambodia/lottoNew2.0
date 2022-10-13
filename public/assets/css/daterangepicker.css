@@ -4,7 +4,7 @@
   background-color: #fff;
   border-radius: 4px;
   border: 1px solid #ddd;
-  width: 278px;
+  width: auto !important;
   max-width: none;
   padding: 0;
   margin-top: 7px;
@@ -336,6 +336,7 @@
 
 /*  Larger Screen Styling */
 @media (min-width: 564px) {
+
   .daterangepicker {
     width: auto;
   }
@@ -408,3 +409,9 @@
     clear: none !important;
   }
 }
+@media (max-width:554px) {
+  .daterangepicker {
+    width: auto;
+  }
+}
+ 

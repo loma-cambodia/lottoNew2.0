@@ -185,6 +185,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
            let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
 
+
             
             if(getValue > big_max_bet ){
                 $("#ErrorBig"+idas).html('Bet should not be greater than '+big_max_bet);
@@ -292,7 +293,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
-            if(getValue > limit[0].three_c_max_bet ){
+            if(getValue > limit[0].three_c_max_bet ){   
                 $("#ErrorC"+idas).html('Bet should not be greater than'+limit[0].three_c_max_bet);
                 $("#ErrorC"+idas).css('visibility','visible');
 
@@ -507,6 +508,11 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
     const getPermutation = (_getNumber) => {
         let returnPermutation = 0;
         let uniqueAges = getStringUniqueCharactors(_getNumber);
+        let repeatedRecords = getNumberRepeatedCounterArray(_getNumber);
+
+        console.log('uniqueAges:',uniqueAges);  
+        console.log('repeatedRecords:',repeatedRecords);
+        
 
             if(_getNumber.length == 3){
                 if(uniqueAges.length == 3)
@@ -520,9 +526,12 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 returnPermutation = 24;
                 else  if(uniqueAges.length == 3)
                 returnPermutation = 12 ;
-                else  if(uniqueAges.length == 2)
-                returnPermutation = 6;
-                else  if(uniqueAges.length == 1)
+                else  if(uniqueAges.length == 2){
+                    if(repeatedRecords[0] == 3 || repeatedRecords[1] == 3)
+                    returnPermutation = 4;
+                    else 
+                     returnPermutation = 6;
+                }else  if(uniqueAges.length == 1)
                 returnPermutation = 1;
             }
             return returnPermutation;
@@ -537,6 +546,22 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             var intArr = Array.from(String(number), myFunc);
             const uniqueAges = intArr.filter(unique);
             return uniqueAges;
+    }
+
+    const getNumberRepeatedCounterArray = (_getNumber) => {
+
+        let strSplited = _getNumber.split('');
+        console.log('strSplited:',strSplited);
+        let object_New = {};
+
+        strSplited.map(item => {
+
+        if(object_New[item])
+        object_New[item] = 1 + object_New[item];
+        else 
+        object_New[item] = 1
+        });
+        return Object.values(object_New);
     }
 
     const  checkPalindrome = (string) =>{
