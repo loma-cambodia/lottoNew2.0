@@ -17,7 +17,6 @@ import Filter from "../components/Winning/filter";
 
 export default function WinningList({datauser}) {
 
-  const [pageCount, setPageCount] = useState(0);
 
 // console.log("TICKETLIST",datauser);
   const { t } = useTranslation();
@@ -29,6 +28,13 @@ export default function WinningList({datauser}) {
   const [active, setActive] = useState(false);
   const [winningList, setWinningList] = useState([]);
 
+  const itemsPerPage  = 5;
+
+  const [pageCount, setPageCount] = useState(0);
+  const [currentItems, setCurrentItems] = useState(null);
+  const [itemOffset, setItemOffset] = useState(0);
+
+  
 
   const getWinningList = () =>{
     console.log('auth in getwinninglist:',auth.auth.id);
@@ -40,9 +46,167 @@ export default function WinningList({datauser}) {
 
         if(response.statusCode == 200){
 
-            console.log('results response in winning page:',response.data.data.data);
-            setWinningList(response.data.data.data)
-            // setWinningList([1,2,3,4,5])
+            console.log('results response in winning page:',response.data);
+            // setWinningList(response.data.data.data)
+            let res = {
+              "current_page": 1,
+              "data": [
+                  {
+                      "id": 121,
+                      "ticket_id": 1,
+                      "merchant_id": 1,
+                      "game_play_id": 1,
+                      "child_ticket_no": "C0000121",
+                      "lottery_number": "1234",
+                      "big_bet_amount": 1,
+                      "small_bet_amount": 1,
+                      "three_a_amount": 0,
+                      "three_c_amount": 0,
+                      "bet_amount": 2,
+                      "bet_net_amount": 1.4,
+                      "rebate_amount": 0.6,
+                      "rebate_percentage": 30,
+                      "game_type": "4D",
+                      "prize_type": "No",
+                      "bet_size": "Both",
+                      "winning_amount": 0,
+                      "status": "finished",
+                      "progress_status": "ACCPETED",
+                      "message": "",
+                      "created_at": "2022-10-11T11:28:49.000000Z",
+                      "updated_at": "2022-10-11T11:28:49.000000Z",
+                      "deleted_at": null,
+                      "odds": null,
+                      "ticket": {
+                          "id": 1,
+                          "member_id": 1,
+                          "merchant_id": 1,
+                          "ticket_no": "T0000001",
+                          "bet_number": "1234",
+                          "bet_type": 0,
+                          "total_amount": 1152,
+                          "net_amount": 0,
+                          "rebate_amount": 0,
+                          "rebate_percentage": 0,
+                          "betting_date": "2022-10-12",
+                          "draw_date": "2022-10-12",
+                          "ticket_status": "UNSETTLED",
+                          "progress_status": "IN_PROGRESS",
+                          "message": "",
+                          "created_at": "2022-10-11T11:17:18.000000Z",
+                          "updated_at": "2022-10-11T11:17:18.000000Z",
+                          "deleted_at": null
+                      },
+                      "game": {
+                          "id": 1,
+                          "name": "Magnum",
+                          "abbreviation": "M",
+                          "logo_path": "public/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png",
+                          "logo_url": "http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png",
+                          "status": "Active",
+                          "deleted_at": null,
+                          "created_at": "2022-10-11T11:03:49.000000Z",
+                          "updated_at": "2022-10-11T11:03:49.000000Z"
+                      }
+                  },
+                  
+              ],
+              "first_page_url": "http://localhost:8000/frontend-api/betListWinning?page=1",
+              "from": 1,
+              "last_page": 1,
+              "last_page_url": "http://localhost:8000/frontend-api/betListWinning?page=1",
+              "links": [
+                  {
+                      "url": null,
+                      "label": "&laquo; Previous",
+                      "active": false
+                  },
+                  {
+                      "url": "http://localhost:8000/frontend-api/betListWinning?page=1",
+                      "label": "1",
+                      "active": true
+                  },
+                  {
+                      "url": null,
+                      "label": "Next &raquo;",
+                      "active": false
+                  }
+              ],
+              "next_page_url": null,
+              "path": "http://localhost:8000/frontend-api/betListWinning",
+              "per_page": 15,
+              "prev_page_url": null,
+              "to": 1,
+              "total": 1
+          }
+          let data = {
+            "data": Array(15).fill ({
+              "id": 121,
+              "ticket_id": 1,
+              "merchant_id": 1,
+              "game_play_id": 1,
+              "child_ticket_no": "C0000121",
+              "lottery_number": "1234",
+              "big_bet_amount": 1,
+              "small_bet_amount": 1,
+              "three_a_amount": 0,
+              "three_c_amount": 0,
+              "bet_amount": 2,
+              "bet_net_amount": 1.4,
+              "rebate_amount": 0.6,
+              "rebate_percentage": 30,
+              "game_type": "4D",
+              "prize_type": "No",
+              "bet_size": "Both",
+              "winning_amount": 0,
+              "status": "finished",
+              "progress_status": "ACCPETED",
+              "message": "",
+              "created_at": "2022-10-11T11:28:49.000000Z",
+              "updated_at": "2022-10-11T11:28:49.000000Z",
+              "deleted_at": null,
+              "odds": null,
+              "ticket": {
+                  "id": 1,
+                  "member_id": 1,
+                  "merchant_id": 1,
+                  "ticket_no": "T0000001",
+                  "bet_number": "1234",
+                  "bet_type": 0,
+                  "total_amount": 1152,
+                  "net_amount": 0,
+                  "rebate_amount": 0,
+                  "rebate_percentage": 0,
+                  "betting_date": "2022-10-12",
+                  "draw_date": "2022-10-12",
+                  "ticket_status": "UNSETTLED",
+                  "progress_status": "IN_PROGRESS",
+                  "message": "",
+                  "created_at": "2022-10-11T11:17:18.000000Z",
+                  "updated_at": "2022-10-11T11:17:18.000000Z",
+                  "deleted_at": null
+              },
+              "game": {
+                  "id": 1,
+                  "name": "Magnum",
+                  "abbreviation": "M",
+                  "logo_path": "public/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png",
+                  "logo_url": "http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png",
+                  "status": "Active",
+                  "deleted_at": null,
+                  "created_at": "2022-10-11T11:03:49.000000Z",
+                  "updated_at": "2022-10-11T11:03:49.000000Z"
+              }
+          })
+              
+              
+          
+          }
+          console.log('results of data winning page:',data.data);
+
+          // setWinningList(response.data.data.data)
+          setWinningList(data.data)
+
             
         }else {
             console.log(response.data.messages);
@@ -54,6 +218,13 @@ export default function WinningList({datauser}) {
     }
 }))
 }
+      useEffect(() => {
+        const endOffset = itemOffset + itemsPerPage;
+        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+        setCurrentItems(winningList.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(winningList.length / itemsPerPage));
+      }, [itemOffset, itemsPerPage,winningList]);
+
 
        useEffect(() => {
         getWinningList();
@@ -75,14 +246,13 @@ export default function WinningList({datauser}) {
       
       
 
-        const handlePageClick = (event) => {
-          const newOffset = (event.selected * itemsPerPage) % Pkglottery1.length;
-          console.log(
-            `User requested page number ${event.selected}, which is offset ${newOffset}`
-  
-          );
-          setItemOffset(newOffset);
-        };
+      const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % winningList.length;
+        console.log(
+          `User requested page number ${event.selected}, which is offset ${newOffset}`
+        );
+        setItemOffset(newOffset);
+      };
   return (
     <>
       <Head>
@@ -95,157 +265,81 @@ export default function WinningList({datauser}) {
       </Head>
       <Header datauser={datauser}/>
       <WinngListBanner/>
-      <section class="page-content custom-padding">
-        <div class="container">
+      <section className="page-content custom-padding">
+        <div className="container">
         <Filter/>
-            <div class="table-responsive my-3">
-                <table class="table small table-bordered">
+            <div className="table-responsive my-3">
+                <table className="table small table-bordered">
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th class="text-start">Detail Number</th>
-                            <th class="text-start">Betting Time</th>
-                            <th class="text-center">Draw Date</th>
-                            <th class="text-center">Game</th>
-                            <th class="text-center">Betting Type</th>
-                            <th class="text-center">Company</th>
-                            <th class="text-end">Bet Number</th>
-                            <th class="text-end">Big</th>
-                            <th class="text-end">3A</th>
-                            <th class="text-end">3C</th>
-                            <th class="text-end">Odds</th>
-                            <th class="text-end">Rebate</th>
-                            <th class="text-end">Total</th>
+                            <th className="text-start">Detail Number</th>
+                            <th className="text-start">Betting Time</th>
+                            <th className="text-center">Draw Date</th>
+                            <th className="text-center">Game</th>
+                            <th className="text-center">Betting Type</th>
+                            <th className="text-center">Company</th>
+                            <th className="text-end">Bet Number</th>
+                            <th className="text-end">Big</th>
+                            <th className="text-end">3A</th>
+                            <th className="text-end">3C</th>
+                            <th className="text-end">Odds</th>
+                            <th className="text-end">Rebate</th>
+                            <th className="text-end">Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                   { console.log("map is :", winningList)}
-
-                    {winningList ? winningList.map((item)=>(
-                      <tr>
-                            <td >{item.id}</td>
-                            <td class="text-start" ><a href="href">{item.child_ticket_no}</a></td>
-                            <td class="text-start" >{item.betting_date}</td>
-                            <td class="text-center" >{item.ticket.draw_date}</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                            <td class="text-end">90.07</td>
-                            <td class="text-end">90.07</td>
-                            <td class="text-end">90.07</td>
-                            <td class="text-end">90.07</td>
+                    {currentItems ? currentItems.map((item,id)=>(
+                      <tr key={id}>
+                            <td >
+                              {item.id}
+                              </td>
+                            <td className="text-start" ><a href="href">
+                              {item.child_ticket_no}
+                              </a></td>
+                            <td className="text-start" >
+                              {item.ticket.betting_date}
+                              </td>
+                            <td className="text-center" >
+                              {item.ticket.draw_date}
+                              </td>
+                            <td className="text-center">3D</td>
+                            <td className="text-center">B</td>
+                            <td className="text-center">Magnum</td>
+                            <td className="text-end">100.08</td>
+                            <td className="text-end">10%</td>
+                            <td className="text-end">90.07</td>
+                            <td className="text-end">90.07</td>
+                            <td className="text-end">90.07</td>
+                            <td className="text-end">90.07</td>
+                            <td className="text-end">90.07</td>
                       </tr>
-                    )) :
-                    <span>Nothing</span>
+                    )) :<tr>
+                      <td>
+                      <span>Nothing</span>
+
+                      </td>
+
+                    </tr>
                   }
-                   {/* <tr>
-                            <td rowspan="2">1</td>
-                            <td class="text-start" rowspan="2"><a href="href">BRN0000001</a></td>
-                            <td class="text-start" rowspan="2">1234</td>
-                            <td class="text-center" rowspan="2">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                            <td class="text-end">90.07</td>
-                            <td class="text-end">90.07</td>
-                            <td class="text-end">90.07</td>
-                            <td class="text-end">90.07</td>
-                      </tr> */}
-                        {/* <tr>
-                            <td rowspan="2">1</td>
-                            <td class="text-start" rowspan="2"><a href="href">BRN0000001</a></td>
-                            <td class="text-start" rowspan="2">1234</td>
-                            <td class="text-center" rowspan="2">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            
-                            <td class="text-center">3D</td>
-                            <td class="text-center">R</td>
-                            <td class="text-center">B</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        
-                        <tr>
-                            <td>2</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td class="text-start">BRN0000001</td>
-                            <td class="text-start">1234</td>
-                            <td class="text-center">2022-09-21<br/>11:36:45</td>
-                            <td class="text-center">3D</td>
-                            <td class="text-center">B</td>
-                            <td class="text-center">Magnum</td>
-                            <td class="text-end">100.08</td>
-                            <td class="text-end">10%</td>
-                            <td class="text-end">90.07</td>
-                        </tr> */}
                     </tbody>
                 </table>
             </div>
-        <div class="clearfix d-flex align-items-center justify-content-center">
-            <div class="pagination:container">
-                <div class="pagination:number arrow">
-                  <svg width="18" height="18">
-                    {/* <use xlink:href="#left" /> */}
-                  </svg>
-                  <span class="arrow:text">Previous</span> 
-                </div>
-                
-                <div class="pagination:number">
-                  1
-                </div>
-                <div class="pagination:number">
-                  2
-                </div>
-                
-                <div class="pagination:number pagination:active">
-                  3
-                </div>
-                
-                <div class="pagination:number">
-                  4
-                </div>
-                
-                <div class="pagination:number">
-                  540
-                </div>
-                
-                <div class="pagination:number arrow">
-                  <svg width="18" height="18">
-                    {/* <use xlink:href="#right" /> */}
-                  </svg>
-                </div>
-              </div>
-              
-              <svg class="hide">
-                <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
-                <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
-              </svg>
-        </div>
+            <div>
+            { pageCount > 1 ?
+                        <ReactPaginate
+                            breakLabel="..."
+                            nextLabel="Next >" 
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={5}
+                            pageCount={pageCount}
+                            previousLabel="< Previous"
+                            renderOnZeroPageCount={null}
+                            className="pagination"
+                        /> : null } 
+            </div>
+            
+        
         </div>
     </section>
       
