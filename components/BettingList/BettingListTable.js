@@ -40,12 +40,13 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       const [pageCount, setPageCount] = useState(0);
       const [itemOffset, setItemOffset] = useState(0);
       const [seletedPage, setSeletedPage] = useState(1);
-      const [fromDate, setFromDate] = useState(new Date('2022-10-12'));
+      const [fromDate, setFromDate] = useState(new Date());
       const [toDate, setToDate] = useState(new Date());
       const [detailNo, setDetailNo] = useState('');
       const [filterGamesName, setFilterGamesName] = useState({ value: '', label: 'All' });
       const [filterGameType, setFilterGameType] = useState({ value: '', label: 'All' });
       const [selectedticketId, setSelectedticketId] = useState('');
+      const [reset, setReset] = useState(false);
 
 
 
@@ -55,15 +56,18 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         console.log(`Loading items from ${itemOffset} to ${endOffset}`);
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
-      }, [itemOffset, itemsPerPage,_tickets]);
+        setReset(false);
+      }, [itemOffset, itemsPerPage,_tickets, reset]);
 
 
 
     const handleApply1 = (event, picker) => {
         setDates1({
-          startDate: picker.startDate,
-          endDate: picker.endDate,
+          startDate: formatDate(picker.startDate),
+          endDate: formatDate(picker.endDate),
         });
+        let newDateRange = formatDate2(picker.startDate) + ' - ' + formatDate2(picker.endDate);
+        setDateRange(newDateRange);
       };
 
      
@@ -78,6 +82,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         ['This Year']: [moment().startOf('year')],
       });
 
+      
+      const intailDate = formatDate2(c) + ' - ' +formatDate2(c);
 
       const [ticketList, setTicketList] = useState([]);
       const [childDataTickets, setChildDataTickets] = useState([]);
@@ -87,7 +93,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
       const [parentAction, setParentAction] = useState(true);
 
-      const [dateRange, setDateRange] = useState('10/10/2022-10/10/2022');
+      const [dateRange, setDateRange] = useState(intailDate);
 
       const [ticketNo, setTicketNo] = useState('');
 
@@ -106,6 +112,18 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         if (day.length < 2)
             day = '0' + day;
         return [year, month, day].join('-');
+    }
+
+    function formatDate2(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+        return [year, month, day].join('/');
     }
 
     const state = useSelector(state => state);
@@ -178,7 +196,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
          _fromDate = concertDateFormat(_fromDate);
          _toDate = concertDateFormat(_toDate);;
 
-         let newDateRange = _fromDate + '-' + _toDate;
+         let newDateRange = _fromDate + ' - ' + _toDate;
 
          console.log('newDateRange:',newDateRange);
          console.log('ticketNo:',ticketNo);
@@ -204,15 +222,20 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       const handleEvent = (event, picker) => {
         setFromDate(picker.startDate._d.toISOString());
         setToDate(picker.endDate._d.toISOString());
+        let newDateRange = formatDate2(picker.startDate) + ' - ' + formatDate2(picker.endDate);
+        setDateRange(newDateRange);
       };
 
 
       const resetFilter = () => {
         const d = new Date();
-        setFromDate(d);
-        setToDate(d);
+        setFromDate(moment().toDate());
+        setToDate(moment().toDate());
         setTicketNo('');
-        location.reload();
+        //location.reload();
+        let newDateRange = formatDate2(d) + ' - ' + formatDate2(d);
+        setDateRange(newDateRange);
+        setReset(true);
       }
 
 
@@ -596,10 +619,13 @@ const handlePageClick = (event) => {
                                                 <DateRangePicker
                                                     ref={keyRef}
                                                     onCancel={keyRef}
-                                                    initialSettings={{ ranges }}
+                                                    initialSettings={{ 
+                                                        startDate: fromDate,
+                                                        endDate: toDate,
+                                                        ranges }}
                                                     onEvent={handleEvent}
                                                 >
-                                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
+                                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)} value={dateRange} />
                                                 </DateRangePicker>
                                         </div>                    
                                     </div>

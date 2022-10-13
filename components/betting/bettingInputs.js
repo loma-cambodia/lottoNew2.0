@@ -146,36 +146,36 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
        //   console.log('box');
           let changeValue = localStateDataForChange['bet_type']['box_value'] ? 0 : 1;
           let number_value = localStateDataForChange['number']['value'];
-          if(number_value.length == 3)
+        //  if(number_value.length == 3 || number_value.length == 4)
           localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue,threeDAmout);
-          else {
-              if (localStateDataForChange['number']['value'])
-                localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: changeValue, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
-          }
+        //   else {
+        //       if (localStateDataForChange['number']['value'])
+        //         localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: changeValue, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
+        //   }
         
 
 
         } else if (operationField == 'ibox') {
             let changeValue = localStateDataForChange['bet_type']['i_box_value'] ? 0 : 1;
             let number_value = localStateDataForChange['number']['value'];
-            if(number_value.length == 3)
+          //  if(number_value.length == 3 || number_value.length == 4)
             localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue,threeDAmout);
-            else {
-            if (localStateDataForChange['number']['value'])
-            localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: changeValue, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
-            }
+          //  else {
+          //  if (localStateDataForChange['number']['value'])
+          //  localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: changeValue, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
+          //  }
 
 
         } else if (operationField == 'reverse') {
 
                 let changeValue = localStateDataForChange['bet_type']['reverse_value'] ? 0 : 1;
                 let number_value = localStateDataForChange['number']['value'];
-            if(number_value.length == 3)
+            //if(number_value.length == 3)
                 localStateDataForChange  = changeBoxValues(localStateDataForChange, operationField, changeValue,threeDAmout);
-                else {
-                if (localStateDataForChange['number']['value'])
-                localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: changeValue, reverse_disabled: 0 } };
-            }
+              //  else {
+             //   if (localStateDataForChange['number']['value'])
+             //   localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: changeValue, reverse_disabled: 0 } };
+         //   }
         } else if (operationField == 'big') {
             
             if (!getValue.match("^[0-9-.]*$")) {
@@ -234,6 +234,11 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
             localStateDataForChange = { ...localStateDataForChange, small: { value: getValue, disabled: 0 } };
         } else if (operationField == '_3a') {
+
+            console.log('in -3a');
+
+
+            
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
@@ -256,12 +261,18 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             localStateDataForChange = { ...localStateDataForChange, _3a: { value: getValue, disabled: 0 } };
 
             let number_value = localStateDataForChange['number']['value'];
+            let isPalindrom =  checkPalindrome(number_value);
+            let uniqueAges = getStringUniqueCharactors(number_value);
 
             if (number_value.length == 4) {
 
                 if (number_value.includes("R") || number_value.includes("r")) {
                     localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
 
+                } else  if (uniqueAges.length == 1) {
+                    localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+                } else  if (isPalindrom) {
+                    localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 1 } };
                 } else {
 
                     if (threeDAmout) {
@@ -301,12 +312,18 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
 
             let number_value = localStateDataForChange['number']['value'];
+            let isPalindrom =  checkPalindrome(number_value);
+            let uniqueAges = getStringUniqueCharactors(number_value);
 
             if (number_value.length == 4) {
 
                 if (number_value.includes("R") || number_value.includes("r")) {
                     localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
 
+                }else  if (uniqueAges.length == 1) {
+                    localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+                } else  if (isPalindrom) {
+                    localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 1 } };
                 } else {
 
                    if (threeDAmout) {
@@ -358,6 +375,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
         let _localStateDataForChange = localStateDataForChange; 
         let getValue = _localStateDataForChange['number']['value'];
+        let numberValue = getValue;
         let box_value = 0;
         let i_box_value = 0;
         let reverse_value = 0;
@@ -370,10 +388,10 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             reverse_value = betTypeValue;
         }
 
-        let uniqueAges = getStringUniqueCharactors(getValue);
-        let isPalindrom =  checkPalindrome(getValue);
-        if(getValue.length == 3){
-        if (getValue.includes("R") || getValue.includes("r")) 
+        let uniqueAges = getStringUniqueCharactors(numberValue);
+        let isPalindrom =  checkPalindrome(numberValue);
+        if(numberValue.length == 3){
+        if (numberValue.includes("R") || numberValue.includes("r")) 
         _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 1, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 1 } };
         else if (uniqueAges.length == 1) 
         _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 1, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 1 } };
@@ -382,25 +400,27 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         else 
         _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 0, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 0 } };
       
-        }else if(getValue.length == 4 && false){
+        }else if(numberValue.length == 4){
 
-                if (getValue.includes("R") || getValue.includes("r")) {
+            //console.log('444444444444444444');
+
+                if (numberValue.includes("R") || numberValue.includes("r")) {
                     _localStateDataForChange = { ..._localStateDataForChange, _3a: { value: "", disabled: 1 } };
                     _localStateDataForChange = { ..._localStateDataForChange, _3c: { value: "", disabled: 1 } };
-                    _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+                    _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 1, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 1 } };
 
 
                 } else  if (uniqueAges.length == 1) {
-                    _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+                    _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 1, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 1 } };
                 } else  if (isPalindrom) {
-                    _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 1 } };
+                    _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 0, i_box_value: i_box_value, i_box_disabled: 0, reverse_value: reverse_value, reverse_disabled: 1 } };
                 } else {
                     _localStateDataForChange = { ..._localStateDataForChange, _3a: { value: "", disabled: 0 } };
                     _localStateDataForChange = { ..._localStateDataForChange, _3c: { value: "", disabled: 0 } };
                     if (threeDAmout) {
-                        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
+                        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 1, i_box_value: i_box_value, i_box_disabled: 1, reverse_value: reverse_value, reverse_disabled: 1 } };
                     } else {
-                        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
+                        _localStateDataForChange = { ..._localStateDataForChange, bet_type: { box_value: box_value, box_disabled: 0, i_box_value: i_box_value, i_box_disabled: 0, reverse_value: reverse_value, reverse_disabled: 0 } };
                     }
                 }
         }
@@ -622,18 +642,18 @@ useEffect(() => {
             </td>
             <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" className={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_disabled ? 'btn-custom-small-disabled me-1' : localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_value ? 'btn-custom-small me-1 active-bet-type' : 'btn-custom-small me-1'} disabled={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_disabled ? true : false} title={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_disabled ? "Disabled" : "Enabled"} onClick={(e) => numberInputHandler(1, 'box')}>{t('B')}</button>
+                    <button type="button" className={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_disabled ? 'btn-custom-small-disabled me-1' : localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_value ? 'btn-custom-small me-1 active-bet-type' : 'btn-custom-small me-1'} disabled={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.box_disabled ? true : false} title={"Box"} onClick={(e) => numberInputHandler(1, 'box')}>{t('B')}</button>
 
-                    <button type="button" className={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.i_box_disabled? 'btn-custom-small-disabled me-1' : localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.i_box_value ? 'btn-custom-small me-1 active-bet-type' : 'btn-custom-small me-1'} disabled={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.i_box_disabled ? true : false} title={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.i_box_disabled ? "Disabled" : "Enabled"} onClick={(e) => numberInputHandler(1, 'ibox')}>{t('I')}</button>
+                    <button type="button" className={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.i_box_disabled? 'btn-custom-small-disabled me-1' : localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.i_box_value ? 'btn-custom-small me-1 active-bet-type' : 'btn-custom-small me-1'} disabled={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.i_box_disabled ? true : false} title={"iBox"} onClick={(e) => numberInputHandler(1, 'ibox')}>{t('I')}</button>
 
-                    <button type="button" className={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.reverse_disabled ? 'btn-custom-small-disabled' : localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.reverse_value ? 'btn-custom-small active-bet-type' : 'btn-custom-small'} disabled={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.reverse_disabled ? true : false} title={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.reverse_disabled ? "Disabled" : "Enabled"} onClick={(e) => numberInputHandler(1, 'reverse')}>{t('R')}</button>
+                    <button type="button" className={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.reverse_disabled ? 'btn-custom-small-disabled' : localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.reverse_value ? 'btn-custom-small active-bet-type' : 'btn-custom-small'} disabled={localStateInitData && localStateInitData.bet_type && localStateInitData.bet_type.reverse_disabled ? true : false} title={"Reverse"} onClick={(e) => numberInputHandler(1, 'reverse')}>{t('R')}</button>
                 </div>
             </td>
             <td>
                 <input type="text" className="form-control-custom text-end"  value={localStateInitData && localStateInitData.amount && localStateInitData.amount.value ? MoneyFormatDisplay(localStateInitData.amount.value,1) : ""} disabled={localStateInitData && localStateInitData.amount && localStateInitData.amount.disabled ? true : false} />
             </td>
             <td>
-                <button type="button" className="btn-delete-small" onClick={(e) => numberInputHandler('', 'delete')}>
+                <button type="button" className="btn-delete-small" onClick={(e) => numberInputHandler('', 'delete')} title="Delete">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash3" viewBox="0 0 16 16">
                         <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
                     </svg>
