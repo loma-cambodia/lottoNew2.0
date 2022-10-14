@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 
 import { useDispatch, useSelector } from "react-redux";
 import {getResults,getLatestResultDate} from '../store/actions/resultActions';
+import {getLogin} from '../store/actions/authActions';
 
 // import styles from '../styles/Home.module.css';
 import Link from 'next/link';
@@ -25,9 +26,24 @@ import Filter from "../components/results/filter";
         const dateFilter = (date) =>{
             
     }
+    
     useEffect(() => {
-        // getlatestDrawResultsDate()
-    },[]);
+        //   dispatch({
+        //     type: "GET_LOGIN_DETAILS",
+        //     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
+        // })
+  
+        let objectWithData = {
+          "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
+          "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
+          "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
+          "language":   datauser && datauser.user && datauser.user.lang && datauser.user.lang ? datauser.user.lang : 'en'
+        } 
+        dispatch(getLogin(objectWithData));
+  
+        }, [datauser])
+
+    
     return (
         <>
             <Head>
