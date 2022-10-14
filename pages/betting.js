@@ -10,7 +10,7 @@ import BettingOptionSelectionForMob from '../components/betting/bettingOptionSel
 import styles from '../styles/Home.module.css'
 import Banner from '../components/betting/banner';
 import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
-export default function BettingNew({datauser, updateSessionData, setUpdateSessionData}) {
+export default function Betting({datauser, updateSessionData, setUpdateSessionData}) {
 
 
   const { t } = useTranslation();
