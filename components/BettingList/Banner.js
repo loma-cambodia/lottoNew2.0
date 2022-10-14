@@ -16,9 +16,8 @@ const ListBanner = () => {
             <div className="breadcrumb-list">
                 <ul>
                     <li>
-                        <a href="#"><span>{t('Homepage')}</span></a>
+                        <span>{t('Homepage')} / {t('BettingList')}</span>
                     </li>
-                    <li><span>{t('BettingList')}</span></li>
                 </ul>
             </div>
         </div>
