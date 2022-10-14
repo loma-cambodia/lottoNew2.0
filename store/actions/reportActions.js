@@ -12,7 +12,7 @@ export const getTicketData = (id) => async (dispatch) => {
       'Access-Control-Allow-Origin': '*',
     }
     const res = await axios.get(
-       `${API_BASE_URL}/betList?member_id=${userId}&ticket_status:UNSETTLED`,{
+       `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=UNSETTLED`,{
      //   `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=SETTLED`,{
         headers: headers,
       }
@@ -67,7 +67,7 @@ export const searchTicketData = (member_id,date_range, ticketNumber) => async (d
 
     // let urlHit = `${API_BASE_URL}/betList?member_id=1&ticket_no=${ticketNumber}&date_range=${date_range}&ticket_status:UNSETTLED`;
 
-    let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status:UNSETTLED`;
+    let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status=UNSETTLED`;
    // let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status=SETTLED`
      if(ticketNumber)
      urlHit += `&ticket_no=${ticketNumber}`;
