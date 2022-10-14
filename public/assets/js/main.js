@@ -1,20 +1,20 @@
-$('.hero-slider').owlCarousel({
-    loop:true,
-    autoplay:true,
-    margin:0,
-    nav:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:1
-        },
-        1000:{
-            items:1
-        }
-    }
-})
+// $('.hero-slider').owlCarousel({
+//     loop:true,
+//     autoplay:true,
+//     margin:0,
+//     nav:true,
+//     responsive:{
+//         0:{
+//             items:1
+//         },
+//         600:{
+//             items:1
+//         },
+//         1000:{
+//             items:1
+//         }
+//     }
+// })
 
 function openNav() {
     document.getElementById("mySidepanel").style.width = "100%";
@@ -24,7 +24,7 @@ function openNav() {
     document.getElementById("mySidepanel").style.width = "0";
 }
 $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    // $('[data-toggle="tooltip"]').tooltip()
 })
 $(function(){
     var active_dates = ["21/9/2022","25/9/2022"];

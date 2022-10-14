@@ -65,16 +65,11 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
     <>
       <Head>
           <title>{t('Lotteries_tittle')}</title>
-          <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-          <link href="assets/css/style.css" rel="stylesheet"/>
-          <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
-          <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
-          <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
       {/* <Header datauser={datauser}/> */}
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <ListBanner/>
-      <section class="page-content custom-padding">
+      <section class="page-content custom-padding vh-70">
     <div class="container">
         {/* <ListFilter/> */}
          <ListTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth}/> 
@@ -142,10 +137,10 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
 </section>
       
       <Footer/>
-        <script src="assets/js/jquery.min.js"></script>
+        {/* <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
         <script src="assets/js/owl.carousel.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="assets/js/main.js"></script> */}
         
       {/*--Footer--*/}
     </>

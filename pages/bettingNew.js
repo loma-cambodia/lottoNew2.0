@@ -44,11 +44,6 @@ export default function BettingNew({datauser, updateSessionData, setUpdateSessio
     <>
       <Head>
           <title>{t('Lotteries_tittle')}</title>
-          <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-          <link href="assets/css/style.css" rel="stylesheet"/>
-          <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
-          <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
-          <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <Banner/>
@@ -64,10 +59,10 @@ export default function BettingNew({datauser, updateSessionData, setUpdateSessio
       <div className={styles.device_detect_for_desktop}> 
         <Footer/>
       </div>
-        <script src="assets/js/jquery.min.js"></script>
+        {/* <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
         <script src="assets/js/owl.carousel.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="assets/js/main.js"></script> */}
       {/*--Footer--*/}
     </>
   )
