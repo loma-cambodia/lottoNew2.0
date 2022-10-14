@@ -3,7 +3,6 @@ let API_BASE_URL = process.env.apiUrl;
 
 
 export const userTransactionDetails = () => async (dispatch) => {
-  console.log('userTransactionDetails')
   const headers = {
     'Content-Type': 'application/json',
   }
@@ -11,7 +10,6 @@ export const userTransactionDetails = () => async (dispatch) => {
     const res = await axios.get(`${API_BASE_URL}/merchant/1`, {
       headers: headers,
     })
-    //console.log('res:',res);
     dispatch({
       type: 'TRANSACTION_DETAILS',
       payload: res.data.data,
@@ -25,10 +23,8 @@ export const userTransactionDetails = () => async (dispatch) => {
 }
 
 export const winnerResultDetails = () => async (dispatch) => {
-  console.log('userTransactionDetails')
   try {
     const res = await axios.get(`${API_BASE_URL}/result/latest`)
-    // console.log('userTransactionDetails:res:',res);
     dispatch({
       type: 'WINNER_RESULT_DETAILS',
       payload: res.data.data,
@@ -42,10 +38,8 @@ export const winnerResultDetails = () => async (dispatch) => {
 }
 
 export const winnerResultDetails2 = () => async (dispatch) => {
-  console.log('userTransactionDetails')
   try {
     const res = await axios.get(`${API_BASE_URL}/result/latest`)
-    // console.log('userTransactionDetails:res:',res);
     dispatch({
       type: 'WINNER_RESULT_DETAILS',
       payload: res.data.data,

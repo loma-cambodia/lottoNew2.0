@@ -48,28 +48,28 @@ const HomeSlider = () => {
         </div>
 
         
-        <div class="item">
-            <div class="hero-slider-normal-one">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-5 col-sm-5">
-                            <div class="wb-text-part">
-                                <p class="text-uppercase color-1 fs-5">{t('Contest_your_chance_to')}</p>
-                                <div class="d-inline-flex align-items-center mb-4">
+        <div className="item">
+            <div className="hero-slider-normal-one">
+                <div className="container">
+                    <div className="row align-items-center">
+                        <div className="col-md-5 col-sm-5">
+                            <div className="wb-text-part">
+                                <p className="text-uppercase color-1 fs-5">{t('Contest_your_chance_to')}</p>
+                                <div className="d-inline-flex align-items-center mb-4">
                                     
-                                    <div class="slider-big-text text-white">
+                                    <div className="slider-big-text text-white">
                                         {t('win_big')}
                                     </div>
                                 </div>
-                                <p class="text-white fs-5">{t("Dont_miss_your_chance")}</p>
+                                <p className="text-white fs-5">{t("Dont_miss_your_chance")}</p>
                                 <h3>{t('Lucky_Winner')}</h3>
                                 <Link href="/betting"> 
                                         <span role='button' className="btn-yellow rounded-full">{t("Start_playing_now")}</span>
                                      </Link>
                             </div>
                         </div>
-                        <div class="col-md-7 col-sm-7 pt-5 hide-575">
-                            <img src="assets/images/win-big-guy.png" class="img-fluid" alt=""/>
+                        <div className="col-md-7 col-sm-7 pt-5 hide-575">
+                            <img src="assets/images/win-big-guy.png" className="img-fluid" alt=""/>
                         </div>
                     </div>
                 </div>

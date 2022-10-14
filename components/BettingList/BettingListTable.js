@@ -53,7 +53,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
         setReset(false);
@@ -158,7 +157,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
            params.game_type = filterGameType.value;
        }
 
-       console.log('params:',params);
        //return false;
        
     
@@ -198,8 +196,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
          let newDateRange = _fromDate + ' - ' + _toDate;
 
-         console.log('newDateRange:',newDateRange);
-         console.log('ticketNo:',ticketNo);
          
 
         let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
@@ -260,9 +256,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
 const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % items.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+   
     setItemOffset(newOffset);
   };
 
@@ -551,13 +545,13 @@ const handlePageClick = (event) => {
                     </div>
                     <div className="col-md-2 col-6">
                         <div className="form-group">
-                            <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
+                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
                             <input type="text" onChange={(event) => GetTicketNumber(event)} className="form-control-custom-big" name="transationid"/>
                         </div>
                     </div>
                     <div className="col-md-2 col-6">
                         <div className="form-group">
-                            <label for="transactionid" className="fw-bold mb-2">{t('Game')}</label>
+                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Game')}</label>
                             <select type="text" className="form-control-custom-big" name="transationid">
                                 <option>4D</option>
                                 <option>3D</option>
@@ -566,7 +560,7 @@ const handlePageClick = (event) => {
                     </div>
                     <div className="col-md-2 col-6">
                         <div className="form-group">
-                            <label for="transactionid" className="fw-bold mb-2">{t('Company')}</label>
+                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Company')}</label>
                             <select type="text" className="form-control-custom-big" name="transationid">
                                 <option>Toto</option>
                                 <option>Magnum</option>
@@ -631,7 +625,7 @@ const handlePageClick = (event) => {
                                     </div>
                                     <div className="col-md-2 col-12">
                                         <div className="form-group">
-                                            <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
+                                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
                                             <input type="text" onChange={(e)=>{ 
                                                 setTicketNo(e.target.value)}}  className="form-control-custom-big" value={ticketNo} name="transationid"/>
                                         </div>
@@ -668,14 +662,14 @@ const handlePageClick = (event) => {
                                 
                                     <div className="col-md-2 col-12">
                                         <div className="form-group">
-                                            <label for="transactionid" className="fw-bold mb-2">Detail Number</label>
+                                            <label htmlFor="transactionid" className="fw-bold mb-2">Detail Number</label>
                                             <input type="text" onChange={(e)=>{ 
                                                             setDetailNo(e.target.value)}}  className="form-control-custom-big" value={detailNo} name="transationid"/>
                                         </div>
                                     </div>
                                     <div className="col-md-2 col-12">
                                         <div className="form-group">
-                                            <label for="transactionid" className="fw-bold mb-2">{t('Game')}</label>
+                                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Game')}</label>
                                             <Select 
                                                 options={optionsGameType} 
                                                 defaultValue = { { value: '', label: 'All' }} 
@@ -686,7 +680,7 @@ const handlePageClick = (event) => {
                                     </div>
                                     <div className="col-md-2 col-12">
                                         <div className="form-group">
-                                            <label for="transactionid" className="fw-bold mb-2">{t('Company')}</label>
+                                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Company')}</label>
                                             <Select 
                                                 options={optionsGamesName} 
                                                 defaultValue = { { value: '', label: 'All' }} 

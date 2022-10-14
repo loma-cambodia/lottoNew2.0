@@ -19,12 +19,10 @@ import Filter from "../components/Winning/filter";
 export default function WinningList({datauser,updateSessionData, setUpdateSessionData}) {
 
 
-// console.log("TICKETLIST",datauser);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
 
-  console.log('WinningList:auth:',auth);
 
   const [active, setActive] = useState(false);
   const [winningList, setWinningList] = useState([]);
@@ -55,16 +53,13 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
  };
 
   const getWinningList = () =>{
-    console.log('auth in getwinninglist:',auth.auth.id);
 
     dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0 ,filterParams? filterParams:'', response =>{
-      // console.log('inside dispatch dataSubmit date:   ',dataSubmit);
 
         if(response.statusCode  == 201  || response.statusCode  == 200 ){
 
         if(response.statusCode == 200){
 
-            console.log('results response in winning page:',response.data);
             // setWinningList(response.data.data.data)
             
           
@@ -74,11 +69,9 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
             
         }else {
-            console.log(response.data.messages);
 
         }
         }else {
-        console.log('response:',response);
         // setIsLoading(false);
     }
 }))
@@ -87,7 +80,6 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
         setCurrentItems(winningList.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(winningList.length / itemsPerPage));
       }, [itemOffset, itemsPerPage,winningList]);
@@ -108,11 +100,9 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
       
       const state = useSelector(state => state);
-      console.log("state after getwinningdata: ", state)
       
       
       const getOddsBig =(prize,game,item) =>{
-        console.log(prize+"khan test ======"+game+item);
         if(prize == 'P1' && game == '4D')
         {
           return item.big_first
@@ -164,9 +154,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
       const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % winningList.length;
-        console.log(
-          `User requested page number ${event.selected}, which is offset ${newOffset}`
-        );
+
         setItemOffset(newOffset);
       };
   return (

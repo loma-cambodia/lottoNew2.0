@@ -22,10 +22,6 @@ import Filter from "../components/results/filter";
 
     const dispatch = useDispatch();
 
-    
-        console.log('initDate in results: ',initDate)
-
-
         const dateFilter = (date) =>{
             
     }
