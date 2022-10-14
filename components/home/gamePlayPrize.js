@@ -16,7 +16,7 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
         <div className="row">
     
 
-   {winnerResultDetails && winnerResultDetails.map(item => {
+   {winnerResultDetails && winnerResultDetails.map((item,id) => {
     let gameImage = '';
     let cardName = '';
     //toto.png"  magnum.png
@@ -34,7 +34,7 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
     }
 
     return(
-<div className="col-md-4">
+<div className="col-md-4" key={id}>
                 <div className={cardName}>
                     <div className="card-body">
                         <div className="card-top">

@@ -328,11 +328,12 @@ const [isLoading,  setIsLoading] = React.useState(false);
         if (bettingInitData.length === 0){
             setBettingInitData(dateAndGameOptionData)
         }
+        console.log('111111:',bettingInitData.length);
       });
 
-      // useEffect(() => {
-      //   clearAllRecords();
-      // },[]);
+      useEffect(() => {
+        clearAllRecords();
+      },[]);
 
       
 
