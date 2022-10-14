@@ -134,22 +134,21 @@ const Filter = ({_setFilterParams}) => {
     }
     return (
         <>
-        <div class="clearfix curved-card">
-            <div className={styles.device_detect_for_mobile}>
-                <div className="form-group mb-0">
-                    <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
-                        <b>BETTING LIST REPORT</b>
-                        <img 
-                            onClick={() => openFilterForMob()}
-                            className="img-fluid" 
-                            src="images\betting\filter-icon.png" 
-                            alt="" 
-                            style={{ width: '20px', float: 'right', marginTop: '5px' }} />
-                    </button>
+            <div class="clearfix curved-card">
+                <div className={styles.device_detect_for_mobile}>
+                    <div className="form-group mb-0">
+                        <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
+                            <b>BETTING LIST REPORT</b>
+                            <img 
+                                onClick={() => openFilterForMob()}
+                                className="img-fluid" 
+                                src="images\betting\filter-icon.png" 
+                                alt="" 
+                                style={{ width: '20px', float: 'right', marginTop: '5px' }} />
+                        </button>
+                    </div>
                 </div>
-                
-            </div>
-            <div className={styles.device_detect_for_desktop+' hideAndShowForMobileView'}>
+                <div className={styles.device_detect_for_desktop+' hideAndShowForMobileView'}>
                     <div class="row">
                         <div class="col-md-3 col-12">
                             <div class="form-group">
@@ -215,7 +214,9 @@ const Filter = ({_setFilterParams}) => {
                         </div>
                     </div>
                 </div>
-        </div>
+            </div>
+            
+          
         </>
     )
 }

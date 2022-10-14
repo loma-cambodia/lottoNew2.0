@@ -77,10 +77,10 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
       </section>
       
       <Footer/>
-        <script src="assets/js/jquery.min.js"></script>
+        {/* <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
         <script src="assets/js/owl.carousel.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="assets/js/main.js"></script> */}
         
     </>
   )

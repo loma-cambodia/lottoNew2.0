@@ -17,10 +17,6 @@ export default function Transaction({datauser}){
             <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>{t('History_tittle')}</title>
-            <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-            <link href="assets/css/style.css" rel="stylesheet"/>
-            <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
-            <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
             </Head>
             <Header datauser={datauser}/>
               {/*--Mobile Menu--*/}
@@ -38,10 +34,10 @@ export default function Transaction({datauser}){
             <TransactionBanner/>
             <Transactions/>
             <Footer/>
-            <script src="assets/js/jquery.min.js"></script>
+            {/* <script src="assets/js/jquery.min.js"></script>
             <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
             <script src="assets/js/owl.carousel.js"></script>
-            <script src="assets/js/main.js"></script>
+            <script src="assets/js/main.js"></script> */}
         </>
     )
 }
