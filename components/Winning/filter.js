@@ -147,7 +147,9 @@ const Filter = ({_setFilterParams}) => {
                             style={{ width: '20px', float: 'right', marginTop: '5px' }} />
                     </button>
                 </div>
-                <div className={styles.device_detect_for_desktop+' hideAndShowForMobileView'}>
+                
+            </div>
+            <div className={styles.device_detect_for_desktop+' hideAndShowForMobileView'}>
                     <div class="row">
                         <div class="col-md-3 col-12">
                             <div class="form-group">
@@ -203,17 +205,16 @@ const Filter = ({_setFilterParams}) => {
                             </div>
                         </div>
 
-                        <div className={styles.device_detect_for_desktop+" col-md-3"}>
+                        <div className={styles.device_detect_for_desktop+" col-md-4"}>
                             <div class="form-group">
-                                <label class="d-block">&nbsp;</label>
-                                <button type="button" id="search" onClick={() => filterList()} class="btn-custom-curve2 w-auto mx-3">{t('Search')}</button>
+                                <label class="d-block mb-2">&nbsp;</label>
+                                <button type="button" id="search" onClick={() => filterList()} class="btn-custom-curve2 w-auto me-2">{t('Search')}</button>
                                 <label></label>
                                 <button type="button" id="reset" class="btn-custom-curve1" onClick={() => resetFiletr()}>{t('Reset')}</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
         </>
     )

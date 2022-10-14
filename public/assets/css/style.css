@@ -2057,12 +2057,12 @@
   select.form-control-custom-big {
       background-color: transparent;
       background-image: url(../images/icons/dow_arrow-black.png);
-      background-position: 95% 50%;
+      background-position: 95% center;
       background-repeat: no-repeat;
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
-      background-size: 7% 50%;
+      background-size: 15px 15px;
   }
   .daterangepickerstyle {
       border: 1px solid #ddd;
@@ -2201,6 +2201,7 @@
 .vh-70 {
   min-height: 70vh;
 }
+
   @media (min-width: 576px) {
   .container-sm,
   .container {
@@ -2239,6 +2240,12 @@
   .container-sm,
   .container {
   max-width: 1320px;
+  }
+  }
+  @media (max-width:1199.99px) {
+    .desktop-menu .desktop-menu-list li a {
+      padding: 10px 5px;
+      font-size: 12px;
   }
   }
   @media (max-width: 991px) {
@@ -2844,11 +2851,14 @@ input.form-control.text-right-for-amount {
 input.daterangepickerstyle {
   width: 100%;
   background: url(../images/icons/calendar-small.png);
-  background-position: left center;
+  background-position-x: 15px;
   background-repeat: no-repeat;
-  padding-left: 50px;
+  padding-left: 35px;
+  background-position-y: center;
 }
-
+.daterangepicker td.in-range {
+  background-color: #ffeaf2 !important;
+}
 /* /////////////////////////////// bet list mobile view */
 
 

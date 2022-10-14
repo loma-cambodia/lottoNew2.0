@@ -185,7 +185,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
         <div className="container">
         <Filter _setFilterParams={setFilterParams} />
 
-            <div className={`${pageCount > 1 ? "winningFilterTall":""} table-responsive my-3`}  >
+            <div className={`table-responsive my-3`}  >
               <div className={styles.device_detect_for_mobile}>
                   <table className="mob-table mb-3">
                       <thead>
@@ -226,7 +226,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                   </table>
               </div>
               <div className={styles.device_detect_for_desktop}>
-                <table className="table small table-bordered align-middle">
+                <table className="table small table-bordered align-middle table-sm">
                   <thead>
                       <tr >
                           <th>{t('No.')}</th>
