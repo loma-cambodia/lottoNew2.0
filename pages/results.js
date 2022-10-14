@@ -36,12 +36,6 @@ import Filter from "../components/results/filter";
         <>
             <Head>
                 <title>{t('Result_tittle')}</title>
-                <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-                <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
-                <link href="assets/fontawesome/css/all.css" rel="stylesheet"/>
-                <link href="assets/css/style.css" rel="stylesheet"/>
-                <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
-                <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
             </Head>
             
             <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
@@ -65,10 +59,10 @@ import Filter from "../components/results/filter";
                 </div>
             </section>   
             <Footer/>
-            <script src="assets/js/jquery.min.js"></script>
+            {/* <script src="assets/js/jquery.min.js"></script>
             <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
             <script src="assets/js/owl.carousel.js"></script>
-            <script src="assets/js/main.js"></script>
+            <script src="assets/js/main.js"></script> */}
         </>
         
     )

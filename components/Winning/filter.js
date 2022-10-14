@@ -134,18 +134,19 @@ const Filter = ({_setFilterParams}) => {
     }
     return (
         <>
-        <div class="clearfix curved-card">
-            <div className={styles.device_detect_for_mobile}>
-                <div className="form-group mb-0">
-                    <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
-                        <b>BETTING LIST REPORT</b>
-                        <img 
-                            onClick={() => openFilterForMob()}
-                            className="img-fluid" 
-                            src="images\betting\filter-icon.png" 
-                            alt="" 
-                            style={{ width: '20px', float: 'right', marginTop: '5px' }} />
-                    </button>
+            <div class="clearfix curved-card">
+                <div className={styles.device_detect_for_mobile}>
+                    <div className="form-group mb-0">
+                        <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
+                            <b>BETTING LIST REPORT</b>
+                            <img 
+                                onClick={() => openFilterForMob()}
+                                className="img-fluid" 
+                                src="images\betting\filter-icon.png" 
+                                alt="" 
+                                style={{ width: '20px', float: 'right', marginTop: '5px' }} />
+                        </button>
+                    </div>
                 </div>
                 <div className={styles.device_detect_for_desktop+' hideAndShowForMobileView'}>
                     <div class="row">
@@ -206,7 +207,7 @@ const Filter = ({_setFilterParams}) => {
                         <div className={styles.device_detect_for_desktop+" col-md-3"}>
                             <div class="form-group">
                                 <label class="d-block">&nbsp;</label>
-                                <button type="button" id="search" onClick={() => filterList()} class="btn-custom-curve2 w-auto mx-3">{t('Search')}</button>
+                                <button type="button" id="search" onClick={() => filterList('forDesk')} class="btn-custom-curve2 w-auto mx-3">{t('Search')}</button>
                                 <label></label>
                                 <button type="button" id="reset" class="btn-custom-curve1" onClick={() => resetFiletr()}>{t('Reset')}</button>
                             </div>
@@ -214,7 +215,6 @@ const Filter = ({_setFilterParams}) => {
                     </div>
                 </div>
             </div>
-        </div>
         </>
     )
 }
