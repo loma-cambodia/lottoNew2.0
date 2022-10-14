@@ -21,9 +21,20 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
 
   const [active, setActive] = useState(false);
 
-
+  function formatDate2(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+    return [day,month,year].join('/');
+}
        useEffect(() => {
-        dispatch(getTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
+        let d = new Date();
+        dispatch(searchTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
 
       },[dispatch,auth]);
 
@@ -61,7 +72,9 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
           setItemOffset(newOffset);
         };
         const resetTable = ()=>{
-          dispatch(getTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
+          //dispatch(getTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
+          let d = new Date();
+          dispatch(searchTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
         }
   return (
     <>
