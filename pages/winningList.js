@@ -189,14 +189,39 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
               <div className={styles.device_detect_for_mobile}>
                   <table className="mob-table mb-3">
                       <thead>
-                          <tr>
-                              <th><span>Ticket Number<br />Betting Time<br/>Draw Date</span></th>
-                              <th><span>Bet Number<br/>{t('Company')}</span></th>
-                              <th><span>Total<br/>Rebate<br/>Net</span></th>
-                          </tr>
+                        <tr>
+                          <th><span>Detail Number<br />Betting Time<br/>Draw ID<br/>Draw Date</span></th>
+                          <th><span>Game<br />Bet Number<br/>{t('Company')}<br/>Prize</span></th>
+                          <th><span>Big<br />Small<br/>3A<br/>3C</span></th>
+                          <th><span>Odds (B/3A)<br />Odds (S/3C)<br/>Total<br/>Rebate</span></th>
+                          <th><span>Net<br />Winning<br/>W/L</span></th>
+                        </tr>
                       </thead>
                       <tbody>
-                          
+                        {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>(
+                          <tr key={id}>    
+                            <td>
+                                <span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.draw_number}<br />{item.ticket.betting_date}</span>
+                            </td> 
+                            <td>
+                                <span>{item.game_type}<br />{item.lottery_number}<br />{item.game && item.game.name ? item.game.name : ""}<br />{item.prize_type}</span>
+                            </td> 
+                            <td>
+                                <span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span>
+                            </td> 
+                            <td>
+                                <span>{getOddsBig(item.prize_type,item.game_type,item)}<br />{getOddsSmall(item.prize_type,item.game_type,item)}<br />{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}</span>
+                            </td> 
+                            <td>
+                                <span>{MoneyFormatDisplay(item.bet_net_amount,1)}<br />{MoneyFormatDisplay(item.winning_amount,1)}</span><br />
+                                <span className={`${(item.winning_amount - item.bet_net_amount) > 0 ? "winningAmount":""} text-end`}>{MoneyFormatDisplay(item.winning_amount - item.bet_net_amount ,1)}</span>
+                            </td>
+                          </tr>
+                        ))
+                        :<tr className='text-center'>
+                          <td colSpan={5}>No results</td>
+                        </tr>
+                        }
                       </tbody>
                   </table>
               </div>
