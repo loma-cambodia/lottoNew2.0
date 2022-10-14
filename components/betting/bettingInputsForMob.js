@@ -260,7 +260,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         }
         numberInputHandler(0, 'box');
         numberInputHandler(0, 'ibox');
-        numberInputHandler(0, 'reverse');
+        // numberInputHandler(0, 'reverse');
         _setBettingInitData(dateAndGameOptionData);
     }
 
@@ -1092,6 +1092,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
         setTotalAmount(slackTotalAmount);
         hideError();
+        numberInputHandler(0, 'box');
+        numberInputHandler(0, 'ibox');
         setPageLoadCount(pageLoadCount + 1);
     }
 
