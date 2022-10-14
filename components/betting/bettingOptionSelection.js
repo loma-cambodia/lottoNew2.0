@@ -279,7 +279,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
 
 
         if(options && options.length == 0){
-            toast.error('Please select atleat one number!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+            toast.error('Please select at least one number!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
                 pauseOnHover: true,draggable: true,progress: undefined});
             return false;
         }
