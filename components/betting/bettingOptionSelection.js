@@ -227,11 +227,14 @@ const [isLoading,  setIsLoading] = React.useState(false);
 
         let game_dates = [];
         let options = [];
-
+        let minLengthValidation = false; 
+        let isDataNotCorrect = false;
 
 
         _bettingInputsDataParent && _bettingInputsDataParent.map(item => {
             let tempObj = {};
+
+          //  console.log('item.dataInit.number.value.length:', item.dataInit.number.value.length);
             
             tempObj['number'] = item.dataInit && item.dataInit.number && item.dataInit.number.value ? item.dataInit.number.value : '';
             tempObj['big_bet'] = item.dataInit && item.dataInit.big && item.dataInit.big.value ? parseFloat(item.dataInit.big.value).toFixed(2) : 0.00;
@@ -242,9 +245,18 @@ const [isLoading,  setIsLoading] = React.useState(false);
             tempObj['ibox'] = item.dataInit && item.dataInit.bet_type && item.dataInit.bet_type.i_box_value ? 'on' : 'off';
             tempObj['reverse'] = item.dataInit && item.dataInit.bet_type && item.dataInit.bet_type.reverse_value ? 'on' : 'off';
             tempObj['amount'] = item.dataInit.amount.value ? parseFloat(item.dataInit.amount.value).toFixed(2)  : 0;
-            //{"number":"1112","big_bet":"10000","small_bet":"10000","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","amount":"792"}
+
            if(item.dataInit && item.dataInit.number && item.dataInit.number.value && (item.dataInit.big.value || item.dataInit.small.value || item.dataInit._3a.value || item.dataInit._3c.value))
                options.push(tempObj);
+
+           if(item.dataInit && item.dataInit.number && item.dataInit.number.value && item.dataInit.number.value.length < 3)
+            minLengthValidation = true;
+
+            if(item.dataInit && item.dataInit.number && item.dataInit.number.value && (item.dataInit.number.value.length == 3 || item.dataInit.number.value.length == 4) && !(item.dataInit.big.value || item.dataInit.small.value || item.dataInit._3a.value || item.dataInit._3c.value)){
+              isDataNotCorrect = true
+            }
+          
+
         })
 
 
@@ -264,7 +276,11 @@ const [isLoading,  setIsLoading] = React.useState(false);
                game_dates.push(tempObj); 
         })
 
-       
+        console.log('options:',options);
+        console.log('isDataNotCorrect:',isDataNotCorrect);
+        
+        
+
         if(game_dates.length == 0){
             toast.error('Please choose at least one date selection!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
             pauseOnHover: true,draggable: true,progress: undefined});
@@ -278,11 +294,23 @@ const [isLoading,  setIsLoading] = React.useState(false);
         }
 
 
-        if(options && options.length == 0){
-            toast.error('Please select atleat one number!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+        if(minLengthValidation){
+            toast.error('Please type 3 or 4 digits in number field!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
                 pauseOnHover: true,draggable: true,progress: undefined});
             return false;
         }
+
+        if(isDataNotCorrect){
+          toast.error('please enter valid amount against selected number!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+              pauseOnHover: true,draggable: true,progress: undefined});
+          return false;
+      }
+
+        if(options && options.length == 0){
+          toast.error('Please select at least one number!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+              pauseOnHover: true,draggable: true,progress: undefined});
+          return false;
+      }
 
        let dataSubmit = {member_id:auth.auth.customer_id, merchant_id:auth.auth.merchant_id, game_dates};
        dataSubmit['member_id'] = auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;

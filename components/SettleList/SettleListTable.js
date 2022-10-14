@@ -107,7 +107,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
 
     const state = useSelector(state => state);
 
-    const childShowTable = (ticketId,work) =>{
+    const childShowTable = (ticketId,work,actionFrom) =>{
 
      //   detailNo
       //  filterGamesName
@@ -116,10 +116,24 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
        setSelectedticketId(ticketId);
 
        let params = {ticketId};
+       if(actionFrom == 'settledList' || actionFrom == 'reset_button' ){
 
-       params.child_ticket_no = detailNo;
-       params.game_play_id = filterGamesName.value;
-       params.game_type = filterGameType.value;
+        setDetailNo('');
+        setFilterGamesName({ value: '', label: 'All' });
+        setFilterGameType({ value: '', label: 'All' });
+
+       params.child_ticket_no = '';
+       params.game_play_id = '';
+       params.game_type = '';
+
+        }else {
+            params.child_ticket_no = detailNo;
+            params.game_play_id = filterGamesName.value;
+            params.game_type = filterGameType.value;
+        }
+    //    params.child_ticket_no = detailNo;
+    //    params.game_play_id = filterGamesName.value;
+    //    params.game_type = filterGameType.value;
 
        //return false;
        
@@ -279,7 +293,7 @@ const handlePageClick = (event) => {
                                 {currentItems && currentItems.map((item,i) =>(
                                     <tr key={i}>
                                         <td >
-                                            <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk')} >
+                                            <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')} >
                                                 {item.ticket_no}
                                             </span>
                                             <br/>
@@ -330,12 +344,12 @@ const handlePageClick = (event) => {
                                 {currentItems && currentItems.map((item,i) =>(
                                     <tr key={i}>
                                         <td>{i + 1}</td>
-                                        <td className="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk')} >{item.ticket_no}</span></td>
-                                        <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
-                                        <td className="text-center">{item.draw_date}</td>
-                                        <td className="text-center">{item.draw_number}</td>
-                                        <td className="text-center">{item.bet_number}</td>
-                                        <td className="text-center">
+                                        <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')} >{item.ticket_no}</span></td>
+                                        <td class="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
+                                        <td class="text-center">{item.draw_date}</td>
+                                        <td class="text-center">{item.draw_number}</td>
+                                        <td class="text-center">{item.bet_number}</td>
+                                        <td class="text-center">
                                         {
                                         item.games && item.games.map((item,i) =>(
                                             item.abbreviation
@@ -702,11 +716,11 @@ const handlePageClick = (event) => {
                                         <div className='row'>
                                             <div className='col-md-6 col-6'>
                                                 {/* <label className="d-block">&nbsp;</label> */}
-                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childShowTable(selectedticketId,'forMob')}>{t('Search')}</button>
+                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childShowTable(selectedticketId,'forMob','serach_button')}>{t('Search')}</button>
                                             </div>
                                             <div className='col-md-6 col-6'>
                                                 {/* <label className="d-block">&nbsp;</label> */}
-                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() => childDataReset()}>{t('Reset')}
+                                                <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" onClick = {() =>childShowTable(selectedticketId,'forMob', 'reset_button')}>{t('Reset')}
                                                 </button>
                                             </div>
                                         </div>
@@ -715,8 +729,8 @@ const handlePageClick = (event) => {
                                     <div className={styles.device_detect_for_desktop+" col-md-4"}>
                                         <div className="form-group">
                                             <label className="d-block mb-2">&nbsp;</label>
-                                            <button type="button" className="btn-custom-curve2 w-auto me-2" onClick = {() => childShowTable(selectedticketId,'forDesk')}>{t('Search')}</button>
-                                            <button type="button" className="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
+                                            <button type="button" className="btn-custom-curve2 w-auto me-2" onClick = {() => childShowTable(selectedticketId,'forDesk','serach_button')}>{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve1" onClick = {() => childShowTable(selectedticketId,'forDesk', 'reset_button')}>{t('Reset')}</button>
                                         </div>
                                     </div>
 
