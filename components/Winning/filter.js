@@ -50,7 +50,7 @@ const Filter = ({_setFilterParams}) => {
       };
 
  
-      console.log('dateRangedateRange',dates1);
+      
 
       const [ranges, setRanges] = useState({
         [t('Today')]: [moment().subtract(0, 'days'), moment().add(0, 'days')],
@@ -96,15 +96,15 @@ const Filter = ({_setFilterParams}) => {
                     } 
             }
             else{
+                let dateValue = date.value.split('-')[0].trim()+'-'+date.value.split('-')[1].trim()
                 filter = {
-                    'dateRange': moment(dateRange.startDate).format('DD/MM/YYYY')+'-'+ moment(dateRange.endDate).format('DD/MM/YYYY'),
+                    'dateRange': dateValue,
                     'prizeType':prizeType,
                     'ticketNo':ticketNo
                     } 
             }
         
-
-            console.log('filter: ',filter)
+            //console.log('filter:',filter);
             _setFilterParams(filter)
             
         setDateRange('')

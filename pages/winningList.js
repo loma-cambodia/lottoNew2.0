@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import styles from '../styles/Home.module.css'
 import WinngListBanner from '../components/Winning/Banner';
 import ListTable from '../components/BettingList/BettingListTable';
-//import {getTicketData,searchTicketData} from '../store/actions/reportActions';
+import {getTicketData,searchTicketData} from '../store/actions/reportActions';
 import {getWinningData,filterWinningData} from '../store/actions/winninglistActions';
 import {getLogin} from '../store/actions/authActions';
 import moment from 'moment';
@@ -78,17 +78,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 }))
 }
 
-function formatDate2(date) {
-  var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
-  if (month.length < 2)
-      month = '0' + month;
-  if (day.length < 2)
-      day = '0' + day;
-  return [day,month,year].join('/');
-}
+
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(winningList.slice(itemOffset, endOffset));
@@ -97,30 +87,7 @@ function formatDate2(date) {
 
 
        useEffect(() => {
-        getWinningList()
-        let d = new Date();
-        const filter = {
-          dateRange : formatDate2(d)+ '-' + formatDate2(d)
-        }
-
-        dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,filterParams, response =>{
-
-          if(response.statusCode  == 201  || response.statusCode  == 200 ){
-  
-          if(response.statusCode == 200){
-  
-              // setWinningList(response.data.data.data)
-              
-            setWinningList(response.data.data.data)
-            // setWinningList(data.data)
-  
-          }else {
-  
-          }
-          }else {
-          // setIsLoading(false);
-      }
-  }  ))
+        getWinningList();
       },[auth,filterParams]);
 
 
@@ -144,7 +111,7 @@ function formatDate2(date) {
       
       const state = useSelector(state => state);
       
-
+      
       const getOddsBig =(prize,game,item) =>{
         if(prize == 'P1' && game == '4D')
         {
@@ -286,17 +253,18 @@ function formatDate2(date) {
                           <th style={{verticalAlign:'middle'}}>{t('No')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-start"> {t('Detail_Number')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-center">{t('Betting_Time')}</th>
-                          <th style={{verticalAlign:'middle'}} className="text-center">{t('Draw_Date')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-center">{t('Draw_Id')}</th>
+                          <th style={{verticalAlign:'middle'}} className="text-center">{t('Draw_Date')}</th>
+                          <th style={{verticalAlign:'middle'}} className="text-center">{t('game')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-start">{t('Bet_Number')}</th>
-                          <th style={{verticalAlign:'middle'}} className="text-start">{t('Company')}</th>
+                          <th style={{verticalAlign:'middle'}} className="text-center">{t('Company')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-center">{(t('prize_type'))}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Big_Bet')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Small_Bet')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">3A</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">3C</th>
-                          <th style={{verticalAlign:'middle'}} className="text-end">{t('Odds')}<br/>(B/3A)</th>
-                          <th style={{verticalAlign:'middle'}} className="text-end">{t('Odds')}<br/>(S/3C)</th>
+                          <th style={{verticalAlign:'middle'}} className="text-end">{t('Odds')} (B/3A)</th>
+                          <th style={{verticalAlign:'middle'}} className="text-end">{t('Odds')} (S/3C)</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Total')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Rebate')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Net')}</th>
@@ -310,13 +278,14 @@ function formatDate2(date) {
                               <td>{id+1}</td>
                               <td className="text-start"><a >{item.child_ticket_no}</a></td>
                               <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}</td>
-                              <td className="text-center">{moment(item.ticket.betting_date).format('DD-MM-YYYY')}</td>
                               <td className="text-start">{item.ticket.draw_number}</td>
+                              <td className="text-center">{moment(item.ticket.betting_date).format('DD-MM-YYYY')}</td>
+                              <td className="text-center">{item.game_type}</td>
                               <td className="text-center">{item.ticket.bet_number}</td>
-                              <td className="text-start">{item.game && item.game.name ? item.game.name : ""}</td>
+                              <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
 
                               {/* <td className="text-center">{item.game_type}</td> */}
-                              <td className="text-center">{item.prize_type}</td>
+                              <td className="text-start">{item.prize_type}</td>
 
 
                               <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
