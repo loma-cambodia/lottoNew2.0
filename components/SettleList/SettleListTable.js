@@ -390,11 +390,11 @@ const handlePageClick = (event) => {
                         { pageCount > 1 ?
                             <ReactPaginate
                             breakLabel="..."
-                            nextLabel="Next >" 
+                            nextLabel={t('next')} 
                             onPageChange={handlePageClick}
                             pageRangeDisplayed={5}
                             pageCount={pageCount}
-                            previousLabel="< Previous"
+                            previousLabel={t('previous')}
                             renderOnZeroPageCount={null}
                             className="pagination"
                             pageLinkClassName="pagination"

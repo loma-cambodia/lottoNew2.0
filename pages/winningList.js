@@ -222,11 +222,11 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
               { pageCount > 1 ?
                 <ReactPaginate
                     breakLabel="..."
-                    nextLabel="Next >" 
+                    nextLabel={t('next')}
                     onPageChange={handlePageClick}
                     pageRangeDisplayed={5}
                     pageCount={pageCount}
-                    previousLabel="< Previous"
+                    previousLabel={t('previous')}
                     renderOnZeroPageCount={null}
                     className="pagination"
               /> : null } 
@@ -315,11 +315,11 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
               { pageCount > 1 ?
                 <ReactPaginate
                     breakLabel="..."
-                    nextLabel="Next >" 
+                    nextLabel={t('next')}
                     onPageChange={handlePageClick}
                     pageRangeDisplayed={5}
                     pageCount={pageCount}
-                    previousLabel="< Previous"
+                    previousLabel={t('previous')}
                     renderOnZeroPageCount={null}
                     className="pagination"
               /> : null } 
