@@ -125,9 +125,9 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
           <div className="container">
               <div className="d-flex align-items-center">
                   <div className="logo">
-                      <a href="#" className="logo-link">
-                          <img src="assets/images/logo-header.png" className="logo-img" alt=""/>
-                      </a>
+                      <Link href="/" className="logo-link">
+                          <img src="assets/images/logo-header.png" className="logo-img" alt="" role="button"/>
+                      </Link>
                   </div>
                   <div className="desktop-menu me-auto">
                    
@@ -176,7 +176,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                           <li>
                               <span className="text-end mb-0 user-details">
                                 <span className="user-id text-black" >{auth && auth.auth  && auth.auth.name ? auth.auth.name[0].toUpperCase() + auth.auth.name.substring(1)  : "" }</span>
-                                <a href="#" className="reload-icon"><span onClick={() => loginAPICall()}><img src="assets/images/icons/reload-white.png" alt="reload"/></span></a> <span className='text-black'>
+                                <span className="reload-icon" role="button"><span onClick={() => loginAPICall()}><img src="assets/images/icons/reload-white.png" alt="reload"/></span></span> <span className='text-black'>
                                 
                               { auth && auth.auth && auth && auth.auth.wallet && auth.auth.wallet.amount ? twoDecimalPlaceWithoutRound(auth.auth.wallet.amount,1)  : "0.00" }
                                 
@@ -187,7 +187,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                               </span></span>
                           </li>
                           <li className="hide-650">
-                              <a href="#" className="play-lottery-btn ">{t('Play_Lottery')}</a>
+                              <Link href="/bettingNew"><span className="play-lottery-btn " role="button">{t('Play_Lottery')}</span></Link>
                           </li>
                           <li className="dropdown position-relative">
                           <div className="">
@@ -231,7 +231,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
           </div>
         </header>
         <div id="mySidepanel" className="sidepanel">
-            <a href="javascript:void(0)" className="closebtn" onClick={() => closeNav() } >&times;</a>
+            <span role="button" className="closebtn" onClick={() => closeNav() } >&times;</span>
               <div className="mobile-menu-list">
                   <ul className="list-unstyled">
                     <li className= {`${router.pathname === "/" ? "active-header-mobile":""}`}>

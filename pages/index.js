@@ -56,38 +56,16 @@ const auth = useSelector(state => state.auth);
   return (
     <>
        <Head>
-          <title>{t('Index_tittle')}</title>
-          <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-          <link href="assets/css/style.css" rel="stylesheet"/>
-          <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
-          <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
-          <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet"/>
+          <title>{t('Index_tittle')}</title>          
       </Head>
-      {/* <Header datauser={datauser}  _auth={auth} /> */}
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
-        {/* <Header datauser={datauser} _auth={auth}/> */}
-      {/*--Mobile Menu--*/}
-      <div id="mySidepanel" className="sidepanel">
-          <a href="javascript:void(0)" className="closebtn">&times;</a>
-          <ul className="list-unstyled">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Home</a></li>
-          </ul>
-        </div>
-      {/*--Mobile Menu-*/}
-  <HomeSlider />
-  <Announcement />
-  <PayoutSection _transactions={transactions}/>
-  <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>
-  <HowToPlay/>
-  <Footer/>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
-<script src="assets/js/owl.carousel.js"></script>
-<script src="assets/js/main.js"></script>
+
+      <HomeSlider />
+      <Announcement />
+      <PayoutSection _transactions={transactions}/>
+      <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>
+      <HowToPlay/>
+      <Footer/>
 {/*--Footer--*/}
 </>
       

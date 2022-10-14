@@ -52,7 +52,7 @@ const PayoutSection = ({_transactions}) => {
 
 
 
-               { oddSet && oddSet.map(item => {
+               { oddSet && oddSet.map((item,i) => {
                   let gameName = '';
                   let customId ='';
                   let labelledby  = '';
@@ -74,7 +74,7 @@ const PayoutSection = ({_transactions}) => {
                 className = 'tab-pane fade show';
            }
 
-                       return(<div className={className} id={customId} role="tabpanel" aria-labelledby={labelledby}>
+                       return(<div className={className} id={customId} role="tabpanel" aria-labelledby={labelledby} key={i}>
                        <WinnerGameData  _item={item}/>
                   </div>)
               })} 
