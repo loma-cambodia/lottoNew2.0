@@ -743,11 +743,11 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
             let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
             if(getValue > big_max_bet ){
-                $("#ErrorBig").html('Bet should not be greater than '+big_max_bet);
+                $("#ErrorBig").html(t('bet_should_not_be_greater_than')+' '+big_max_bet);
                 $("#ErrorBig").css('visibility', 'visible')
                 getValue = big_max_bet;
             }else if(getValue < big_min_bet ){
-                $("#ErrorBig").html('Bet should not be less than '+big_min_bet);
+                $("#ErrorBig").html(t('bet_should_not_be_less_than')+' '+big_min_bet);
                 $("#ErrorBig").css('visibility', 'visible')
                 getValue = big_min_bet;
             }
@@ -764,13 +764,13 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             if(getValue > small_max_bet ){
 
                 
-                $("#ErrorSmall").html('Bet should not be greater than '+small_max_bet);
+                $("#ErrorSmall").html(t('bet_should_not_be_greater_than')+' '+small_max_bet);
                 $("#ErrorSmall").css('visibility', 'visible')
 
                 getValue = small_max_bet;
                
             }else if(getValue < small_min_bet ){
-                $("#ErrorSmall").html('Bet should not be less than '+small_min_bet);
+                $("#ErrorSmall").html(t('bet_should_not_be_less_than')+' '+small_min_bet);
                 $("#ErrorSmall").css('visibility', 'visible')
                 getValue = small_min_bet;
             }
@@ -787,13 +787,13 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             let three_a_min_bet  = limit && limit.length > 0 && limit[0].three_a_min_bet ?  limit[0].three_a_min_bet : 0;
             if(getValue > three_a_max_bet ){
 
-                $("#ErrorA").html('Bet should not be greater than '+three_a_max_bet);
+                $("#ErrorA").html(t('bet_should_not_be_greater_than')+' '+three_a_max_bet);
                 $("#ErrorA").css('visibility', 'visible')
 
                 getValue = three_a_max_bet;
                
             }else if(getValue < three_a_min_bet ){
-                $("#ErrorA").html('Bet should not be less than '+three_a_min_bet);
+                $("#ErrorA").html(t('bet_should_not_be_less_than')+' '+three_a_min_bet);
                 $("#ErrorA").css('visibility', 'visible')
 
                 getValue = three_a_min_bet;
@@ -843,14 +843,14 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             let three_c_min_bet  = limit && limit.length > 0 && limit[0].three_c_min_bet ?  limit[0].three_c_min_bet : 0;
             if(getValue > three_c_max_bet ){
 
-                $("#ErrorC").html('Bet should not be greater than '+three_c_max_bet);
+                $("#ErrorC").html(t('bet_should_not_be_greater_than')+' '+three_c_max_bet);
                 $("#ErrorC").css('visibility', 'visible')
 
                 getValue = three_c_max_bet;
                
             }else if(getValue < three_c_min_bet ){
 
-                $("#ErrorC").html('Bet should not be less than '+three_c_min_bet);
+                $("#ErrorC").html(t('bet_should_not_be_less_than')+' '+three_c_min_bet);
                 $("#ErrorC").css('visibility', 'visible')
 
                 getValue = three_c_min_bet;

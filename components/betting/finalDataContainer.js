@@ -40,7 +40,7 @@ const FinalDataContainer = ({_previewSubmitData, finalSubmitData,_bettingInitDat
                     </table>
                 </div>
                 <div className="row text-light container-fluid m-auto" style={{  background: '#e91d25' }}>
-                    <div className="col-6">{t('Total')} {t('Amount')}</div>
+                    <div className="col-6">{t('Total_bet_amount')}</div>
                     <div className="col-6" style={{ textAlign: 'end' }}>{totalAmount ? totalAmount : '0.00'}</div>
                 </div>
             </div>
