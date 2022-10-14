@@ -4,13 +4,6 @@ let API_BASE_URL = process.env.fronEndUrl;
     
     try{
 
-        // const objectWithData2 = {
-        //              "customer_name": "Dileep Maurya",
-        //             "customer_id":  112,
-        //            "merchant_id":  1,
-        //            "language":  'en',
-        //        } 
-
                const headers = {
                 'Content-Type': 'application/json',
               }
@@ -24,6 +17,8 @@ let API_BASE_URL = process.env.fronEndUrl;
         })
     }
     catch(e){
+
+        console.log('Catch:',e);
         // dispatch( {
         //     type: "GET_LOGIN_ERROR",
         //     payload: console.log(e),
