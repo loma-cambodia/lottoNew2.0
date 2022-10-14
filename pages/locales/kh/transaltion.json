@@ -160,7 +160,15 @@
     "status":"status",
     "404_message":"The page you are looking for might have been removed, had the name changed or it is temporary unavailable",
     "no_results":"No results",
-    "no_winning_ticket":"No Winning Ticket"
+    "no_winning_ticket":"No Winning Ticket",
+    "previous":"< មុន",
+    "next":"បន្ទាប់ >",
+    "P1":"រង្វាន់ទីមួយ",
+    "P2":"រង្វាន់ទីពីរ",
+    "P3":"រង្វាន់ទីបី",
+    "S":"រង្វាន់ពិសេស",
+    "C":"រង្វាន់លើកទឹកចិត្",
+    "All":"រង្វាន់ទាំងអស់"
 
 
 

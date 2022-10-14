@@ -40,7 +40,7 @@ const Filter = ({_setFilterParams}) => {
     const [fromDate, setFromDate] = useState(new Date());
     const [toDate, setToDate] = useState(new Date());
 
-    const prizeTypleList = ['','No','P1','P2','P3','S','C']
+    const prizeTypleList = ['All','P1','P2','P3','S','C']
 
     const handleEvent = (event, picker) => {
         setFromDate(picker.startDate._d.toISOString());
@@ -104,6 +104,7 @@ const Filter = ({_setFilterParams}) => {
             }
         
 
+            console.log('filter: ',filter)
             _setFilterParams(filter)
             
         setDateRange('')
@@ -187,9 +188,12 @@ const Filter = ({_setFilterParams}) => {
                             <div class="form-group">
                                 <label for="transactionid" class="fw-bold mb-2">{t('prize_type')}</label>
                                 <select id="prize_type" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setPrizeType(event.target.value)}>
-                                { prizeTypleList.map((item,id)=>(
-                                        <option key={id}>{item}</option>
-                                ))}
+                                <option  value="All">{t('All')}</option>
+                                <option  value="P1">{t('P1')}</option>
+                                <option  value="P2">{t('P2')}</option>
+                                <option  value="P3">{t('P3')}</option>
+                                <option  value="S">{t('S')}</option>
+                                <option  value="C">{t('C')}</option>
                                 </select>
                             </div>
                         </div>

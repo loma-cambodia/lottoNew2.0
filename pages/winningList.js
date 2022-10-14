@@ -97,11 +97,13 @@ function formatDate2(date) {
 
 
        useEffect(() => {
+        getWinningList()
         let d = new Date();
         const filter = {
           dateRange : formatDate2(d)+ '-' + formatDate2(d)
         }
-        dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,filter, response =>{
+
+        dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,filterParams, response =>{
 
           if(response.statusCode  == 201  || response.statusCode  == 200 ){
   

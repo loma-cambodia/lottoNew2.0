@@ -273,8 +273,8 @@ const Betting = () => {
                             <th>{t('Number')}</th>
                             <th>Big/3A</th>
                             <th>Small/3C</th>
-                            <th>Bet Type</th>
-                            <th>Amount</th>
+                            <th>{t('Bet_Type')}</th>
+                            <th>{t('Amount')}</th>
                             </tr>
                           </thead>
                           <tbody >
@@ -360,7 +360,7 @@ const Betting = () => {
                         <div className={`${styles.betTotal} container`} >
                               <div>
                                 <b>
-                                  Total Stake
+                                  {t('Total_Stake')}
                                 </b>
                                 <label className='px-3'>
                                   216.00
@@ -368,10 +368,10 @@ const Betting = () => {
                               </div>
                             <div>
                               <button type="button" className={`${styles.boxStyle} mx-5`} style={{background:'white',fontWeight:'bold',padding: '10px 30px'}}>
-                                Clear
+                                {t('clear')}
                               </button>
                               <button type="button" className={`${styles.boxStyle}`} style={{background:'#bf2262' ,fontWeight:'bold' ,color:'white',padding: '10px 30px'}}>
-                                Submit
+                                {t('submit')}
                               </button>
                             </div>
                           </div>
@@ -387,16 +387,16 @@ const Betting = () => {
             </div>
             <div className="col-8 d-flex flex-column align-items-end" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}> 
                 <ul className="nav col-md-8 justify-content-end">
-                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">Home</a></li>
-                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">Betting</a></li>
-                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">History</a></li>
-                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">Results</a></li>
-                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">Play Lottery</a></li>
+                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">{t('Homepage')}</a></li>
+                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">{t('Betting')}</a></li>
+                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">{t('History')}</a></li>
+                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">{t('Result')}</a></li>
+                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">{t('Play_Lottery')}</a></li>
                   
                 </ul>
                 <br/>
                   <p className='justify-content-end text-white'style={{fontSize: 'small'}}>
-                       Copyright© 2022. AllRight Reserved By PokLotto
+                       {t('copyright')}
                   </p>
             </div>
           </div>

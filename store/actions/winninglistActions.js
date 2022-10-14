@@ -7,6 +7,12 @@ export const getWinningData = (id,filters,callback) => async (dispatch) => {
     let ticketNo = filters.ticketNo || ""
     let prizeType = filters.prizeType || ""
     let dateRange = filters.dateRange || ""
+    
+    if (prizeType == 'All'){
+        prizeType = ""
+    }
+
+
     try {
       const headers = {
         'Content-Type': 'application/json',
