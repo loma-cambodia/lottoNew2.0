@@ -182,6 +182,14 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 return false;
             }
 
+            if(getValue.includes('-') || getValue.includes('.')){
+                return false;
+            }
+
+            /* let dotCount = getValue.match(/\./g).length; */
+
+            
+
            let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
 
@@ -612,7 +620,7 @@ useEffect(() => {
                 <input type="text" className="form-control-custom"
                     value={localStateInitData.number.value ? localStateInitData.number.value : ""}
                     maxLength={4}
-                    minLength={3}
+                    minLength={1}
                     onChange={(e) => numberInputHandler(e.target.value, 'number')}
                     autocomplete="off"
                 /> 
@@ -623,8 +631,8 @@ useEffect(() => {
                     onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
                     id={"BigText"+ids}
                     onBlur={(i) => hideError(ids)}
-                    maxLength={4}
-                    minLength={3}
+                    maxLength={10}
+                    minLength={1}
                     value={localStateInitData && localStateInitData.big && localStateInitData.big.value ? localStateInitData.big.value : ""}
                     disabled={localStateInitData && localStateInitData.big && localStateInitData.big.disabled ? true : false}
                     />  
@@ -637,8 +645,8 @@ useEffect(() => {
                 onChange={(e) => numberInputHandler(e.target.value, 'small', ids)}
                 id={"SmallText"+ids}
                 onBlur={(i) => hideError(ids)}
-                maxLength={4}
-                minLength={3}
+                maxLength={10}
+                minLength={1}
                 value={localStateInitData && localStateInitData.small && localStateInitData.small.value ? localStateInitData.small.value : ""}
                 disabled={localStateInitData && localStateInitData.small && localStateInitData.small.disabled ? true : false}
                 />
@@ -649,8 +657,8 @@ useEffect(() => {
                 onChange={(e) => numberInputHandler(e.target.value, '_3a', ids)}
                 id={"AText"+ids}
                 onBlur={(i) => hideError(ids)}
-                maxLength={4}
-                minLength={3}
+                maxLength={10}
+                minLength={1}
                 value={localStateInitData && localStateInitData._3a && localStateInitData._3a.value ? localStateInitData._3a.value : ""}
                 disabled={localStateInitData && localStateInitData._3a && localStateInitData._3a.disabled ? true : false}
                 />
@@ -661,8 +669,8 @@ useEffect(() => {
                 onChange={(e) => numberInputHandler(e.target.value, '_3c', ids)}
                 id={"CText"+ids}
                 onBlur={(i) => hideError(ids)}
-                maxLength={4}
-                minLength={3}
+                maxLength={10}
+                minLength={1}
                 value={localStateInitData && localStateInitData._3c && localStateInitData._3c.value ? localStateInitData._3c.value : ""}
                 disabled={localStateInitData && localStateInitData._3c && localStateInitData._3c.disabled ? true : false}
                 />
