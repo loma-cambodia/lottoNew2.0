@@ -186,9 +186,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 return false;
             }
 
-            /* let dotCount = getValue.match(/\./g).length; */
-
-            
 
            let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
@@ -224,6 +221,9 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
+            if(getValue.includes('-') || getValue.includes('.')){
+                return false;
+            }
             if(getValue > limit[0].small_max_bet ){
                 $("#ErrorSmall"+idas).html('Bet should not be greater than'+limit[0].small_max_bet);
                 $("#ErrorSmall"+idas).css('visibility', 'visible');
@@ -249,6 +249,9 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
             
             if (!getValue.match("^[0-9-.]*$")) {
+                return false;
+            }
+            if(getValue.includes('-') || getValue.includes('.')){
                 return false;
             }
             if(getValue > limit[0].three_a_max_bet ){
@@ -299,6 +302,9 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
         } else if (operationField == '_3c') {
             if (!getValue.match("^[0-9-.]*$")) {
+                return false;
+            }
+            if(getValue.includes('-') || getValue.includes('.')){
                 return false;
             }
             if(getValue > limit[0].three_c_max_bet ){   
