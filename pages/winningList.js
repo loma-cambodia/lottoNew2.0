@@ -255,7 +255,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                           <th style={{verticalAlign:'middle'}} className="text-center">{t('Betting_Time')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-center">{t('Draw_Id')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-center">{t('Draw_Date')}</th>
-                          <th style={{verticalAlign:'middle'}} className="text-center">{t('game')}</th>
+                          {/* <th style={{verticalAlign:'middle'}} className="text-center">{t('game')}</th> */}
                           <th style={{verticalAlign:'middle'}} className="text-start">{t('Bet_Number')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-center">{t('Company')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-center">{(t('prize_type'))}</th>
@@ -282,7 +282,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                               <td className="text-center">{moment(item.ticket.betting_date).format('DD-MM-YYYY')}</td>
                               <td className="text-center">{item.game_type}</td>
                               <td className="text-center">{item.ticket.bet_number}</td>
-                              <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
+                              {/* <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td> */}
 
                               {/* <td className="text-center">{item.game_type}</td> */}
                               <td className="text-start">{item.prize_type}</td>
