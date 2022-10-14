@@ -6,20 +6,20 @@ const Transactions = () => {
     const { t } = useTranslation();
     return (
         <>
-        <section class="page-content custom-padding">
-            <div class="container">
-                <div class="clearfix curved-card">
-                    <div class="row">
-                        <div class="col-md-3 col-6">
-                            <div class="form-group">
-                                <label htmlFor="transactionid" class="fw-bold mb-2">{t('transaction_id')}</label>
-                                <input type="text" class="form-control-custom-big" name="transationid"/>
+        <section className="page-content custom-padding">
+            <div className="container">
+                <div className="clearfix curved-card">
+                    <div className="row">
+                        <div className="col-md-3 col-6">
+                            <div className="form-group">
+                                <label htmlFor="transactionid" className="fw-bold mb-2">{t('transaction_id')}</label>
+                                <input type="text" className="form-control-custom-big" name="transationid"/>
                             </div>
                         </div>
-                        <div class="col-md-3 col-6">
-                            <div class="form-group">
-                                <label htmlFor="transactionid" class="fw-bold mb-2">{t('transaction_type')}</label>
-                                <select type="text" class="form-control-custom-big" name="transationid">
+                        <div className="col-md-3 col-6">
+                            <div className="form-group">
+                                <label htmlFor="transactionid" className="fw-bold mb-2">{t('transaction_type')}</label>
+                                <select type="text" className="form-control-custom-big" name="transationid">
                                     <option>Transaction type 1</option>
                                     <option>Transaction type 2</option>
                                     <option>Transaction type 3</option>
@@ -27,8 +27,8 @@ const Transactions = () => {
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3"></div>
-                        <div class="col-md-3"></div>
+                        <div className="col-md-3"></div>
+                        <div className="col-md-3"></div>
                     </div>
                 </div>
             </div>
