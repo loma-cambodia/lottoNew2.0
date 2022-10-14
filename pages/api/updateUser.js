@@ -23,7 +23,6 @@ async function handler(req, res) {
 //   "language":  'en',
 // }
 
- console.log('objectWithData:',objectWithData);
   
   const userData = await fetch(`${process.env.apiUrl}/member-login`, {
     method: 'POST',
@@ -34,7 +33,6 @@ async function handler(req, res) {
   })
 
   const data = await userData.json()
-   console.log(data);
   if (data.success == true) {
     //req.session.set("user", data);
     req.session.user = data

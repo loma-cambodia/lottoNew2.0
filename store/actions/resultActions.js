@@ -18,19 +18,16 @@ export const getResults = (sendData,callback) => async (dispatch) => {
       const dataSubmit = moment(sendData).format('YYYY-MM-DD')
       urlHit = `${API_BASE_URL}/results/get-by-date?date=${dataSubmit}`;
 }
-    console.log('resultactions', urlHit)
 
     const res = await axios.get(urlHit, {
       headers: headers,
     })
-    console.log('res:results:', res)
     return callback({
       message: 'Success',
       data: res,
       statusCode: res.status,
     })
   } catch (e) {
-    console.log('catch:USERS_ERROR', e);
 
     // let message = ''
     // if(e.response){
@@ -50,19 +47,16 @@ export const getLatestResultDate = (callback) => async (dispatch) => {
       'Content-Type': 'application/json',
     }
     let urlHit = `${API_BASE_URL}/results/get-by-date`;
-    console.log('resultactions', urlHit)
 
     const res = await axios.get(urlHit, {
       headers: headers,
     })
-    console.log('res:results:', res)
     return callback({
       message: 'Success',
       data: res.data[0].result_date,
       statusCode: res.status,
     })
   } catch (e) {
-    console.log('catch:USERS_ERROR', e);
 
     // let message = ''
     // if(e.response){
