@@ -222,11 +222,11 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
               { pageCount > 1 ?
                 <ReactPaginate
                     breakLabel="..."
-                    nextLabel={t('next')}
+                    nextLabel="Next >" 
                     onPageChange={handlePageClick}
                     pageRangeDisplayed={5}
                     pageCount={pageCount}
-                    previousLabel={t('previous')}
+                    previousLabel="< Previous"
                     renderOnZeroPageCount={null}
                     className="pagination"
               /> : null } 
@@ -253,18 +253,19 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                           <th style={{verticalAlign:'middle'}}>{t('No')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-start"> {t('Detail_Number')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-center">{t('Betting_Time')}</th>
-                          <th style={{verticalAlign:'middle'}} className="text-center">{t('Draw_Id')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-center">{t('Draw_Date')}</th>
-                          <th style={{verticalAlign:'middle'}} className="text-center">{t('game')}</th>
+                          <th style={{verticalAlign:'middle'}} className="text-center">{t('Draw_Id')}</th>
+                          
+                          {/* <th style={{verticalAlign:'middle'}} className="text-center">{t('game')}</th> */}
                           <th style={{verticalAlign:'middle'}} className="text-start">{t('Bet_Number')}</th>
-                          <th style={{verticalAlign:'middle'}} className="text-center">{t('Company')}</th>
+                          <th style={{verticalAlign:'middle'}} className="text-start">{t('Company')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-center">{(t('prize_type'))}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Big_Bet')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Small_Bet')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">3A</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">3C</th>
-                          <th style={{verticalAlign:'middle'}} className="text-end">{t('Odds')} (B/3A)</th>
-                          <th style={{verticalAlign:'middle'}} className="text-end">{t('Odds')} (S/3C)</th>
+                          <th style={{verticalAlign:'middle'}} className="text-center">{t('Odds')} (B/3A)</th>
+                          <th style={{verticalAlign:'middle'}} className="text-center">{t('Odds')} (S/3C)</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Total')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Rebate')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Net')}</th>
@@ -278,32 +279,33 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                               <td>{id+1}</td>
                               <td className="text-start"><a >{item.child_ticket_no}</a></td>
                               <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}</td>
-                              <td className="text-start">{item.ticket.draw_number}</td>
                               <td className="text-center">{moment(item.ticket.betting_date).format('DD-MM-YYYY')}</td>
-                              <td className="text-center">{item.game_type}</td>
+                              <td className="text-start">{item.ticket.draw_number}</td>
+                              
+                              {/* <td className="text-center">{item.game_type}</td> */}
                               <td className="text-center">{item.ticket.bet_number}</td>
-                              <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
+                              <td className="text-start">{item.game && item.game.name ? item.game.name : ""}</td>
 
                               {/* <td className="text-center">{item.game_type}</td> */}
-                              <td className="text-start">{item.prize_type}</td>
+                              <td className="text-center">{item.prize_type}</td>
 
 
                               <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
-                              <td className="text-end">
+                              <td className="text-center">
                                 {getOddsBig(item.prize_type,item.game_type,item)}
                                 {/* {MoneyFormatDisplay(item.merchant.market.odd_settings,1)} */}
                                 </td>
                                 
-                              <td className="text-end">{getOddsSmall(item.prize_type,item.game_type,item)}</td>
+                              <td className="text-center">{getOddsSmall(item.prize_type,item.game_type,item)}</td>
 
                               <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
 
-                              <td className="text-end">{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                              <td className="text-end"><b>{MoneyFormatDisplay(item.winning_amount,1)}</b></td>
                               <td className={`${(item.winning_amount - item.bet_net_amount) > 0 ? "winningAmount":""} text-end`}>{MoneyFormatDisplay(item.winning_amount - item.bet_net_amount ,1)}</td>
                               {/* className={`${pageCount > 1 ? "winningFilterTall":""} table-responsive my-3`} */}
                           
@@ -317,11 +319,11 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
               { pageCount > 1 ?
                 <ReactPaginate
                     breakLabel="..."
-                    nextLabel={t('next')}
+                    nextLabel="Next >" 
                     onPageChange={handlePageClick}
                     pageRangeDisplayed={5}
                     pageCount={pageCount}
-                    previousLabel={t('previous')}
+                    previousLabel="< Previous"
                     renderOnZeroPageCount={null}
                     className="pagination"
               /> : null } 
