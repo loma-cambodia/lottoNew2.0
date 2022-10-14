@@ -312,11 +312,6 @@ const [isLoading,  setIsLoading] = React.useState(false);
           return false;
       }
 
-    ////  console.log('options:',options);
-    //  console.log('isDataNotCorrect:',isDataNotCorrect);
-
-   //   return false;
-
        let dataSubmit = {member_id:auth.auth.customer_id, merchant_id:auth.auth.merchant_id, game_dates};
        dataSubmit['member_id'] = auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
        dataSubmit['merchant_id'] = auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id: 0;
