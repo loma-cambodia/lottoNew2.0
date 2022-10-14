@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import React from "react";
 
 export default class ModalA extends React.Component {
@@ -11,17 +12,17 @@ export default class ModalA extends React.Component {
                         <div className="modal-content">
                             <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
                                 <h5 className="modal-title" id="bettingModal">
-                                    Bet Succesful
+                                    {t('Bet_Successful')}
                                 </h5>
                             </div>
                             <div className="modal-body" >
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-8 col-sm-8">
-                                            <p>Total bet amount</p>
-                                            <p>Accepted bet amount</p>
-                                            <p>Rebate</p>
-                                            <p style={{fontWeight:'bold'}}>Net Amount</p>
+                                            <p>{t('Total_bet_amount')}</p>
+                                            <p>{t('Accepted_bet_amount')}</p>
+                                            <p>{t('Rebate')}</p>
+                                            <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
                                         </div>
                                         <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
                                             <p>200.00</p>
@@ -33,7 +34,7 @@ export default class ModalA extends React.Component {
                                 </div>
                             </div>
                             <div class="modal-footer" style={{justifyContent:'center'}}>
-                            <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
+                            <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">{t('Ok')}</button>
                             </div>
                         </div>
                     </div>

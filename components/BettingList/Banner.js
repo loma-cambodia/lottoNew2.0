@@ -16,9 +16,9 @@ const ListBanner = () => {
             <div class="breadcrumb-list">
                 <ul>
                     <li>
-                        <a href="#"><span>Home</span></a>
+                        <a href="#"><span>{t('Homepage')}</span></a>
                     </li>
-                    <li><span>Betting List</span></li>
+                    <li><span>{t('BettingList')}</span></li>
                 </ul>
             </div>
         </div>

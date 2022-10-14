@@ -20,10 +20,10 @@ const Transactions = () => {
                             <div class="form-group">
                                 <label htmlFor="transactionid" class="fw-bold mb-2">{t('transaction_type')}</label>
                                 <select type="text" class="form-control-custom-big" name="transationid">
-                                    <option>Transaction type 1</option>
-                                    <option>Transaction type 2</option>
-                                    <option>Transaction type 3</option>
-                                    <option>Transaction type 4</option>
+                                    <option>{t('transaction_type')} 1</option>
+                                    <option>{t('transaction_type')} 2</option>
+                                    <option>{t('transaction_type')} 3</option>
+                                    <option>{t('transaction_type')} 4</option>
                                 </select>
                             </div>
                         </div>
