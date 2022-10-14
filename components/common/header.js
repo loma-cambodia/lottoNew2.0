@@ -136,8 +136,8 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                             <Link className= "active" href="/">{t('Homepage')}</Link>
                               {/* <a className="active" href="#">Home</a> */}
                             </li>
-                            <li className= {`${router.pathname === "/bettingNew" ? "active-header":""}`}>
-                            <Link href="/bettingNew">{t('Betting')}</Link>
+                            <li className= {`${router.pathname === "/betting" ? "active-header":""}`}>
+                            <Link href="/betting">{t('Betting')}</Link>
                               {/* <a  href="#">Betting</a> */}
                             </li>
                             <li className= {`${router.pathname === "/bettingList" ? "active-header":""}`}>
@@ -162,7 +162,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                             {/* <li class="dropdown-desktop">
                             <a href="#" >{t('History')} </a>
                             <ul class="sub-menu-desktop">
-                                <li><Link href="/bettingNew">{t('Betting')}</Link></li>
+                                <li><Link href="/betting">{t('Betting')}</Link></li>
                                 <li className= {`${router === "/bettingList" ? "active-header":""}`}><Link href="/bettingList">{t('History')}</Link></li>
                             </ul>
                           </li> */}
@@ -187,7 +187,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                               </span></span>
                           </li>
                           <li className="hide-650">
-                              <Link href="/bettingNew"><span className="play-lottery-btn " role="button">{t('Play_Lottery')}</span></Link>
+                              <Link href="/betting"><span className="play-lottery-btn " role="button">{t('Play_Lottery')}</span></Link>
                           </li>
                           <li className="dropdown position-relative">
                           <div className="">
@@ -237,8 +237,8 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                     <li className= {`${router.pathname === "/" ? "active-header-mobile":""}`}>
                       <Link className="active"  href="/">{t('Homepage')}</Link>  
                     </li>
-                    <li className= {`${router.pathname === "/bettingNew" ? "active-header-mobile":""}`}>
-                        <Link href="/bettingNew">{t('Betting')}</Link>
+                    <li className= {`${router.pathname === "/betting" ? "active-header-mobile":""}`}>
+                        <Link href="/betting">{t('Betting')}</Link>
                     </li>
                     <li className= {`${router.pathname === "/bettingList" ? "active-header-mobile":""}`}>
                         <Link href="/bettingList">{t('BettingList')}</Link>

@@ -258,8 +258,8 @@ const PayoutSection = ({_transactions}) => {
         </div>
         <div className="clearfix text-center">
             {/* <a href="#" className="btn-yellow rounded-full">{t('Play_now')}</a> */}
-            <Link href="/bettingNew"> 
-                    <a href="#" className="btn-yellow rounded-full">{t("Play_now")}</a>
+            <Link href="/betting"> 
+                    <span role='button' className="btn-yellow rounded-full">{t("Play_now")}</span>
             </Link>
         </div>
     </div>
