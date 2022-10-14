@@ -97,7 +97,7 @@ const Filter = ({_setFilterParams}) => {
         setDateRange('')
         setPrizeType('')
         setTicketNo('')
-        
+
         if(work == 'forMob'){
             $('.hideAndShowForMobileView').hide("slide");
         }
@@ -125,6 +125,7 @@ const Filter = ({_setFilterParams}) => {
             _setFilterParams(filter)
 
     }
+
       useEffect(() => {
       },[]);
 
