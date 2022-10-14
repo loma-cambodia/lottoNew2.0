@@ -300,8 +300,8 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                               <td className="text-end">{getOddsSmall(item.prize_type,item.game_type,item)}</td>
 
                               <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
-                              <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
 
                               <td className="text-end">{MoneyFormatDisplay(item.winning_amount,1)}</td>
                               <td className={`${(item.winning_amount - item.bet_net_amount) > 0 ? "winningAmount":""} text-end`}>{MoneyFormatDisplay(item.winning_amount - item.bet_net_amount ,1)}</td>
