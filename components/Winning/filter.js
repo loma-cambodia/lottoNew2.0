@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import daterangepicker from 'bootstrap-daterangepicker';
+import styles from '../../styles/Home.module.css';
 
 // import {getResults} from '../../store/actions/resultActions';
 
@@ -72,7 +73,7 @@ const Filter = ({_setFilterParams}) => {
             day = '0' + day;
         return [year, month, day].join('-');
     }
-    const filterList =() =>{
+    const filterList =(work) =>{
         const date = document.getElementById('daterangepicker');
         let filter =''
             if (date.value == ''){
@@ -96,6 +97,11 @@ const Filter = ({_setFilterParams}) => {
         setDateRange('')
         setPrizeType('')
         setTicketNo('')
+
+        if(work == 'forMob'){
+            $('.hideAndShowForMobileView').hide("slide");
+        }
+
     }
 
     const resetFiletr = () => {
@@ -119,60 +125,93 @@ const Filter = ({_setFilterParams}) => {
             _setFilterParams(filter)
 
     }
+
       useEffect(() => {
       },[]);
+
+    const openFilterForMob = () => {
+        $('.hideAndShowForMobileView').toggle("slide");
+    }
     return (
         <>
         <div class="clearfix curved-card">
-            <div class="row">
-                <div class="col-md-3 col-12">
-                    <div class="form-group">
-                        <label class="fw-bold mb-2">Select Date Range</label>
-                        <DateRangePicker
-                                    ref={keyRef}
-                                    onApply={handleApply1}
-                                    onCancel={keyRef}
-                                    initialSettings={{ ranges }}
-                                >
-                                    <input id="daterangepicker" type="text" className="daterangepickerstyle" />
-                                </DateRangePicker>
-                    </div>                    
+            <div className={styles.device_detect_for_mobile}>
+                <div className="form-group mb-0">
+                    <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
+                        <b>BETTING LIST REPORT</b>
+                        <img 
+                            onClick={() => openFilterForMob()}
+                            className="img-fluid" 
+                            src="images\betting\filter-icon.png" 
+                            alt="" 
+                            style={{ width: '20px', float: 'right', marginTop: '5px' }} />
+                    </button>
                 </div>
-                <div class="col-md-2 col-6">
-                    <div class="form-group">
-                        <label for="transactionid" class="fw-bold mb-2">Ticket No</label>
-                        <input id="ticket_no" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setTicketNo(event.target.value)}/>
-                    </div>
-                </div>
-                <div class="col-md-2 col-6">
-                    <div class="form-group">
-                        <label for="transactionid" class="fw-bold mb-2">Prize Type</label>
-                        <select id="prize_type" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setPrizeType(event.target.value)}>
-                           { prizeTypleList.map((item,id)=>(
-                                <option>{item}</option>
-                           ))}
-                        </select>
-                    </div>
-                </div>
-                {/* <div class="col-md-2 col-6">
-                    <div class="form-group">
-                        <label for="transactionid" class="fw-bold mb-2">Company</label>
-                        <select type="text" class="form-control-custom-big" name="transationid">
-                            <option>Toto</option>
-                            <option>Magnum</option>
-                            <option>Da ma cai</option>
-                        </select>
-                    </div>
-                </div> */}
+                <div className={styles.device_detect_for_desktop+' hideAndShowForMobileView'}>
+                    <div class="row">
+                        <div class="col-md-3 col-12">
+                            <div class="form-group">
+                                <label class="fw-bold mb-2">Select Date Range</label>
+                                <DateRangePicker
+                                            ref={keyRef}
+                                            onApply={handleApply1}
+                                            onCancel={keyRef}
+                                            initialSettings={{ ranges }}
+                                        >
+                                            <input id="daterangepicker" type="text" className="daterangepickerstyle" />
+                                        </DateRangePicker>
+                            </div>                    
+                        </div>
+                        <div class="col-md-2 col-12">
+                            <div class="form-group">
+                                <label for="transactionid" class="fw-bold mb-2">Ticket No</label>
+                                <input id="ticket_no" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setTicketNo(event.target.value)}/>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-12">
+                            <div class="form-group">
+                                <label for="transactionid" class="fw-bold mb-2">Prize Type</label>
+                                <select id="prize_type" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setPrizeType(event.target.value)}>
+                                { prizeTypleList.map((item,id)=>(
+                                        <option key={id}>{item}</option>
+                                ))}
+                                </select>
+                            </div>
+                        </div>
+                        {/* <div class="col-md-2 col-6">
+                            <div class="form-group">
+                                <label for="transactionid" class="fw-bold mb-2">Company</label>
+                                <select type="text" class="form-control-custom-big" name="transationid">
+                                    <option>Toto</option>
+                                    <option>Magnum</option>
+                                    <option>Da ma cai</option>
+                                </select>
+                            </div>
+                        </div> */}
 
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="d-block">&nbsp;</label>
-                        <button type="button" id="search" onClick={() => filterList()} class="btn-custom-curve2 w-auto mx-3">Search</button>
-                        <label></label>
-                        <button type="button" id="reset" class="btn-custom-curve1" onClick={() => resetFiletr()}>Reset</button>
+                        <div className={styles.device_detect_for_mobile+" col-12"}>
+                            <div className='row'>
+                                <div className='col-md-6 col-6'>
+                                    <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2"
+                                     onClick={() => filterList('forMob')} >{t('Search')}</button>
+                                </div>
+                                <div className='col-md-6 col-6'>
+                                    <button style={{ width: '100% !important'  }} type="button" className="btn-custom-curve2" 
+                                    onClick = {() =>resetFiletr('forMob')}>{t('Reset')}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={styles.device_detect_for_desktop+" col-md-3"}>
+                            <div class="form-group">
+                                <label class="d-block">&nbsp;</label>
+                                <button type="button" id="search" onClick={() => filterList()} class="btn-custom-curve2 w-auto mx-3">{t('Search')}</button>
+                                <label></label>
+                                <button type="button" id="reset" class="btn-custom-curve1" onClick={() => resetFiletr()}>{t('Reset')}</button>
+                            </div>
+                        </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
