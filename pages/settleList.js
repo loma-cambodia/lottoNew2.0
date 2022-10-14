@@ -70,7 +70,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       
       <SettleBanner/>
-      <section class="page-content custom-padding">
+      <section class="page-content custom-padding vh-70">
           <div class="container">
                 <SettleTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth} _resetTable={resetTable}/> 
           </div>

@@ -81,7 +81,7 @@ useEffect(() => {
               }
             </button>
           </h2>
-          <div id="collapseThree" className="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style={{minHeight: '60vh'}}>
+          <div id="collapseThree" className="accordion-collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style={{minHeight: '40vh'}}>
             <div className="accordion-body">
               <div className="row">
               {!initResult.length == 0 ?
@@ -105,7 +105,7 @@ useEffect(() => {
                               <div className="gp-prize-play-btn ms-auto">
                                 <div className="gp-prize-play-btn ms-auto">
                                   <p className="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
-                                  <p className="mb-0 fs-5 fw-bold">{item.id}</p>
+                                  <p className="mb-0 fs-5 fw-bold text-end">{item.id}</p>
                                 </div>
                             </div>
                           </div>
