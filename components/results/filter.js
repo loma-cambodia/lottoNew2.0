@@ -53,7 +53,8 @@ const Filter = ({_setDate}) => {
                 
                 // setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
 
-            }else {
+
+                setStartDate (new Date(results[0].result_date ? results[0].result_date :''))
 
             }
             }else {
@@ -139,7 +140,7 @@ const Filter = ({_setDate}) => {
             <div className="input-group date" style={{flexWrap: 'nowrap'}} id="datepicker">
                 {/* <input type="text" className="form-control" id="date"/> */}
                 <DatePicker 
-                dateFormat="MM/dd/yyyy"
+                dateFormat="dd/MM/yyyy"
                 selected={startDate} 
                 onChange={(date) => {setStartDate(date), _setDate(date)}} 
                 excludeDates={[addDays(new Date(), 1)]} 

@@ -1439,7 +1439,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                     </div>
                     <div className="col-3">
                         <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => allClearData()}>
-                            <b>Clear</b>
+                            <b>{t('clear')}</b>
                         </button>
                     </div>
                 </div>
@@ -1514,7 +1514,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                             <div className="modal-header text-white" style={{backgroundColor:'#bc2263'}}>
                                 <h5 className="modal-title" id="bettingModal" style={{height: '40px',paddingLeft:'10px'}}>
                                 {/*t('Bet_Successful')*/}
-                                { apiResponce == 'success' ? t('Bet_Successful') : 'Bet Failed '}
+                                { apiResponce == 'success' ? t('Bet_Successful') : t('bet_failed')}
                                 </h5>
                             </div>
                             <div className="modal-body" >
@@ -1543,7 +1543,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                                 </div>
                             </div>
                             <div className="modal-footer" style={{justifyContent:'center'}}>
-                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
+                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>{t('Ok')}</button>
                             </div>
                         </div>
             </Modal>
