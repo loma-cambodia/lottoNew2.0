@@ -57,7 +57,7 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       } 
       dispatch(getLogin(objectWithData));
       let d = new Date();
-      dispatch(searchTicketData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''))
+      dispatch(searchTicketData(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''))
       }, [datauser])
       
       const state = useSelector(state => state);
