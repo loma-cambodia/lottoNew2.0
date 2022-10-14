@@ -482,7 +482,7 @@
   .news-wrapper.short {
       position: fixed;
       bottom: 0%;
-      width: 95%;
+      width: 100%;
       margin: 0 auto;
       left: 0;
       background: rgb(241 131 40);

@@ -602,7 +602,7 @@ const handlePageClick = (event) => {
                     <div className={styles.device_detect_for_mobile}>
                         <div className="form-group mb-0">
                             <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
-                                <b>BETTING LIST REPORT</b>
+                                <b>{t('betting_list_report')}</b>
                                 <img 
                                     onClick={() => openFilterForMob()}
                                     className="img-fluid" 
@@ -657,7 +657,7 @@ const handlePageClick = (event) => {
 
                                     <div className={styles.device_detect_for_desktop+" col-md-6"}>
                                         <div className="form-group">
-                                            <label className="d-block">&nbsp;</label>
+                                            <label className="d-block mb-2">&nbsp;</label>
                                             <button type="button" className="btn-custom-curve2 w-auto me-2" onClick={()=>searchGetListonFilter('forDesk','search_button')} >{t('Search')}</button>
                                             <button type="button" className="btn-custom-curve1" onClick={()=>searchGetListonFilter('forDesk','reset_button')}>{t('Reset')}</button>
                                         </div>
