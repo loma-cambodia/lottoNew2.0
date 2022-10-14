@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import {speedUp,getUsers} from '../store/actions/index';
 import { useDispatch, useSelector } from "react-redux";
+import { t } from 'i18next';
 
 
 const Betting = () => {
@@ -83,16 +84,16 @@ const Betting = () => {
           <div className="collapse navbar-collapse" id="navbarNav" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">Home</a>
+                <a className="nav-link" aria-current="page" href="#">{t('Homepage')}</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Bettting</a>
+                <a className="nav-link" href="#">{t('Betting')}</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">History</a>
+                <a className="nav-link" href="#">{t('History')}</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link">Results</a>
+                <a className="nav-link">{t('Result')}</a>
               </li>
             </ul>
           </div>
@@ -102,14 +103,14 @@ const Betting = () => {
                   <a className="nav-link">
                     John_0786
                     <br/>
-                    102,84665.00 <button className="btn btn-warning btn-sm rounded-pill">VND</button>
+                    102,84665.00 <button className="btn btn-warning btn-sm rounded-pill">USD</button>
                   </a>
                 </li>
             </ul>
           </div>
             <div className=" navbar-nav me-auto mb-2 mb-lg-0">
               <form className="form-inline my-2 my-lg-0">
-                  <button className="btn btn-warning  form-control mr-sm-2 fw-normal">PLAY LOTTERY</button>
+                  <button className="btn btn-warning  form-control mr-sm-2 fw-normal">{t('Play_Lottery')}</button>
               </form>
               <ul className='navbar-nav  '>
                 <li className='nav-item'>
@@ -129,8 +130,8 @@ const Betting = () => {
       {/* Banner */}
       <div className={styles.banner}>
         <div className='container-fluid'>
-          <h3 className='text-white'>BETTING</h3>
-          <p className='font-weight-light text-white'>Home / Betting</p>
+          <h3 className='text-white'>{('Betting')}</h3>
+          <p className='font-weight-light text-white'>{t('Homepage')} / {t('Betting')}</p>
         </div>
       </div>
       <div id={styles.checkboxes} className='row text-center'>
@@ -269,11 +270,11 @@ const Betting = () => {
                           <thead className='border-white'>
                             <tr className='text-center'>
                               <th></th>
-                            <th>Number</th>
-                            <th>Big/3A</th>
-                            <th>Small/3C</th>
-                            <th>Bet Type</th>
-                            <th>Amount</th>
+                            <th>{t('Number')}</th>
+                            <th>B/3A</th>
+                            <th>S/3C</th>
+                            <th>{t('Bet_Type')}</th>
+                            <th>{t('Amount')}</th>
                             </tr>
                           </thead>
                           <tbody >
@@ -359,7 +360,7 @@ const Betting = () => {
                         <div className={`${styles.betTotal} container`} >
                               <div>
                                 <b>
-                                  Total Stake
+                                 {t('Total_Stake')}
                                 </b>
                                 <label className='px-3'>
                                   216.00
@@ -367,10 +368,10 @@ const Betting = () => {
                               </div>
                             <div>
                               <button type="button" className={`${styles.boxStyle} mx-5`} style={{background:'white',fontWeight:'bold',padding: '10px 30px'}}>
-                                Clear
+                                {t('clear')}
                               </button>
                               <button type="button" className={`${styles.boxStyle}`} style={{background:'#bf2262' ,fontWeight:'bold' ,color:'white',padding: '10px 30px'}}>
-                                Submit
+                                {t('submit')}
                               </button>
                             </div>
                           </div>
@@ -386,16 +387,16 @@ const Betting = () => {
             </div>
             <div className="col-8 d-flex flex-column align-items-end" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}> 
                 <ul className="nav col-md-8 justify-content-end">
-                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">Home</a></li>
-                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">Betting</a></li>
-                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">History</a></li>
-                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">Results</a></li>
-                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">Play Lottery</a></li>
+                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">{t('Homepage')}</a></li>
+                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">{t('Betting')}</a></li>
+                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">{t('History')}</a></li>
+                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">{t('Result')}</a></li>
+                  <li className="nav-item"><a href="#" className="nav-link px-2 text-white">{t('Play_Lottery')}</a></li>
                   
                 </ul>
                 <br/>
                   <p className='justify-content-end text-white'style={{fontSize: 'small'}}>
-                       Copyright© 2022. AllRight Reserved By PokLotto
+                       {t('copyright')}
                   </p>
             </div>
           </div>

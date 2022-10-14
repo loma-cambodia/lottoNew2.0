@@ -465,7 +465,7 @@ const handlePageClick = (event) => {
                         <table className="table small table-bordered mt-3">
                             <thead>
                                 <tr>
-                                    <th>{t('No.')}</th>
+                                    <th>{t('No')}</th>
                                     <th className="text-start">{t('Detail_Number')}</th>
                                     {/* <th className="text-start">Detail Number</th> */}
                                     <th className="text-center">{t('Betting_Time')}</th>

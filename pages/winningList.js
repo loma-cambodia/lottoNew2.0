@@ -112,7 +112,9 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
       
       
       const getOddsBig =(prize,game,item) =>{
-        console.log(prize+"khan test ======"+game+item);
+        console.log('getoddsbig prize: ',prize);
+        console.log('getoddsbig game: ',game);
+        console.log('getoddsbig item: ',item);
         if(prize == 'P1' && game == '4D')
         {
           return item.big_first
@@ -185,16 +187,17 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                   <table className="mob-table mb-3">
                       <thead>
                         <tr>
-                          <th><span>Detail Number<br />Betting Time<br/>Draw ID<br/>Draw Date</span></th>
-                          <th><span>Game<br />Bet Number<br/>{t('Company')}<br/>Prize</span></th>
-                          <th><span>Big<br />Small<br/>3A<br/>3C</span></th>
-                          <th><span>Odds (B/3A)<br />Odds (S/3C)<br/>Total<br/>Rebate</span></th>
-                          <th><span>Net<br />Winning<br/>W/L</span></th>
+                          <th><span>{t('Detail_Number')}<br />{t('Betting_Time')}<br/>{t('Draw_Id')}<br/>{t('Draw_Date')}</span></th>
+                          <th><span>{t('game')}<br />{t('Bet_Number')}<br/>{t('Company')}<br/>{t('prize_type')}</span></th>
+                          <th><span>{t('Big_Bet')}<br />{t('Small_Bet')}<br/>3A<br/>3C</span></th>
+                          <th><span>{t('Odds')} (B/3A)<br />{t('Odds')} (S/3C)<br/>{t('Total')}<br/>{t('Rebate')}</span></th>
+                          <th><span>{t('Net')}<br />{t('winning')}<br/>{t('Winning_Loss')}</span></th>
                         </tr>
                       </thead>
                       <tbody>
-                        {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>(
-                          <tr key={id}>    
+                        {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>{
+                          if(item.winning_amount){
+                            <tr key={id}>    
                             <td>
                                 <span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.draw_number}<br />{item.ticket.betting_date}</span>
                             </td> 
@@ -212,9 +215,11 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                                 <span className={`${(item.winning_amount - item.bet_net_amount) > 0 ? "winningAmount":""} text-end`}>{MoneyFormatDisplay(item.winning_amount - item.bet_net_amount ,1)}</span>
                             </td>
                           </tr>
-                        ))
+                          }
+                          
+                          })
                         :<tr className='text-center'>
-                          <td colSpan={5}>No results</td>
+                          <td colSpan={5}>{t('no_results')}</td>
                         </tr>
                         }
                       </tbody>
@@ -224,31 +229,32 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                 <table className="table small table-bordered align-middle table-sm">
                   <thead>
                       <tr >
-                          <th>{t('No.')}</th>
-                          <th className="text-start">Detail Number</th>
-                          <th className="text-center">Betting Time</th>
-                          <th className="text-center">Draw ID</th>
-                          <th className="text-center">Draw Date</th>
-                          <th className="text-center">Game</th>
-                          <th className="text-start">Bet Number</th>
+                          <th>{t('No')}</th>
+                          <th className="text-start"> {t('Detail_Number')}</th>
+                          <th className="text-center">{t('Betting_Time')}</th>
+                          <th className="text-center">{t('Draw_Id')}</th>
+                          <th className="text-center">{t('Draw_Date')}</th>
+                          <th className="text-center">{t('game')}</th>
+                          <th className="text-start">{t('Bet_Number')}</th>
                           <th className="text-center">{t('Company')}</th>
-                          <th className="text-center">Prize</th>
-                          <th className="text-end">Big</th>
-                          <th className="text-end">Small</th>
+                          <th className="text-center">{(t('prize_type'))}</th>
+                          <th className="text-end">{t('Big_Bet')}</th>
+                          <th className="text-end">{t('Small_Bet')}</th>
                           <th className="text-end">3A</th>
                           <th className="text-end">3C</th>
-                          <th className="text-end">Odds (B/3A)</th>
-                          <th className="text-end">Odds (S/3C)</th>
-                          <th className="text-end">Total</th>
-                          <th className="text-end">Rebate</th>
-                          <th className="text-end">Net</th>
-                          <th className="text-end">Winning</th>
-                          <th className="text-end">W/L</th>
+                          <th className="text-end">{t('Odds')} (B/3A)</th>
+                          <th className="text-end">{t('Odds')} (S/3C)</th>
+                          <th className="text-end">{t('Total')}</th>
+                          <th className="text-end">{t('Rebate')}</th>
+                          <th className="text-end">{t('Net')}</th>
+                          <th className="text-end">{t('winning')}</th>
+                          <th className="text-end">{t('Winning_Loss')}</th>
                       </tr>
                   </thead>
                   <tbody>
-                      {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>(
-                          <tr key={id}>
+                      {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>{
+                          if (item.winning_amount > 0) {
+                            <tr key={id}>
                               <td>{id+1}</td>
                               <td className="text-start"><a >{item.child_ticket_no}</a></td>
                               <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
@@ -278,9 +284,11 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                               {/* className={`${pageCount > 1 ? "winningFilterTall":""} table-responsive my-3`} */}
                           
                           </tr>
-                      ))
+                          }
+
+                        })
                       :<tr className='text-center'>
-                            <td colSpan={16}>No results</td>
+                            <td colSpan={16}>{t('no_results')}</td>
                       </tr>
                       }
                   </tbody>

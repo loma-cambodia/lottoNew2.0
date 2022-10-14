@@ -1,8 +1,12 @@
+// import { t } from 'i18next';
+import { useTranslation } from "react-i18next";
+
 import Head from 'next/head'
 import Link from 'next/link'
 // import styles from '../styles/Home.module.css'
 
 export default function About403() {
+    const { t } = useTranslation();
 
   return (
     // <div className={`${styles.error} row`}>
@@ -12,7 +16,7 @@ export default function About403() {
           <link href="assets/css/style.css" rel="stylesheet"/>
           <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>
-        <title>Loma Lotto - 403 Access Denied</title>
+        <title>Loma Lotto - 403 {t('access_denied')}</title>
         </Head>
         
                                 <div className="col-12 text-center" 
@@ -25,17 +29,17 @@ export default function About403() {
                                 </div>
                                 <div className="col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'center', flexDirection:'column',paddingTop:'100px'}}>      
                                     <div className="section-title text-center border-bottom border-top border-4" style={{width:'60vw'}}>
-                                        <h1 className="sub-title py-3 smallLetter text-color-main" style={{}}>Access Denied Or Forbbiden</h1>
+                                        <h1 className="sub-title py-3 smallLetter text-color-main" style={{}}>{t('access_denied_or_forbbiden')}</h1>
                                     </div>
                                         <br></br>
                                     <div className='text-center'>
                                       <span className="" style={{fontWeight: 'normal'}}>
-                                          The page or resource you’re trying to reach is absolutely forbbiden for some reason.
+                                          {t('403_message')}
                                       </span>
                                     </div>
                                   <div>
                                       <a className="" style={{fontWeight: 'normal', color:'#fd5497'}}>
-                                          Return to Home Page.
+                                          {t('return_to')} {t('Homepage')}.
                                       </a>
                                   </div>
                                 </div>

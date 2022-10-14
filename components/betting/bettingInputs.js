@@ -313,7 +313,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
                 getValue = limit[0].three_c_max_bet
             }else if(getValue < limit[0].three_c_min_bet ){
-                $("#ErrorC"+idas).html('Bet should not be less than '+limit[0].three_c_min_bet);
+                $("#ErrorC"+idas).html(t('bet_should_not_be_less_than')+limit[0].three_c_min_bet);
 
                 getValue = ''
             }

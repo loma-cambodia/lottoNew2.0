@@ -67,7 +67,7 @@ useEffect(() => {
              {
               _initDate === undefined ?
               <div>
-              <span>Latest Draw Result:</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
+              <span>{t('Last_draw_date')}</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
               </div> 
               :
               !initResult .length == 0 ?
@@ -76,7 +76,7 @@ useEffect(() => {
             </div>    
             :
             <div>
-            <span>No Draw Result</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
+            <span>{t('no_draw_result')}</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
             </div> 
               }
             </button>
@@ -201,7 +201,7 @@ useEffect(() => {
                 ))
                 :
                 <div className="text-center">
-                  <span>There is no draw on this date</span>
+                  <span>{t('no_data_found')}</span>
                 </div>
                 }
                  {/* <div className="col-md-4">

@@ -53,13 +53,13 @@ const Filter = ({_setFilterParams}) => {
 
 
       const [ranges, setRanges] = useState({
-        ['Today']: [moment().subtract(0, 'days'), moment().add(0, 'days')],
-        ['Yesterday']: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        ['Last 7 Days']: [moment().subtract(6, 'days'), moment().add(0, 'days')],
-        ['Last 14 Days']: [moment().subtract(13, 'days'), moment().add(0, 'days')],
-        ['This Month']: [moment().startOf('month')],
-        ['Last Month']: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
-        ['This Year']: [moment().startOf('year')],
+        [t('Today')]: [moment().subtract(0, 'days'), moment().add(0, 'days')],
+        [t('Yesterday')]: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        [t('Last_7_Days')]: [moment().subtract(6, 'days'), moment().add(0, 'days')],
+        [t('Last_14_Days')]: [moment().subtract(13, 'days'), moment().add(0, 'days')],
+        [t('This_Month')]: [moment().startOf('month')],
+        [t('Last_Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
+        [t('This_Year')]: [moment().startOf('year')],
       });
       
       function formatDate(date) {
@@ -138,7 +138,7 @@ const Filter = ({_setFilterParams}) => {
                 <div className={styles.device_detect_for_mobile}>
                     <div className="form-group mb-0">
                         <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
-                            <b>BETTING LIST REPORT</b>
+                            <b>{t('betting_list_report')}</b>
                             <img 
                                 onClick={() => openFilterForMob()}
                                 className="img-fluid" 
@@ -152,7 +152,7 @@ const Filter = ({_setFilterParams}) => {
                     <div class="row">
                         <div class="col-md-3 col-12">
                             <div class="form-group">
-                                <label class="fw-bold mb-2">Select Date Range</label>
+                                <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                 <DateRangePicker
                                             ref={keyRef}
                                             onApply={handleApply1}
@@ -165,13 +165,13 @@ const Filter = ({_setFilterParams}) => {
                         </div>
                         <div class="col-md-2 col-12">
                             <div class="form-group">
-                                <label for="transactionid" class="fw-bold mb-2">Ticket No</label>
+                                <label for="transactionid" class="fw-bold mb-2">{('Ticket_No')}</label>
                                 <input id="ticket_no" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setTicketNo(event.target.value)}/>
                             </div>
                         </div>
                         <div class="col-md-2 col-12">
                             <div class="form-group">
-                                <label for="transactionid" class="fw-bold mb-2">Prize Type</label>
+                                <label for="transactionid" class="fw-bold mb-2">{t('prize_type')}</label>
                                 <select id="prize_type" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setPrizeType(event.target.value)}>
                                 { prizeTypleList.map((item,id)=>(
                                         <option key={id}>{item}</option>
