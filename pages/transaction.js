@@ -23,11 +23,11 @@ export default function Transaction({datauser}){
                 <div id="mySidepanel" className="sidepanel">
                     <a href="javascript:void(0)" className="closebtn" onclick="closeNav()">&times;</a>
                     <ul className="list-unstyled">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Home</a></li>
+                        <li><a href="#">{t('Homepage')}</a></li>
+                        <li><a href="#">{t('Homepage')}</a></li>
+                        <li><a href="#">{t('Homepage')}</a></li>
+                        <li><a href="#">{t('Homepage')}</a></li>
+                        <li><a href="#">{t('Homepage')}</a></li>
                     </ul>
                     </div>
                 {/*--Mobile Menu-*/}
