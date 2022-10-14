@@ -240,26 +240,26 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                   <table className="table small table-bordered align-middle table-sm">
                   <thead>
                       <tr >
-                          <th>{t('No.')}</th>
-                          <th className="text-start">Detail Number</th>
-                          <th className="text-center">Betting Time</th>
-                          <th className="text-center">Draw ID</th>
-                          <th className="text-center">Draw Date</th>
-                          <th className="text-center">Game</th>
-                          <th className="text-start">Bet Number</th>
-                          <th className="text-center">{t('Company')}</th>
-                          <th className="text-center">Prize</th>
-                          <th className="text-end">Big</th>
-                          <th className="text-end">Small</th>
-                          <th className="text-end">3A</th>
-                          <th className="text-end">3C</th>
-                          <th className="text-end">Odds (B/3A)</th>
-                          <th className="text-end">Odds (S/3C)</th>
-                          <th className="text-end">Total</th>
-                          <th className="text-end">Rebate</th>
-                          <th className="text-end">Net</th>
-                          <th className="text-end">Winning</th>
-                          <th className="text-end">W/L</th>
+                          <th style={{verticalAlign:'middle'}}>{t('No.')}</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-start">Detail<br/>Number</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-center">Betting<br/>Time</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-center">Draw<br/>Date</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-center">Draw<br/>ID</th>
+                          {/* <th className="text-center">Game</th> */}
+                          <th  style={{verticalAlign:'middle'}} className="text-start">Bet<br/>Number</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-center">{t('Company')}</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Big</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Small</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">3A</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">3C</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Odds<br/>(B/3A)</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Odds<br/>(S/3C)</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Total</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Rebate</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Net</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-center">Prize</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Winning</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">W/L</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -268,13 +268,12 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                               <td>{id+1}</td>
                               <td className="text-start"><a >{item.child_ticket_no}</a></td>
                               <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
-                              <td className="text-center">{item.ticket.draw_number}</td>
-
                               <td className="text-center">{item.ticket.betting_date}</td>
-                              <td className="text-center">{item.game_type}</td>
+                              <td className="text-center">{item.ticket.draw_number}</td>
+                              {/* <td className="text-center">{item.game_type}</td> */}
                               <td className="text-start">{item.lottery_number}</td>
                               <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
-                              <td className="text-start">{item.prize_type}</td>
+                              
 
                               <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
@@ -289,6 +288,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                               <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+                              <td className="text-start">{item.prize_type}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.winning_amount,1)}</td>
                               <td className={`${(item.winning_amount - item.bet_net_amount) > 0 ? "winningAmount":""} text-end`}>{MoneyFormatDisplay(item.winning_amount - item.bet_net_amount ,1)}</td>
                               {/* className={`${pageCount > 1 ? "winningFilterTall":""} table-responsive my-3`} */}
