@@ -39,6 +39,9 @@ useEffect(() => {
 const state = useSelector(state => state);
 const auth = useSelector(state => state.auth);
 
+
+console.log('Index:state:', state);
+
       state.auth.transactions
 
       let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};

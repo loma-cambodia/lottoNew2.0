@@ -23,6 +23,8 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
    let auth = _auth;
 
     // Calling useRouter() hook
+
+   // console.log('auth:',auth);
    
    let language = '';
 
