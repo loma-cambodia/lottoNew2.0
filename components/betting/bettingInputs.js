@@ -53,7 +53,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
         let threeDAmout = calculate3DAmountEnable(getValue,operationField);
 
-      //  console.log('1111111111111111111111111');
 
         if (operationField == 'number') {
 
@@ -143,7 +142,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
         } else if (operationField == 'box') {
 
-       //   console.log('box');
           let changeValue = localStateDataForChange['bet_type']['box_value'] ? 0 : 1;
           let number_value = localStateDataForChange['number']['value'];
         //  if(number_value.length == 3 || number_value.length == 4)
@@ -244,8 +242,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             localStateDataForChange = { ...localStateDataForChange, small: { value: getValue, disabled: 0 } };
         } else if (operationField == '_3a') {
 
-            console.log('in -3a');
 
+            
 
             
             if (!getValue.match("^[0-9-.]*$")) {
@@ -375,8 +373,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
           localStateDataForChange = { ...localStateDataForChange, amount: { value: totalAmount, disabled: 1 } };
 
 
-          console.log('localStateDataForChange:',localStateDataForChange);
 
+          
 
 
         _updateBettingInputsData(item.name,localStateDataForChange);
@@ -417,8 +415,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
       
         }else if(numberValue.length == 4){
 
-            //console.log('444444444444444444');
 
+            
                 if (numberValue.includes("R") || numberValue.includes("r")) {
                     _localStateDataForChange = { ..._localStateDataForChange, _3a: { value: "", disabled: 1 } };
                     _localStateDataForChange = { ..._localStateDataForChange, _3c: { value: "", disabled: 1 } };
@@ -441,14 +439,14 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         }
 
 
-        console.log('changeBoxValues:_localStateDataForChange:',_localStateDataForChange);
+
         return _localStateDataForChange;
     } 
 
     const calculationOfTotalAmount = (getRow) => {
 
-        console.log('getRow:', getRow);
-      let bet_type = '';
+
+        let bet_type = '';
       let total_sum = 0;
       if(getRow && getRow.bet_type && getRow.bet_type.box_value) 
          bet_type = 'box';
@@ -467,30 +465,30 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
      if(getRow && getRow.big && getRow.big.value) 
        total_sum = total_sum + parseFloat(getRow.big.value);
 
-      // console.log('total_sum:', total_sum);
 
+       
       if(getRow && getRow.small && getRow.small.value) 
       total_sum = total_sum + parseFloat(getRow.small.value);
 
-      //console.log('total_sum:', total_sum);
 
+      
       if(getRow && getRow._3a && getRow._3a.value) 
       total_sum = total_sum + parseFloat(getRow._3a.value);
 
-      //console.log('total_sum:', total_sum);
 
+      
       if(getRow && getRow._3c && getRow._3c.value) 
       total_sum = total_sum + parseFloat(getRow._3c.value);
 
-      //console.log('total_sum:', total_sum);
 
+      
 
       let totalAmount =  0;
       if(_gameCount && total_sum)
       totalAmount = _gameCount * total_sum  
 
-     // console.log('totalAmount:', totalAmount);
 
+      
       if(bet_type == 'box'){
         let totalBoxing = totalBoxingCalculation(getRow && getRow.number && getRow.number.value ? getRow.number.value : 0);
       if(totalBoxing)
@@ -506,7 +504,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
     }
 
-   // console.log('totalAmount:', totalAmount);
           
       return totalAmount;
     }
@@ -524,8 +521,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         let uniqueAges = getStringUniqueCharactors(_getNumber);
         let repeatedRecords = getNumberRepeatedCounterArray(_getNumber);
 
-        console.log('uniqueAges:',uniqueAges);  
-        console.log('repeatedRecords:',repeatedRecords);
+
         
 
             if(_getNumber.length == 3){
@@ -565,7 +561,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
     const getNumberRepeatedCounterArray = (_getNumber) => {
 
         let strSplited = _getNumber.split('');
-        console.log('strSplited:',strSplited);
         let object_New = {};
 
         strSplited.map(item => {
@@ -606,7 +601,6 @@ useEffect(() => {
     }
  };
 
- console.log('localStateInitData:::',localStateInitData);
 
 
     return (

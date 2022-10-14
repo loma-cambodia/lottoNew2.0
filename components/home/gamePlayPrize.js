@@ -50,10 +50,10 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
                                 <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span>{item.fetching_date}</p>
                                 <p className="date-cal">{getDateName(item.fetching_date)}</p>
                             </div>
-                            <div class="gp-prize-play-btn ms-auto">
-                                <div class="gp-prize-play-btn ms-auto">
-                                  <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
-                                  <p class="mb-0 fs-5 fw-bold">{item.reference_number}</p>
+                            <div className="gp-prize-play-btn ms-auto">
+                                <div className="gp-prize-play-btn ms-auto">
+                                  <p className="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
+                                  <p className="mb-0 fs-5 fw-bold">{item.reference_number}</p>
                                 </div>
                             </div>
                         </div>
@@ -166,10 +166,10 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
                                 <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p>
                                
                             </div>
-                            <div class="gp-prize-play-btn ms-auto">
-                                <div class="gp-prize-play-btn ms-auto">
-                                  <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
-                                  <p class="mb-0 fs-5 fw-bold">4567891</p>
+                            <div className="gp-prize-play-btn ms-auto">
+                                <div className="gp-prize-play-btn ms-auto">
+                                  <p className="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
+                                  <p className="mb-0 fs-5 fw-bold">4567891</p>
                                 </div>
                             </div>
                         </div>
@@ -269,10 +269,10 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
                                 <p className="fw-bold">SPORTS TOTO</p>
                                  <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span> 22-09-2022</p> 
                             </div>
-                            <div class="gp-prize-play-btn ms-auto">
-                                <div class="gp-prize-play-btn ms-auto">
-                                  <p class="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
-                                  <p class="mb-0 fs-5 fw-bold">4567891</p>
+                            <div className="gp-prize-play-btn ms-auto">
+                                <div className="gp-prize-play-btn ms-auto">
+                                  <p className="fw-bold small mb-0 text-end">{t('Draw_Id')}</p>
+                                  <p className="mb-0 fs-5 fw-bold">4567891</p>
                                 </div>
                             </div>
                         </div>

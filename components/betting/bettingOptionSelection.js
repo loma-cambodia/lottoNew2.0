@@ -291,7 +291,6 @@ const [isLoading,  setIsLoading] = React.useState(false);
 
          dispatch(lotterySubmit(dataSubmit, response =>{
 
-          //  console.log('111:response:',response);
             
             if(response.message_id  == 201  || response.message_id  == 200 ){
 
@@ -299,7 +298,6 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     modelOpenCustom('success');
                     loginAPICall();
             }else {
-                console.log('response:',response);
 
                 modelOpenCustom(response.messages[0]);
                // setIsLoading(false);
@@ -328,7 +326,6 @@ const [isLoading,  setIsLoading] = React.useState(false);
         if (bettingInitData.length === 0){
             setBettingInitData(dateAndGameOptionData)
         }
-        console.log('111111:',bettingInitData.length);
       });
 
       useEffect(() => {
@@ -482,28 +479,28 @@ const [isLoading,  setIsLoading] = React.useState(false);
                                 </h5>
                             </div>
                             <div className="modal-body p-3" >
-                                <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
+                                <div className="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
                                     {apiResponce == 'success' ? 
-                                    (<div class="row">
-                                        <div class="col-8 col-sm-8"><p>{t('Total')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.total ? MoneyFormatDisplay(resultData.total, 1) : 0 }</p></div>
-                                        <div class="col-8 col-sm-8"><p>{t('Accepted_bet_amount')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.acp_bet ? MoneyFormatDisplay(resultData.acp_bet,1) : 0 }</p></div>
-                                        <div class="col-8 col-sm-8"><p>{t('Rebate')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.rebat ? MoneyFormatDisplay(resultData.rebat,1) : 0 }</p></div>
-                                        <div class="col-8 col-sm-8"><p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount,1) : 0 }</p></div>
+                                    (<div className="row">
+                                        <div className="col-8 col-sm-8"><p>{t('Total')}</p></div>
+                                        <div className="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.total ? MoneyFormatDisplay(resultData.total, 1) : 0 }</p></div>
+                                        <div className="col-8 col-sm-8"><p>{t('Accepted_bet_amount')}</p></div>
+                                        <div className="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.acp_bet ? MoneyFormatDisplay(resultData.acp_bet,1) : 0 }</p></div>
+                                        <div className="col-8 col-sm-8"><p>{t('Rebate')}</p></div>
+                                        <div className="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.rebat ? MoneyFormatDisplay(resultData.rebat,1) : 0 }</p></div>
+                                        <div className="col-8 col-sm-8"><p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p></div>
+                                        <div className="col-8 col-sm-4" style={{textAlign:'right'}}><p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount,1) : 0 }</p></div>
                                         
-                                    </div>) : (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>)}
+                                    </div>) : (<div className="row"><div className="text-center top-50"></div><div className="text-center top-50">{apiResponce}</div></div>)}
                                     
                                     
-                                    {/* (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>) */}
+                                    {/* (<div className="row"><div className="text-center top-50"></div><div className="text-center top-50">{apiResponce}</div></div>) */}
                                     <RejectedBedContainer dataRecords ={resultData && resultData.rejected ? resultData.rejected : []}/>
                                    
                                     
                                 </div>
                             </div>
-                            <div class="modal-footer px-2 py-3 border-top" style={{justifyContent:'center'}}>
+                            <div className="modal-footer px-2 py-3 border-top" style={{justifyContent:'center'}}>
                                 <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
                                 {/* <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50"/> */}
                             </div>

@@ -69,8 +69,8 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       {/* <Header datauser={datauser}/> */}
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <ListBanner/>
-      <section class="page-content custom-padding vh-70">
-    <div class="container">
+      <section className="page-content custom-padding vh-70">
+    <div className="container">
         {/* <ListFilter/> */}
          <ListTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth}/> 
 
@@ -95,40 +95,40 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
 
         {/* </div> */}
 
-        {/* <div class="clearfix d-flex align-items-center justify-content-center">
-            <div class="pagination:container">
-                <div class="pagination:number arrow">
+        {/* <div className="clearfix d-flex align-items-center justify-content-center">
+            <div className="pagination:container">
+                <div className="pagination:number arrow">
                   <svg width="18" height="18">
                   </svg>
-                  <span class="arrow:text">Previous</span> 
+                  <span className="arrow:text">Previous</span> 
                 </div>
                 
-                <div class="pagination:number">
+                <div className="pagination:number">
                   1
                 </div>
-                <div class="pagination:number">
+                <div className="pagination:number">
                   2
                 </div>
                 
-                <div class="pagination:number pagination:active">
+                <div className="pagination:number pagination:active">
                   3
                 </div>
                 
-                <div class="pagination:number">
+                <div className="pagination:number">
                   4
                 </div>
                 
-                <div class="pagination:number">
+                <div className="pagination:number">
                   540
                 </div>
                 
-                <div class="pagination:number arrow">
+                <div className="pagination:number arrow">
                   <svg width="18" height="18">
                   </svg>
                 </div>
               </div>
               
-              <svg class="hide">
+              <svg className="hide">
                 <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
                 <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
               </svg>

@@ -134,7 +134,7 @@ const Filter = ({_setFilterParams}) => {
     }
     return (
         <>
-            <div class="clearfix curved-card">
+            <div className="clearfix curved-card">
                 <div className={styles.device_detect_for_mobile}>
                     <div className="form-group mb-0">
                         <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
@@ -149,10 +149,10 @@ const Filter = ({_setFilterParams}) => {
                     </div>
                 </div>
                 <div className={styles.device_detect_for_desktop+' hideAndShowForMobileView'}>
-                    <div class="row">
-                        <div class="col-md-3 col-12">
-                            <div class="form-group">
-                                <label class="fw-bold mb-2">Select Date Range</label>
+                    <div className="row">
+                        <div className="col-md-3 col-12">
+                            <div className="form-group">
+                                <label className="fw-bold mb-2">Select Date Range</label>
                                 <DateRangePicker
                                             ref={keyRef}
                                             onApply={handleApply1}
@@ -163,26 +163,26 @@ const Filter = ({_setFilterParams}) => {
                                         </DateRangePicker>
                             </div>                    
                         </div>
-                        <div class="col-md-2 col-12">
-                            <div class="form-group">
-                                <label for="transactionid" class="fw-bold mb-2">Ticket No</label>
-                                <input id="ticket_no" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setTicketNo(event.target.value)}/>
+                        <div className="col-md-2 col-12">
+                            <div className="form-group">
+                                <label htmlFor="transactionid" className="fw-bold mb-2">Ticket No</label>
+                                <input id="ticket_no" type="text" className="form-control-custom-big" name="transationid" onChange={(event) => setTicketNo(event.target.value)}/>
                             </div>
                         </div>
-                        <div class="col-md-2 col-12">
-                            <div class="form-group">
-                                <label for="transactionid" class="fw-bold mb-2">Prize Type</label>
-                                <select id="prize_type" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setPrizeType(event.target.value)}>
+                        <div className="col-md-2 col-12">
+                            <div className="form-group">
+                                <label htmlFor="transactionid" className="fw-bold mb-2">Prize Type</label>
+                                <select id="prize_type" type="text" className="form-control-custom-big" name="transationid" onChange={(event) => setPrizeType(event.target.value)}>
                                 { prizeTypleList.map((item,id)=>(
                                         <option key={id}>{item}</option>
                                 ))}
                                 </select>
                             </div>
                         </div>
-                        {/* <div class="col-md-2 col-6">
-                            <div class="form-group">
-                                <label for="transactionid" class="fw-bold mb-2">Company</label>
-                                <select type="text" class="form-control-custom-big" name="transationid">
+                        {/* <div className="col-md-2 col-6">
+                            <div className="form-group">
+                                <label htmlFor="transactionid" className="fw-bold mb-2">Company</label>
+                                <select type="text" className="form-control-custom-big" name="transationid">
                                     <option>Toto</option>
                                     <option>Magnum</option>
                                     <option>Da ma cai</option>
@@ -205,11 +205,11 @@ const Filter = ({_setFilterParams}) => {
                         </div>
 
                         <div className={styles.device_detect_for_desktop+" col-md-4"}>
-                            <div class="form-group">
-                                <label class="d-block mb-2">&nbsp;</label>
-                                <button type="button" id="search" onClick={() => filterList()} class="btn-custom-curve2 w-auto me-2">{t('Search')}</button>
+                            <div className="form-group">
+                                <label className="d-block mb-2">&nbsp;</label>
+                                <button type="button" id="search" onClick={() => filterList()} className="btn-custom-curve2 w-auto me-2">{t('Search')}</button>
                                 <label></label>
-                                <button type="button" id="reset" class="btn-custom-curve1" onClick={() => resetFiletr()}>{t('Reset')}</button>
+                                <button type="button" id="reset" className="btn-custom-curve1" onClick={() => resetFiletr()}>{t('Reset')}</button>
                             </div>
                         </div>
                     </div>

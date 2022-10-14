@@ -22,15 +22,8 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
    const dispatch = useDispatch();
    let auth = _auth;
 
-    console.log('Header:auth:',auth);
-
-  //  console.log('Header:datauser:',datauser);
-
-  //  console.log('Header:auth:',auth);
-
     // Calling useRouter() hook
    
-
    let language = '';
 
    if(auth && auth.lang){
@@ -44,7 +37,6 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
   const router = useRouter()
   const {id} = router.query
 
-  console.log("LINK",id)
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language])
@@ -159,9 +151,9 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                               </Link>
                               </li>
 
-                            {/* <li class="dropdown-desktop">
+                            {/* <li className="dropdown-desktop">
                             <a href="#" >{t('History')} </a>
-                            <ul class="sub-menu-desktop">
+                            <ul className="sub-menu-desktop">
                                 <li><Link href="/bettingNew">{t('Betting')}</Link></li>
                                 <li className= {`${router === "/bettingList" ? "active-header":""}`}><Link href="/bettingList">{t('History')}</Link></li>
                             </ul>
