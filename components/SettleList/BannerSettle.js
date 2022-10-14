@@ -16,9 +16,8 @@ const SettleBanner = () => {
             <div className="breadcrumb-list">
                 <ul>
                     <li>
-                        <a href="#"><span>{t('Homepage')}</span></a>
+                        <span>{t('Homepage')} / {t('betting_history')}</span>
                     </li>
-                    <li><span>{t('betting_history')}</span></li>
                 </ul>
             </div>
         </div>
