@@ -28,7 +28,7 @@ const Filter = ({_setDate}) => {
                 let results = response.data.data
                 // setStartDate(results[0].result_date)
 
-                setStartDate (new Date(results[0].result_date ? results[0].result_date :''))
+                setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
             }else {
 
             }
