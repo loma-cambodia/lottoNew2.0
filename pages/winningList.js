@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import styles from '../styles/Home.module.css'
 import WinngListBanner from '../components/Winning/Banner';
 import ListTable from '../components/BettingList/BettingListTable';
-import {getTicketData,searchTicketData} from '../store/actions/reportActions';
+//import {getTicketData,searchTicketData} from '../store/actions/reportActions';
 import {getWinningData,filterWinningData} from '../store/actions/winninglistActions';
 import {getLogin} from '../store/actions/authActions';
 import moment from 'moment';
@@ -78,7 +78,17 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 }))
 }
 
-
+function formatDate2(date) {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+  if (month.length < 2)
+      month = '0' + month;
+  if (day.length < 2)
+      day = '0' + day;
+  return [day,month,year].join('/');
+}
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(winningList.slice(itemOffset, endOffset));
@@ -87,7 +97,28 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
 
        useEffect(() => {
-        getWinningList();
+        let d = new Date();
+        const filter = {
+          dateRange : formatDate2(d)+ '-' + formatDate2(d)
+        }
+        dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,filter, response =>{
+
+          if(response.statusCode  == 201  || response.statusCode  == 200 ){
+  
+          if(response.statusCode == 200){
+  
+              // setWinningList(response.data.data.data)
+              
+            setWinningList(response.data.data.data)
+            // setWinningList(data.data)
+  
+          }else {
+  
+          }
+          }else {
+          // setIsLoading(false);
+      }
+  }  ))
       },[auth,filterParams]);
 
 
