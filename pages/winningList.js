@@ -182,6 +182,8 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
             <div className={`table-responsive my-3`}  >
               <div className={styles.device_detect_for_mobile}>
+                {winningList.length > 0 ? (<>
+                
                   <table className="mob-table mb-3">
                       <thead>
                         <tr>
@@ -193,7 +195,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                         </tr>
                       </thead>
                       <tbody>
-                        {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>(
+                        {currentItems ? currentItems.map((item,id) =>(
                           <tr key={id}>    
                             <td>
                                 <span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.draw_number}<br />{item.ticket.betting_date}</span>
@@ -213,15 +215,41 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                             </td>
                           </tr>
                         ))
-                        :<tr className='text-center'>
-                          <td colSpan={5}>No results</td>
-                        </tr>
+                        :null
                         }
                       </tbody>
                   </table>
+
+                  <div className='d-flex justify-content-center'>
+              { pageCount > 1 ?
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="Next >" 
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    previousLabel="< Previous"
+                    renderOnZeroPageCount={null}
+                    className="pagination"
+              /> : null } 
+            </div>
+                
+                </>) : (<>
+                
+                  <div className='alert alert-warning'>
+                    <h3 className='text-center'>
+                    {t('no_data_found')}
+                    </h3>
+                    
+                </div>
+
+                </>) }
+                  
               </div>
               <div className={styles.device_detect_for_desktop}>
-                <table className="table small table-bordered align-middle table-sm">
+                
+                {winningList.length > 0 ? (<>
+                  <table className="table small table-bordered align-middle table-sm">
                   <thead>
                       <tr >
                           <th>{t('No.')}</th>
@@ -247,7 +275,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                       </tr>
                   </thead>
                   <tbody>
-                      {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>(
+                      {currentItems ? currentItems.map((item,id) =>(
                           <tr key={id}>
                               <td>{id+1}</td>
                               <td className="text-start"><a >{item.child_ticket_no}</a></td>
@@ -279,16 +307,11 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                           
                           </tr>
                       ))
-                      :<tr className='text-center'>
-                            <td colSpan={16}>No results</td>
-                      </tr>
+                      :null
                       }
                   </tbody>
                 </table>
-              </div>
-            </div>
-            
-            <div className='d-flex justify-content-center'>
+                <div className='d-flex justify-content-center'>
               { pageCount > 1 ?
                 <ReactPaginate
                     breakLabel="..."
@@ -301,6 +324,20 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                     className="pagination"
               /> : null } 
             </div>
+                </>) : (<>
+                  <div className='alert alert-warning'>
+                        
+                    <h3 className='text-center'>
+                    {t('no_data_found')}
+                    </h3>
+                    
+                </div></>)}
+
+                
+              </div>
+            </div>
+            
+            
         </div>
       </section>
       
