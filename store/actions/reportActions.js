@@ -6,7 +6,6 @@ import axios from 'axios'
 //http://api.kk-lotto.com:8080/frontend-api/ticket?member_id=4
 export const getTicketData = (id) => async (dispatch) => {
  const userId = id
-  console.log('getTicketData:',userId);
   try {
     const headers = {
       'Content-Type': 'application/json',
@@ -18,7 +17,6 @@ export const getTicketData = (id) => async (dispatch) => {
         headers: headers,
       }
     )
-    console.log("TICKET-DATA-->>",res)
     dispatch({
       type: 'GET_TICKETS',
       payload: res.data.data,
@@ -34,7 +32,6 @@ export const getTicketData = (id) => async (dispatch) => {
 
 export const getTicketDataSettled = (id) => async (dispatch) => {
   const userId = id
-   console.log('getTicketData:',userId);
    try {
      const headers = {
        'Content-Type': 'application/json',
@@ -46,7 +43,6 @@ export const getTicketDataSettled = (id) => async (dispatch) => {
          headers: headers,
        }
      )
-     //console.log("TICKET-DATA-->>",res)
      dispatch({
        type: 'GET_SETTLE_REPORTS',
        payload: res.data.data,
@@ -65,8 +61,6 @@ export const searchTicketData = (member_id,date_range, ticketNumber) => async (d
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     }
-   /// const date = date_range.replace(/\s+/g, '-');
-    //console.log('ticketNumber:', ticketNumber);
 
      date_range = date_range.replace(" ", "");
      date_range = date_range.replace(" ", "");
@@ -87,7 +81,6 @@ export const searchTicketData = (member_id,date_range, ticketNumber) => async (d
         headers: headers,
       }
     )
-    console.log("SEARCH TICKET-->>",res)
     dispatch({
       type: 'GET_SEARCH_TICKETS',
       payload: res.data.data,
@@ -107,8 +100,6 @@ export const searchTicketDataSettled = (member_id,date_range, ticketNumber) => a
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     }
-   /// const date = date_range.replace(/\s+/g, '-');
-    //console.log('ticketNumber:', ticketNumber);
 
      date_range = date_range.replace(" ", "");
      date_range = date_range.replace(" ", "");
@@ -129,7 +120,6 @@ export const searchTicketDataSettled = (member_id,date_range, ticketNumber) => a
         headers: headers,
       }
     )
-    console.log("SEARCH TICKET-->>",res)
     dispatch({
       type: 'GET_SETTLE_REPORTS',
       payload: res.data.data,
@@ -158,7 +148,6 @@ export const getLotteryDetailsList = (getData) => async (dispatch) => {
 
 
 
-    console.log('getLotteryDetailsList:ticketId:', ticketId);
 
     let URL = `${API_BASE_URL}/betListById?id=${ticketId}`;
 
@@ -177,7 +166,6 @@ export const getLotteryDetailsList = (getData) => async (dispatch) => {
         headers: headers,
       }
     )
-    //console.log("SEARCH TICKET-->>",res)
     dispatch({
       type: 'GET_SEARCH_TICKETS_CHILD',
       payload: res.data.data,
@@ -216,9 +204,8 @@ export const filterLotteryDetailsList = (getData) => async (dispatch) => {
         headers: headers,
       }
     )
-    console.log("filterLotteryDetailsList TICKET-->>",res)
     dispatch({
-      type: 'GET_SEARCH_TICKETS_CHILD',
+      type: 'GET_FILTER_CHILD_TICKETS',
       payload: res.data.data,
     })
   } catch (e) {

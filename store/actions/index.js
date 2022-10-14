@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 export const speedUp = (value) => {
-  console.log('speedUp:');
     return {
       type: 'SPEED_UP',
       value:value,

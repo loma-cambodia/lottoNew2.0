@@ -227,11 +227,14 @@ const [isLoading,  setIsLoading] = React.useState(false);
 
         let game_dates = [];
         let options = [];
-
+        let minLengthValidation = false; 
+        let isDataNotCorrect = false;
 
 
         _bettingInputsDataParent && _bettingInputsDataParent.map(item => {
             let tempObj = {};
+
+          //  console.log('item.dataInit.number.value.length:', item.dataInit.number.value.length);
             
             tempObj['number'] = item.dataInit && item.dataInit.number && item.dataInit.number.value ? item.dataInit.number.value : '';
             tempObj['big_bet'] = item.dataInit && item.dataInit.big && item.dataInit.big.value ? parseFloat(item.dataInit.big.value).toFixed(2) : 0.00;
@@ -242,9 +245,18 @@ const [isLoading,  setIsLoading] = React.useState(false);
             tempObj['ibox'] = item.dataInit && item.dataInit.bet_type && item.dataInit.bet_type.i_box_value ? 'on' : 'off';
             tempObj['reverse'] = item.dataInit && item.dataInit.bet_type && item.dataInit.bet_type.reverse_value ? 'on' : 'off';
             tempObj['amount'] = item.dataInit.amount.value ? parseFloat(item.dataInit.amount.value).toFixed(2)  : 0;
-            //{"number":"1112","big_bet":"10000","small_bet":"10000","3a_bet":0,"3c_bet":0,"box":"on","ibox":"off","amount":"792"}
+
            if(item.dataInit && item.dataInit.number && item.dataInit.number.value && (item.dataInit.big.value || item.dataInit.small.value || item.dataInit._3a.value || item.dataInit._3c.value))
                options.push(tempObj);
+
+           if(item.dataInit && item.dataInit.number && item.dataInit.number.value && item.dataInit.number.value.length < 3)
+            minLengthValidation = true;
+
+            if(item.dataInit && item.dataInit.number && item.dataInit.number.value && (item.dataInit.number.value.length == 3 || item.dataInit.number.value.length == 4) && !(item.dataInit.big.value || item.dataInit.small.value || item.dataInit._3a.value || item.dataInit._3c.value)){
+              isDataNotCorrect = true
+            }
+          
+
         })
 
 
@@ -264,7 +276,11 @@ const [isLoading,  setIsLoading] = React.useState(false);
                game_dates.push(tempObj); 
         })
 
-       
+        console.log('options:',options);
+        console.log('isDataNotCorrect:',isDataNotCorrect);
+        
+        
+
         if(game_dates.length == 0){
             toast.error('Please choose at least one date selection!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
             pauseOnHover: true,draggable: true,progress: undefined});
@@ -278,11 +294,23 @@ const [isLoading,  setIsLoading] = React.useState(false);
         }
 
 
-        if(options && options.length == 0){
-            toast.error('Please select atleat one number!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+        if(minLengthValidation){
+            toast.error('Please type 3 or 4 digits in number field!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
                 pauseOnHover: true,draggable: true,progress: undefined});
             return false;
         }
+
+        if(isDataNotCorrect){
+          toast.error('please enter valid amount against selected number!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+              pauseOnHover: true,draggable: true,progress: undefined});
+          return false;
+      }
+
+        if(options && options.length == 0){
+          toast.error('Please select at least one number!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+              pauseOnHover: true,draggable: true,progress: undefined});
+          return false;
+      }
 
        let dataSubmit = {member_id:auth.auth.customer_id, merchant_id:auth.auth.merchant_id, game_dates};
        dataSubmit['member_id'] = auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
@@ -291,7 +319,6 @@ const [isLoading,  setIsLoading] = React.useState(false);
 
          dispatch(lotterySubmit(dataSubmit, response =>{
 
-          //  console.log('111:response:',response);
             
             if(response.message_id  == 201  || response.message_id  == 200 ){
 
@@ -299,7 +326,6 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     modelOpenCustom('success');
                     loginAPICall();
             }else {
-                console.log('response:',response);
 
                 modelOpenCustom(response.messages[0]);
                // setIsLoading(false);
@@ -328,7 +354,6 @@ const [isLoading,  setIsLoading] = React.useState(false);
         if (bettingInitData.length === 0){
             setBettingInitData(dateAndGameOptionData)
         }
-        console.log('111111:',bettingInitData.length);
       });
 
       useEffect(() => {
@@ -427,7 +452,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     <th className="border-0"></th>
                 </tr>
                 
-                {bettingInputsDataParent.map((item,ids) => (<BettingInputs key={'bettingInputs1'+item.ids} 
+                {bettingInputsDataParent.map((item,ids) => (<BettingInputs key={'bettingInputs1'+ids} 
                 ids={ids}
                                                          item={item} 
                                                          _updateBettingInputsData = {updateBettingInputsData}
@@ -482,29 +507,29 @@ const [isLoading,  setIsLoading] = React.useState(false);
                                 </h5>
                             </div>
                             <div className="modal-body p-3" >
-                                <div class="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
+                                <div className="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
                                     {apiResponce == 'success' ? 
-                                    (<div class="row">
-                                        <div class="col-8 col-sm-8"><p>{t('Total')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.total ? MoneyFormatDisplay(resultData.total, 1) : 0 }</p></div>
-                                        <div class="col-8 col-sm-8"><p>{t('Accepted_bet_amount')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.acp_bet ? MoneyFormatDisplay(resultData.acp_bet,1) : 0 }</p></div>
-                                        <div class="col-8 col-sm-8"><p>{t('Rebate')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.rebat ? MoneyFormatDisplay(resultData.rebat,1) : 0 }</p></div>
-                                        <div class="col-8 col-sm-8"><p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p></div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}><p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount,1) : 0 }</p></div>
+                                    (<div className="row">
+                                        <div className="col-8 col-sm-8"><p>{t('Total')}</p></div>
+                                        <div className="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.total ? MoneyFormatDisplay(resultData.total, 1) : 0 }</p></div>
+                                        <div className="col-8 col-sm-8"><p>{t('Accepted_bet_amount')}</p></div>
+                                        <div className="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.acp_bet ? MoneyFormatDisplay(resultData.acp_bet,1) : 0 }</p></div>
+                                        <div className="col-8 col-sm-8"><p>{t('Rebate')}</p></div>
+                                        <div className="col-8 col-sm-4" style={{textAlign:'right'}}><p>{resultData && resultData.rebat ? MoneyFormatDisplay(resultData.rebat,1) : 0 }</p></div>
+                                        <div className="col-8 col-sm-8"><p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p></div>
+                                        <div className="col-8 col-sm-4" style={{textAlign:'right'}}><p style={{fontWeight:'bold'}}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount,1) : 0 }</p></div>
                                         
-                                    </div>) : (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>)}
+                                    </div>) : (<div className="row"><div className="text-center top-50"></div><div className="text-center top-50">{apiResponce}</div></div>)}
                                     
                                     
-                                    {/* (<div class="row"><div class="text-center top-50"></div><div class="text-center top-50">{apiResponce}</div></div>) */}
+                                    {/* (<div className="row"><div className="text-center top-50"></div><div className="text-center top-50">{apiResponce}</div></div>) */}
                                     <RejectedBedContainer dataRecords ={resultData && resultData.rejected ? resultData.rejected : []}/>
                                    
                                     
                                 </div>
                             </div>
-                            <div class="modal-footer px-2 py-3 border-top" style={{justifyContent:'center'}}>
-                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>{t('OK')}</button>
+                            <div className="modal-footer px-2 py-3 border-top" style={{justifyContent:'center'}}>
+                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
                                 {/* <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50"/> */}
                             </div>
                         </div>

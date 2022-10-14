@@ -24,7 +24,7 @@ export default class ModalA extends React.Component {
                                             <p>{t('Rebate')}</p>
                                             <p style={{fontWeight:'bold'}}>{t('Net_Amount')}</p>
                                         </div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
+                                        <div className="col-8 col-sm-4" style={{textAlign:'right'}}>
                                             <p>200.00</p>
                                             <p>200.00</p>
                                             <p>20.00</p>

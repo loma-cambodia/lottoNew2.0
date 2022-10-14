@@ -8,9 +8,6 @@ import {getResults} from '../../store/actions/resultActions';
 
 const Result = ({_initDate}) => {
   
-  console.log('_initData in result: ',_initDate)
-
-  // console.log('_results in result: ',_results)
   let drawResult =[]
 
   const { t } = useTranslation();
@@ -25,29 +22,21 @@ const Result = ({_initDate}) => {
 const dispatch = useDispatch();
 const [initResult, setResult] = useState([]);
 
-console.log('inititresult in result: ',initResult)
 
     const getDrawResults = () =>{
-    // const dataSubmit = moment(_initDate).format('YYYY-MM-DD')
-    // console.log('dataSubmit date:   ',moment(_initDate).format('YYYY-MM-DD'));
-    console.log('_initDate befre dispatch:   ',_initDate)
     dispatch(getResults(_initDate, response =>{
-      // console.log('inside dispatch dataSubmit date:   ',dataSubmit);
 
         if(response.statusCode  == 201  || response.statusCode  == 200 ){
 
         if(response.statusCode == 200){
 
-            console.log('results response:',response.data);
              let results = response.data.data
              drawResult = results
              setResult(drawResult)
         }else {
-            console.log(response.data.messages);
 
         }
         }else {
-        console.log('response:',response);
         // setIsLoading(false);
     }
 }))
@@ -56,7 +45,6 @@ console.log('inititresult in result: ',initResult)
 
 useEffect(() => {
   getDrawResults()
-  console.log('useeffect is run')
 },[_initDate]);
     return (
         <>
@@ -87,7 +75,6 @@ useEffect(() => {
               {!initResult.length == 0 ?
               initResult.map((item,id) =>(
                   <div key={id} className="col-md-4">
-                    {/* {console.log(item.game_play.name)} */}
                   <div className={`${item.game_play.abbreviation} card`}>
                       <div className="card-body">
                           <div className="card-top">

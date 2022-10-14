@@ -6,7 +6,6 @@ export const getBettingDates = () => async (dispatch) => {
   try {
     //    const res = await axios.get(`http://uat.kk-lotto.com/b2b/api/dates`);
     const res = await axios.get(`${API_BASE_URL}/dates/all`)
-    // console.log('res:',res);
     dispatch({
       type: 'GET_DATES',
       payload: res.data.data,
@@ -20,7 +19,6 @@ export const getBettingDates = () => async (dispatch) => {
 }
 
 export const lotterySubmit = (sendData, callback) => async (dispatch) => {
-  console.log('lotterySubmit')
   // return false;
 
   try {
@@ -30,7 +28,6 @@ export const lotterySubmit = (sendData, callback) => async (dispatch) => {
     const res = await axios.post(`${API_BASE_URL}/tickets`, sendData, {
       headers: headers,
     })
-    console.log('res:tickets:', res)
     
       if(res.data.message_id  == 200){
 
@@ -60,12 +57,10 @@ export const lotterySubmit = (sendData, callback) => async (dispatch) => {
   } catch (e) {
     // dispatch( {
     //     type: "USERS_ERROR",
-    //     payload: console.log(e),
     // });
 
     // return callback(res.data);
 
-    console.log('catch:Error:e:', e.response.data.messages);
 
     return callback({
       message: 'Failed',

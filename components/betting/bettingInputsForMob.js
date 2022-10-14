@@ -28,13 +28,13 @@ const customStyles = {
 const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
     _bettingInitData,_limit,_gameCount,_setBettingInitData,_setActiveAll}) => {
     let limit = _limit;
-    // console.log('aaaaaa',limit);
+
     const auth = useSelector(state => state.auth);
     const { t } = useTranslation();
 
     const dispatch = useDispatch();
 
-        // console.log('_gameCount:',_gameCount);
+
     let bettingInitData = _bettingInitData;
     let localStateInitData = item.dataInit;
     const [localStateData, setLocalStateData] = useState(localStateInitData);
@@ -52,7 +52,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
     const [isLoading,  setIsLoading] = React.useState(false);
 
-    // console.log("localStateData:lotto",localStateData)
 
     function SubmitButtonShows(){
         if(mainSubmitData.length != 0){
@@ -77,7 +76,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             );
         }
     }
-    
+    console.log('localStateDatalocalStateData',localStateInitData)
     // useEffect(() => {
     //     if(mainSubmitData.length != 0){ 
     //         setDesableSubmitButton(true);
@@ -86,8 +85,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     //     }
     // }, [mainSubmitData]);
 
-    // console.log('desableSubmitButton',desableSubmitButton)
-    // console.log('desableSubmitButton',mainSubmitData.length)
     // function workOnSubmitDesabled(val){
     //     setDesableSubmitButton(val);
     // }
@@ -261,6 +258,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         });
 
         }
+        numberInputHandler(0, 'box');
+        numberInputHandler(0, 'ibox');
+        numberInputHandler(0, 'reverse');
         _setBettingInitData(dateAndGameOptionData);
     }
 
@@ -331,7 +331,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         }
         return threeDAmount;
     } 
-    // console.log("localStateData",bettingInitData);
+
     
     ////////////////////////////////////////
 
@@ -472,7 +472,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         if(_getNumber){
             boxing = getPermutation(_getNumber);
         }
-        // console.log('typeOfValtypeOfVal',boxing);
         return boxing ;
     }
     const getPermutation = (_getNumber) => {
@@ -492,7 +491,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             else if(_getNumber.length == 4){
                 
                 let typeOfVal = witchTypesOf(_getNumber);
-                // console.log('typeOfValtypeOfVal',typeOfVal);
+                
 
                 return typeOfVal;
 
@@ -527,8 +526,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         var totalAmount =  total_sum && total_sum ? total_sum : '0' ;
         let totalBoxing =  0;
         if(gameCounts != ''){
-            console.log(total_sum)
-            console.log(_gameCount)
             totalAmount = gameCounts * totalAmount ;
         } 
         if(getRow && getRow.bet_type && getRow.bet_type.box_value) {
@@ -896,7 +893,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         setPageLoadCount(pageLoadCount + 1);
     }
     
-    // console.log('_mainSubmitData',localStateData);
     const previewSubmitData = (getAction, getIndex = 0) => {
         // alert(getAction)
         let finalSubmitData = _finalSubmitData;
@@ -925,7 +921,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         let amount1 = '';
                         let amount2 = '';
                         
-                        console.log('_mainSubmitData',localStateData);
 
                         if(localStateData && localStateData.big && localStateData.big.value){
                             amount1 = localStateData.big.value;
@@ -983,8 +978,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         var totalAmountS =  total_sum && total_sum ? total_sum : '0' ;
                         let totalBoxing =  0;
                         if(gameArr.length != ''){
-                            console.log(total_sum)
-                            console.log(_gameCount)
+                        
                             totalAmountS = gameArr.length * totalAmountS ;
                         } 
                         if(localStateData && localStateData.bet_type && localStateData.bet_type.box_disabled == 0 && localStateData.bet_type.box_value == 1) {
@@ -996,8 +990,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         } 
                         if(localStateData && localStateData.bet_type && localStateData.bet_type.reverse_disabled != 1 && localStateData.bet_type.reverse_value != 0) {
                             bet_type = 'reverse';
-                            // alert('pppp');
-                            // console.log('localStateDatalocalStateData',localStateData);
+                            
                             totalAmountS = totalAmountS * 2; 
                         }
                         if(localStateData && localStateData.number && localStateData.number.value){
@@ -1011,7 +1004,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                         }
 
                        totalAmountS;
-                        // console.log('totalBoxingtotalBoxing',totalBoxing)
                         ////////////////////////////////////////
 
                         let amountTotal = 0;
@@ -1026,7 +1018,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
                         // let amountTotal = localStateData && localStateData.amount && localStateData.amount.value ? localStateData.amount.value : "0";
                   
-                        // console.log('amount1',localStateDataForChange['amount1']);
                         
                         // localStateDataForChange['amountTotal'] = amountTotal;
                         
@@ -1049,7 +1040,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                                                         ]  
                                               }
 
-                        console.log('_mainSubmitData',_mainSubmitData)
 
                         if(localStateDataForChange['number'].length < 3){
                             toast.error('Please Enter Valid Number', 
@@ -1097,7 +1087,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         var slackTotalAmount = 0;
         
         finalSubmitData.map(itemAmount => {
-            console.log('itemAmount',itemAmount);
             slackTotalAmount = slackTotalAmount+itemAmount.amountTotal; 
         })
 
@@ -1119,6 +1108,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
       }
       function closeModal() {
         setIsOpen(false);
+        resetAllData();
       }
     
 
@@ -1150,13 +1140,10 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             game_dates
         }
         setIsLoading(true);
-        console.log('saveLOttoData',saveLOttoData)
         dispatch(lotterySubmit(saveLOttoData, response =>{
             
-            // console.log('response:',response);
             if(response.message_id  == 201  || response.message_id  == 200 ){
                 
-                console.log('response:',response); 
                     setResultData(response.data)
                     modelOpenCustom('success');
                     loginAPICall();
@@ -1164,7 +1151,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
                 // toast.error(response.messages[0], 
                 // {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
                 // pauseOnHover: true,draggable: true,progress: undefined});
-                // console.log('response:',response);
                 modelOpenCustom(response.messages[0]);
             }
             setIsLoading(false);
@@ -1230,8 +1216,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         hideError();
     }
 
-
-// console.log("resultDataaa:",resultData)
     return (
        
         <>

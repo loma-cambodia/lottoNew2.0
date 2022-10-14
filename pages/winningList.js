@@ -19,12 +19,10 @@ import Filter from "../components/Winning/filter";
 export default function WinningList({datauser,updateSessionData, setUpdateSessionData}) {
 
 
-// console.log("TICKETLIST",datauser);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
 
-  console.log('WinningList:auth:',auth);
 
   const [active, setActive] = useState(false);
   const [winningList, setWinningList] = useState([]);
@@ -55,16 +53,13 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
  };
 
   const getWinningList = () =>{
-    console.log('auth in getwinninglist:',auth.auth.id);
 
     dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0 ,filterParams? filterParams:'', response =>{
-      // console.log('inside dispatch dataSubmit date:   ',dataSubmit);
 
         if(response.statusCode  == 201  || response.statusCode  == 200 ){
 
         if(response.statusCode == 200){
 
-            console.log('results response in winning page:',response.data);
             // setWinningList(response.data.data.data)
             
           
@@ -74,11 +69,9 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
             
         }else {
-            console.log(response.data.messages);
 
         }
         }else {
-        console.log('response:',response);
         // setIsLoading(false);
     }
 }))
@@ -87,7 +80,6 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
         setCurrentItems(winningList.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(winningList.length / itemsPerPage));
       }, [itemOffset, itemsPerPage,winningList]);
@@ -108,13 +100,9 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
       
       const state = useSelector(state => state);
-      console.log("state after getwinningdata: ", state)
       
       
       const getOddsBig =(prize,game,item) =>{
-        console.log('getoddsbig prize: ',prize);
-        console.log('getoddsbig game: ',game);
-        console.log('getoddsbig item: ',item);
         if(prize == 'P1' && game == '4D')
         {
           return item.big_first
@@ -166,9 +154,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
       const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % winningList.length;
-        console.log(
-          `User requested page number ${event.selected}, which is offset ${newOffset}`
-        );
+
         setItemOffset(newOffset);
       };
   return (
@@ -184,6 +170,8 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
             <div className={`table-responsive my-3`}  >
               <div className={styles.device_detect_for_mobile}>
+                {winningList.length > 0 ? (<>
+                
                   <table className="mob-table mb-3">
                       <thead>
                         <tr>
@@ -195,9 +183,8 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                         </tr>
                       </thead>
                       <tbody>
-                        {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>{
-                          if(item.winning_amount){
-                            <tr key={id}>    
+                        {currentItems ? currentItems.map((item,id) =>(
+                          <tr key={id}>    
                             <td>
                                 <span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.draw_number}<br />{item.ticket.betting_date}</span>
                             </td> 
@@ -215,56 +202,78 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                                 <span className={`${(item.winning_amount - item.bet_net_amount) > 0 ? "winningAmount":""} text-end`}>{MoneyFormatDisplay(item.winning_amount - item.bet_net_amount ,1)}</span>
                             </td>
                           </tr>
-                          }
-                          
-                          })
-                        :<tr className='text-center'>
-                          <td colSpan={5}>{t('no_results')}</td>
-                        </tr>
+                        ))
+                        :null
                         }
                       </tbody>
                   </table>
+
+                  <div className='d-flex justify-content-center'>
+              { pageCount > 1 ?
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="Next >" 
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    previousLabel="< Previous"
+                    renderOnZeroPageCount={null}
+                    className="pagination"
+              /> : null } 
+            </div>
+                
+                </>) : (<>
+                
+                  <div className='alert alert-warning'>
+                    <h3 className='text-center'>
+                    {t('no_data_found')}
+                    </h3>
+                    
+                </div>
+
+                </>) }
+                  
               </div>
               <div className={styles.device_detect_for_desktop}>
-                <table className="table small table-bordered align-middle table-sm">
+                
+                {winningList.length > 0 ? (<>
+                  <table className="table small table-bordered align-middle table-sm">
                   <thead>
                       <tr >
-                          <th>{t('No')}</th>
-                          <th className="text-start"> {t('Detail_Number')}</th>
-                          <th className="text-center">{t('Betting_Time')}</th>
-                          <th className="text-center">{t('Draw_Id')}</th>
-                          <th className="text-center">{t('Draw_Date')}</th>
-                          <th className="text-center">{t('game')}</th>
-                          <th className="text-start">{t('Bet_Number')}</th>
-                          <th className="text-center">{t('Company')}</th>
-                          <th className="text-center">{(t('prize_type'))}</th>
-                          <th className="text-end">{t('Big_Bet')}</th>
-                          <th className="text-end">{t('Small_Bet')}</th>
-                          <th className="text-end">3A</th>
-                          <th className="text-end">3C</th>
-                          <th className="text-end">{t('Odds')} (B/3A)</th>
-                          <th className="text-end">{t('Odds')} (S/3C)</th>
-                          <th className="text-end">{t('Total')}</th>
-                          <th className="text-end">{t('Rebate')}</th>
-                          <th className="text-end">{t('Net')}</th>
-                          <th className="text-end">{t('winning')}</th>
-                          <th className="text-end">{t('Winning_Loss')}</th>
+                          <th style={{verticalAlign:'middle'}}>{t('No.')}</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-start">Detail<br/>Number</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-center">Betting<br/>Time</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-center">Draw<br/>Date</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-center">Draw<br/>ID</th>
+                          {/* <th className="text-center">Game</th> */}
+                          <th  style={{verticalAlign:'middle'}} className="text-start">Bet<br/>Number</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-center">{t('Company')}</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Big</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Small</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">3A</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">3C</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Odds<br/>(B/3A)</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Odds<br/>(S/3C)</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Total</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Rebate</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Net</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-center">Prize</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">Winning</th>
+                          <th  style={{verticalAlign:'middle'}} className="text-end">W/L</th>
                       </tr>
                   </thead>
                   <tbody>
-                      {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>{
-                          if (item.winning_amount > 0) {
-                            <tr key={id}>
+                      {currentItems ? currentItems.map((item,id) =>(
+                          <tr key={id}>
                               <td>{id+1}</td>
                               <td className="text-start"><a >{item.child_ticket_no}</a></td>
                               <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
-                              <td className="text-center">{item.ticket.draw_number}</td>
-
                               <td className="text-center">{item.ticket.betting_date}</td>
-                              <td className="text-center">{item.game_type}</td>
+                              <td className="text-center">{item.ticket.draw_number}</td>
+                              {/* <td className="text-center">{item.game_type}</td> */}
                               <td className="text-start">{item.lottery_number}</td>
                               <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
-                              <td className="text-start">{item.prize_type}</td>
+                              
 
                               <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
@@ -279,24 +288,18 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                               <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+                              <td className="text-start">{item.prize_type}</td>
                               <td className="text-end">{MoneyFormatDisplay(item.winning_amount,1)}</td>
                               <td className={`${(item.winning_amount - item.bet_net_amount) > 0 ? "winningAmount":""} text-end`}>{MoneyFormatDisplay(item.winning_amount - item.bet_net_amount ,1)}</td>
                               {/* className={`${pageCount > 1 ? "winningFilterTall":""} table-responsive my-3`} */}
                           
                           </tr>
-                          }
-
-                        })
-                      :<tr className='text-center'>
-                            <td colSpan={16}>{t('no_results')}</td>
-                      </tr>
+                      ))
+                      :null
                       }
                   </tbody>
                 </table>
-              </div>
-            </div>
-            
-            <div className='d-flex justify-content-center'>
+                <div className='d-flex justify-content-center'>
               { pageCount > 1 ?
                 <ReactPaginate
                     breakLabel="..."
@@ -309,6 +312,20 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                     className="pagination"
               /> : null } 
             </div>
+                </>) : (<>
+                  <div className='alert alert-warning'>
+                        
+                    <h3 className='text-center'>
+                    {t('no_data_found')}
+                    </h3>
+                    
+                </div></>)}
+
+                
+              </div>
+            </div>
+            
+            
         </div>
       </section>
       
