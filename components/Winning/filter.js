@@ -179,8 +179,8 @@ const Filter = ({_setFilterParams}) => {
                         </div>
                         <div class="col-md-2 col-12">
                             <div class="form-group">
-                                <label for="transactionid" class="fw-bold mb-2">{('Ticket_No')}</label>
-                                <input id="ticket_no" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setTicketNo(event.target.value)}/>
+                                <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
+                                <input id="ticket_no" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setTicketNo(event.target.value)}/> 
                             </div>
                         </div>
                         <div class="col-md-2 col-12">
