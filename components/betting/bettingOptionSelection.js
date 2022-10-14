@@ -424,7 +424,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     <th className="border-0"></th>
                 </tr>
                 
-                {bettingInputsDataParent.map((item,ids) => (<BettingInputs key={'bettingInputs1'+item.ids} 
+                {bettingInputsDataParent.map((item,ids) => (<BettingInputs key={'bettingInputs1'+ids} 
                 ids={ids}
                                                          item={item} 
                                                          _updateBettingInputsData = {updateBettingInputsData}

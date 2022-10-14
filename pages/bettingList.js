@@ -15,12 +15,10 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
 
   const [pageCount, setPageCount] = useState(0);
 
-// console.log("TICKETLIST",datauser);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
 
-  console.log('BettingList:auth:',auth);
 
   const [active, setActive] = useState(false);
 
@@ -32,7 +30,6 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
 
 
       useEffect(() => {
-       // console.log('111111111111111');
         dispatch({
           type: "GET_LOGIN_DETAILS",
           payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
@@ -44,21 +41,16 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       let ticketsChild = state && state.tickets && state.tickets.ticketsChild ? state.tickets.ticketsChild : [];
 
       let ticketSlave = tickets.ticket_slave
-   //    console.log("tickets:",tickets)
       
       const ticketSearch = []
       const GetTicketNumber = (member_id,dateRange,ticketNo) => {
        // const number = e.target.value
         dispatch(searchTicketData(member_id,dateRange,ticketNo));
-       // console.log("##%%%%%%#",state)
         }
 
         const handlePageClick = (event) => {
           const newOffset = (event.selected * itemsPerPage) % Pkglottery1.length;
-          console.log(
-            `User requested page number ${event.selected}, which is offset ${newOffset}`
-  
-          );
+
           setItemOffset(newOffset);
         };
   return (

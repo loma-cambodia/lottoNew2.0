@@ -622,7 +622,7 @@ useEffect(() => {
                     maxLength={4}
                     minLength={1}
                     onChange={(e) => numberInputHandler(e.target.value, 'number')}
-                    autocomplete="off"
+                    autoComplete="off"
                 /> 
             </td>
             {/* big*/}

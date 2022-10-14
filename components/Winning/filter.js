@@ -93,7 +93,7 @@ const Filter = ({_setFilterParams}) => {
         
 
             _setFilterParams(filter)
-        console.log('filter:', filter )
+            
         setDateRange('')
         setPrizeType('')
         setTicketNo('')
@@ -120,7 +120,6 @@ const Filter = ({_setFilterParams}) => {
             const prize = document.getElementById('prize_type');
             prize.value = '';
 
-            console.log('reset filter: ',filter)
 
             _setFilterParams(filter)
 
