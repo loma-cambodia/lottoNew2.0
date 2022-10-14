@@ -33,8 +33,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
     return [day,month,year].join('/');
 }
        useEffect(() => {
-        let d = new Date();
-        dispatch(searchTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
+       
 
       },[dispatch,auth]);
 
@@ -52,6 +51,9 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
         "language":   datauser && datauser.user && datauser.user.lang && datauser.user.lang ? datauser.user.lang : 'en'
       } 
       dispatch(getLogin(objectWithData));
+
+      let d = new Date();
+      dispatch(searchTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
       }, [datauser])
       
       const state = useSelector(state => state);
