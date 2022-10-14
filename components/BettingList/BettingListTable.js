@@ -122,7 +122,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
             month = '0' + month;
         if (day.length < 2)
             day = '0' + day;
-        return [month, day, year].join('/');
+        return [day,month,year].join('/');
     }
 
     const state = useSelector(state => state);
@@ -318,8 +318,8 @@ const handlePageClick = (event) => {
                                                 <a  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forMob')} >
                                                     {item.ticket_no}
                                                 </a><br />
-                                                {moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />
-                                                {item.betting_date}
+                                                {moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}<br />
+                                                {moment(item.betting_date).format('DD-MM-YYYY')}
                                             </span>
                                         </td>
                                         {/* <td><span>{item.bet_number}<br />{item.betting_date}</span></td> */}
@@ -365,8 +365,8 @@ const handlePageClick = (event) => {
                                 <tr key={i}>
                                     <td>{i + 1}</td>
                                     <td className="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','unsettledList')} >{item.ticket_no}</span></td>
-                                    <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
-                                    <td className="text-center">{item.betting_date}</td>
+                                    <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}</td>
+                                    <td className="text-center"> {moment(item.betting_date).format('DD-MM-YYYY')}</td>
                                     <td className="text-start">{item.bet_number}</td>
                                     <td className="text-start">
                                     {
@@ -454,7 +454,7 @@ const handlePageClick = (event) => {
                             <tbody>
                                 {tickets.map((item,id) =>(
                                     <tr key={id}>
-                                        <td><span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.betting_date}</span></td>
+                                        <td><span>{item.child_ticket_no}<br />{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}<br />{item.ticket.betting_date}</span></td>
                                         <td><span>{item.lottery_number} <br/> {item.game_type}<br />{item.game && item.game.name ? item.game.name : ""}</span></td>
                                         <td><span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span></td>
                                         <td><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
@@ -493,8 +493,8 @@ const handlePageClick = (event) => {
                                     <tr key={id}>
                                         <td>{id+1}</td>
                                         <td className="text-start"><a >{item.child_ticket_no}</a></td>
-                                        <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
-                                        <td className="text-center">{item.ticket.betting_date}</td>
+                                        <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}</td>
+                                        <td className="text-center">{moment(item.ticket.betting_date ).format('DD-MM-YYYY h:mm:ss a')}</td>
                                         <td className="text-center">{item.game_type}</td>
                                         <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
                                         <td className="text-start">{item.lottery_number}</td>
