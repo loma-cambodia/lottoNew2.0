@@ -355,8 +355,8 @@ const handlePageClick = (event) => {
                                     <th class="text-end">{t('Total')}</th>
                                     <th class="text-end">{t('Rebate')}</th>
                                     <th class="text-end">{t('Net')}</th>
-                                    <th class="text-center">{t('winning')}</th>
-                                    <th class="text-center">{t('Winning_Loss')}</th>
+                                    <th class="text-end">{t('winning')}</th>
+                                    <th class="text-end">{t('Winning_Loss')}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -380,7 +380,7 @@ const handlePageClick = (event) => {
                                         <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                                         <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
                                         <td class="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
-                                        <td class="text-center"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
+                                        <td class="text-end"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -510,16 +510,16 @@ const handlePageClick = (event) => {
                                 <th class="text-center">{t('game')}</th>
                                 <th class="text-center">{t('Company')}</th>
                                 <th class="text-center">{t('Bet_Number')}</th>
-                                <th class="text-center">{t('Big')}</th>
-                                <th class="text-center">{t('Small_Bet')}</th>
-                                <th class="text-center">3A</th>
-                                <th class="text-center">3C</th>
+                                <th class="text-end">{t('Big')}</th>
+                                <th class="text-end">{t('Small_Bet')}</th>
+                                <th class="text-end">3A</th>
+                                <th class="text-end">3C</th>
                                 <th class="text-end">{t('Total')}</th>
                                 <th class="text-end">{t('Rebate')}</th>
                                 <th class="text-end">{t('Net')}</th>
                                 {/* <th class="text-end">{t('Odds')}</th> */}
-                                <th class="text-center">{t('winning')}</th>
-                                <th class="text-center">{t('Winning_Loss')}</th>
+                                <th class="text-end">{t('winning')}</th>
+                                <th class="text-end">{t('Winning_Loss')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -528,23 +528,23 @@ const handlePageClick = (event) => {
                                 <tr key={id}>
                                     <td>{id+1}</td>
                                     <td class="text-start"><a >{item.child_ticket_no}</a></td>
-                                    <td class="text-start" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss A')}</td>
-                                    <td class="text-center">{moment(item.ticket.draw_date).format('YYYY-DD-MM')}</td>
+                                    <td class="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss A')}</td>
+                                    <td class="text-center">{moment(item.ticket.draw_date).format('DD-MM-YYYY')}</td>
                                     <td class="text-center">{item.game_type}</td>
                                     <td class="text-center">{item.game && item.game.name ? item.game.name : ""}</td>
                                     <td class="text-center">{item.lottery_number}</td>
 
-                                    <td class="text-center">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
-                                    <td class="text-center">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
-                                    <td class="text-center">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
-                                    <td class="text-center">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
-                                    <td class="text-center">{MoneyFormatDisplay(item.bet_amount,1)}</td>
-                                    <td class="text-center">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
-                                    <td class="text-center">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+                                    <td class="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
+                                    <td class="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
+                                    <td class="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
+                                    <td class="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
+                                    <td class="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
+                                    <td class="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
+                                    <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
                                     {/* <td class="text-end">0.00</td> */}
                                 
                                     <td class="text-end"  style={winChild(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
-                                <td class="text-center"  style={winChild(winLoseChild(item.winning_amount,item.bet_net_amount))}>{winLoseChild(item.winning_amount,item.bet_net_amount)}</td>
+                                <td class="text-end"  style={winChild(winLoseChild(item.winning_amount,item.bet_net_amount))}>{winLoseChild(item.winning_amount,item.bet_net_amount)}</td>
                                     
                                 
                                 </tr>

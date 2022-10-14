@@ -262,8 +262,8 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Small_Bet')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">3A</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">3C</th>
-                          <th style={{verticalAlign:'middle'}} className="text-end">{t('Odds')} (B/3A)</th>
-                          <th style={{verticalAlign:'middle'}} className="text-end">{t('Odds')} (S/3C)</th>
+                          <th style={{verticalAlign:'middle'}} className="text-end">{t('Odds')}<br/>(B/3A)</th>
+                          <th style={{verticalAlign:'middle'}} className="text-end">{t('Odds')}<br/>(S/3C)</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Total')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Rebate')}</th>
                           <th style={{verticalAlign:'middle'}} className="text-end">{t('Net')}</th>
@@ -276,8 +276,8 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                           <tr key={id}>
                               <td>{id+1}</td>
                               <td className="text-start"><a >{item.child_ticket_no}</a></td>
-                              <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
-                              <td className="text-center">{item.ticket.betting_date}</td>
+                              <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}</td>
+                              <td className="text-center">{moment(item.ticket.betting_date).format('DD-MM-YYYY')}</td>
                               <td className="text-start">{item.ticket.draw_number}</td>
                               <td className="text-center">{item.ticket.bet_number}</td>
                               <td className="text-start">{item.game && item.game.name ? item.game.name : ""}</td>
