@@ -119,8 +119,10 @@ const Filter = ({_setFilterParams}) => {
             _setFilterParams(filter)
 
     }
+
       useEffect(() => {
       },[]);
+
     return (
         <>
         <div class="clearfix curved-card">
@@ -149,7 +151,7 @@ const Filter = ({_setFilterParams}) => {
                         <label for="transactionid" class="fw-bold mb-2">Prize Type</label>
                         <select id="prize_type" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setPrizeType(event.target.value)}>
                            { prizeTypleList.map((item,id)=>(
-                                <option>{item}</option>
+                                <option key={id}>{item}</option>
                            ))}
                         </select>
                     </div>
