@@ -2898,6 +2898,14 @@ button.applyBtn.btn.btn-sm.btn-primary {
   background-color: #bf2262 !important;
   border-color: #bf2262 !important;
 }
+.winningAmount{
+  font-weight: bold;
+  color: green;
+}
+.losingAmount{
+  font-weight: bold;
+  color: red;
+}
 .forTuchPad .btn-check:checked+.btn, .forTuchPad .btn.active, .forTuchPad .btn.show, .forTuchPad .btn:first-child:active, .forTuchPad :not(.btn-check)+.btn:active {
   box-shadow: none !important;
   outline: 0 !important;
