@@ -591,7 +591,9 @@ useEffect(() => {
        return parseFloat(lottery.slave_net_amount).toFixed(2)
     }
  };
-  
+
+ console.log('localStateInitData:::',localStateInitData);
+
 
     return (
         
@@ -608,10 +610,11 @@ useEffect(() => {
                     onChange={(e) => numberInputHandler(e.target.value, 'number')}
                 /> */}
                 <input type="text" className="form-control-custom"
-                    value={localStateInitData && localStateInitData.number && localStateInitData.number.value ? localStateInitData.number.value : ""}
+                    value={localStateInitData.number.value ? localStateInitData.number.value : ""}
                     maxLength={4}
                     minLength={3}
                     onChange={(e) => numberInputHandler(e.target.value, 'number')}
+                    autocomplete="off"
                 /> 
             </td>
             {/* big*/}

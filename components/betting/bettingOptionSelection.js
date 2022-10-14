@@ -102,6 +102,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
     let dateAndGameOptionData = [];
 
     const auth = _auth;
+    let random =  Math.floor(1000 + Math.random() * 9000);
 
 
     const [resultData, setResultData] = React.useState({});
@@ -329,6 +330,12 @@ const [isLoading,  setIsLoading] = React.useState(false);
         }
       });
 
+      // useEffect(() => {
+      //   clearAllRecords();
+      // },[]);
+
+      
+
 
 
       let gameCount = 0;
@@ -419,7 +426,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     <th className="border-0"></th>
                 </tr>
                 
-                {bettingInputsDataParent.map((item,ids) => (<BettingInputs key={'bettingInputs'+item.name} 
+                {bettingInputsDataParent.map((item,ids) => (<BettingInputs key={'bettingInputs1'+item.ids} 
                 ids={ids}
                                                          item={item} 
                                                          _updateBettingInputsData = {updateBettingInputsData}
