@@ -7,7 +7,7 @@ export default function About404() {
 
   const { t } = useTranslation();
   return (
-    <div className='row errorBg'>
+    <div className='row'>
         <Head>
           <title>Loma Lotto - 404 Access Denied</title>
         </Head>
@@ -18,7 +18,7 @@ export default function About404() {
                                 <br></br>
                                 <img src="img/404-animated.gif" style={{width: '50%'}}  alt="" />
                                     <hr></hr>
-                                    <h3 className="display-1 fw-bold">{t('page_not_found')}</h3>
+                                    <h3 className="display-1 fw-bold">{t("page_not_found")}</h3>
                                     <hr></hr>
                                     <p className="fs-3"> <span className="text-danger">Opps!</span> Status 404</p>
                                     <p className="lead">
@@ -28,5 +28,5 @@ export default function About404() {
                             </div>
                         </div>
     </div>
-  );
-}
+  )
+};
