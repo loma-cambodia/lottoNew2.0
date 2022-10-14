@@ -204,10 +204,10 @@ const Filter = ({_setFilterParams}) => {
                             </div>
                         </div>
 
-                        <div className={styles.device_detect_for_desktop+" col-md-3"}>
+                        <div className={styles.device_detect_for_desktop+" col-md-4"}>
                             <div class="form-group">
-                                <label class="d-block">&nbsp;</label>
-                                <button type="button" id="search" onClick={() => filterList('forDesk')} class="btn-custom-curve2 w-auto mx-3">{t('Search')}</button>
+                                <label class="d-block mb-2">&nbsp;</label>
+                                <button type="button" id="search" onClick={() => filterList()} class="btn-custom-curve2 w-auto me-2">{t('Search')}</button>
                                 <label></label>
                                 <button type="button" id="reset" class="btn-custom-curve1" onClick={() => resetFiletr()}>{t('Reset')}</button>
                             </div>
@@ -215,6 +215,8 @@ const Filter = ({_setFilterParams}) => {
                     </div>
                 </div>
             </div>
+            
+          
         </>
     )
 }

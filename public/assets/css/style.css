@@ -490,7 +490,7 @@
       -webkit-animation: Gradient 12s ease infinite;
       animation: Gradient 12s ease infinite;
       z-index: 15;
-      bottom: 482px;
+      bottom: 100px;
   }
   .news-wrapper .announcement-text {
       display: inherit;
@@ -533,7 +533,7 @@
 
   .custom-padding {
     padding-top: 2rem;
-    padding-bottom: 15rem;
+    padding-bottom: 2rem;
     height: 100%;
   }
   .theme-tabs .theme-nav-tabs {
@@ -2057,12 +2057,12 @@
   select.form-control-custom-big {
       background-color: transparent;
       background-image: url(../images/icons/dow_arrow-black.png);
-      background-position: 95% 50%;
+      background-position: 95% center;
       background-repeat: no-repeat;
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
-      background-size: 7% 50%;
+      background-size: 15px 15px;
   }
   .daterangepickerstyle {
       border: 1px solid #ddd;
@@ -2198,6 +2198,10 @@
   .table-part table tr th, .table-part table tr td {
     width: 20% !important;
 }
+.vh-70 {
+  min-height: 70vh;
+}
+
   @media (min-width: 576px) {
   .container-sm,
   .container {
@@ -2236,6 +2240,12 @@
   .container-sm,
   .container {
   max-width: 1320px;
+  }
+  }
+  @media (max-width:1199.99px) {
+    .desktop-menu .desktop-menu-list li a {
+      padding: 10px 5px;
+      font-size: 12px;
   }
   }
   @media (max-width: 991px) {
@@ -2784,7 +2794,15 @@ input.form-control.text-right-for-amount {
   height: 38px;
 }
 .react-datepicker__day.react-datepicker__day--highlighted{
-  background-color: #bf2262;
+  background-color: #ffd4e5;
+  color: #000;
+}
+.react-datepicker__day--highlighted:hover, .react-datepicker__month-text--highlighted:hover, .react-datepicker__quarter-text--highlighted:hover, .react-datepicker__year-text--highlighted:hover {
+  background-color: #dc3545 !important;
+  color: #fff !important;
+}
+.custom-accordion .accordion-button:hover {
+  z-index: 0 !important;
 }
 /* ---------- Pagination Css --------- */
 .pagination li a {
@@ -2832,8 +2850,15 @@ input.form-control.text-right-for-amount {
 
 input.daterangepickerstyle {
   width: 100%;
+  background: url(../images/icons/calendar-small.png);
+  background-position-x: 15px;
+  background-repeat: no-repeat;
+  padding-left: 35px;
+  background-position-y: center;
 }
-
+.daterangepicker td.in-range {
+  background-color: #ffeaf2 !important;
+}
 /* /////////////////////////////// bet list mobile view */
 
 
