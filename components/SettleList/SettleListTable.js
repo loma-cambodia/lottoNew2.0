@@ -66,13 +66,13 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
      
     
       const [ranges, setRanges] = useState({
-        ['Today']: [moment().subtract(0, 'days'), moment().add(0, 'days')],
-        ['Yesterday']: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        ['Last 7 Days']: [moment().subtract(6, 'days'), moment().add(0, 'days')],
-        ['Last 14 Days']: [moment().subtract(13, 'days'), moment().add(0, 'days')],
-        ['This Month']: [moment().startOf('month')],
-        ['Last Month']: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
-        ['This Year']: [moment().startOf('year')],
+        [t('Today')]: [moment().subtract(0, 'days'), moment().add(0, 'days')],
+        [t('Yesterday')]: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        [t('Last 7 Days')]: [moment().subtract(6, 'days'), moment().add(0, 'days')],
+        [t('Last 14 Days')]: [moment().subtract(13, 'days'), moment().add(0, 'days')],
+        [t('This Month')]: [moment().startOf('month')],
+        [t('Last Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
+        [t('This Year')]: [moment().startOf('year')],
       });
 
 
@@ -623,7 +623,7 @@ const handlePageClick = (event) => {
                     <div className={styles.device_detect_for_mobile}>
                         <div className="form-group mb-0">
                             <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
-                                <b>BETTING HISTORY REPORT</b>
+                                <b>{t('betting_history_report')}</b>
                                 <img 
                                     onClick={() => openFilterForMob()}
                                     className="img-fluid" 
