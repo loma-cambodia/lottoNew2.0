@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import {speedUp,getUsers} from '../store/actions/index';
 import { useDispatch, useSelector } from "react-redux";
+import { t } from 'i18next';
 
 
 const Betting = () => {
@@ -83,16 +84,16 @@ const Betting = () => {
           <div className="collapse navbar-collapse" id="navbarNav" style={{display:'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">Home</a>
+                <a className="nav-link" aria-current="page" href="#">{t('Homepage')}</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Bettting</a>
+                <a className="nav-link" href="#">{t('Betting')}</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">History</a>
+                <a className="nav-link" href="#">{t('History')}</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link">Results</a>
+                <a className="nav-link">{t('Result')}</a>
               </li>
             </ul>
           </div>
@@ -109,7 +110,7 @@ const Betting = () => {
           </div>
             <div className=" navbar-nav me-auto mb-2 mb-lg-0">
               <form className="form-inline my-2 my-lg-0">
-                  <button className="btn btn-warning  form-control mr-sm-2 fw-normal">PLAY LOTTERY</button>
+                  <button className="btn btn-warning  form-control mr-sm-2 fw-normal">{t('Play_Lottery')}</button>
               </form>
               <ul className='navbar-nav  '>
                 <li className='nav-item'>
@@ -129,8 +130,8 @@ const Betting = () => {
       {/* Banner */}
       <div className={styles.banner}>
         <div className='container-fluid'>
-          <h3 className='text-white'>BETTING</h3>
-          <p className='font-weight-light text-white'>Home / Betting</p>
+          <h3 className='text-white'>{t('Betting')}</h3>
+          <p className='font-weight-light text-white'>{t('Homepage')} / {t('Betting')}</p>
         </div>
       </div>
       <div id={styles.checkboxes} className='row text-center'>
@@ -269,7 +270,7 @@ const Betting = () => {
                           <thead className='border-white'>
                             <tr className='text-center'>
                               <th></th>
-                            <th>Number</th>
+                            <th>{t('Number')}</th>
                             <th>Big/3A</th>
                             <th>Small/3C</th>
                             <th>Bet Type</th>
