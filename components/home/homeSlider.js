@@ -32,10 +32,10 @@ const HomeSlider = () => {
                                 <p className="">{t("Dont_miss_your_chance")}</p>
                                 <h3>{t('Lucky_Winner')}</h3>
                                 <div className="clearfix my-3">
-                                      <Link href="/bettingNew"> 
-                                        <a href="#" className="btn-yellow rounded-full">{t("Start_playing_now")}</a>
+                                      <Link href="/betting"> 
+                                        <span role='button' className="btn-yellow rounded-full">{t("Start_playing_now")}</span>
                                      </Link>
-                                    {/* <Link className="btn-yellow rounded-full"  href="/bettingNew">{t('Start_playing_now')}</Link> */}
+                                    {/* <Link className="btn-yellow rounded-full"  href="/betting">{t('Start_playing_now')}</Link> */}
                                 </div>
                             </div>
                         </div>
@@ -63,8 +63,8 @@ const HomeSlider = () => {
                                 </div>
                                 <p className="text-white fs-5">{t("Dont_miss_your_chance")}</p>
                                 <h3>{t('Lucky_Winner')}</h3>
-                                <Link href="/bettingNew"> 
-                                        <a href="#" className="btn-yellow rounded-full">{t("Start_playing_now")}</a>
+                                <Link href="/betting"> 
+                                        <span role='button' className="btn-yellow rounded-full">{t("Start_playing_now")}</span>
                                      </Link>
                             </div>
                         </div>
