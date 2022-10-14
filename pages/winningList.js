@@ -184,140 +184,111 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
       <section className="page-content custom-padding">
         <div className="container">
         <Filter _setFilterParams={setFilterParams} />
+
             <div className={`${pageCount > 1 ? "winningFilterTall":""} table-responsive my-3`}  >
+              <div className={styles.device_detect_for_mobile}>
+                  <table className="mob-table mb-3">
+                      <thead>
+                          <tr>
+                              <th><span>Ticket Number<br />Betting Time<br/>Draw Date</span></th>
+                              <th><span>Bet Number<br/>{t('Company')}</span></th>
+                              <th><span>Total<br/>Rebate<br/>Net</span></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          
+                      </tbody>
+                  </table>
+              </div>
+              <div className={styles.device_detect_for_desktop}>
                 <table className="table small table-bordered align-middle">
-                <thead>
-                                <tr >
-                                    <th>{t('No.')}</th>
-                                    <th className="text-start">Detail Number</th>
-                                    {/* <th className="text-start">Detail Number</th> */}
-                                    <th className="text-center">Betting Time</th>
-                                    <th className="text-center">Draw ID</th>
-                                    <th className="text-center">Draw Date</th>
-                                    <th className="text-center">Game</th>
-                                    <th className="text-start">Bet Number</th>
-                                    <th className="text-center">{t('Company')}</th>
-                                    <th className="text-center">Prize</th>
-
-                                    <th className="text-end">Big</th>
-                                    <th className="text-end">Small</th>
-                                    <th className="text-end">3A</th>
-                                    <th className="text-end">3C</th>
-                                    <th className="text-end">Odds (B/3A)</th>
-                                    <th className="text-end">Odds (S/3C)</th>
-                                    <th className="text-end">Total</th>
-                                    <th className="text-end">Rebate</th>
-                                    <th className="text-end">Net</th>
-                                    <th className="text-end">Winning</th>
-                                    <th className="text-end">W/L</th>
-                                
-                                </tr>
-
-
-                            </thead>
-                            <tbody>
-                            {console.log('length: ',winningList.length)}
-
-                                {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>(
-                                    <tr key={id}>
-                                        <td>{id+1}</td>
-                                        <td className="text-start"><a >{item.child_ticket_no}</a></td>
-                                        <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
-                                        <td className="text-center">{item.ticket.draw_number}</td>
-
-                                        <td className="text-center">{item.ticket.betting_date}</td>
-                                        <td className="text-center">{item.game_type}</td>
-                                        <td className="text-start">{item.lottery_number}</td>
-                                        <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
-                                        <td className="text-start">{item.prize_type}</td>
-
-                                        <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
-                                        <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
-                                        <td className="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
-                                        <td className="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
-                                        <td className="text-end">
-                                          {getOddsBig(item.prize_type,item.game_type,item)}
-                                          {/* {MoneyFormatDisplay(item.merchant.market.odd_settings,1)} */}
-                                          </td>
-                                        <td className="text-end">{getOddsSmall(item.prize_type,item.game_type,item)}</td>
-
-                                        <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
-                                        <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
-                                        <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
-                                        <td className="text-end">{MoneyFormatDisplay(item.winning_amount,1)}</td>
-                                        <td className={`${(item.winning_amount - item.bet_net_amount) > 0 ? "winningAmount":""} text-end`}>{MoneyFormatDisplay(item.winning_amount - item.bet_net_amount ,1)}</td>
-                                        {/* className={`${pageCount > 1 ? "winningFilterTall":""} table-responsive my-3`} */}
-                                    
-                                    </tr>
-                                ))
-                              :<tr className='text-center'>
-                                    <td colSpan={16}>No results</td>
-                              </tr>
-                              }
-
-          
-                        </tbody>
-                    {/* <tbody>
-                    {currentItems ? currentItems.map((item,id)=>(
-                      <tr key={id}>
-                            <td >
-                              {item.id}
-                              </td>
-                            <td className="text-start" ><a href="href">
-                              {item.child_ticket_no}
-                              </a></td>
-                            <td className="text-start" >
-                              {item.ticket.betting_date}
-                              </td>
-                            <td className="text-center" >
-                              {item.ticket.draw_date}
-                              </td>
-                            <td className="text-center">3D</td>
-                            <td className="text-center">B</td>
-                            <td className="text-center">Magnum</td>
-                            <td className="text-end">100.08</td>
-                            <td className="text-end">10%</td>
-                            <td className="text-end">90.07</td>
-                            <td className="text-end">90.07</td>
-                            <td className="text-end">90.07</td>
-                            <td className="text-end">90.07</td>
-                            <td className="text-end">90.07</td>
+                  <thead>
+                      <tr >
+                          <th>{t('No.')}</th>
+                          <th className="text-start">Detail Number</th>
+                          <th className="text-center">Betting Time</th>
+                          <th className="text-center">Draw ID</th>
+                          <th className="text-center">Draw Date</th>
+                          <th className="text-center">Game</th>
+                          <th className="text-start">Bet Number</th>
+                          <th className="text-center">{t('Company')}</th>
+                          <th className="text-center">Prize</th>
+                          <th className="text-end">Big</th>
+                          <th className="text-end">Small</th>
+                          <th className="text-end">3A</th>
+                          <th className="text-end">3C</th>
+                          <th className="text-end">Odds (B/3A)</th>
+                          <th className="text-end">Odds (S/3C)</th>
+                          <th className="text-end">Total</th>
+                          <th className="text-end">Rebate</th>
+                          <th className="text-end">Net</th>
+                          <th className="text-end">Winning</th>
+                          <th className="text-end">W/L</th>
                       </tr>
-                    )) :<tr>
-                      <td>
-                      <span>Nothing</span>
+                  </thead>
+                  <tbody>
+                      {winningList.length > 0 && currentItems ? currentItems.map((item,id) =>(
+                          <tr key={id}>
+                              <td>{id+1}</td>
+                              <td className="text-start"><a >{item.child_ticket_no}</a></td>
+                              <td className="text-center" >{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}</td>
+                              <td className="text-center">{item.ticket.draw_number}</td>
 
-                      </td>
+                              <td className="text-center">{item.ticket.betting_date}</td>
+                              <td className="text-center">{item.game_type}</td>
+                              <td className="text-start">{item.lottery_number}</td>
+                              <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
+                              <td className="text-start">{item.prize_type}</td>
 
-                    </tr>
-                  }
-                    </tbody> */}
+                              <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
+                              <td className="text-end">
+                                {getOddsBig(item.prize_type,item.game_type,item)}
+                                {/* {MoneyFormatDisplay(item.merchant.market.odd_settings,1)} */}
+                                </td>
+                              <td className="text-end">{getOddsSmall(item.prize_type,item.game_type,item)}</td>
+
+                              <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                              <td className={`${(item.winning_amount - item.bet_net_amount) > 0 ? "winningAmount":""} text-end`}>{MoneyFormatDisplay(item.winning_amount - item.bet_net_amount ,1)}</td>
+                              {/* className={`${pageCount > 1 ? "winningFilterTall":""} table-responsive my-3`} */}
+                          
+                          </tr>
+                      ))
+                      :<tr className='text-center'>
+                            <td colSpan={16}>No results</td>
+                      </tr>
+                      }
+                  </tbody>
                 </table>
-            </div>
-            <div className='d-flex justify-content-center'>
-            { pageCount > 1 ?
-                        <ReactPaginate
-                            breakLabel="..."
-                            nextLabel="Next >" 
-                            onPageChange={handlePageClick}
-                            pageRangeDisplayed={5}
-                            pageCount={pageCount}
-                            previousLabel="< Previous"
-                            renderOnZeroPageCount={null}
-                            className="pagination"
-                        /> : null } 
+              </div>
             </div>
             
-        
+            <div className='d-flex justify-content-center'>
+              { pageCount > 1 ?
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="Next >" 
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    previousLabel="< Previous"
+                    renderOnZeroPageCount={null}
+                    className="pagination"
+              /> : null } 
+            </div>
         </div>
-    </section>
+      </section>
       
       <Footer/>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
         <script src="assets/js/owl.carousel.js"></script>
         <script src="assets/js/main.js"></script>
-        
       {/*--Footer--*/}
     </>
   )
