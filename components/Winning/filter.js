@@ -104,7 +104,7 @@ const Filter = ({_setFilterParams}) => {
                     } 
             }
         
-            console.log('filter:',filter);
+            //console.log('filter:',filter);
             _setFilterParams(filter)
             
         setDateRange('')
