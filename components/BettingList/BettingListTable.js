@@ -602,7 +602,7 @@ const handlePageClick = (event) => {
                     <div className={styles.device_detect_for_mobile}>
                         <div className="form-group mb-0">
                             <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
-                                <b>BETTING LIST REPORT</b>
+                                <b>{t('betting_list_report')}</b>
                                 <img 
                                     onClick={() => openFilterForMob()}
                                     className="img-fluid" 
