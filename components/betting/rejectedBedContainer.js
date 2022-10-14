@@ -1,3 +1,5 @@
+import { t } from "i18next";
+
 const RejectedBedContainer = ({dataRecords}) => {
 
     {/* big
@@ -33,7 +35,7 @@ if(dataRecords && dataRecords.length == 0)
 else 
     return (
         <>
-        <div><h5>Rejected Bet</h5></div>
+        <div><h5>{t('Rejected_Bet')}</h5></div>
         <div className="row text-center table-responsive">
         <table className="table table-bordered table-striped mb-0">
         <tbody style={{fontWeight:'bold'}}>
