@@ -1,33 +1,30 @@
 import axios from 'axios'
 
  const API_BASE_URL = process.env.apiUrl
-//const API_BASE_URL = 'http://api.kk-lotto.com:8080/api';
-//http://api.kk-lotto.com:8080/frontend-api
-//http://api.kk-lotto.com:8080/frontend-api/ticket?member_id=4
-export const getTicketData = (id) => async (dispatch) => {
- const userId = id
-  try {
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    }
-    const res = await axios.get(
-       `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=UNSETTLED`,{
-     //   `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=SETTLED`,{
-        headers: headers,
-      }
-    )
-    dispatch({
-      type: 'GET_TICKETS',
-      payload: res.data.data,
-    })
-  } catch (e) {
-    dispatch({
-      type: 'Get_Tickets_Error',
-      payload: console.log(e),
-    })
-  }
-}
+// export const getTicketData = (id) => async (dispatch) => {  // 1
+//  const userId = id
+//   try {
+//     const headers = {
+//       'Content-Type': 'application/json',
+//       'Access-Control-Allow-Origin': '*',
+//     }
+//     const res = await axios.get(
+//        `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=UNSETTLED`,{
+//      //   `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=SETTLED`,{
+//         headers: headers,
+//       }
+//     )
+//     dispatch({
+//       type: 'GET_TICKETS',
+//       payload: res.data.data,
+//     })
+//   } catch (e) {
+//     dispatch({
+//       type: 'Get_Tickets_Error',
+//       payload: console.log(e),
+//     })
+//   }
+// }
 
 
 export const getTicketDataSettled = (id) => async (dispatch) => {
