@@ -15,15 +15,15 @@ export default class ModalA extends React.Component {
                                 </h5>
                             </div>
                             <div className="modal-body" >
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-8">
+                                <div className="container-fluid">
+                                    <div className="row">
+                                        <div className="col-8 col-sm-8">
                                             <p>Total bet amount</p>
                                             <p>Accepted bet amount</p>
                                             <p>Rebate</p>
                                             <p style={{fontWeight:'bold'}}>Net Amount</p>
                                         </div>
-                                        <div class="col-8 col-sm-4" style={{textAlign:'right'}}>
+                                        <div className="col-8 col-sm-4" style={{textAlign:'right'}}>
                                             <p>200.00</p>
                                             <p>200.00</p>
                                             <p>20.00</p>
@@ -32,7 +32,7 @@ export default class ModalA extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer" style={{justifyContent:'center'}}>
+                            <div className="modal-footer" style={{justifyContent:'center'}}>
                             <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">OK</button>
                             </div>
                         </div>

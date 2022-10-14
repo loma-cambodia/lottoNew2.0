@@ -2,8 +2,6 @@ import { useTranslation } from "react-i18next";
 const FinalDataContainer = ({_previewSubmitData, finalSubmitData,_bettingInitData,totalAmount}) => {
     const { t } = useTranslation();
 
-    // console.log('FinalDataContainer:_bettingInitData:',_bettingInitData);
-    // console.log('finalSubmitData:',finalSubmitData);
 
     return (
         <div className="border mt-2">
