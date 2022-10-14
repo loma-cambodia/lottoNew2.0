@@ -13,7 +13,7 @@ export const getTicketData = (id) => async (dispatch) => {
       'Access-Control-Allow-Origin': '*',
     }
     const res = await axios.get(
-       `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=UNSETTLED`,{
+       `${API_BASE_URL}/betList?member_id=${userId}&ticket_status:UNSETTLED`,{
      //   `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=SETTLED`,{
         headers: headers,
       }
@@ -73,7 +73,7 @@ export const searchTicketData = (member_id,date_range, ticketNumber) => async (d
 
     // let urlHit = `${API_BASE_URL}/betList?member_id=1&ticket_no=${ticketNumber}&date_range=${date_range}&ticket_status:UNSETTLED`;
 
-    let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status=UNSETTLED`;
+    let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status:UNSETTLED`;
    // let urlHit = `${API_BASE_URL}/betList?member_id=${member_id}&ticket_status=SETTLED`
      if(ticketNumber)
      urlHit += `&ticket_no=${ticketNumber}`;
@@ -177,7 +177,7 @@ export const getLotteryDetailsList = (getData) => async (dispatch) => {
         headers: headers,
       }
     )
-    //console.log("SEARCH TICKET-->>",res)
+    console.log("SEARCH TICKET-->>",res)
     dispatch({
       type: 'GET_SEARCH_TICKETS_CHILD',
       payload: res.data.data,
@@ -218,7 +218,7 @@ export const filterLotteryDetailsList = (getData) => async (dispatch) => {
     )
     console.log("filterLotteryDetailsList TICKET-->>",res)
     dispatch({
-      type: 'GET_SEARCH_TICKETS_CHILD',
+      type: 'GET_FILTER_CHILD_TICKETS',
       payload: res.data.data,
     })
   } catch (e) {

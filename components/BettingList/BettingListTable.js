@@ -655,7 +655,7 @@ const handlePageClick = (event) => {
 
                                     <div className={styles.device_detect_for_desktop+" col-md-6"}>
                                         <div className="form-group">
-                                            <label className="d-block">&nbsp;</label>
+                                            <label className="d-block mb-2">&nbsp;</label>
                                             <button type="button" className="btn-custom-curve2 w-auto me-2" onClick={()=>searchGetListonFilter('forDesk')} >{t('Search')}</button>
                                             <button type="button" className="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
                                         </div>
