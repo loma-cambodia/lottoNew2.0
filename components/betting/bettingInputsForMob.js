@@ -25,7 +25,7 @@ const customStyles = {
     },
   }; 
 
-const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
+const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
     _bettingInitData,_limit,_gameCount,_setBettingInitData,_setActiveAll}) => {
     let limit = _limit;
 
@@ -41,6 +41,8 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
     const [mainSubmitData, setMainSubmitData] = useState([]);
     const [pageLoadCount, setPageLoadCount] = useState(1);
     
+    console.log('localStateDatalocalStateData',localStateInitData);
+
     const [totalAmount, setTotalAmount] = useState('');
 
     const [resultData, setResultData] = React.useState({});
@@ -232,6 +234,20 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         setSmallValue('');
         setA3Value('');
         setC3Value('');
+        
+
+        let localStateInitData = {
+            number: { value: "", disabled: 0 },
+            big: { value: "", disabled: 0 }, 
+            small: { value: "", disabled: 0 },
+            _3a: { value: "", disabled: 0 },
+            _3c: { value: "", disabled: 0 },
+            bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 },
+            amount: { value: "", disabled: 1 }
+        };
+        
+        let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}}];
+        _setLocalStateInitDataParent(bettingInputsData);
     }
     const resetAllData = () => {
         // alert('pppp');
@@ -258,9 +274,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         });
 
         }
-        numberInputHandler(0, 'box');
-        numberInputHandler(0, 'ibox');
-        // numberInputHandler(0, 'reverse');
         _setBettingInitData(dateAndGameOptionData);
     }
 
@@ -730,11 +743,11 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
             let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
             if(getValue > big_max_bet ){
-                $("#ErrorBig").html(t('bet_should_not_be_greater_than')+big_max_bet);
+                $("#ErrorBig").html('Bet should not be greater than '+big_max_bet);
                 $("#ErrorBig").css('visibility', 'visible')
                 getValue = big_max_bet;
             }else if(getValue < big_min_bet ){
-                $("#ErrorBig").html(t('bet_should_not_be_than_than')+big_min_bet);
+                $("#ErrorBig").html('Bet should not be less than '+big_min_bet);
                 $("#ErrorBig").css('visibility', 'visible')
                 getValue = big_min_bet;
             }
@@ -751,13 +764,13 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             if(getValue > small_max_bet ){
 
                 
-                $("#ErrorSmall").html(t('bet_should_not_be_greater_than')+small_max_bet);
+                $("#ErrorSmall").html('Bet should not be greater than '+small_max_bet);
                 $("#ErrorSmall").css('visibility', 'visible')
 
                 getValue = small_max_bet;
                
             }else if(getValue < small_min_bet ){
-                $("#ErrorSmall").html(t('bet_should_not_be_less_than')+small_min_bet);
+                $("#ErrorSmall").html('Bet should not be less than '+small_min_bet);
                 $("#ErrorSmall").css('visibility', 'visible')
                 getValue = small_min_bet;
             }
@@ -774,13 +787,13 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             let three_a_min_bet  = limit && limit.length > 0 && limit[0].three_a_min_bet ?  limit[0].three_a_min_bet : 0;
             if(getValue > three_a_max_bet ){
 
-                $("#ErrorA").html(t('bet_should_not_be_greater_than')+three_a_max_bet);
+                $("#ErrorA").html('Bet should not be greater than '+three_a_max_bet);
                 $("#ErrorA").css('visibility', 'visible')
 
                 getValue = three_a_max_bet;
                
             }else if(getValue < three_a_min_bet ){
-                $("#ErrorA").html(t('bet_should_not_be_less_than')+three_a_min_bet);
+                $("#ErrorA").html('Bet should not be less than '+three_a_min_bet);
                 $("#ErrorA").css('visibility', 'visible')
 
                 getValue = three_a_min_bet;
@@ -830,14 +843,14 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             let three_c_min_bet  = limit && limit.length > 0 && limit[0].three_c_min_bet ?  limit[0].three_c_min_bet : 0;
             if(getValue > three_c_max_bet ){
 
-                $("#ErrorC").html(t('bet_should_not_be_greater_than')+three_c_max_bet);
+                $("#ErrorC").html('Bet should not be greater than '+three_c_max_bet);
                 $("#ErrorC").css('visibility', 'visible')
 
                 getValue = three_c_max_bet;
                
             }else if(getValue < three_c_min_bet ){
 
-                $("#ErrorC").html(t('bet_should_not_be_less_than')+three_c_min_bet);
+                $("#ErrorC").html('Bet should not be less than '+three_c_min_bet);
                 $("#ErrorC").css('visibility', 'visible')
 
                 getValue = three_c_min_bet;
@@ -1092,8 +1105,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
 
         setTotalAmount(slackTotalAmount);
         hideError();
-        numberInputHandler(0, 'box');
-        numberInputHandler(0, 'ibox');
         setPageLoadCount(pageLoadCount + 1);
     }
 
@@ -1217,7 +1228,6 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         }
         hideError();
     }
-
     return (
        
         <>
