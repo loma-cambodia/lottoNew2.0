@@ -13,7 +13,6 @@ import {getResults} from '../../store/actions/resultActions';
 const Filter = ({_setDate}) => {
     const [startDate, setStartDate] = useState();
 
-    console.log('startDate in filter: ', startDate)
   
     const dispatch = useDispatch();
 
@@ -25,17 +24,15 @@ const Filter = ({_setDate}) => {
 
             if(response.statusCode == 200){
 
-                // console.log('results response in filter:',response.data);
                 let results = response.data.data
                 // setStartDate(results[0].result_date)
-                // console.log('results response in filter:',results[0].result_date);
 
                 setStartDate (new Date(results[0].result_date ? results[0].result_date :''))
             }else {
-                console.log(response.data.messages); 
+
             }
             }else {
-            console.log('response:',response);
+
             // setIsLoading(false);
         }
     }))
@@ -47,7 +44,6 @@ const Filter = ({_setDate}) => {
     //   }
     //   else 
     //   {
-    //     console.log('startDate in getstartdate',startDate)
     //    return startDate
     //   }
     // }
@@ -78,8 +74,6 @@ const Filter = ({_setDate}) => {
           result.push(new Date(current.clone()));
         }
 
-        // console.log(result.map(m =>new Date(m.format('YYYY-MM-DD'))));
-        // console.log('getDates ',result);
         return result
       }
 
@@ -96,7 +90,6 @@ const Filter = ({_setDate}) => {
         }
       ];
 
-      // console.log('highlightWithRanges ',highlightWithRanges)
 
 
       

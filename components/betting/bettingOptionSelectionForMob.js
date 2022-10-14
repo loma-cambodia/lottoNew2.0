@@ -169,7 +169,6 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
     setIsOpen(false);
     hideError();
     // alert('pppp');
-    // console.log('bettingInitDatabettingInitData',bettingInitData)
   
     let dateAndGameOptionDataNew = [];
     if(_bettingDatesStore){
@@ -200,7 +199,6 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
       });
       setBettingInitData(dateAndGameOptionDataNew);
     }
-    // console.log('itemGameitemGame',itemGame)
   }
 
     const selectAllDate = () => {
@@ -241,17 +239,14 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
         }
       }
      setBettingInitData(dateAndGameOptionDataNew);
-    //  console.log("dateAndGameOptionData",dateAndGameOptionData);
     }
     
     useEffect(() => {
        selectAllDate();
     }, [activeGameAll]);
 
-// console.log('sushil',bettingInitData);
 
   function OpenModalComponent({bettingInitDataShow}){
-    // console.log('bettingInitDataShow',gameSelectOrNot);
       if(!gameSelectOrNot){
         return(
           <>
