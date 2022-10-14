@@ -494,7 +494,7 @@ const handlePageClick = (event) => {
                                         <td>{id+1}</td>
                                         <td className="text-start"><a >{item.child_ticket_no}</a></td>
                                         <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}</td>
-                                        <td className="text-center">{moment(item.ticket.betting_date ).format('DD-MM-YYYY')}</td>
+                                        <td className="text-center">{moment(item.ticket.betting_date ).format('DD-MM-YYYY h:mm:ss a')}</td>
                                         <td className="text-center">{item.game_type}</td>
                                         <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
                                         <td className="text-start">{item.lottery_number}</td>

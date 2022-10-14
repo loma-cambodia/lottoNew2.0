@@ -25,10 +25,21 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
 
 
        useEffect(() => {
-        dispatch(getTicketData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
+      //  dispatch(getTicketData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
         //dispatch(searchTicketData());
       },[dispatch,auth]);
 
+      function formatDate2(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+        return [day,month,year].join('/');
+    }
 
       useEffect(() => {
 
@@ -45,6 +56,8 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
         "language":   datauser && datauser.user && datauser.user.lang && datauser.user.lang ? datauser.user.lang : 'en'
       } 
       dispatch(getLogin(objectWithData));
+      let d = new Date();
+      dispatch(searchTicketData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''))
       }, [datauser])
       
       const state = useSelector(state => state);
