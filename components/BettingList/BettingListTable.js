@@ -494,7 +494,7 @@ const handlePageClick = (event) => {
                                         <td>{id+1}</td>
                                         <td className="text-start"><a >{item.child_ticket_no}</a></td>
                                         <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}</td>
-                                        <td className="text-center">{moment(item.ticket.betting_date ).format('DD-MM-YYYY')}</td>
+                                        <td className="text-center">{moment(item.ticket.betting_date ).format('DD-MM-YYYY h:mm:ss a')}</td>
                                         <td className="text-center">{item.game_type}</td>
                                         <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
                                         <td className="text-start">{item.lottery_number}</td>
@@ -657,7 +657,7 @@ const handlePageClick = (event) => {
 
                                     <div className={styles.device_detect_for_desktop+" col-md-6"}>
                                         <div className="form-group">
-                                            <label className="d-block">&nbsp;</label>
+                                            <label className="d-block mb-2">&nbsp;</label>
                                             <button type="button" className="btn-custom-curve2 w-auto me-2" onClick={()=>searchGetListonFilter('forDesk','search_button')} >{t('Search')}</button>
                                             <button type="button" className="btn-custom-curve1" onClick={()=>searchGetListonFilter('forDesk','reset_button')}>{t('Reset')}</button>
                                         </div>
