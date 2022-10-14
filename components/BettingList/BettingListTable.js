@@ -122,7 +122,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
             month = '0' + month;
         if (day.length < 2)
             day = '0' + day;
-        return [year, month, day].join('/');
+        return [day,month,year].join('/');
     }
 
     const state = useSelector(state => state);

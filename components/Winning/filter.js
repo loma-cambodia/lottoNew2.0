@@ -15,7 +15,13 @@ import styles from '../../styles/Home.module.css';
 const Filter = ({_setFilterParams}) => {
 
 
-    const [dateRange, setDateRange] = useState('');
+    const c = new Date();
+    const msdate = formatDate2(c);
+    const medate = formatDate2(c);
+      
+    const intailDate = formatDate2(c) + ' - ' +formatDate2(c);
+
+    const [dateRange, setDateRange] = useState(intailDate); 
     const [ticketNo, setTicketNo] = useState('');
     const [prizeType, setPrizeType] = useState('');
 
@@ -23,9 +29,6 @@ const Filter = ({_setFilterParams}) => {
 
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const c = new Date();
-    const msdate = formatDate(c);
-    const medate = formatDate(c);
 
     const keyRef = useRef();
     const [dates1, setDates1] = useState({
@@ -34,23 +37,20 @@ const Filter = ({_setFilterParams}) => {
     });
 
     
+    const [fromDate, setFromDate] = useState(new Date());
+    const [toDate, setToDate] = useState(new Date());
 
     const prizeTypleList = ['','No','P1','P2','P3','S','C']
 
-      const handleApply1 = (event, picker) => {
-        setDates1({
-          startDate: picker.startDate,
-          endDate: picker.endDate,
-        });
-
-        setDateRange({
-            startDate: picker.startDate,
-            endDate: picker.endDate,
-          })
+    const handleEvent = (event, picker) => {
+        setFromDate(picker.startDate._d.toISOString());
+        setToDate(picker.endDate._d.toISOString());
+        let newDateRange = formatDate2(picker.startDate) + ' - ' + formatDate2(picker.endDate);
+        setDateRange(newDateRange);
       };
 
-        
-
+ 
+      console.log('dateRangedateRange',dates1);
 
       const [ranges, setRanges] = useState({
         ['Today']: [moment().subtract(0, 'days'), moment().add(0, 'days')],
@@ -72,6 +72,18 @@ const Filter = ({_setFilterParams}) => {
         if (day.length < 2)
             day = '0' + day;
         return [year, month, day].join('-');
+    }
+
+    function formatDate2(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+        return [day,month,year].join('/');
     }
     const filterList =(work) =>{
         const date = document.getElementById('daterangepicker');
@@ -154,11 +166,14 @@ const Filter = ({_setFilterParams}) => {
                                 <label className="fw-bold mb-2">Select Date Range</label>
                                 <DateRangePicker
                                             ref={keyRef}
-                                            onApply={handleApply1}
+                                            onApply={handleEvent}
                                             onCancel={keyRef}
-                                            initialSettings={{ ranges }}
+                                            initialSettings={{ 
+                                                startDate: fromDate,
+                                                endDate: toDate,
+                                                ranges }}
                                         >
-                                            <input id="daterangepicker" type="text" className="daterangepickerstyle" />
+                                            <input id="daterangepicker" type="text" className="daterangepickerstyle"  value={dateRange}/>
                                         </DateRangePicker>
                             </div>                    
                         </div>

@@ -111,7 +111,7 @@ const Filter = ({_setDate}) => {
             <div className="input-group date" style={{flexWrap: 'nowrap'}} id="datepicker">
                 {/* <input type="text" className="form-control" id="date"/> */}
                 <DatePicker 
-                dateFormat="dd/MM/yyyy"
+                dateFormat="MM/dd/yyyy"
                 selected={startDate} 
                 onChange={(date) => {setStartDate(date), _setDate(date)}} 
                 excludeDates={[addDays(new Date(), 1)]} 
