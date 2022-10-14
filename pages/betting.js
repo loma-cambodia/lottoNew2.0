@@ -5,6 +5,7 @@ import Header from '../components/common/header';
 import BettingOptionSelection from '../components/betting/bettingOptionSelection';
 import {getBettingDates,lotterySubmit} from '../store/actions/bettingActions';
 import { useDispatch, useSelector } from "react-redux";
+import { t } from 'i18next';
 import { useTranslation } from "react-i18next";
 import BettingOptionSelectionForMob from '../components/betting/bettingOptionSelectionForMob';
 import styles from '../styles/Home.module.css'

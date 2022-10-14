@@ -14,7 +14,7 @@ const Announcement = () => {
             <div className="announcement-block-icon">
                 <div className="annoncement-icon">
                     <span className="icon-img-announcement"><img src="assets/images/icons/announcement-icon-white.png" alt="" className="img-fluid"/></span>
-                    <span className="text-announcement"><span className="announcement-text">Announcement</span> <span className="toggle-icon-news" onClick={() => myFunction() } type="button">+</span></span>
+                    <span class="text-announcement"><span class="announcement-text">{t('Announcement')}</span> <span class="toggle-icon-news" onClick={() => myFunction() } type="button">+</span></span>
                 </div>
             </div>
             <div className="marque-div">
