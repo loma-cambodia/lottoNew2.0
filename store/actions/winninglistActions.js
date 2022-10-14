@@ -11,12 +11,14 @@ export const getWinningData = (id,filters,callback) => async (dispatch) => {
       const headers = {
         'Content-Type': 'application/json',
       }
+
       
         // urlHit = `${API_BASE_URL}/betListWinning?member_id=${id}`;
         urlHit = `${API_BASE_URL}/betListWinning?member_id=${id}&ticket_no=${ticketNo}&prize_type=${prizeType}&date_range=${dateRange}`;
 
 
-  
+        console.log('urlHit: ',urlHit)
+
       const res = await axios.get(urlHit, {headers: headers,})
       return callback({
         message: 'Success',
