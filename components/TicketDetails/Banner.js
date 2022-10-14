@@ -8,17 +8,17 @@ const ListBanner = () => {
     return (
         <>
         {/*-Breadcrumb--*/}
-        <section className="custom-breadcrumb">
-        <div className="container">
-            <div className="breadcrumb-heading">
-                <h1>BETTING LIST</h1>
+        <section class="custom-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-heading">
+                <h1>{t('BettingList')}</h1>
             </div>
             <div className="breadcrumb-list">
                 <ul>
                     <li>
-                        <a href="#"><span>Home</span></a>
+                        <a href="#"><span>{t('Homepage')}</span></a>
                     </li>
-                    <li><span>Betting List</span></li>
+                    <li><span>{t('BettingList')}</span></li>
                 </ul>
             </div>
         </div>

@@ -9,6 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import {getResults} from '../../store/actions/resultActions';
+import { t } from 'i18next';
 
 const Filter = ({_setDate}) => {
     const [startDate, setStartDate] = useState();
@@ -101,7 +102,7 @@ const Filter = ({_setDate}) => {
         <div className="clearfix curved-card bg-light">
         <div className="d-flex align-items-center">
             <div className="filter-text">
-            <span className="filter-icon"><i className="fa-solid fa-arrow-down-9-1"></i></span> <span className="text-filter">Filter Results</span>
+            <span className="filter-icon"><i className="fa-solid fa-arrow-down-9-1"></i></span> <span className="text-filter">{t('filter_results')}</span>
             </div>
             <div className="filter-date ms-auto">
             <div className="input-group date" style={{flexWrap: 'nowrap'}} id="datepicker">

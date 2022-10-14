@@ -8,6 +8,7 @@ import React,{ useState,useEffect } from "react";
 import Notfound from './403';
 import { withIronSessionSsr } from "iron-session/next";
 import NextNProgress from "nextjs-progressbar";
+import { t } from "i18next";
 
 export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req }) {
@@ -54,8 +55,8 @@ function MyApp({ Component, pageProps,user }) {
   }, [updateSessionData])
 
 
-  if (isLoading) return <p>Loading...</p>
-  if (!data) return <p>No profile data</p>
+  if (isLoading) return <p>{t('Loading')}...</p>
+  if (!data) return <p>{t('no_profile_data')}</p>
   if(Object.keys(data).length === 0){
     return (
       <Notfound />
