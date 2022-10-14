@@ -136,7 +136,22 @@
     "game":"Game",
     "back":"Back",
     "winning":"Winning",
-    "submit":"Submit"
+
+
+
+    "bet_should_not_be_greater_than":"Bet should not be greater than ",
+    "bet_should_not_be_less_than":"Bet should not be less than ",
+    "B/3A":"B/3A",
+    "S/3C":"S/3C"
+    
+
+
+
+
+
+
+
+
 
 
 

@@ -15,8 +15,8 @@ const FinalDataContainer = ({_previewSubmitData, finalSubmitData,_bettingInitDat
                                 <td className="text-center">{t('Date')}</td>
                                 <td className="text-center">{t('Company')}</td>
                                 <td className="text-center">{t('Number')}</td>
-                                <td className="text-center">B/3A</td>
-                                <td className="text-center">S/3C</td>
+                                <td className="text-center">{t('B/3A')}</td>
+                                <td className="text-center">{t('S/3C')}</td>
                                 <td className="text-center">{t('Bet_Type')}</td>
                                 <td className="text-center"></td>
                             </tr>

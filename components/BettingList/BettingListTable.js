@@ -301,7 +301,7 @@ const handlePageClick = (event) => {
                         <table className="mob-table mb-3">
                             <thead>
                                 <tr>
-                                    <th><span>Ticket Number<br />Betting Time<br/>Draw Date</span></th>
+                                    <th><span>{t('Ticket_Number')}<br />Betting Time<br/>Draw Date</span></th>
                                     <th><span>Bet Number<br/>{t('Company')}</span></th>
                                     {/* <th><span></span></th> */}
                                     <th><span>Total<br/>Rebate<br/>Net</span></th>

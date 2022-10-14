@@ -503,7 +503,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                                 </div>
                             </div>
                             <div class="modal-footer px-2 py-3 border-top" style={{justifyContent:'center'}}>
-                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
+                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>{t('OK')}</button>
                                 {/* <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50"/> */}
                             </div>
                         </div>
