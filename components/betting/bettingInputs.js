@@ -380,11 +380,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
           localStateDataForChange = { ...localStateDataForChange, amount: { value: totalAmount, disabled: 1 } };
 
-
-
-          
-
-
         _updateBettingInputsData(item.name,localStateDataForChange);
         _setLoadpageCounter(_loadpageCounter + 1);
     }
@@ -400,6 +395,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         let box_value = 0;
         let i_box_value = 0;
         let reverse_value = 0;
+
+        
 
         if(betTypeName  == 'box'){
             box_value = betTypeValue;
