@@ -76,7 +76,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             );
         }
     }
-    console.log('localStateDatalocalStateData',localStateInitData)
+    // console.log('localStateDatalocalStateData',localStateInitData)
     // useEffect(() => {
     //     if(mainSubmitData.length != 0){ 
     //         setDesableSubmitButton(true);
