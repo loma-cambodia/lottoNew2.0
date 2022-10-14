@@ -195,7 +195,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                
             }else if(getValue < limit[0].big_min_bet ){
 
-                $("#ErrorSmall"+idas).html('Bet should not be less than'+limit[0].big_min_bet);
+                $("#ErrorSmall"+idas).html('Bet should not be less than '+limit[0].big_min_bet);
 
                 getValue = ''
             }
@@ -217,13 +217,13 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 return false;
             }
             if(getValue > limit[0].small_max_bet ){
-                $("#ErrorSmall"+idas).html('Bet should not be greater than'+limit[0].small_max_bet);
+                $("#ErrorSmall"+idas).html('Bet should not be greater than '+limit[0].small_max_bet);
                 $("#ErrorSmall"+idas).css('visibility', 'visible');
 
                 getValue = limit[0].small_max_bet
             }else if(getValue < limit[0].small_min_bet ){
 
-                $("#ErrorSmall"+idas).html('Bet should not be less than'+limit[0].small_min_bet);
+                $("#ErrorSmall"+idas).html('Bet should not be less than '+limit[0].small_min_bet);
 
                 getValue = ''
             }
@@ -244,12 +244,12 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 return false;
             }
             if(getValue > limit[0].three_a_max_bet ){
-                $("#ErrorA"+idas).html('Bet should not be greater than'+limit[0].three_a_max_bet);
+                $("#ErrorA"+idas).html('Bet should not be greater than '+limit[0].three_a_max_bet);
                 $("#ErrorA"+idas).css('visibility', 'visible');
 
                 getValue = limit[0].three_a_max_bet
             }else if(getValue < limit[0].three_a_min_bet ){
-                $("#ErrorA"+idas).html('Bet should not be less than'+limit[0].three_a_min_bet);
+                $("#ErrorA"+idas).html('Bet should not be less than '+limit[0].three_a_min_bet);
 
                 getValue = ''
             }
@@ -294,12 +294,12 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 return false;
             }
             if(getValue > limit[0].three_c_max_bet ){   
-                $("#ErrorC"+idas).html('Bet should not be greater than'+limit[0].three_c_max_bet);
+                $("#ErrorC"+idas).html('Bet should not be greater than '+limit[0].three_c_max_bet);
                 $("#ErrorC"+idas).css('visibility','visible');
 
                 getValue = limit[0].three_c_max_bet
             }else if(getValue < limit[0].three_c_min_bet ){
-                $("#ErrorC"+idas).html('Bet should not be less than'+limit[0].three_c_min_bet);
+                $("#ErrorC"+idas).html('Bet should not be less than '+limit[0].three_c_min_bet);
 
                 getValue = ''
             }
