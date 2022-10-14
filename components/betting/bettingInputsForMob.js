@@ -76,7 +76,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
             );
         }
     }
-    
+    console.log('localStateDatalocalStateData',localStateInitData)
     // useEffect(() => {
     //     if(mainSubmitData.length != 0){ 
     //         setDesableSubmitButton(true);
@@ -258,6 +258,9 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
         });
 
         }
+        numberInputHandler(0, 'box');
+        numberInputHandler(0, 'ibox');
+        numberInputHandler(0, 'reverse');
         _setBettingInitData(dateAndGameOptionData);
     }
 
@@ -1105,6 +1108,7 @@ const BettingInputsForMob = ({ item,activeGame,activeGameType, _finalSubmitData,
       }
       function closeModal() {
         setIsOpen(false);
+        resetAllData();
       }
     
 
