@@ -91,9 +91,15 @@ const Filter = ({_setDate}) => {
         }
       ];
 
-
-
       
+
+
+      const datepickerRef = useRef(null);
+      function handleClickDatepickerIcon() {
+        const datepickerElement = datepickerRef.current;
+        // console.log("datepickerElement = ", datepickerElement);
+        datepickerElement.setFocus(true);
+      }
       useEffect(() => {
         getLatestDrawDate()
       },[]);
@@ -108,15 +114,16 @@ const Filter = ({_setDate}) => {
             <div className="input-group date" style={{flexWrap: 'nowrap'}} id="datepicker">
                 {/* <input type="text" className="form-control" id="date"/> */}
                 <DatePicker 
-                dateFormat="dd/MM/yyyy"
+                dateFormat="MM/dd/yyyy"
                 selected={startDate} 
                 onChange={(date) => {setStartDate(date), _setDate(date)}} 
                 excludeDates={[addDays(new Date(), 1)]} 
                 highlightDates={highlightWithRanges}
                 maxDate={new Date()}
+                ref={datepickerRef}
                 />
 
-                <span className="input-group-append">
+                <span className="input-group-append" onClick={() => handleClickDatepickerIcon()}>
                 <span className="input-group-text bg-light d-block">
                     <i className="fa-regular fa-calendar"></i>
                 </span>

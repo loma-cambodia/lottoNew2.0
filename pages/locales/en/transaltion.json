@@ -137,11 +137,8 @@
     "back":"Back",
     "winning":"Winning",
 
-
-
-
-    "bet_should_not_be_greater_than":"Bet should not be greater than ",
-    "bet_should_not_be_less_than":"Bet should not be less than ",
+    "bet_should_not_be_greater_than":"Over max bet limit : ",
+    "bet_should_not_be_less_than":"Below min bet limit :",
     "Today":"Today",
     "Yesterday":"Yesterday",
     "Last_7_Days":"Last 7 Days",
@@ -149,47 +146,22 @@
     "This_Month":"This Month",
     "Last_Month":"Last Month",
     "This_Year":"This Year",
-    "betting_list_report": "Betting List Report",
+    "betting_list_report": "Bet List",
     "winning_list":"Winning List",
     "Total_bet_amount":"Total bet amount",
-    "filter_results":"Filter Results",
-
+    "filter_results":"Search draw result",
     "no_draw_result":"No Draw Result",
-
-
-    "betting_history_report":"Betting History Report",
-
+    "betting_history_report":"Bet History",
     "prize_type":"Prize Type",
-
     "Loading":"Loading",
-
     "no_profile_data":"No profile data",
-
     "access_denied":"Access Denied",
-
     "access_denied_or_forbbiden":"Access Denied Or Forbbiden",
-
     "403_message":"The page or resource you’re trying to reach is absolutely forbbiden for some reason.",
-
     "return_to":"Return To",
-
     "page_not_found":"Page Not Found",
-
     "status":"status",
-
     "404_message":"The page you are looking for might have been removed, had the name changed or it is temporary unavailable",
-
-
-
     "no_results":"No results",
-
-
     "no_winning_ticket":"No Winning Ticket"
-
-
-
-
-
-
-
 }

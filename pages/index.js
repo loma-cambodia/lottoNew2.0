@@ -13,6 +13,7 @@ import HowToPlay from '../components/home/howToPlay';
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
+import {getLogin} from '../store/actions/authActions';
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
 
 
@@ -20,6 +21,7 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
+  //console.log('Home:datauser:',datauser);
 
 useEffect(() => {
   dispatch(userTransactionDetails());
@@ -29,15 +31,27 @@ useEffect(() => {
 
 
 useEffect(() => {
-  dispatch({
-    type: "GET_LOGIN_DETAILS",
-    payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
-})
+ // console.log('11111111111111');
+ // console.log('datauser:',datauser);
+//   dispatch({
+//     type: "GET_LOGIN_DETAILS",
+//     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
+// })
+let objectWithData = {
+  "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
+  "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
+  "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
+  "language":   datauser && datauser.user && datauser.user.lang && datauser.user.lang ? datauser.user.lang : 'en'
+} 
+dispatch(getLogin(objectWithData));
 }, [datauser])
 
 
 const state = useSelector(state => state);
 const auth = useSelector(state => state.auth);
+
+
+console.log('Index:state:', state);
 
       state.auth.transactions
 

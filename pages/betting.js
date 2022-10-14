@@ -11,6 +11,7 @@ import BettingOptionSelectionForMob from '../components/betting/bettingOptionSel
 import styles from '../styles/Home.module.css'
 import Banner from '../components/betting/banner';
 import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
+import {getLogin} from '../store/actions/authActions';
 export default function Betting({datauser, updateSessionData, setUpdateSessionData}) {
 
 
@@ -23,10 +24,19 @@ export default function Betting({datauser, updateSessionData, setUpdateSessionDa
       },[dispatch]);
 
       useEffect(() => {
-        dispatch({
-          type: "GET_LOGIN_DETAILS",
-          payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
-      })
+
+      //  console.log('2222222222222222222222222');
+      //   dispatch({
+      //     type: "GET_LOGIN_DETAILS",
+      //     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
+      // })
+      let objectWithData = {
+        "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
+        "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
+        "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
+        "language":   datauser && datauser.user && datauser.user.lang && datauser.user.lang ? datauser.user.lang : 'en'
+      } 
+      dispatch(getLogin(objectWithData));
       }, [datauser])
 
       const state = useSelector(state => state);

@@ -9,6 +9,7 @@ import WinngListBanner from '../components/Winning/Banner';
 import ListTable from '../components/BettingList/BettingListTable';
 import {getTicketData,searchTicketData} from '../store/actions/reportActions';
 import {getWinningData,filterWinningData} from '../store/actions/winninglistActions';
+import {getLogin} from '../store/actions/authActions';
 import moment from 'moment';
 
 import ReactPaginate from 'react-paginate';
@@ -91,10 +92,18 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
 
       useEffect(() => {
-        dispatch({
-          type: "GET_LOGIN_DETAILS",
-          payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
-      })
+      //   dispatch({
+      //     type: "GET_LOGIN_DETAILS",
+      //     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
+      // })
+
+      let objectWithData = {
+        "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
+        "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
+        "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
+        "language":   datauser && datauser.user && datauser.user.lang && datauser.user.lang ? datauser.user.lang : 'en'
+      } 
+      dispatch(getLogin(objectWithData));
 
       }, [datauser])
       
@@ -187,7 +196,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                         {currentItems ? currentItems.map((item,id) =>(
                           <tr key={id}>    
                             <td>
-                                <span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.draw_number}<br />{item.ticket.betting_date}</span>
+                                <span>{item.child_ticket_no}<br />{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}<br />{item.ticket.draw_number}<br />{moment(item.ticket.betting_date).format('DD-MM-YYYY')}</span>
                             </td> 
                             <td>
                                 <span>{item.game_type}<br />{item.lottery_number}<br />{item.game && item.game.name ? item.game.name : ""}<br />{item.prize_type}</span>

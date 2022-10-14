@@ -321,6 +321,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
             </div>      
             {bettingInputsDataParent.map((item) => (<BettingInputsForMob key={'bettingInputs'+item.name} 
                                                     item={item} 
+                                                    _setLocalStateInitDataParent={setLocalStateInitDataParent}
                                                     activeGameType={activeGameType}
                                                     _updateBettingInputsData = {updateBettingInputsData}
                                                     _loadpageCounter = {loadpageCounter}
