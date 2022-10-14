@@ -163,5 +163,14 @@
     "status":"status",
     "404_message":"The page you are looking for might have been removed, had the name changed or it is temporary unavailable",
     "no_results":"No results",
-    "no_winning_ticket":"No Winning Ticket"
+    "no_winning_ticket":"No Winning Ticket",
+    "previous":"< Previous",
+    "next":"Next >",
+    "P1":"P1",
+    "P2":"P2",
+    "P3":"P3",
+    "S":"S",
+    "C":"C",
+    "All":"All"
+    
 }
