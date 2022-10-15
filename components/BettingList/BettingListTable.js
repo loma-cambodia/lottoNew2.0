@@ -295,6 +295,21 @@ const handlePageClick = (event) => {
   ]
 
 
+  const betTypeHandler = (getBetTypeValue) => {
+ //   getBetTypeValue = 2
+    let boxType = 'S';
+    if (getBetTypeValue == 0) {
+        boxType = 'B';
+    } else if (getBetTypeValue == 1) {
+        boxType = 'I';
+    }
+    else if (getBetTypeValue == 2) {
+        boxType = 'R';
+    }
+    return boxType;
+ };
+
+
 
   
     function ShowTableDataParent({tickets}){
@@ -383,7 +398,7 @@ const handlePageClick = (event) => {
                                     ) 
                                     }
                                 </td>
-                                    <td className="text-start">{item.bet_type == 0 ? "S":item.bet_type}</td>
+                                    <td className="text-start">{betTypeHandler(item.bet_type)}</td>
                                     <td className="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
                                     <td className="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                                     <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
