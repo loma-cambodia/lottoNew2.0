@@ -146,30 +146,23 @@ const [initResult, setResult] = useState([]);
       const selectedDate = moment(startDate).format('YYYY-MM-DD');
       console.log("selectedDate:",selectedDate)
       // startDate = undefined
-    dispatch(getResults(undefined, response =>{
+    dispatch(getResults(selectedDate, response =>{
 
         if(response.statusCode  == 201  || response.statusCode  == 200 ){
 
         if(response.statusCode == 200){
 
           let filteredResult = []
-             let results = response.data.data
+             let results = response.data.data.data
 
 
             // CAL FILTER HIGHLIGHT
 
-            let resultDate = []
-                    results.map(data=>{
-                      data.result_date
-                      if(!resultDate.includes(data.fetching_date)){
-                        resultDate.push(data.fetching_date)
-                        
-                    }
-                    
-                    }) 
+            let resultDate = response.data.data.result_dates
+            
                     let highlight = resultDate.map(date => subDays(new Date(date), 0));
-                    console.log("DDDDDDD",resultDate)
-                    console.log("resultHighlited:",highlight,resultDate)
+                    console.log("DDDDDDD",highlight)
+                    console.log("resultHighlited:",highlight,results)
 
                     setHighlightedData(highlight)
 
