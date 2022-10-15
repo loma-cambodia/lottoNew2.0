@@ -446,7 +446,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     <th className="border-0 text-end">{t('Big_Bet')}</th>
                     <th className="border-0 text-end">{t('Small_Bet')}</th>
                     <th className="border-0 text-end">{t('3')}{t('A')}</th>
-                    <th className="border-0 text-end">{t('3')}{t('C')}</th>
+                    <th className="border-0 text-end">3C</th>
                     <th className="border-0 text-center">{t('Bet_Type')}</th>
                     <th className="border-0 text-end">{t('Amount')}</th>
                     <th className="border-0"></th>
@@ -464,7 +464,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
 
                  {isLoading ? (<tr>
                     <td colSpan="5">
-                        {t('Total_Stake')}: {MoneyFormatDisplay(totalAmount,1)}
+                        {t('Total_Stake')}: {totalAmount ? MoneyFormatDisplay(totalAmount,1) : 0.00}
                     </td>
                     <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title="Clear All">{t('clear')}</button>
                     </td>
@@ -476,7 +476,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     </td>
                 </tr>) : (<tr>
                     <td colSpan="6">
-                        {t('Total_Stake')}: {MoneyFormatDisplay(totalAmount,1)}
+                        {t('Total_Stake')}: {totalAmount ? MoneyFormatDisplay(totalAmount,1) : 0.00}
                     </td>
                     <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title="Clear All">{t('clear')}</button>
                     </td>
