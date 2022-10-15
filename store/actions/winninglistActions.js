@@ -7,6 +7,12 @@ export const getWinningData = (id,filters,callback) => async (dispatch) => {
     let ticketNo = filters.ticketNo || ""
     let prizeType = filters.prizeType || ""
     let dateRange = filters.dateRange || ""
+    
+    if (prizeType == 'All'){
+        prizeType = ""
+    }
+
+
     try {
       const headers = {
         'Content-Type': 'application/json',
@@ -17,7 +23,7 @@ export const getWinningData = (id,filters,callback) => async (dispatch) => {
         urlHit = `${API_BASE_URL}/betListWinning?member_id=${id}&ticket_no=${ticketNo}&prize_type=${prizeType}&date_range=${dateRange}`;
 
 
-        //console.log('urlHit: ',urlHit)
+        // console.log('urlHit: ',urlHit)
 
       const res = await axios.get(urlHit, {headers: headers,})
       return callback({
