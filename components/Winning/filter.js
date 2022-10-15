@@ -40,6 +40,10 @@ const Filter = ({_setFilterParams}) => {
     const [fromDate, setFromDate] = useState(new Date());
     const [toDate, setToDate] = useState(new Date());
 
+    const change = () => {
+        $("li:contains(Custom Range)").text(t('custom_range'))
+      }
+
     const prizeTypleList = ['All','P1','P2','P3','S','C']
 
     const handleEvent = (event, picker) => {
@@ -139,6 +143,7 @@ const Filter = ({_setFilterParams}) => {
     }
 
       useEffect(() => {
+        change()
       },[]);
 
     const openFilterForMob = () => {
