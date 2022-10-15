@@ -27,7 +27,7 @@ const HomeSlider = () => {
                                     </div>
                                 </div>
                                 <div className="date-block">
-                                    <a href="#">27TH {t('September')} ({t('Tuesday')})</a>
+                                    <a href="#" style={{pointerEvents:'none'}}>27TH {t('September')} ({t('Tuesday')})</a>
                                 </div>
                                 <p className="">{t("Dont_miss_your_chance")}</p>
                                 <h3>{t('Lucky_Winner')}</h3>
