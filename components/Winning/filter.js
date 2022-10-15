@@ -62,6 +62,11 @@ const Filter = ({_setFilterParams}) => {
         [t('This_Year')]: [moment().startOf('year')],
       });
       
+
+      const change = () => {
+        $("li:contains(Custom Range)").text(t('custom_range'))
+      }
+
       function formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
@@ -139,6 +144,7 @@ const Filter = ({_setFilterParams}) => {
     }
 
       useEffect(() => {
+        change()
       },[]);
 
     const openFilterForMob = () => {
