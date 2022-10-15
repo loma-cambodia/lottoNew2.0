@@ -296,6 +296,21 @@ const handlePageClick = (event) => {
   ]
 
 
+  const betTypeHandler = (getBetTypeValue) => {
+ //   getBetTypeValue = 2
+    let boxType = 'S';
+    if (getBetTypeValue == 0) {
+        boxType = 'B';
+    } else if (getBetTypeValue == 1) {
+        boxType = 'I';
+    }
+    else if (getBetTypeValue == 2) {
+        boxType = 'R';
+    }
+    return boxType;
+ };
+
+
 
   
     function ShowTableDataParent({tickets}){
@@ -309,7 +324,7 @@ const handlePageClick = (event) => {
                             <thead>
                                 <tr>
                                     <th><span>{t('Ticket_No')}<br />{t('Betting_Time')}<br/>{t('Draw_Date')}</span></th>
-                                    <th><span>{t('Bet_Number')}<br/>{t('Company')}</span></th>
+                                    <th><span>{t('Bet_Number')}<br/>{t('Company')}<br/>{t('Bet_Type')}</span></th>
                                     {/* <th><span></span></th> */}
                                     <th><span>{t('Total')}<br/>{t('Rebate')}<br/>{t('Net')}</span></th>
                                 </tr>
@@ -336,7 +351,9 @@ const handlePageClick = (event) => {
                                                         item.abbreviation
                                                     )) 
                                                 }
-                                            </span>
+                                            </span><br/>
+                                            <span>{item.bet_type == 0 ? "S":item.bet_type}</span>
+
                                         </td>
                                         <td>
                                             <span>
@@ -360,6 +377,7 @@ const handlePageClick = (event) => {
                                     <th className="text-center">{t('Draw_Date')}</th>
                                     <th className="text-start">{t('Bet_Number')}</th>
                                     <th className="text-start">{t('Company')}</th>
+                                    <th className="text-start">{t('Bet_Type')}</th>
                                     <th className="text-end">{t('Total')}</th>
                                     <th className="text-end">{t('Rebate')}</th>
                                     <th className="text-end">{t('Net')}</th>
@@ -381,6 +399,7 @@ const handlePageClick = (event) => {
                                     ) 
                                     }
                                 </td>
+                                    <td className="text-start">{betTypeHandler(item.bet_type)}</td>
                                     <td className="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
                                     <td className="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
                                     <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
@@ -499,7 +518,7 @@ const handlePageClick = (event) => {
                                         <td>{id+1}</td>
                                         <td className="text-start"><a >{item.child_ticket_no}</a></td>
                                         <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}</td>
-                                        <td className="text-center">{moment(item.ticket.betting_date ).format('DD-MM-YYYY h:mm:ss a')}</td>
+                                        <td className="text-center">{moment(item.ticket.betting_date ).format('DD-MM-YYYY')}</td>
                                         <td className="text-center">{item.game_type}</td>
                                         <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
                                         <td className="text-start">{item.lottery_number}</td>
