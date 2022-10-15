@@ -7,7 +7,7 @@ const HomeSlider = () => {
     return (
       <>
      <Carousel autoPlay className="homepage-carousel ">
-  <div className="item">
+  {/* <div className="item">
             <div className="hero-slider-special-draw">
                 <div className="container">
                     <div className="row align-items-center">
@@ -35,7 +35,6 @@ const HomeSlider = () => {
                                       <Link href="/betting"> 
                                         <span role='button' className="btn-yellow rounded-full">{t("Start_playing_now")}</span>
                                      </Link>
-                                    {/* <Link className="btn-yellow rounded-full"  href="/betting">{t('Start_playing_now')}</Link> */}
                                 </div>
                             </div>
                         </div>
@@ -45,7 +44,7 @@ const HomeSlider = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
 
         
         <div className="item">
