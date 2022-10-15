@@ -56,6 +56,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
         setReset(false);
+        change();
       }, [itemOffset, itemsPerPage,_tickets, reset]);
 
 
@@ -82,7 +83,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         [t('This_Year')]: [moment().startOf('year')],
       });
 
-      
+      const change = () => {
+        $("li:contains(Custom Range)").text(t('custom_range'))
+      }
+
       const intailDate = formatDate2(c) + ' - ' +formatDate2(c);
 
       const [ticketList, setTicketList] = useState([]);

@@ -2203,7 +2203,7 @@
 }
 .react-datepicker__day {
   position: relative;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 .react-datepicker__day:after {
   background-color: transparent;
@@ -2806,7 +2806,7 @@ input.form-control.text-right-for-amount {
   height: 38px;
 }
 .react-datepicker__day.react-datepicker__day--highlighted{
-  background-color: #ffd4e5;
+  background-color: #ffd4e5 ;
   color: #000;
   pointer-events: all;
 }
@@ -2815,9 +2815,15 @@ input.form-control.text-right-for-amount {
   color: #fff !important;
 
 }
+.react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
+  border-radius: 0.3rem;
+  background-color: #ffffff !important;
+  color: rgb(0, 0, 0) !important;
+}
+
 .react-datepicker__day--selected {
-  background-color: transparent !important;
-    color: #000 !important;
+  background-color: #bf2262 !important;
+  color: #fff !important;
 }
 .custom-accordion .accordion-button:hover {
   z-index: 0 !important;
@@ -2882,7 +2888,7 @@ input.daterangepickerstyle {
 
 table.mob-table {
   border-collapse: collapse;
-  font-size: 10px;
+  font-size: 14px;
   width: 100%;
   border-radius: 5px 5px 0 0;
   border: 1px solid #ddd;
