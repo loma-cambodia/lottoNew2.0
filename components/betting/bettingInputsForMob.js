@@ -41,7 +41,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
     const [mainSubmitData, setMainSubmitData] = useState([]);
     const [pageLoadCount, setPageLoadCount] = useState(1);
     
-    console.log('localStateDatalocalStateData',localStateInitData);
+    // console.log('localStateDatalocalStateData',localStateInitData);
 
     const [totalAmount, setTotalAmount] = useState('');
 
