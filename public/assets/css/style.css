@@ -494,6 +494,7 @@
   }
   .news-wrapper .announcement-text {
       display: inherit;
+      min-width: 80px;
   }
   .news-wrapper .toggle-icon-news {
       display: none;
@@ -600,9 +601,9 @@
   }
   .payout-text-part {
   position: absolute;
-  right: -12px;
+  right: -26px;
   transform: rotateZ(-90deg);
-  width: 65px;
+  width: 100px;
   top: 55%;
   text-align: center;
   text-transform: uppercase;
