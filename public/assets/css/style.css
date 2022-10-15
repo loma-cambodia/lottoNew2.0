@@ -2815,11 +2815,11 @@ input.form-control.text-right-for-amount {
   color: #fff !important;
 
 }
-/* .react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
+.react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
   border-radius: 0.3rem;
   background-color: #ffffff !important;
   color: rgb(0, 0, 0) !important;
-} */
+}
 
 .react-datepicker__day--selected {
   background-color: #bf2262 !important;
