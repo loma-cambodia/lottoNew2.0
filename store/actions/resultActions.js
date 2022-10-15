@@ -22,6 +22,7 @@ export const getResults = (sendData,callback) => async (dispatch) => {
     const res = await axios.get(urlHit, {
       headers: headers,
     })
+    console.log("RESRES",res)
     return callback({
       message: 'Success',
       data: res,
@@ -56,6 +57,7 @@ export const getLatestResultDate = (callback) => async (dispatch) => {
       data: res.data[0].result_date,
       statusCode: res.status,
     })
+    
   } catch (e) {
 
     // let message = ''

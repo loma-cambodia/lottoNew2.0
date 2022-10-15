@@ -41,7 +41,7 @@ import Filter from "../components/results/filter";
         } 
         dispatch(getLogin(objectWithData));
   
-        }, [datauser])
+        }, [datauser,initDate])
 
     
     return (

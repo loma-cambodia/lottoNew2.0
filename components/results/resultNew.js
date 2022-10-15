@@ -15,18 +15,19 @@ const resultNew = ({_setDate}) => {
     const [startDate, setStartDate] = useState(new Date());
     const [highlightedData,setHighlightedData] = useState();
   
+    const [initResult, setResult] = useState([]);
     const dispatch = useDispatch();
         const getLatestDrawDate = () =>{
 
-          let dataSubmit = undefined
-          dispatch(getResults(dataSubmit,response =>{
+          //let dataSubmit = startDate
+          dispatch(getResults(undefined,response =>{
             if(response.statusCode  == 201  || response.statusCode  == 200 ){
 
                 if(response.statusCode == 200){
 
                     let results = response.data.data
                     // setStartDate(results[0].result_date)
-                    console.log(results)
+                    console.log("11111",results.data)
                     let resultDate = []
                     // let resultHighlited = []
                     results.map(data=>{
@@ -40,13 +41,15 @@ const resultNew = ({_setDate}) => {
                     }
                     
                     }) 
-                    let highlight = resultDate.map(date => subDays(new Date(date), 0));
+                    let highlight = response.data.result_dates(date => subDays(new Date(date), 0));
                     console.log("DDDDDDD",resultDate)
                     console.log("resultHighlited:",highlight,resultDate)
 
                     setHighlightedData(highlight)
                     setStartDate (results.fetching_date ? results.fetching_date :''.dateFormat('DD/MM/YYYY'))
                     // setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
+
+                    setResult(response)
                 }else {
 
                 }
@@ -138,15 +141,15 @@ const resultNew = ({_setDate}) => {
     return dayName
 }
 
-const [initResult, setResult] = useState([]);
+
 
 
 
     const getDrawResults = () =>{
       const selectedDate = moment(startDate).format('YYYY-MM-DD');
       console.log("selectedDate:",selectedDate)
-      // startDate = undefined
-    dispatch(getResults(undefined, response =>{
+       //startDate = undefined
+    dispatch(getResults(selectedDate, response =>{
 
         if(response.statusCode  == 201  || response.statusCode  == 200 ){
 
@@ -201,6 +204,8 @@ const [initResult, setResult] = useState([]);
 useEffect(() => {
   getDrawResults()
 },[startDate]);
+
+console.log('22222',initResult)
     return (
         <>
         <div className="clearfix curved-card bg-light">
@@ -219,7 +224,7 @@ useEffect(() => {
                 highlightDates={highlightedData}
                 maxDate={new Date()}
                 ref={datepickerRef}
-                value={startDate}
+                value={highlightedData}
                 onSelect={(date) => {setStartDate(date), _setDate(date)}}
                 />
 
