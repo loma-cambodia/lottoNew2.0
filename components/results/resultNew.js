@@ -1,13 +1,132 @@
+
+import { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { subDays,addDays } from "date-fns";
 import { useTranslation } from "react-i18next";
 
-import React, { useState, useEffect } from "react";
 import moment from 'moment';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-import { useDispatch, useSelector } from "react-redux";
 import {getResults} from '../../store/actions/resultActions';
+import { t } from 'i18next';
 
-const Result = ({_initDate}) => {
+const resultNew = ({_setDate}) => {
+    const [startDate, setStartDate] = useState();
+    const [highlightedData,setHighlightedData] = useState();
   
+    const dispatch = useDispatch();
+        const getLatestDrawDate = () =>{
+
+          let dataSubmit = undefined
+          dispatch(getResults(dataSubmit,response =>{
+            if(response.statusCode  == 201  || response.statusCode  == 200 ){
+
+                if(response.statusCode == 200){
+
+                    let results = response.data.data
+                    // setStartDate(results[0].result_date)
+                    console.log(results)
+                    let resultDate = []
+                    // let resultHighlited = []
+                    results.map(data=>{
+                      data.result_date
+                      if(!resultDate.includes(data.fetching_date)){
+                        resultDate.push(data.fetching_date)
+                        // resultHighlited.push(
+                        //   {
+                        //       "react-datepicker__day--highlighted":getDates(moment(data.fetching_date).format('d')),      
+                        //   })
+                    }
+                    
+                    }) 
+                    let highlight = resultDate.map(date => subDays(new Date(date), 0));
+                    console.log("DDDDDDD",resultDate)
+                    console.log("resultHighlited:",highlight,resultDate)
+
+                    setHighlightedData(highlight)
+                    setStartDate (results.fetching_date ? results.fetching_date :''.dateFormat('DD/MM/YYYY'))
+                    // setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
+                }else {
+
+                }
+                }else {
+
+            // setIsLoading(false);
+        }
+    }))
+    }
+    
+    // const getStartDate = () =>{
+    //   if (startDate === undefined)
+    //   {
+    //     return 
+    //   }
+    //   else 
+    //   {
+    //    return startDate
+    //   }
+    // }
+    // const sundaysInMonth = ( m, y ) =>{
+    //     var days = new Date( y,m,0 ).getDate();
+    //     var sundays = [ 8 - (new Date( m +'/01/'+ y ).getDay()) ];
+    //     for ( var i = sundays[0] + 7; i < days; i += 7 ) {
+    //       sundays.push( i );
+    //     }
+    //     return sundays;
+    //   }
+
+      const getDates = (dateName) =>{
+        var start = moment('2022-01-01'), // Sept. 1st
+        end   = moment(new Date()) // Nov. 2nd
+          // Sun = 0
+          // Mon = 1
+          // Tue = 2
+          // Wed = 3
+          // Thu = 4
+          // Fri = 5
+          // Sat = 6
+
+        var result = [];
+        var current = start.clone();
+
+        while (current.day(7 + dateName).isBefore(end)) {
+          result.push(new Date(current.clone()));
+        }
+
+        return result
+      }
+
+     
+    // const highlightWithRanges = [
+    //     {
+    //       "react-datepicker__day--highlighted": getDates(0),      
+    //     },
+    //     {
+    //       "react-datepicker__day--highlighted": getDates(6),
+    //     },
+    //     {
+    //       "react-datepicker__day--highlighted": getDates(3),
+    //     }
+    //   ];
+
+      
+      
+
+
+      const datepickerRef = useRef(null);
+      function handleClickDatepickerIcon() {
+        const datepickerElement = datepickerRef.current;
+        // console.log("datepickerElement = ", datepickerElement);
+        datepickerElement.setFocus(true);
+      }
+      useEffect(() => {
+        getLatestDrawDate()
+      },[]);
+      console.log(startDate)
+
+    //   FOR RESULT
+    
   let drawResult =[]
 
   const { t } = useTranslation();
@@ -19,14 +138,14 @@ const Result = ({_initDate}) => {
     return dayName
 }
 
-const dispatch = useDispatch();
 const [initResult, setResult] = useState([]);
 
 
+
     const getDrawResults = () =>{
-      const selectedDate = moment(_initDate).format('YYYY-MM-DD');
+      const selectedDate = moment(startDate).format('YYYY-MM-DD');
       console.log("selectedDate:",selectedDate)
-      // _initDate = undefined
+      // startDate = undefined
     dispatch(getResults(undefined, response =>{
 
         if(response.statusCode  == 201  || response.statusCode  == 200 ){
@@ -35,6 +154,26 @@ const [initResult, setResult] = useState([]);
 
           let filteredResult = []
              let results = response.data.data
+
+
+            // CAL FILTER HIGHLIGHT
+
+            let resultDate = []
+                    results.map(data=>{
+                      data.result_date
+                      if(!resultDate.includes(data.fetching_date)){
+                        resultDate.push(data.fetching_date)
+                        
+                    }
+                    
+                    }) 
+                    let highlight = resultDate.map(date => subDays(new Date(date), 0));
+                    console.log("DDDDDDD",resultDate)
+                    console.log("resultHighlited:",highlight,resultDate)
+
+                    setHighlightedData(highlight)
+
+
              console.log(results)
              results.map((data => {
               if(data.fetching_date == selectedDate){
@@ -61,15 +200,43 @@ const [initResult, setResult] = useState([]);
 
 useEffect(() => {
   getDrawResults()
-},[_initDate]);
+},[startDate,highlightedData]);
     return (
         <>
-      <div className="accordion my-3 custom-accordion" id="accordionExample">
+        <div className="clearfix curved-card bg-light">
+        <div className="d-flex align-items-center">
+            <div className="filter-text">
+            <span className="filter-icon"><i className="fa-solid fa-arrow-down-9-1"></i></span> <span className="text-filter">{t('filter_results')}</span>
+            </div>
+            <div className="filter-date ms-auto">
+            <div className="input-group date" style={{flexWrap: 'nowrap'}} id="datepicker">
+                {/* <input type="text" className="form-control" id="date"/> */}
+                <DatePicker 
+                dateFormat="dd/MM/yyyy"
+                selected={startDate} 
+                onChange={(date) => {setStartDate(date), _setDate(date)}} 
+                excludeDates={[addDays(new Date(), 1)]} 
+                highlightDates={highlightedData}
+                maxDate={new Date()}
+                ref={datepickerRef}
+                onSelect={(date) => {setStartDate(date), _setDate(date)}}
+                />
+
+                <span className="input-group-append" onClick={() => handleClickDatepickerIcon()}>
+                <span className="input-group-text bg-light d-block">
+                    <i className="fa-regular fa-calendar"></i>
+                </span>
+                </span>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div className="accordion my-3 custom-accordion" id="accordionExample">
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingThree">
             <button className="accordion-button" type="button">
              {
-              _initDate === undefined ?
+              startDate === undefined ?
               <div>
               <span>{t('Last_draw_date')}</span> <span className="print-btn"><i className="fa-solid fa-print"></i></span>
               </div> 
@@ -618,4 +785,4 @@ useEffect(() => {
         </>
     )
 }
-export default Result;
+export default resultNew;

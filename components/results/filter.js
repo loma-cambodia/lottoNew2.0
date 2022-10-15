@@ -14,6 +14,8 @@ import { t } from 'i18next';
 const Filter = ({_setDate}) => {
     const [startDate, setStartDate] = useState();
     const [highlightedData,setHighlightedData] = useState();
+
+    
   
     const dispatch = useDispatch();
         const getLatestDrawDate = () =>{
@@ -28,22 +30,23 @@ const Filter = ({_setDate}) => {
                     // setStartDate(results[0].result_date)
                     console.log(results)
                     let resultDate = []
-                    let resultHighlited = []
+                    // let resultHighlited = []
                     results.map(data=>{
                       data.result_date
                       if(!resultDate.includes(data.fetching_date)){
                         resultDate.push(data.fetching_date)
-                        resultHighlited.push(
-                          {
-                              "react-datepicker__day--highlighted":getDates(moment(data.fetching_date).format('d')),      
-                          })
+                        // resultHighlited.push(
+                        //   {
+                        //       "react-datepicker__day--highlighted":getDates(moment(data.fetching_date).format('d')),      
+                        //   })
                     }
                     
                     }) 
+                    let highlight = resultDate.map(date => subDays(new Date(date), 0));
                     console.log("DDDDDDD",resultDate)
-                    console.log("resultHighlited:",resultHighlited,resultDate)
+                    console.log("resultHighlited:",highlight,resultDate)
 
-                    setHighlightedData(resultHighlited)
+                    setHighlightedData(highlight)
                     setStartDate (results.fetching_date ? results.fetching_date :''.dateFormat('DD/MM/YYYY'))
                     // setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
                 }else {
@@ -122,6 +125,7 @@ const Filter = ({_setDate}) => {
       useEffect(() => {
         getLatestDrawDate()
       },[]);
+      console.log(startDate)
     return (
         <>
         <div className="clearfix curved-card bg-light">
@@ -133,7 +137,7 @@ const Filter = ({_setDate}) => {
             <div className="input-group date" style={{flexWrap: 'nowrap'}} id="datepicker">
                 {/* <input type="text" className="form-control" id="date"/> */}
                 <DatePicker 
-                dateFormat="MM/dd/yyyy"
+                dateFormat="dd/MM/yyyy"
                 selected={startDate} 
                 onChange={(date) => {setStartDate(date), _setDate(date)}} 
                 excludeDates={[addDays(new Date(), 1)]} 
