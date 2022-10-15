@@ -13,7 +13,9 @@ import { t } from 'i18next';
 
 const Filter = ({_setDate}) => {
     const [startDate, setStartDate] = useState();
-
+    const [dateR, setResult] = useState();
+  let test = {}
+  const [highlightedData,setHighlightedData] = useState();
   
     const dispatch = useDispatch();
 
@@ -27,9 +29,32 @@ const Filter = ({_setDate}) => {
 
                 let results = response.data.data
                 // setStartDate(results[0].result_date)
+                console.log(results)
+                let resultDate = []
+                let resultHighlited = []
+                results.map(data=>{
+                  data.result_date
+                  if(!resultDate.includes(data.result_date)){
+                    resultDate.push(data.result_date)
+                    resultHighlited.push(
+                  {
+                    "react-datepicker__day--highlighted": getDates(moment(data.result_date).format('d')),      
+                  })
+                }
+                  setResult()
+                }) 
+                console.log("DDDDDDD",resultDate)
+                console.log("resultHighlited:",resultHighlited)
 
-                setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
-            }else {
+                setHighlightedData(resultHighlited)
+                setStartDate (results.result_date ? results.result_date :''.dateFormat('DD/MM/YYYY'))
+
+
+                
+                // setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
+
+
+                setStartDate (new Date(results[0].result_date ? results[0].result_date :''))
 
             }
             }else {
@@ -38,6 +63,7 @@ const Filter = ({_setDate}) => {
         }
     }))
     }
+    console.log("RRRRR",dateR)
     // const getStartDate = () =>{
     //   if (startDate === undefined)
     //   {
@@ -114,11 +140,11 @@ const Filter = ({_setDate}) => {
             <div className="input-group date" style={{flexWrap: 'nowrap'}} id="datepicker">
                 {/* <input type="text" className="form-control" id="date"/> */}
                 <DatePicker 
-                dateFormat="MM/dd/yyyy"
+                dateFormat="dd/MM/yyyy"
                 selected={startDate} 
                 onChange={(date) => {setStartDate(date), _setDate(date)}} 
                 excludeDates={[addDays(new Date(), 1)]} 
-                highlightDates={highlightWithRanges}
+                highlightDates={highlightedData}
                 maxDate={new Date()}
                 ref={datepickerRef}
                 />

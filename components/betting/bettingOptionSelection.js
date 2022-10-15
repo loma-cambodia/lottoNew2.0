@@ -472,7 +472,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                     <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50"/>
                     </td>
                     <td colSpan="2">
-                             <button type="button" className="btn-custom-curve2" title="Submit">Submit</button>   
+                             <button type="button" className="btn-custom-curve2" title="Submit">{t('submit')}</button>   
                     </td>
                 </tr>) : (<tr>
                     <td colSpan="6">
@@ -529,7 +529,7 @@ const [isLoading,  setIsLoading] = React.useState(false);
                                 </div>
                             </div>
                             <div className="modal-footer px-2 py-3 border-top" style={{justifyContent:'center'}}>
-                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>OK</button>
+                                <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" onClick={modelCloseCustom}>{t('Ok')}</button>
                                 {/* <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50"/> */}
                             </div>
                         </div>

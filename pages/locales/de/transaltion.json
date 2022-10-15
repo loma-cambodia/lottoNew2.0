@@ -162,6 +162,14 @@
     "status":"状况",
     "404_message":"The page you are looking for might have been removed, had the name changed or it is temporary unavailable",
     "no_results":"无",
+    "previous":"< Previous",
+    "next":"Next >",
+    "P1":"首奖",
+    "P2":"P2",
+    "P3":"P3",
+    "S":"S",
+    "C":"C",
+    "All":"All",
     "no_winning_ticket":"无中奖资料"
 
 }
