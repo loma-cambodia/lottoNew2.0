@@ -146,6 +146,7 @@
     "This_Month":"This Month",
     "Last_Month":"Last Month",
     "This_Year":"This Year",
+    "custom_range":"Custom Range",
     "betting_list_report": "Bet List",
     "winning_list":"Winning List",
     "Total_bet_amount":"Total bet amount",
@@ -166,11 +167,11 @@
     "no_winning_ticket":"No Winning Ticket",
     "previous":"< Previous",
     "next":"Next >",
-    "P1":"P1",
-    "P2":"P2",
-    "P3":"P3",
-    "S":"S",
-    "C":"C",
+    "P1":"1st Prize",
+    "P2":"2nd Prize",
+    "P3":"3rd Prize",
+    "S":"Special",
+    "C":"Consolation",
     "All":"All"
     
 }

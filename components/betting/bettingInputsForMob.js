@@ -1439,7 +1439,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                     </div>
                     <div className="col-3">
                         <button className="btn btn-outline-dark" style={{ width:'100%' }} onClick={() => allClearData()}>
-                            <b>{t('clear')}</b>
+                            <b style={{ fontSize: '13px' }}>{t('clear')}</b>
                         </button>
                     </div>
                 </div>
