@@ -7,7 +7,8 @@ const HomeSlider = () => {
     return (
       <>
      <Carousel autoPlay className="homepage-carousel ">
-  {/* <div className="item">
+  <div className="item">
+    {/*Home */}
             <div className="hero-slider-special-draw">
                 <div className="container">
                     <div className="row align-items-center">
@@ -21,7 +22,7 @@ const HomeSlider = () => {
                                                 <img src="assets/images/1659581469.png" className="img-fluid" alt=""/>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>  
                                     <div className="draw-name text-uppercase">
                                         {t('Special')}<br/>{t('Draw')}
                                     </div>
@@ -44,7 +45,7 @@ const HomeSlider = () => {
                     </div>
                 </div>
             </div>
-        </div> */}
+        </div>
 
         
         <div className="item">
