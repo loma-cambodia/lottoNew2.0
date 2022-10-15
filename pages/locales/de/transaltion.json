@@ -164,13 +164,13 @@
     "404_message":"The page you are looking for might have been removed, had the name changed or it is temporary unavailable",
     "no_results":"无",
     "no_winning_ticket":"无中奖资料",
-    "previous":"< Previous",
-    "next":"Next >",
+    "previous":"< 上一页",
+    "next":"下一页 >",
     "P1":"首奖",
-    "P2":"P2",
-    "P3":"P3",
-    "S":"S",
-    "C":"C",
-    "All":"All"
+    "P2":"次奖",
+    "P3":"三奖",
+    "S":"特别奖",
+    "C":"安慰奖",
+    "All":"全部"
 
 }
