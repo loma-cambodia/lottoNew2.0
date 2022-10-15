@@ -85,7 +85,7 @@
     "Start_playing_now":"开始下注",
     "Announcement":"公告",
     "Play_now":"即刻下注",
-    "Past_Draw_Result":"开奖记录",
+    "Past_Draw_Result":"过往开奖结果",
     "Last_draw_date":"最后开奖日期",
     "Draw_Id":"期号",
     "1":"1",
@@ -114,7 +114,7 @@
     "Company":"公司",
     "Reset":"重置",
     "BET":"投注",
-    "BettingList":"投注单",
+    "BettingList":"下注状况",
     "betting_history":"投注历史",
 
 
@@ -145,6 +145,7 @@
     "This_Month":"今月",
     "Last_Month":"上个月",
     "This_Year":"今年",
+    "custom_range":"自定义",
     "betting_list_report": "下注状况",
     "winning_list":"中奖报表",
     "Total_bet_amount":"投注总额",
@@ -162,14 +163,14 @@
     "status":"状况",
     "404_message":"The page you are looking for might have been removed, had the name changed or it is temporary unavailable",
     "no_results":"无",
-    "previous":"< Previous",
-    "next":"Next >",
+    "no_winning_ticket":"无中奖资料",
+    "previous":"< 上一页",
+    "next":"下一页 >",
     "P1":"首奖",
-    "P2":"P2",
-    "P3":"P3",
-    "S":"S",
-    "C":"C",
-    "All":"All",
-    "no_winning_ticket":"无中奖资料"
+    "P2":"次奖",
+    "P3":"三奖",
+    "S":"特别奖",
+    "C":"安慰奖",
+    "All":"全部"
 
 }

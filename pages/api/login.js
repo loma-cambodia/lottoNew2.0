@@ -24,6 +24,13 @@ async function handler(req, res) {
     //       "language":  'en',
     //   }
 
+    // const objectWithData = {
+    //            "customer_name": "Atul",
+    //          "customer_id":  1403,
+    //         "merchant_id":  1,
+    //         "language":  'en',
+    //     }
+
   
 
   const objectWithData = {
