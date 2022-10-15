@@ -62,6 +62,11 @@ const Filter = ({_setFilterParams}) => {
         [t('This_Year')]: [moment().startOf('year')],
       });
       
+
+      const change = () => {
+        $("li:contains(Custom Range)").text(t('custom_range'))
+      }
+
       function formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
@@ -139,6 +144,7 @@ const Filter = ({_setFilterParams}) => {
     }
 
       useEffect(() => {
+        change()
       },[]);
 
     const openFilterForMob = () => {
@@ -150,7 +156,7 @@ const Filter = ({_setFilterParams}) => {
                 <div className={styles.device_detect_for_mobile}>
                     <div className="form-group mb-0">
                         <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
-                            <b>{t('betting_list_report')}</b>
+                            <b>{t('winning_list')}</b>
                             <img 
                                 onClick={() => openFilterForMob()}
                                 className="img-fluid" 
