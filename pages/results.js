@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
 import Banner2 from "../components/results/banner2";
-import Result from "../components/results/result";
+import ResultNew from "../components/results/resultNew";
 import { useTranslation } from "react-i18next";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -66,8 +66,9 @@ import Filter from "../components/results/filter";
             <Banner2/>
             <section className="page-content py-3">
                 <div className="container">
-                <Filter _setDate = {setDate}/>
-                <Result _initDate={initDate}/>
+                {/* <Filter _setDate = {setDate}/> */}
+                {/* <Result _initDate={initDate}/> */}
+                <ResultNew _setDate = {setDate}/>
                 </div>
             </section>   
             <Footer/>
