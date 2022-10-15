@@ -13,57 +13,52 @@ import { t } from 'i18next';
 
 const Filter = ({_setDate}) => {
     const [startDate, setStartDate] = useState();
-    const [dateR, setResult] = useState();
-  let test = {}
-  const [highlightedData,setHighlightedData] = useState();
+    const [highlightedData,setHighlightedData] = useState();
+
+    
   
     const dispatch = useDispatch();
-
         const getLatestDrawDate = () =>{
 
           let dataSubmit = undefined
-         dispatch(getResults(dataSubmit,response =>{
+          dispatch(getResults(dataSubmit,response =>{
             if(response.statusCode  == 201  || response.statusCode  == 200 ){
 
-            if(response.statusCode == 200){
+                if(response.statusCode == 200){
 
-                let results = response.data.data
-                // setStartDate(results[0].result_date)
-                console.log(results)
-                let resultDate = []
-                let resultHighlited = []
-                results.map(data=>{
-                  data.result_date
-                  if(!resultDate.includes(data.result_date)){
-                    resultDate.push(data.result_date)
-                    resultHighlited.push(
-                  {
-                    "react-datepicker__day--highlighted": getDates(moment(data.result_date).format('d')),      
-                  })
+                    let results = response.data.data
+                    // setStartDate(results[0].result_date)
+                    console.log(results)
+                    let resultDate = []
+                    // let resultHighlited = []
+                    results.map(data=>{
+                      data.result_date
+                      if(!resultDate.includes(data.fetching_date)){
+                        resultDate.push(data.fetching_date)
+                        // resultHighlited.push(
+                        //   {
+                        //       "react-datepicker__day--highlighted":getDates(moment(data.fetching_date).format('d')),      
+                        //   })
+                    }
+                    
+                    }) 
+                    let highlight = resultDate.map(date => subDays(new Date(date), 0));
+                    console.log("DDDDDDD",resultDate)
+                    console.log("resultHighlited:",highlight,resultDate)
+
+                    setHighlightedData(highlight)
+                    setStartDate (results.fetching_date ? results.fetching_date :''.dateFormat('DD/MM/YYYY'))
+                    // setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
+                }else {
+
                 }
-                  setResult()
-                }) 
-                console.log("DDDDDDD",resultDate)
-                console.log("resultHighlited:",resultHighlited)
-
-                setHighlightedData(resultHighlited)
-                setStartDate (results.result_date ? results.result_date :''.dateFormat('DD/MM/YYYY'))
-
-
-                
-                // setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
-
-
-                setStartDate (new Date(results[0].result_date ? results[0].result_date :''))
-
-            }
-            }else {
+                }else {
 
             // setIsLoading(false);
         }
     }))
     }
-    console.log("RRRRR",dateR)
+    
     // const getStartDate = () =>{
     //   if (startDate === undefined)
     //   {
@@ -74,17 +69,17 @@ const Filter = ({_setDate}) => {
     //    return startDate
     //   }
     // }
-    const sundaysInMonth = ( m, y ) =>{
-        var days = new Date( y,m,0 ).getDate();
-        var sundays = [ 8 - (new Date( m +'/01/'+ y ).getDay()) ];
-        for ( var i = sundays[0] + 7; i < days; i += 7 ) {
-          sundays.push( i );
-        }
-        return sundays;
-      }
+    // const sundaysInMonth = ( m, y ) =>{
+    //     var days = new Date( y,m,0 ).getDate();
+    //     var sundays = [ 8 - (new Date( m +'/01/'+ y ).getDay()) ];
+    //     for ( var i = sundays[0] + 7; i < days; i += 7 ) {
+    //       sundays.push( i );
+    //     }
+    //     return sundays;
+    //   }
 
       const getDates = (dateName) =>{
-         var start = moment('2022-01-01'), // Sept. 1st
+        var start = moment('2022-01-01'), // Sept. 1st
         end   = moment(new Date()) // Nov. 2nd
           // Sun = 0
           // Mon = 1
@@ -105,18 +100,19 @@ const Filter = ({_setDate}) => {
       }
 
      
-    const highlightWithRanges = [
-        {
-          "react-datepicker__day--highlighted": getDates(0),      
-        },
-        {
-          "react-datepicker__day--highlighted": getDates(6),
-        },
-        {
-          "react-datepicker__day--highlighted": getDates(3),
-        }
-      ];
+    // const highlightWithRanges = [
+    //     {
+    //       "react-datepicker__day--highlighted": getDates(0),      
+    //     },
+    //     {
+    //       "react-datepicker__day--highlighted": getDates(6),
+    //     },
+    //     {
+    //       "react-datepicker__day--highlighted": getDates(3),
+    //     }
+    //   ];
 
+      
       
 
 
@@ -129,6 +125,7 @@ const Filter = ({_setDate}) => {
       useEffect(() => {
         getLatestDrawDate()
       },[]);
+      console.log(startDate)
     return (
         <>
         <div className="clearfix curved-card bg-light">
