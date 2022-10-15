@@ -13,10 +13,9 @@ import { t } from 'i18next';
 
 const Filter = ({_setDate}) => {
     const [startDate, setStartDate] = useState();
-    const [dateR, setResult] = useState();
-  let test = {}
   const [highlightedData,setHighlightedData] = useState();
   
+  const [d,setd] = useState();
     const dispatch = useDispatch();
 
         const getLatestDrawDate = () =>{
@@ -38,10 +37,10 @@ const Filter = ({_setDate}) => {
                     resultDate.push(data.result_date)
                     resultHighlited.push(
                   {
-                    "react-datepicker__day--highlighted": getDates(moment(data.result_date).format('d')),      
+                      "react-datepicker__day--highlighted":getDates(moment(data.fetching_date).format('d')),      
                   })
                 }
-                  setResult()
+                
                 }) 
                 console.log("DDDDDDD",resultDate)
                 console.log("resultHighlited:",resultHighlited,results)
@@ -53,8 +52,7 @@ const Filter = ({_setDate}) => {
                 
                 // setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
 
-
-                setStartDate (new Date(results[0].result_date ? results[0].result_date :''))
+            }else {
 
             }
             }else {
@@ -63,7 +61,7 @@ const Filter = ({_setDate}) => {
         }
     }))
     }
-    console.log("RRRRR",dateR)
+    
     // const getStartDate = () =>{
     //   if (startDate === undefined)
     //   {
@@ -118,6 +116,7 @@ const Filter = ({_setDate}) => {
       ];
 
       
+      
 
 
       const datepickerRef = useRef(null);
@@ -140,7 +139,7 @@ const Filter = ({_setDate}) => {
             <div className="input-group date" style={{flexWrap: 'nowrap'}} id="datepicker">
                 {/* <input type="text" className="form-control" id="date"/> */}
                 <DatePicker 
-                dateFormat="dd/MM/yyyy"
+                dateFormat="MM/dd/yyyy"
                 selected={startDate} 
                 onChange={(date) => {setStartDate(date), _setDate(date)}} 
                 excludeDates={[addDays(new Date(), 1)]} 
