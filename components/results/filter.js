@@ -44,7 +44,7 @@ const Filter = ({_setDate}) => {
                   setResult()
                 }) 
                 console.log("DDDDDDD",resultDate)
-                console.log("resultHighlited:",resultHighlited)
+                console.log("resultHighlited:",resultHighlited,results)
 
                 setHighlightedData(resultHighlited)
                 setStartDate (results.result_date ? results.result_date :''.dateFormat('DD/MM/YYYY'))
