@@ -12,7 +12,7 @@ import {getResults} from '../../store/actions/resultActions';
 import { t } from 'i18next';
 
 const resultNew = ({_setDate}) => {
-    const [startDate, setStartDate] = useState();
+    const [startDate, setStartDate] = useState(new Date());
     const [highlightedData,setHighlightedData] = useState();
   
     const dispatch = useDispatch();
@@ -200,7 +200,7 @@ const [initResult, setResult] = useState([]);
 
 useEffect(() => {
   getDrawResults()
-},[startDate,highlightedData]);
+},[startDate]);
     return (
         <>
         <div className="clearfix curved-card bg-light">
@@ -219,6 +219,7 @@ useEffect(() => {
                 highlightDates={highlightedData}
                 maxDate={new Date()}
                 ref={datepickerRef}
+                value={startDate}
                 onSelect={(date) => {setStartDate(date), _setDate(date)}}
                 />
 
@@ -370,8 +371,10 @@ useEffect(() => {
                 </div>
                 ))
                 :
-                <div className="text-center">
-                  <span>{t('no_data_found')}</span>
+                <div className='alert alert-warning'>
+                 <h3 className='text-center'>   
+                         {t('no_data_found')}
+                 </h3>
                 </div>
                 }
                  {/* <div className="col-md-4">
