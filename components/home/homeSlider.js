@@ -7,7 +7,7 @@ const HomeSlider = () => {
     return (
       <>
      <Carousel autoPlay className="homepage-carousel ">
-  {/* <div className="item">
+  <div className="item">
             <div className="hero-slider-special-draw">
                 <div className="container">
                     <div className="row align-items-center">
@@ -44,7 +44,7 @@ const HomeSlider = () => {
                     </div>
                 </div>
             </div>
-        </div> */}
+        </div>
 
         
         <div className="item">
