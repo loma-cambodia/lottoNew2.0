@@ -45,26 +45,46 @@ const Filter = ({_setFilterParams}) => {
     const change = () => {
         
         $("li:contains(Custom Range)").text(t('custom_range'));
-        $("th.month:contains(Oct)").text(t('October'));
+        $("th.month:contains(Oct)").text("oct");
         
         // const value = $('.prev .myclass').val();
         // value = 'goofy'
 
         console.log('change is run: ',)
 
-        // $('#daterpicker').daterangepicker({
-        //         "localize": {
-        //             "days": [
-        //                 "sdfdsdf",
-        //                 "一",
-        //                 "二",
-        //                 "三",
-        //                 "四",
-        //                 "五",
-        //                 "六"
-        //             ]
-        //         }
-        //     })
+        $('input[name="datefilter"]').daterangepicker({
+            "locale": {
+                "customRangeLabel": "Custom",
+                "daysOfWeek": [
+                    t('Sunday'),
+                    t('Monday'),
+                    t('Tuesday'),
+                    t('Wednesday'),
+                    t('Thurday'),
+                    t('Friday'),
+                    t('Saturday')
+                ],
+                "monthNames": [
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December"
+                ],
+                "firstDay": 1
+            },
+            "startDate": "10/11/2022",
+            "endDate": "10/17/2022"
+        }, function(start, end, label) {
+          console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+            })
       
       }
 
@@ -213,7 +233,7 @@ const Filter = ({_setFilterParams}) => {
                                                     toLabel: "To",
                                             }}
                                         >
-                                            <input id="daterangepicker" type="text" className="daterangepickerstyle"  value={dateRange}/>
+                                            <input id="daterangepicker" type="text" className="daterangepickerstyle" name="datefilter" value={dateRange}/>
                                         </DateRangePicker>
                             </div>                    
                         </div>
