@@ -67,6 +67,7 @@ function MyApp({ Component, pageProps,user }) {
         <Head>
           <link rel="icon" type="image/x-icon" href="assets/images/icons/150 x150-01.png" />
           <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+          <link src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"strategy="beforeInteractive"></link>
           <link href="assets/css/style.css" rel="stylesheet"/>
           <link href="assets/css/owl.carousel.css" rel="stylesheet"/>
           <link href="assets/css/owl.theme.default.css" rel="stylesheet"/>

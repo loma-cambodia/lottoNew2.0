@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 
 import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
-import DateRangePicker from 'react-bootstrap-daterangepicker';
+import {DateRangePicker,daterangepicker} from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
-import daterangepicker from 'bootstrap-daterangepicker';
+// import daterangepicker from 'react-bootstrap-daterangepicker';
 import styles from '../../styles/Home.module.css';
 
 // import {getResults} from '../../store/actions/resultActions';
@@ -41,7 +41,82 @@ const Filter = ({_setFilterParams}) => {
     const [toDate, setToDate] = useState(new Date());
 
     const change = () => {
-        $("li:contains(Custom Range)").text(t('custom_range'))
+        $("li:contains(Custom Range)").text(t('custom_range'));
+
+        // $('#datePicker').daterangepicker({
+        //     "locale": {
+        //         "format": "MM/DD/YYYY",
+        //         "separator": " - ",
+        //         "applyLabel": "Apply",
+        //         "cancelLabel": "Cancel",
+        //         "fromLabel": "From",
+        //         "toLabel": "To",
+        //         "customRangeLabel": t('custom_range'),
+        //         "daysOfWeek": [
+        //             "Su",
+        //             "一",
+        //             "二",
+        //             "We",
+        //             "Th",
+        //             "Fr",
+        //             "Sa"
+        //         ],
+        //         "monthNames": [
+        //             "January",
+        //             "February",
+        //             "March",
+        //             "April",
+        //             "May",
+        //             "June",
+        //             "July",
+        //             "August",
+        //             "September",
+        //             "October",
+        //             "November",
+        //             "December"
+        //         ],
+        //         "firstDay": 1
+        //     }
+        // })
+
+        $( document ).ready(function() {
+            $('#datePicker').daterangepicker({
+               singleDatePicker: true,
+               autoApply: true,
+                    "locale": {
+                "format": "MM/DD/YYYY",
+                "separator": " - ",
+                "applyLabel": "Apply",
+                "cancelLabel": "Cancel",
+                "fromLabel": "From",
+                "toLabel": "To",
+                "customRangeLabel": t('custom_range'),
+                "daysOfWeek": [
+                    "Su",
+                    "一",
+                    "二",
+                    "We",
+                    "Th",
+                    "Fr",
+                    "Sa"
+                ],
+                "monthNames": [
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December"
+                ]
+            }
+           });
+       });
       }
 
     const prizeTypleList = ['All','P1','P2','P3','S','C']
@@ -53,7 +128,8 @@ const Filter = ({_setFilterParams}) => {
         setDateRange(newDateRange);
       };
 
- 
+      
+      
       
 
       const [ranges, setRanges] = useState({
@@ -111,7 +187,7 @@ const Filter = ({_setFilterParams}) => {
             //console.log('filter:',filter);
             _setFilterParams(filter)
             
-        setDateRange('')
+        // setDateRange('')
         setPrizeType('')
         setTicketNo('')
 
@@ -124,18 +200,18 @@ const Filter = ({_setFilterParams}) => {
     const resetFiletr = () => {
         let filter = {
             'dateRange': '',
-            'prizeType':'',
+            'prizeType':'All',
             'ticketNo':''
             } 
 
             const date = document.getElementById('daterangepicker');
-            date.value = '';
-            setDateRange('')
+            date.value = intailDate;
+            setDateRange(intailDate)
 
             const ticket = document.getElementById('ticket_no');
             ticket.value = '';
             const prize = document.getElementById('prize_type');
-            prize.value = '';
+            prize.value = 'All';
 
 
             _setFilterParams(filter)
