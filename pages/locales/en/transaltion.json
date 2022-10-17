@@ -208,6 +208,7 @@
     "tickect_update":"Ticket updated successfully", 
     "ticket_delete":"Ticket deleted successfully", 
     "ticket_fetch":"Ticket fetched successfully", 
-    "no_ticket":"No Ticket"
+    "no_ticket":"No Ticket",
 
+    "Select":"Select"
 }
