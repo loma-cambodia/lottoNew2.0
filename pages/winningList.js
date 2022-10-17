@@ -106,9 +106,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
         //"language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
         "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
       } 
-      if(objectWithData.customer_id != 0){
       dispatch(getLogin(objectWithData));
-      }
 
       }, [datauser])
       

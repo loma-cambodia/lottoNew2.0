@@ -189,12 +189,27 @@
     "September":"ខែកញ្ញា",
     "October":"តុលា",
     "November":"ខែវិច្ឆិកា",
-    "December":"ខែធ្នូ"
+    "December":"ខែធ្នូ",
+ 
+    "Please_choose_at_least_one_date_selection":"សូមជ្រើសរើសកាលបរិច្ឆេទចាប់ឆ្នោត",
+    "Please_select_game_first":"សូមជ្រើសរើសក្រុមហ៊ុន",
+    "Please_type_3_or_4_digits_in_number_field":"សូមបញ្ចូលលេខភ្នាល់ 3 ឬ 4 ខ្ទង់",
+    "please_enter_valid_amount_against_selected_number":"សូមបញ្ចូលចំនួនទឹកប្រាក់ភ្នាល់",
+    "Please_select_at_least_one_number":"សូមជ្រើសរើសយ៉ាងហោចណាស់មួយលេខ!",
+    "Please_Enter_Valid_Number":"សូមបញ្ចូលលេខដែលមានសុពលភាព",
+    "Please_Enter_Amount":"សូមបញ្ចូលចំនួនទឹកប្រាក់",
+
+    "insuffient_balance":"សមតុល្យមិនគ្រប់គ្រាន់ដើម្បីបន្តប្រតិបត្តិការនេះ!", 
+    "not_wallet":"អ្នកមិនមានកាបូបទឹកប្រាក់ទេ", 
+    "tickect_success":"សំបុត្រត្រូវបានបង្កើតដោយជោគជ័យ", 
+    "tickect_update":"សំបុត្រត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ", 
+    "ticket_delete":"សំបុត្រត្រូវបានលុបដោយជោគជ័យ", 
+    "ticket_fetch":"សំបុត្រត្រូវបានទាញយកដោយជោគជ័យ", 
+    "no_ticket":"គ្មានសំបុត្រ",
 
 
 
-
-
-
+    "Select":"ជ្រើសរើស",
+    "Delete":"លុប"
     
 }

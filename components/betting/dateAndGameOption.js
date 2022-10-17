@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import React, { useState, useEffect } from 'react';
 
 
@@ -119,7 +120,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                 <div className="day-n-date" style={{cursor:'pointer'}}
                     onClick={() => selectUnSelectDate(!initData.selected, item.id)}
                 >
-                    <p className="fw-bold mb-0">{initData.day}</p>
+                    <p className="fw-bold mb-0">{t(initData.day)}</p>
                     <p className="mb-0">{initData.date}</p>
                 </div>
             </div>
@@ -130,7 +131,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                         {initData.games.map((game,id) =>(
                             <li key={id} className={`${initData.selected ? "":""} list-inline-item`}>
 
-                            <span onClick={() => selectUnSelectgame(initData.selected,game.name,!game.selected)} className={`${game.selected ? "selected-gp-btn":""} outer-circle-gp`} title="Select">
+                            <span onClick={() => selectUnSelectgame(initData.selected,game.name,!game.selected)} className={`${game.selected ? "selected-gp-btn":""} outer-circle-gp`} title={t('Select')}>
                                 <span className="inner-circle-gp">
                                     <img className="img-fluid" src={game.image}/>
                                 </span>
