@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-
+import $ from 'jquery'; 
 import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 import {DateRangePicker,daterangepicker} from 'react-bootstrap-daterangepicker';
@@ -10,7 +10,6 @@ import 'bootstrap-daterangepicker/daterangepicker.css';
 // import daterangepicker from 'react-bootstrap-daterangepicker';
 import styles from '../../styles/Home.module.css';
 
-// import {getResults} from '../../store/actions/resultActions';
 
 const Filter = ({_setFilterParams}) => {
 
@@ -40,83 +39,28 @@ const Filter = ({_setFilterParams}) => {
     const [fromDate, setFromDate] = useState(new Date());
     const [toDate, setToDate] = useState(new Date());
 
+    
+    // $("li:contains(Custom Range)").text(t('custom_range'));
+
     const change = () => {
+        
         $("li:contains(Custom Range)").text(t('custom_range'));
 
-        // $('#datePicker').daterangepicker({
-        //     "locale": {
-        //         "format": "MM/DD/YYYY",
-        //         "separator": " - ",
-        //         "applyLabel": "Apply",
-        //         "cancelLabel": "Cancel",
-        //         "fromLabel": "From",
-        //         "toLabel": "To",
-        //         "customRangeLabel": t('custom_range'),
-        //         "daysOfWeek": [
-        //             "Su",
-        //             "一",
-        //             "二",
-        //             "We",
-        //             "Th",
-        //             "Fr",
-        //             "Sa"
-        //         ],
-        //         "monthNames": [
-        //             "January",
-        //             "February",
-        //             "March",
-        //             "April",
-        //             "May",
-        //             "June",
-        //             "July",
-        //             "August",
-        //             "September",
-        //             "October",
-        //             "November",
-        //             "December"
-        //         ],
-        //         "firstDay": 1
-        //     }
-        // })
-
-        $( document ).ready(function() {
-            $('#datePicker').daterangepicker({
-               singleDatePicker: true,
-               autoApply: true,
-                    "locale": {
-                "format": "MM/DD/YYYY",
-                "separator": " - ",
-                "applyLabel": "Apply",
-                "cancelLabel": "Cancel",
-                "fromLabel": "From",
-                "toLabel": "To",
-                "customRangeLabel": t('custom_range'),
-                "daysOfWeek": [
-                    "Su",
-                    "一",
-                    "二",
-                    "We",
-                    "Th",
-                    "Fr",
-                    "Sa"
-                ],
-                "monthNames": [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                    "August",
-                    "September",
-                    "October",
-                    "November",
-                    "December"
-                ]
-            }
-           });
-       });
+        console.log('change is run: ',)
+        $('#daterpicker').daterangepicker({
+                "locale": {
+                    "daysOfWeek": [
+                        "sdfdsdf",
+                        "一",
+                        "二",
+                        "三",
+                        "四",
+                        "五",
+                        "六"
+                    ]
+                }
+            })
+      
       }
 
     const prizeTypleList = ['All','P1','P2','P3','S','C']
@@ -141,6 +85,8 @@ const Filter = ({_setFilterParams}) => {
         [t('Last_Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
         [t('This_Year')]: [moment().startOf('year')],
       });
+
+
       
       function formatDate(date) {
         var d = new Date(date),
@@ -219,8 +165,10 @@ const Filter = ({_setFilterParams}) => {
     }
 
       useEffect(() => {
+        console.log('language',t('winning_list') )
         change()
-      },[]);
+        
+      },[t]);
 
     const openFilterForMob = () => {
         $('.hideAndShowForMobileView').toggle("slide");
@@ -247,6 +195,7 @@ const Filter = ({_setFilterParams}) => {
                             <div class="form-group">
                                 <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                 <DateRangePicker
+                                id="daterpicker"
                                             ref={keyRef}
                                             onApply={handleEvent}
                                             onCancel={keyRef}
@@ -254,6 +203,10 @@ const Filter = ({_setFilterParams}) => {
                                                 startDate: fromDate,
                                                 endDate: toDate,
                                                 ranges }}
+                                            locale = {{
+                                                    customRangeLabel: t('custom_range'),
+                                                    toLabel: "To",
+                                            }}
                                         >
                                             <input id="daterangepicker" type="text" className="daterangepickerstyle"  value={dateRange}/>
                                         </DateRangePicker>
