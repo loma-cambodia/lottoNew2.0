@@ -45,8 +45,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
       const [fromDate, setFromDate] = useState(new Date());
       const [toDate, setToDate] = useState(new Date());
       const [detailNo, setDetailNo] = useState('');
-      const [filterGamesName, setFilterGamesName] = useState({ value: '', label: 'All' });
-      const [filterGameType, setFilterGameType] = useState({ value: '', label: 'All' });
+      const [filterGamesName, setFilterGamesName] = useState({ value: '', label: t('All') });
+      const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All')  });
       const [selectedticketId, setSelectedticketId] = useState('');
 
 
@@ -182,8 +182,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
        if(actionFrom == 'settledList' || actionFrom == 'reset_button' ){
 
         setDetailNo('');
-        setFilterGamesName({ value: '', label: 'All' });
-        setFilterGameType({ value: '', label: 'All' });
+        setFilterGamesName({ value: '', label: t('All') });
+        setFilterGameType({ value: '', label: t('All') });
 
        params.child_ticket_no = '';
        params.game_play_id = '';
@@ -218,7 +218,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         setDetailNo('');
         setFromDate(moment(fromDate).toDate());
         setToDate(moment(toDate).toDate());
-   setFilterGamesName({ value: '', label: 'All' });
+   setFilterGamesName({ value: '', label: t('All')  });
     }
 
 
@@ -320,19 +320,19 @@ const handlePageClick = (event) => {
   const childDataReset = () => {
     childShowTable(selectedticketId,'forDesk')
    setDetailNo('');
-   setFilterGamesName({ value: '', label: 'All' });
+   setFilterGamesName({ value: '', label: t('All')  });
 //    setTimeout(childShowTable(selectedticketId), 5000);
   }
 
 
   const optionsGameType = [
-    { value: '', label: 'All' },
+    { value: '', label: t('All')  },
     { value: '3D', label: '3D' },
     { value: '4D', label: '4D' }
   ];
 
   const optionsGamesName = [
-    { value: '', label: 'All' },
+    { value: '', label: t('All')  },
     { value: '1', label: 'Magnum' },
     { value: '2', label: 'Da ma cai' },
     { value: '3', label: 'Toto'}
@@ -795,7 +795,7 @@ const handlePageClick = (event) => {
                                             </select> */}
                                             <Select 
                                                 options={optionsGamesName} 
-                                                defaultValue = { { value: '', label: 'All' }} 
+                                                defaultValue = { { value: '', label: t('All') }} 
                                                 value = {filterGamesName}
                                                 onChange={value => setFilterGamesName(value)}
                                                 />
