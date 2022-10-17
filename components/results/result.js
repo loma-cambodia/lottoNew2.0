@@ -24,29 +24,14 @@ const [initResult, setResult] = useState([]);
 
 
     const getDrawResults = () =>{
-      const selectedDate = moment(_initDate).format('YYYY-MM-DD');
-      console.log("selectedDate:",selectedDate)
-      // _initDate = undefined
-    dispatch(getResults(undefined, response =>{
+    dispatch(getResults(_initDate, response =>{
 
         if(response.statusCode  == 201  || response.statusCode  == 200 ){
 
         if(response.statusCode == 200){
 
-          let filteredResult = []
              let results = response.data.data
-             console.log(results)
-             results.map((data => {
-              if(data.fetching_date == selectedDate){
-                filteredResult.push(data)
-              }
-             })) 
-             if(selectedDate == undefined){
-              drawResult = results
-             }else{
-              drawResult = filteredResult
-             }
-             
+             drawResult = results
              setResult(drawResult)
         }else {
 
@@ -55,7 +40,6 @@ const [initResult, setResult] = useState([]);
         // setIsLoading(false);
     }
 }))
-
 }
 
 

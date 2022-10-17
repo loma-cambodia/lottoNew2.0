@@ -41,7 +41,7 @@ import Filter from "../components/results/filter";
         } 
         dispatch(getLogin(objectWithData));
   
-        }, [datauser])
+        }, [datauser,initDate])
 
     
     return (
@@ -65,7 +65,7 @@ import Filter from "../components/results/filter";
             {/*--Mobile Menu-*/}
             <Banner2/>
             <section className="page-content py-3">
-                <div className="container">
+                <div className="container vh-70">
                 {/* <Filter _setDate = {setDate}/> */}
                 {/* <Result _initDate={initDate}/> */}
                 <ResultNew _setDate = {setDate}/>
