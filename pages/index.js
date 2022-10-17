@@ -21,6 +21,8 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
+  const state = useSelector(state => state);
+
   //console.log('Home:datauser:',datauser);
 
 useEffect(() => {
@@ -31,29 +33,31 @@ useEffect(() => {
 
 
 useEffect(() => {
- // console.log('11111111111111');
- // console.log('datauser:',datauser);
+  console.log('11111111111111');
+  console.log('datauser:',datauser);
+
 //   dispatch({
 //     type: "GET_LOGIN_DETAILS",
 //     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
 // })
-let objectWithData = {
+let objectWithData = {  
   "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
   "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
   "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
-  "language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'  
+ // "language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en' 
+  "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'  
 } 
 
 console.log('objectWithData:',objectWithData);
 console.log('datauser:',datauser);
 
 if(objectWithData.customer_id != 0){
-    dispatch(getLogin(objectWithData));
+    dispatch(getLogin(objectWithData)); 
 }
 }, [datauser])
 
 
-     const state = useSelector(state => state);
+  
     const auth = useSelector(state => state.auth);
      console.log('Index:state:', state);
       state.auth.transactions

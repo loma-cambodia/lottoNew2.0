@@ -35,6 +35,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
   const [itemOffset, setItemOffset] = useState(0);
 
   const [filterParams, setFilterParams] = useState({});
+  const state = useSelector(state => state);
  
   const MoneyFormatDisplay = (theInput, getCase) => {
     //Do something with the input
@@ -91,6 +92,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
       },[auth,filterParams]);
 
 
+      
       useEffect(() => {
       //   dispatch({
       //     type: "GET_LOGIN_DETAILS",
@@ -101,7 +103,8 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
         "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
         "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
         "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
-        "language":   datauser && datauser.user && datauser.user.lang && datauser.user.lang ? datauser.user.lang : 'en'
+        //"language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
+        "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
       } 
       dispatch(getLogin(objectWithData));
 
@@ -109,7 +112,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
       
 
       
-      const state = useSelector(state => state);
+     
       
       
       const getOddsBig =(prize,game,item) =>{
