@@ -17,12 +17,12 @@ async function handler(req, res) {
   //       "language": 'en'
   // }
 
-    //  const objectWithData = {
-    //         "customer_name": "Dileep Maurya",
-    //        "customer_id":  112,
-    //       "merchant_id":  1,
-    //       "language":  'ch',
-    //   }
+     const objectWithData = {
+            "customer_name": "Dileep Maurya",
+           "customer_id":  112,
+          "merchant_id":  1,
+          "language":  'ch',
+      }
 
     // const objectWithData = {
     //            "customer_name": "Atul",
@@ -33,12 +33,12 @@ async function handler(req, res) {
 
   
 
-  const objectWithData = {
-    customer_name: req.body.customer_name,
-    customer_id: req.body.customer_id,
-    merchant_id: req.body.enterprise_id,
-    language: req.body.language,
-  }
+  // const objectWithData = {
+  //   customer_name: req.body.customer_name,
+  //   customer_id: req.body.customer_id,
+  //   merchant_id: req.body.enterprise_id,
+  //   language: req.body.language,
+  // }
  
   //   try {
   const userData = await fetch(`${process.env.apiUrl}/member-login`, {
@@ -52,7 +52,6 @@ async function handler(req, res) {
   const data = await userData.json()
 
   if (data.success == true) {
-    //req.session.set("user", data);
     req.session.user = data
     await req.session.save()
     res.redirect(307, '/')
@@ -60,18 +59,8 @@ async function handler(req, res) {
   } else {
     res.send('Worng Data')
   }
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-}
-// export default withIronSession(handler, {
-//   password: "complex_password_at_least_32_characters_long",
-//   cookieName: "myapp_cookiename",
-//   cookieOptions: {
-//     secure: process.env.NODE_ENV === "production",
-//   },
-// });
 
+}
 export default withIronSessionApiRoute(handler, {
   password: 'complex_password_at_least_32_characters_long',
   cookieName: 'myapp_cookiename',
