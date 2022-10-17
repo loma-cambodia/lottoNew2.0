@@ -250,46 +250,59 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
         game_dates.push(tempObj);
     })
 
-
+    let toastId = null;
 
     if (game_dates.length == 0) {
-      toast.error(t('Please_choose_at_least_one_date_selection'), {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
-      });
+      if(!toast.isActive(toastId)){
+        toast.error('Please choose at least one date selection!', {
+          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+          pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
+        });
+    }
+      
       return false;
     }
 
     if (game_dates && game_dates[0].games && game_dates[0].games.length == 0) {
-      toast.error(t('Please_select_game_first'), {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
-      });
+      if(!toast.isActive(toastId)){
+        toast.error('Please select game first!', {
+          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+          pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
+        });
+      }
       return false;
     }
 
 
     if (minLengthValidation) {
-      toast.error(t('Please_type_3_or_4_digits_in_number_field'), {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
-      });
+      if(!toast.isActive(toastId)){
+        toast.error('Please type 3 or 4 digits in number field!', {
+          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+          pauseOnHover: true, draggable: true , toastId: 1
+        });
+      }
       return false;
     }
 
     if (isDataNotCorrect) {
-      toast.error(t('please_enter_valid_amount_against_selected_number'), {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
-      });
+      
+      if(!toast.isActive(toastId)){
+          toast.error('please enter valid amount against selected number!', {
+          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+          pauseOnHover: true, draggable: true, progress: undefined ,
+          toastId: 1
+        });
+      }
       return false;
     }
 
     if (options && options.length == 0) {
-      toast.error(t('Please_select_at_least_one_number'), {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
-      });
+      if(!toast.isActive(toastId)){
+        toast.error('Please select at least one number!', {
+          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+          pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
+        });
+      }
       return false;
     }
 
@@ -305,7 +318,7 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
         loginAPICall();
       } else {
 
-        modelOpenCustom(t(response.messages[0]));
+        modelOpenCustom(response.messages[0]);
       }
       setIsLoading(false);
     }));
@@ -437,16 +450,16 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                     <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50" />
                   </td>
                   <td colSpan="2">
-                    <button type="button" className="btn-custom-curve2" title={t('submit')}>{t('submit')}</button>
+                    <button type="button" className="btn-custom-curve2" title="Submit">{t('submit')}</button>
                   </td>
                 </tr>) : (<tr>
                   <td colSpan="6">
                     {t('Total_Stake')}: {totalAmount ? MoneyFormatDisplay(totalAmount, 1) : 0.00}
                   </td>
-                  <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title={t('clear')}>{t('clear')}</button>
+                  <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title="Clear All">{t('clear')}</button>
                   </td>
                   <td colSpan="2">
-                    <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}</button>
+                    <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title="Submit">{t('submit')}</button>
                   </td>
                 </tr>)}
               </tbody>

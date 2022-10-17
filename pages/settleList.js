@@ -20,6 +20,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
   const auth = useSelector(state => state.auth);
 
   const [active, setActive] = useState(false);
+  const state = useSelector(state => state);
 
   function formatDate2(date) {
     var d = new Date(date),
@@ -48,7 +49,8 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
         "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
         "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
         "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
-        "language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
+        //"language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
+        "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
       } 
       if(objectWithData.customer_id != 0){
       dispatch(getLogin(objectWithData));
@@ -58,7 +60,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
       dispatch(searchTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
       }, [datauser])
       
-      const state = useSelector(state => state);
+     
       let tickets = state && state.tickets && state.tickets.reportsSettleData ? state.tickets.reportsSettleData : [];
       
       let ticketsChild = state && state.tickets && state.tickets.reportsSettleChildData ? state.tickets.reportsSettleChildData : [];

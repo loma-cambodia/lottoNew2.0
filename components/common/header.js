@@ -22,9 +22,11 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
    const dispatch = useDispatch();
    let auth = _auth;
 
+   const state = useSelector(state => state);
+
     // Calling useRouter() hook
 
-   // console.log('auth:',auth);
+    console.log('Header:state:',state);
    
    let language = '';
 
@@ -56,11 +58,9 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
         "language":   l  
       } 
       
-    //  console.log('objectWithData:',objectWithData);
-      //console.log('datauser:',datauser);
-      
       if(objectWithData.customer_id != 0){
           dispatch(getLogin(objectWithData));
+          setUpdateSessionData(updateSessionData + 1); 
       }
 
         i18n.changeLanguage(l);
@@ -128,6 +128,9 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
     }
   }
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+
+  console.log('');
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
    

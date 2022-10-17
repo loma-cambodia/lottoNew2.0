@@ -1,10 +1,11 @@
-import { t } from 'i18next';
 import React, { useState, useEffect } from 'react';
 
+import { useTranslation } from "react-i18next";
 
 const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageCounter,_setLoadpageCounter}) => {
 
-    
+    const { t } = useTranslation();
+
     const [initData, setInitData] = useState(item);
     const [active, setActive] = useState(false);
 
@@ -24,7 +25,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
           });
           return index;
     }
-
+    // console.log("AAAAAA",{t("filter_results")});
     const selectUnSelectDate =(getValue, getId)=>{ // selectUnSelectDate
 
                       
@@ -101,7 +102,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
 
       },);
     
-
+      
     return(
         <div className="col-md-3 col-sm-6" 
         >
@@ -120,7 +121,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                 <div className="day-n-date" style={{cursor:'pointer'}}
                     onClick={() => selectUnSelectDate(!initData.selected, item.id)}
                 >
-                    <p className="fw-bold mb-0">{t(initData.day)}</p>
+                    <p className="fw-bold mb-0">{initData.day}</p>
                     <p className="mb-0">{initData.date}</p>
                 </div>
             </div>
@@ -131,7 +132,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                         {initData.games.map((game,id) =>(
                             <li key={id} className={`${initData.selected ? "":""} list-inline-item`}>
 
-                            <span onClick={() => selectUnSelectgame(initData.selected,game.name,!game.selected)} className={`${game.selected ? "selected-gp-btn":""} outer-circle-gp`} title={t('Select')}>
+                            <span onClick={() => selectUnSelectgame(initData.selected,game.name,!game.selected)} className={`${game.selected ? "selected-gp-btn":""} outer-circle-gp`} title="Select">
                                 <span className="inner-circle-gp">
                                     <img className="img-fluid" src={game.image}/>
                                 </span>

@@ -116,7 +116,8 @@
     "BET":"投注",
     "BettingList":"下注状况",
     "betting_history":"投注历史",
-
+    "select":"选择",
+    "delete":"删除",
 
    "Select_Date_Range":"下注时间", 
     "Ticket_No":"注单号",
@@ -208,7 +209,6 @@
     "ticket_delete":"注单成功删除", 
     "ticket_fetch":"注单成功获取", 
     "no_ticket":"无注单",
-
     "Mo":"一",
     "Tu":"二",
     "We":"三",
@@ -216,8 +216,6 @@
     "Fr":"五",
     "Sa":"六",
     "Su":"日",
-
-    "Select":"选择"
-
-    
+    "Select":"选择",
+    "Delete":"删除"
 }
