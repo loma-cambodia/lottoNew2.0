@@ -42,7 +42,6 @@ let objectWithData = {
   "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
   "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
   "language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'  
-
 } 
 
 console.log('objectWithData:',objectWithData);
@@ -54,12 +53,9 @@ if(objectWithData.customer_id != 0){
 }, [datauser])
 
 
-const state = useSelector(state => state);
-const auth = useSelector(state => state.auth);
-
-
-console.log('Index:state:', state);
-
+     const state = useSelector(state => state);
+    const auth = useSelector(state => state.auth);
+     //console.log('Index:state:', state);
       state.auth.transactions
 
       let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
