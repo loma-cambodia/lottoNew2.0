@@ -74,7 +74,7 @@ const resultNew = ({ _setDate }) => {
     );
   };
 
-
+  // const selectedDefaultDate = ''
   const getSelectedDrawDate = () => {
     console.log("Khan:");
 
@@ -104,8 +104,8 @@ const resultNew = ({ _setDate }) => {
               response.data.data.result_dates[0]
                 ? response.data.data.result_dates[0]
                 : [];
-
-            console.log("results: ", results);
+                // selectedDefaultDate = resultDate[0]
+            // console.log("results:results:results: ", moment(selectedDefaultDate[0].format("dd-MM-YYYY")));
 
             //  console.log('result_dates: ',response.data.data.result_dates[0])
 
@@ -321,7 +321,7 @@ const resultNew = ({ _setDate }) => {
                                   {t("Draw_Id")}
                                 </p>
                                 <p className="mb-0 fs-5 fw-bold text-end">
-                                  {item.id}
+                                  {item.reference_number}
                                 </p>
                               </div>
                             </div>
