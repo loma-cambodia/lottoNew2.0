@@ -144,7 +144,8 @@ const [initResult, setResult] = useState([]);
 
     const getDrawResults = () =>{
       const selectedDate = moment(startDate).format('YYYY-MM-DD');
-      console.log("selectedDate:",selectedDate)
+     // console.log("selectedDate:",selectedDate);
+     // return false;
       // startDate = undefined
     dispatch(getResults(selectedDate, response =>{
 
@@ -153,12 +154,16 @@ const [initResult, setResult] = useState([]);
         if(response.statusCode == 200){
 
           let filteredResult = []
-             let results = response.data.data.data
+             let results = response.data.data.data;
+             console.log('response:',response);
+             console.log('results:',results);
 
 
             // CAL FILTER HIGHLIGHT
 
-            let resultDate = response.data.data.result_dates
+            let resultDate = response.data.data.result_dates;
+
+            console.log('resultDate:',resultDate);
             
                     let highlight = resultDate.map(date => subDays(new Date(date), 0));
                     console.log("DDDDDDD",highlight)
@@ -192,7 +197,7 @@ const [initResult, setResult] = useState([]);
 
 
 useEffect(() => {
-  getDrawResults()
+  //getDrawResults()
 },[startDate]);
     return (
         <>
