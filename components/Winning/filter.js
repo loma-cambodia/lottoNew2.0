@@ -163,7 +163,7 @@ const Filter = ({_setFilterParams}) => {
             _setFilterParams(filter)
 
     }
-
+    
       useEffect(() => {
         console.log('language',t('winning_list') )
         change()
