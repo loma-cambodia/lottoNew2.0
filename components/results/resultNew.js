@@ -10,7 +10,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { getResults } from "../../store/actions/resultActions";
 import { t } from "i18next";
 
-const resultNew = ({ _setDate }) => {
+const resultNew = ({ _setDate,_auth}) => {
+  
+  let lang = _auth.lang
+  console.log("AUTH:::",lang)
   const [startDate, setStartDate] = useState(new Date());
   const [highlightedData, setHighlightedData] = useState();
   const [calendarDate, setCalendarDate] = useState();
@@ -113,6 +116,20 @@ const resultNew = ({ _setDate }) => {
     getSelectedDrawDate();
   }, [calendarDate]);
 
+
+ let days =  [t('Su'), t('Mo'), t('Tu'), t('We'), t('Th'), t('Fr'), t('Sa')]
+  let  months = [t('January'), t('February'), t('March'), t('April'), t('May'), t('June'), t('July'), t('August'), t('September'), t('October'), t('November'), t('December')]
+  const locale = {
+    localize: {
+      day: n => days[n],
+      month: n => months[n]
+    },
+    formatLong: {
+      date: () => 'mm/dd/yyyy'
+    }
+  }
+  console.log("initResult:", initResult);
+
   return (
     <>
       <div className="clearfix curved-card bg-light">
@@ -133,6 +150,7 @@ const resultNew = ({ _setDate }) => {
               <DatePicker
                 dateFormat="dd/MM/yyyy"
                 selected={calendarDate}
+                locale={locale}
                 onChange={(date) => {
                   setCalendarDate(date);
                 }}

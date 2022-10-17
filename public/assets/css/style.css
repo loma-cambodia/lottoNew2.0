@@ -2816,6 +2816,14 @@ input.form-control.text-right-for-amount {
   color: #fff !important;
 
 }
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+  color: #000;
+  display: inline-block;
+  width: 2.2rem !important;
+  line-height: 1.7rem;
+  text-align: center;
+  margin: 0.18rem !important;
+}
 .react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
   border-radius: 0.3rem;
   background-color: #ffffff !important;

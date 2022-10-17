@@ -116,7 +116,8 @@
     "BET":"BET",
     "BettingList":" Betting List",
     "betting_history":"Betting History",
- 
+    "select":"Select",
+    "delete":"Delete",
 
 
     "Select_Date_Range":"Bet time", 
@@ -209,6 +210,14 @@
     "ticket_delete":"Ticket deleted successfully", 
     "ticket_fetch":"Ticket fetched successfully", 
     "no_ticket":"No Ticket",
+
+    "Mo":"Mo",
+    "Tu":"Tu",
+    "We":"We",
+    "Th":"Th",
+    "Fr":"Fr",
+    "Sa":"Sa",
+    "Su":"Su",
 
     "Select":"Select",
     "Delete":"Delete"

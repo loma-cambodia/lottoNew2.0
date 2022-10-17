@@ -41,7 +41,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
       const [pageCount, setPageCount] = useState(0);
       const [itemOffset, setItemOffset] = useState(0);
       const [seletedPage, setSeletedPage] = useState(1);
-      const [fromDate, setFromDate] = useState(new Date('2022-10-12'));
+      const [fromDate, setFromDate] = useState(new Date());
       const [toDate, setToDate] = useState(new Date());
       const [detailNo, setDetailNo] = useState('');
       const [filterGamesName, setFilterGamesName] = useState({ value: '', label: 'All' });
@@ -675,7 +675,7 @@ const handlePageClick = (event) => {
                                     <div class="col-md-3 col-12">
                                         <div class="form-group">
                                             <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
-                                                <DateRangePicker ref={keyRef} onCancel={keyRef} 
+                                                <DateRangePicker format ref={keyRef} onCancel={keyRef} 
                                                 initialSettings={{ startDate: fromDate,
                                                 endDate: toDate,
                                                 ranges  }} onEvent={handleEvent}

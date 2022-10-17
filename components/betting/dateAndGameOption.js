@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
+import { useTranslation } from "react-i18next";
 
 const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageCounter,_setLoadpageCounter}) => {
 
-    
+    const { t } = useTranslation();
+
     const [initData, setInitData] = useState(item);
     const [active, setActive] = useState(false);
 
@@ -23,7 +25,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
           });
           return index;
     }
-
+    // console.log("AAAAAA",{t("filter_results")});
     const selectUnSelectDate =(getValue, getId)=>{ // selectUnSelectDate
 
                       
@@ -100,7 +102,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
 
       },);
     
-
+      
     return(
         <div className="col-md-3 col-sm-6" 
         >
