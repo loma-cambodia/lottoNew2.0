@@ -40,6 +40,8 @@ const Filter = ({_setFilterParams}) => {
     const [toDate, setToDate] = useState(new Date());
 
     const change = () => {
+        const date = document.getElementById('daterangepicker');
+
         
         $('input[name="datefilter"]').daterangepicker({
             ranges: {
@@ -80,12 +82,15 @@ const Filter = ({_setFilterParams}) => {
                     t("December")
                 ],
             },
-            "startDate": moment(dateRange.startDate),
-            "endDate": moment(dateRange.endDate),
+            "startDate": moment(new Date()),
+            "endDate": moment(new Date()),
         })
       
       }
 
+    // const getInputDate =() =>{
+
+    // }
     const prizeTypleList = ['All','P1','P2','P3','S','C']
 
     const handleEvent = (event, picker) => {
@@ -156,7 +161,7 @@ const Filter = ({_setFilterParams}) => {
             //console.log('filter:',filter);
             _setFilterParams(filter)
             
-        // setDateRange('')
+        setDateRange(date.value)
         setPrizeType('')
         setTicketNo('')
 
@@ -188,7 +193,6 @@ const Filter = ({_setFilterParams}) => {
     }
     
       useEffect(() => {
-        console.log('language',t('winning_list') )
         change()
         
       },[t]);

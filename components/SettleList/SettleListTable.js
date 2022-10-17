@@ -221,6 +221,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
 
 
     const searchGetListonFilter = (work) => {
+        const date = document.getElementById('daterangepicker').value;
+        let dateValue1 = date.split('-')[0].trim();
+        let dateValue2 = date.split('-')[1].trim();
 
          let _fromDate = fromDate;
          let _toDate = toDate;
@@ -237,7 +240,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
          _fromDate = concertDateFormat(_fromDate);
          _toDate = concertDateFormat(_toDate);;
 
-         let newDateRange = _fromDate + '-' + _toDate;
+         let newDateRange = dateValue1 + '-' + dateValue2;
 
 
         let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
@@ -246,6 +249,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         if(work == 'forMob'){
             $('.hideAndShowForMobileView').hide("slide");
         }
+        
+       setDateRange(newDateRange)
     }
 
 
@@ -636,7 +641,7 @@ const handlePageClick = (event) => {
                         <div class="form-group">
                             <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                 <DateRangePicker ref={keyRef} onApply={handleApply1} onCancel={keyRef} initialSettings={{ ranges }} >
-                                    <input name="datefilter" type="text" className="daterangepickerstyle" />
+                                    <input id='daterangepicker' name="datefilter" type="text" className="daterangepickerstyle" value={dateRange} />
                                 </DateRangePicker>
                         </div>                    
                     </div>
@@ -714,7 +719,7 @@ const handlePageClick = (event) => {
                                                 endDate: toDate,
                                                 ranges  }} onEvent={handleEvent}
                                                 onApply={handleApply1} >
-                                                    <input name="datefilter" type="text" value={dateRange} className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
+                                                    <input id='daterangepicker' name="datefilter" type="text" value={dateRange} className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
                                                 </DateRangePicker>
                                         </div>                    
                                     </div>

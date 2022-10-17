@@ -59,9 +59,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         setReset(false);
       }, [itemOffset, itemsPerPage,_tickets, reset]);
 
-      useEffect(() => {
-        change();
-      },[t])
 
     const handleApply1 = (event, picker) => {
         
@@ -231,6 +228,16 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
     const searchGetListonFilter = (work, actionForm) => {
 
+        const date = document.getElementById('daterangepicker').value;
+        let dateValue1 = date.split('-')[0].trim();
+        let dateValue2 = date.split('-')[1].trim();
+        
+        // dateValue1 = formatDate(dateValue1);
+        // dateValue2 = formatDate(dateValue2);
+
+      
+        const mainData = formatDate(date);
+      
         let _fromDate = fromDate;
         let _toDate = toDate;
         let _ticketNo = ticketNo
@@ -258,7 +265,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         _fromDate = concertDateFormat(_fromDate);
         _toDate = concertDateFormat(_toDate);;
 
-        let newDateRange = _fromDate + ' - ' + _toDate;
+        let newDateRange = dateValue1 + ' - ' + dateValue2;
 
        let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
 
@@ -267,6 +274,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
            $('.hideAndShowForMobileView').toggle("slide");
        }
        // $('.hideAndShowForMobileView').toggle("slide");
+
+       setDateRange(newDateRange)
      }
 
 
@@ -626,7 +635,7 @@ const handlePageClick = (event) => {
                                     onCancel={keyRef}
                                     initialSettings={{ ranges }}
                                 >
-                                    <input type="text" className="daterangepickerstyle" value={dateRange} />
+                                    <input type="text" id='daterangepicker' className="daterangepickerstyle" value={dateRange} />
                                 </DateRangePicker>
                         </div>                    
                     </div>
@@ -673,6 +682,7 @@ const handlePageClick = (event) => {
 
     useEffect(() => {
         change();
+
       },[t])
     return (
         <>
@@ -710,7 +720,7 @@ const handlePageClick = (event) => {
                                                         ranges }}
                                                     onEvent={handleEvent}
                                                 >
-                                                    <input name="datefilter" type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)} value={dateRange} />
+                                                    <input name="datefilter" id='daterangepicker' type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)} value={dateRange} />
                                                 </DateRangePicker>
                                         </div>                    
                                     </div>
