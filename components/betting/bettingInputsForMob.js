@@ -1053,11 +1053,14 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                                                         ]  
                                               }
 
-
+                        let toastId = null
                         if(localStateDataForChange['number'].length < 3){
-                            toast.error(t('Please_Enter_Valid_Number'), 
-                            {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                            pauseOnHover: true,draggable: true,progress: undefined});
+                            if(!toast.isActive(toastId)){
+                                toast.error(t('Please_Enter_Valid_Number'), 
+                                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                                pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+                            }
+                            
                             return false;
                         }else if(localStateDataForChange['number'] == ""){
 

@@ -437,7 +437,7 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                     <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50" />
                   </td>
                   <td colSpan="2">
-                    <button type="button" className="btn-custom-curve2" title="Submit">{t('submit')}</button>
+                    <button type="button" className="btn-custom-curve2" title={t('submit')}>{t('submit')}</button>
                   </td>
                 </tr>) : (<tr>
                   <td colSpan="6">
