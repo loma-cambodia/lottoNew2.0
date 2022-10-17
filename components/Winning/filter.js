@@ -61,6 +61,10 @@ const Filter = ({_setFilterParams}) => {
         [t('Last_Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
         [t('This_Year')]: [moment().startOf('year')],
       });
+      const change = () => {
+        $("li:contains(Custom Range)").text(t('custom_range'))
+      }
+      
       
       function formatDate(date) {
         var d = new Date(date),
@@ -137,8 +141,9 @@ const Filter = ({_setFilterParams}) => {
             _setFilterParams(filter)
 
     }
-
+    
       useEffect(() => {
+        change()
       },[]);
 
     const openFilterForMob = () => {

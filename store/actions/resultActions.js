@@ -17,11 +17,13 @@ export const getResults = (sendData,callback) => async (dispatch) => {
     else{
       const dataSubmit = moment(sendData).format('YYYY-MM-DD')
       urlHit = `${API_BASE_URL}/results/get-by-date?date=${dataSubmit}`;
+      // urlHit = `${API_BASE_URL}/results/get-by-date?date=${sendData}`;
 }
 
     const res = await axios.get(urlHit, {
       headers: headers,
     })
+    console.log("RESRES",res)
     return callback({
       message: 'Success',
       data: res,
@@ -56,6 +58,7 @@ export const getLatestResultDate = (callback) => async (dispatch) => {
       data: res.data[0].result_date,
       statusCode: res.status,
     })
+    
   } catch (e) {
 
     // let message = ''
