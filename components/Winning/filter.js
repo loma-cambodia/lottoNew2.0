@@ -39,35 +39,58 @@ const Filter = ({_setFilterParams}) => {
     const [fromDate, setFromDate] = useState(new Date());
     const [toDate, setToDate] = useState(new Date());
 
-    
-    // $("li:contains(Custom Range)").text(t('custom_range'));
-
     const change = () => {
-        
-        $("li:contains(Custom Range)").text(t('custom_range'));
-        $("th.month:contains(Oct)").text(t('October'));
-        
-        // const value = $('.prev .myclass').val();
-        // value = 'goofy'
+        const date = document.getElementById('daterangepicker');
 
-        console.log('change is run: ',)
-
-        // $('#daterpicker').daterangepicker({
-        //         "localize": {
-        //             "days": [
-        //                 "sdfdsdf",
-        //                 "一",
-        //                 "二",
-        //                 "三",
-        //                 "四",
-        //                 "五",
-        //                 "六"
-        //             ]
-        //         }
-        //     })
+        
+        $('input[name="datefilter"]').daterangepicker({
+            ranges: {
+                [t('Today')]: [moment().subtract(0, 'days'), moment().add(0, 'days')],
+                [t('Yesterday')]: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                [t('Last_7_Days')]: [moment().subtract(6, 'days'), moment().add(0, 'days')],
+                [t('Last_14_Days')]: [moment().subtract(13, 'days'), moment().add(0, 'days')],
+                [t('This_Month')]: [moment().startOf('month')],
+                [t('Last_Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
+                [t('This_Year')]: [moment().startOf('year')],
+            },
+            "locale": {
+                "applyLabel": t('submit'),
+                "cancelLabel": t('clear'),
+                "format": "DD/MM/YYYY",
+                "customRangeLabel": (t('custom_range')),
+                "daysOfWeek": [
+                    t('Su'),
+                    t('Mo'),
+                    t('Tu'),
+                    t('We'),
+                    t('Th'),
+                    t('Fr'),
+                    t('Sa')
+                ],
+                "monthNames": [
+                    t("January"),
+                    t("February"),
+                    t("March"),
+                    t("April"),
+                    t("May"),
+                    t("June"),
+                    t("July"),
+                    t("August"),
+                    t("September"),
+                    t("October"),
+                    t("November"),
+                    t("December")
+                ],
+            },
+            "startDate": moment(new Date()),
+            "endDate": moment(new Date()),
+        })
       
       }
 
+    // const getInputDate =() =>{
+
+    // }
     const prizeTypleList = ['All','P1','P2','P3','S','C']
 
     const handleEvent = (event, picker) => {
@@ -138,7 +161,7 @@ const Filter = ({_setFilterParams}) => {
             //console.log('filter:',filter);
             _setFilterParams(filter)
             
-        // setDateRange('')
+        setDateRange(date.value)
         setPrizeType('')
         setTicketNo('')
 
@@ -170,7 +193,6 @@ const Filter = ({_setFilterParams}) => {
     }
     
       useEffect(() => {
-        console.log('language',t('winning_list') )
         change()
         
       },[t]);
@@ -215,7 +237,7 @@ const Filter = ({_setFilterParams}) => {
                                                     applyLabel: t('apply'),
                                             }}
                                         >
-                                            <input id="daterangepicker" type="text" className="daterangepickerstyle"  value={dateRange}/>
+                                            <input id="daterangepicker" type="text" className="daterangepickerstyle" name="datefilter" value={dateRange}/>
                                         </DateRangePicker>
                             </div>                    
                         </div>

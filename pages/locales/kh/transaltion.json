@@ -181,22 +181,26 @@
     "Saturday":"ថ្ងៃសៅរ៍",
     "Sunday":"ថ្ងៃអាទិត្យ",
     "January":"មករា",
-    "February":"ខែកុម្ភៈ",
-    "March":"ខែមីនា",
+    "February":"កុម្ភៈ",
+    "March":"មីនា",
     "April":"មេសា",
     "May":"ឧសភា",
-    "June":"ខែមិថុនា",
-    "July":"ខែកក្កដា",
+    "June":"មិថុនា",
+    "July":"កក្កដា",
     "August":"សីហា",
-    "September":"ខែកញ្ញា",
+    "September":"កញ្ញា",
     "October":"តុលា",
-    "November":"ខែវិច្ឆិកា",
-    "December":"ខែធ្នូ",
-
+    "November":"វិច្ឆិកា",
+    "December":"ធ្នូ",
+ 
+    "Please_choose_at_least_one_date_selection":"សូមជ្រើសរើសកាលបរិច្ឆេទចាប់ឆ្នោត",
+    "Please_select_game_first":"សូមជ្រើសរើសក្រុមហ៊ុន",
+    "Please_type_3_or_4_digits_in_number_field":"សូមបញ្ចូលលេខភ្នាល់ 3 ឬ 4 ខ្ទង់",
+    "please_enter_valid_amount_against_selected_number":"សូមបញ្ចូលចំនួនទឹកប្រាក់ភ្នាល់",
+    "Please_select_at_least_one_number":"សូមជ្រើសរើសយ៉ាងហោចណាស់មួយលេខ!",
+    "Please_Enter_Valid_Number":"សូមបញ្ចូលលេខដែលមានសុពលភាព",
+    "Please_Enter_Amount":"សូមបញ្ចូលចំនួនទឹកប្រាក់",
     "Apply":"Apply",
-
-
-
 
     "Mo":"ច័ន្ទ",
     "Tu":"អង្គារ",
@@ -204,9 +208,7 @@
     "Th":"ព្រហ.",
     "Fr":"សុក្រ",
     "Sa":"សៅរ៍",
-    "Su":"អាទិត្យ"
-
-
-
-    
+    "Su":"អាទិត្យ" ,
+    "Select":"Select",
+    "Delete":"Delete"
 }

@@ -194,7 +194,8 @@
     "October":"October",
     "November":"November",
     "December":"December",
- 
+
+    
     "Please_choose_at_least_one_date_selection":"Please select the draw date",
     "Please_select_game_first":"Please select company ",
     "Please_type_3_or_4_digits_in_number_field":"Please input 3 or 4 digits in bet number",
@@ -218,7 +219,6 @@
     "Fr":"Fr",
     "Sa":"Sa",
     "Su":"Su",
-
     "Select":"Select",
     "Delete":"Delete"
 }
