@@ -54,6 +54,8 @@ const resultNew = ({ _setDate }) => {
     );
   };
 
+  // new 
+
   // const selectedDefaultDate = ''
   const getSelectedDrawDate = () => {
     let dataSubmit = calendarDate;
