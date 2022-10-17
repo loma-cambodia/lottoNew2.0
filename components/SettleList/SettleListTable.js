@@ -45,8 +45,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
       const [fromDate, setFromDate] = useState(new Date());
       const [toDate, setToDate] = useState(new Date());
       const [detailNo, setDetailNo] = useState('');
-      const [filterGamesName, setFilterGamesName] = useState({ value: '', label: 'All' });
-      const [filterGameType, setFilterGameType] = useState({ value: '', label: 'All' });
+      const [filterGamesName, setFilterGamesName] = useState({ value: '', label: t('All') });
+      const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All')  });
       const [selectedticketId, setSelectedticketId] = useState('');
 
 
@@ -182,8 +182,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
        if(actionFrom == 'settledList' || actionFrom == 'reset_button' ){
 
         setDetailNo('');
-        setFilterGamesName({ value: '', label: 'All' });
-        setFilterGameType({ value: '', label: 'All' });
+        setFilterGamesName({ value: '', label: t('All') });
+        setFilterGameType({ value: '', label: t('All') });
 
        params.child_ticket_no = '';
        params.game_play_id = '';
@@ -218,7 +218,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         setDetailNo('');
         setFromDate(moment(fromDate).toDate());
         setToDate(moment(toDate).toDate());
-   setFilterGamesName({ value: '', label: 'All' });
+   setFilterGamesName({ value: '', label: t('All')  });
     }
 
 
@@ -320,19 +320,19 @@ const handlePageClick = (event) => {
   const childDataReset = () => {
     childShowTable(selectedticketId,'forDesk')
    setDetailNo('');
-   setFilterGamesName({ value: '', label: 'All' });
+   setFilterGamesName({ value: '', label: t('All')  });
 //    setTimeout(childShowTable(selectedticketId), 5000);
   }
 
 
   const optionsGameType = [
-    { value: '', label: 'All' },
+    { value: '', label: t('All')  },
     { value: '3D', label: '3D' },
     { value: '4D', label: '4D' }
   ];
 
   const optionsGamesName = [
-    { value: '', label: 'All' },
+    { value: '', label: t('All')  },
     { value: '1', label: 'Magnum' },
     { value: '2', label: 'Da ma cai' },
     { value: '3', label: 'Toto'}
@@ -368,8 +368,8 @@ const handlePageClick = (event) => {
                                 <tr>
                                     <th><span>{t('Ticket_No')}<br />{t('Betting_Time')}<br/>{t('Draw_Date')}</span></th>
                                     <th><span>{t('Draw_Id')}<br/>{t('Bet_Number')}<br/>{t('Company')}</span></th>
-                                    <th><span>{t('Total')}<br/>{t('Rebate')}<br/>{t('Net')}</span></th>
-                                    <th><span>{t('winning')}<br/>{t('Winning_Loss')}</span></th>
+                                    <th style={{ textAlign: 'end' }}><span>{t('Total')}<br/>{t('Rebate')}<br/>{t('Net')}</span></th>
+                                    <th style={{ textAlign: 'end' }}><span>{t('winning')}<br/>{t('Winning_Loss')}</span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -388,12 +388,12 @@ const handlePageClick = (event) => {
                                             {item.bet_number}<br/>
                                             {item.games && item.games.map((item,i) =>(item.abbreviation))}
                                         </td>
-                                        <td>
+                                        <td style={{ textAlign: 'end' }}>
                                             {MoneyFormatDisplay(item.total_amount, 1)}<br/>
                                             {MoneyFormatDisplay(item.rebate_amount, 1)}<br/>
                                             {MoneyFormatDisplay(item.bet_net_amount, 1)}
                                         </td>
-                                        <td>
+                                        <td style={{ textAlign: 'end' }}>
                                             <span style={winParent(item.winning_amount)}>
                                                 {MoneyFormatDisplay(item.winning_amount,1)}</span><br/>
                                             <span style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>
@@ -538,8 +538,8 @@ const handlePageClick = (event) => {
                                 <th><span>{t('Detail_Number')}<br />{t('Betting_Time')}<br />{t('Draw_Date')}</span></th>
                                 <th><span>{t('Bet_Number')}<br />{t('game')}<br/>{t('Company')}<br /></span></th>
                                 <th><span>{t('Big')}<br />{t('Small_Bet')}<br />3A<br />3C</span></th>
-                                <th><span>{t('Total')}<br />{t('Rebate')}<br />{t('Net')}</span></th>
-                                <th>{t('winning')}<br/>{t('Winning_Loss')}</th>
+                                <th style={{ textAlign: 'end' }}><span>{t('Total')}<br />{t('Rebate')}<br />{t('Net')}</span></th>
+                                <th style={{ textAlign: 'end' }}>{t('winning')}<br/>{t('Winning_Loss')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -548,8 +548,8 @@ const handlePageClick = (event) => {
                                     <td><span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.betting_date}</span></td>
                                     <td><span>{item.lottery_number} <br/> {item.game_type}<br />{item.game && item.game.name ? item.game.name : ""}</span></td>
                                     <td><span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span></td>
-                                    <td><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
-                                    <td>
+                                    <td style={{ textAlign: 'end' }}><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
+                                    <td style={{ textAlign: 'end' }}>
                                         <span style={winChild(item.winning_amount)}>
                                             {MoneyFormatDisplay(item.winning_amount,1)}
                                         </span><br/>
@@ -795,7 +795,7 @@ const handlePageClick = (event) => {
                                             </select> */}
                                             <Select 
                                                 options={optionsGamesName} 
-                                                defaultValue = { { value: '', label: 'All' }} 
+                                                defaultValue = { { value: '', label: t('All') }} 
                                                 value = {filterGamesName}
                                                 onChange={value => setFilterGamesName(value)}
                                                 />

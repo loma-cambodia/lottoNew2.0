@@ -44,8 +44,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       const [fromDate, setFromDate] = useState(moment());
       const [toDate, setToDate] = useState(moment());
       const [detailNo, setDetailNo] = useState('');
-      const [filterGamesName, setFilterGamesName] = useState({ value: '', label: 'All' });
-      const [filterGameType, setFilterGameType] = useState({ value: '', label: 'All' });
+      const [filterGamesName, setFilterGamesName] = useState({ value: '', label: t('All') });
+      const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All') });
       const [selectedticketId, setSelectedticketId] = useState('');
       const [reset, setReset] = useState(false);
 
@@ -182,8 +182,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         
 
        // setDetailNo('');
-      //  setFilterGamesName({ value: '', label: 'All' });
-       // setFilterGameType({ value: '', label: 'All' });
+      //  setFilterGamesName({ value: '', label: t('All') });
+       // setFilterGameType({ value: '', label: t('All') });
         setSelectedticketId(ticketId);
 
        let params = {ticketId};
@@ -191,8 +191,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
        if(actionFrom == 'unsettledList' || actionFrom == 'reset_button' ){
 
             setDetailNo('');
-            setFilterGamesName({ value: '', label: 'All' });
-            setFilterGameType({ value: '', label: 'All' });
+            setFilterGamesName({ value: '', label: t('All') });
+            setFilterGameType({ value: '', label: t('All') });
 
            params.child_ticket_no = '';
            params.game_play_id = '';
@@ -339,21 +339,21 @@ const handlePageClick = (event) => {
 
   const childDataReset = () => {
    setDetailNo('');
-   setFilterGamesName({ value: '', label: 'All' });
-   setFilterGameType({ value: '', label: 'All' });
+   setFilterGamesName({ value: '', label: t('All') });
+   setFilterGameType({ value: '', label: t('All') });
    setTimeout(childShowTable(selectedticketId,'work'), 5000);
    
   }
 
 
   const optionsGameType = [
-    { value: '', label: 'All' },
+    { value: '', label: t('All') },
     { value: '3D', label: '3D' },
     { value: '4D', label: '4D' }
   ];
 
   const optionsGamesName = [
-    { value: '', label: 'All' },
+    { value: '', label: t('All') },
     { value: '1', label: 'Magnum' },
     { value: '2', label: 'Da ma cai' },
     { value: '3', label: 'Toto'}
@@ -536,7 +536,7 @@ const handlePageClick = (event) => {
                                     <th><span>{t('Detail_Number')}<br />{t('Betting_Time')}<br />{t('Draw_Date')}</span></th>
                                     <th><span>{t('Bet_Number')}<br />{t('game')}<br />{t('Company')}</span></th>
                                     <th><span>{t('Big_Bet')}<br />{t('Small_Bet')}<br />3A<br />3C</span></th>
-                                    <th><span>{t('Total')}<br />{t('Rebate')}<br />{t('Net')}</span></th>
+                                    <th style={{ textAlign: 'end' }}><span>{t('Total')}<br />{t('Rebate')}<br />{t('Net')}</span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -545,7 +545,7 @@ const handlePageClick = (event) => {
                                         <td><span>{item.child_ticket_no}<br />{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}<br />{item.ticket.betting_date}</span></td>
                                         <td><span>{item.lottery_number} <br/> {item.game_type}<br />{item.game && item.game.name ? item.game.name : ""}</span></td>
                                         <td><span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span></td>
-                                        <td><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
+                                        <td style={{ textAlign: 'end' }}><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -691,7 +691,7 @@ const handlePageClick = (event) => {
                 {/* <SearchAbleFormParent />  */}
             <div className='showForMobileViewSearch'>
                 <div className="clearfix curved-card">
-                    <div className={styles.device_detect_for_mobile}>
+                    <div className={styles.device_detect_for_mobile+' mb-2'}>
                         <div className="form-group mb-0">
                             <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
                                 <b>{t('betting_list_report')}</b>
@@ -770,10 +770,10 @@ const handlePageClick = (event) => {
                                     </div>
                                     <div className="col-md-2 col-12">
                                         <div className="form-group">
-                                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Game')}</label>
+                                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('game')}</label>
                                             <Select 
                                                 options={optionsGameType} 
-                                                defaultValue = { { value: '', label: 'All' }} 
+                                                defaultValue = { { value: '', label: t('All') }} 
                                                 value = {filterGameType}
                                                 onChange={value => setFilterGameType(value)}
                                                 />
@@ -784,7 +784,7 @@ const handlePageClick = (event) => {
                                             <label htmlFor="transactionid" className="fw-bold mb-2">{t('Company')}</label>
                                             <Select 
                                                 options={optionsGamesName} 
-                                                defaultValue = { { value: '', label: 'All' }} 
+                                                defaultValue = { { value: '', label: t('All') }} 
                                                 value = {filterGamesName}
                                                 onChange={value => setFilterGamesName(value)}
                                                 />
