@@ -228,22 +228,9 @@ const resultNew = ({ _setDate,_auth}) => {
     getSelectedDrawDate();
   }, [calendarDate]);
 
-  let days = ''
-  let months = ''
 
-  if(lang == "ch"){
-    days = ['日', '一', '二', '三', '四月', '五', '六']
-    months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
-  }else if(lang == "kh"){
-    // days =  ['ថ្ងៃអាទិត្យ', 'ថ្ងៃច័ន្ទ', 'ថ្ងៃអង្គារ', 'ថ្ងៃពុធ', 'ថ្ងៃព្រហស្បតិ៍', 'ថ្ងៃសុក្រ', 'ថ្ងៃសៅរ៍']
-    days =  ['អាទិត្យ', 'ច័ន្ទ', 'អង្គារ', 'ពុធ', 'ព្រហ.', 'សុក្រ', 'សៅរ៍']
-    months = ['មករា', 'ខែកុម្ភៈ', 'ខែមីនា', 'មេសា', 'ឧសភា', 'ខែមិថុនា', 'ខែកក្កដា', 'សីហា', 'ខែកញ្ញា', 'តុលា', 'ខែវិច្ឆិកា', 'ខែធ្នូ']
-  }
-  else{
-    days =  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
-    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  }
-
+ let days =  [t('Su'), t('Mo'), t('Tu'), t('We'), t('Th'), t('Fr'), t('Sa')]
+  let  months = [t('January'), t('February'), t('March'), t('April'), t('May'), t('June'), t('July'), t('August'), t('September'), t('October'), t('November'), t('December')]
   const locale = {
     localize: {
       day: n => days[n],

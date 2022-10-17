@@ -208,6 +208,14 @@
     "tickect_update":"注单成功更新", 
     "ticket_delete":"注单成功删除", 
     "ticket_fetch":"注单成功获取", 
-    "no_ticket":"无注单"
+    "no_ticket":"无注单",
+
+    "Mo":"一",
+    "Tu":"二",
+    "We":"三",
+    "Th":"四月",
+    "Fr":"五",
+    "Sa":"六",
+    "Su":"日"
 
 }
