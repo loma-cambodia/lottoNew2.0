@@ -116,7 +116,8 @@
     "BET":"BET",
     "BettingList":" Betting List",
     "betting_history":"Betting History",
- 
+    "select":"Select",
+    "delete":"Delete",
 
 
     "Select_Date_Range":"Bet time", 
@@ -193,7 +194,8 @@
     "October":"October",
     "November":"November",
     "December":"December",
- 
+
+    
     "Please_choose_at_least_one_date_selection":"Please select the draw date",
     "Please_select_game_first":"Please select company ",
     "Please_type_3_or_4_digits_in_number_field":"Please input 3 or 4 digits in bet number",
@@ -210,6 +212,13 @@
     "ticket_fetch":"Ticket fetched successfully", 
     "no_ticket":"No Ticket",
 
+    "Mo":"Mo",
+    "Tu":"Tu",
+    "We":"We",
+    "Th":"Th",
+    "Fr":"Fr",
+    "Sa":"Sa",
+    "Su":"Su",
     "Select":"Select",
     "Delete":"Delete"
 }
