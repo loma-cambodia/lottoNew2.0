@@ -19,18 +19,18 @@ const resultNew = ({ _setDate }) => {
 
   const dispatch = useDispatch();
   const getLatestDrawDate = () => {
-    console.log("Khan:");
+    // console.log("Khan:");
 
     let dataSubmit = undefined;
     dispatch(
       getResults(dataSubmit, (response) => {
-        console.log("Khan:Khan:");
+        // console.log("Khan:Khan:");
 
         if (response.statusCode == 201 || response.statusCode == 200) {
-          console.log("Khan:Khan:Khan:");
+          // console.log("Khan:Khan:Khan:");
 
           if (response.statusCode == 200) {
-            console.log("Khan:Khan:Khan:Khan");
+            // console.log("Khan:Khan:Khan:Khan");
 
             let results =
               response &&
@@ -44,11 +44,18 @@ const resultNew = ({ _setDate }) => {
               response.data &&
               response.data.data &&
               response.data.data.result_dates &&
-              response.data.data.result_dates[0]
-                ? response.data.data.result_dates[0]
+              response.data.data.result_dates
+                ? response.data.data.result_dates
                 : [];
 
-            console.log("results: ", results);
+            // console.log("results: ", results);
+            // console.log("resultDate: ", resultDate);
+            setResult(results);
+
+
+            
+            setStartDate(moment(results[0].fetching_date).format('DD-MM-YYYY'))
+
 
             //  console.log('result_dates: ',response.data.data.result_dates[0])
 
@@ -56,15 +63,18 @@ const resultNew = ({ _setDate }) => {
               subDays(new Date(date), 0)
             );
 
+
+            
+
             //  console.log("DDDDDDD",resultDate)
 
             //  console.log("resultHighlited:",highlight,resultDate)
-
+            // console.log("highlight:   ",highlight)
             setHighlightedData(highlight);
             //  setStartDate (results.fetching_date ? results.fetching_date :''.dateFormat('DD/MM/YYYY'))
             // setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
-            console.log("111111111111111results: ", results);
-            setResult(results);
+            // console.log("111111111111111results: ", results);
+            
           } else {
           }
         } else {
@@ -76,18 +86,18 @@ const resultNew = ({ _setDate }) => {
 
   // const selectedDefaultDate = ''
   const getSelectedDrawDate = () => {
-    console.log("Khan:");
+    // console.log("Khan:");
 
     let dataSubmit = calendarDate;
     dispatch(
       getResults(dataSubmit, (response) => {
-        console.log("Khan:Khan:");
+        // console.log("Khan:Khan:");
 
         if (response.statusCode == 201 || response.statusCode == 200) {
-          console.log("Khan:Khan:Khan:");
+          // console.log("Khan:Khan:Khan:");
 
           if (response.statusCode == 200) {
-            console.log("Khan:Khan:Khan:Khan");
+            // console.log("Khan:Khan:Khan:Khan");
 
             let results =
               response &&
@@ -101,11 +111,13 @@ const resultNew = ({ _setDate }) => {
               response.data &&
               response.data.data &&
               response.data.data.result_dates &&
-              response.data.data.result_dates[0]
-                ? response.data.data.result_dates[0]
+              response.data.data.result_dates
+                ? response.data.data.result_dates
                 : [];
                 // selectedDefaultDate = resultDate[0]
+                setResult(results);
             // console.log("results:results:results: ", moment(selectedDefaultDate[0].format("dd-MM-YYYY")));
+            setStartDate(moment(results[0].fetching_date).format('DD-MM-YYYY'))
 
             //  console.log('result_dates: ',response.data.data.result_dates[0])
 
@@ -113,15 +125,19 @@ const resultNew = ({ _setDate }) => {
               subDays(new Date(date), 0)
             );
 
+            
+
+
+
             //  console.log("DDDDDDD",resultDate)
 
-            //  console.log("resultHighlited:",highlight,resultDate)
+              // console.log("highlight:   ",highlight)
 
             setHighlightedData(highlight);
             //  setStartDate (results.fetching_date ? results.fetching_date :''.dateFormat('DD/MM/YYYY'))
             // setStartDate (new Date(results[0].result_date ? results[0].result_date :'').dateFormat('DD/MM/YYYY'))
-            console.log("111111111111111results: ", results);
-            setResult(results);
+            // console.log("111111111111111results: ", results);
+            
           } else {
           }
         } else {
@@ -141,7 +157,7 @@ const resultNew = ({ _setDate }) => {
     datepickerElement.setFocus(true);
   }
   useEffect(() => {
-    console.log("222222222222222222222");
+    // console.log("222222222222222222222");
     getLatestDrawDate();
   }, []);
   console.log(startDate);
@@ -238,7 +254,7 @@ const resultNew = ({ _setDate }) => {
                 highlightDates={highlightedData}
                 maxDate={new Date()}
                 ref={datepickerRef}
-                // value={startDate}
+                value={startDate}
                 onSelect={(date) => {
                   setCalendarDate(date);
                 }}
