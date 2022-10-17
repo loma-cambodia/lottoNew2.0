@@ -250,46 +250,59 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
         game_dates.push(tempObj);
     })
 
-
+    let toastId = null;
 
     if (game_dates.length == 0) {
-      toast.error('Please choose at least one date selection!', {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
-      });
+      if(!toast.isActive(toastId)){
+        toast.error('Please choose at least one date selection!', {
+          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+          pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
+        });
+    }
+      
       return false;
     }
 
     if (game_dates && game_dates[0].games && game_dates[0].games.length == 0) {
-      toast.error('Please select game first!', {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
-      });
+      if(!toast.isActive(toastId)){
+        toast.error('Please select game first!', {
+          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+          pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
+        });
+      }
       return false;
     }
 
 
     if (minLengthValidation) {
-      toast.error('Please type 3 or 4 digits in number field!', {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
-      });
+      if(!toast.isActive(toastId)){
+        toast.error('Please type 3 or 4 digits in number field!', {
+          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+          pauseOnHover: true, draggable: true , toastId: 1
+        });
+      }
       return false;
     }
 
     if (isDataNotCorrect) {
-      toast.error('please enter valid amount against selected number!', {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
-      });
+      
+      if(!toast.isActive(toastId)){
+          toast.error('please enter valid amount against selected number!', {
+          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+          pauseOnHover: true, draggable: true, progress: undefined ,
+          toastId: 1
+        });
+      }
       return false;
     }
 
     if (options && options.length == 0) {
-      toast.error('Please select at least one number!', {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
-      });
+      if(!toast.isActive(toastId)){
+        toast.error('Please select at least one number!', {
+          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+          pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
+        });
+      }
       return false;
     }
 
