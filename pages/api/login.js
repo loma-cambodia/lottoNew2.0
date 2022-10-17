@@ -52,7 +52,6 @@ async function handler(req, res) {
   const data = await userData.json()
 
   if (data.success == true) {
-    //req.session.set("user", data);
     req.session.user = data
     await req.session.save()
     res.redirect(307, '/')
@@ -60,18 +59,8 @@ async function handler(req, res) {
   } else {
     res.send('Worng Data')
   }
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-}
-// export default withIronSession(handler, {
-//   password: "complex_password_at_least_32_characters_long",
-//   cookieName: "myapp_cookiename",
-//   cookieOptions: {
-//     secure: process.env.NODE_ENV === "production",
-//   },
-// });
 
+}
 export default withIronSessionApiRoute(handler, {
   password: 'complex_password_at_least_32_characters_long',
   cookieName: 'myapp_cookiename',
