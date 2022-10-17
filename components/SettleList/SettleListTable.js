@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
 import moment from 'moment';
-import DateRangePicker from 'react-bootstrap-daterangepicker';
+import {DateRangePicker,daterangepicker} from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import { useTranslation } from "react-i18next";
 import {filterLotteryDetailsList} from '../../store/actions/reportActions';
@@ -11,6 +11,7 @@ import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 
 import styles from '../../styles/Home.module.css';
+import $ from 'jquery'; 
 
 const API_BASE_URL = process.env.apiUrl;
 const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable}) => {
@@ -55,7 +56,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
-        change()
       }, [itemOffset, itemsPerPage,_tickets]);
 
 
@@ -82,7 +82,49 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
       });
 
       const change = () => {
-        $("li:contains(Custom Range)").text(t('custom_range'))
+        $('input[name="datefilter"]').daterangepicker({
+            ranges: {
+                [t('Today')]: [moment().subtract(0, 'days'), moment().add(0, 'days')],
+                [t('Yesterday')]: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                [t('Last_7_Days')]: [moment().subtract(6, 'days'), moment().add(0, 'days')],
+                [t('Last_14_Days')]: [moment().subtract(13, 'days'), moment().add(0, 'days')],
+                [t('This_Month')]: [moment().startOf('month')],
+                [t('Last_Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
+                [t('This_Year')]: [moment().startOf('year')],
+            },
+            "locale": {
+                "applyLabel": t('submit'),
+                "cancelLabel": t('clear'),
+                "format": "DD/MM/YYYY",
+                "customRangeLabel": (t('custom_range')),
+                "daysOfWeek": [
+                    t('Su'),
+                    t('Mo'),
+                    t('Tu'),
+                    t('We'),
+                    t('Th'),
+                    t('Fr'),
+                    t('Sa')
+                ],
+                "monthNames": [
+                    t("January"),
+                    t("February"),
+                    t("March"),
+                    t("April"),
+                    t("May"),
+                    t("June"),
+                    t("July"),
+                    t("August"),
+                    t("September"),
+                    t("October"),
+                    t("November"),
+                    t("December")
+                ],
+            },
+            "startDate": moment(dateRange.startDate),
+            "endDate": moment(dateRange.endDate),
+        })
+      
       }
 
       const [ticketList, setTicketList] = useState([]);
@@ -594,7 +636,7 @@ const handlePageClick = (event) => {
                         <div class="form-group">
                             <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                 <DateRangePicker ref={keyRef} onApply={handleApply1} onCancel={keyRef} initialSettings={{ ranges }} >
-                                    <input type="text" className="daterangepickerstyle" />
+                                    <input name="datefilter" type="text" className="daterangepickerstyle" />
                                 </DateRangePicker>
                         </div>                    
                     </div>
@@ -639,6 +681,9 @@ const handlePageClick = (event) => {
         $('.hideAndShowForMobileView').toggle("slide");
     }
 
+    useEffect(() => {
+        change();
+      },[t])
     return (
         <>
             {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}
@@ -669,7 +714,7 @@ const handlePageClick = (event) => {
                                                 endDate: toDate,
                                                 ranges  }} onEvent={handleEvent}
                                                 onApply={handleApply1} >
-                                                    <input type="text" value={dateRange} className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
+                                                    <input name="datefilter" type="text" value={dateRange} className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
                                                 </DateRangePicker>
                                         </div>                    
                                     </div>

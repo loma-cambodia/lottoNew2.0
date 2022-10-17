@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
 import moment from 'moment';
-import DateRangePicker from 'react-bootstrap-daterangepicker';
+import {DateRangePicker,daterangepicker} from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import { useTranslation } from "react-i18next";
 import {getLotteryDetailsList} from '../../store/actions/reportActions';
@@ -10,6 +10,7 @@ import {getLotteryDetailsList} from '../../store/actions/reportActions';
 import { useDispatch, useSelector, } from "react-redux";
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
+import $ from 'jquery'; 
 
 import styles from '../../styles/Home.module.css';
 
@@ -56,10 +57,11 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
         setReset(false);
-        change();
       }, [itemOffset, itemsPerPage,_tickets, reset]);
 
-
+      useEffect(() => {
+        change();
+      },[t])
 
     const handleApply1 = (event, picker) => {
         
@@ -84,7 +86,50 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       });
 
       const change = () => {
-        $("li:contains(Custom Range)").text(t('custom_range'))
+        
+        $('input[name="datefilter"]').daterangepicker({
+            ranges: {
+                [t('Today')]: [moment().subtract(0, 'days'), moment().add(0, 'days')],
+                [t('Yesterday')]: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                [t('Last_7_Days')]: [moment().subtract(6, 'days'), moment().add(0, 'days')],
+                [t('Last_14_Days')]: [moment().subtract(13, 'days'), moment().add(0, 'days')],
+                [t('This_Month')]: [moment().startOf('month')],
+                [t('Last_Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
+                [t('This_Year')]: [moment().startOf('year')],
+            },
+            "locale": {
+                "applyLabel": t('submit'),
+                "cancelLabel": t('clear'),
+                "format": "DD/MM/YYYY",
+                "customRangeLabel": (t('custom_range')),
+                "daysOfWeek": [
+                    t('Su'),
+                    t('Mo'),
+                    t('Tu'),
+                    t('We'),
+                    t('Th'),
+                    t('Fr'),
+                    t('Sa')
+                ],
+                "monthNames": [
+                    t("January"),
+                    t("February"),
+                    t("March"),
+                    t("April"),
+                    t("May"),
+                    t("June"),
+                    t("July"),
+                    t("August"),
+                    t("September"),
+                    t("October"),
+                    t("November"),
+                    t("December")
+                ],
+            },
+            "startDate": moment(dateRange.startDate),
+            "endDate": moment(dateRange.endDate),
+        })
+      
       }
 
       const intailDate = formatDate2(c) + ' - ' +formatDate2(c);
@@ -626,6 +671,9 @@ const handlePageClick = (event) => {
         $('.hideAndShowForMobileView').toggle("slide");
     }
 
+    useEffect(() => {
+        change();
+      },[t])
     return (
         <>
 
@@ -662,7 +710,7 @@ const handlePageClick = (event) => {
                                                         ranges }}
                                                     onEvent={handleEvent}
                                                 >
-                                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)} value={dateRange} />
+                                                    <input name="datefilter" type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)} value={dateRange} />
                                                 </DateRangePicker>
                                         </div>                    
                                     </div>

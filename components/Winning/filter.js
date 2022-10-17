@@ -39,30 +39,23 @@ const Filter = ({_setFilterParams}) => {
     const [fromDate, setFromDate] = useState(new Date());
     const [toDate, setToDate] = useState(new Date());
 
-    
-    // $("li:contains(Custom Range)").text(t('custom_range'));
-
     const change = () => {
         
-        // $("li:contains(Custom Range)").text(t('custom_range'));
-        // $("th.month:contains(Oct)").text("oct");
-        
-        // const value = $('.prev .myclass').val();
-        // value = 'goofy'
-
-        console.log('change is run: ',)
-
         $('input[name="datefilter"]').daterangepicker({
             ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                [t('Today')]: [moment().subtract(0, 'days'), moment().add(0, 'days')],
+                [t('Yesterday')]: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                [t('Last_7_Days')]: [moment().subtract(6, 'days'), moment().add(0, 'days')],
+                [t('Last_14_Days')]: [moment().subtract(13, 'days'), moment().add(0, 'days')],
+                [t('This_Month')]: [moment().startOf('month')],
+                [t('Last_Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
+                [t('This_Year')]: [moment().startOf('year')],
             },
             "locale": {
-                "customRangeLabel": "Custom",
+                "applyLabel": t('submit'),
+                "cancelLabel": t('clear'),
+                "format": "DD/MM/YYYY",
+                "customRangeLabel": (t('custom_range')),
                 "daysOfWeek": [
                     t('Su'),
                     t('Mo'),
@@ -73,26 +66,23 @@ const Filter = ({_setFilterParams}) => {
                     t('Sa')
                 ],
                 "monthNames": [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                    "August",
-                    "September",
-                    "October",
-                    "November",
-                    "December"
+                    t("January"),
+                    t("February"),
+                    t("March"),
+                    t("April"),
+                    t("May"),
+                    t("June"),
+                    t("July"),
+                    t("August"),
+                    t("September"),
+                    t("October"),
+                    t("November"),
+                    t("December")
                 ],
             },
-            "alwaysShowCalendars": true,
-            "startDate": "10/11/2022",
-            "endDate": "10/17/2022"
-        }, function(start, end, label) {
-          console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-            })
+            "startDate": moment(dateRange.startDate),
+            "endDate": moment(dateRange.endDate),
+        })
       
       }
 
