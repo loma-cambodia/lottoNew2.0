@@ -270,7 +270,7 @@ const resultNew = ({ _setDate,_auth}) => {
                 highlightDates={highlightedData}
                 maxDate={new Date()}
                 ref={datepickerRef}
-                value={startDate}
+                value={startDate || calendarDate}
                 onSelect={(date) => {
                   setCalendarDate(date);
                 }}

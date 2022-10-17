@@ -133,11 +133,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                         {initData.games.map((game,id) =>(
                             <li key={id} className={`${initData.selected ? "":""} list-inline-item`}>
 
-<<<<<<< HEAD
-                            <span onClick={() => selectUnSelectgame(initData.selected,game.name,!game.selected)} className={`${game.selected ? "selected-gp-btn":""} outer-circle-gp`} title={t('Select_Game')}>
-=======
                             <span onClick={() => selectUnSelectgame(initData.selected,game.name,!game.selected)} className={`${game.selected ? "selected-gp-btn":""} outer-circle-gp`} title={t('Select')}>
->>>>>>> 8903cd3af9d3ca71b8c457a3c1a75729d89f062d
                                 <span className="inner-circle-gp">
                                     <img className="img-fluid" src={game.image}/>
                                 </span>

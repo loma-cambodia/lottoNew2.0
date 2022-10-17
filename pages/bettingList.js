@@ -23,6 +23,8 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
 
   const [active, setActive] = useState(false);
 
+  const state = useSelector(state => state);
+
 
        useEffect(() => {
       //  dispatch(getTicketData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
@@ -53,7 +55,8 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
         "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
         "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
         "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
-        "language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
+       //   "language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
+       "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
       } 
       if(objectWithData.customer_id != 0){
       dispatch(getLogin(objectWithData));
@@ -62,7 +65,7 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       dispatch(searchTicketData(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''))
       }, [datauser])
       
-      const state = useSelector(state => state);
+
       let tickets = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
       let ticketsChild = state && state.tickets && state.tickets.ticketsChild ? state.tickets.ticketsChild : [];
 
