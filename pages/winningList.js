@@ -104,8 +104,6 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
         "language":   datauser && datauser.user && datauser.user.lang && datauser.user.lang ? datauser.user.lang : 'en'
       } 
       dispatch(getLogin(objectWithData));
-      console.log("auth", auth)
-
 
       }, [datauser])
       
