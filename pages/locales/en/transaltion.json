@@ -211,13 +211,13 @@
     "ticket_fetch":"Ticket fetched successfully", 
     "no_ticket":"No Ticket",
 
-
     "Mo":"Mo",
     "Tu":"Tu",
     "We":"We",
     "Th":"Th",
     "Fr":"Fr",
     "Sa":"Sa",
-    "Su":"Su"
+    "Su":"Su",
 
+    "Select":"Select"
 }
