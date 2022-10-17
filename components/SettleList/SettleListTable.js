@@ -174,9 +174,15 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         setParentAction(true);
         setSearchAction(true);
         setDetailNo('');
+        setFromDate(moment(fromDate).toDate());
+        setToDate(moment(toDate).toDate());
    setFilterGamesName({ value: '', label: 'All' });
     }
 
+
+    function isValidDate(d) {
+        return d instanceof Date && !isNaN(d);
+      }
 
     const searchGetListonFilter = (work) => {
 
@@ -187,7 +193,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
          if(typeof _fromDate == 'string'){
             _fromDate = _fromDate.split('T')[0];
             _toDate = _toDate.split('T')[0];
-         }else {
+         }else if(typeof _fromDate == 'object'){
+            _fromDate = formatDate(_fromDate)
+            _toDate = formatDate(_toDate)
+        }else {
             _fromDate = dateToday.split('T')[0];
             _toDate = dateToday.split('T')[0];
 
@@ -215,10 +224,12 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
       
 
       const handleEvent = (event, picker) => {
-        setFromDate(picker.startDate._d.toISOString());
-        setToDate(picker.endDate._d.toISOString());
-        let newDateRange = formatDate2(picker.startDate) + ' - ' + formatDate2(picker.endDate);
-        setDateRange(newDateRange);
+        if(isValidDate(picker.startDate._d)){
+            setFromDate(picker.startDate._d.toISOString());
+            setToDate(picker.endDate._d.toISOString());
+            let newDateRange = formatDate2(picker.startDate) + ' - ' + formatDate2(picker.endDate);
+            setDateRange(newDateRange);
+        }
       };
 
 
