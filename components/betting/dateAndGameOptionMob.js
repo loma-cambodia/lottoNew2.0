@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
+import { useTranslation } from "react-i18next";
 
 const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageCounter,_setLoadpageCounter}) => {
-    
+    const { t } = useTranslation();
     const selectUnSelectgame =(dateId,gameId, work)=>{
         let bettingInitData =  _bettingInitData;
         let newArr = [];
@@ -55,7 +56,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                 <label className= {`${item.selected ? " selected-dt-h5  date-time-small":" date-time-small"}`} htmlFor={item.id} onClick={() => selectUnSelectgame(item.id,'','parent')}>
                     <small>{item.date}</small>
                     <br />
-                    <b>{item.day}</b>
+                    <b>{t(item.day)}</b>
                 </label>
                 <div className="select-gp p-2">
                     
