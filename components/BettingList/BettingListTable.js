@@ -40,8 +40,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       const [pageCount, setPageCount] = useState(0);
       const [itemOffset, setItemOffset] = useState(0);
       const [seletedPage, setSeletedPage] = useState(1);
-      const [fromDate, setFromDate] = useState(new Date());
-      const [toDate, setToDate] = useState(new Date());
+      const [fromDate, setFromDate] = useState(moment());
+      const [toDate, setToDate] = useState(moment());
       const [detailNo, setDetailNo] = useState('');
       const [filterGamesName, setFilterGamesName] = useState({ value: '', label: 'All' });
       const [filterGameType, setFilterGameType] = useState({ value: '', label: 'All' });
@@ -179,6 +179,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     const backButton = () =>{
         setParentAction(true);
         setSearchAction(true);
+        setFromDate(moment(fromDate).toDate());
+        setToDate(moment(toDate).toDate());
     }
 
 
@@ -192,10 +194,12 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         if(typeof _fromDate == 'string'){
            _fromDate = _fromDate.split('T')[0];
            _toDate = _toDate.split('T')[0];
-        }else {
+        }else if(typeof _fromDate == 'object'){
+            _fromDate = formatDate(_fromDate)
+            _toDate = formatDate(_toDate)
+        }else{
            _fromDate = dateToday.split('T')[0];
            _toDate = dateToday.split('T')[0];
-
         }
 
         if(actionForm == "reset_button" ){
@@ -229,11 +233,17 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
 
       const handleEvent = (event, picker) => {
-        setFromDate(picker.startDate._d.toISOString());
-        setToDate(picker.endDate._d.toISOString());
-        let newDateRange = formatDate2(picker.startDate) + ' - ' + formatDate2(picker.endDate);
-        setDateRange(newDateRange);
+        if(isValidDate(picker.startDate._d)){
+            setFromDate(picker.startDate._d.toISOString());
+            setToDate(picker.endDate._d.toISOString());
+            let newDateRange = formatDate2(picker.startDate) + ' - ' + formatDate2(picker.endDate);
+            setDateRange(newDateRange);
+        }
       };
+
+      function isValidDate(d) {
+        return d instanceof Date && !isNaN(d);
+      }
 
 
       const resetFilter = () => {
