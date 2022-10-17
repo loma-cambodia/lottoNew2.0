@@ -68,7 +68,7 @@ import Filter from "../components/results/filter";
                 <div className="container vh-70">
                 {/* <Filter _setDate = {setDate}/> */}
                 {/* <Result _initDate={initDate}/> */}
-                <ResultNew _setDate = {setDate}/>
+                <ResultNew _setDate = {setDate} _auth={auth}/>
                 </div>
             </section>   
             <Footer/>

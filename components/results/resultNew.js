@@ -10,7 +10,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { getResults } from "../../store/actions/resultActions";
 import { t } from "i18next";
 
-const resultNew = ({ _setDate }) => {
+const resultNew = ({ _setDate,_auth}) => {
+  
+  let auth = _auth
+  console.log("AUTH:::",auth.lang)
   const [startDate, setStartDate] = useState(new Date());
   const [highlightedData, setHighlightedData] = useState();
   const [calendarDate, setCalendarDate] = useState();
@@ -225,6 +228,19 @@ const resultNew = ({ _setDate }) => {
     getSelectedDrawDate();
   }, [calendarDate]);
 
+  const days = ['Mon', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz']
+  const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
+
+
+  const locale = {
+    localize: {
+      day: n => days[n],
+      month: n => months[n]
+    },
+    formatLong: {
+      date: () => 'mm/dd/yyyy'
+    }
+  }
   console.log("initResult:", initResult);
 
   return (
@@ -247,6 +263,7 @@ const resultNew = ({ _setDate }) => {
               <DatePicker
                 dateFormat="dd/MM/yyyy"
                 selected={calendarDate}
+                locale={locale}
                 onChange={(date) => {
                   setCalendarDate(date);
                 }}
