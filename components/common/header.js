@@ -47,6 +47,22 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
 
   const changeLangm = (l) => {
     return () => {
+
+
+      let objectWithData = {
+        "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
+        "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
+        "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
+        "language":   l  
+      } 
+      
+    //  console.log('objectWithData:',objectWithData);
+      //console.log('datauser:',datauser);
+      
+      if(objectWithData.customer_id != 0){
+          dispatch(getLogin(objectWithData));
+      }
+
         i18n.changeLanguage(l);
       dispatch( {
         type: "CHANGE_LANGUAGE",
@@ -59,13 +75,16 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
 
   const loginAPICall = () => {
 
-    let objectWithData = {
-       "customer_name": auth && auth.auth && auth.auth.customer_name ? auth.auth.customer_name : '',
-       "customer_id":  auth && auth.auth && auth.auth.customer_id ? parseInt(auth.auth.customer_id) : 0,
-       "merchant_id":  auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0,
-       "language":   auth && auth.lang ? auth.lang : 'en'
-    } 
+    // let objectWithData = {
+    //    "customer_name": auth && auth.auth && auth.auth.customer_name ? auth.auth.customer_name : '',
+    //    "customer_id":  auth && auth.auth && auth.auth.customer_id ? parseInt(auth.auth.customer_id) : 0,
+    //    "merchant_id":  auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0,
+    //    "language":  auth && auth.auth && auth.auth.language ? auth.auth.language.locale : 'en',
+    //    //"language":   auth && auth.lang ? auth.lang : 'en'
+    // } 
   // dispatch(getLogin(objectWithData));
+
+  //console.log('objectWithData:loginAPICall:',objectWithData);
    setUpdateSessionData(updateSessionData + 1); 
  }
 
