@@ -12,8 +12,8 @@ import { t } from "i18next";
 
 const resultNew = ({ _setDate,_auth}) => {
   
-  let auth = _auth
-  console.log("AUTH:::",auth.lang)
+  let lang = _auth.lang
+  console.log("AUTH:::",lang)
   const [startDate, setStartDate] = useState(new Date());
   const [highlightedData, setHighlightedData] = useState();
   const [calendarDate, setCalendarDate] = useState();
@@ -228,9 +228,21 @@ const resultNew = ({ _setDate,_auth}) => {
     getSelectedDrawDate();
   }, [calendarDate]);
 
-  const days = ['Mon', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz']
-  const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
+  let days = ''
+  let months = ''
 
+  if(lang == "ch"){
+    days = ['日', '一', '二', '三', '四月', '五', '六']
+    months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+  }else if(lang == "kh"){
+    // days =  ['ថ្ងៃអាទិត្យ', 'ថ្ងៃច័ន្ទ', 'ថ្ងៃអង្គារ', 'ថ្ងៃពុធ', 'ថ្ងៃព្រហស្បតិ៍', 'ថ្ងៃសុក្រ', 'ថ្ងៃសៅរ៍']
+    days =  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+    months = ['មករា', 'ខែកុម្ភៈ', 'ខែមីនា', 'មេសា', 'ឧសភា', 'ខែមិថុនា', 'ខែកក្កដា', 'សីហា', 'ខែកញ្ញា', 'តុលា', 'ខែវិច្ឆិកា', 'ខែធ្នូ']
+  }
+  else{
+    days =  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  }
 
   const locale = {
     localize: {
