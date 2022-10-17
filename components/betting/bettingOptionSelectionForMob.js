@@ -360,7 +360,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
                   />) )}
                   <div className="modal-footer mt-2" style={{justifyContent:'center'}}>
                     <button onClick={() => closeModal() } type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn btn-sm text-white">
-                    {t('OK')}
+                    {t('Ok')}
                     </button>
                   </div>
               </Modal>
