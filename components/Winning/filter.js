@@ -44,8 +44,8 @@ const Filter = ({_setFilterParams}) => {
 
     const change = () => {
         
-        $("li:contains(Custom Range)").text(t('custom_range'));
-        $("th.month:contains(Oct)").text("oct");
+        // $("li:contains(Custom Range)").text(t('custom_range'));
+        // $("th.month:contains(Oct)").text("oct");
         
         // const value = $('.prev .myclass').val();
         // value = 'goofy'
@@ -53,16 +53,24 @@ const Filter = ({_setFilterParams}) => {
         console.log('change is run: ',)
 
         $('input[name="datefilter"]').daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
             "locale": {
                 "customRangeLabel": "Custom",
                 "daysOfWeek": [
-                    t('Sunday'),
-                    t('Monday'),
-                    t('Tuesday'),
-                    t('Wednesday'),
-                    t('Thurday'),
-                    t('Friday'),
-                    t('Saturday')
+                    t('Su'),
+                    t('Mo'),
+                    t('Tu'),
+                    t('We'),
+                    t('Th'),
+                    t('Fr'),
+                    t('Sa')
                 ],
                 "monthNames": [
                     "January",
@@ -78,8 +86,8 @@ const Filter = ({_setFilterParams}) => {
                     "November",
                     "December"
                 ],
-                "firstDay": 1
             },
+            "alwaysShowCalendars": true,
             "startDate": "10/11/2022",
             "endDate": "10/17/2022"
         }, function(start, end, label) {

@@ -192,6 +192,14 @@
     "September":"September",
     "October":"October",
     "November":"November",
-    "December":"December"
+    "December":"December",
+
+    "Mo":"Mo",
+    "Tu":"Tu",
+    "We":"We",
+    "Th":"Th",
+    "Fr":"Fr",
+    "Sa":"Sa",
+    "Su":"Su"
     
 }
