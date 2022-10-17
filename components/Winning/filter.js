@@ -211,6 +211,8 @@ const Filter = ({_setFilterParams}) => {
                                             locale = {{
                                                     customRangeLabel: t('custom_range'),
                                                     toLabel: "To",
+                                                    cancelLabel: t('Cancel'), 
+                                                    applyLabel: t('apply'),
                                             }}
                                         >
                                             <input id="daterangepicker" type="text" className="daterangepickerstyle"  value={dateRange}/>
