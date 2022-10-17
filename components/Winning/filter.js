@@ -2,15 +2,14 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-
+import $ from 'jquery'; 
 import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
-import DateRangePicker from 'react-bootstrap-daterangepicker';
+import {DateRangePicker,daterangepicker} from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
-import daterangepicker from 'bootstrap-daterangepicker';
+// import daterangepicker from 'react-bootstrap-daterangepicker';
 import styles from '../../styles/Home.module.css';
 
-// import {getResults} from '../../store/actions/resultActions';
 
 const Filter = ({_setFilterParams}) => {
 
@@ -40,6 +39,35 @@ const Filter = ({_setFilterParams}) => {
     const [fromDate, setFromDate] = useState(new Date());
     const [toDate, setToDate] = useState(new Date());
 
+    
+    // $("li:contains(Custom Range)").text(t('custom_range'));
+
+    const change = () => {
+        
+        $("li:contains(Custom Range)").text(t('custom_range'));
+        $("th.month:contains(Oct)").text(t('October'));
+        
+        // const value = $('.prev .myclass').val();
+        // value = 'goofy'
+
+        console.log('change is run: ',)
+
+        // $('#daterpicker').daterangepicker({
+        //         "localize": {
+        //             "days": [
+        //                 "sdfdsdf",
+        //                 "一",
+        //                 "二",
+        //                 "三",
+        //                 "四",
+        //                 "五",
+        //                 "六"
+        //             ]
+        //         }
+        //     })
+      
+      }
+
     const prizeTypleList = ['All','P1','P2','P3','S','C']
 
     const handleEvent = (event, picker) => {
@@ -49,7 +77,8 @@ const Filter = ({_setFilterParams}) => {
         setDateRange(newDateRange);
       };
 
- 
+      
+      
       
 
       const [ranges, setRanges] = useState({
@@ -61,10 +90,8 @@ const Filter = ({_setFilterParams}) => {
         [t('Last_Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
         [t('This_Year')]: [moment().startOf('year')],
       });
-      const change = () => {
-        $("li:contains(Custom Range)").text(t('custom_range'))
-      }
-      
+
+
       
       function formatDate(date) {
         var d = new Date(date),
@@ -111,7 +138,7 @@ const Filter = ({_setFilterParams}) => {
             //console.log('filter:',filter);
             _setFilterParams(filter)
             
-        setDateRange('')
+        // setDateRange('')
         setPrizeType('')
         setTicketNo('')
 
@@ -124,18 +151,18 @@ const Filter = ({_setFilterParams}) => {
     const resetFiletr = () => {
         let filter = {
             'dateRange': '',
-            'prizeType':'',
+            'prizeType':'All',
             'ticketNo':''
             } 
 
             const date = document.getElementById('daterangepicker');
-            date.value = '';
-            setDateRange('')
+            date.value = intailDate;
+            setDateRange(intailDate)
 
             const ticket = document.getElementById('ticket_no');
             ticket.value = '';
             const prize = document.getElementById('prize_type');
-            prize.value = '';
+            prize.value = 'All';
 
 
             _setFilterParams(filter)
@@ -143,8 +170,10 @@ const Filter = ({_setFilterParams}) => {
     }
     
       useEffect(() => {
+        console.log('language',t('winning_list') )
         change()
-      },[]);
+        
+      },[t]);
 
     const openFilterForMob = () => {
         $('.hideAndShowForMobileView').toggle("slide");
@@ -171,6 +200,7 @@ const Filter = ({_setFilterParams}) => {
                             <div class="form-group">
                                 <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                 <DateRangePicker
+                                id="daterpicker"
                                             ref={keyRef}
                                             onApply={handleEvent}
                                             onCancel={keyRef}
@@ -178,6 +208,10 @@ const Filter = ({_setFilterParams}) => {
                                                 startDate: fromDate,
                                                 endDate: toDate,
                                                 ranges }}
+                                            locale = {{
+                                                    customRangeLabel: t('custom_range'),
+                                                    toLabel: "To",
+                                            }}
                                         >
                                             <input id="daterangepicker" type="text" className="daterangepickerstyle"  value={dateRange}/>
                                         </DateRangePicker>
