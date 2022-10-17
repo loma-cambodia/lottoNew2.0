@@ -443,10 +443,10 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                   <td colSpan="6">
                     {t('Total_Stake')}: {totalAmount ? MoneyFormatDisplay(totalAmount, 1) : 0.00}
                   </td>
-                  <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title="Clear All">{t('clear')}</button>
+                  <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title={t('clear')}>{t('clear')}</button>
                   </td>
                   <td colSpan="2">
-                    <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title="Submit">{t('submit')}</button>
+                    <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}</button>
                   </td>
                 </tr>)}
               </tbody>
