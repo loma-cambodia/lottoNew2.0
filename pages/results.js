@@ -17,7 +17,7 @@ import Filter from "../components/results/filter";
     const { t } = useTranslation();
     const [active, setActive] = useState(false);
     const auth = useSelector(state => state.auth);
-
+    const state = useSelector(state => state);
 
     const [initDate, setDate] = useState();
 
@@ -37,7 +37,8 @@ import Filter from "../components/results/filter";
           "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
           "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
           "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
-          "language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
+          //"language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
+          "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
         } 
         if(objectWithData.customer_id != 0){
         dispatch(getLogin(objectWithData));

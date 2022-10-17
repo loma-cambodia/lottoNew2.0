@@ -210,5 +210,6 @@
     "ticket_fetch":"Ticket fetched successfully", 
     "no_ticket":"No Ticket",
 
-    "Select":"Select"
+    "Select":"Select",
+    "Delete":"Delete"
 }
