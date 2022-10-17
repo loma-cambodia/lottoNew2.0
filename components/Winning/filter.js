@@ -45,21 +45,26 @@ const Filter = ({_setFilterParams}) => {
     const change = () => {
         
         $("li:contains(Custom Range)").text(t('custom_range'));
+        $("th.month:contains(Oct)").text(t('October'));
+        
+        // const value = $('.prev .myclass').val();
+        // value = 'goofy'
 
         console.log('change is run: ',)
-        $('#daterpicker').daterangepicker({
-                "locale": {
-                    "daysOfWeek": [
-                        "sdfdsdf",
-                        "一",
-                        "二",
-                        "三",
-                        "四",
-                        "五",
-                        "六"
-                    ]
-                }
-            })
+
+        // $('#daterpicker').daterangepicker({
+        //         "localize": {
+        //             "days": [
+        //                 "sdfdsdf",
+        //                 "一",
+        //                 "二",
+        //                 "三",
+        //                 "四",
+        //                 "五",
+        //                 "六"
+        //             ]
+        //         }
+        //     })
       
       }
 
