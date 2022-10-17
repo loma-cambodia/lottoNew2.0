@@ -107,7 +107,7 @@
     "select_game_and_date":"选择日期和公司",
     "3D_Bet_Number":"3D 投注号码",
     "4D_Bet_Number":"4D 投注号码",
-    "Box":"Box",
+    "Box":"盒子",
     "iBox":"iBox",
     "Reverse":"返字",
     "Select_All":"全选",
@@ -116,7 +116,8 @@
     "BET":"投注",
     "BettingList":"下注状况",
     "betting_history":"投注历史",
-
+    "select":"选择",
+    "delete":"删除",
 
    "Select_Date_Range":"下注时间", 
     "Ticket_No":"注单号",
