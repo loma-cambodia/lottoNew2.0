@@ -13,7 +13,7 @@ import { t } from "i18next";
 const resultNew = ({ _setDate }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [highlightedData, setHighlightedData] = useState();
-  const [calendarDate, setCalendarDate] = useState();
+  const [calendarDate, setCalendarDate] = useState(new Date());
 
   const [initResult, setResult] = useState([]);
 
@@ -254,7 +254,7 @@ const resultNew = ({ _setDate }) => {
                 highlightDates={highlightedData}
                 maxDate={new Date()}
                 ref={datepickerRef}
-                value={startDate}
+                value={calendarDate}
                 onSelect={(date) => {
                   setCalendarDate(date);
                 }}
