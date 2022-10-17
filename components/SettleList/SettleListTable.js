@@ -65,6 +65,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
           startDate: picker.startDate,
           endDate: picker.endDate,
         });
+        let newDateRange = formatDate2(picker.startDate) + ' - ' + formatDate2(picker.endDate);
+        setDateRange(newDateRange);
       };
 
      
@@ -665,7 +667,8 @@ const handlePageClick = (event) => {
                                                 <DateRangePicker ref={keyRef} onCancel={keyRef} 
                                                 initialSettings={{ startDate: fromDate,
                                                 endDate: toDate,
-                                                ranges  }} onEvent={handleEvent} >
+                                                ranges  }} onEvent={handleEvent}
+                                                onApply={handleApply1} >
                                                     <input type="text" value={dateRange} className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)}/>
                                                 </DateRangePicker>
                                         </div>                    
