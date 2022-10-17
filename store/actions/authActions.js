@@ -14,7 +14,20 @@ let API_BASE_URL = process.env.fronEndUrl;
         dispatch({
             type: "GET_LOGIN_DETAILS",
             payload: res && res.data && res.data.data ? res.data.data : {}
-        })
+        });
+
+     //   console.log('res.data.data:',res.data.data.language.locale);
+
+          if(res && res.data && res.data.data  && res.data.data.language && res.data.data.language.locale){
+                dispatch( {
+                  type: "CHANGE_LANGUAGE",
+                  payload: res.data.data.language.locale
+              });
+            }
+
+
+
+      
     }
     catch(e){
 

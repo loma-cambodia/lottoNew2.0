@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
 import { useTranslation } from "react-i18next";
 
+
 const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageCounter,_setLoadpageCounter}) => {
+    
     const { t } = useTranslation();
     const selectUnSelectgame =(dateId,gameId, work)=>{
         let bettingInitData =  _bettingInitData;
