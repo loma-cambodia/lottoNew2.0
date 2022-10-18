@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
 import moment from 'moment';
-import {DateRangePicker,daterangepicker} from 'react-bootstrap-daterangepicker';
+import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import { useTranslation } from "react-i18next";
 import {getLotteryDetailsList} from '../../store/actions/reportActions';
@@ -10,10 +10,10 @@ import {getLotteryDetailsList} from '../../store/actions/reportActions';
 import { useDispatch, useSelector, } from "react-redux";
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
-import $ from 'jquery'; 
 
 import styles from '../../styles/Home.module.css';
 
+import $ from 'jquery'; 
 const API_BASE_URL = process.env.apiUrl;
 const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     
@@ -57,7 +57,12 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
         setReset(false);
+        
       }, [itemOffset, itemsPerPage,_tickets, reset]);
+
+      useEffect(() =>{
+        change();
+      },[t])
 
 
     const handleApply1 = (event, picker) => {
@@ -83,6 +88,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       });
 
       const change = () => {
+        const date = document.getElementById('daterangepicker');
+
         
         $('input[name="datefilter"]').daterangepicker({
             ranges: {
@@ -123,8 +130,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
                     t("December")
                 ],
             },
-            "startDate": moment(dateRange.startDate),
-            "endDate": moment(dateRange.endDate),
+            "startDate": moment(new Date()),
+            "endDate": moment(new Date()),
         })
       
       }
@@ -227,17 +234,11 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
 
     const searchGetListonFilter = (work, actionForm) => {
-
         const date = document.getElementById('daterangepicker').value;
+
         let dateValue1 = date.split('-')[0].trim();
         let dateValue2 = date.split('-')[1].trim();
-        
-        // dateValue1 = formatDate(dateValue1);
-        // dateValue2 = formatDate(dateValue2);
 
-      
-        const mainData = formatDate(date);
-      
         let _fromDate = fromDate;
         let _toDate = toDate;
         let _ticketNo = ticketNo
@@ -263,7 +264,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
           }
 
         _fromDate = concertDateFormat(_fromDate);
-        _toDate = concertDateFormat(_toDate);;
+        _toDate = concertDateFormat(_toDate);
 
         let newDateRange = dateValue1 + ' - ' + dateValue2;
 
@@ -273,9 +274,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
        if(work == 'forMob'){
            $('.hideAndShowForMobileView').toggle("slide");
        }
+       setDateRange(newDateRange);
        // $('.hideAndShowForMobileView').toggle("slide");
-
-       setDateRange(newDateRange)
      }
 
 
@@ -621,69 +621,65 @@ const handlePageClick = (event) => {
     }
 
 
-    function SearchAbleFormChild(){
-        return (
+    // function SearchAbleFormChild(){
+    //     return (
             
-            <div className="clearfix curved-card">
-                <div className="row">
-                    <div className="col-md-3 col-12">
-                        <div className="form-group">
-                            <label className="fw-bold mb-2">{t('Select_Date_Range')}</label>
-                                <DateRangePicker
-                                    ref={keyRef}
-                                    onApply={handleApply1}
-                                    onCancel={keyRef}
-                                    initialSettings={{ ranges }}
-                                >
-                                    <input type="text" id='daterangepicker' className="daterangepickerstyle" value={dateRange} />
-                                </DateRangePicker>
-                        </div>                    
-                    </div>
-                    <div className="col-md-2 col-6">
-                        <div className="form-group">
-                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
-                            <input type="text" onChange={(event) => GetTicketNumber(event)} className="form-control-custom-big" name="transationid"/>
-                        </div>
-                    </div>
-                    <div className="col-md-2 col-6">
-                        <div className="form-group">
-                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Game')}</label>
-                            <select type="text" className="form-control-custom-big" name="transationid">
-                                <option>4D</option>
-                                <option>3D</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="col-md-2 col-6">
-                        <div className="form-group">
-                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Company')}</label>
-                            <select type="text" className="form-control-custom-big" name="transationid">
-                                <option>Toto</option>
-                                <option>Magnum</option>
-                                <option>Da ma cai</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="col-md-3">
-                        <div className="form-group">
-                            <label className="d-block">&nbsp;</label>
-                            <button type="button" className="btn-custom-curve2 w-auto me-2">{t('Search')}</button>
-                            <button type="button" className="btn-custom-curve1">{t('Reset')}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+    //         <div className="clearfix curved-card">
+    //             <div className="row">
+    //                 <div className="col-md-3 col-12">
+    //                     <div className="form-group">
+    //                         <label className="fw-bold mb-2">{t('Select_Date_Range')}</label>
+    //                             <DateRangePicker
+    //                                 ref={keyRef}
+    //                                 onApply={handleApply1}
+    //                                 onCancel={keyRef}
+    //                                 initialSettings={{ ranges }}
+    //                             >
+    //                                 <input type="text" className="daterangepickerstyle" value={dateRange} />
+    //                             </DateRangePicker>
+    //                     </div>                    
+    //                 </div>
+    //                 <div className="col-md-2 col-6">
+    //                     <div className="form-group">
+    //                         <label htmlFor="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
+    //                         <input type="text" onChange={(event) => GetTicketNumber(event)} className="form-control-custom-big" name="transationid"/>
+    //                     </div>
+    //                 </div>
+    //                 <div className="col-md-2 col-6">
+    //                     <div className="form-group">
+    //                         <label htmlFor="transactionid" className="fw-bold mb-2">{t('Game')}</label>
+    //                         <select type="text" className="form-control-custom-big" name="transationid">
+    //                             <option>4D</option>
+    //                             <option>3D</option>
+    //                         </select>
+    //                     </div>
+    //                 </div>
+    //                 <div className="col-md-2 col-6">
+    //                     <div className="form-group">
+    //                         <label htmlFor="transactionid" className="fw-bold mb-2">{t('Company')}</label>
+    //                         <select type="text" className="form-control-custom-big" name="transationid">
+    //                             <option>Toto</option>
+    //                             <option>Magnum</option>
+    //                             <option>Da ma cai</option>
+    //                         </select>
+    //                     </div>
+    //                 </div>
+    //                 <div className="col-md-3">
+    //                     <div className="form-group">
+    //                         <label className="d-block">&nbsp;</label>
+    //                         <button type="button" className="btn-custom-curve2 w-auto me-2">{t('Search')}</button>
+    //                         <button type="button" className="btn-custom-curve1">{t('Reset')}</button>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+    // }
     
     const openFilterForMob = () => {
         $('.hideAndShowForMobileView').toggle("slide");
     }
 
-    useEffect(() => {
-        change();
-
-      },[t])
     return (
         <>
 
