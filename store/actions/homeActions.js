@@ -57,7 +57,7 @@ export const announcement = () => async (dispatch) => {
     const res = await axios.get(`${API_BASE_URL}/announcements/latest`)
     dispatch({
       type: 'ANNOUNCEMENT_DETAILS',
-      payload: res.data.data,
+      payload: res.data,
     })
     console.log("ANNOUNCEMENT_DETAILS",res)
   } catch (e) {
