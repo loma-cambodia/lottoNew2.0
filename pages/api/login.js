@@ -9,7 +9,7 @@ let ttl = 60 + 32400 // 9 hours
 
 async function handler(req, res) {
   const body = req.body;
-
+console.log('SushilKumarGupta');
   ///   const objectWithData = {
   //     "customer_name": "Sushil Gupta",
   //     "email": "loma123@gmail.coma",
@@ -71,7 +71,8 @@ async function handler(req, res) {
   if (data.success == true) {
     req.session.user = data
     await req.session.save()
-    res.redirect(307, '/')
+    // res.redirect(307, '/')
+    console.log('NEXTAUTH_URL:',req.session);
     res.send('You are Logged in, Please Go back')
   } else {
     res.send('Worng Data')
