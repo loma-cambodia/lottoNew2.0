@@ -12,7 +12,7 @@ import GamePlayPrize from '../components/home/gamePlayPrize';
 import HowToPlay from '../components/home/howToPlay';
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
+import {announcement, userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
 import {getLogin} from '../store/actions/authActions';
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
 
@@ -28,8 +28,9 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
 useEffect(() => {
   dispatch(userTransactionDetails());
   dispatch(winnerResultDetails2());
+  dispatch(announcement());
 }, [])
-
+console.log("STATESTATE",state)
 
 
 useEffect(() => {
@@ -48,6 +49,8 @@ let objectWithData = {
   "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'  
 } 
 
+
+let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
 console.log('objectWithData:',objectWithData);
 console.log('datauser:',datauser);
 

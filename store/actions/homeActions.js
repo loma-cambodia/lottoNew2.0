@@ -37,6 +37,7 @@ export const winnerResultDetails = () => async (dispatch) => {
   }
 }
 
+
 export const winnerResultDetails2 = () => async (dispatch) => {
   try {
     const res = await axios.get(`${API_BASE_URL}/result/latest`)
@@ -51,3 +52,20 @@ export const winnerResultDetails2 = () => async (dispatch) => {
     })
   }
 }
+
+export const announcement = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`${API_BASE_URL}/announcements/latest`)
+    dispatch({
+      type: 'ANNOUNCEMENT_DETAILS',
+      payload: res.data.data,
+    })
+    console.log("ANNOUNCEMENT_DETAILS",res)
+  } catch (e) {
+    dispatch({
+      type: 'USERS_ERROR',
+      payload: console.log(e),
+    })
+  }
+}
+
