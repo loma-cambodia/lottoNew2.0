@@ -48,6 +48,7 @@ function MyApp({ Component, pageProps,user }) {
       .then((data) => {
         setData(data)
      //   setLoading(false)
+     console.log('datadata',data)
         if(Object.keys(data).length != 0){
           localStorage.setItem("name", JSON.stringify(data.user));
         }
