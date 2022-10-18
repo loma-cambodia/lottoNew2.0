@@ -3,6 +3,7 @@ import { withIronSessionApiRoute } from 'iron-session/next'
 
 //let ttl = 60 + 10800 // 3 hours
 //let ttl = 60 + 60; //  60 seconds
+let isLocalhost = process.env.isLocalhost;
 
 let ttl = 60 + 32400 // 9 hours
 
@@ -17,28 +18,40 @@ async function handler(req, res) {
   //       "language": 'en'
   // }
 
-    //  const objectWithData = {
-    //         "customer_name": "Dileep Maurya",
-    //        "customer_id":  112,
-    //       "merchant_id":  1,
-    //       "language":  'ch',
-    //   }
+   //console.log('isLocalhost:',isLocalhost);
+   let objectWithData = {};
+   if(isLocalhost){
+    objectWithData.customer_name = "Dileep Maurya";
+    objectWithData.customer_id = 112;
+    objectWithData.merchant_id = 1;
+    objectWithData.language = 'ch';
+   }else{
+
+    objectWithData.customer_name = req.body.customer_name;
+    objectWithData.customer_id = req.body.customer_id;
+    objectWithData.merchant_id = req.body.enterprise_id;
+    objectWithData.language = req.body.language;
+   }
+
+//return false;
+     
+  
 
     // const objectWithData = {
     //            "customer_name": "Atul",
-    //          "customer_id":  2222,
+    //          "customer_id":  1403,
     //         "merchant_id":  1,
     //         "language":  'en',
     //     }
 
   
 
-  const objectWithData = {
-    customer_name: req.body.customer_name,
-    customer_id: req.body.customer_id,
-    merchant_id: req.body.enterprise_id,
-    language: req.body.language,
-  }
+  // const objectWithData = {
+  //   customer_name: req.body.customer_name,
+  //   customer_id: req.body.customer_id,
+  //   merchant_id: req.body.enterprise_id,
+  //   language: req.body.language,
+  // }
  
   //   try {
   const userData = await fetch(`${process.env.apiUrl}/member-login`, {

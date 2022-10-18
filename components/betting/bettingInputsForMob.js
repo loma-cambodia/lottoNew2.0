@@ -1053,11 +1053,14 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                                                         ]  
                                               }
 
-
+                        let toastId = null
                         if(localStateDataForChange['number'].length < 3){
-                            toast.error('Please Enter Valid Number', 
-                            {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-                            pauseOnHover: true,draggable: true,progress: undefined});
+                            if(!toast.isActive(toastId)){
+                                toast.error(t('Please_Enter_Valid_Number'), 
+                                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                                pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+                            }
+                            
                             return false;
                         }else if(localStateDataForChange['number'] == ""){
 
@@ -1069,7 +1072,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                             // pauseOnHover: true,draggable: true,progress: undefined});
                             return false;
                         }else if(amountTotal == 0){
-                            $("#amountAsNull").html('Please Enter Amount');
+                            $("#amountAsNull").html(t('Please_Enter_Amount'));
                             $("#amountAsNull").css('visibility', 'visible');
 
                             // toast.error('Please Enter Amount', 
@@ -1164,7 +1167,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                 // toast.error(response.messages[0], 
                 // {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
                 // pauseOnHover: true,draggable: true,progress: undefined});
-                modelOpenCustom(response.messages[0]);
+                modelOpenCustom(t(response.messages[0]));
             }
             setIsLoading(false);
             // setIsLoading(false);

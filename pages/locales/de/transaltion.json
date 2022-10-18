@@ -209,15 +209,20 @@
     "ticket_fetch":"注单成功获取", 
     "no_ticket":"无注单",
 
-    "Mo":"ច័ន្ទ",
-    "Tu":"អង្គារ",
-    "We":"ពុធ",
-    "Th":"ព្រហ.",
-    "Fr":"សុក្រ",
-    "Sa":"សៅរ៍",
-    "Su":"អាទិត្យ" ,
+    "Mo":"一",
+    "Tu":"二",
+    "We":"三",
+    "Th":"四月",
+    "Fr":"五",
+    "Sa":"六",
+    "Su":"日",
 
     "Select":"选择",
-    "Delete":"删除"
+    "Delete":"删除",
+ 
+    "SettleList_tittle":"Malaysia Lottery - Betting History page",
+    "BettingList_tittle":"Malaysia Lottery - Betting List page",
+    "WinningList_tittle":"Malaysia Lottery - Winning List page",
 
+    "tittle_main":"大马彩"
 }
