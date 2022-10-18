@@ -58,7 +58,7 @@ export default function Betting({datauser, updateSessionData, setUpdateSessionDa
       
       
   return (
-    <>
+    <> 
       <Head>
           <title>{t('tittle_main')}</title>
       </Head>

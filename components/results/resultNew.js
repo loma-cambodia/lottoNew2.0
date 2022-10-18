@@ -11,17 +11,25 @@ import { getResults } from "../../store/actions/resultActions";
 import { t } from "i18next";
 import { getDisplayName } from "next/dist/shared/lib/utils";
 
-const resultNew = ({ _setDate,_auth}) => {
-  
+const ResultNew = ({ _setDate,_auth}) => {
+  const { t } = useTranslation();
   let lang = _auth.lang
-  console.log("AUTH:::",lang)
   const [startDate, setStartDate] = useState(new Date());
   const [highlightedData, setHighlightedData] = useState();
   const [calendarDate, setCalendarDate] = useState();
-
   const [initResult, setResult] = useState([]);
-
   const dispatch = useDispatch();
+  const datepickerRef = useRef(null);
+
+  useEffect(() => {
+    getLatestDrawDate();
+  }, []);
+
+  //   FOR RESULT
+  useEffect(() => {
+    getSelectedDrawDate();
+  }, [calendarDate]);
+
   const getLatestDrawDate = () => {
     let dataSubmit = undefined;
     dispatch(
@@ -99,24 +107,10 @@ const resultNew = ({ _setDate,_auth}) => {
 
 
 
-  const datepickerRef = useRef(null);
   function handleClickDatepickerIcon() {
     const datepickerElement = datepickerRef.current;
     datepickerElement.setFocus(true);
   }
-  useEffect(() => {
-    getLatestDrawDate();
-  }, []);
-  console.log(startDate);
-
-  //   FOR RESULT
-
-  const { t } = useTranslation();
-
-  useEffect(() => {
-    getSelectedDrawDate();
-  }, [calendarDate]);
-
 
  let days =  [t('Su'), t('Mo'), t('Tu'), t('We'), t('Th'), t('Fr'), t('Sa')]
   let  months = [t('January'), t('February'), t('March'), t('April'), t('May'), t('June'), t('July'), t('August'), t('September'), t('October'), t('November'), t('December')]
@@ -820,4 +814,4 @@ const resultNew = ({ _setDate,_auth}) => {
     </>
   );
 };
-export default resultNew;
+export default ResultNew;

@@ -348,7 +348,9 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
         </div>
       </section>
       
-      <Footer/>
+      <div className={styles.device_detect_for_desktop}> 
+        <Footer/>
+      </div>
         {/* <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
         <script src="assets/js/owl.carousel.js"></script>

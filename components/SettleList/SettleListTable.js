@@ -380,7 +380,7 @@ const handlePageClick = (event) => {
                                                 {item.ticket_no}
                                             </span>
                                             <br/>
-                                            {moment(item.created_at).format('DD-MM-YYYY h:mm:ss A')}<br/>
+                                            {moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}<br/>
                                             {moment(item.draw_date).format('DD-MM-YYYY')}<br/>
                                         </td>
                                         <td>
@@ -428,7 +428,7 @@ const handlePageClick = (event) => {
                                     <tr key={i}>
                                         <td>{i + 1}</td>
                                         <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')} >{item.ticket_no}</span></td>
-                                        <td class="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss A')}</td>
+                                        <td class="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td class="text-center">{moment(item.draw_date).format('DD-MM-YYYY')}</td>
                                         <td class="text-center">{item.draw_number}</td>
                                         <td class="text-center">{item.bet_number}</td>

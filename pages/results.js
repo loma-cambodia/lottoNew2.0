@@ -5,6 +5,7 @@ import Footer from "../components/common/footer";
 import Banner2 from "../components/results/banner2";
 import ResultNew from "../components/results/resultNew";
 import { useTranslation } from "react-i18next";
+import styles from '../styles/Home.module.css'
 
 import { useDispatch, useSelector } from "react-redux";
 import {getResults,getLatestResultDate} from '../store/actions/resultActions';
@@ -74,7 +75,11 @@ import Filter from "../components/results/filter";
                 <ResultNew _setDate = {setDate} _auth={auth}/>
                 </div>
             </section>   
-            <Footer/>
+            
+            <div className={styles.device_detect_for_desktop}> 
+                <Footer/>
+            </div>
+
             {/* <script src="assets/js/jquery.min.js"></script>
             <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
             <script src="assets/js/owl.carousel.js"></script>
