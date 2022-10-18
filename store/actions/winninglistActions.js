@@ -20,7 +20,7 @@ export const getWinningData = (id,filters,callback) => async (dispatch) => {
 
       
         // urlHit = `${API_BASE_URL}/betListWinning?member_id=${id}`;
-        urlHit = `${API_BASE_URL}/betListWinning?member_id=2&ticket_no=${ticketNo}&prize_type=${prizeType}&date_range=${dateRange}`;
+        urlHit = `${API_BASE_URL}/betListWinning?member_id=${id}&ticket_no=${ticketNo}&prize_type=${prizeType}&date_range=${dateRange}`;
 
 
         // console.log('urlHit: ',urlHit)

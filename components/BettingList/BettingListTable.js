@@ -71,6 +71,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         }
       },[t])
 
+    
 
     const handleApply1 = (event, picker) => {
         
@@ -160,6 +161,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       const GetTicketNumber = _GetTicketNumber
 
       
+      useEffect(() =>{
+        change();
+      },[fromDate])
 
 
       function formatDate(date) {
