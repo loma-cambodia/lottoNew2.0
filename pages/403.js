@@ -27,17 +27,18 @@ export default function About403() {
                                     <hr></hr>
                                     {/* <p className="fs-3"> <span className="text-danger">Opps!</span> Status 404</p> */}
                                     <p className="lead">
-                                    The page or resource you’re trying to reach is absolutely forbidden for some reason.<br/>
-                                        <a href="/" style={{color: '#be2263'}}>Return to the Home Page </a>
+                                    The page or resource you&rsquo;re trying to reach is absolutely forbidden for some reason.<br/>
+                                        <Link href="/" style={{color: '#be2263'}}>Return to the Home Page </Link>
                                     </p>
                                     
                                     <p className="lead">
                                     由于某种原因，您尝试访问的页面或资源被禁止 <br/>
-                                    <a href="/" style={{color: '#be2263'}}>返回主页</a>
+                                    <Link href="/" style={{color: '#be2263'}}>返回主页</Link>
                                     </p>
                                     
                                     <p className="lead">
-                                    ទំព័រ ឬធនធានដែលអ្នកកំពុងព្យាយាមចូលប្រើត្រូវបានហាមឃាត់ដោយហេតុផលមួយចំនួន<br/><a href="/" style={{color: '#be2263'}}>ត្រឡប់ទៅទំព័រដើមវិញ</a>
+                                    ទំព័រ ឬធនធានដែលអ្នកកំពុងព្យាយាមចូលប្រើត្រូវបានហាមឃាត់ដោយហេតុផលមួយចំនួន<br/>
+                                    <Link href="/" style={{color: '#be2263'}}>ត្រឡប់ទៅទំព័រដើមវិញ</Link>
                                     </p>
                                     
                             </div>

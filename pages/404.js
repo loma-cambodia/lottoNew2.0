@@ -26,16 +26,16 @@ export default function About404() {
                                     <p className="fs-3"> <span className="text-danger">Opps!</span> Status 404</p>
                                     <p className="lead">
                                         The page you are looking for might have been removed, had the name changed or it is temporary unavailable.<br/>
-                                        <a href="/" style={{color: '#be2263'}}>Return to the Home Page </a>
+                                        <Link href="/" style={{color: '#be2263'}}>Return to the Home Page </Link>
                                     </p>
                                     
                                     <p className="lead">
                                     您要查找的页面可能已被删除、名称已更改或暂时无法使用 <br/>
-                                    <a href="/" style={{color: '#be2263'}}>返回主页</a>
+                                    <Link href="/" style={{color: '#be2263'}}>返回主页</Link>
                                     </p>
                                     
                                     <p className="lead">
-                                       ទំព័រដែលអ្នកកំពុងស្វែងរកអាចត្រូវបានយកចេញ ប្តូរឈ្មោះរបស់វា ឬមិនមានជាបណ្តោះអាសន្ន<br/><a href="/" style={{color: '#be2263'}}>ត្រឡប់ទៅទំព័រដើមវិញ</a>
+                                       ទំព័រដែលអ្នកកំពុងស្វែងរកអាចត្រូវបានយកចេញ ប្តូរឈ្មោះរបស់វា ឬមិនមានជាបណ្តោះអាសន្ន<br/><Link href="/" style={{color: '#be2263'}}>ត្រឡប់ទៅទំព័រដើមវិញ</Link>
                                     </p>
                                     
                             </div>
