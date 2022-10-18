@@ -13,7 +13,7 @@ const Announcement = ({_announcementState, _language}) => {
     return (
       <>
      {/*--Announcement--*/}
-  <section className="announcement ">
+  <section className="announcement">
     <div className="container">
         <div className="news-wrapper d-inline-flex align-item-center" id="myDIV">
             <div className="announcement-block-icon">
@@ -23,36 +23,22 @@ const Announcement = ({_announcementState, _language}) => {
                 </div>
             </div>
             <div className="marque-div">
-             <Marquee direction="left" pauseOnHover={true} speed={5}>
-                    <ul className="list-inline">
-                    <li> </li>
+             <Marquee  pauseOnHover={true}  speed={20}>
+             <ul className="list-inline">
+             <li></li>
                      {announcementData.map((item, id) => {
                          return(
-                            
+                           
                           <li key={id} className="list-inline-item">{item.content[language]}</li>
+                          
                              );
                       })}
-                    </ul>
-            </Marquee>       {/* <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li> */}
-                    
-            
-            
-                {/* <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-                    <ul className="list-inline">
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                    </ul>
-                </marquee> */}
+                  </ul>  
+            </Marquee>     
             </div>
         </div>
     </div>
   </section>
-  {/*--Announcement--*/}
       </>
     )
   }
