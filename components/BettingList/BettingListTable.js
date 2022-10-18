@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
 import moment from 'moment';
-import {DateRangePicker,daterangepicker} from 'react-bootstrap-daterangepicker';
+import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import { useTranslation } from "react-i18next";
 import {getLotteryDetailsList} from '../../store/actions/reportActions';
@@ -10,7 +10,6 @@ import {getLotteryDetailsList} from '../../store/actions/reportActions';
 import { useDispatch, useSelector, } from "react-redux";
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
-import $ from 'jquery'; 
 
 import styles from '../../styles/Home.module.css';
 
@@ -57,7 +56,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
         setReset(false);
+        change();
       }, [itemOffset, itemsPerPage,_tickets, reset]);
+
 
 
     const handleApply1 = (event, picker) => {
@@ -83,50 +84,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       });
 
       const change = () => {
-        
-        $('input[name="datefilter"]').daterangepicker({
-            ranges: {
-                [t('Today')]: [moment().subtract(0, 'days'), moment().add(0, 'days')],
-                [t('Yesterday')]: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                [t('Last_7_Days')]: [moment().subtract(6, 'days'), moment().add(0, 'days')],
-                [t('Last_14_Days')]: [moment().subtract(13, 'days'), moment().add(0, 'days')],
-                [t('This_Month')]: [moment().startOf('month')],
-                [t('Last_Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
-                [t('This_Year')]: [moment().startOf('year')],
-            },
-            "locale": {
-                "applyLabel": t('submit'),
-                "cancelLabel": t('clear'),
-                "format": "DD/MM/YYYY",
-                "customRangeLabel": (t('custom_range')),
-                "daysOfWeek": [
-                    t('Su'),
-                    t('Mo'),
-                    t('Tu'),
-                    t('We'),
-                    t('Th'),
-                    t('Fr'),
-                    t('Sa')
-                ],
-                "monthNames": [
-                    t("January"),
-                    t("February"),
-                    t("March"),
-                    t("April"),
-                    t("May"),
-                    t("June"),
-                    t("July"),
-                    t("August"),
-                    t("September"),
-                    t("October"),
-                    t("November"),
-                    t("December")
-                ],
-            },
-            "startDate": moment(dateRange.startDate),
-            "endDate": moment(dateRange.endDate),
-        })
-      
+        $("li:contains(Custom Range)").text(t('custom_range'))
       }
 
       const intailDate = formatDate2(c) + ' - ' +formatDate2(c);
@@ -228,16 +186,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
     const searchGetListonFilter = (work, actionForm) => {
 
-        const date = document.getElementById('daterangepicker').value;
-        let dateValue1 = date.split('-')[0].trim();
-        let dateValue2 = date.split('-')[1].trim();
-        
-        // dateValue1 = formatDate(dateValue1);
-        // dateValue2 = formatDate(dateValue2);
-
-      
-        const mainData = formatDate(date);
-      
         let _fromDate = fromDate;
         let _toDate = toDate;
         let _ticketNo = ticketNo
@@ -265,7 +213,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         _fromDate = concertDateFormat(_fromDate);
         _toDate = concertDateFormat(_toDate);;
 
-        let newDateRange = dateValue1 + ' - ' + dateValue2;
+        let newDateRange = _fromDate + ' - ' + _toDate;
 
        let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
 
@@ -274,8 +222,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
            $('.hideAndShowForMobileView').toggle("slide");
        }
        // $('.hideAndShowForMobileView').toggle("slide");
-
-       setDateRange(newDateRange)
      }
 
 
@@ -635,7 +581,7 @@ const handlePageClick = (event) => {
                                     onCancel={keyRef}
                                     initialSettings={{ ranges }}
                                 >
-                                    <input type="text" id='daterangepicker' className="daterangepickerstyle" value={dateRange} />
+                                    <input type="text" className="daterangepickerstyle" value={dateRange} />
                                 </DateRangePicker>
                         </div>                    
                     </div>
@@ -680,10 +626,6 @@ const handlePageClick = (event) => {
         $('.hideAndShowForMobileView').toggle("slide");
     }
 
-    useEffect(() => {
-        change();
-
-      },[t])
     return (
         <>
 
@@ -720,7 +662,7 @@ const handlePageClick = (event) => {
                                                         ranges }}
                                                     onEvent={handleEvent}
                                                 >
-                                                    <input name="datefilter" id='daterangepicker' type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)} value={dateRange} />
+                                                    <input type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)} value={dateRange} />
                                                 </DateRangePicker>
                                         </div>                    
                                     </div>
