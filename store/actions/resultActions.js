@@ -23,7 +23,7 @@ export const getResults = (sendData,callback) => async (dispatch) => {
     const res = await axios.get(urlHit, {
       headers: headers,
     })
-    console.log("RESRES",res)
+    //console.log("RESRES",res)
     return callback({
       message: 'Success',
       data: res,

@@ -7,9 +7,6 @@ const Announcement = ({_announcementState, _language}) => {
     
     const announcementData = _announcementState
     let language =  _language;
-    console.log("announcementStateANNOUNCEMENT",announcementData)
-    
-    console.log('language',language)
     return (
       <>
      {/*--Announcement--*/}
@@ -33,21 +30,11 @@ const Announcement = ({_announcementState, _language}) => {
                              );
                       })}
                     </ul>
-            </Marquee>       {/* <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li> */}
+            </Marquee>     
                     
             
             
-                {/* <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-                    <ul className="list-inline">
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                    </ul>
-                </marquee> */}
+              
             </div>
         </div>
     </div>
