@@ -65,9 +65,9 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
             // setWinningList(response.data.data.data)
             
-          
 
           setWinningList(response.data.data.data)
+          
           // setWinningList(data.data)
 
             
@@ -80,10 +80,12 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 }))
 }
 
+      const currentPage = Math.round(itemOffset/itemsPerPage);
+
 
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-        setCurrentItems(Object.assign(winningList.slice(itemOffset, endOffset),{seletedPage: seletedPage}));
+        setCurrentItems(winningList.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(winningList.length / itemsPerPage));
       }, [itemOffset, itemsPerPage,winningList]);
 
@@ -168,7 +170,6 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
       const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % winningList.length;
-        setSeletedPage(event.selected)
         setItemOffset(newOffset);
       };
   return (
@@ -280,7 +281,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                   <tbody>
                       {currentItems ? currentItems.map((item,id) =>(
                           <tr key={id}>
-                              <td>{currentItems.seletedPage*itemsPerPage + (id + 1)}</td>
+                              <td>{currentPage*itemsPerPage + (id + 1)}</td>
                               <td className="text-start"><a >{item.child_ticket_no}</a></td>
                               <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
                               <td className="text-center">{moment(item.ticket.betting_date).format('DD-MM-YYYY')}</td>
