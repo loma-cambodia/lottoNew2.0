@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps,user }) {
 
 
 
-  const [data, setData] = useState([{}])
+  const [data, setData] = useState(null)
   //const [isLoading, setLoading] = useState(false)
   const [isLoading, setLoading] = useState(false);
   const [updateSessionData, setUpdateSessionData]  =  useState(1);
