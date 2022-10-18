@@ -699,6 +699,9 @@ const handlePageClick = (event) => {
 
     useEffect(() => {
         change();
+        if(filterGamesName.value === '') {
+            setFilterGamesName({ value: '', label: t('All') });
+        }
       },[t])
     return (
         <>
