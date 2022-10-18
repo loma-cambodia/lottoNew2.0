@@ -19,14 +19,14 @@ const Announcement = ({_announcementState, _language}) => {
             <div className="announcement-block-icon">
                 <div className="annoncement-icon">
                     <span className="icon-img-announcement"><img src="assets/images/icons/announcement-icon-white.png" alt="" className="img-fluid"/></span>
-                    <span class="text-announcement"><span class="announcement-text">{t('Announcement')}</span> <span class="toggle-icon-news" onClick={() => myFunction() } type="button">+</span></span>
+                    <span className="text-announcement"><span class="announcement-text">{t('Announcement')}</span> <span className="toggle-icon-news" onClick={() => myFunction() } type="button">+</span></span>
                 </div>
             </div>
             <div className="marque-div">
             <Marquee pauseOnHover={true} speed={80}>
             <ul className="list-inline">
             {announcementData.map((item, id) => {
-                return(<li key={id} className="list-inline-item">{item.content[language]}</li>);
+                return(<li key={id} className="list-inline-item"><p dangerouslySetInnerHTML={{ __html: item.content[language] }} className="my-4"></p></li>);
              })}
                         {/* <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
                         <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
