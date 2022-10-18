@@ -24,21 +24,21 @@ async function handler(req, res) {
     //       "language":  'ch',
     //   }
 
-    const objectWithData = {
-               "customer_name": "Atul",
-             "customer_id":  2222,
-            "merchant_id":  1,
-            "language":  'en',
-        }
+    // const objectWithData = {
+    //            "customer_name": "Atul",
+    //          "customer_id":  1403,
+    //         "merchant_id":  1,
+    //         "language":  'en',
+    //     }
 
   
 
-  // const objectWithData = {
-  //   customer_name: req.body.customer_name,
-  //   customer_id: req.body.customer_id,
-  //   merchant_id: req.body.enterprise_id,
-  //   language: req.body.language,
-  // }
+  const objectWithData = {
+    customer_name: req.body.customer_name,
+    customer_id: req.body.customer_id,
+    merchant_id: req.body.enterprise_id,
+    language: req.body.language,
+  }
  
   //   try {
   const userData = await fetch(`${process.env.apiUrl}/member-login`, {

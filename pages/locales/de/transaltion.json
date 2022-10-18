@@ -85,7 +85,7 @@
     "Start_playing_now":"开始下注",
     "Announcement":"公告",
     "Play_now":"即刻下注",
-    "Past_Draw_Result":"过往开奖结果",
+    "Past_Draw_Result":"结果",
     "Last_draw_date":"最后开奖日期",
     "Draw_Id":"期号",
     "1":"1",
@@ -209,7 +209,13 @@
     "ticket_fetch":"注单成功获取", 
     "no_ticket":"无注单",
 
-
+    "Mo":"ច័ន្ទ",
+    "Tu":"អង្គារ",
+    "We":"ពុធ",
+    "Th":"ព្រហ.",
+    "Fr":"សុក្រ",
+    "Sa":"សៅរ៍",
+    "Su":"អាទិត្យ" ,
 
     "Select":"选择",
     "Delete":"删除"

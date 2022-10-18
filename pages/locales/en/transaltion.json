@@ -85,7 +85,7 @@
     "Start_playing_now":"Start Betting Now",
     "Announcement":"Announcement",
     "Play_now":"Bet Now",
-    "Past_Draw_Result":"Past Draw Result",   
+    "Past_Draw_Result":"Results",   
     "Last_draw_date":"Last draw date",
     "Draw_Id":"Draw ID",
     "1":"1",
@@ -210,6 +210,14 @@
     "ticket_fetch":"Ticket fetched successfully", 
     "no_ticket":"No Ticket",
 
+    "Mo":"ច័ន្ទ",
+    "Tu":"អង្គារ",
+    "We":"ពុធ",
+    "Th":"ព្រហ.",
+    "Fr":"សុក្រ",
+    "Sa":"សៅរ៍",
+    "Su":"អាទិត្យ" ,
+    
     "Select":"Select",
     "Delete":"Delete"
 }

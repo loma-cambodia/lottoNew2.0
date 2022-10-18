@@ -3019,6 +3019,16 @@ button.applyBtn.btn.btn-sm.btn-primary {
     width: 100%;
     max-width: 100%;
   }
+  .footer-row {
+    display: block;
+  }
+  .footer-logo {
+    max-width: 90px;
+    margin: 0 auto;
+}
+.footer-links ul {
+  text-align: center;
+}
 }
 /* @media (max-width:360px) {
   .daterangepicker .ranges {

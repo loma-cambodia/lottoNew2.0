@@ -43,8 +43,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       const [fromDate, setFromDate] = useState(moment());
       const [toDate, setToDate] = useState(moment());
       const [detailNo, setDetailNo] = useState('');
-      const [filterGamesName, setFilterGamesName] = useState({ value: '', label: 'All' });
-      const [filterGameType, setFilterGameType] = useState({ value: '', label: 'All' });
+      const [filterGamesName, setFilterGamesName] = useState({ value: '', label: t('All') });
+      const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All') });
       const [selectedticketId, setSelectedticketId] = useState('');
       const [reset, setReset] = useState(false);
 
@@ -140,8 +140,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
         
 
        // setDetailNo('');
-      //  setFilterGamesName({ value: '', label: 'All' });
-       // setFilterGameType({ value: '', label: 'All' });
+      //  setFilterGamesName({ value: '', label: t('All') });
+       // setFilterGameType({ value: '', label: t('All') });
         setSelectedticketId(ticketId);
 
        let params = {ticketId};
@@ -149,8 +149,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
        if(actionFrom == 'unsettledList' || actionFrom == 'reset_button' ){
 
             setDetailNo('');
-            setFilterGamesName({ value: '', label: 'All' });
-            setFilterGameType({ value: '', label: 'All' });
+            setFilterGamesName({ value: '', label: t('All') });
+            setFilterGameType({ value: '', label: t('All') });
 
            params.child_ticket_no = '';
            params.game_play_id = '';
@@ -285,21 +285,21 @@ const handlePageClick = (event) => {
 
   const childDataReset = () => {
    setDetailNo('');
-   setFilterGamesName({ value: '', label: 'All' });
-   setFilterGameType({ value: '', label: 'All' });
+   setFilterGamesName({ value: '', label: t('All') });
+   setFilterGameType({ value: '', label: t('All') });
    setTimeout(childShowTable(selectedticketId,'work'), 5000);
    
   }
 
 
   const optionsGameType = [
-    { value: '', label: 'All' },
+    { value: '', label: t('All') },
     { value: '3D', label: '3D' },
     { value: '4D', label: '4D' }
   ];
 
   const optionsGamesName = [
-    { value: '', label: 'All' },
+    { value: '', label: t('All') },
     { value: '1', label: 'Magnum' },
     { value: '2', label: 'Da ma cai' },
     { value: '3', label: 'Toto'}
@@ -712,10 +712,10 @@ const handlePageClick = (event) => {
                                     </div>
                                     <div className="col-md-2 col-12">
                                         <div className="form-group">
-                                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Game')}</label>
+                                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('game')}</label>
                                             <Select 
                                                 options={optionsGameType} 
-                                                defaultValue = { { value: '', label: 'All' }} 
+                                                defaultValue = { { value: '', label: t('All') }} 
                                                 value = {filterGameType}
                                                 onChange={value => setFilterGameType(value)}
                                                 />
@@ -726,7 +726,7 @@ const handlePageClick = (event) => {
                                             <label htmlFor="transactionid" className="fw-bold mb-2">{t('Company')}</label>
                                             <Select 
                                                 options={optionsGamesName} 
-                                                defaultValue = { { value: '', label: 'All' }} 
+                                                defaultValue = { { value: '', label: t('All') }} 
                                                 value = {filterGamesName}
                                                 onChange={value => setFilterGamesName(value)}
                                                 />

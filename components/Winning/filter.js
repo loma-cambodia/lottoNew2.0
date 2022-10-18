@@ -192,16 +192,18 @@ const Filter = ({_setFilterParams}) => {
     const openFilterForMob = () => {
         $('.hideAndShowForMobileView').toggle("slide");
     }
+
+    const [ranges, setRanges] = useState({
+        [t('Today')]: [moment().subtract(0, 'days'), moment().add(0, 'days')],
+        [t('Yesterday')]: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        [t('Last_7_Days')]: [moment().subtract(6, 'days'), moment().add(0, 'days')],
+        [t('Last_14_Days')]: [moment().subtract(13, 'days'), moment().add(0, 'days')],
+        [t('This_Month')]: [moment().startOf('month')],
+        [t('Last_Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
+        [t('This_Year')]: [moment().startOf('year')],
+      });
     function DateDayRangePicker(){
-        const [ranges, setRanges] = useState({
-            [t('Today')]: [moment().subtract(0, 'days'), moment().add(0, 'days')],
-            [t('Yesterday')]: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            [t('Last_7_Days')]: [moment().subtract(6, 'days'), moment().add(0, 'days')],
-            [t('Last_14_Days')]: [moment().subtract(13, 'days'), moment().add(0, 'days')],
-            [t('This_Month')]: [moment().startOf('month')],
-            [t('Last_Month')]: [moment().subtract(1,'months').startOf('month'), moment().subtract(1,'months').endOf('month')],
-            [t('This_Year')]: [moment().startOf('year')],
-          });
+      
         return (
             <>
                 <DateRangePicker
