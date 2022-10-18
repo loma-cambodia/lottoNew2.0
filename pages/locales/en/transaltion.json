@@ -220,6 +220,14 @@
     
     "Select":"Select",
     "Delete":"Delete",
+
+    "Sun":"Sun",
+    "Mon":"Mon",
+    "Tue":"Tue",
+    "Wed":"Wed",
+    "Thu":"Thu",
+    "Fri":"Fri",
+    "Sat":"Sat",
     
     "SettleList_tittle":"Malaysia Lottery - Betting History page",
     "BettingList_tittle":"Malaysia Lottery - Betting List page",
