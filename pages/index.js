@@ -85,7 +85,10 @@ if(objectWithData.customer_id != 0){
       <PayoutSection _transactions={transactions}/>
       <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>
       <HowToPlay/>
-      <Footer/>
+      
+      <div className={styles.device_detect_for_desktop}> 
+        <Footer/>
+      </div>
 {/*--Footer--*/}
 </>
       
