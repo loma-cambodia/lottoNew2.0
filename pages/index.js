@@ -82,6 +82,7 @@ if(objectWithData.customer_id != 0){
 
       <HomeSlider />
       <Announcement _announcementState={ announcementState}  _language = { language }/>
+  
       <PayoutSection _transactions={transactions}/>
       <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>
       <HowToPlay/>
