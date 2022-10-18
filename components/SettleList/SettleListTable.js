@@ -706,7 +706,7 @@ const handlePageClick = (event) => {
             {/* <SearchAbleFormParent />  */}
             <div className='showForMobileViewSearch'>
                 <div className="clearfix curved-card">
-                    <div className={styles.device_detect_for_mobile}>
+                    <div className={styles.device_detect_for_mobile+ ' mb-2'}>
                         <div className="form-group mb-0">
                             <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
                                 <b>{t('betting_history_report')}</b>
