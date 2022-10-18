@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "localhost": "next dev",
-    "staging": "next -p 3001",
+    "staging": "next -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
