@@ -1,10 +1,15 @@
 import Marquee from "react-fast-marquee";
 import React from 'react';
 import { useTranslation } from "react-i18next";
-const Announcement = () => {
+const Announcement = ({_announcementState, _language}) => {
     const { t } = useTranslation();
   //  const userDatas = JSON.parse(localStorage.getItem("name"));
-
+    
+    const announcementData = _announcementState
+    let language =  _language;
+    // console.log("announcementStateANNOUNCEMENT",announcementData)
+    
+    // console.log('language',language)
     return (
       <>
      {/*--Announcement--*/}
@@ -20,10 +25,13 @@ const Announcement = () => {
             <div className="marque-div">
             <Marquee pauseOnHover={true} speed={80}>
             <ul className="list-inline">
+            {announcementData.map((item, id) => {
+                return(<li key={id} className="list-inline-item">{item.content[language]}</li>);
+             })}
+                        {/* <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
                         <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
                         <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
-                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li>
+                        <li className="list-inline-item">Go on... hover me (and hold the mouse over)!</li> */}
                     </ul>
             
             </Marquee>

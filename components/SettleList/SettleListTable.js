@@ -218,7 +218,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         setDetailNo('');
         setFromDate(moment(fromDate).toDate());
         setToDate(moment(toDate).toDate());
-   setFilterGamesName({ value: '', label: t('All')  });
     }
 
 
@@ -703,6 +702,10 @@ const handlePageClick = (event) => {
             setFilterGamesName({ value: '', label: t('All') });
         }
       },[t])
+
+      useEffect(() =>{
+        change();
+      },[fromDate])
     return (
         <>
             {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}

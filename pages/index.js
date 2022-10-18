@@ -12,7 +12,7 @@ import GamePlayPrize from '../components/home/gamePlayPrize';
 import HowToPlay from '../components/home/howToPlay';
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
+import {announcement, userTransactionDetails, winnerResultDetailsSecond} from '../store/actions/homeActions';
 import {getLogin} from '../store/actions/authActions';
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
 
@@ -26,20 +26,17 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
   //console.log('Home:datauser:',datauser);
 
 useEffect(() => {
-  dispatch(userTransactionDetails());
-  dispatch(winnerResultDetails2());
-}, [])
+  if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
+    dispatch(userTransactionDetails(datauser.user.data.merchant_id));
+  //dispatch(userTransactionDetails());
+  dispatch(winnerResultDetailsSecond());
+  dispatch(announcement());
+}, [datauser]);
 
 
 
 useEffect(() => {
-  console.log('11111111111111');
-  console.log('datauser:',datauser);
 
-//   dispatch({
-//     type: "GET_LOGIN_DETAILS",
-//     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
-// })
 let objectWithData = {  
   "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
   "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
@@ -47,6 +44,7 @@ let objectWithData = {
  // "language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en' 
   "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'  
 } 
+
 
 console.log('objectWithData:',objectWithData);
 console.log('datauser:',datauser);
@@ -72,7 +70,9 @@ if(objectWithData.customer_id != 0){
 
 
 
-
+      let language = state && state.auth && state.auth.lang ? state.auth.lang : '';
+      let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
+      console.log('announcementStateIndex',announcementState)
   return (
     <>
        <Head>
@@ -81,7 +81,7 @@ if(objectWithData.customer_id != 0){
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 
       <HomeSlider />
-      <Announcement />
+      <Announcement _announcementState={ announcementState}  _language = { language }/>
       <PayoutSection _transactions={transactions}/>
       <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>
       <HowToPlay/>
