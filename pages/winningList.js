@@ -173,7 +173,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
   return (
     <>
       <Head>
-          <title>{t('Lotteries_tittle')}</title>
+          <title>{t('tittle_main')}</title>
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <WinngListBanner/>

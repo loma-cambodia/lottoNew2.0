@@ -535,7 +535,7 @@ const handlePageClick = (event) => {
                                 <tr>
                                     <th><span>{t('Detail_Number')}<br />{t('Betting_Time')}<br />{t('Draw_Date')}</span></th>
                                     <th><span>{t('Bet_Number')}<br />{t('game')}<br />{t('Company')}</span></th>
-                                    <th><span>{t('Big_Bet')}<br />{t('Small_Bet')}<br />3A<br />3C</span></th>
+                                    <th style={{ textAlign: 'end' }}><span>{t('Big_Bet')}<br />{t('Small_Bet')}<br />3A<br />3C</span></th>
                                     <th style={{ textAlign: 'end' }}><span>{t('Total')}<br />{t('Rebate')}<br />{t('Net')}</span></th>
                                 </tr>
                             </thead>
@@ -544,7 +544,7 @@ const handlePageClick = (event) => {
                                     <tr key={id}>
                                         <td><span>{item.child_ticket_no}<br />{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}<br />{item.ticket.betting_date}</span></td>
                                         <td><span>{item.lottery_number} <br/> {item.game_type}<br />{item.game && item.game.name ? item.game.name : ""}</span></td>
-                                        <td><span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span></td>
+                                        <td style={{ textAlign: 'end' }}><span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span></td>
                                         <td style={{ textAlign: 'end' }}><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
                                     </tr>
                                 ))}

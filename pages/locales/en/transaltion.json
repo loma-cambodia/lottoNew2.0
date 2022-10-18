@@ -219,5 +219,11 @@
     "Su":"Su",
     
     "Select":"Select",
-    "Delete":"Delete"
+    "Delete":"Delete",
+    
+    "SettleList_tittle":"Malaysia Lottery - Betting History page",
+    "BettingList_tittle":"Malaysia Lottery - Betting List page",
+    "WinningList_tittle":"Malaysia Lottery - Winning List page",
+
+    "tittle_main":"Malaysia Lottery"
 }

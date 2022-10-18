@@ -12,7 +12,7 @@ export default function About403() {
     <div className="container">
     <div className='row align-items-center justify-content-center '>
         <Head>
-          <title>Loma Lotto - 403 Access Denied</title>
+          <title>Malaysia Lottery</title>
         </Head>
 
                         <div className="col-md-6">

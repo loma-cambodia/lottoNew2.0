@@ -214,6 +214,13 @@
     "tickect_update":"សំបុត្រត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ", 
     "ticket_delete":"សំបុត្រត្រូវបានលុបដោយជោគជ័យ", 
     "ticket_fetch":"សំបុត្រត្រូវបានទាញយកដោយជោគជ័យ", 
-    "no_ticket":"គ្មានសំបុត្រ"
+    "no_ticket":"គ្មានសំបុត្រ",
+
+     
+    "SettleList_tittle":"Malaysia Lottery - Betting History page",
+    "BettingList_tittle":"Malaysia Lottery - Betting List page",
+    "WinningList_tittle":"Malaysia Lottery - Winning List page",
+
+    "tittle_main":"ឆ្នោតម៉ាឡេស៊ី"
     
 }
