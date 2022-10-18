@@ -5,7 +5,7 @@ const nextConfig = {
   env:{
     apiUrl:'http://api.kk-lotto.com:8080/frontend-api',
     fronEndUrl:"http://kk-lotto.com", // //http://kk-lotto.com/ http://127.0.0.1:3000,
-    isLocalhost:0 // 0/1
+    isLocalhost:1 // 0/1
   }
 }
 
