@@ -4,7 +4,8 @@ const nextConfig = {
   swcMinify: true,
   env:{
     apiUrl:'http://api.kk-lotto.com:8080/frontend-api',
-    fronEndUrl:"http://kk-lotto.com" // //http://kk-lotto.com/ http://127.0.0.1:3000
+    fronEndUrl:"http://kk-lotto.com", // //http://kk-lotto.com/ http://127.0.0.1:3000,
+    isLocalhost:1 // 0/1
   }
 }
 
