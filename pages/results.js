@@ -50,7 +50,7 @@ import Filter from "../components/results/filter";
     return (
         <>
             <Head>
-                <title>{t('Result_tittle')}</title>
+                <title>{t('tittle_main')}</title>
             </Head>
             
             <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>

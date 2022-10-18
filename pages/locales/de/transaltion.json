@@ -226,5 +226,11 @@
     "Wed":"星期四",
     "Thu":"星期五",
     "Fri":"星期六",
-    "Sat":"星期日"
+    "Sat":"星期日",
+ 
+    "SettleList_tittle":"Malaysia Lottery - Betting History page",
+    "BettingList_tittle":"Malaysia Lottery - Betting List page",
+    "WinningList_tittle":"Malaysia Lottery - Winning List page",
+
+    "tittle_main":"大马彩"
 }
