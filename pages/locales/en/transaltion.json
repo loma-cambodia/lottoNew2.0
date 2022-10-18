@@ -210,13 +210,13 @@
     "ticket_fetch":"Ticket fetched successfully", 
     "no_ticket":"No Ticket",
 
-    "Mo":"ច័ន្ទ",
-    "Tu":"អង្គារ",
-    "We":"ពុធ",
-    "Th":"ព្រហ.",
-    "Fr":"សុក្រ",
-    "Sa":"សៅរ៍",
-    "Su":"អាទិត្យ" ,
+    "Mo":"Mo",
+    "Tu":"Tu",
+    "We":"We",
+    "Th":"Th",
+    "Fr":"Fr",
+    "Sa":"Sa",
+    "Su":"Su",
     
     "Select":"Select",
     "Delete":"Delete"
