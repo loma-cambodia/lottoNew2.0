@@ -5,7 +5,6 @@
 /.pnp
 .pnp.js
 /next.config.js
-/pages/api/login.js
 
 # testing
 /coverage
