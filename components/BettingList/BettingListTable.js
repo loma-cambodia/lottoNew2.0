@@ -62,6 +62,13 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
       useEffect(() =>{
         change();
+        if(filterGamesName.value === '') {
+            setFilterGamesName({ value: '', label: t('All') });
+        }
+
+        if(filterGameType.value === '') {
+            setFilterGameType({ value: '', label: t('All') });
+        }
       },[t])
 
 
