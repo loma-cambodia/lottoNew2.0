@@ -76,7 +76,7 @@ if(objectWithData.customer_id != 0){
   return (
     <>
        <Head>
-          <title>{t('Index_tittle')}</title>          
+          <title>{t('tittle_main')}</title>          
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 

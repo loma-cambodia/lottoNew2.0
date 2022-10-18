@@ -83,9 +83,9 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
           dispatch(searchTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
         }
   return (
-    <>
+    <> 
       <Head>
-          <title>{t('Lotteries_tittle')}</title>
+          <title>{t('tittle_main')}</title>
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       
