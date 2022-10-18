@@ -250,46 +250,55 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
         game_dates.push(tempObj);
     })
 
-
-
+    let toastId = null;
     if (game_dates.length == 0) {
-      toast.error(t('Please_choose_at_least_one_date_selection'), {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
-      });
+      if(!toast.isActive(toast.toastId)){
+        toast.error(t('Please_choose_at_least_one_date_selection'), {
+          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+          pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
+        });
+    }
       return false;
     }
 
     if (game_dates && game_dates[0].games && game_dates[0].games.length == 0) {
+      if(!toast.isActive(toast.toastId)){
       toast.error(t('Please_select_game_first'), {
         position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
+        pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
       });
+    }
       return false;
     }
 
 
     if (minLengthValidation) {
+      if(!toast.isActive(toast.toastId)){
       toast.error(t('Please_type_3_or_4_digits_in_number_field'), {
         position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
+        pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
       });
+    }
       return false;
     }
 
     if (isDataNotCorrect) {
+      if(!toast.isActive(toast.toastId)){
       toast.error(t('please_enter_valid_amount_against_selected_number'), {
         position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
+        pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
       });
+    }
       return false;
     }
 
     if (options && options.length == 0) {
+      if(!toast.isActive(toast.toastId)){
       toast.error(t('Please_select_at_least_one_number'), {
         position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined
+        pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
       });
+    }
       return false;
     }
 
