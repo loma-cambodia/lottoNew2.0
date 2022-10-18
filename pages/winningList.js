@@ -173,7 +173,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
   return (
     <>
       <Head>
-          <title>{t('Lotteries_tittle')}</title>
+          <title>{t('tittle_main')}</title>
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <WinngListBanner/>
@@ -191,15 +191,15 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                           <th><span>{t('Detail_Number')}<br />{t('Betting_Time')}<br/>{t('Draw_Id')}<br/>{t('Draw_Date')}</span></th>
                           <th><span>{t('game')}<br />{t('Bet_Number')}<br/>{t('Company')}<br/>{t('prize_type')}</span></th>
                           <th><span>{t('Big_Bet')}<br />{t('Small_Bet')}<br/>3A<br/>3C</span></th>
-                          <th><span>{t('Odds')} (B/3A)<br />{t('Odds')} (S/3C)<br/>{t('Total')}<br/>{t('Rebate')}</span></th>
-                          <th><span>{t('Net')}<br />{t('winning')}<br/>{t('Winning_Loss')}</span></th>
+                          <th style={{ textAlign: 'end' }}><span>{t('Odds')} (B/3A)<br />{t('Odds')} (S/3C)<br/>{t('Total')}<br/>{t('Rebate')}</span></th>
+                          <th style={{ textAlign: 'end' }}><span>{t('Net')}<br />{t('winning')}<br/>{t('Winning_Loss')}</span></th>
                         </tr>
                       </thead>
                       <tbody>
                         {currentItems ? currentItems.map((item,id) =>(
                           <tr key={id}>    
                             <td>
-                                <span>{item.child_ticket_no}<br />{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}<br />{item.ticket.draw_number}<br />{moment(item.ticket.betting_date).format('DD-MM-YYYY')}</span>
+                                <span>{item.child_ticket_no}<br />{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}<br />{item.ticket.draw_number}<br />{moment(item.ticket.betting_date).format('DD-MM-YYYY')}</span>
                             </td> 
                             <td>
                                 <span>{item.game_type}<br />{item.lottery_number}<br />{item.game && item.game.name ? item.game.name : ""}<br />{item.prize_type}</span>
@@ -207,10 +207,10 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                             <td>
                                 <span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span>
                             </td> 
-                            <td>
+                            <td style={{ textAlign: 'end' }}>
                                 <span>{getOddsBig(item.prize_type,item.game_type,item)}<br />{getOddsSmall(item.prize_type,item.game_type,item)}<br />{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}</span>
                             </td> 
-                            <td>
+                            <td style={{ textAlign: 'end' }}>
                                 <span>{MoneyFormatDisplay(item.bet_net_amount,1)}<br />{MoneyFormatDisplay(item.winning_amount,1)}</span><br />
                                 <span className={`${(item.winning_amount - item.bet_net_amount) > 0 ? "winningAmount":""} text-end`}>{MoneyFormatDisplay(item.winning_amount - item.bet_net_amount ,1)}</span>
                             </td>
@@ -281,7 +281,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                           <tr key={id}>
                               <td>{id+1}</td>
                               <td className="text-start"><a >{item.child_ticket_no}</a></td>
-                              <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss a')}</td>
+                              <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
                               <td className="text-center">{moment(item.ticket.betting_date).format('DD-MM-YYYY')}</td>
                               <td className="text-start">{item.ticket.draw_number}</td>
                               

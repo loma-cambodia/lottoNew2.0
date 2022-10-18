@@ -10,7 +10,7 @@ export default function About404() {
     <div className="container">
     <div className='row align-items-center justify-content-center '>
         <Head>
-          <title>Loma Lotto - 404 Access Denied</title>
+          <title>Malaysia Lottery</title>
         </Head>
 
                         <div className="col-md-6">

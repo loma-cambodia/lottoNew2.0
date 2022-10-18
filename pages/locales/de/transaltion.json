@@ -218,6 +218,11 @@
     "Su":"日",
 
     "Select":"选择",
-    "Delete":"删除"
+    "Delete":"删除",
+ 
+    "SettleList_tittle":"Malaysia Lottery - Betting History page",
+    "BettingList_tittle":"Malaysia Lottery - Betting List page",
+    "WinningList_tittle":"Malaysia Lottery - Winning List page",
 
+    "tittle_main":"大马彩"
 }

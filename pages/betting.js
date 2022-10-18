@@ -60,7 +60,7 @@ export default function Betting({datauser, updateSessionData, setUpdateSessionDa
   return (
     <>
       <Head>
-          <title>{t('Lotteries_tittle')}</title>
+          <title>{t('tittle_main')}</title>
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <Banner/>
