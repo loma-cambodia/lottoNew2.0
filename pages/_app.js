@@ -48,13 +48,8 @@ function MyApp({ Component, pageProps,user }) {
       .then((data) => {
         setData(data)
      //   setLoading(false)
-      console.log('datadata',data)
-      const ISSERVER = typeof window === "undefined";
-
-        if(!ISSERVER) {
-          if(Object.keys(data).length != 0){
-            localStorage.setItem("name", JSON.stringify(data.user));
-          }          
+        if(Object.keys(data).length != 0){
+          localStorage.setItem("name", JSON.stringify(data.user));
         }
       })
   }, [updateSessionData])
