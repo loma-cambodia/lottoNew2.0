@@ -545,7 +545,7 @@ const handlePageClick = (event) => {
                         <tbody>
                             {tickets.map((item,id) =>(
                                 <tr key={id}>
-                                    <td><span>{item.child_ticket_no}<br />{moment(item.created_at).format('YYYY-DD-MM h:mm:ss a')}<br />{item.ticket.betting_date}</span></td>
+                                    <td><span>{item.child_ticket_no}<br />{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}<br />{item.ticket.betting_date}</span></td>
                                     <td><span>{item.lottery_number} <br/> {item.game_type}<br />{item.game && item.game.name ? item.game.name : ""}</span></td>
                                     <td><span>{MoneyFormatDisplay(item.big_bet_amount,1)}<br />{MoneyFormatDisplay(item.small_bet_amount,1)}<br />{MoneyFormatDisplay(item.three_a_amount,1)}<br />{MoneyFormatDisplay(item.three_c_amount,1)}</span></td>
                                     <td style={{ textAlign: 'end' }}><span>{MoneyFormatDisplay(item.bet_amount,1)}<br />{MoneyFormatDisplay(item.rebate_amount,1)}<br />{MoneyFormatDisplay(item.bet_net_amount,1)}</span></td>
@@ -592,7 +592,7 @@ const handlePageClick = (event) => {
                                 <tr key={id}>
                                     <td>{id+1}</td>
                                     <td class="text-start"><a >{item.child_ticket_no}</a></td>
-                                    <td class="text-center" >{moment(item.created_at).format('DD-MM-YYYY h:mm:ss A')}</td>
+                                    <td class="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
                                     <td class="text-center">{moment(item.ticket.draw_date).format('DD-MM-YYYY')}</td>
                                     <td class="text-center">{item.game_type}</td>
                                     <td class="text-center">{item.game && item.game.name ? item.game.name : ""}</td>
