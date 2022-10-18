@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { getResults } from "../../store/actions/resultActions";
 import { t } from "i18next";
+import { getDisplayName } from "next/dist/shared/lib/utils";
 
 const resultNew = ({ _setDate,_auth}) => {
   
@@ -129,7 +130,7 @@ const resultNew = ({ _setDate,_auth}) => {
     }
   }
   console.log("initResult:", initResult);
-
+ 
   return (
     <>
       <div className="clearfix curved-card bg-light">
@@ -232,7 +233,8 @@ const resultNew = ({ _setDate,_auth}) => {
                                     alt=""
                                   />
                                 </span>{" "}
-                                {item.result_date}
+                                {t(item.result_date.replace(/[^a-zA-Z]/g,""))}
+                                {item.result_date.replace(/[a-zA-Z]{0,1}/g,'').replace('  ', ' ')}
                               </p>
                             </div>
                             <div className="gp-prize-play-btn ms-auto">
