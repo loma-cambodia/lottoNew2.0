@@ -72,6 +72,9 @@ console.log('SushilKumarGupta');
     req.session.user = data
     await req.session.save()
     // res.redirect(307, '/')
+    if(Object.keys(data).length != 0){
+      localStorage.setItem("name", JSON.stringify(data.user));
+    }
     console.log('NEXTAUTH_URL:',req.session);
     res.send('You are Logged in, Please Go back')
   } else {
