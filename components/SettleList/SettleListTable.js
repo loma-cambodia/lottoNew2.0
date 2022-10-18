@@ -425,7 +425,7 @@ const handlePageClick = (event) => {
                             <tbody>
                                 {currentItems && currentItems.map((item,i) =>(
                                     <tr key={i}>
-                                        <td>{currentPage* 10 + (i + 1)}</td>
+                                        <td>{currentPage*itemsPerPage + (i + 1)}</td>
                                         <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')} >{item.ticket_no}</span></td>
                                         <td class="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td class="text-center">{moment(item.draw_date).format('DD-MM-YYYY')}</td>

@@ -26,12 +26,14 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
   //console.log('Home:datauser:',datauser);
 
 useEffect(() => {
+  dispatch(announcement());
   if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
     dispatch(userTransactionDetails(datauser.user.data.merchant_id));
   //dispatch(userTransactionDetails());
   dispatch(winnerResultDetailsSecond());
-  dispatch(announcement());
 }, [datauser]);
+
+
 
 
 
@@ -69,6 +71,7 @@ if(objectWithData.customer_id != 0){
 
 
 
+      
 
       let language = state && state.auth && state.auth.lang ? state.auth.lang : '';
       let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
