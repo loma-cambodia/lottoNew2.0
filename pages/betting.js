@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import BettingOptionSelectionForMob from '../components/betting/bettingOptionSelectionForMob';
 import styles from '../styles/Home.module.css'
 import Banner from '../components/betting/banner';
-import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
+//import {userTransactionDetails, winnerResultDetails2} from '../store/actions/homeActions';
 import {getLogin} from '../store/actions/authActions';
 export default function Betting({datauser, updateSessionData, setUpdateSessionData}) {
 
@@ -23,7 +23,7 @@ export default function Betting({datauser, updateSessionData, setUpdateSessionDa
       const state = useSelector(state => state);
       const auth = useSelector(state => state.auth)
        useEffect(() => {
-        dispatch(userTransactionDetails());
+     //   dispatch(userTransactionDetails());
           dispatch(getBettingDates());
       },[dispatch]);
 

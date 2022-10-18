@@ -2,12 +2,12 @@ import axios from 'axios';
 let API_BASE_URL = process.env.apiUrl;
 
 
-export const userTransactionDetails = () => async (dispatch) => {
+export const userTransactionDetails = (merchant_id) => async (dispatch) => {
   const headers = {
     'Content-Type': 'application/json',
   }
   try {
-    const res = await axios.get(`${API_BASE_URL}/merchant/1`, {
+    const res = await axios.get(`${API_BASE_URL}/merchant/${merchant_id}`, {
       headers: headers,
     })
     dispatch({
@@ -37,8 +37,7 @@ export const winnerResultDetails = () => async (dispatch) => {
   }
 }
 
-
-export const winnerResultDetails2 = () => async (dispatch) => {
+export const winnerResultDetailsSecond = () => async (dispatch) => {
   try {
     const res = await axios.get(`${API_BASE_URL}/result/latest`)
     dispatch({
