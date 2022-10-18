@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import Footer from "../components/common/footer";
 import Header from "../components/common/header";
 import Head from 'next/head';
+import styles from '../styles/Home.module.css'
 
 import { useTranslation } from "react-i18next";
 export default function Transaction({datauser}){
