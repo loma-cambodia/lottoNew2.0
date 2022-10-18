@@ -19,9 +19,9 @@ async function handler(req, res) {
 
     //  const objectWithData = {
     //         "customer_name": "Dileep Maurya",
-    //        "customer_id":  112,
-    //       "merchant_id":  1,
-    //       "language":  'ch',
+    //        "customer_id":  12,
+    //       "merchant_id":  2,
+    //       "language":  'en',
     //   }
 
     // const objectWithData = {
