@@ -23,9 +23,9 @@ const Announcement = ({_announcementState, _language}) => {
                 </div>
             </div>
             <div className="marque-div">
-             <Marquee  pauseOnHover={true}  speed={20}>
-             <ul className="list-inline">
-             <li></li>
+             <Marquee direction="left" pauseOnHover={true} speed={5} loop={0}>
+                    <ul className="list-inline">
+                    <li> </li>
                      {announcementData.map((item, id) => {
                          return(
                            
