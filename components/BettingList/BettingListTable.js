@@ -746,7 +746,7 @@ const handlePageClick = (event) => {
                                                         ranges }}
                                                     onEvent={handleEvent}
                                                 >
-                                                    <input name="datefilter" id='daterangepicker' type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)} value={dateRange} />
+                                                    <input name="datefilter" readOnly id='daterangepicker' type="text" className="daterangepickerstyle" onChange={(e)=>setDateRange(e.target.value)} value={dateRange} />
                                                 </DateRangePicker>
                                         </div>                    
                                     </div>

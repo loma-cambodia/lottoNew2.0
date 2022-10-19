@@ -262,7 +262,7 @@ const Filter = ({_setFilterParams}) => {
                                                     applyLabel: t('apply'),
                                             }}
                                         >
-                                            <input id="daterangepicker" type="text" className="daterangepickerstyle" name="datefilter" value={dateRange}/>
+                                            <input id="daterangepicker" readOnly type="text" className="daterangepickerstyle" name="datefilter" value={dateRange}/>
                                         </DateRangePicker>
                             </div>                    
                         </div>
