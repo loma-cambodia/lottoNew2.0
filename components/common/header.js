@@ -14,7 +14,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
 import {getLogin} from '../../store/actions/authActions';
-import {twoDecimalPlaceWithoutRound} from './../Utils';
+import {twoDecimalPlaceWithAmount, twoDecimalPlaceWithoutRound} from './../Utils';
 
 
 const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
@@ -187,7 +187,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                                 <span className="user-id text-black" >{auth && auth.auth  && auth.auth.name ? auth.auth.name[0].toUpperCase() + auth.auth.name.substring(1)  : "" }</span>
                                 <span className="reload-icon" role="button"><span onClick={() => loginAPICall()}><img src="assets/images/icons/reload-white.png" alt="reload"/></span></span> <span className='text-black'>
                                 
-                              { auth && auth.auth && auth && auth.auth.wallet && auth.auth.wallet.amount ? twoDecimalPlaceWithoutRound(auth.auth.wallet.amount,1)  : "0.00" }
+                              { auth && auth.auth && auth && auth.auth.wallet && auth.auth.wallet.amount ? twoDecimalPlaceWithAmount(auth.auth.wallet.amount,1)  : "0.00" }
                                 
                               </span> <span className="badge badge-yellow text-black">
                             
