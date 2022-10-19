@@ -72,9 +72,11 @@ const ResultNew = ({ _setDate,_auth}) => {
 
   // const selectedDefaultDate = ''
   const getSelectedDrawDate = () => {
+    
     let dataSubmit = calendarDate;
     dispatch(
       getResults(dataSubmit, (response) => {
+        setIsLoading(false)
         if (response.statusCode == 201 || response.statusCode == 200) {
           if (response.statusCode == 200) {
             
@@ -101,7 +103,7 @@ const ResultNew = ({ _setDate,_auth}) => {
               subDays(new Date(date), 0)
             );
             setHighlightedData(highlight);
-            setIsLoading(false)
+           
           } 
         } 
       })
