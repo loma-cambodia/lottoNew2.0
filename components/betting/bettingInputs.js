@@ -6,6 +6,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
     let betLimit = _limit;
     let limit = betLimit;
     
+    
     const { t } = useTranslation();
     const [active, setActive] = useState(false);
     let localStateInitData = item.dataInit;
@@ -52,6 +53,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         let localStateDataForChange ={ ...item.dataInit};
 
         let threeDAmout = calculate3DAmountEnable(getValue,operationField);
+        
 
 
         if (operationField == 'number') {
@@ -175,6 +177,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
              //   localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: changeValue, reverse_disabled: 0 } };
          //   }
         } else if (operationField == 'big') {
+
             
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
@@ -187,6 +190,8 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
            let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
+           let fieldError = 0;
+           
 
 
             
@@ -194,30 +199,36 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 $("#ErrorBig"+idas).html(t('bet_should_not_be_greater_than')+big_max_bet);
                 $("#ErrorBig"+idas).css('visibility', 'visible')	
 
-                getValue = big_max_bet
+                getValue = big_max_bet;
+                fieldError = 1
                
             }else if(getValue < limit[0].big_min_bet ){
 
                 $("#ErrorBig"+idas).html(t('bet_should_not_be_less_than')+limit[0].big_min_bet);
                 $("#ErrorBig"+idas).css('visibility', 'visible')	
 
-                getValue = ''
+               // getValue = ''
+               fieldError = 1;
             }
             else if(getValue == 0 ){
                 $("#ErrorBig"+idas).html(t('bet_should_not_be_less_than')+big_min_bet);
                 $("#ErrorBig"+idas).css('visibility', 'visible')	
 
-                getValue = ''
-                
+               // getValue = ''
+               fieldError = 1;
             }
             else{
                 $("#ErrorBig"+idas).html('');
                 $("#ErrorBig"+idas).css('visibility', 'hidden')	
-
+               // bigError = false
+               fieldError = 0;
             }
            
-            localStateDataForChange = { ...localStateDataForChange, big: { value: getValue, disabled: 0 } };
+            localStateDataForChange = { ...localStateDataForChange, big: { value: getValue, disabled: 0,error:fieldError } };  
+            
         } else if (operationField == 'small') {
+
+            let fieldError = 0;
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
@@ -227,23 +238,27 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if(getValue > limit[0].small_max_bet ){
                 $("#ErrorSmall"+idas).html(t('bet_should_not_be_greater_than')+limit[0].small_max_bet);
                 $("#ErrorSmall"+idas).css('visibility', 'visible');
-
-                getValue = limit[0].small_max_bet
+                getValue = limit[0].small_max_bet;
+                fieldError = 1;
             }else if(getValue < limit[0].small_min_bet ){
 
                 $("#ErrorSmall"+idas).html(t('bet_should_not_be_less_than')+limit[0].small_min_bet);
                 $("#ErrorSmall"+idas).css('visibility', 'visible');
 
-                getValue = ''
+               // getValue = ''
+                fieldError = 1;
             }
             else{
                 $("#ErrorSmall"+idas).html('');
                 $("#ErrorSmall"+idas).css('visibility', 'hidden');
+                fieldError = 0;
 
             }
 
-            localStateDataForChange = { ...localStateDataForChange, small: { value: getValue, disabled: 0 } };
+            localStateDataForChange = { ...localStateDataForChange, small: { value: getValue, disabled: 0, error:fieldError } };
         } else if (operationField == '_3a') {
+
+            let fieldError = 0;
 
             
             if (!getValue.match("^[0-9-.]*$")) {
@@ -257,19 +272,22 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 $("#ErrorA"+idas).css('visibility', 'visible');
 
                 getValue = limit[0].three_a_max_bet
+                fieldError = 1;
             }else if(getValue < limit[0].three_a_min_bet ){
                 $("#ErrorA"+idas).html(t('bet_should_not_be_less_than')+limit[0].three_a_min_bet);
                 $("#ErrorA"+idas).css('visibility', 'visible');
 
-                getValue = ''
+               // getValue = ''
+               fieldError = 1;
             }
             else{
                 $("#ErrorA"+idas).html('');
                 $("#ErrorA"+idas).css('visibility', 'hidden');
+                fieldError = 0;
 
             }
            
-            localStateDataForChange = { ...localStateDataForChange, _3a: { value: getValue, disabled: 0 } };
+            localStateDataForChange = { ...localStateDataForChange, _3a: { value: getValue, disabled: 0, error:fieldError } };
 
             let number_value = localStateDataForChange['number']['value'];
             let isPalindrom =  checkPalindrome(number_value);
@@ -304,6 +322,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             }
 
         } else if (operationField == '_3c') {
+            let fieldError = 0;
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
             }
@@ -315,19 +334,21 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 $("#ErrorC"+idas).css('visibility','visible');
 
                 getValue = limit[0].three_c_max_bet
+                fieldError = 1;
             }else if(getValue < limit[0].three_c_min_bet ){
                 $("#ErrorC"+idas).html(t('bet_should_not_be_less_than')+limit[0].three_c_min_bet);
                 $("#ErrorC"+idas).css('visibility', 'visible');
 
                 getValue = ''
+                fieldError = 1;
             }
             else{
                 $("#ErrorC"+idas).html('');
                 $("#ErrorC"+idas).css('visibility','hidden');
-
+                fieldError = 0;
             }
             
-            localStateDataForChange = { ...localStateDataForChange, _3c: { value: getValue, disabled: 0 } };
+            localStateDataForChange = { ...localStateDataForChange, _3c: { value: getValue, disabled: 0, error:fieldError } };
 
 
             let number_value = localStateDataForChange['number']['value'];
@@ -383,6 +404,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
         totalAmount = 0;
 
           localStateDataForChange = { ...localStateDataForChange, amount: { value: totalAmount, disabled: 1 } };
+
 
         _updateBettingInputsData(item.name,localStateDataForChange);
         _setLoadpageCounter(_loadpageCounter + 1);
@@ -612,6 +634,33 @@ useEffect(() => {
     }
  };
 
+ //bigError
+
+
+
+ let bigClass = 'form-control-custom text-end';
+ let smallClass = 'form-control-custom text-end';
+ let _3aClass = 'form-control-custom text-end';
+ let _3cClass = 'form-control-custom text-end';
+ 
+ 
+
+ if(localStateInitData && localStateInitData.big && localStateInitData.big.error)
+ bigClass = 'form-control-custom text-end input-error';
+
+ if(localStateInitData && localStateInitData.small && localStateInitData.small.error)
+ smallClass = 'form-control-custom text-end input-error';
+
+ if(localStateInitData && localStateInitData._3a && localStateInitData._3a.error)
+ _3aClass = 'form-control-custom text-end input-error';
+
+ if(localStateInitData && localStateInitData._3c && localStateInitData._3c.error)
+ _3cClass = 'form-control-custom text-end input-error';
+
+
+
+
+
 
 
     return (
@@ -638,7 +687,7 @@ useEffect(() => {
             </td>
             {/* big*/}
             <td style={{position:'relative'}}>
-                <input type="text" className="form-control-custom text-end"
+                <input type="text" className={bigClass}
                     onChange={(e) => numberInputHandler(e.target.value, 'big', ids)}
                     id={"BigText"+ids}
                     onBlur={(i) => hideError(ids)}
@@ -652,7 +701,7 @@ useEffect(() => {
 
             </td>
             {/* small*/}
-            <td style={{position:'relative'}}><input type="text" className="form-control-custom text-end"
+            <td style={{position:'relative'}}><input type="text" className={smallClass}
                 onChange={(e) => numberInputHandler(e.target.value, 'small', ids)}
                 id={"SmallText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -664,7 +713,7 @@ useEffect(() => {
                 <span className="betTip" id={"ErrorSmall"+ids}></span>
             </td>
             {/* 3A*/}
-            <td style={{position:'relative'}}><input type="text" className="form-control-custom text-end"
+            <td style={{position:'relative'}}><input type="text" className={_3aClass}
                 onChange={(e) => numberInputHandler(e.target.value, '_3a', ids)}
                 id={"AText"+ids}
                 onBlur={(i) => hideError(ids)}
@@ -676,7 +725,7 @@ useEffect(() => {
                 <span className="betTip" id={"ErrorA"+ids}></span>
             </td>
             {/* 3C*/}
-            <td style={{position:'relative'}}><input type="text" className="form-control-custom text-end"
+            <td style={{position:'relative'}}><input type="text" className={_3cClass}
                 onChange={(e) => numberInputHandler(e.target.value, '_3c', ids)}
                 id={"CText"+ids}
                 onBlur={(i) => hideError(ids)}
