@@ -157,6 +157,7 @@ const ResultNew = ({ _setDate,_auth}) => {
                 onSelect={(date) => {
                   setCalendarDate(date);
                 }}
+                
               />
 
               <span

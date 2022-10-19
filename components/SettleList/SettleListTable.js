@@ -654,7 +654,7 @@ const handlePageClick = (event) => {
                         <div class="form-group">
                             <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                 <DateRangePicker ref={keyRef} onApply={handleApply1} onCancel={keyRef} initialSettings={{ ranges }} >
-                                    <input id='daterangepicker' name="datefilter" type="text" className="daterangepickerstyle" value={dateRange} />
+                                    <input id='daterangepicker' readOnly name="datefilter" type="text" className="daterangepickerstyle" value={dateRange} />
                                 </DateRangePicker>
                         </div>                    
                     </div>
