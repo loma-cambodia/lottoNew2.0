@@ -29,7 +29,6 @@ useEffect(() => {
   dispatch(announcement());
   if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
     dispatch(userTransactionDetails(datauser.user.data.merchant_id));
-  //dispatch(userTransactionDetails());
   dispatch(winnerResultDetailsSecond());
 }, [datauser]);
 
@@ -47,9 +46,6 @@ let objectWithData = {
   "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'  
 } 
 
-
-console.log('objectWithData:',objectWithData);
-console.log('datauser:',datauser);
 
 if(objectWithData.customer_id != 0){
     dispatch(getLogin(objectWithData)); 

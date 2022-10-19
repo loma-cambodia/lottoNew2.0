@@ -39,19 +39,6 @@ const Announcement = ({_announcementState, _language}) => {
         </div>
     </div>
   </section>
-
-  <Marquee direction="left" pauseOnHover={true} speed={25} loop={0}>
-                    <ul className="list-inline">
-                    <li> </li>
-                     {announcementData.map((item, id) => {
-                         return(
-                            
-                          <li key={id} className="list-inline-item">{item.content[language]}</li>
-                             );
-                      })}
-                    </ul>
-            </Marquee>   
-
   {/*--Announcement--*/}
       </>
     )
