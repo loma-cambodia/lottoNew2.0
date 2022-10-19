@@ -24,9 +24,6 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
 
    const state = useSelector(state => state);
 
-    // Calling useRouter() hook
-
-    console.log('Header:state:',state);
    
    let language = '';
 
@@ -83,8 +80,6 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
     //    //"language":   auth && auth.lang ? auth.lang : 'en'
     // } 
   // dispatch(getLogin(objectWithData));
-
-  //console.log('objectWithData:loginAPICall:',objectWithData);
    setUpdateSessionData(updateSessionData + 1); 
  }
 
@@ -129,8 +124,6 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
   }
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-
-  console.log('');
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
    
