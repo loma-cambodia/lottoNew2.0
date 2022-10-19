@@ -2155,6 +2155,9 @@
     .marque-div .overlay {
       display: none;
     }
+    .marquee{
+      --duration: 10s !important;
+    }
     button.lanugae-selector {
       border: none !important;
       background: none !important;

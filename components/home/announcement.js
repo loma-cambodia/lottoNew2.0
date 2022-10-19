@@ -10,7 +10,7 @@ const Announcement = ({_announcementState, _language}) => {
     return (
       <>
      {/*--Announcement--*/}
-  <section className="announcement ">
+  <section className="announcement">
     <div className="container">
         <div className="news-wrapper d-inline-flex align-item-center" id="myDIV">
             <div className="announcement-block-icon">
@@ -20,26 +20,22 @@ const Announcement = ({_announcementState, _language}) => {
                 </div>
             </div>
             <div className="marque-div">
-             <Marquee direction="left" pauseOnHover={true} speed={5} loop={0}>
+             <Marquee  pauseOnHover={true} speed={5} loop={0}>
                     <ul className="list-inline">
-                    <li> </li>
+                    <li></li>
                      {announcementData.map((item, id) => {
                          return(
-                            
+                           
                           <li key={id} className="list-inline-item">{item.content[language]}</li>
+                          
                              );
                       })}
-                    </ul>
+                  </ul>  
             </Marquee>     
-                    
-            
-            
-              
             </div>
         </div>
     </div>
   </section>
-  {/*--Announcement--*/}
       </>
     )
   }
