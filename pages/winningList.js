@@ -71,6 +71,8 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
             setIsLoading(false); 
           }
         }
+        else
+          console.log(response.message)
 }))
 }
 
@@ -180,7 +182,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
             <div className={`table-responsive my-3`}  >
               <div className={styles.device_detect_for_mobile} style={{textAlign:'center'}}>
                 {isLoading ? 
-                  <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="150" />
+                  <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="60" />
                   :
                   winningList.length > 0 ? (<>
                 
@@ -247,8 +249,8 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                   
               </div>
               <div className={styles.device_detect_for_desktop} style={{textAlign: 'center'}}>
-              { isLoading ?                   
-                <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="150" />
+              {isLoading ?                   
+                <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="60" />
               :
                 winningList.length > 0 ? (<>
                   <table className="table small table-bordered align-middle table-sm">

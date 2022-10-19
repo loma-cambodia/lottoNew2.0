@@ -853,7 +853,7 @@ const handlePageClick = (event) => {
             <div class="table-responsive my-3">
                 {isLoading ? 
                 <div className='text-center'>
-                     <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="150" />
+                     <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="60" />
                 </div>
                     :
                     parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
