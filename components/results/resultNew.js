@@ -228,7 +228,7 @@ const ResultNew = ({ _setDate,_auth}) => {
                                   />
                                 </span>{" "}
                                 {t(item.result_date.replace(/[^a-zA-Z]/g,""))}
-                                {item.result_date.replace(/[a-zA-Z]{0,1}/g,'').replace('  ', ' ')}
+                                {item.result_date.replace(/[a-zA-Z]{0,1}/g,'').replace('  ', ' ').replace('()', '')}
                               </p>
                             </div>
                             <div className="gp-prize-play-btn ms-auto">
