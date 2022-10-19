@@ -265,19 +265,24 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
            _fromDate = dateToday.split('T')[0];
            _toDate = dateToday.split('T')[0];
         }
-
+        let newDateRange = '';
         if(actionForm == "reset_button" ){
            _fromDate = dateToday.split('T')[0];
            _toDate = dateToday.split('T')[0];
            _ticketNo = ''
            setDateRange(formatDate2(d) + ' - ' + formatDate2(d));
-           setTicketNo('');
-          }
+           setTicketNo(''); 
+            newDateRange = formatDate2(d) + ' - ' + formatDate2(d);
+         //  return false;
+        }
+        if(actionForm == "search_button" ){
 
-        _fromDate = concertDateFormat(_fromDate);
-        _toDate = concertDateFormat(_toDate);
+            _fromDate = concertDateFormat(_fromDate);
+            _toDate = concertDateFormat(_toDate);
+    
+            newDateRange = dateValue1 + ' - ' + dateValue2;
+        }
 
-        let newDateRange = dateValue1 + ' - ' + dateValue2;
 
        let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;
 
