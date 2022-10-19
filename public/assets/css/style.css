@@ -1325,6 +1325,11 @@
   border: 1px solid #bc2263;
   outline: 0;
   }
+
+  .input-error{
+    border: 1px solid #bc2263 !important;
+  }
+
   .datepicker {
   padding: 6px;
   }

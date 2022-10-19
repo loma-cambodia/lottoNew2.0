@@ -10,7 +10,6 @@ import { getLogin } from '../../store/actions/authActions';
 import { useDispatch, useSelector } from "react-redux";
 import RejectedBedContainer from './rejectedBedContainer';
 import Modal from 'react-modal';
-import { twoDecimalPlaceWithAmount } from '../Utils';
 
 // let ticketSubmissionData = [
 //   {
@@ -71,10 +70,10 @@ const customStyles = {
 
 let localStateInitData = {
   number: { value: "", disabled: 1 },
-  big: { value: "", disabled: 1 },
-  small: { value: "", disabled: 1 },
-  _3a: { value: "", disabled: 1 },
-  _3c: { value: "", disabled: 1 },
+  big: { value: "", disabled: 1, error:0 },
+  small: { value: "", disabled: 1, error:0 },
+  _3a: { value: "", disabled: 1 , error:0},
+  _3c: { value: "", disabled: 1, error:0 },
   bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 },
   amount: { value: "", disabled: 1 }
 };
@@ -176,10 +175,10 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
   const clearAllRecords = () => {
     let localStateInitData2 = {
       number: { value: "", disabled: 1 },
-      big: { value: "", disabled: 1 },
-      small: { value: "", disabled: 1 },
-      _3a: { value: "", disabled: 1 },
-      _3c: { value: "", disabled: 1 },
+      big: { value: "", disabled: 1, error:0 },
+      small: { value: "", disabled: 1, error:0 },
+      _3a: { value: "", disabled: 1, error:0 },
+      _3c: { value: "", disabled: 1, error:0 },
       bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 },
       amount: { value: "", disabled: 1 }
     };
@@ -395,6 +394,8 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
     }
   };
 
+  let inpurError = 0;
+
 
 
   return (
@@ -427,7 +428,14 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                   <th className="border-0"></th>
                 </tr>
 
-                {bettingInputsDataParent.map((item, ids) => (<BettingInputs key={'bettingInputs1' + ids}
+                {bettingInputsDataParent.map((item, ids) => {
+
+                  console.log('item:', item);
+                  if(item.dataInit.big.error)
+                    inpurError = 1;
+
+                
+                return(<BettingInputs key={'bettingInputs1' + ids}
                   ids={ids}
                   item={item}
                   _updateBettingInputsData={updateBettingInputsData}
@@ -435,11 +443,13 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                   _setLoadpageCounter={setLoadpageCounter}
                   _gameCount={gameCount}
                   _limit={betLimit}
-                />))}
+                />);
 
-                {isLoading ? (<tr>
+                })}
+
+                {(isLoading) ? (<tr>
                   <td colSpan="5">
-                    {t('Total_Stake')}: {totalAmount ? twoDecimalPlaceWithAmount(totalAmount, 1) : '0.00'}
+                    {t('Total_Stake')}: {totalAmount ? MoneyFormatDisplay(totalAmount, 1) : 0.00}
                   </td>
                   <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title="Clear All">{t('clear')}</button>
                   </td>
@@ -447,16 +457,17 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                     <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50" />
                   </td>
                   <td colSpan="2">
-                    <button type="button" className="btn-custom-curve2" title={t('submit')}>{t('submit')}</button>
+                    <button type="button" className="btn-custom-curve2" title={t('submit')}>{t('submit')}:{inpurError}</button>
                   </td>
                 </tr>) : (<tr>
                   <td colSpan="6">
-                    {t('Total_Stake')}: {totalAmount ? twoDecimalPlaceWithAmount(totalAmount, 1) : '0.00'}
+                    {t('Total_Stake')}: {totalAmount ? MoneyFormatDisplay(totalAmount, 1) : 0.00}
                   </td>
                   <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title={t('clear')}>{t('clear')}</button>
                   </td>
                   <td colSpan="2">
-                    <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}</button>
+                  {inpurError ? (<button type="button" className="btn-custom-curve2" title={t('submit')}>{t('submit')}</button>) : ( <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}</button>) }
+                   {/* <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}:{inpurError}</button> */}
                   </td>
                 </tr>)}
               </tbody>
@@ -482,11 +493,11 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                   {apiResponce == 'success' ?
                     (<div className="row">
                       <div className="col-8 col-sm-8"><p>{t('Total')}</p></div>
-                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.total ? twoDecimalPlaceWithAmount(resultData.total, 1) : 0}</p></div>
+                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.total ? MoneyFormatDisplay(resultData.total, 1) : 0}</p></div>
                       <div className="col-8 col-sm-8"><p>{t('Accepted_bet_amount')}</p></div>
-                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.acp_bet ? twoDecimalPlaceWithAmount(resultData.acp_bet, 1) : 0}</p></div>
+                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.acp_bet ? MoneyFormatDisplay(resultData.acp_bet, 1) : 0}</p></div>
                       <div className="col-8 col-sm-8"><p>{t('Rebate')}</p></div>
-                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.rebat ? twoDecimalPlaceWithAmount(resultData.rebat, 1) : 0}</p></div>
+                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.rebat ? MoneyFormatDisplay(resultData.rebat, 1) : 0}</p></div>
                       <div className="col-8 col-sm-8"><p style={{ fontWeight: 'bold' }}>{t('Net_Amount')}</p></div>
                       <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p style={{ fontWeight: 'bold' }}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount, 1) : 0}</p></div>
 
