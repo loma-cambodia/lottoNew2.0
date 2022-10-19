@@ -7,7 +7,6 @@ const Announcement = ({_announcementState, _language}) => {
     let language =  _language;
     function AnnouncementData({announcementDataNew}){
       if(announcementDataNew.length > 0){
-        console.log('announcementStateANNOUNCEMENTSushil');
         return (
           <Marquee direction="left" pauseOnHover={true} speed={50}>
             <ul className="list-inline">

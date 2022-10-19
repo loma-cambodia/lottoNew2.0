@@ -29,7 +29,6 @@ useEffect(() => {
   dispatch(announcement());
   if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
     dispatch(userTransactionDetails(datauser.user.data.merchant_id));
-  //dispatch(userTransactionDetails());
   dispatch(winnerResultDetailsSecond());
 }, [datauser]);
 
@@ -48,34 +47,21 @@ let objectWithData = {
 } 
 
 
-console.log('objectWithData:',objectWithData);
-console.log('datauser:',datauser);
-
 if(objectWithData.customer_id != 0){
     dispatch(getLogin(objectWithData)); 
 }
 }, [datauser])
 
 
-  
-    const auth = useSelector(state => state.auth);
-     console.log('Index:state:', state);
-      state.auth.transactions
+      const auth = useSelector(state => state.auth);
 
       let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
 
       let winnerResultDetails = state && state.home && state.home.winnerResultDetails ? state.home.winnerResultDetails : [];
 
-  
-
-
-
-
-      
-
       let language = state && state.auth && state.auth.lang ? state.auth.lang : '';
       let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
-      console.log('announcementStateIndex',announcementState)
+
   return (
     <>
        <Head>

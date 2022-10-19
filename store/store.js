@@ -2,7 +2,8 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createWrapper } from "next-redux-wrapper";
-import rootReducer from './reducers'
+import rootReducer from './reducers';
+import logger from 'redux-logger';
 
 
 // initial states here
@@ -11,7 +12,7 @@ import rootReducer from './reducers'
 const initalState = {};
 
 // middleware
-const middleware = [thunk];
+const middleware = [thunk,logger];
 
 // creating store
 export const store = createStore(
