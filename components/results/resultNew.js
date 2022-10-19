@@ -161,7 +161,7 @@ const ResultNew = ({ _setDate,_auth}) => {
                 ref={datepickerRef}
                 value={calendarDate || startDate}
                 onSelect={(date) => {
-                  setIsLoading(true)
+                  // setIsLoading(true)
                   setCalendarDate(date);
                 }}
                 
