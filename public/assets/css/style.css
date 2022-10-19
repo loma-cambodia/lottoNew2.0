@@ -1162,7 +1162,7 @@
   border-radius: 10px 0;
   transition: 0.5s;
   }
-  .btn-custom-small-disabled {
+  /* .btn-custom-small-disabled {
       border: 1px solid #bc2263;
       color: #bc2263;
       background-color: #fff;
@@ -1171,7 +1171,20 @@
       width: 30px;
       border-radius: 10px 0;
       transition: 0.5s;
-    }
+    } */
+
+
+    .btn-custom-small-disabled {  
+      border: 1px solid #000000; 
+      color: #000000; 
+      background-color: #fff; 
+      max-width: 30px; 
+      max-height: 30px; 
+      width: 30px; 
+      border-radius: 10px 0; 
+      transition: 0.5s; 
+      opacity: 0.3; 
+  }
 
 
   /*.btn-custom-small:active,
