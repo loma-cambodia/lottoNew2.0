@@ -25,7 +25,7 @@ const HomeSlider = ({_specialDrawState}) => {
         }
     }
     function GetDrawDate({specialDrawStateMain}){
-        if(specialDrawStateMain){
+        if(specialDrawStateMain && specialDrawStateMain.data){
             return(
                 <a href="#" style={{pointerEvents:'none'}}>
                     {t(specialDrawStateMain.data.draw_date_only_formatted)}&nbsp;
