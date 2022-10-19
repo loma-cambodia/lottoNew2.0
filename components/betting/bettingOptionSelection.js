@@ -70,10 +70,10 @@ const customStyles = {
 
 let localStateInitData = {
   number: { value: "", disabled: 1 },
-  big: { value: "", disabled: 1 },
-  small: { value: "", disabled: 1 },
-  _3a: { value: "", disabled: 1 },
-  _3c: { value: "", disabled: 1 },
+  big: { value: "", disabled: 1, error:0 },
+  small: { value: "", disabled: 1, error:0 },
+  _3a: { value: "", disabled: 1 , error:0},
+  _3c: { value: "", disabled: 1, error:0 },
   bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 },
   amount: { value: "", disabled: 1 }
 };
@@ -175,10 +175,10 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
   const clearAllRecords = () => {
     let localStateInitData2 = {
       number: { value: "", disabled: 1 },
-      big: { value: "", disabled: 1 },
-      small: { value: "", disabled: 1 },
-      _3a: { value: "", disabled: 1 },
-      _3c: { value: "", disabled: 1 },
+      big: { value: "", disabled: 1, error:0 },
+      small: { value: "", disabled: 1, error:0 },
+      _3a: { value: "", disabled: 1, error:0 },
+      _3c: { value: "", disabled: 1, error:0 },
       bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 },
       amount: { value: "", disabled: 1 }
     };
@@ -394,6 +394,8 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
     }
   };
 
+  let inpurError = 0;
+
 
 
   return (
@@ -426,7 +428,11 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                   <th className="border-0"></th>
                 </tr>
 
-                {bettingInputsDataParent.map((item, ids) => (<BettingInputs key={'bettingInputs1' + ids}
+                {bettingInputsDataParent.map((item, ids) => {
+                  if(item.dataInit.big.error)
+                    inpurError = 1;
+
+                return(<BettingInputs key={'bettingInputs1' + ids}
                   ids={ids}
                   item={item}
                   _updateBettingInputsData={updateBettingInputsData}
@@ -434,9 +440,11 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                   _setLoadpageCounter={setLoadpageCounter}
                   _gameCount={gameCount}
                   _limit={betLimit}
-                />))}
+                />);
 
-                {isLoading ? (<tr>
+                })}
+
+                {(isLoading) ? (<tr>
                   <td colSpan="5">
                     {t('Total_Stake')}: {totalAmount ? MoneyFormatDisplay(totalAmount, 1) : 0.00}
                   </td>
@@ -446,7 +454,7 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                     <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50" />
                   </td>
                   <td colSpan="2">
-                    <button type="button" className="btn-custom-curve2" title={t('submit')}>{t('submit')}</button>
+                    <button type="button" className="btn-custom-curve2" title={t('submit')}>{t('submit')}:{inpurError}</button>
                   </td>
                 </tr>) : (<tr>
                   <td colSpan="6">
@@ -455,7 +463,8 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                   <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title={t('clear')}>{t('clear')}</button>
                   </td>
                   <td colSpan="2">
-                    <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}</button>
+                  {inpurError ? (<button type="button" className="btn-custom-curve2" title={t('submit')}>{t('submit')}</button>) : ( <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}</button>) }
+                   {/* <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}:{inpurError}</button> */}
                   </td>
                 </tr>)}
               </tbody>
