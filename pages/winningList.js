@@ -34,7 +34,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
   const [seletedPage, setSeletedPage] = useState(0);
   const [currentItems, setCurrentItems] = useState(null);
   const [itemOffset, setItemOffset] = useState(0);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const [filterParams, setFilterParams] = useState({});
   const state = useSelector(state => state);
@@ -57,7 +57,6 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
  };
 
   const getWinningList = () =>{
-    setIsLoading(true);
 
     dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0 ,filterParams? filterParams:'', response =>{
 

@@ -14,11 +14,12 @@ import styles from '../../styles/Home.module.css';
 import $ from 'jquery'; 
 
 const API_BASE_URL = process.env.apiUrl;
-const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable}) => {
+const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_isLoading}) => {
     
     let ticket = _tickets;
     let auth = _auth;
     const items = _tickets;
+    let loading =_isLoading;
 
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
       const [filterGamesName, setFilterGamesName] = useState({ value: '', label: t('All') });
       const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All')  });
       const [selectedticketId, setSelectedticketId] = useState('');
+      const [isLoading, setIsLoading] = useState(true);
 
 
 
@@ -56,6 +58,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
+        setIsLoading(loading)
       }, [itemOffset, itemsPerPage,_tickets]);
 
 
@@ -845,7 +848,12 @@ const handlePageClick = (event) => {
             </div>
 
             <div class="table-responsive my-3">
-                {parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
+                {isLoading ? 
+                <div className='text-center'>
+                     <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="150" />
+                </div>
+                    :
+                    parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
             </div>  
         </>
     )
