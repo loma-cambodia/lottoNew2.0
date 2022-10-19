@@ -22,6 +22,13 @@ export default function(state = initialState, action){
                 announcementDetails:action.payload,
                 loading:false
             }
+
+        case "SPECIALDRAW_DETAILS":
+            return {
+                ...state,
+                specialDrawDetails:action.payload,
+                loading:false
+            }
         default: return state
     }
 
