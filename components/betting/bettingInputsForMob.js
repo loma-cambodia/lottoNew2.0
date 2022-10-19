@@ -298,18 +298,22 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
         if(curserPointer == 'big'){
             let bigVal = bigValue.toString().split('').slice(0, -1).join('')
             setBigValue(bigVal)
+            numberInputHandler(bigVal, 'big')
         }   
         if(curserPointer == 'small'){
             let smallVal = smallValue.toString().split('').slice(0, -1).join('')
             setSmallValue(smallVal)
+            numberInputHandler(smallVal, 'small')
         }   
         if(curserPointer == '3a'){
             let a3Val = a3Value.toString().split('').slice(0, -1).join('')
             setA3Value(a3Val)
+            numberInputHandler(a3Val, '_3a')
         }   
         if(curserPointer == '3c'){
             let c3Val = c3Value.toString().split('').slice(0, -1).join('')
             setC3Value(c3Val)
+            numberInputHandler(c3Val, '_3c')
         }
     }
 
@@ -749,7 +753,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             }else if(getValue < big_min_bet ){
                 $("#ErrorBig").html(t('bet_should_not_be_less_than')+' '+big_min_bet);
                 $("#ErrorBig").css('visibility', 'visible')
-                getValue = big_min_bet;
+                //getValue = big_min_bet;
             }
             else{
                 $("#ErrorBig").html('');
@@ -772,7 +776,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             }else if(getValue < small_min_bet ){
                 $("#ErrorSmall").html(t('bet_should_not_be_less_than')+' '+small_min_bet);
                 $("#ErrorSmall").css('visibility', 'visible')
-                getValue = small_min_bet;
+                //getValue = small_min_bet;
             }
             else{
                 $("#ErrorSmall").html('');
@@ -796,7 +800,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                 $("#ErrorA").html(t('bet_should_not_be_less_than')+' '+three_a_min_bet);
                 $("#ErrorA").css('visibility', 'visible')
 
-                getValue = three_a_min_bet;
+                //getValue = three_a_min_bet;
                 
             }
             else{
@@ -853,7 +857,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                 $("#ErrorC").html(t('bet_should_not_be_less_than')+' '+three_c_min_bet);
                 $("#ErrorC").css('visibility', 'visible')
 
-                getValue = three_c_min_bet;
+                //getValue = three_c_min_bet;
                 
             }
             else{
@@ -907,7 +911,6 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
     }
     
     const previewSubmitData = (getAction, getIndex = 0) => {
-        // alert(getAction)
         let finalSubmitData = _finalSubmitData;
         if(getAction == 'remove'){
             finalSubmitData = finalSubmitData.filter((item,id) => id != getIndex);
@@ -916,6 +919,37 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             }
         }
         if(finalSubmitData.length < 10 && getAction == 'add'){
+            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
+            let small_min_bet  = limit && limit.length > 0 && limit[0].small_min_bet ?  limit[0].small_min_bet : 0;
+            let three_a_min_bet  = limit && limit.length > 0 && limit[0].three_a_min_bet ?  limit[0].three_a_min_bet : 0;
+            let three_c_min_bet  = limit && limit.length > 0 && limit[0].three_c_min_bet ?  limit[0].three_c_min_bet : 0;
+            
+            if(!activeGameType){
+                //  alert('3d');
+                if(a3Value != "" && a3Value >= 0 && a3Value < three_a_min_bet){
+                    $("#ErrorA").html(t('bet_should_not_be_less_than')+' '+three_a_min_bet);
+                    $("#ErrorA").css('visibility', 'visible'); 
+                    return false;
+                }
+                if(c3Value != "" && c3Value >= 0 && c3Value < three_c_min_bet){
+                    $("#ErrorC").html(t('bet_should_not_be_less_than')+' '+three_c_min_bet);
+                    $("#ErrorC").css('visibility', 'visible'); 
+                    return false;
+                }
+            }
+            if(activeGameType){
+                //  alert('4d');
+                if(bigValue != "" && bigValue >= 0 && bigValue < big_min_bet){
+                    $("#ErrorBig").html(t('bet_should_not_be_less_than')+' '+big_min_bet);
+                    $("#ErrorBig").css('visibility', 'visible'); 
+                    return false;
+                }
+                if(smallValue != "" && smallValue >= 0 && smallValue < small_min_bet){
+                    $("#ErrorSmall").html(t('bet_should_not_be_less_than')+' '+small_min_bet);
+                    $("#ErrorSmall").css('visibility', 'visible'); 
+                    return false;
+                }
+            }
             var x = 0;
             bettingInitData.map(item => {
                 if(item.selected && item.date){
