@@ -68,3 +68,19 @@ export const announcement = () => async (dispatch) => {
   }
 }
 
+export const specialDraw = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`${API_BASE_URL}/special-draw/latest`)
+    dispatch({
+      type: 'SPECIALDRAW_DETAILS',
+      payload: res.data,
+    })
+    console.log("SPECIALDRAW_DETAILS",res)
+  } catch (e) {
+    dispatch({
+      type: 'USERS_ERROR',
+      payload: console.log(e),
+    })
+  }
+}
+
