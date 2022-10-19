@@ -77,6 +77,8 @@ const ResultNew = ({ _setDate,_auth}) => {
       getResults(dataSubmit, (response) => {
         if (response.statusCode == 201 || response.statusCode == 200) {
           if (response.statusCode == 200) {
+            
+          
             let results =
               response &&
               response.data &&
@@ -99,7 +101,7 @@ const ResultNew = ({ _setDate,_auth}) => {
               subDays(new Date(date), 0)
             );
             setHighlightedData(highlight);
-            
+            setIsLoading(false)
           } 
         } 
       })
@@ -157,6 +159,7 @@ const ResultNew = ({ _setDate,_auth}) => {
                 ref={datepickerRef}
                 value={calendarDate || startDate}
                 onSelect={(date) => {
+                  setIsLoading(true)
                   setCalendarDate(date);
                 }}
                 

@@ -16,7 +16,8 @@ import styles from '../../styles/Home.module.css';
 import $ from 'jquery'; 
 const API_BASE_URL = process.env.apiUrl;
 const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_isLoading}) => {
-    // let isLoading = _isLoading
+    
+    let loading = _isLoading
     let ticket = _tickets;
     let auth = _auth;
     const items = _tickets;
@@ -50,8 +51,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_isLoading}) 
       const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All') });
       const [selectedticketId, setSelectedticketId] = useState('');
       const [reset, setReset] = useState(false);
-
-    
     //  setIsLoading(true);
 
       useEffect(() => {
@@ -59,9 +58,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_isLoading}) 
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
         setReset(false);
-        setIsLoading(_isLoading);
+        setIsLoading(loading);
        
-      }, [itemOffset, itemsPerPage,_tickets, reset]);
+      }, [itemOffset, itemsPerPage,_tickets, reset,_ticketsChild]);
 
       useEffect(() =>{
         change();
@@ -196,8 +195,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_isLoading}) 
     const state = useSelector(state => state);
 
     const childShowTable = (ticketId,work,actionFrom) =>{
-
-     
+        
+        setIsLoading(true)
         //actionFrom // unsettledList, serach_button , reset_button
 
         
@@ -230,12 +229,15 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_isLoading}) 
     
         const state12 = dispatch(getLotteryDetailsList(params));
         let ticketsssss = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
+        
+        
         setChildDataTickets(ticketsssss);
         setParentAction(false);
         setSearchAction(false);
         if(work == 'forMob'){
             $('.hideAndShowForMobileView').hide("slide");
         }
+       
     }
 
     
@@ -248,6 +250,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_isLoading}) 
 
 
     const searchGetListonFilter = (work, actionForm) => {
+        setIsLoading(true)
         const date = document.getElementById('daterangepicker').value;
 
         let dateValue1 = date.split('-')[0].trim();
@@ -399,7 +402,7 @@ const handlePageClick = (event) => {
     function ShowTableDataParent({tickets}){
 
         const currentPage = Math.round(itemOffset/itemsPerPage);
-        if(!isLoading){
+        // if(!isLoading){
             if(currentItems && currentItems.length > 0){
                 return (
                     <>
@@ -526,18 +529,20 @@ const handlePageClick = (event) => {
                 </>)
 
             }
-        }else{
-            return(
-                <>
-                <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="150" />
-                </>
-            )
+        // }else{
+        //     return(
+        //         <>
+        //         <div className="text-center">
+        //                  <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="150" />
+        //               </div>
+        //         </>
+        //     )
             
-        }
+        // }
     }
     function ShowTableDataChild({tickets}){
         
-        if(tickets.length > 0){
+            if(tickets && tickets.length > 0){
           let drow_date = '--';
             let companyGame = '';
             function gameName(e){
@@ -640,8 +645,8 @@ const handlePageClick = (event) => {
             );
         }else{
             return (<>
+            <button onClick={() => backButton() } className="btn btn-warning">{t('back')}</button>
                 <div className='alert alert-warning'>
-                <button onClick={() => backButton() } className="btn btn-warning">{t('back')}</button>
                  <h3 className='text-center'>   
                          {t('no_data_found')}
                  </h3>
@@ -844,9 +849,13 @@ const handlePageClick = (event) => {
                     </div>
                 </div>
             </div>
-            <div className="table-responsive my-3 text-center">
-
-                {parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
+            <div className="table-responsive my-3">
+                     {isLoading ? <div className="text-center">
+                         <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="150" />
+                      </div> :
+                 parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild}/>
+                 }
+                
 
             </div>  
             
