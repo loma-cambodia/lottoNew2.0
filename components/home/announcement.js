@@ -7,9 +7,6 @@ const Announcement = ({_announcementState, _language}) => {
     
     const announcementData = _announcementState
     let language =  _language;
-    console.log("announcementStateANNOUNCEMENT",announcementData)
-    
-    console.log('language',language)
     return (
       <>
      {/*--Announcement--*/}
