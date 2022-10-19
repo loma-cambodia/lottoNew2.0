@@ -3057,3 +3057,4 @@ button.applyBtn.btn.btn-sm.btn-primary {
   padding: 3px !important;
 }
 }  */
+.marque-div ul li:last-child:after {display:none;}
