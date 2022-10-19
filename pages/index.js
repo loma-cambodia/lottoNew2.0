@@ -57,25 +57,15 @@ if(objectWithData.customer_id != 0){
 }, [datauser])
 
 
-  
-    const auth = useSelector(state => state.auth);
-     console.log('Index:state:', state);
-      state.auth.transactions
+      const auth = useSelector(state => state.auth);
 
       let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
 
       let winnerResultDetails = state && state.home && state.home.winnerResultDetails ? state.home.winnerResultDetails : [];
 
-  
-
-
-
-
-      
-
       let language = state && state.auth && state.auth.lang ? state.auth.lang : '';
       let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
-      console.log('announcementStateIndex',announcementState)
+
   return (
     <>
        <Head>
