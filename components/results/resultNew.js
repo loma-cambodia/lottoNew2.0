@@ -414,7 +414,7 @@ const ResultNew = ({ _setDate,_auth}) => {
                     )
                 ):(
                   <div className="text-center">
-                         <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="150" />
+                         <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="60" />
                       </div>
                  
                 )}
