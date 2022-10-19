@@ -57,6 +57,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
  };
 
   const getWinningList = () =>{
+    setIsLoading(true); 
 
     dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0 ,filterParams? filterParams:'', response =>{
 

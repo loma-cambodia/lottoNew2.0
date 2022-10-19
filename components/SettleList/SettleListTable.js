@@ -59,7 +59,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
         setIsLoading(loading)
-      }, [itemOffset, itemsPerPage,_tickets]);
+      }, [itemOffset, itemsPerPage,_tickets,_ticketsChild]);
 
 
 
@@ -174,7 +174,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
     const state = useSelector(state => state);
 
     const childShowTable = (ticketId,work,actionFrom) =>{
-
+            setIsLoading(true)
      //   detailNo
       //  filterGamesName
        // filterGameType
@@ -206,6 +206,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
     
         const state12 = dispatch(filterLotteryDetailsList(params));
         let ticketsssss = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
+
         setChildDataTickets(ticketsssss);
         setParentAction(false);
         setSearchAction(false);
@@ -229,6 +230,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
       }
 
     const searchGetListonFilter = (work) => {
+        setIsLoading(true)
         const date = document.getElementById('daterangepicker').value;
         let dateValue1 = date.split('-')[0].trim();
         let dateValue2 = date.split('-')[1].trim();
@@ -290,6 +292,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
         setDateRange(newDateRange);
         setTicketNo('');
         // location.reload();
+        setIsLoading(true)
         _resetTable()
       }
 
@@ -378,7 +381,7 @@ const handlePageClick = (event) => {
                                 {currentItems && currentItems.map((item,i) =>(
                                     <tr key={i}>
                                         <td >
-                                            <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')} >
+                                            <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')}>
                                                 {item.ticket_no}
                                             </span>
                                             <br/>
@@ -828,7 +831,7 @@ const handlePageClick = (event) => {
                                     <div className={styles.device_detect_for_desktop+" col-md-4"}>
                                         <div className="form-group">
                                             <label className="d-block mb-2">&nbsp;</label>
-                                            <button type="button" className="btn-custom-curve2 w-auto me-2" onClick = {() => childShowTable(selectedticketId,'forDesk','serach_button')}>{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve2 w-auto me-2" onClick = {() =>childShowTable(selectedticketId,'forDesk','serach_button')}>{t('Search')}</button>
                                             <button type="button" className="btn-custom-curve1" onClick = {() => childShowTable(selectedticketId,'forDesk', 'reset_button')}>{t('Reset')}</button>
                                         </div>
                                     </div>
