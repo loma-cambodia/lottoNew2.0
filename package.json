@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next -p 80",
     "localhost": "next dev",
     "staging": "next -p 3000",
     "build": "next build",

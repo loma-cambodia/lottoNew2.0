@@ -12,7 +12,7 @@ const Announcement = ({_announcementState, _language}) => {
             <ul className="list-inline">
               {announcementDataNew.map((item, id) => {
                     return(
-                        <li key={id} className="list-inline-item">{item.content[language]}</li>
+                        <li key={id} className="list-inline-item"><div dangerouslySetInnerHTML={{ __html: item.content[language] }}></div></li>
                     );
                 })}
             </ul>
