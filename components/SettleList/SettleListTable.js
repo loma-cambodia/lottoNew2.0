@@ -237,6 +237,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
         let dateValue1 = date.split('-')[0].trim();
         let dateValue2 = date.split('-')[1].trim();
 
+
+        
          let _fromDate = fromDate;
          let _toDate = toDate;
          const d = new Date();
@@ -255,7 +257,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
          _fromDate = concertDateFormat(_fromDate);
          _toDate = concertDateFormat(_toDate);;
 
-         let newDateRange = dateValue1 + '-' + dateValue2;
+         let newDateRange = dateValue1 + ' - ' + dateValue2;
 
 
         let member_id =  auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0;

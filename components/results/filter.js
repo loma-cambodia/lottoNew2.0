@@ -27,8 +27,7 @@ const Filter = ({_setDate}) => {
 
                 let results = response.data.data
                 let highlight = response.data.result_dates
-                // setStartDate(results[0].result_date)
-                console.log(results)
+            
                 let resultDate = []
                 let resultHighlited = []
                 results.map(data=>{
@@ -42,9 +41,7 @@ const Filter = ({_setDate}) => {
                 }
                 
                 }) 
-                console.log("DDDDDDD",resultDate)
-                console.log("resultHighlited:",resultHighlited,results)
-
+           
                 setHighlightedData(highlight)
                 setStartDate (results.result_date ? results.result_date :''.dateFormat('DD/MM/YYYY'))
 
@@ -121,7 +118,6 @@ const Filter = ({_setDate}) => {
       const datepickerRef = useRef(null);
       function handleClickDatepickerIcon() {
         const datepickerElement = datepickerRef.current;
-        // console.log("datepickerElement = ", datepickerElement);
         datepickerElement.setFocus(true);
       }
       useEffect(() => {
