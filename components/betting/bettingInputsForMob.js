@@ -914,9 +914,11 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
         let finalSubmitData = _finalSubmitData;
         if(getAction == 'remove'){
             finalSubmitData = finalSubmitData.filter((item,id) => id != getIndex);
+            mainSubmitData = mainSubmitData.filter((item,id) => id != getIndex);
             if(finalSubmitData.length == 0){
                 setMainSubmitData([]);
             }
+            setMainSubmitData(mainSubmitData);
         }
         if(finalSubmitData.length < 10 && getAction == 'add'){
             let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
