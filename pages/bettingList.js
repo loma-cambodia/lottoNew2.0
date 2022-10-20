@@ -20,6 +20,7 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
 
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const [active, setActive] = useState(false);
 
@@ -62,15 +63,15 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       dispatch(getLogin(objectWithData));
       }
       let d = new Date();
-      dispatch(searchTicketData(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''))
+      dispatch(searchTicketData(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''),setIsLoading(false))
       }, [datauser])
       
 
       let tickets = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
       let ticketsChild = state && state.tickets && state.tickets.ticketsChild ? state.tickets.ticketsChild : [];
-
-      let ticketSlave = tickets.ticket_slave
       
+      let ticketSlave = tickets.ticket_slave
+        
       const ticketSearch = []
       const GetTicketNumber = (member_id,dateRange,ticketNo) => {
        // const number = e.target.value
@@ -93,7 +94,7 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       <section className="page-content custom-padding vh-70">
     <div className="container">
         {/* <ListFilter/> */}
-         <ListTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth}/> 
+         <ListTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth} _isLoading={isLoading}/> 
 
 
 

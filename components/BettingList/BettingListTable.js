@@ -15,12 +15,15 @@ import styles from '../../styles/Home.module.css';
 
 import $ from 'jquery'; 
 const API_BASE_URL = process.env.apiUrl;
-const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
+const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_isLoading}) => {
     
+    let loading = _isLoading
     let ticket = _tickets;
     let auth = _auth;
     const items = _tickets;
-
+    
+  
+   
     let ticketSlaves = ticket && ticket.ticket_slave ? ticket.ticket_slave: []
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -36,7 +39,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
 
       const itemsPerPage  = 25;
- 
+      const [isLoading, setIsLoading] = React.useState(true);
       const [currentItems, setCurrentItems] = useState(null);
       const [pageCount, setPageCount] = useState(0);
       const [itemOffset, setItemOffset] = useState(0);
@@ -48,17 +51,16 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
       const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All') });
       const [selectedticketId, setSelectedticketId] = useState('');
       const [reset, setReset] = useState(false);
-
-
-
+    //  setIsLoading(true);
 
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
         setReset(false);
-        
-      }, [itemOffset, itemsPerPage,_tickets, reset]);
+        setIsLoading(loading);
+       
+      }, [itemOffset, itemsPerPage,_tickets, reset,_ticketsChild]);
 
       useEffect(() =>{
         change();
@@ -193,8 +195,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     const state = useSelector(state => state);
 
     const childShowTable = (ticketId,work,actionFrom) =>{
-
-     
+        
+        setIsLoading(true)
         //actionFrom // unsettledList, serach_button , reset_button
 
         
@@ -227,12 +229,15 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
     
         const state12 = dispatch(getLotteryDetailsList(params));
         let ticketsssss = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
+        
+        
         setChildDataTickets(ticketsssss);
         setParentAction(false);
         setSearchAction(false);
         if(work == 'forMob'){
             $('.hideAndShowForMobileView').hide("slide");
         }
+       
     }
 
     
@@ -245,6 +250,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth}) => {
 
 
     const searchGetListonFilter = (work, actionForm) => {
+        setIsLoading(true)
         const date = document.getElementById('daterangepicker').value;
 
         let dateValue1 = date.split('-')[0].trim();
@@ -396,134 +402,147 @@ const handlePageClick = (event) => {
     function ShowTableDataParent({tickets}){
 
         const currentPage = Math.round(itemOffset/itemsPerPage);
-        if(currentItems && currentItems.length > 0){
-            return (
-                <>
-                    <div className={styles.device_detect_for_mobile}>
-                        <table className="mob-table mb-3">
-                            <thead>
-                                <tr>
-                                    <th><span>{t('Ticket_No')}<br />{t('Betting_Time')}<br/>{t('Draw_Date')}</span></th>
-                                    <th><span>{t('Bet_Number')}<br/>{t('Company')}<br/>{t('Bet_Type')}</span></th>
-                                    {/* <th><span></span></th> */}
-                                    <th style={{ textAlign: 'end' }}><span>{t('Total')}<br/>{t('Rebate')}<br/>{t('Net')}</span></th>
-                                </tr>
-                            </thead>
-                            <tbody> 
-                                {currentItems && currentItems.map((item,i) =>(
-                                    
-                                    <tr key={i}>
-                                        <td>
-                                            <span>
-                                                <a  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forMob')} >
-                                                    {item.ticket_no}
-                                                </a><br />
-                                                {moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}<br />
-                                                {moment(item.betting_date).format('DD-MM-YYYY')}
-                                            </span>
-                                        </td>
-                                        {/* <td><span>{item.bet_number}<br />{item.betting_date}</span></td> */}
-                                        <td>
-                                            {item.bet_number}<br/>
-                                            <span>
-                                                {
-                                                    item.games && item.games.map((item,i) =>(
-                                                        item.abbreviation
-                                                    )) 
-                                                }
-                                            </span><br/>
-                                            <span>{item.bet_type == 0 ? "S":item.bet_type}</span>
+        // if(!isLoading){
+            if(currentItems && currentItems.length > 0){
+                return (
+                    <>
+                        <div className={styles.device_detect_for_mobile}>
+                            <table className="mob-table mb-3">
+                                <thead>
+                                    <tr>
+                                        <th><span>{t('Ticket_No')}<br />{t('Betting_Time')}<br/>{t('Draw_Date')}</span></th>
+                                        <th><span>{t('Bet_Number')}<br/>{t('Company')}<br/>{t('Bet_Type')}</span></th>
+                                        {/* <th><span></span></th> */}
+                                        <th style={{ textAlign: 'end' }}><span>{t('Total')}<br/>{t('Rebate')}<br/>{t('Net')}</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    {currentItems && currentItems.map((item,i) =>(
+                                        
+                                        <tr key={i}>
+                                            <td>
+                                                <span>
+                                                    <a  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forMob')} >
+                                                        {item.ticket_no}
+                                                    </a><br />
+                                                    {moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}<br />
+                                                    {moment(item.betting_date).format('DD-MM-YYYY')}
+                                                </span>
+                                            </td>
+                                            {/* <td><span>{item.bet_number}<br />{item.betting_date}</span></td> */}
+                                            <td>
+                                                {item.bet_number}<br/>
+                                                <span>
+                                                    {
+                                                        item.games && item.games.map((item,i) =>(
+                                                            item.abbreviation
+                                                        )) 
+                                                    }
+                                                </span><br/>
+                                                <span>{item.bet_type == 0 ? "S":item.bet_type}</span>
 
-                                        </td>
-                                        <td style={{ textAlign: 'end' }}>
-                                            <span>
-                                                {MoneyFormatDisplay(item.bet_amount, 1)}<br />
-                                                {MoneyFormatDisplay(item.rebate_amount, 1)}<br />
-                                                {MoneyFormatDisplay(item.bet_net_amount, 1)}
-                                            </span>
-                                        </td>
+                                            </td>
+                                            <td style={{ textAlign: 'end' }}>
+                                                <span>
+                                                    {MoneyFormatDisplay(item.bet_amount, 1)}<br />
+                                                    {MoneyFormatDisplay(item.rebate_amount, 1)}<br />
+                                                    {MoneyFormatDisplay(item.bet_net_amount, 1)}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className={styles.device_detect_for_desktop}>
+                            <table className="table small table-bordered">
+                                <thead>
+                                
+                                    <tr>
+                                        <th>{t('No.')}</th>
+                                        <th className="text-center">{t('Ticket_No')}</th>
+                                        <th className="text-center">{t('Betting_Time')}</th>
+                                        <th className="text-center">{t('Draw_Date')}</th>
+                                        <th className="text-start">{t('Bet_Number')}</th>
+                                        <th className="text-start">{t('Company')}</th>
+                                        <th className="text-start">{t('Bet_Type')}</th>
+                                        <th className="text-end">{t('Total')}</th>
+                                        <th className="text-end">{t('Rebate')}</th>
+                                        <th className="text-end">{t('Net')}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {currentItems && currentItems.map((item,i) =>(
+                                    <tr key={i}>
+                                        <td>{currentPage*itemsPerPage + (i + 1)}</td>
+                                        <td className="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','unsettledList')} >{item.ticket_no}</span></td>
+                                        <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
+                                        <td className="text-center"> {moment(item.betting_date).format('DD-MM-YYYY')}</td>
+                                        <td className="text-start">{item.bet_number}</td>
+                                        <td className="text-start">
+                                        {
+                                        item.games && item.games.map((item,i) =>(
+                                            item.abbreviation
+                                        )
+                                        ) 
+                                        }
+                                    </td>
+                                        <td className="text-start">{betTypeHandler(item.bet_type)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
                                     </tr>
                                 ))}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className={styles.device_detect_for_desktop}>
-                        <table className="table small table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>{t('No.')}</th>
-                                    <th className="text-center">{t('Ticket_No')}</th>
-                                    <th className="text-center">{t('Betting_Time')}</th>
-                                    <th className="text-center">{t('Draw_Date')}</th>
-                                    <th className="text-start">{t('Bet_Number')}</th>
-                                    <th className="text-start">{t('Company')}</th>
-                                    <th className="text-start">{t('Bet_Type')}</th>
-                                    <th className="text-end">{t('Total')}</th>
-                                    <th className="text-end">{t('Rebate')}</th>
-                                    <th className="text-end">{t('Net')}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {currentItems && currentItems.map((item,i) =>(
-                                <tr key={i}>
-                                    <td>{currentPage*itemsPerPage + (i + 1)}</td>
-                                    <td className="text-center" ><span style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','unsettledList')} >{item.ticket_no}</span></td>
-                                    <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
-                                    <td className="text-center"> {moment(item.betting_date).format('DD-MM-YYYY')}</td>
-                                    <td className="text-start">{item.bet_number}</td>
-                                    <td className="text-start">
-                                    {
-                                    item.games && item.games.map((item,i) =>(
-                                        item.abbreviation
-                                    )
-                                    ) 
-                                    }
-                                </td>
-                                    <td className="text-start">{betTypeHandler(item.bet_type)}</td>
-                                    <td className="text-end">{MoneyFormatDisplay(item.bet_amount, 1)}</td>
-                                    <td className="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
-                                    <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
-                    </div>                
-                    <div className="clearfix d-flex align-items-center justify-content-center">
+                                </tbody>
+                            </table>
+                        </div>                
+                        <div className="clearfix d-flex align-items-center justify-content-center">
 
-                        { pageCount > 1 ?
-                        <ReactPaginate
-                            breakLabel="..."
-                            nextLabel={t('next')} 
-                            onPageChange={handlePageClick}
-                            pageRangeDisplayed={5}
-                            pageCount={pageCount}
-                            previousLabel={t('previous')}
-                            renderOnZeroPageCount={null}
-                            className="pagination"
-                            forcePage={currentPage}
-                        /> : null } 
-                
-                        <svg className="hide">
-                            <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
-                            <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
-                        </svg>
-                    </div>
-                </>
-            );
-        }else{
-            return (<>
-               <div className='alert alert-warning'>
-                <h3 className='text-center'>
-                    {t('no_data_found')}
-                </h3>
-               </div>
-            </>)
+                            { pageCount > 1 ?
+                            <ReactPaginate
+                                breakLabel="..."
+                                nextLabel={t('next')} 
+                                onPageChange={handlePageClick}
+                                pageRangeDisplayed={5}
+                                pageCount={pageCount}
+                                previousLabel={t('previous')}
+                                renderOnZeroPageCount={null}
+                                className="pagination"
+                                forcePage={currentPage}
+                            /> : null } 
+                    
+                            <svg className="hide">
+                                <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
+                                <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
+                            </svg>
+                        </div>
+                    </>
+                );
+            }else{
+                return (<>
 
-        }
+                <div className='alert alert-warning'>
+                    <h3 className='text-center'>
+                        {t('no_data_found')}
+                    </h3>
+                </div>
+                </>)
+
+            }
+        // }else{
+        //     return(
+        //         <>
+        //         <div className="text-center">
+        //                  <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="150" />
+        //               </div>
+        //         </>
+        //     )
+            
+        // }
     }
     function ShowTableDataChild({tickets}){
         
-        if(tickets.length > 0){
+            if(tickets && tickets.length > 0){
           let drow_date = '--';
             let companyGame = '';
             function gameName(e){
@@ -626,8 +645,8 @@ const handlePageClick = (event) => {
             );
         }else{
             return (<>
+            <button onClick={() => backButton() } className="btn btn-warning">{t('back')}</button>
                 <div className='alert alert-warning'>
-                <button onClick={() => backButton() } className="btn btn-warning">{t('back')}</button>
                  <h3 className='text-center'>   
                          {t('no_data_found')}
                  </h3>
@@ -831,8 +850,12 @@ const handlePageClick = (event) => {
                 </div>
             </div>
             <div className="table-responsive my-3">
-
-                {parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
+                     {isLoading ? <div className="text-center">
+                         <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="60" />
+                      </div> :
+                 parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild}/>
+                 }
+                
 
             </div>  
             
