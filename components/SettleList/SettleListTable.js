@@ -14,11 +14,12 @@ import styles from '../../styles/Home.module.css';
 import $ from 'jquery'; 
 
 const API_BASE_URL = process.env.apiUrl;
-const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable}) => {
+const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_isLoading}) => {
     
     let ticket = _tickets;
     let auth = _auth;
     const items = _tickets;
+    let loading =_isLoading;
 
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
       const [filterGamesName, setFilterGamesName] = useState({ value: '', label: t('All') });
       const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All')  });
       const [selectedticketId, setSelectedticketId] = useState('');
+      const [isLoading, setIsLoading] = useState(true);
 
 
 
@@ -56,7 +58,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
-      }, [itemOffset, itemsPerPage,_tickets]);
+        setIsLoading(loading)
+      }, [itemOffset, itemsPerPage,_tickets,_ticketsChild]);
 
 
 
@@ -171,7 +174,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
     const state = useSelector(state => state);
 
     const childShowTable = (ticketId,work,actionFrom) =>{
-
+            setIsLoading(true)
      //   detailNo
       //  filterGamesName
        // filterGameType
@@ -203,6 +206,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
     
         const state12 = dispatch(filterLotteryDetailsList(params));
         let ticketsssss = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
+
         setChildDataTickets(ticketsssss);
         setParentAction(false);
         setSearchAction(false);
@@ -226,6 +230,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
       }
 
     const searchGetListonFilter = (work) => {
+        setIsLoading(true)
         const date = document.getElementById('daterangepicker').value;
         let dateValue1 = date.split('-')[0].trim();
         let dateValue2 = date.split('-')[1].trim();
@@ -287,6 +292,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable})
         setDateRange(newDateRange);
         setTicketNo('');
         // location.reload();
+        setIsLoading(true)
         _resetTable()
       }
 
@@ -375,7 +381,7 @@ const handlePageClick = (event) => {
                                 {currentItems && currentItems.map((item,i) =>(
                                     <tr key={i}>
                                         <td >
-                                            <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')} >
+                                            <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')}>
                                                 {item.ticket_no}
                                             </span>
                                             <br/>
@@ -825,7 +831,7 @@ const handlePageClick = (event) => {
                                     <div className={styles.device_detect_for_desktop+" col-md-4"}>
                                         <div className="form-group">
                                             <label className="d-block mb-2">&nbsp;</label>
-                                            <button type="button" className="btn-custom-curve2 w-auto me-2" onClick = {() => childShowTable(selectedticketId,'forDesk','serach_button')}>{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve2 w-auto me-2" onClick = {() =>childShowTable(selectedticketId,'forDesk','serach_button')}>{t('Search')}</button>
                                             <button type="button" className="btn-custom-curve1" onClick = {() => childShowTable(selectedticketId,'forDesk', 'reset_button')}>{t('Reset')}</button>
                                         </div>
                                     </div>
@@ -845,7 +851,12 @@ const handlePageClick = (event) => {
             </div>
 
             <div class="table-responsive my-3">
-                {parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
+                {isLoading ? 
+                <div className='text-center'>
+                     <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="60" />
+                </div>
+                    :
+                    parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
             </div>  
         </>
     )
