@@ -22,9 +22,9 @@ const Announcement = ({_announcementState, _language}) => {
     }
     return (
       <>
-        <section className="announcement ">
+        <section className="news-wrapper announcement " id="myDIV">
           <div className="container">
-              <div className="news-wrapper d-inline-flex align-item-center" id="myDIV">
+              <div className=" d-inline-flex align-item-center" >
                   <div className="announcement-block-icon">
                       <div className="annoncement-icon">
                           <span className="icon-img-announcement">
