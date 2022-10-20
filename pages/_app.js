@@ -9,6 +9,7 @@ import Notfound from './403';
 import { withIronSessionSsr } from "iron-session/next";
 import NextNProgress from "nextjs-progressbar";
 import { t } from "i18next";
+import {setUserDataFormat} from '../components/Utils';
 
 export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req }) {
@@ -40,17 +41,35 @@ function MyApp({ Component, pageProps,user }) {
   //const [isLoading, setLoading] = useState(false)
   const [isLoading, setLoading] = useState(false);
   const [updateSessionData, setUpdateSessionData]  =  useState(1);
+ // console.log('11111111111111111');
+  //console.log('data:',data);
 
   useEffect(() => {
   //  setLoading(true)
     fetch('/api/user')
       .then((res) => res.json())
       .then((data) => {
-        setData(data)
+        let newData = {};
+      if(data){
+        // newData.user = data.user.data;
+        //  let getData = data.user.data;
+        //  newData.id = getData.id;
+        //  newData.customer_name = getData.customer_name;
+        //  newData.customer_id = getData.customer_id;
+        //  newData.name = getData.name;
+        //  newData.merchant_id = getData.merchant_id; 
+        //  newData.language = {locale:getData.language.locale, name:getData.language.name};
+        //  newData.wallet = {amount:getData.wallet.amount, name:getData.language.name};
+        newData = setUserDataFormat(data);
+      }
+        console.log('datadata:',data);
+        console.log('newData:',{user:{data:newData}});
+        //setData(data)
+        setData({user:{data:newData}})
      //   setLoading(false)
-        if(Object.keys(data).length != 0){
-          localStorage.setItem("name", JSON.stringify(data.user));
-        }
+       // if(Object.keys(data).length != 0){
+         // localStorage.setItem("name", JSON.stringify(data.user));
+       // }
       })
   }, [updateSessionData])
 
