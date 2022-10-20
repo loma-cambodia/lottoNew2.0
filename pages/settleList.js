@@ -57,16 +57,19 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
       }
 
       let d = new Date();
+      dispatch(getTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0));
       dispatch(searchTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
       }, [datauser])
       
      
       let tickets = state && state.tickets && state.tickets.reportsSettleData ? state.tickets.reportsSettleData : [];
-      
+      console.log("tickets",tickets)
       let ticketsChild = state && state.tickets && state.tickets.reportsSettleChildData ? state.tickets.reportsSettleChildData : [];
 
       let ticketSlave = tickets.ticket_slave
       
+      let isLoading = state && state.tickets && state.tickets.loading ? state.tickets.loading : false;
+
       const ticketSearch = []
       const GetTicketNumber = (member_id,dateRange,ticketNo) => {
         dispatch(searchTicketDataSettled(member_id,dateRange,ticketNo));
@@ -78,7 +81,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
           setItemOffset(newOffset);
         };
         const resetTable = ()=>{
-          //dispatch(getTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
+          dispatch(getTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
           let d = new Date();
           dispatch(searchTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
         }
@@ -92,7 +95,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
       <SettleBanner/>
       <section className="page-content custom-padding vh-70">
           <div className="container">
-                <SettleTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth} _resetTable={resetTable}/> 
+                <SettleTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth} _resetTable={resetTable} _isLoading={isLoading}/> 
           </div>
       </section>
       

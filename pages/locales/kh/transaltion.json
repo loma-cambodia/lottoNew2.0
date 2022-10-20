@@ -180,17 +180,17 @@
     "Saturday":"ថ្ងៃសៅរ៍",
     "Sunday":"ថ្ងៃអាទិត្យ",
     "January":"មករា",
-    "February":"ខែកុម្ភៈ",
-    "March":"ខែមីនា",
+    "February":"កុម្ភៈ",
+    "March":"មីនា",
     "April":"មេសា",
     "May":"ឧសភា",
-    "June":"ខែមិថុនា",
-    "July":"ខែកក្កដា",
+    "June":"មិថុនា",
+    "July":"កក្កដា",
     "August":"សីហា",
-    "September":"ខែកញ្ញា",
+    "September":"កញ្ញា",
     "October":"តុលា",
-    "November":"ខែវិច្ឆិកា",
-    "December":"ខែធ្នូ",
+    "November":"វិច្ឆិកា",
+    "December":"ធ្នូ",
  
     "Please_choose_at_least_one_date_selection":"សូមជ្រើសរើសកាលបរិច្ឆេទចាប់ឆ្នោត",
     "Please_select_game_first":"សូមជ្រើសរើសក្រុមហ៊ុន",
@@ -261,6 +261,9 @@
     "28th":"ទី ២៨",
     "29th":"ទី ២៩",
     "30th":"ទី ៣០",
-    "31st":"ទី ៣១"
+    "31st":"ទី ៣១",
+
+    "merchant has disabled":"ឈ្មួញត្រូវបានបិទហើយ",
+    "market has disabled":"ទីផ្សារត្រូវបានបិទហើយ"
     
 }
