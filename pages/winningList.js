@@ -289,7 +289,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                               <td className="text-start">{item.ticket.draw_number}</td>
                               
                               {/* <td className="text-center">{item.game_type}</td> */}
-                              <td className="text-center">{item.ticket.bet_number}</td>
+                              <td className="text-center">{item.lottery_number}</td>
                               <td className="text-start">{item.game && item.game.name ? item.game.name : ""}</td>
 
                               {/* <td className="text-center">{item.game_type}</td> */}

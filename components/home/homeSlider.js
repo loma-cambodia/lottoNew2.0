@@ -2,8 +2,29 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { useTranslation } from "react-i18next";
 import Link from 'next/link';
-const HomeSlider = ({_specialDrawState}) => {
+import { useDispatch, useSelector } from "react-redux";
+
+const HomeSlider = ({_specialDrawState,datauser,_auth, updateSessionData, setUpdateSessionData}) => {
     const specialDrawState = _specialDrawState;
+
+
+    const dispatch = useDispatch();
+    let auth = _auth;
+ 
+    const state = useSelector(state => state);
+ 
+    
+    let language = '';
+ 
+    if(auth && auth.lang){
+     language = auth.lang;
+    }else {
+     language = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
+    }
+    // useEffect(() => {
+        
+    // }, [language])
+    
     const { t } = useTranslation();
     function SpecialDrawImg({specialDrawStateMain}){
         if(specialDrawStateMain && specialDrawStateMain.data && specialDrawStateMain.data.game_play){
@@ -23,18 +44,39 @@ const HomeSlider = ({_specialDrawState}) => {
                 </>
             );
         }
-    }
+    } 
     function GetDrawDate({specialDrawStateMain}){
         if(specialDrawStateMain && specialDrawStateMain.data){
-            return(
-                <a href="#" style={{pointerEvents:'none'}}>
-                    {t(specialDrawStateMain.data.draw_date_only_formatted)}&nbsp;
-                    {t(specialDrawStateMain.data.draw_month_formatted)}&nbsp;
-                    ({t(specialDrawStateMain.data.draw_day_formatted)})
-                </a>
-            );
+            if(language == 'ch'){
+                return(
+                    <a href="#" style={{pointerEvents:'none'}}>
+                        {t(specialDrawStateMain.data.draw_month_formatted)}&nbsp;
+                        {t(specialDrawStateMain.data.draw_date_only_formatted)}&nbsp;
+                        ({t(specialDrawStateMain.data.draw_day_formatted)})
+                    </a>
+                );
+            }else if(language == 'kh'){
+                return(
+                    <a href="#" style={{pointerEvents:'none'}}>
+                        {t(specialDrawStateMain.data.draw_date_only_formatted)}&nbsp;
+                        {t(specialDrawStateMain.data.draw_month_formatted)}&nbsp;
+                        ({t(specialDrawStateMain.data.draw_day_formatted)})
+                    </a>
+                );
+            }else{
+                return(
+                    <a href="#" style={{pointerEvents:'none'}}>
+                        {t(specialDrawStateMain.data.draw_date_only_formatted)}&nbsp;
+                        {t(specialDrawStateMain.data.draw_month_formatted)}&nbsp;
+                        ({t(specialDrawStateMain.data.draw_day_formatted)})
+                    </a>
+                );
+            }
         }
     }
+
+    // console.log('specialDrawState',specialDrawState);
+
     return (
       <>
      <Carousel autoPlay className="homepage-carousel ">
@@ -53,6 +95,7 @@ const HomeSlider = ({_specialDrawState}) => {
                                     </div>
                                 </div> 
                                 <div className="date-block">
+                                    {/* <GetDrawDate specialDrawStateMain={specialDrawState} /> */}
                                     <GetDrawDate specialDrawStateMain={specialDrawState} />
                                 </div>
                                 <p className="">{t("Dont_miss_your_chance")}</p>
