@@ -512,8 +512,8 @@
       display: inherit;
   }
   .news-wrapper.short.shrink .announcement-block-icon, .news-wrapper.short .announcement-block-icon {
-      width: 70px;
-      padding: 10px 10px;
+    width: 66px;
+    padding: 6px 0 0;
       background: rgb(241 131 40);
   }
   .news-wrapper.short .marque-div {
@@ -3078,4 +3078,9 @@ button.applyBtn.btn.btn-sm.btn-primary {
 .marque-div ul li:last-child:after {display:none;}
 .marquee-container .marquee:last-child { 
   display: none; 
+}
+section.announcement {
+    background: #f07f00;
+    padding: 6px 0 0;
+    height: 45px !important;
 }
