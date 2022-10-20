@@ -38,7 +38,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_isLoading}) 
     });
 
 
-      const itemsPerPage  = 25;
+      const itemsPerPage  = 20;
       const [isLoading, setIsLoading] = React.useState(true);
       const [currentItems, setCurrentItems] = useState(null);
       const [pageCount, setPageCount] = useState(0);

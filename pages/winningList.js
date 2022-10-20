@@ -28,7 +28,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
   const [active, setActive] = useState(false);
   const [winningList, setWinningList] = useState([]);
 
-  const itemsPerPage  = 10;
+  const itemsPerPage  = 20;
 
   const [pageCount, setPageCount] = useState(0);
   const [seletedPage, setSeletedPage] = useState(0);
