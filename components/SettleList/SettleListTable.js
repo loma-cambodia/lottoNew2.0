@@ -58,7 +58,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
+        if(currentItems){
         setIsLoading(loading)
+        }
       }, [itemOffset, itemsPerPage,_tickets,_ticketsChild]);
 
 
@@ -292,8 +294,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
         setDateRange(newDateRange);
         setTicketNo('');
         // location.reload();
-        setIsLoading(true)
         _resetTable()
+        setIsLoading(true)
       }
 
       
@@ -722,7 +724,7 @@ const handlePageClick = (event) => {
                         <div className="form-group mb-0">
                             <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
                                 <b>{t('betting_history_report')}</b>
-                                <img 
+                                <image 
                                     onClick={() => openFilterForMob()}
                                     className="img-fluid" 
                                     src="images\betting\filter-icon.png" 
