@@ -58,7 +58,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
 
       let d = new Date();
       dispatch(getTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0));
-      dispatch(searchTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
+      // dispatch(searchTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
       }, [datauser])
       
      
