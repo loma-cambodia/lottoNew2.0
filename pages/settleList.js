@@ -91,7 +91,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
         };
         const resetTable = ()=>{
           dispatch(getTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
-          let d = new Date();
+          // let d = new Date();
           // dispatch(searchTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
         }
   return (

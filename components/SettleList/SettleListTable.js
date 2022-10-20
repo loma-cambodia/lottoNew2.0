@@ -58,7 +58,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
+        if(currentItems){
         setIsLoading(loading)
+        }
       }, [itemOffset, itemsPerPage,_tickets,_ticketsChild]);
 
 
