@@ -1900,6 +1900,18 @@
   transition: 0.5s;
   width: 100%;
   }
+
+  .btn-custom-curve-disabled {
+    border: 1px solid #bc2263;
+  padding: 10px 20px;
+  text-align: center;
+  background-color: #fff;
+  color: #bc2263;
+  text-transform: uppercase;
+  border-radius: 20px 0;
+  transition: 0.5s;
+    width: 100%;
+    }
   .btn-custom-curve1:hover,
   .btn-custom-curve1:focus,
   .btn-custom-curve1:active,
