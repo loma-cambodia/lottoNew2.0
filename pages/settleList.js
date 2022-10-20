@@ -59,10 +59,10 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
 
 
 
-
+      let d = new Date()
       useEffect(() => {
-        dispatch(getTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0));
-        // dispatch(searchTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
+        // dispatch(getTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0));
+        dispatch(searchTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
         }, [])
   
 
@@ -72,7 +72,6 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
       
      
       let tickets = state && state.tickets && state.tickets.reportsSettleData ? state.tickets.reportsSettleData : [];
-      console.log("tickets",tickets)
       let ticketsChild = state && state.tickets && state.tickets.reportsSettleChildData ? state.tickets.reportsSettleChildData : [];
 
       let ticketSlave = tickets.ticket_slave
@@ -90,9 +89,9 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
           setItemOffset(newOffset);
         };
         const resetTable = ()=>{
-          dispatch(getTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
+          // dispatch(getTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
           // let d = new Date();
-          // dispatch(searchTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
+          dispatch(searchTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
         }
   return (
     <> 

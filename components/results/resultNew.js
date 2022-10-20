@@ -129,7 +129,6 @@ const ResultNew = ({ _setDate,_auth}) => {
       date: () => 'mm/dd/yyyy'
     }
   }
-  console.log("initResult:", initResult);
  
   return (
     <>
