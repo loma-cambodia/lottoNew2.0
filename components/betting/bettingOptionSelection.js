@@ -199,6 +199,16 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
     setBettingInitData([]);
   }
 
+  const dataNotCorrectMessage  = () => {
+
+    toast.error("sasassssssssssssssss", {
+      position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+      pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
+    });
+
+
+  }
+
   const lotterySubmitRecordsCallAction = () => {
     let _bettingInitData = bettingInitData;
     let _bettingInputsDataParent = bettingInputsDataParent;
@@ -429,7 +439,7 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                 </tr>
 
                 {bettingInputsDataParent.map((item, ids) => {
-                  if(item.dataInit.big.error)
+                  if(item.dataInit.big.error || item.dataInit.small.error || item.dataInit._3a.error || item.dataInit._3c.error)
                     inpurError = 1;
 
                 return(<BettingInputs key={'bettingInputs1' + ids}
@@ -463,7 +473,7 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                   <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title={t('clear')}>{t('clear')}</button>
                   </td>
                   <td colSpan="2">
-                  {inpurError ? (<button type="button" className="btn-custom-curve2" title={t('submit')}>{t('submit')}</button>) : ( <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}</button>) }
+                  {inpurError ? (<button type="button" className="btn-custom-curve2" onClick={dataNotCorrectMessage} title={t('submit')}>{t('submit')}</button>) : ( <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}</button>) }
                    {/* <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}:{inpurError}</button> */}
                   </td>
                 </tr>)}
