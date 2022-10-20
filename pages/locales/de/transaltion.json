@@ -232,5 +232,8 @@
     "BettingList_tittle":"Malaysia Lottery - Betting List page",
     "WinningList_tittle":"Malaysia Lottery - Winning List page",
 
-    "tittle_main":"大马彩"
+    "tittle_main":"大马彩",
+
+    "merchant has disabled":"商户已禁用",
+    "market has disabled":"盘口已禁用"
 }
