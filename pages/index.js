@@ -23,7 +23,6 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
 
   const state = useSelector(state => state);
 
-  //console.log('Home:datauser:',datauser);
 
 useEffect(() => {
   dispatch(announcement());
@@ -65,7 +64,6 @@ if(objectWithData.customer_id != 0){
       let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
       
       let specialDrawState = state && state.home && state.home.specialDrawDetails ? state.home.specialDrawDetails : '';
-      // console.log('state.homestate.homestate.home',specialDrawState)
   return (
     <>
        <Head> 

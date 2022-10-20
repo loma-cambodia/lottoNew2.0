@@ -46,7 +46,6 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
 
       useEffect(() => {
 
-      //  console.log('33333333333333333333333');
       //   dispatch({
       //     type: "GET_LOGIN_DETAILS",
       //     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}

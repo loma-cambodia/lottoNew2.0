@@ -72,7 +72,6 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
       
      
       let tickets = state && state.tickets && state.tickets.reportsSettleData ? state.tickets.reportsSettleData : [];
-      console.log("tickets",tickets)
       let ticketsChild = state && state.tickets && state.tickets.reportsSettleChildData ? state.tickets.reportsSettleChildData : [];
 
       let ticketSlave = tickets.ticket_slave
