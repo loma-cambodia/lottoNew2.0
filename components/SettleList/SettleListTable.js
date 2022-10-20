@@ -292,8 +292,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
         setDateRange(newDateRange);
         setTicketNo('');
         // location.reload();
-        setIsLoading(true)
         _resetTable()
+        setIsLoading(true)
       }
 
       
