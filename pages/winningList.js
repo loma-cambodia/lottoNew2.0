@@ -93,11 +93,6 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
       
       useEffect(() => {
-      //   dispatch({
-      //     type: "GET_LOGIN_DETAILS",
-      //     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
-      // })
-
       let objectWithData = {
         "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
         "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
