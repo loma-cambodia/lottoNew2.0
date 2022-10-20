@@ -77,10 +77,10 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
             } else if (getValue.length == 3) {
 
-                localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 0 } };
-                localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 0 } };
-                localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 0 } };
-                localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 0 } };
+                localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 0, error:0 } };
+                localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 0, error:0 } };
+                localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 0, error:0 } };
+                localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 0, error:0 } };
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
               
                 
@@ -102,10 +102,10 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
 
             } else if (getValue.length == 4) {
-                localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 0 } };
-                localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 0 } };
-                localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 0 } };
-                localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 0 } };
+                localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 0,error:0 } };
+                localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 0,error:0 } };
+                localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 0,error:0 } };
+                localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 0,error:0 } };
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 0, i_box_value: 0, i_box_disabled: 0, reverse_value: 0, reverse_disabled: 0 } };
 
                 
@@ -136,10 +136,10 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             } else {
              //   localStateDataForChange = { ...item.dataInit}
 
-                localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 1 } };
-                localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 1 } };
-                localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 1 } };
-                localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 1 } };
+                localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 1,error:0 } };
+                localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 1, error:0 } };
+                localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 1, error:0 } };
+                localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 1, error:0 } };
                 localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
             }
         } else if (operationField == 'box') {
@@ -187,22 +187,18 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                 return false;
             }
 
-
            let big_max_bet  = limit && limit.length > 0 && limit[0].big_max_bet ?  limit[0].big_max_bet : 0;
            let big_min_bet  = limit && limit.length > 0 && limit[0].big_min_bet ?  limit[0].big_min_bet : 0;
            let fieldError = 0;
            
-
-
-            
-            if(getValue > big_max_bet ){
+            if(getValue > big_max_bet && getValue != ''){
                 $("#ErrorBig"+idas).html(t('bet_should_not_be_greater_than')+big_max_bet);
                 $("#ErrorBig"+idas).css('visibility', 'visible')	
 
                 getValue = big_max_bet;
-                fieldError = 1
+               // fieldError = 1
                
-            }else if(getValue < limit[0].big_min_bet ){
+            }else if(getValue < limit[0].big_min_bet && getValue != ''){
 
                 $("#ErrorBig"+idas).html(t('bet_should_not_be_less_than')+limit[0].big_min_bet);
                 $("#ErrorBig"+idas).css('visibility', 'visible')	
@@ -210,7 +206,7 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
                // getValue = ''
                fieldError = 1;
             }
-            else if(getValue == 0 ){
+            else if(getValue == 0 && getValue != ''){
                 $("#ErrorBig"+idas).html(t('bet_should_not_be_less_than')+big_min_bet);
                 $("#ErrorBig"+idas).css('visibility', 'visible')	
 
@@ -235,14 +231,21 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if(getValue.includes('-') || getValue.includes('.')){
                 return false;
             }
-            if(getValue > limit[0].small_max_bet ){
-                $("#ErrorSmall"+idas).html(t('bet_should_not_be_greater_than')+limit[0].small_max_bet);
-                $("#ErrorSmall"+idas).css('visibility', 'visible');
-                getValue = limit[0].small_max_bet;
-                fieldError = 1;
-            }else if(getValue < limit[0].small_min_bet ){
 
-                $("#ErrorSmall"+idas).html(t('bet_should_not_be_less_than')+limit[0].small_min_bet);
+
+
+            let small_max_bet  = limit && limit.length > 0 && limit[0].small_max_bet ?  limit[0].small_max_bet : 0;
+            let small_min_bet  = limit && limit.length > 0 && limit[0].small_min_bet ?  limit[0].small_min_bet : 0;
+           //let small_min_bet  =  9;
+
+            if(getValue > small_max_bet && getValue != ''){
+                $("#ErrorSmall"+idas).html(t('bet_should_not_be_greater_than')+small_max_bet);
+                $("#ErrorSmall"+idas).css('visibility', 'visible');
+                getValue = small_max_bet;
+               // fieldError = 1;
+            }else if(getValue < small_min_bet && getValue != ''){
+
+                $("#ErrorSmall"+idas).html(t('bet_should_not_be_less_than')+small_min_bet);
                 $("#ErrorSmall"+idas).css('visibility', 'visible');
 
                // getValue = ''
@@ -267,14 +270,21 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if(getValue.includes('-') || getValue.includes('.')){
                 return false;
             }
-            if(getValue > limit[0].three_a_max_bet ){
-                $("#ErrorA"+idas).html(t('bet_should_not_be_greater_than')+limit[0].three_a_max_bet);
+
+            let three_a_max_bet  = limit && limit.length > 0 && limit[0].three_a_max_bet ?  limit[0].three_a_max_bet : 0;
+            let three_a_min_bet  = limit && limit.length > 0 && limit[0].three_a_min_bet ?  limit[0].three_a_min_bet : 0;
+         //  let three_a_min_bet  = 8;
+
+           //console.log('getValue:',getValue);
+
+            if(getValue > three_a_max_bet  && getValue != ''){
+                $("#ErrorA"+idas).html(t('bet_should_not_be_greater_than')+three_a_max_bet);
                 $("#ErrorA"+idas).css('visibility', 'visible');
 
-                getValue = limit[0].three_a_max_bet
-                fieldError = 1;
-            }else if(getValue < limit[0].three_a_min_bet ){
-                $("#ErrorA"+idas).html(t('bet_should_not_be_less_than')+limit[0].three_a_min_bet);
+                getValue = three_a_max_bet
+               // fieldError = 1;
+            }else if(getValue < three_a_min_bet && getValue != ''){
+                $("#ErrorA"+idas).html(t('bet_should_not_be_less_than')+three_a_min_bet);
                 $("#ErrorA"+idas).css('visibility', 'visible');
 
                // getValue = ''
@@ -329,17 +339,19 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             if(getValue.includes('-') || getValue.includes('.')){
                 return false;
             }
-            if(getValue > limit[0].three_c_max_bet ){   
-                $("#ErrorC"+idas).html(t('bet_should_not_be_greater_than')+limit[0].three_c_max_bet);
-                $("#ErrorC"+idas).css('visibility','visible');
 
-                getValue = limit[0].three_c_max_bet
-                fieldError = 1;
-            }else if(getValue < limit[0].three_c_min_bet ){
-                $("#ErrorC"+idas).html(t('bet_should_not_be_less_than')+limit[0].three_c_min_bet);
+            let three_c_max_bet  = limit && limit.length > 0 && limit[0].three_c_max_bet ?  limit[0].three_c_max_bet : 0;
+            let three_c_min_bet  = limit && limit.length > 0 && limit[0].three_c_min_bet ?  limit[0].three_c_min_bet : 0;
+
+            if(getValue > three_c_max_bet && getValue != ''){   
+                $("#ErrorC"+idas).html(t('bet_should_not_be_greater_than')+three_c_max_bet);
+                $("#ErrorC"+idas).css('visibility','visible');
+                getValue = three_c_max_bet;
+            }else if(getValue < three_c_min_bet && getValue != ''){
+                $("#ErrorC"+idas).html(t('bet_should_not_be_less_than')+three_c_min_bet);
                 $("#ErrorC"+idas).css('visibility', 'visible');
 
-                getValue = ''
+               // getValue = ''
                 fieldError = 1;
             }
             else{
@@ -390,10 +402,10 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
             $("#ErrorC"+idas).html('');
             $("#ErrorA"+idas).html('');
             localStateDataForChange = { ...localStateDataForChange, number: { value: "", disabled: 0 } };
-            localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 1 } };
-            localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 1 } };
-            localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 1 } };
-            localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 1 } };
+            localStateDataForChange = { ...localStateDataForChange, big: { value: "", disabled: 1, error:0 } };
+            localStateDataForChange = { ...localStateDataForChange, small: { value: "", disabled: 1,error:0 } };
+            localStateDataForChange = { ...localStateDataForChange, _3a: { value: "", disabled: 1,error:0 } };
+            localStateDataForChange = { ...localStateDataForChange, _3c: { value: "", disabled: 1,error:0 } };
             localStateDataForChange = { ...localStateDataForChange, amount: { value: "", disabled: 1 } };
             localStateDataForChange = { ...localStateDataForChange, bet_type: { box_value: 0, box_disabled: 1, i_box_value: 0, i_box_disabled: 1, reverse_value: 0, reverse_disabled: 1 } };
         }

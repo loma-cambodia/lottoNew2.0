@@ -201,10 +201,13 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
 
   const dataNotCorrectMessage  = () => {
 
-    toast.error("sasassssssssssssssss", {
-      position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-      pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
-    });
+      if(!toast.isActive(toast.toastId)){
+      toast.error(t('Please_Enter_Valid_Number'), {
+        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+        pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
+      });
+    }
+      
 
 
   }
@@ -406,6 +409,8 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
 
   let inpurError = 0;
 
+  console.log('bettingInputsDataParent:',bettingInputsDataParent);
+
 
 
   return (
@@ -439,6 +444,8 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                 </tr>
 
                 {bettingInputsDataParent.map((item, ids) => {
+
+                  
                   if(item.dataInit.big.error || item.dataInit.small.error || item.dataInit._3a.error || item.dataInit._3c.error)
                     inpurError = 1;
 
@@ -473,7 +480,7 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                   <td><button type="button" className="btn-custom-curve1 me-1" onClick={clearAllRecords} title={t('clear')}>{t('clear')}</button>
                   </td>
                   <td colSpan="2">
-                  {inpurError ? (<button type="button" className="btn-custom-curve2" onClick={dataNotCorrectMessage} title={t('submit')}>{t('submit')}</button>) : ( <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}</button>) }
+                  {inpurError ? (<button type="button" className="btn-custom-curve-disabled" onClick={dataNotCorrectMessage} title={t('submit')}>{t('submit')}</button>) : ( <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}</button>) }
                    {/* <button type="button" className="btn-custom-curve2" onClick={lotterySubmitRecordsCallAction} title={t('submit')}>{t('submit')}:{inpurError}</button> */}
                   </td>
                 </tr>)}
