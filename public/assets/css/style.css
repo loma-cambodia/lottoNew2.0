@@ -3076,6 +3076,6 @@ button.applyBtn.btn.btn-sm.btn-primary {
 }
 }  */
 .marque-div ul li:last-child:after {display:none;}
-.marquee-container .marquee:last-child { 
+/* .marquee-container .marquee:last-child { 
   display: none; 
-}
+} */

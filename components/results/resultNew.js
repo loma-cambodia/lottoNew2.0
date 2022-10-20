@@ -237,6 +237,7 @@ const ResultNew = ({ _setDate,_auth}) => {
                                       />
                                     </span>{" "}
                                     {t(item.result_date.replace(/[^a-zA-Z]/g,""))}
+                                    &nbsp;
                                     {item.result_date.replace(/[a-zA-Z]{0,1}/g,'').replace('  ', ' ').replace('()', '')}
                                   </p>
                                 </div>
