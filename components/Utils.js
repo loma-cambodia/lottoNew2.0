@@ -35,7 +35,6 @@ export const setUserDataFormat = (data, fromWindow = 1) => {
    else 
    getData = data.user.data;
 
-   //console.log('setUserDataFormat:dataAgain:', getData);
 
    newData.id = getData.id;
    newData.customer_name = getData.customer_name;
