@@ -230,6 +230,9 @@
     "BettingList_tittle":"Malaysia Lottery - Betting List page",
     "WinningList_tittle":"Malaysia Lottery - Winning List page",
 
-    "tittle_main":"ឆ្នោតម៉ាឡេស៊ី"
+    "tittle_main":"ឆ្នោតម៉ាឡេស៊ី",
+
+    "merchant has disabled":"ឈ្មួញត្រូវបានបិទហើយ",
+    "market has disabled":"ទីផ្សារត្រូវបានបិទហើយ"
     
 }
