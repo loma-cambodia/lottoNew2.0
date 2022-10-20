@@ -18,7 +18,7 @@ export const twoDecimalPlaceWithoutRound = (theInput, getCase) => {
     if(getInput)
       return parseFloat(theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]).toFixed(2)
     else 
-    return '0.00';
+      return '0.00';
    }else{
       return parseFloat(lottery.slave_net_amount).toFixed(2)
    }

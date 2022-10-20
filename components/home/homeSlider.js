@@ -2,8 +2,81 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { useTranslation } from "react-i18next";
 import Link from 'next/link';
-const HomeSlider = () => {
+import { useDispatch, useSelector } from "react-redux";
+
+const HomeSlider = ({_specialDrawState,datauser,_auth, updateSessionData, setUpdateSessionData}) => {
+    const specialDrawState = _specialDrawState;
+
+
+    const dispatch = useDispatch();
+    let auth = _auth;
+ 
+    const state = useSelector(state => state);
+ 
+    
+    let language = '';
+ 
+    if(auth && auth.lang){
+     language = auth.lang;
+    }else {
+     language = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
+    }
+    // useEffect(() => {
+        
+    // }, [language])
+    
     const { t } = useTranslation();
+    function SpecialDrawImg({specialDrawStateMain}){
+        if(specialDrawStateMain && specialDrawStateMain.data && specialDrawStateMain.data.game_play){
+            return(
+                <>
+                    {specialDrawStateMain.data.game_play.map((item, id) => {
+                        return(
+                            <div key={id} className="logo-draw">
+                                <div className="draw-logo-div">
+                                    <div className="draw-logo-img">
+                                        <img src={item.logo_url} className="img-fluid" alt=""/>
+                                    </div>
+                                </div>
+                            </div> 
+                        );
+                    })}
+                </>
+            );
+        }
+    } 
+    function GetDrawDate({specialDrawStateMain}){
+        if(specialDrawStateMain && specialDrawStateMain.data){
+            if(language == 'ch'){
+                return(
+                    <a href="#" style={{pointerEvents:'none'}}>
+                        {t(specialDrawStateMain.data.draw_month_formatted)}&nbsp;
+                        {t(specialDrawStateMain.data.draw_date_only_formatted)}&nbsp;
+                        ({t(specialDrawStateMain.data.draw_day_formatted)})
+                    </a>
+                );
+            }else if(language == 'kh'){
+                return(
+                    <a href="#" style={{pointerEvents:'none'}}>
+                        {t(specialDrawStateMain.data.draw_date_only_formatted)}&nbsp;
+                        {t(specialDrawStateMain.data.draw_month_formatted)}&nbsp;
+                        ({t(specialDrawStateMain.data.draw_day_formatted)})
+                    </a>
+                );
+            }else{
+                return(
+                    <a href="#" style={{pointerEvents:'none'}}>
+                        {t(specialDrawStateMain.data.draw_date_only_formatted)}&nbsp;
+                        {t(specialDrawStateMain.data.draw_month_formatted)}&nbsp;
+                        ({t(specialDrawStateMain.data.draw_day_formatted)})
+                    </a>
+                );
+            }
+        }
+    }
+
+    // console.log('specialDrawState',specialDrawState);
+
     return (
       <>
      <Carousel autoPlay className="homepage-carousel ">
@@ -16,19 +89,14 @@ const HomeSlider = () => {
                             <div className="sd-text-part">
                                 <p className="text-uppercase">{t('Contest_your_chance_to')}</p>
                                 <div className="d-inline-flex align-items-center mb-4">
-                                    <div className="logo-draw">
-                                        <div className="draw-logo-div">
-                                            <div className="draw-logo-img">
-                                                <img src="assets/images/1659581469.png" className="img-fluid" alt=""/>
-                                            </div>
-                                        </div>
-                                    </div>  
+                                    <SpecialDrawImg specialDrawStateMain={specialDrawState} />  
                                     <div className="draw-name text-uppercase">
                                         {t('Special')}<br/>{t('Draw')}
                                     </div>
-                                </div>
+                                </div> 
                                 <div className="date-block">
-                                    <a href="#" style={{pointerEvents:'none'}}>27TH {t('September')} ({t('Tuesday')})</a>
+                                    {/* <GetDrawDate specialDrawStateMain={specialDrawState} /> */}
+                                    <GetDrawDate specialDrawStateMain={specialDrawState} />
                                 </div>
                                 <p className="">{t("Dont_miss_your_chance")}</p>
                                 <h3>{t('Lucky_Winner')}</h3>

@@ -12,7 +12,7 @@ import GamePlayPrize from '../components/home/gamePlayPrize';
 import HowToPlay from '../components/home/howToPlay';
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import {announcement, userTransactionDetails, winnerResultDetailsSecond} from '../store/actions/homeActions';
+import {announcement, userTransactionDetails, winnerResultDetailsSecond, specialDraw} from '../store/actions/homeActions';
 import {getLogin} from '../store/actions/authActions';
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
 
@@ -27,6 +27,7 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
 
 useEffect(() => {
   dispatch(announcement());
+  dispatch(specialDraw());
   if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
     dispatch(userTransactionDetails(datauser.user.data.merchant_id));
   dispatch(winnerResultDetailsSecond());
@@ -60,16 +61,19 @@ if(objectWithData.customer_id != 0){
       let winnerResultDetails = state && state.home && state.home.winnerResultDetails ? state.home.winnerResultDetails : [];
 
       let language = state && state.auth && state.auth.lang ? state.auth.lang : '';
-      let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
 
+      let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
+      
+      let specialDrawState = state && state.home && state.home.specialDrawDetails ? state.home.specialDrawDetails : '';
+      // console.log('state.homestate.homestate.home',specialDrawState)
   return (
     <>
-       <Head>
+       <Head> 
           <title>{t('tittle_main')}</title>          
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 
-      <HomeSlider />
+      <HomeSlider _specialDrawState={ specialDrawState} datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData} />
       <Announcement _announcementState={ announcementState}  _language = { language }/>
       <PayoutSection _transactions={transactions}/>
       <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>

@@ -178,7 +178,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
          //   }
         } else if (operationField == 'big') {
 
-            console.log('1111111111111111111111111111');
             
             if (!getValue.match("^[0-9-.]*$")) {
                 return false;
@@ -202,7 +201,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
                 getValue = big_max_bet;
                 fieldError = 1
-                console.log('1111111111111111111111111111');
                
             }else if(getValue < limit[0].big_min_bet ){
 
@@ -228,7 +226,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
            
             localStateDataForChange = { ...localStateDataForChange, big: { value: getValue, disabled: 0,error:fieldError } };  
             
-            console.log('localStateDataForChange:111:',localStateDataForChange);
         } else if (operationField == 'small') {
 
             let fieldError = 0;
@@ -408,7 +405,6 @@ const BettingInputs = ({ item,ids, _updateBettingInputsData, _loadpageCounter,_s
 
           localStateDataForChange = { ...localStateDataForChange, amount: { value: totalAmount, disabled: 1 } };
 
-          console.log('localStateDataForChange:22222:', localStateDataForChange);
 
         _updateBettingInputsData(item.name,localStateDataForChange);
         _setLoadpageCounter(_loadpageCounter + 1);
@@ -660,9 +656,6 @@ useEffect(() => {
 
  if(localStateInitData && localStateInitData._3c && localStateInitData._3c.error)
  _3cClass = 'form-control-custom text-end input-error';
-
-
- //console.log('localStateInitData:',localStateInitData);
 
 
 
