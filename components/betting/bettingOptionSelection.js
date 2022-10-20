@@ -410,7 +410,7 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
 
   let inpurError = 0;
 
-  console.log('bettingInputsDataParent:',bettingInputsDataParent);
+  //console.log('bettingInputsDataParent:',bettingInputsDataParent);
 
 
 
