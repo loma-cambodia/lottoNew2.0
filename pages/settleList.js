@@ -55,11 +55,20 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
       if(objectWithData.customer_id != 0){
       dispatch(getLogin(objectWithData));
       }
-
-      let d = new Date();
-      dispatch(getTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0));
-      // dispatch(searchTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
       }, [datauser])
+
+
+
+
+      useEffect(() => {
+        dispatch(getTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0));
+        // dispatch(searchTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
+        }, [])
+  
+
+
+
+
       
      
       let tickets = state && state.tickets && state.tickets.reportsSettleData ? state.tickets.reportsSettleData : [];
