@@ -10,6 +10,7 @@ import { getLogin } from '../../store/actions/authActions';
 import { useDispatch, useSelector } from "react-redux";
 import RejectedBedContainer from './rejectedBedContainer';
 import Modal from 'react-modal';
+import { twoDecimalPlaceWithAmount } from '../Utils';
 
 // let ticketSubmissionData = [
 //   {
@@ -507,13 +508,13 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
                   {apiResponce == 'success' ?
                     (<div className="row">
                       <div className="col-8 col-sm-8"><p>{t('Total')}</p></div>
-                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.total ? MoneyFormatDisplay(resultData.total, 1) : 0}</p></div>
+                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.total ? twoDecimalPlaceWithAmount(resultData.total, 1) : '0.00'}</p></div>
                       <div className="col-8 col-sm-8"><p>{t('Accepted_bet_amount')}</p></div>
-                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.acp_bet ? MoneyFormatDisplay(resultData.acp_bet, 1) : 0}</p></div>
+                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.acp_bet ? twoDecimalPlaceWithAmount(resultData.acp_bet, 1) : '0.00'}</p></div>
                       <div className="col-8 col-sm-8"><p>{t('Rebate')}</p></div>
-                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.rebat ? MoneyFormatDisplay(resultData.rebat, 1) : 0}</p></div>
+                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p>{resultData && resultData.rebat ? twoDecimalPlaceWithAmount(resultData.rebat, 1) : '0.00'}</p></div>
                       <div className="col-8 col-sm-8"><p style={{ fontWeight: 'bold' }}>{t('Net_Amount')}</p></div>
-                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p style={{ fontWeight: 'bold' }}>{resultData && resultData.netAmount ? MoneyFormatDisplay(resultData.netAmount, 1) : 0}</p></div>
+                      <div className="col-8 col-sm-4" style={{ textAlign: 'right' }}><p style={{ fontWeight: 'bold' }}>{resultData && resultData.netAmount ? twoDecimalPlaceWithAmount(resultData.netAmount, 1) : '0.00'}</p></div>
 
                     </div>) : (<div className="row"><div className="text-center top-50"></div><div className="text-center top-50">{apiResponce}</div></div>)}
 
