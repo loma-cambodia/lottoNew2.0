@@ -11,9 +11,13 @@ const Announcement = ({_announcementState, _language}) => {
           <Marquee direction="left" pauseOnHover={true} speed={50}>
             <ul className="list-inline">
               {announcementDataNew.map((item, id) => {
-                    return(
-                        <li key={id} className="list-inline-item"><div dangerouslySetInnerHTML={{ __html: item.content[language] }}></div></li>
-                    );
+                if(item.content && item.content.language){
+                  return(
+                    <li key={id} className="list-inline-item">
+                      <div dangerouslySetInnerHTML={{ __html: item.content[language] }}></div>
+                    </li>
+                  );
+                }
                 })}
             </ul>
           </Marquee> 
