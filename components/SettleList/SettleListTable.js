@@ -237,6 +237,8 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
         let dateValue1 = date.split('-')[0].trim();
         let dateValue2 = date.split('-')[1].trim();
 
+
+        
          let _fromDate = fromDate;
          let _toDate = toDate;
          const d = new Date();
