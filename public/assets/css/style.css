@@ -444,9 +444,6 @@
   font-size: 13px;
   font-family: "Poppins";
   }
-  /* .marque-div{
-    width: 1500px;
-  } */
   .marque-div ul {
   margin: 0;
   padding: 0;
@@ -3091,6 +3088,9 @@ button.applyBtn.btn.btn-sm.btn-primary {
   padding: 3px !important;
 }
 }  */
+.marque-div { 
+  width: calc(100% - 130px); 
+}
 .marque-div ul li:last-child:after {display:none;}
 /* .marquee-container .marquee:last-child { 
   display: none; 
@@ -3099,4 +3099,7 @@ section.announcement {
     background: #f07f00;
     padding: 6px 0 0;
     height: 45px !important;
+}
+.announcement-block-icon { 
+  max-width: 130px; 
 }
