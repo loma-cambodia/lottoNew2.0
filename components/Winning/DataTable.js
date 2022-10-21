@@ -3,7 +3,34 @@ import React, { useMemo } from "react";
 import DataTable from "react-data-table-component";
 import { useTranslation } from "react-i18next";
 
+{/* <td>{currentPage*itemsPerPage + (id + 1)}</td>
+                              <td className="text-start"><a >{item.child_ticket_no}</a></td>
+                              <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
+                              <td className="text-center">{moment(item.ticket.betting_date).format('DD-MM-YYYY')}</td>
+                              <td className="text-start">{item.ticket.draw_number}</td>
+                              
+                              <td className="text-center">{item.lottery_number}</td>
+                              <td className="text-start">{item.game && item.game.name ? item.game.name : ""}</td>
 
+                              <td className="text-center">{item.prize_type}</td>
+
+
+                              <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
+                              <td className="text-center">
+                                {getOddsBig(item.prize_type,item.game_type,item)}
+                                </td>
+                                
+                              <td className="text-center">{getOddsSmall(item.prize_type,item.game_type,item)}</td>
+
+                              <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
+                              <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+
+                              <td className="text-end"><b>{MoneyFormatDisplay(item.winning_amount,1)}</b></td>
+                              <td className={`${(item.winning_amount - item.bet_net_amount) > 0 ? "winningAmount":""} text-end`}>{MoneyFormatDisplay(item.winning_amount - item.bet_net_amount ,1)}</td> */}
 const Table = props => {
     const { t } = useTranslation();
 

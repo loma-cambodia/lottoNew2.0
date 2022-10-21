@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import DataTable from "react-data-table-component";
 import { useTranslation } from "react-i18next";
 
+import moment from 'moment';
 
 const Table = props => {
     const { t } = useTranslation();
@@ -34,7 +35,7 @@ const Table = props => {
         {
             name: t('Betting_Time'),
             sortable: true,
-            cell:row => moment(row.created_at).format('DD-MM-YYYY')
+            cell:row => moment(row.created_at).format('DD-MM-YYYY HH:mm:ss')
         },
         {
             name: t('Draw_Date'),
@@ -49,7 +50,7 @@ const Table = props => {
         {
             name: t('Company'),
             sortable: true,
-            cell:row => game.name ? game.name : ""
+            cell:row => row.game.name ? row.game.name : ""
         },
         {
             name: t('Bet_Number'),

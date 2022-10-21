@@ -457,6 +457,8 @@ const handlePageClick = (event) => {
                                 ))}
                             </tbody>
                         </table>
+                            {/* <Table data={currentItems} _childShowTable={childShowTable}/> */}
+
                     </div>
                     <div class="clearfix d-flex align-items-center justify-content-center">
                         { pageCount > 1 ?
@@ -860,9 +862,7 @@ const handlePageClick = (event) => {
                 </div>
                     :
                     parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
-                    
-                    {/* <Table data={data} _childShowTable={childShowTable}/> */}
-                   
+                                       
             </div>  
         </>
     )
