@@ -444,6 +444,9 @@
   font-size: 13px;
   font-family: "Poppins";
   }
+  .marque-div{
+    width: 1200px;
+  }
   .marque-div ul {
   margin: 0;
   padding: 0;
@@ -3088,10 +3091,7 @@ button.applyBtn.btn.btn-sm.btn-primary {
   padding: 3px !important;
 }
 }  */
-.marque-div ul li:last-child:after {
-  display:none;
-  width: 100%;
-}
+.marque-div ul li:last-child:after {display:none;}
 /* .marquee-container .marquee:last-child { 
   display: none; 
 } */
