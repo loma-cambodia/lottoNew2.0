@@ -24,6 +24,8 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
 
    const state = useSelector(state => state);
 
+   console.log('datauser:',datauser);
+
    
    let language = '';
 

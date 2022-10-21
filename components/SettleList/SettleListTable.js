@@ -38,7 +38,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
     });
 
 
-      const itemsPerPage  = 20;
+      const itemsPerPage  = 10;
  
       const [currentItems, setCurrentItems] = useState(null);
       const [pageCount, setPageCount] = useState(0);

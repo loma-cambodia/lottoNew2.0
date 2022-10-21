@@ -69,19 +69,19 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       let tickets = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
       let ticketsChild = state && state.tickets && state.tickets.ticketsChild ? state.tickets.ticketsChild : [];
       
-      let ticketSlave = tickets.ticket_slave
+      // let ticketSlave = tickets.ticket_slave
         
-      const ticketSearch = []
+      // const ticketSearch = []
       const GetTicketNumber = (member_id,dateRange,ticketNo) => {
        // const number = e.target.value
         dispatch(searchTicketData(member_id,dateRange,ticketNo));
         }
 
-        const handlePageClick = (event) => {
-          const newOffset = (event.selected * itemsPerPage) % Pkglottery1.length;
+        // const handlePageClick = (event) => {
+        //   const newOffset = (event.selected * itemsPerPage) % Pkglottery1.length;
 
-          setItemOffset(newOffset);
-        };
+        //   setItemOffset(newOffset);
+        // };
   return (
     <>
       <Head>
@@ -90,7 +90,7 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       {/* <Header datauser={datauser}/> */}
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <ListBanner/>
-      <section className="page-content custom-padding vh-70">
+      <section className="page-content custom-padding vh-70 background">
     <div className="container">
         {/* <ListFilter/> */}
          <ListTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth} _isLoading={isLoading}/> 
