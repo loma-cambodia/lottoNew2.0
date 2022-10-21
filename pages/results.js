@@ -68,7 +68,7 @@ import Filter from "../components/results/filter";
             </div> */}
             {/*--Mobile Menu-*/}
             <Banner2/>
-            <section className="page-content py-3">
+            <section className="page-content py-3 background">
                 <div className="container vh-70">
                 {/* <Filter _setDate = {setDate}/> */}
                 {/* <Result _initDate={initDate}/> */}

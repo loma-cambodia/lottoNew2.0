@@ -532,7 +532,12 @@
   .heading-part h6 {
   font-family: "Poppins";
   }
-
+  .background {
+    background: url(../images/vector-bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
   .custom-padding {
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -1352,6 +1357,7 @@
   border: 1px solid #bc2263;
   }
   .curved-card {
+    background-color: white;
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 20px 0;
@@ -3097,7 +3103,7 @@ button.applyBtn.btn.btn-sm.btn-primary {
 } */
 section.announcement {
     background: #f07f00;
-    padding: 6px 0 0;
+    padding: 11px 0 0;
     height: 45px !important;
 }
 .announcement-block-icon { 

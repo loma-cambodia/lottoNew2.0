@@ -17,7 +17,8 @@ const Announcement = ({_announcementState, _language}) => {
                 if(item.content && item.content[language]){
                   return(
                     <li key={id} className="list-inline-item">
-                      <div dangerouslySetInnerHTML={{ __html: item.content[language] }}></div>
+                      {/* <div dangerouslySetInnerHTML={{ __html: item.content[language] }}></div> */}
+                      <li key={id} className="list-inline-item">{item.content[language].replace(/(<([^>]+)>)/ig, '')}</li>
                     </li>
                   );
                 }
