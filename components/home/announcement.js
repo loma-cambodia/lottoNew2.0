@@ -9,7 +9,7 @@ const Announcement = ({_announcementState, _language}) => {
       if(announcementDataNew.length > 0){
         return (
           <Marquee direction="left" pauseOnHover={true} speed={50}>
-            <ul className="list-inline">
+            <ul className="list-inline " >
               {announcementDataNew.map((item, id) => {
 
                // console.log('announcementDataNew:item:',item);
@@ -19,6 +19,8 @@ const Announcement = ({_announcementState, _language}) => {
                      content = content.replace( /(<([^>]+)>)/ig, '');
                   return(
                     <li key={id} className="list-inline-item">
+                      {/* <div dangerouslySetInnerHTML={{ __html: item.content[language] }}></div> */}
+                      {/* <li key={id} className="list-inline-item">{item.content[language].replace(/(<([^>]+)>)/ig, '')}</li> */}
                       <div dangerouslySetInnerHTML={{ __html: content }}></div>
                     </li>
                   );
@@ -33,8 +35,8 @@ const Announcement = ({_announcementState, _language}) => {
       <>
         <section className="news-wrapper announcement " id="myDIV">
           <div className="container">
-              <div className=" d-inline-flex align-item-center" >
-                  <div className="announcement-block-icon">
+              <div className=" d-flex align-items-center" >
+                  <div className="announcement-block-icon" style={{zIndex:'10'}}>
                       <div className="annoncement-icon">
                           <span className="icon-img-announcement">
                             <img src="assets/images/icons/announcement-icon-white.png" alt="" className="img-fluid"/>

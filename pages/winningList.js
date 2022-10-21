@@ -170,7 +170,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <WinngListBanner/>
-      <section className="page-content custom-padding vh-70">
+      <section className="page-content custom-padding background vh-70">
         <div className="container">
         <Filter _setFilterParams={setFilterParams} />
 
