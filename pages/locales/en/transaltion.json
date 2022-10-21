@@ -268,7 +268,7 @@
     "30th":"30TH",
     "31st":"31ST",
 
-    "merchant has disabled":"merchant has disabled",
-    "market has disabled":"market has disabled"
+    "merchant has disabled":"Merchant is temporary inactivated. Please contact customer service.",
+    "market has disabled":"Market has closed. No bet is allowed"
 
 }

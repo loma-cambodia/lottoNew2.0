@@ -37,7 +37,6 @@ function MyApp({ Component, pageProps,user }) {
   const [isLoading, setLoading] = useState(false);
   const [updateSessionData, setUpdateSessionData]  =  useState(1);
   useEffect(() => {
-  //  setLoading(true)
     fetch('/api/user')
       .then((res) => res.json())
       .then((data) => {
@@ -46,14 +45,7 @@ function MyApp({ Component, pageProps,user }) {
 
         newData = setUserDataFormat(data);
       }
-       // console.log('datadata:',data);
-      //  console.log('newData:',{user:{data:newData}});
-      //setData(data)
         setData({user:{data:newData}})
-     //   setLoading(false)
-       // if(Object.keys(data).length != 0){
-         // localStorage.setItem("name", JSON.stringify(data.user));
-       // }
       })
   }, [updateSessionData])
 
@@ -61,26 +53,32 @@ function MyApp({ Component, pageProps,user }) {
   if (!data) return <p>{t('no_profile_data')}</p>
   if(Object.keys(data.user.data).length === 0){
     return (
-      <Notfound />
+      <Notfound action={'0'} />
     )
   }else{
-    return (
-      <>
-        
-        <NextNProgress
-          options={{ showSpinner: false }}
-          color="#bc2263"
-          startPosition={0.3}
-          stopDelayMs={20000000000}
-          height={3}
-          showOnShallow={true}
-        />
-        <Provider store={store}>
-        <Component {...pageProps} datauser={data}  updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
-        </Provider>
-      </> 
-    );
+    if(data.user.data.merchantActive === 0 || data.user.data.merchantActive == 'Disabled'){
+      return (
+        <Notfound _action={'1'} datauser={data} />
+      )
+    }else{
+      return (
+        <>
+          
+          <NextNProgress
+            options={{ showSpinner: false }}
+            color="#bc2263"
+            startPosition={0.3}
+            stopDelayMs={20000000000}
+            height={3}
+            showOnShallow={true}
+          />
+          <Provider store={store}>
+          <Component {...pageProps} datauser={data}  updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
+          </Provider>
+        </> 
+      );
     }
+  }
 }
 export default wrapper.withRedux(MyApp);
 
