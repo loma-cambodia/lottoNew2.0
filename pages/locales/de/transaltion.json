@@ -265,6 +265,6 @@
     "30th":"三十号",
     "31st":"三十一号",
 
-    "merchant has disabled":"商户已禁用",
-    "market has disabled":"盘口已禁用"
+    "merchant has disabled":"商户暂时停用，请联系客服",
+    "market has disabled":"盘口已经关闭.  无法下注"
 }
