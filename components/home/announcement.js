@@ -15,9 +15,11 @@ const Announcement = ({_announcementState, _language}) => {
                // console.log('announcementDataNew:item:',item);
               //  console.log('announcementDataNew:language:',item.content[language]);
                 if(item.content && item.content[language]){
+                     let content = item.content[language];
+                     content = content.replace( /(<([^>]+)>)/ig, '');
                   return(
                     <li key={id} className="list-inline-item">
-                      <div dangerouslySetInnerHTML={{ __html: item.content[language] }}></div>
+                      <div dangerouslySetInnerHTML={{ __html: content }}></div>
                     </li>
                   );
                 }
