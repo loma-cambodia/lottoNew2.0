@@ -45,6 +45,7 @@ export const setUserDataFormat = (data, fromWindow = 1) => {
   newData.customer_id = getData && getData.customer_id ? getData.customer_id : 0;
   newData.name = getData & getData.name  ? getData.name : "";
   newData.merchant_id = getData && getData.merchant_id ? getData.merchant_id : 0; 
+  newData.merchantActive = getData && getData.merchant && getData.merchant.status ? getData.merchant.status : 0; 
   newData.language = getData && getData.language  && getData.language.locale ? {locale:getData.language.locale, name:getData.language.name} : {locale:'', name:''};
   newData.wallet = getData && getData.wallet && getData.wallet.amount ? {amount:getData.wallet.amount, name:getData.language.name} : {amount:'', name:''} ;
   return newData;
