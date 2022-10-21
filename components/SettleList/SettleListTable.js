@@ -872,7 +872,7 @@ const data = [
       id: 1,
       name: "Leanne Graham",
       username: "Bret",
-      email: "Sincere@april.biz",
+      email: 3465,
       address: {
         street: "Kulas Light",
         suite: "Apt. 556",
@@ -884,7 +884,7 @@ const data = [
         }
       },
       phone: "1-770-736-8031 x56442",
-      website: "hildegard.org",
+      website: 456,
       company: {
         name: "Romaguera-Crona",
         catchPhrase: "Multi-layered client-server neural-net",
@@ -896,7 +896,7 @@ const data = [
       id: 2,
       name: "Ervin Howell",
       username: "Antonette",
-      email: "Shanna@melissa.tv",
+      email: 456,
       address: {
         street: "Victor Plains",
         suite: "Suite 879",

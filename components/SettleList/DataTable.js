@@ -7,121 +7,130 @@ import { useTranslation } from "react-i18next";
 const Table = props => {
     const { t } = useTranslation();
 
+
                                 
-  const columns = [
-    {
-        name: t('No'),
-        selector: "id",
-        sortable: true,
-        style: {
-            backgroundColor: 'green',
+                                  
+    const customStyles ={
+        rows: {
+            style: {
+                fontSize: '14px',
+            },
         },
-      },
-      {
-        name: t('Detail_Number'),
-        selector: "id",
-        sortable: true,
-      },
-      {
-        name: t('Betting_Time'),
-        selector: "id",
-        sortable: true,
-      },
-      {
-        name: t('game'),
-        selector: "id",
-        sortable: true,
-      },
-      {
-        name: t('Company'),
-        selector: "id",
-        sortable: true,
-      },
-      {
-        name: t('Bet_Number'),
-        selector: "id",
-        sortable: true,
-      },
-    {
-      name: t('Big'),
-      selector: "name",
-      sortable: true,
-    },
-    {
-      name: t('Small_Bet'),
-      selector: "email",
-      sortable: true,
-      cell: row =>
-      <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => props._childShowTable(row.id,'forDesk','settledList')}>
-      {row.email}
-  </span>
-    },
-    {
-      name: "3A",
-      selector: "website",
-      sortable: true
-    },
-    {
-      name: "3C",
-      selector: "company.name",
-      sortable: true,
-    },
-    {
-      name: t('Total'),
-      selector: row => row.address.city,
-      sortable: true,
-    },
-    {
-        name: t('Rebate'),
-        selector: row => row.id + row.address.city,
-        sortable: true,
-
-    },
-    {
-        name: t('Net'),
-        selector: row => row.id + row.address.city,
-        sortable: true,
-
-    },
-    {
-        name: t('winning'),
-        selector: row => row.id + row.address.city,
-        sortable: true,
-
-    },
-    {
-        name: t('Winning_Loss'),
-        selector: row => row.id + row.address.city,
-        sortable: true,
-        conditionalCellStyles: [
-            {
-                when: row => row.address.city < 300,
-                style: {color:"green",fontWeight:"bold"}
-            },
-            {
-                when: row => row.address.city >= 300 && row.address.city < 400,
-                style: {color:"red",fontWeight:"bold"},
-            },
-            {
-                when: row => row.address.city >= 400,
-                style: {color:"black",fontWeight:"bold"},
-            },
-                                ],
-
     }
-  ];
+    const columns = [
+        {
+            name: 'No',
+            cell: (row, index) => index+1,
+        },
+        {
+            name: t('Detail_Number'),
+            selector: "child_ticket_no",
+            sortable: true,
+            cell: row =>
+                    <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => props._childShowTable(row.id,'forDesk','settledList')}>
+                    {row.address.city}
+                </span>
+        },
+        {
+            name: t('Betting_Time'),
+            sortable: true,
+            cell:row => moment(row.created_at).format('DD-MM-YYYY')
+        },
+        {
+            name: t('Draw_Date'),
+            sortable: true,
+            cell:row => moment(row.ticket.draw_date).format('DD-MM-YYYY')
+        },
+        {
+            name: t('game'),
+            selector: "game_type",
+            sortable: true,
+        },
+        {
+            name: t('Company'),
+            sortable: true,
+            cell:row => game.name ? game.name : ""
+        },
+        {
+            name: t('Bet_Number'),
+            selector: "lottery_number",
+            sortable: true,
+        },
+        {
+        name: t('Big'),
+        selector: "big_bet_amount",
+        sortable: true,
+        },
+        {
+        name: t('Small_Bet'),
+        selector: "small_bet_amount",
+        sortable: true,
+        },
+        {
+        name: "3A",
+        selector: "three_a_amount",
+        sortable: true
+        },
+        {
+        name: "3C",
+        selector: "three_c_amount",
+        sortable: true,
+        },
+        {
+        name: t('Total'),
+        selector: "bet_amount",
+        sortable: true,
+        },
+        {
+            name: t('Rebate'),
+            selector: "rebate_amount",
+            sortable: true,
+
+        },
+        {
+            name: t('Net'),
+            selector: "bet_net_amount",
+            sortable: true,
+
+        },
+        {
+            name: t('winning'),
+            selector: "winning_amount",
+            sortable: true,
+
+        },
+        {
+            name: t('Winning_Loss'),
+            selector: row => row.winning_amount + row.bet_net_amount,
+            sortable: true,
+            conditionalCellStyles: [
+                {
+                    when: row => row.winning_amount + row.bet_net_amount > 0,
+                    style: {color:"green",fontWeight:"bold"}
+                },
+                {
+                    when: row => row.winning_amount + row.bet_net_amount <= 0,
+                    style: {color:"red",fontWeight:"bold"},
+                },
+                                    ],
+
+        }
+    ];
   const paginationComponentOptions = {
+    // paginationPerPage: 20,
     noRowsPerPage: true,
     rangeSeparatorText: '/',
 };
   return (
     <DataTable
+        paginationPerPage = {20}
       columns={columns}
       data={props.data}
-      defaultSortField="name"
+    //   defaultSortField="name"
       striped
       pagination
-      paginationComponentOptions={paginationComponentOptions}    
+      paginationComponentOptions={paginationComponentOptions}
+      customStyles={customStyles}    
     />
   );
 };
