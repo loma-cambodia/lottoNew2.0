@@ -329,7 +329,9 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                     className="pagination"
               /> : null } 
             </div>
-                </>) : (<>
+                </>) 
+                : 
+                (<>
                   <div className='alert alert-warning'>
 
                     <h3 className='text-center'>
@@ -346,7 +348,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
             
         </div>
       </section>
-      
+
       <div className={styles.device_detect_for_desktop}> 
         <Footer/>
       </div>
