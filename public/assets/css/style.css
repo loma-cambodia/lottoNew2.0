@@ -169,9 +169,15 @@
   padding: 5px;
   line-height: 10px;
   }
+  .right-part-menu .right-part-list li .user-details .reload-icon span :hover{
+    transform: rotate(90deg);
+    transition: 'transform 150ms ease';
+    box-shadow: 0px 5px 15px 5px rgba(255, 0, 106, 0.555);
+    }
   .right-part-menu .right-part-list li .user-details .reload-icon span img {
   width: 100%;
   }
+  
  
   .badge-yellow {
   color: #000;
@@ -222,7 +228,7 @@
   }
   .play-lottery-btn:hover {
       color: #000;
-      box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
+      box-shadow: 0px 8px 9px 0px rgba(253, 208, 5, 0.726);
   }
   .dropdown .lanugae-selector .lang-flag {
   width: 25px;
@@ -3103,12 +3109,49 @@ button.applyBtn.btn.btn-sm.btn-primary {
 } */
 section.announcement {
     background: #f07f00;
-    padding: 11px 0 0;
+    padding: 5px 0 0;
     height: 45px !important;
 }
 .announcement-block-icon { 
   max-width: 130px; 
 }
+
+/* invesment module */  
+  
+.back-section {  
+  height: auto;  
+  padding: 30px;  
+  position: relative;  
+}  
+.back-section:before {  
+  height: 100%;  
+    width: 90%;  
+    content: '';  
+    border: 1px solid #ddd;  
+    border-radius: 15px;  
+    background: #fff;  
+    left: 0;  
+    top: 0;  
+    box-shadow: 1px 1px 5px 7px rgb(0 0 0 / 8%);  
+    position: absolute;  
+    z-index: 0;  
+}  
+.back-section .row {  
+  position: relative;  
+  z-index: 1;  
+}  
+.absolute-div {  
+  background: #c22361;  
+  padding: 30px;  
+  box-sizing: border-box;  
+  border-radius: 15px;  
+  box-shadow: 0px 0px 18px 8px rgb(0 0 0 / 20%);  
+}  
+  
+@media (max-width:574.999px) {  
+  .back-section:before {  
+      width: 100%;  
+  }  
 .hbotQl {
   text-overflow: clip!important;
   white-space: normal!important;
@@ -3123,4 +3166,5 @@ section.announcement {
 }
 .bQdYbR{
   min-width: fit-content!important;
+}
 }
