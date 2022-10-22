@@ -124,6 +124,17 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
       )
     }
   }
+
+
+  const logoutUser = (member_id) => {
+    fetch(`/api/logout?member_id=${member_id}`)
+    .then((res) => { let response = res.json(); 
+      window.location.reload();
+  })
+  }
+
+
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
 
@@ -226,6 +237,13 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                               </DropdownMenu>
                             </Dropdown>
                           </div>
+                          </li>
+
+                          <li className="dropdown position-relative">
+                          <button className="btn btn-danger btn-sm" type="button" onClick={() => logoutUser(auth && auth.auth && auth.auth.id ? auth.auth.id  : 0) } style={{padding:'1px 4px'}}>
+                          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                          </button>
+
                           </li>
 
 
