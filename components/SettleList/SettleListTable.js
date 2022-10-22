@@ -52,8 +52,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
       const [isLoading, setIsLoading] = useState(true);
 
 
-
-
       useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(items.slice(itemOffset, endOffset));
@@ -458,6 +456,7 @@ const handlePageClick = (event) => {
                                 ))}
                             </tbody>
                         </table>
+
                     </div>
                     <div class="clearfix d-flex align-items-center justify-content-center">
                         { pageCount > 1 ?
@@ -861,6 +860,7 @@ const handlePageClick = (event) => {
                 </div>
                     :
                     parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
+                                       
             </div>  
         </>
     )
