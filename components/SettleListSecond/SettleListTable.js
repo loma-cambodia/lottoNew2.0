@@ -17,6 +17,10 @@ const API_BASE_URL = process.env.apiUrl;
 const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_isLoading}) => {
     
     let ticket = _tickets;
+
+
+
+    console.log('ListTable:ticket:',ticket);
     let auth = _auth;
     const items = _tickets;
     let loading =_isLoading;
@@ -49,7 +53,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
       const [filterGamesName, setFilterGamesName] = useState({ value: '', label: t('All') });
       const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All')  });
       const [selectedticketId, setSelectedticketId] = useState('');
-      const [isLoading, setIsLoading] = useState(true);
+      const [isLoading, setIsLoading] = useState(false);
 
 
 
@@ -706,12 +710,12 @@ const handlePageClick = (event) => {
         $('.hideAndShowForMobileView').toggle("slide");
     }
 
-    useEffect(() => {
-        change();
-        if(filterGamesName.value === '') {
-            setFilterGamesName({ value: '', label: t('All') });
-        }
-      },[t])
+    // useEffect(() => {
+    //     change();
+    //     if(filterGamesName.value === '') {
+    //         setFilterGamesName({ value: '', label: t('All') });
+    //     }
+    //   },[t])
 
       useEffect(() =>{
         change();

@@ -43,7 +43,7 @@ export const setUserDataFormat = (data, fromWindow = 1) => {
   newData.id = getData && getData.id ? getData.id : 0;
   newData.customer_name = getData && getData.customer_name ? getData.customer_name : "";
   newData.customer_id = getData && getData.customer_id ? getData.customer_id : 0;
-  newData.name = getData & getData.name  ? getData.name : "";
+  newData.name = getData && getData.name  ? getData.name : "";
   newData.merchant_id = getData && getData.merchant_id ? getData.merchant_id : 0; 
   newData.merchantActive = getData && getData.merchant && getData.merchant.status ? getData.merchant.status : 0; 
   newData.language = getData && getData.language  && getData.language.locale ? {locale:getData.language.locale, name:getData.language.name} : {locale:'', name:''};
