@@ -15,7 +15,6 @@ import moment from 'moment';
 import ReactPaginate from 'react-paginate';
 
 import Filter from "../components/Winning/filter";
-import Table from "../components/Winning/DataTable";
 
 
 export default function WinningList({datauser,updateSessionData, setUpdateSessionData}) {
@@ -349,7 +348,6 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
             
         </div>
       </section>
-                                  <Table data={winningList}/>
 
       <div className={styles.device_detect_for_desktop}> 
         <Footer/>

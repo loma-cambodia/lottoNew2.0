@@ -9,8 +9,22 @@ const Table = props => {
     const { t } = useTranslation();
 
 
-                                
-                                  
+    const MoneyFormatDisplay = (theInput, getCase) => {
+        let getInput = theInput;
+        if(getCase == 1){
+         if(getInput){
+
+           let newStr = theInput.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+           newStr = parseFloat(newStr).toFixed(2);
+           return newStr;
+
+         }else 
+           return '0.00';
+        }else{
+           return parseFloat(lottery.slave_net_amount).toFixed(2)
+        }
+     };
+                                 
     const customStyles ={
         rows: {
             style: {
@@ -20,16 +34,16 @@ const Table = props => {
     }
     const columns = [
         {
-            name: 'No',
+            name: t('No'),
             cell: (row, index) => index+1,
         },
         {
-            name: t('Detail_Number'),
+            name: t('Ticket_No'),
             selector: "child_ticket_no",
             sortable: true,
             cell: row =>
                     <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => props._childShowTable(row.id,'forDesk','settledList')}>
-                    {row.address.city}
+                    {row.child_ticket_no}
                 </span>
         },
         {
@@ -43,7 +57,7 @@ const Table = props => {
             cell:row => moment(row.ticket.draw_date).format('DD-MM-YYYY')
         },
         {
-            name: t('game'),
+            name: t('Bet_Number'),
             selector: "game_type",
             sortable: true,
         },
@@ -51,31 +65,6 @@ const Table = props => {
             name: t('Company'),
             sortable: true,
             cell:row => row.game.name ? row.game.name : ""
-        },
-        {
-            name: t('Bet_Number'),
-            selector: "lottery_number",
-            sortable: true,
-        },
-        {
-        name: t('Big'),
-        selector: "big_bet_amount",
-        sortable: true,
-        },
-        {
-        name: t('Small_Bet'),
-        selector: "small_bet_amount",
-        sortable: true,
-        },
-        {
-        name: "3A",
-        selector: "three_a_amount",
-        sortable: true
-        },
-        {
-        name: "3C",
-        selector: "three_c_amount",
-        sortable: true,
         },
         {
         name: t('Total'),
