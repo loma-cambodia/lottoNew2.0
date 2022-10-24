@@ -60,6 +60,8 @@ if(objectWithData.customer_id != 0){
       let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
       
       let specialDrawState = state && state.home && state.home.specialDrawDetails ? state.home.specialDrawDetails : '';
+      let calculatorOdds = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : {};
+      console.log("transactions",calculatorOdds)
   return (
     <>
        <Head> 
@@ -68,7 +70,7 @@ if(objectWithData.customer_id != 0){
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 
      
-      <InvestmentCalculator/>
+      <InvestmentCalculator _calculatorOdds={calculatorOdds}/>
      
       
       <div className={styles.device_detect_for_desktop}> 
