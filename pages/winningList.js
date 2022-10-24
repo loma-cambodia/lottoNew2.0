@@ -28,12 +28,13 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
   const [active, setActive] = useState(false);
   const [winningList, setWinningList] = useState([]);
 
-  const itemsPerPage  = 10;
+  const itemsPerPage  = 20;
 
   const [pageCount, setPageCount] = useState(0);
   const [seletedPage, setSeletedPage] = useState(0);
   const [currentItems, setCurrentItems] = useState(null);
   const [itemOffset, setItemOffset] = useState(0);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const [filterParams, setFilterParams] = useState({});
   const state = useSelector(state => state);
@@ -56,27 +57,22 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
  };
 
   const getWinningList = () =>{
+    setIsLoading(true); 
 
     dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0 ,filterParams? filterParams:'', response =>{
 
-        if(response.statusCode  == 201  || response.statusCode  == 200 ){
+        if(response.statusCode  == 201  || response.statusCode  == 200 )
+        {
 
-        if(response.statusCode == 200){
+          if(response.statusCode == 200)
+          {            
 
-            // setWinningList(response.data.data.data)
-            
-
-          setWinningList(response.data.data.data)
-          
-          // setWinningList(data.data)
-
-            
-        }else {
-
+            setWinningList(response.data.data.data)
+            setIsLoading(false); 
+          }
         }
-        }else {
-        // setIsLoading(false);
-    }
+        else
+          console.log(response.message)
 }))
 }
 
@@ -97,11 +93,6 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
 
       
       useEffect(() => {
-      //   dispatch({
-      //     type: "GET_LOGIN_DETAILS",
-      //     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
-      // })
-
       let objectWithData = {
         "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
         "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
@@ -179,13 +170,16 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <WinngListBanner/>
-      <section className="page-content custom-padding vh-70">
+      <section className="page-content custom-padding background vh-70">
         <div className="container">
         <Filter _setFilterParams={setFilterParams} />
 
             <div className={`table-responsive my-3`}  >
-              <div className={styles.device_detect_for_mobile}>
-                {winningList.length > 0 ? (<>
+              <div className={styles.device_detect_for_mobile} style={{textAlign:'center'}}>
+                {isLoading ? 
+                  <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="60" />
+                  :
+                  winningList.length > 0 ? (<>
                 
                   <table className="mob-table mb-3">
                       <thead>
@@ -249,9 +243,11 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                 </>) }
                   
               </div>
-              <div className={styles.device_detect_for_desktop}>
-                
-                {winningList.length > 0 ? (<>
+              <div className={styles.device_detect_for_desktop} style={{textAlign: 'center'}}>
+              {isLoading ?                   
+                <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="60" />
+              :
+                winningList.length > 0 ? (<>
                   <table className="table small table-bordered align-middle table-sm">
                   <thead>
                       <tr >
@@ -333,14 +329,17 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
                     className="pagination"
               /> : null } 
             </div>
-                </>) : (<>
+                </>) 
+                : 
+                (<>
                   <div className='alert alert-warning'>
-                        
+
                     <h3 className='text-center'>
                     {t('no_data_found')}
                     </h3>
                     
-                </div></>)}
+                </div></>)
+                }
 
                 
               </div>
@@ -349,7 +348,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
             
         </div>
       </section>
-      
+
       <div className={styles.device_detect_for_desktop}> 
         <Footer/>
       </div>

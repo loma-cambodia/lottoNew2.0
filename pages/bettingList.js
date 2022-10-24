@@ -20,6 +20,7 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
 
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const [active, setActive] = useState(false);
 
@@ -45,7 +46,6 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
 
       useEffect(() => {
 
-      //  console.log('33333333333333333333333');
       //   dispatch({
       //     type: "GET_LOGIN_DETAILS",
       //     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
@@ -62,26 +62,26 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       dispatch(getLogin(objectWithData));
       }
       let d = new Date();
-      dispatch(searchTicketData(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''))
+      dispatch(searchTicketData(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''),setIsLoading(false))
       }, [datauser])
       
 
       let tickets = state && state.tickets && state.tickets.tickets ? state.tickets.tickets : [];
       let ticketsChild = state && state.tickets && state.tickets.ticketsChild ? state.tickets.ticketsChild : [];
-
-      let ticketSlave = tickets.ticket_slave
       
-      const ticketSearch = []
+      // let ticketSlave = tickets.ticket_slave
+        
+      // const ticketSearch = []
       const GetTicketNumber = (member_id,dateRange,ticketNo) => {
        // const number = e.target.value
         dispatch(searchTicketData(member_id,dateRange,ticketNo));
         }
 
-        const handlePageClick = (event) => {
-          const newOffset = (event.selected * itemsPerPage) % Pkglottery1.length;
+        // const handlePageClick = (event) => {
+        //   const newOffset = (event.selected * itemsPerPage) % Pkglottery1.length;
 
-          setItemOffset(newOffset);
-        };
+        //   setItemOffset(newOffset);
+        // };
   return (
     <>
       <Head>
@@ -90,10 +90,10 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       {/* <Header datauser={datauser}/> */}
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <ListBanner/>
-      <section className="page-content custom-padding vh-70">
+      <section className="page-content custom-padding vh-70 background">
     <div className="container">
         {/* <ListFilter/> */}
-         <ListTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth}/> 
+         <ListTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth} _isLoading={isLoading}/> 
 
 
 

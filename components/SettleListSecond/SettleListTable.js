@@ -12,11 +12,17 @@ import Select from 'react-select';
 
 import styles from '../../styles/Home.module.css';
 import $ from 'jquery'; 
+import Table from "./DataTable";
+import Table_Child from "./DataTablewinning";
 
 const API_BASE_URL = process.env.apiUrl;
 const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_isLoading}) => {
     
     let ticket = _tickets;
+
+
+
+    console.log('ListTable:ticket:',ticket);
     let auth = _auth;
     const items = _tickets;
     let loading =_isLoading;
@@ -49,7 +55,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
       const [filterGamesName, setFilterGamesName] = useState({ value: '', label: t('All') });
       const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All')  });
       const [selectedticketId, setSelectedticketId] = useState('');
-      const [isLoading, setIsLoading] = useState(true);
+      const [isLoading, setIsLoading] = useState(false);
+
+
 
 
       useEffect(() => {
@@ -413,50 +421,7 @@ const handlePageClick = (event) => {
                         </table>
                     </div>
                     <div className={styles.device_detect_for_desktop}>
-                        <table class="table small table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>{t('No')}</th>
-                                    <th class="text-center">{t('Ticket_No')}</th>
-                                    <th class="text-center">{t('Betting_Time')}</th>
-                                    <th class="text-center">{t('Draw_Date')}</th>
-                                    <th class="text-center">{t('Draw_Id')}</th>
-                                    <th class="text-center">{t('Bet_Number')}</th>
-                                    <th class="text-center">{t('Company')}</th>
-                                    <th class="text-end">{t('Total')}</th>
-                                    <th class="text-end">{t('Rebate')}</th>
-                                    <th class="text-end">{t('Net')}</th>
-                                    <th class="text-end">{t('winning')}</th>
-                                    <th class="text-end">{t('Winning_Loss')}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {currentItems && currentItems.map((item,i) =>(
-                                    <tr key={i}>
-                                        <td>{currentPage*itemsPerPage + (i + 1)}</td>
-                                        <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')} >{item.ticket_no}</span></td>
-                                        <td class="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
-                                        <td class="text-center">{moment(item.draw_date).format('DD-MM-YYYY')}</td>
-                                        <td class="text-center">{item.draw_number}</td>
-                                        <td class="text-center">{item.bet_number}</td>
-                                        <td class="text-center">
-                                        {
-                                        item.games && item.games.map((item,i) =>(
-                                            item.abbreviation
-                                        )
-                                        ) 
-                                        }
-                                    </td>
-                                        <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
-                                        <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
-                                        <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
-                                        <td class="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
-                                        <td class="text-end"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-
+                                                    <Table data={currentItems} _childShowTable={childShowTable}/>
                     </div>
                     <div class="clearfix d-flex align-items-center justify-content-center">
                         { pageCount > 1 ?
@@ -629,6 +594,8 @@ const handlePageClick = (event) => {
                             ): null}
                         </tbody>
                     </table>
+                    <Table_Child data={tickets}/>
+
                 </div>
                 </>
             );
@@ -705,12 +672,12 @@ const handlePageClick = (event) => {
         $('.hideAndShowForMobileView').toggle("slide");
     }
 
-    useEffect(() => {
-        change();
-        if(filterGamesName.value === '') {
-            setFilterGamesName({ value: '', label: t('All') });
-        }
-      },[t])
+    // useEffect(() => {
+    //     change();
+    //     if(filterGamesName.value === '') {
+    //         setFilterGamesName({ value: '', label: t('All') });
+    //     }
+    //   },[t])
 
       useEffect(() =>{
         change();
@@ -860,7 +827,6 @@ const handlePageClick = (event) => {
                 </div>
                     :
                     parentAction ? <ShowTableDataParent tickets={ticket} /> : <ShowTableDataChild tickets={_ticketsChild} /> }
-                                       
             </div>  
         </>
     )

@@ -75,7 +75,6 @@ const HomeSlider = ({_specialDrawState,datauser,_auth, updateSessionData, setUpd
         }
     }
 
-    // console.log('specialDrawState',specialDrawState);
 
     return (
       <>

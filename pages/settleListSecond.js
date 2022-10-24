@@ -8,16 +8,20 @@ import styles from '../styles/Home.module.css'
 import {getTicketDataSettled,searchTicketData, searchTicketDataSettled} from '../store/actions/reportActions';
 import {getLogin} from '../store/actions/authActions';
 import ReactPaginate from 'react-paginate';
+import dataDummy from '../components/SettleListSecond/dataDummy';
 
-import SettleTable from '../components/SettleList/SettleListTable';
-import SettleBanner from '../components/SettleList/BannerSettle';
-export default function SettleList({datauser,updateSessionData, setUpdateSessionData}) {
+import SettleTable from '../components/SettleListSecond/SettleListTable';
+import SettleBanner from '../components/SettleListSecond/BannerSettle';
+export default function SettleListSecond({datauser,updateSessionData, setUpdateSessionData}) {
 
   const [pageCount, setPageCount] = useState(0);
 
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
+
+
+  console.log('dataDummy:',dataDummy);
 
   const [active, setActive] = useState(false);
   const state = useSelector(state => state);
@@ -71,7 +75,11 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
 
       
      
-      let tickets = state && state.tickets && state.tickets.reportsSettleData ? state.tickets.reportsSettleData : [];
+      //let tickets = state && state.tickets && state.tickets.reportsSettleData ? state.tickets.reportsSettleData : [];
+
+      let tickets = dataDummy ? dataDummy : [];
+
+      
       let ticketsChild = state && state.tickets && state.tickets.reportsSettleChildData ? state.tickets.reportsSettleChildData : [];
 
       let ticketSlave = tickets.ticket_slave

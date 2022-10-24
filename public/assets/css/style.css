@@ -191,6 +191,7 @@
   rgb(247, 234, 120) 100%
   );
   }
+  
   .play-lottery-btn {
   display: inline-block;
   color: #000;
@@ -512,8 +513,8 @@
       display: inherit;
   }
   .news-wrapper.short.shrink .announcement-block-icon, .news-wrapper.short .announcement-block-icon {
-      width: 70px;
-      padding: 10px 10px;
+    width: 66px;
+    padding: 6px 0 0;
       background: rgb(241 131 40);
   }
   .news-wrapper.short .marque-div {
@@ -531,7 +532,12 @@
   .heading-part h6 {
   font-family: "Poppins";
   }
-
+  .background {
+    background: url(../images/vector-bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
   .custom-padding {
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -1369,6 +1375,7 @@
   border: 1px solid #bc2263;
   }
   .curved-card {
+    background-color: white;
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 20px 0;
@@ -1918,8 +1925,17 @@
   width: 100%;
   }
 
-
-
+  .btn-custom-curve-disabled {
+    border: 1px solid #bc2263;
+  padding: 10px 20px;
+  text-align: center;
+  background-color: #fff;
+  color: #bc2263;
+  text-transform: uppercase;
+  border-radius: 20px 0;
+  transition: 0.5s;
+    width: 100%;
+    }
   .btn-custom-curve1:hover,
   .btn-custom-curve1:focus,
   .btn-custom-curve1:active,
@@ -3096,7 +3112,33 @@ button.applyBtn.btn.btn-sm.btn-primary {
   padding: 3px !important;
 }
 }  */
+.marque-div { 
+  width: calc(100% - 130px); 
+}
 .marque-div ul li:last-child:after {display:none;}
-.marquee-container .marquee:last-child { 
+/* .marquee-container .marquee:last-child { 
   display: none; 
+} */
+section.announcement {
+    background: #f07f00;
+    padding: 11px 0 0;
+    height: 45px !important;
+}
+.announcement-block-icon { 
+  max-width: 130px; 
+}
+.hbotQl {
+  text-overflow: clip!important;
+  white-space: normal!important;
+}
+.beUiVL{
+  font-size: 14px!important;
+  font-weight: bold!important;
+}
+.dtqzBx div{
+  text-overflow: clip!important;
+  white-space: normal!important;
+}
+.bQdYbR{
+  min-width: auto!important;
 }
