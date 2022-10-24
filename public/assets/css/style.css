@@ -3350,7 +3350,7 @@ input.daterangepickerstyle-sm {
   width: 40px !important;
   height: 40px !important;
   text-align: center;
-  color: #bc2263 !important;
+  color: #bc2263;
   font-weight: bold !important;
 }
 .btn-bordered-theme:hover {

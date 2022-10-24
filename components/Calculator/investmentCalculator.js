@@ -262,7 +262,8 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
     useEffect(()=>{
         isEveryInputEmpty()
         isEveryInputFill()
-        console.log("empty fields: ", clear)
+        combine()
+        console.log("calculateData:",initData)
     },[initData,gameList])
     return (
       <>
@@ -395,13 +396,13 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                     
                                     <div className='form-group'>
                                     <div className='row'>
-                                    <div className='col-md-6'>
+                                    <div className=''>
                                         <div class="clearfix text-center"><span disabled={clear} role="button" className={`${clear ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> clear? clearInputs():''} >CLEAR</span></div>
                                     </div>
-                                    <div className='col-md-6'>
+                                    {/* <div className='col-md-6'>
                                         <div class="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
                                         >Calculate</span></div>
-                                    </div>
+                                    </div> */}
                                 </div>
                                     </div>
                                 </div>
