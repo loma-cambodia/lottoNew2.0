@@ -10,19 +10,6 @@ let ttl = 60 + 32400 // 9 hours
 async function handler(req, res) {
   const body = req.body;
 
-  ///   const objectWithData = {
-  //     "customer_name": "Sushil Gupta",
-  //     "email": "loma123@gmail.coma",
-  //     "customer_id": 1,
-  //     "merchant_id": 11
-  //       "language": 'en'
-  // }
-
-
-
-  
-
-   //console.log('isLocalhost:',isLocalhost);
    let objectWithData = {};
    if(isLocalhost){
     objectWithData.customer_name = "Dileep Maurya";
@@ -41,27 +28,6 @@ async function handler(req, res) {
     objectWithData.language = req.body.language;
    }
 
-//return false;
-     
-  
-
-    // const objectWithData = {
-    //            "customer_name": "Atul",
-    //          "customer_id":  1403,
-    //         "merchant_id":  1,
-    //         "language":  'en',
-    //     }
-
-  
-
-  // const objectWithData = {
-  //   customer_name: req.body.customer_name,
-  //   customer_id: req.body.customer_id,
-  //   merchant_id: req.body.enterprise_id,
-  //   language: req.body.language,
-  // }
- 
-  //   try {
   const userData = await fetch(`${process.env.apiUrl}/member-login`, {
     method: 'POST',
     headers: {
