@@ -249,22 +249,22 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <div class="select-gp" id="checkboxes">
                                                         <ul id="checkboxes" class="list-inline">
                                                             <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"magnum":!gameList.magnum})}>
-                                                                <span class=" outer-circle-gp" title="Select">
+                                                                <span class={`${gameList.magnum ? "cal-border":"" } outer-circle-gp`} title="Select">
                                                                     <span class="inner-circle-gp">
                                                                         <img className={`${gameList.magnum ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
                                                             <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"dmc":!gameList.dmc})}>
-                                                                <span class=" outer-circle-gp" title="Select">
+                                                                <span class={`${gameList.dmc ? "cal-border":"" } outer-circle-gp`} title="Select">
                                                                     <span class="inner-circle-gp">
                                                                         <img className={`${gameList.dmc ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
                                                             <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"toto":!gameList.toto})}>
-                                                                <span class=" outer-circle-gp" title="Select">
-                                                                    <span class="inner-circle-gp">
+                                                                <span class={`${gameList.toto ? "cal-border":"" } outer-circle-gp`} title="Select">
+                                                                    <span class={`inner-circle-gp`}>
                                                                         <img className={`${gameList.toto ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png" />
                                                                     </span>
                                                                 </span>
@@ -293,12 +293,14 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                             <div className='col-lg-5 col-md-4'>
                                                 <b className='mb-2 d-block'>Bet Type</b>
                                             </div>
-                                            <div className='col-lg-7 col-md-8'>
+                                            <div className='col-lg-7 col-md-8 text-center'>
                                         <button type="button" className={initData && initData.bet_type && initData.bet_type == "S" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setInitData({...initData,"bet_type":"S"})}>S</button>
 
                                         <button type="button" className={initData && initData.bet_type && initData.bet_type == "B" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setInitData({...initData,"bet_type":"B"})}>{t('B')}</button>
 
+                                        {initData.bet_no.length == 4 ?                                         
                                         <button type="button" className={initData && initData.bet_type && initData.bet_type == "I" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'}  title={"iBox"} onClick={(e) => setInitData({...initData,"bet_type":"I"})}>{t('I')}</button>
+                                        : '' }
 
                                         <button type="button" className={initData && initData.bet_type && initData.bet_type == "R" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => setInitData({...initData,"bet_type":"R"})}>{t('R')}</button>
                                             </div>

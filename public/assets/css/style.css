@@ -3175,3 +3175,7 @@ section.announcement {
 .button-able{
   filter: none!important;
 }
+
+.cal-border{
+  border: 1px solid #bc2263!important
+}
