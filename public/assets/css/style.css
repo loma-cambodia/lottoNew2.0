@@ -3168,3 +3168,7 @@ section.announcement {
   min-width: fit-content!important;
 }
 }
+
+.button-disable{
+  filter: grayscale(1);
+}
