@@ -209,7 +209,11 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         }
         console.log('total:',total);
             console.log('companyCount:',companyCount);
-
+        function multiplier(data){
+            return(
+                decimal(data = data * companyCount)
+            )
+        }
         if(oddsData){
         return (
             <>
@@ -312,25 +316,25 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                                 <th className='text-end py-2'>Small</th>
                                                             </tr>
                                                             <tr>
-                                                                <td className='text-end py-2'>{oddsData.big_first}</td>
-                                                                <td className='text-end py-2'>{oddsData.small_first}</td>
+                                                                <td className='text-end py-2'>{multiplier(oddsData.big_first)}</td>
+                                                                <td className='text-end py-2'>{multiplier(oddsData.small_first)}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td className='text-end py-2'>{oddsData.big_second}</td>
-                                                                <td className='text-end py-2'>{oddsData.small_second}</td>
+                                                                <td className='text-end py-2'>{multiplier(oddsData.big_second)}</td>
+                                                                <td className='text-end py-2'>{multiplier(oddsData.small_second)}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td className='text-end py-2'>{oddsData.big_third}</td>
-                                                                <td className='text-end py-2'>{oddsData.small_third}</td>
+                                                                <td className='text-end py-2'>{multiplier(oddsData.big_third)}</td>
+                                                                <td className='text-end py-2'>{multiplier(oddsData.small_third)}</td>
                                                             </tr>
                                                             {initData.bet_no.length == 4 ? 
                                                             <>
                                                                 <tr>
-                                                                    <td className='text-end py-2'>{oddsData.big_special}</td>
+                                                                    <td className='text-end py-2'>{multiplier(oddsData.big_special)}</td>
                                                                     <td className='text-end py-2'>-</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td className='text-end py-2'>{oddsData.big_consolation}</td>
+                                                                    <td className='text-end py-2'>{multiplier(oddsData.big_consolation)}</td>
                                                                     <td className='text-end py-2'>-</td>
                                                                 </tr>
                                                             </>
@@ -489,7 +493,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                         <div class="clearfix text-center"><span disabled={clear} role="button" className={`${clear ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> clear? clearInputs():''} >CLEAR</span></div>
                                     </div>
                                     <div className='col-md-6'>
-                                        <div class="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
+                                        <div class="clearfix text-center"><span role="button"  className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
                                         >Calculate</span></div>
                                     </div>
                                 </div>
@@ -501,12 +505,11 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                             <div className='absolute-div'>
                                 <div className='inner-abs-div'>
                                     <h5 className='text-uppercase text-center text-white'>Results</h5>
-                                    <div className='company-type-heading d-flex align-items-center'>
+                                    <div className='company-type-heading  d-flex align-items-center' style={{justifyContent:'center'}}>
 
                                     {Odds.map((e,i)=>{
                                        
                                              let companyName =  e.game_play.name;
-                                           // let companyName = '';
                                             if(companyName == "Toto")
                                             companyName = 'toto';
                                             else if(companyName == "Da Ma Cai")
@@ -514,18 +517,14 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                             else if(companyName == "Magnum")
                                             companyName = 'magnum';
 
-                                            
-                                        console.log('gamelist',gameList)
-                                        console.log('companyName',companyName)
-
                                         if(gameList[companyName]){
                                         return(
                                             <>
                                                
                                                     <div className='comapny-type-logo me-3'>
                                                         <img src={e.game_play.logo_url}/>
-                                                        <div className='company-type-name text-white'>{e.game_play.name}</div>
                                                     </div>
+                                                    <div className='company-type-name text-white'>{e.game_play.name}</div>
                                                    
                                             </>
                                         )
