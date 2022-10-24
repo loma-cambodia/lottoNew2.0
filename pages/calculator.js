@@ -59,8 +59,8 @@ if(objectWithData.customer_id != 0){
       
       let specialDrawState = state && state.home && state.home.specialDrawDetails ? state.home.specialDrawDetails : '';
 
-      let calculatorOdds = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : {};
-
+      let calculatorOdds = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : [];
+  console.log("CALC",calculatorOdds)
   return (
     <>
        <Head> 
