@@ -110,6 +110,69 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         )
     }
     function WinningData({oddsData}){
+        const total = ''
+        const bigInv = ''
+        const smallInv = ''
+        const threeAInv = ''
+        const threeCInv = ''
+        if(initData.bet_type == "S"){
+            if(initData.bet_no.length == 4){
+                total = Number(initData.big_bet) + Number(initData.small_bet)
+                console.log("123",total)
+                bigInv = Number(total/2)
+                smallInv = Number(total/2)
+            }else{
+                total = Number(initData.three_A) + Number(initData.three_C)
+                console.log("123",total)
+                threeAInv = Number(total/2)
+                threeCInv = Number(total/2)
+            }
+        }else if(initData.bet_type == "B"){
+            if(initData.bet_no.length == 4){
+                let combination = 24
+                let result = Number(initData.big_bet) + Number(initData.small_bet) 
+                total =Number(result*combination)
+                console.log("123",total)
+                bigInv = Number(total/2)
+                smallInv = Number(total/2)
+            }else{
+                let combination = 6
+                let result = Number(initData.three_A) + Number(initData.three_C) 
+                total =Number(result*combination)
+                console.log("123",total)
+                threeAInv = Number(total/2)
+                threeCInv = Number(total/2)
+            }
+
+        }else if(initData.bet_type == "I"){
+            
+                let combination = 24
+                let result = Number(initData.big_bet) + Number(initData.small_bet) 
+                total =Number(result/combination)
+                console.log("123",total)
+                bigInv = Number(total/2)
+                smallInv = Number(total/2)
+           
+
+        }else if(initData.bet_type == "R"){
+            if(initData.bet_no.length == 4){
+                let result = Number(initData.big_bet) + Number(initData.small_bet)
+                let combination = Number(result*2)
+                total =Number(combination/2)
+                console.log("123",total)
+                bigInv = Number(total/2)
+                smallInv = Number(total/2)
+            }else{
+                let result = Number(initData.three_A) + Number(initData.three_C)
+                let combination = Number(result*2)
+                total =Number(combination/2)
+                console.log("123",total)
+                threeAInv = Number(total/2)
+                threeCInv = Number(total/2)
+            }
+
+        }
+
         if(oddsData){
         return (
             <>
@@ -131,7 +194,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                             </tr>
                                             <tr>
                                                 <td>Total Bet Amount : </td>
-                                                <td className='text-end fw-bold'>{decimal(totalBet)}</td>
+                                                <td className='text-end fw-bold'>{decimal(total)}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -174,33 +237,34 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                         <table className='table'>
                                                             <tr>
                                                             {initData.bet_no.length == 4 ? 
-                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_first + oddsData.small_first))}</div></td> :
-                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.three_A)*Number(oddsData.three_a_first + oddsData.three_c_first))}</div></td>}
+                                                                <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_first  * smallInv)+Number(oddsData.big_first * bigInv))}</div></td> :
+                                                                <td><div className='w-amt text-end'>{decimal(Number(oddsData.three_a_first * threeAInv)+Number(oddsData.three_c_first * threeCInv))}</div></td>}
                                                                 {/* <td><div className='w-amt text-end'>{big * oddsData.big_first}</div></td>
                                                                 <td><div className='w-amt text-end'>{small * oddsData.small_first}</div></td> */}
                                                             </tr>
                                                             <tr>
                                                             {initData.bet_no.length == 4 ? 
-                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_second + oddsData.small_second))}</div></td>:
-                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.three_C)*Number(oddsData.three_c_second))}</div></td>}
+                                                             <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_second  * smallInv)+Number(oddsData.big_second * bigInv))}</div></td> :
+                                                                // <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_second + oddsData.small_second))}</div></td>:
+                                                                <td><div className='w-amt text-end'>{decimal(Number(threeCInv)*Number(oddsData.three_c_second))}</div></td>}
 
                                                                 {/* <td><div className='w-amt text-end'>{big * oddsData.big_second}</div></td>
                                                                 <td><div className='w-amt text-end'>{small * oddsData.small_second}</div></td> */}
                                                             </tr>
                                                             <tr>
                                                             {initData.bet_no.length == 4 ? 
-                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_third + oddsData.small_third))}</div></td>:
-                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.three_C)*Number(oddsData.three_c_third))}</div></td>}
+                                                             <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_third  * smallInv)+Number(oddsData.big_third * bigInv))}</div></td>:
+                                                                <td><div className='w-amt text-end'>{decimal(Number(threeCInv)*Number(oddsData.three_c_third))}</div></td>}
 
                                                             </tr>
                                                             {initData.bet_no.length == 4 ? 
                                                             <>
                                                                 <tr>
-                                                                    <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_special))}</div></td>
+                                                                    <td><div className='w-amt text-end'>{decimal(Number(bigInv)*Number(oddsData.big_special))}</div></td>
                                                                     {/* <td><div className='w-amt text-end'>{ oddsData.big_special * bigValue}</div></td> */}
                                                                     </tr>
                                                                 <tr>
-                                                                    <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_consolation))}</div></td>
+                                                                    <td><div className='w-amt text-end'>{decimal(Number(bigInv)*Number(oddsData.big_consolation))}</div></td>
                                                                 </tr>
                                                             </>
                                                             :
