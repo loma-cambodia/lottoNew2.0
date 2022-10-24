@@ -28,6 +28,8 @@ async function handler(req, res) {
     objectWithData.language = req.body.language;
    }
 
+   console.log('objectWithData:',objectWithData);
+
   const userData = await fetch(`${process.env.apiUrl}/member-login`, {
     method: 'POST',
     headers: {
@@ -37,6 +39,8 @@ async function handler(req, res) {
   })
 
   const data = await userData.json()
+
+  console.log('data:dataL:',data);
 
   if (data.success == true) {
     req.session.user = data

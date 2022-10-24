@@ -21,8 +21,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
     let ticket = _tickets;
 
 
-
-    console.log('ListTable:ticket:',ticket);
     let auth = _auth;
     const items = _tickets;
     let loading =_isLoading;
@@ -56,6 +54,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
       const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All')  });
       const [selectedticketId, setSelectedticketId] = useState('');
       const [isLoading, setIsLoading] = useState(false);
+
+      const [dataRecordes, setDataRecordes] = useState(ticket ? ticket : []);
+
+
 
 
 
@@ -139,7 +141,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
       }
 
       const [ticketList, setTicketList] = useState([]);
+
       const [childDataTickets, setChildDataTickets] = useState([]);
+
       const [startRef, setstartRef] = useState();
       
       const [searchAction, setSearchAction] = useState(true);
@@ -282,6 +286,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
          return _getDate[2]+'/'+_getDate[1]+'/'+_getDate[0];
       } 
 
+
+      
+
       
 
       const handleEvent = (event, picker) => {
@@ -421,9 +428,9 @@ const handlePageClick = (event) => {
                         </table>
                     </div>
                     <div className={styles.device_detect_for_desktop}>
-                                                    <Table data={currentItems} _childShowTable={childShowTable}/>
+                                                    <Table data={dataRecordes} _childShowTable={childShowTable}/>
                     </div>
-                    <div class="clearfix d-flex align-items-center justify-content-center">
+                    {/* <div class="clearfix d-flex align-items-center justify-content-center">
                         { pageCount > 1 ?
                             <ReactPaginate
                             breakLabel="..."
@@ -443,7 +450,7 @@ const handlePageClick = (event) => {
                             <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
                             <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
                         </svg>
-                    </div>
+                    </div> */}
                 </>
             );
         }else{
@@ -634,7 +641,7 @@ const handlePageClick = (event) => {
                     <div class="col-md-2 col-6">
                         <div class="form-group">
                             <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                            <input type="text" onChange={(event) => GetTicketNumber(event)} class="form-control-custom-big" name="transationid"/>
+                            <input type="text" value={ticketNo} onChange={(event) => filterByTicketNumber(event.target.value)} class="form-control-custom-big" name="transationid2"/>
                         </div>
                     </div>
                     <div class="col-md-2 col-6">
@@ -682,6 +689,28 @@ const handlePageClick = (event) => {
       useEffect(() =>{
         change();
       },[fromDate])
+
+
+      const filterByTicketNumber = (getValue) => {
+
+        console.log('dataRecordes:',dataRecordes);
+
+        let newDataRecordes = [];
+        if(getValue)
+           newDataRecordes = ticket && ticket.filter(item => item.Ticket_No.includes(getValue));
+        else 
+           newDataRecordes = ticket;
+
+        console.log('dataRecordes:',dataRecordes);
+        console.log('newDataRecordes:',newDataRecordes);
+        setTicketNo(getValue);
+        setDataRecordes(newDataRecordes);
+      } 
+
+
+
+
+
     return (
         <>
             {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}
@@ -718,8 +747,8 @@ const handlePageClick = (event) => {
                                     </div>
                                     <div class="col-md-2 col-12">
                                         <div class="form-group">
-                                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                                            <input style={{ width: '100% !important' }} type="text" onChange={(e)=>{setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+                                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}1</label>
+                                            <input style={{ width: '100% !important' }} type="text" onChange={(event) => filterByTicketNumber(event.target.value)}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
                                         </div>
                                     </div>
 
