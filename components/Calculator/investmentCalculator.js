@@ -19,9 +19,10 @@ const games = {
     "toto":false,
     "dmc":false
 }
-const InvestmentCalculator = () => {
+const InvestmentCalculator = ({_calculatorOdds}) => {
   const { t } = useTranslation();
 
+    const Odds =_calculatorOdds;
     const [initData, setInitData] = useState(initState);
     const [gameList, setGameList] = useState(games);
     const [clear, setClear] = useState(true);
@@ -29,6 +30,7 @@ const InvestmentCalculator = () => {
 
     const [active, setActive] = useState(false);
 
+    const gamesID = 1
     const combine =()=>{
         console.log("initData:",initData)
         console.log("gameslist:",gameList)
@@ -66,8 +68,7 @@ const InvestmentCalculator = () => {
     }
 
     function isEveryInputFill() {
-
-      
+  
         var isAllFill = true
         var isGamesFill = true
         console.log('isEveryInputFill bfore: ',isAllFill,isGamesFill)
@@ -95,7 +96,131 @@ const InvestmentCalculator = () => {
 
           console.log('isEveryInputFill after: ',isAllFill,isGamesFill)
     }
-
+    function WinningData({oddsData}){
+        if(oddsData){
+        return (
+            <>
+                         <div className='col-md-7'>
+                            <div className='absolute-div'>
+                                <div className='inner-abs-div'>
+                                    <h5 className='text-uppercase text-center text-white'>Results</h5>
+                                    <div className='company-type-heading d-flex align-items-center'>
+                                        <div className='comapny-type-logo me-3'>
+                                            <img src={oddsData.game_play.logo_url}/>
+                                        </div>
+                                        <div className='company-type-name text-white'>{oddsData.game_play.name}</div>
+                                    </div>
+                                    <div className='first-2-lines my-3'>
+                                        <table>
+                                            <tr>
+                                                <td>Total No’s Beted</td>
+                                                <td className='text-end fw-bold'>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total Bet Amount</td>
+                                                {/* <td className='text-end fw-bold'>{totalBetAmount}</td> */}
+                                            </tr>
+                                        </table>
+                                    </div>
+                                 <div className='bottom-3-col'>
+                                        <div className='row'>
+                                            <div className='col'>
+                                                <div className='prize-div'>
+                                                    <div className='heading-part'>Prize</div>
+                                                    <div className='prize-content-part'>
+                                                        <table className='table'>
+                                                            <tr>
+                                                                <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>1st</div></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>2nd</div></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>3rd</div></td>
+                                                            </tr>                                                            
+                                                            <tr>
+                                                                <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Special</div></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Consolation</div></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div className='col'>
+                                                <div className='w-amt-div'>
+                                                    <div className='w-amt-heading'>Winning Amount</div>
+                                                    <div className='blank-div'></div>
+                                                    <div className='prize-content-part'>
+                                                        <table className='table'>
+                                                            <tr>
+                                                                <td><div className='w-amt text-end'>{oddsData.big_first + oddsData.small_first}</div></td>
+                                                                {/* <td><div className='w-amt text-end'>{big * oddsData.big_first}</div></td>
+                                                                <td><div className='w-amt text-end'>{small * oddsData.small_first}</div></td> */}
+                                                            </tr>
+                                                            <tr>
+                                                                <td><div className='w-amt text-end'>{oddsData.big_second + oddsData.small_second}</div></td>
+                                                                {/* <td><div className='w-amt text-end'>{big * oddsData.big_second}</div></td>
+                                                                <td><div className='w-amt text-end'>{small * oddsData.small_second}</div></td> */}
+                                                            </tr>
+                                                            <tr>
+                                                                <td><div className='w-amt text-end'>{oddsData.big_third + oddsData.small_third}</div></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><div className='w-amt text-end'>{oddsData.big_special}</div></td>
+                                                                {/* <td><div className='w-amt text-end'>{ oddsData.big_special * bigValue}</div></td> */}
+                                                                </tr>
+                                                            <tr>
+                                                                <td><div className='w-amt text-end'>{oddsData.big_consolation}</div></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='col'>
+                                                <div className='w-amt-div'>
+                                                    <div className='w-amt-heading'>Odds</div>
+                                                    <div className='prize-content-part'>
+                                                    <table className='table text-white'>
+                                                            <tr>
+                                                                <th className='text-end py-2'>Big</th>
+                                                                <th className='text-end py-2'>Small</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className='text-end py-2'>{oddsData.big_first}</td>
+                                                                <td className='text-end py-2'>{oddsData.small_first}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className='text-end py-2'>{oddsData.big_second}</td>
+                                                                <td className='text-end py-2'>{oddsData.small_second}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className='text-end py-2'>{oddsData.big_third}</td>
+                                                                <td className='text-end py-2'>{oddsData.small_third}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className='text-end py-2'>{oddsData.big_special}</td>
+                                                                <td className='text-end py-2'>-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className='text-end py-2'>{oddsData.big_consolation}</td>
+                                                                <td className='text-end py-2'>-</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+            </>
+        )
+    }
+        
+    }
     useEffect(()=>{
         isEveryInputEmpty()
         isEveryInputFill()
@@ -242,6 +367,7 @@ const InvestmentCalculator = () => {
                                 </div>
                             </div>
                         </div>
+                        <WinningData oddsData={Odds[gamesID]}/>
                     </div>
                 </div>
             </div>
