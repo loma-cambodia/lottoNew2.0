@@ -20,10 +20,20 @@ const games = {
     "toto":false,
     "dmc":false
 }
+
 const InvestmentCalculator = ({_calculatorOdds}) => {
   const { t } = useTranslation();
 
     const Odds =_calculatorOdds;
+    console.log("Odds:",Odds)
+
+    // const games = []
+    // const getGamesData = ()=>{
+    //     Odds && Odds.map(item =>{
+    //         games.push(item.game_play)
+    //     })
+    // }
+
     const [initData, setInitData] = useState(initState);
     const [gameList, setGameList] = useState(games);
     const [clear, setClear] = useState(true);
@@ -32,7 +42,9 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
     const [isFourDigits, set] = useState(false)
     const [active, setActive] = useState(false);
 
-    const gamesID = 1
+    console.log("games:",games)
+
+    const gamesID = 2
     const combine =()=>{
         console.log("initData:",initData)
         console.log("gameslist:",gameList)
@@ -54,8 +66,34 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         setInitData(initState)
         setGameList(games)
         setClear(true)
-        isEveryInputFill()
+        // isEveryInputFill()
     }
+
+    const handleNumber = (numberInput) =>{
+        if (!numberInput.match("^[R-Rr-r0-9]*$")) {
+            return false;
+          }
+
+          if (
+            numberInput &&
+            numberInput.match(/r/i) &&
+            (numberInput.toLowerCase().match(/r/g).length == 2 ||
+              numberInput.toLowerCase().match(/r/g).length == 3 ||
+              numberInput.toLowerCase().match(/r/g).length == 4)
+          ) {
+            return false;
+          }
+      
+          if (numberInput.includes("-") || numberInput.includes(".")) {
+            return false;
+          }
+
+        
+
+          setInitData({...initData,"bet_no":numberInput})
+    } 
+
+    
 
     function isEveryInputEmpty() {
         var allEmpty = true;
@@ -75,35 +113,35 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         setClear(allEmpty);
     }
 
-    function isEveryInputFill() {
+    // function isEveryInputFill() {
   
-        var isAllFill = true
-        var isGamesFill = true
-        console.log('isEveryInputFill bfore: ',isAllFill,isGamesFill)
-        $(':input').each(function() {
-            if ($(this).val() == '') {
-                isAllFill = false
-            }
-            else
-            isAllFill = true
-        });
+    //     var isAllFill = true
+    //     var isGamesFill = true
+    //     console.log('isEveryInputFill bfore: ',isAllFill,isGamesFill)
+    //     $(':input').each(function() {
+    //         if ($(this).val() == '') {
+    //             isAllFill = false
+    //         }
+    //         else
+    //             isAllFill = true
+    //     });
 
         
-            if(!gameList.dmc && !gameList.magnum && !gameList.toto)
-            {
-                isGamesFill = false
-            }
-            else
-                isGamesFill = true
+    //         if(!gameList.dmc && !gameList.magnum && !gameList.toto)
+    //         {
+    //             isGamesFill = false
+    //         }
+    //         else
+    //             isGamesFill = true
 
-          if(isAllFill && isGamesFill){
-            setSubmit(true)
-          }
-          else
-          setSubmit(false)
+    //       if(isAllFill && isGamesFill){
+    //         setSubmit(true)
+    //       }
+    //       else
+    //       setSubmit(false)
 
-          console.log('isEveryInputFill after: ',isAllFill,isGamesFill)
-    }
+    //       console.log('isEveryInputFill after: ',isAllFill,isGamesFill)
+    // }
     function decimal(data){
         return(
             twoDecimalPlaceWithAmount(data,1)
@@ -325,7 +363,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
     }
     useEffect(()=>{
         isEveryInputEmpty()
-        isEveryInputFill()
+        // isEveryInputFill()
         combine()
         console.log("calculateData:",initData)
     },[initData,gameList])
@@ -385,9 +423,10 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
                                                 <input type="text" className='form-control' 
+                                                value={initData.bet_no}
                                                 maxLength={4}
                                                 minLength={3}
-                                                onChange={(e) => setInitData({...initData,"bet_no":e.target.value})}/>
+                                                onChange={(e) => handleNumber(e.target.value)}/>
                                             </div>
                                         </div>
                                     </div> 
@@ -417,7 +456,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>Big</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"big_bet":e.target.value})}/>
+                                                    <input value={initData.big_bet} type="number" className='form-control' onChange={(e)=>setInitData({...initData,"big_bet":e.target.value})}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -427,7 +466,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>Small</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"small_bet":e.target.value})}/>
+                                                    <input value={initData.small_bet} type="number" className='form-control' onChange={(e)=>setInitData({...initData,"small_bet":e.target.value})}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -440,7 +479,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                 <b className='mb-2 d-block'>3A</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
-                                                <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"three_A":e.target.value})}/>
+                                                <input value={initData.three_A} type="number" className='form-control' onChange={(e)=>setInitData({...initData,"three_A":e.target.value})}/>
                                             </div>
                                         </div>
                                     </div>
@@ -450,7 +489,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>3C</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"three_C":e.target.value})}/>
+                                                    <input value={initData.three_C} type="number" className='form-control' onChange={(e)=>setInitData({...initData,"three_C":e.target.value})}/>
                                                 </div>
                                             </div>
                                         </div> 
