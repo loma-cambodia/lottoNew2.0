@@ -19,7 +19,6 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
 
   const state = useSelector(state => state);
 
-
 useEffect(() => {
   dispatch(announcement());
   dispatch(specialDraw());
@@ -60,8 +59,9 @@ if(objectWithData.customer_id != 0){
       let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
       
       let specialDrawState = state && state.home && state.home.specialDrawDetails ? state.home.specialDrawDetails : '';
+
       let calculatorOdds = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : {};
-      console.log("transactions",calculatorOdds)
+
   return (
     <>
        <Head> 

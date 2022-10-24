@@ -1,92 +1,116 @@
 
-import React, { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
+import React, { useState, useEffect } from 'react';
+import { combineReducers } from "redux";
+
+import $ from 'jquery'; 
+import { twoDecimalPlaceWithAmount } from "../Utils";
+
+const initState = {
+    "bet_no": '',
+    "bet_type":'S',
+    "big_bet":'',
+    "small_bet":'',
+    "three_A":'',
+    "three_C":'',
+    "company":''
+}
+const games = {
+    "magnum":false,
+    "toto":false,
+    "dmc":false
+}
 const InvestmentCalculator = ({_calculatorOdds}) => {
   const { t } = useTranslation();
-const Odds = _calculatorOdds
-  const [totalBetAmount, setTotalBetAmount]=useState(0);
-  const numberValue = ''
-  const bigValue = 0
-  const smallValue = ''
-  const threeAValue = ''
-  const threeCValue = ''
-  const isFourDigit = false
-  const game = ''
-  const totalBet = ''
-  const gameID = 1
- function Calculate() {
-    if(game == 'Box'){
-        bigValue = bigValue
-        let total_Sum = Number(bigValue) + Number(smallValue)
-        let total = total_Sum * 24
-        let distribute = Math.floor(total_Sum / 2)
-        console.log("Box Win_BIG : "+ distribute);
-        console.log("Box Win_Small : "+ distribute);
-        setTotalBetAmount(total_Sum)
-    }else if(game == 'iBox'){
-        let total_Sum = Number(bigValue) + Number(smallValue)
-        let total = Math.trunc(total_Sum / 24).toFixed(2)
-        let distribute = Math.floor(total / 2).toFixed(2) 
-        setTotalBetAmount(total_Sum)
-        console.log("IBOX TOTAL : ",total)
-        console.log("IBOX Win_BIG : "+ distribute);
-        console.log("IBOX Win_Small : "+ distribute);
-    }else if(game == 'Reverse'){
-        let total_Sum = Number(bigValue) + Number(smallValue)
-        let total = Math.trunc(total_Sum / 24).toFixed(2)
-        let distribute = Math.floor(total / 2).toFixed(2) 
-        setTotalBetAmount(total_Sum)
-        console.log("Reverse TOTAL : ",total)
-        console.log("Reverse Win_BIG : "+ distribute);
-        console.log("Reverse Win_Small : "+ distribute);
-    }
-    else{
-        alert("NO SELECTED GAME")
-    }
-  }
-    function gameSelect(e){
-        game = e
-        console.log("Game Select: ",e)
-    }
-    const numberInputHandler = (getValue) => {
-        numberValue = getValue
-        console.log( numberValue)
 
-        if(getValue.length == 3){
-            console.log("3A/3C")
-        }else if(getValue.length == 4){
-            isFourDigit = true
-            console.log("BIG/SMALL",isFourDigit)
-        }
-    }
-    const bigInputHandler = (getValue) => {
-        bigValue = getValue
-        console.log( bigValue)
+    const Odds =_calculatorOdds;
+    const [initData, setInitData] = useState(initState);
+    const [gameList, setGameList] = useState(games);
+    const [clear, setClear] = useState(true);
+    const [submit, setSubmit] = useState(false);
+    const [totalBet, setTotalbet] = useState();
+    const [isFourDigits, set] = useState(false)
+    const [active, setActive] = useState(false);
 
-        if(getValue.length == 3){
-            console.log("3A/3C")
-        }else if(getValue.length == 4){
-            console.log("BIG/SMALL")
-        }
+    const gamesID = 1
+    const combine =()=>{
+        console.log("initData:",initData)
+        console.log("gameslist:",gameList)
+        const  big = initData.big_bet
+        const small = initData.small_bet
+        const A = initData.three_A
+        const C = initData.three_C
+        const total = Number(big) + Number(small) + Number(A) + Number(C) 
+        setTotalbet(total)
+        // setInitData({...initData,"company":gameList})
+        Object.assign(initData,{"company":gameList})
+        console.log("calculateData:",initData)
+        console.log("setTotalbetsetTotalbet",totalBet)
     }
-    const smallInputHandler = (getValue) => {
-        smallValue = getValue
-        console.log( smallValue)
-        if(getValue.length == 3){
-            console.log("3A/3C")
-        }else if(getValue.length == 4){
-            console.log("BIG/SMALL")
+
+    const clearInputs = () => {
+        console.log('clear')
+        $(':input').val(null)
+        setInitData(initState)
+        setGameList(games)
+        setClear(true)
+        isEveryInputFill()
+    }
+
+    function isEveryInputEmpty() {
+        var allEmpty = true;
+    
+        // $(':input').each(function() {
+        //     if ($(this).val() !== '') {
+        //         allEmpty = false
+        //     }
+        // });
+
+        if(initState !== initData || gameList !== games){
+            allEmpty = true
         }
+        else
+            allEmpty = false
+    
+        setClear(allEmpty);
+    }
+
+    function isEveryInputFill() {
+  
+        var isAllFill = true
+        var isGamesFill = true
+        console.log('isEveryInputFill bfore: ',isAllFill,isGamesFill)
+        $(':input').each(function() {
+            if ($(this).val() == '') {
+                isAllFill = false
+            }
+            else
+            isAllFill = true
+        });
+
+        
+            if(!gameList.dmc && !gameList.magnum && !gameList.toto)
+            {
+                isGamesFill = false
+            }
+            else
+                isGamesFill = true
+
+          if(isAllFill && isGamesFill){
+            setSubmit(true)
+          }
+          else
+          setSubmit(false)
+
+          console.log('isEveryInputFill after: ',isAllFill,isGamesFill)
+    }
+    function decimal(data){
+        return(
+            twoDecimalPlaceWithAmount(data,1)
+        )
     }
     function WinningData({oddsData}){
-       
-        
-        
         if(oddsData){
-            console.log(oddsData)
-            // const get = Number(bigValue) * oddsData.big_first
-            const big = Number(bigValue + oddsData.big_first)
-            console.log("bigbig",bigValue)
         return (
             <>
                          <div className='col-md-7'>
@@ -106,8 +130,8 @@ const Odds = _calculatorOdds
                                                 <td className='text-end fw-bold'>1</td>
                                             </tr>
                                             <tr>
-                                                <td>Total Bet Amount</td>
-                                                <td className='text-end fw-bold'>{totalBetAmount}</td>
+                                                <td>Total Bet Amount : </td>
+                                                <td className='text-end fw-bold'>{decimal(totalBet)}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -126,17 +150,22 @@ const Odds = _calculatorOdds
                                                             </tr>
                                                             <tr>
                                                                 <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>3rd</div></td>
-                                                            </tr>                                                            
+                                                            </tr>   
+                                                            {initData.bet_no.length == 4 ? 
+                                                            <>                                                     
                                                             <tr>
                                                                 <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Special</div></td>
                                                             </tr>
                                                             <tr>
-                                                                <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Consolation</div></td>
-                                                            </tr>
+                                                            <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Consolation</div></td>
+                                                            </tr></>
+                                                            :
+                                                            <tr></tr>
+                                                            }
                                                         </table>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                </div>
                                             <div className='col'>
                                                 <div className='w-amt-div'>
                                                     <div className='w-amt-heading'>Winning Amount</div>
@@ -144,26 +173,39 @@ const Odds = _calculatorOdds
                                                     <div className='prize-content-part'>
                                                         <table className='table'>
                                                             <tr>
-                                                                <td><div className='w-amt text-end'>{oddsData.big_first + oddsData.small_first}</div></td>
+                                                            {initData.bet_no.length == 4 ? 
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_first + oddsData.small_first))}</div></td> :
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.three_A)*Number(oddsData.three_a_first + oddsData.three_c_first))}</div></td>}
                                                                 {/* <td><div className='w-amt text-end'>{big * oddsData.big_first}</div></td>
                                                                 <td><div className='w-amt text-end'>{small * oddsData.small_first}</div></td> */}
                                                             </tr>
                                                             <tr>
-                                                                <td><div className='w-amt text-end'>{oddsData.big_second + oddsData.small_second}</div></td>
+                                                            {initData.bet_no.length == 4 ? 
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_second + oddsData.small_second))}</div></td>:
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.three_C)*Number(oddsData.three_c_second))}</div></td>}
+
                                                                 {/* <td><div className='w-amt text-end'>{big * oddsData.big_second}</div></td>
                                                                 <td><div className='w-amt text-end'>{small * oddsData.small_second}</div></td> */}
                                                             </tr>
                                                             <tr>
-                                                                <td><div className='w-amt text-end'>{oddsData.big_third + oddsData.small_third}</div></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><div className='w-amt text-end'>{oddsData.big_special}</div></td>
-                                                                {/* <td><div className='w-amt text-end'>{ oddsData.big_special * bigValue}</div></td> */}
+                                                            {initData.bet_no.length == 4 ? 
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_third + oddsData.small_third))}</div></td>:
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.three_C)*Number(oddsData.three_c_third))}</div></td>}
 
                                                             </tr>
-                                                            <tr>
-                                                                <td><div className='w-amt text-end'>{oddsData.big_consolation}</div></td>
-                                                            </tr>
+                                                            {initData.bet_no.length == 4 ? 
+                                                            <>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_special))}</div></td>
+                                                                    {/* <td><div className='w-amt text-end'>{ oddsData.big_special * bigValue}</div></td> */}
+                                                                    </tr>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_consolation))}</div></td>
+                                                                </tr>
+                                                            </>
+                                                            :
+                                                            <tr></tr>
+                                                            }
                                                         </table>
                                                     </div>
                                                 </div>
@@ -189,14 +231,20 @@ const Odds = _calculatorOdds
                                                                 <td className='text-end py-2'>{oddsData.big_third}</td>
                                                                 <td className='text-end py-2'>{oddsData.small_third}</td>
                                                             </tr>
-                                                            <tr>
-                                                                <td className='text-end py-2'>{oddsData.big_special}</td>
-                                                                <td className='text-end py-2'>-</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td className='text-end py-2'>{oddsData.big_consolation}</td>
-                                                                <td className='text-end py-2'>-</td>
-                                                            </tr>
+                                                            {initData.bet_no.length == 4 ? 
+                                                            <>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>{oddsData.big_special}</td>
+                                                                    <td className='text-end py-2'>-</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>{oddsData.big_consolation}</td>
+                                                                    <td className='text-end py-2'>-</td>
+                                                                </tr>
+                                                            </>
+                                                            :
+                                                                <tr></tr>
+                                                            }
                                                         </table>
                                                     </div>
                                                 </div>
@@ -211,131 +259,153 @@ const Odds = _calculatorOdds
     }
         
     }
+    useEffect(()=>{
+        isEveryInputEmpty()
+        isEveryInputFill()
+        console.log("empty fields: ", clear)
+    },[initData,gameList])
     return (
       <>
        <section className="bg-light custom-padding">
-            <div className="container">
+                        <div className="container">
                 <div className="heading-part text-center mb-4">
                     {/* <h5 className="text-uppercase fw-bold">{t('how_to')}</h5> */}
                     <h2 className="text-uppercase text-color-main fw-bold">{t('Investment Calculator')}</h2>
                 </div>
                 <div className='back-section'>
                     <div className='row align-items-center'>
-                        <div className='col-md-5 col-sm-5'>
-                            <div className='form-group'>
-                                <div className='row'>
-                                    <div className='col-md-4'>
-                                        <b>Number</b>
-                                    </div>
-                                    <div className='col-md-8'>
-                                        <input minlength={3} maxLength={4} type="text"  onChange={(e) => numberInputHandler(e.target.value)}  className='form-control' />
-                                    </div>
-                                </div>
-                            </div>  
-                            <div className='form-group'>
-                                <div className='row'>
-                                    <div className='col-md-4'>
-                                        <b>Company</b>
-                                    </div>
-                                    <div className='col-md-8'>
-                                        <div class="d-flex">
-                                            <div class="select-gp" id="checkboxes">
-                                                <ul id="checkboxes" class="list-inline">
-                                                    <li class=" list-inline-item">
-                                                        <span class=" outer-circle-gp" title="Select">
-                                                            <span class="inner-circle-gp">
-                                                                <img class="img-fluid" src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png" />
-                                                            </span>
-                                                        </span>
-                                                    </li>
-                                                    <li class=" list-inline-item">
-                                                        <span class=" outer-circle-gp" title="Select">
-                                                            <span class="inner-circle-gp">
-                                                                <img class="img-fluid" src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png" />
-                                                            </span>
-                                                        </span>
-                                                    </li>
-                                                    <li class=" list-inline-item">
-                                                        <span class=" outer-circle-gp" title="Select">
-                                                            <span class="inner-circle-gp">
-                                                                <img class="img-fluid" src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png" />
-                                                            </span>
-                                                        </span>
-                                                    </li>
-                                                </ul>
+                        <div className='col-md-5'>
+                            <div className='row'>
+                                <div className='col-lg-10 col-md-12 offset-lg-1'> 
+                                    <div className='form-group'>
+                                        <div className='row'>
+                                            <div className='col-md-4 col-lg-5'>
+                                                <b className='mb-2 d-block'>Company</b>
+                                            </div>
+                                            <div className='col-lg-7 col-md-8'>
+                                                <div class="d-flex">
+                                                    <div class="select-gp" id="checkboxes">
+                                                        <ul id="checkboxes" class="list-inline">
+                                                            <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"magnum":!gameList.magnum})}>
+                                                                <span class=" outer-circle-gp" title="Select">
+                                                                    <span class="inner-circle-gp">
+                                                                        <img className={`${gameList.magnum ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png" />
+                                                                    </span>
+                                                                </span>
+                                                            </li>
+                                                            <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"dmc":!gameList.dmc})}>
+                                                                <span class=" outer-circle-gp" title="Select">
+                                                                    <span class="inner-circle-gp">
+                                                                        <img className={`${gameList.dmc ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png" />
+                                                                    </span>
+                                                                </span>
+                                                            </li>
+                                                            <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"toto":!gameList.toto})}>
+                                                                <span class=" outer-circle-gp" title="Select">
+                                                                    <span class="inner-circle-gp">
+                                                                        <img className={`${gameList.toto ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png" />
+                                                                    </span>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className='form-group'>
-                                <div className='row'>
-                                    <div className='col-md-4'>
-                                        <b>Bet Type</b>
-                                    </div>
-                                    <div className='col-md-8'>
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" onClick={() => gameSelect('Box')} class="btn-custom-small me-3" title="Box">B</button>
-                                            <button type="button"  onClick={() => gameSelect('iBox')} class="btn-custom-small me-3" title="iBox">I</button>
-                                            <button type="button"  onClick={() => gameSelect('Reverse')} class="btn-custom-small" title="Reverse">R</button>
+                                    <div className='form-group'>
+                                        <div className='row'>
+                                            <div className='col-lg-5 col-md-4'>
+                                                <b className='mb-2 d-block'>Number</b>
+                                            </div>
+                                            <div className='col-lg-7 col-md-8'>
+                                                <input type="text" className='form-control' 
+                                                maxLength={4}
+                                                minLength={3}
+                                                onChange={(e) => setInitData({...initData,"bet_no":e.target.value})}/>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div className='form-group'>
+                                        <div className='row'>
+                                            <div className='col-lg-5 col-md-4'>
+                                                <b className='mb-2 d-block'>Bet Type</b>
+                                            </div>
+                                            <div className='col-lg-7 col-md-8'>
+                                        <button type="button" className={initData && initData.bet_type && initData.bet_type == "S" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setInitData({...initData,"bet_type":"S"})}>S</button>
+
+                                        <button type="button" className={initData && initData.bet_type && initData.bet_type == "B" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setInitData({...initData,"bet_type":"B"})}>{t('B')}</button>
+
+                                        <button type="button" className={initData && initData.bet_type && initData.bet_type == "I" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'}  title={"iBox"} onClick={(e) => setInitData({...initData,"bet_type":"I"})}>{t('I')}</button>
+
+                                        <button type="button" className={initData && initData.bet_type && initData.bet_type == "R" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => setInitData({...initData,"bet_type":"R"})}>{t('R')}</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className='form-group'>
-                                <div className='row'>
-                                    <div className='col-md-4'>
-                                        <b>Big</b>
+                                    {initData.bet_no.length == 4 ? 
+                                    <div>
+                                        <div className='form-group'>
+                                            <div className='row'>
+                                                <div className='col-lg-5 col-md-4'>
+                                                    <b className='mb-2 d-block'>Big</b>
+                                                </div>
+                                                <div className='col-lg-7 col-md-8'>
+                                                    <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"big_bet":e.target.value})}/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='form-group'>
+                                            <div className='row'>
+                                                <div className='col-lg-5 col-md-4'>
+                                                    <b className='mb-2 d-block'>Small</b>
+                                                </div>
+                                                <div className='col-lg-7 col-md-8'>
+                                                    <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"small_bet":e.target.value})}/>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className='col-md-8'>
-                                        <input onChange={(e) => bigInputHandler(e.target.value)} type="number" className='form-control' />
+                                     : 
+                                    <div>
+                                    <div className='form-group'>
+                                        <div className='row'>
+                                            <div className='col-lg-5 col-md-4'>
+                                                <b className='mb-2 d-block'>3A</b>
+                                            </div>
+                                            <div className='col-lg-7 col-md-8'>
+                                                <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"three_A":e.target.value})}/>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className='form-group'>
-                                <div className='row'>
-                                    <div className='col-md-4'>
-                                        <b>Small</b>
+                                        <div className='form-group'>
+                                            <div className='row'>
+                                                <div className='col-lg-5 col-md-4'>
+                                                    <b className='mb-2 d-block'>3C</b>
+                                                </div>
+                                                <div className='col-lg-7 col-md-8'>
+                                                    <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"three_C":e.target.value})}/>
+                                                </div>
+                                            </div>
+                                        </div> 
                                     </div>
-                                    <div className='col-md-8'>
-                                        <input onChange={(e) => smallInputHandler(e.target.value)} type="number" className='form-control' />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='form-group'>
-                                <div className='row'>
-                                    <div className='col-md-4'>
-                                        <b>3A</b>
-                                    </div>
-                                    <div className='col-md-8'>
-                                        <input type="text" className='form-control' />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='form-group'>
-                                <div className='row'>
-                                    <div className='col-md-4'>
-                                        <b>3C</b>
-                                    </div>
-                                    <div className='col-md-8'>
-                                        <input type="text" className='form-control' />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='form-group'>
-                                <div className='row'>
+                                     } 
+                                   
+                                    
+                                    <div className='form-group'>
+                                    <div className='row'>
                                     <div className='col-md-6'>
-                                        <div class="clearfix text-center"><span role="button" class="d-block btn-yellow rounded-full">CLEAR</span></div>
+                                        <div class="clearfix text-center"><span disabled={clear} role="button" className={`${clear ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> clear? clearInputs():''} >CLEAR</span></div>
                                     </div>
                                     <div className='col-md-6'>
-                                        <div class="clearfix text-center"><span role="button" onClick={Calculate} class="d-block btn-yellow rounded-full">Calculate</span></div>
+                                        <div class="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
+                                        >Calculate</span></div>
+                                    </div>
+                                </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                       
-                                    <WinningData oddsData={Odds[gameID]}/>
-                                
+                        <WinningData oddsData={Odds[gamesID]}/>
                     </div>
                 </div>
             </div>

@@ -1205,8 +1205,8 @@
   box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
   }
   .active-bet-type {
-      background-color: #bc2263;
-      color: #fff;
+      background-color: #bc2263!important;
+      color: #fff!important;
       box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
     }
   
@@ -3162,7 +3162,7 @@ section.announcement {
 }
 .dtqzBx div{
   text-overflow: clip!important;
-  white-space: normal!important;
+  /* white-space: normal!important; */
 }
 .bQdYbR{
   min-width: auto!important;
@@ -3421,3 +3421,9 @@ input.daterangepickerstyle-sm {
 }
 
 
+.button-disable{
+  filter: grayscale(1);
+}
+.button-able{
+  filter: none!important;
+}
