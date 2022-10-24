@@ -3238,7 +3238,12 @@ section.announcement {
 }
 }
 
-
+.hbotQl{
+  white-space: normal!important;
+  font-size: 14px!important;
+  font-weight: bold!important;
+  overflow: visible!important
+}
 /* Search number Module */
 input.daterangepickerstyle-sm {
   width: 100%;
