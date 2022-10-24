@@ -1205,8 +1205,8 @@
   box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
   }
   .active-bet-type {
-      background-color: #bc2263;
-      color: #fff;
+      background-color: #bc2263!important;
+      color: #fff!important;
       box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
     }
   
@@ -3171,4 +3171,7 @@ section.announcement {
 
 .button-disable{
   filter: grayscale(1);
+}
+.button-able{
+  filter: none!important;
 }
