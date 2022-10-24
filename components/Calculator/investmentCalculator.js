@@ -25,15 +25,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
   const { t } = useTranslation();
 
     const Odds =_calculatorOdds;
-    console.log("Odds:",Odds)
-
-    // const games = []
-    // const getGamesData = ()=>{
-    //     Odds && Odds.map(item =>{
-    //         games.push(item.game_play)
-    //     })
-    // }
-
+    const [name,setName] = useState();
     const [initData, setInitData] = useState(initState);
     const [gameList, setGameList] = useState(games);
     const [clear, setClear] = useState(true);
@@ -41,10 +33,8 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
     const [totalBet, setTotalbet] = useState();
     const [isFourDigits, set] = useState(false)
     const [active, setActive] = useState(false);
-
-    console.log("games:",games)
-
-    const gamesID = 2
+    console.log("GAMES==>",gameList)
+    const gamesID = 1
     const combine =()=>{
         console.log("initData:",initData)
         console.log("gameslist:",gameList)
@@ -148,7 +138,28 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         )
     }
     function WinningData({oddsData}){
-        const total = ''
+
+     //  console.log('oddsData:',oddsData);
+    //   console.log('gameList:',gameList);
+
+    let companyCount = 0;
+
+    if(gameList['dmc'])
+    companyCount ++;
+
+    if(gameList['magnum'])
+    companyCount ++;
+
+    if(gameList['toto'])
+    companyCount ++;
+
+    //console.log('companyCount:',companyCount);
+
+
+        
+
+        //gameList
+        let total = ''
         const bigInv = ''
         const smallInv = ''
         const threeAInv = ''
@@ -181,7 +192,6 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                 threeAInv = Number(total/2)
                 threeCInv = Number(total/2)
             }
-
         }else if(initData.bet_type == "I"){
             
                 let combination = 24
@@ -190,8 +200,6 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                 console.log("123",total)
                 bigInv = Number(total/2)
                 smallInv = Number(total/2)
-           
-
         }else if(initData.bet_type == "R"){
             if(initData.bet_no.length == 4){
                 let result = Number(initData.big_bet) + Number(initData.small_bet)
@@ -209,21 +217,30 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                 threeCInv = Number(total/2)
             }
 
+         
+
+
+            
+
+
+
         }
+
+
+        if(companyCount){
+        total = total * companyCount;
+         bigInv = bigInv * companyCount;
+         smallInv = smallInv * companyCount;
+         threeAInv = threeAInv * companyCount;
+         threeCInv = threeCInv * companyCount;
+        }
+        console.log('total:',total);
+            console.log('companyCount:',companyCount);
 
         if(oddsData){
         return (
             <>
-                         <div className='col-md-7'>
-                            <div className='absolute-div'>
-                                <div className='inner-abs-div'>
-                                    <h5 className='text-uppercase text-center text-white'>Results</h5>
-                                    <div className='company-type-heading d-flex align-items-center'>
-                                        <div className='comapny-type-logo me-3'>
-                                            <img src={oddsData.game_play.logo_url}/>
-                                        </div>
-                                        <div className='company-type-name text-white'>{oddsData.game_play.name}</div>
-                                    </div>
+                         
                                     <div className='first-2-lines my-3'>
                                         <table>
                                             <tr>
@@ -300,7 +317,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                                 <tr>
                                                                     <td><div className='w-amt text-end'>{decimal(Number(bigInv)*Number(oddsData.big_special))}</div></td>
                                                                     {/* <td><div className='w-amt text-end'>{ oddsData.big_special * bigValue}</div></td> */}
-                                                                    </tr>
+                                                                </tr>
                                                                 <tr>
                                                                     <td><div className='w-amt text-end'>{decimal(Number(bigInv)*Number(oddsData.big_consolation))}</div></td>
                                                                 </tr>
@@ -353,9 +370,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                            </div>
-                        </div>
+                                    
             </>
         )
     }
@@ -511,7 +526,46 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                 </div>
                             </div>
                         </div>
-                        <WinningData oddsData={Odds[gamesID]}/>
+                        <div className='col-md-7'>
+                            <div className='absolute-div'>
+                                <div className='inner-abs-div'>
+                                    <h5 className='text-uppercase text-center text-white'>Results</h5>
+                                    <div className='company-type-heading d-flex align-items-center'>
+
+                                    {Odds.map((e,i)=>{
+                                       
+                                             let companyName =  e.game_play.name;
+                                           // let companyName = '';
+                                            if(companyName == "Toto")
+                                            companyName = 'toto';
+                                            else if(companyName == "Da Ma Cai")
+                                            companyName = 'dmc';
+                                            else if(companyName == "Magnum")
+                                            companyName = 'magnum';
+
+                                            
+                                        console.log('gamelist',gameList)
+                                        console.log('companyName',companyName)
+
+                                        if(gameList[companyName]){
+                                        return(
+                                            <>
+                                               
+                                                    <div className='comapny-type-logo me-3'>
+                                                        <img src={e.game_play.logo_url}/>
+                                                        <div className='company-type-name text-white'>{e.game_play.name}</div>
+                                                    </div>
+                                                   
+                                            </>
+                                        )
+                                        }
+                                })}
+                                                    </div>
+                                       
+                                      <WinningData oddsData={Odds[1]}/>
+                                </div>
+                            </div>
+                         </div>              
                     </div>
                 </div>
             </div>
