@@ -32,7 +32,6 @@ useEffect(() => {
 
 
 
-
 useEffect(() => {
 let objectWithData = {  
   "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',

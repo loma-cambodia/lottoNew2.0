@@ -4,14 +4,15 @@ import React, { useState, useEffect } from 'react';
 import { combineReducers } from "redux";
 
 import $ from 'jquery'; 
+import { twoDecimalPlaceWithAmount } from "../Utils";
 
 const initState = {
     "bet_no": '',
     "bet_type":'S',
     "big_bet":'',
     "small_bet":'',
-    "3A":'',
-    "3C":'',
+    "three_A":'',
+    "three_C":'',
     "company":''
 }
 const games = {
@@ -27,17 +28,24 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
     const [gameList, setGameList] = useState(games);
     const [clear, setClear] = useState(true);
     const [submit, setSubmit] = useState(false);
-
+    const [totalBet, setTotalbet] = useState();
+    const [isFourDigits, set] = useState(false)
     const [active, setActive] = useState(false);
 
     const gamesID = 1
     const combine =()=>{
         console.log("initData:",initData)
         console.log("gameslist:",gameList)
-
+        const  big = initData.big_bet
+        const small = initData.small_bet
+        const A = initData.three_A
+        const C = initData.three_C
+        const total = Number(big) + Number(small) + Number(A) + Number(C) 
+        setTotalbet(total)
         // setInitData({...initData,"company":gameList})
         Object.assign(initData,{"company":gameList})
         console.log("calculateData:",initData)
+        console.log("setTotalbetsetTotalbet",totalBet)
     }
 
     const clearInputs = () => {
@@ -96,6 +104,11 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
 
           console.log('isEveryInputFill after: ',isAllFill,isGamesFill)
     }
+    function decimal(data){
+        return(
+            twoDecimalPlaceWithAmount(data,1)
+        )
+    }
     function WinningData({oddsData}){
         if(oddsData){
         return (
@@ -117,8 +130,8 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                 <td className='text-end fw-bold'>1</td>
                                             </tr>
                                             <tr>
-                                                <td>Total Bet Amount</td>
-                                                {/* <td className='text-end fw-bold'>{totalBetAmount}</td> */}
+                                                <td>Total Bet Amount : </td>
+                                                <td className='text-end fw-bold'>{decimal(totalBet)}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -137,13 +150,18 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                             </tr>
                                                             <tr>
                                                                 <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>3rd</div></td>
-                                                            </tr>                                                            
+                                                            </tr>   
+                                                            {initData.bet_no.length == 4 ? 
+                                                            <>                                                     
                                                             <tr>
                                                                 <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Special</div></td>
                                                             </tr>
                                                             <tr>
-                                                                <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Consolation</div></td>
-                                                            </tr>
+                                                            <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Consolation</div></td>
+                                                            </tr></>
+                                                            :
+                                                            <tr></tr>
+                                                            }
                                                         </table>
                                                     </div>
                                                 </div>
@@ -155,25 +173,39 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <div className='prize-content-part'>
                                                         <table className='table'>
                                                             <tr>
-                                                                <td><div className='w-amt text-end'>{oddsData.big_first + oddsData.small_first}</div></td>
+                                                            {initData.bet_no.length == 4 ? 
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_first + oddsData.small_first))}</div></td> :
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.three_A)*Number(oddsData.three_a_first + oddsData.three_c_first))}</div></td>}
                                                                 {/* <td><div className='w-amt text-end'>{big * oddsData.big_first}</div></td>
                                                                 <td><div className='w-amt text-end'>{small * oddsData.small_first}</div></td> */}
                                                             </tr>
                                                             <tr>
-                                                                <td><div className='w-amt text-end'>{oddsData.big_second + oddsData.small_second}</div></td>
+                                                            {initData.bet_no.length == 4 ? 
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_second + oddsData.small_second))}</div></td>:
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.three_C)*Number(oddsData.three_c_second))}</div></td>}
+
                                                                 {/* <td><div className='w-amt text-end'>{big * oddsData.big_second}</div></td>
                                                                 <td><div className='w-amt text-end'>{small * oddsData.small_second}</div></td> */}
                                                             </tr>
                                                             <tr>
-                                                                <td><div className='w-amt text-end'>{oddsData.big_third + oddsData.small_third}</div></td>
+                                                            {initData.bet_no.length == 4 ? 
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_third + oddsData.small_third))}</div></td>:
+                                                                <td><div className='w-amt text-end'>{decimal(Number(initData.three_C)*Number(oddsData.three_c_third))}</div></td>}
+
                                                             </tr>
-                                                            <tr>
-                                                                <td><div className='w-amt text-end'>{oddsData.big_special}</div></td>
-                                                                {/* <td><div className='w-amt text-end'>{ oddsData.big_special * bigValue}</div></td> */}
+                                                            {initData.bet_no.length == 4 ? 
+                                                            <>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_special))}</div></td>
+                                                                    {/* <td><div className='w-amt text-end'>{ oddsData.big_special * bigValue}</div></td> */}
+                                                                    </tr>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_consolation))}</div></td>
                                                                 </tr>
-                                                            <tr>
-                                                                <td><div className='w-amt text-end'>{oddsData.big_consolation}</div></td>
-                                                            </tr>
+                                                            </>
+                                                            :
+                                                            <tr></tr>
+                                                            }
                                                         </table>
                                                     </div>
                                                 </div>
@@ -199,14 +231,20 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                                 <td className='text-end py-2'>{oddsData.big_third}</td>
                                                                 <td className='text-end py-2'>{oddsData.small_third}</td>
                                                             </tr>
-                                                            <tr>
-                                                                <td className='text-end py-2'>{oddsData.big_special}</td>
-                                                                <td className='text-end py-2'>-</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td className='text-end py-2'>{oddsData.big_consolation}</td>
-                                                                <td className='text-end py-2'>-</td>
-                                                            </tr>
+                                                            {initData.bet_no.length == 4 ? 
+                                                            <>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>{oddsData.big_special}</td>
+                                                                    <td className='text-end py-2'>-</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>{oddsData.big_consolation}</td>
+                                                                    <td className='text-end py-2'>-</td>
+                                                                </tr>
+                                                            </>
+                                                            :
+                                                                <tr></tr>
+                                                            }
                                                         </table>
                                                     </div>
                                                 </div>
@@ -337,7 +375,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                 <b className='mb-2 d-block'>3A</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
-                                                <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"3A":e.target.value})}/>
+                                                <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"three_A":e.target.value})}/>
                                             </div>
                                         </div>
                                     </div>
@@ -347,7 +385,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>3C</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"3C":e.target.value})}/>
+                                                    <input type="text" className='form-control' onChange={(e)=>setInitData({...initData,"three_C":e.target.value})}/>
                                                 </div>
                                             </div>
                                         </div> 
