@@ -59,7 +59,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         // isEveryInputFill()
     }
 
-    const handleNumber = (numberInput) =>{
+    const handleBetNumber = (numberInput) =>{
         if (!numberInput.match("^[R-Rr-r0-9]*$")) {
             return false;
           }
@@ -78,10 +78,33 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
             return false;
           }
 
-        
-
           setInitData({...initData,"bet_no":numberInput})
     } 
+
+    const handleBetAmount = (numberInput) =>{
+
+        const specialChars = `\`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`;
+
+        const result = specialChars.split('').some(specialChar => {
+            if (numberInput.includes(specialChar)) {
+                return true;
+            }
+      
+            return false;
+            });
+
+
+          if(numberInput.length > 6)
+          {
+            return false;
+          }
+
+          if (numberInput.includes("-") || numberInput.includes(".")) {
+            return false;
+          }
+
+          return true
+    }
 
     
 
@@ -441,7 +464,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                 value={initData.bet_no}
                                                 maxLength={4}
                                                 minLength={3}
-                                                onChange={(e) => handleNumber(e.target.value)}/>
+                                                onChange={(e) => handleBetNumber(e.target.value)}/>
                                             </div>
                                         </div>
                                     </div> 
@@ -471,7 +494,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>Big</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={initData.big_bet} type="number" className='form-control' onChange={(e)=>setInitData({...initData,"big_bet":e.target.value})}/>
+                                                    <input value={initData.big_bet} type="number" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"big_bet":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -481,7 +504,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>Small</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={initData.small_bet} type="number" className='form-control' onChange={(e)=>setInitData({...initData,"small_bet":e.target.value})}/>
+                                                    <input value={initData.small_bet} type="number" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"small_bet":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -494,7 +517,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                 <b className='mb-2 d-block'>3A</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
-                                                <input value={initData.three_A} type="number" className='form-control' onChange={(e)=>setInitData({...initData,"three_A":e.target.value})}/>
+                                                <input value={initData.three_A} type="number" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"three_A":e.target.value}):'')}/>
                                             </div>
                                         </div>
                                     </div>
@@ -504,7 +527,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>3C</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={initData.three_C} type="number" className='form-control' onChange={(e)=>setInitData({...initData,"three_C":e.target.value})}/>
+                                                    <input value={initData.three_C} type="number" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"three_C":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div> 
@@ -530,7 +553,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                             <div className='absolute-div'>
                                 <div className='inner-abs-div'>
                                     <h5 className='text-uppercase text-center text-white'>Results</h5>
-                                    <div className='company-type-heading d-flex align-items-center'>
+                                    <div className='company-type-heading d-flex text-center align-items-center'>
 
                                     {Odds.map((e,i)=>{
                                        
