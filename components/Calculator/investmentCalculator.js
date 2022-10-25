@@ -32,9 +32,16 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         const A = initData.three_A
         const C = initData.three_C
         const total = Number(big) + Number(small) + Number(A) + Number(C) 
-        setTotalbet(total)
         Object.assign(amounts,{"company":gameList})
         setInitData(amounts)
+        if(amounts.bet_no.length == 4){
+            amounts.three_A = ''
+            amounts.three_C = ''
+        }
+        if(amounts.bet_no.length == 3){
+            amounts.big_bet = ''
+            amounts.small_bet = ''
+        }
     }
     console.log("GGGGG",gameList)
     const clearInputs = () => {
