@@ -39,53 +39,53 @@ const Table = props => {
         },
         {
             name: t('Ticket_No'),
-            selector: "child_ticket_no",
+            selector: row => row.Ticket_No,
             sortable: true,
             cell: row =>
                     <span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => props._childShowTable(row.id,'forDesk','settledList')}>
-                    {row.child_ticket_no}
+                    {row.Ticket_No}
                 </span>
         },
         {
             name: t('Betting_Time'),
             sortable: true,
-            cell:row => moment(row.created_at).format('DD-MM-YYYY HH:mm:ss')
+            cell:row =>row.Betting_Time
         },
         {
             name: t('Draw_Date'),
             sortable: true,
-            cell:row => moment(row.ticket.draw_date).format('DD-MM-YYYY')
+            cell:row =>row.Draw_Date
         },
         {
             name: t('Bet_Number'),
-            selector: "game_type",
+            selector: row => row.Bet_Number,
             sortable: true,
         },
         {
             name: t('Company'),
             sortable: true,
-            cell:row => row.game.name ? row.game.name : ""
+            cell:row => row.Company
         },
         {
         name: t('Total'),
-        selector: "bet_amount",
+        selector: row => row.Total,
         sortable: true,
         },
         {
             name: t('Rebate'),
-            selector: "rebate_amount",
+            selector: row => row.Rebate,
             sortable: true,
 
         },
         {
             name: t('Net'),
-            selector: "bet_net_amount",
+            selector: row => row.Net,
             sortable: true,
 
         },
         {
             name: t('winning'),
-            selector: "winning_amount",
+            selector: row => row.winning,
             sortable: true,
 
         },
@@ -113,7 +113,7 @@ const Table = props => {
 };
   return (
     <DataTable
-        paginationPerPage = {20}
+        paginationPerPage = {5}
       columns={columns}
       data={props.data}
     //   defaultSortField="name"

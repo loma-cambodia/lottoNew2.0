@@ -192,7 +192,7 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
     { name: '07', dataInit: { ...localStateInitData2 } },
     { name: '08', dataInit: { ...localStateInitData2 } },
     { name: '09', dataInit: { ...localStateInitData2 } },
-    { name: '10', dataInit: { ...localStateInitData2 } }
+    { name: '10', dataInit: { ...localStateInitData2 } }  
     ];
 
     setLocalStateInitDataParent(bettingInputsData2);
@@ -265,22 +265,20 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
     })
 
     let toastId = null;
+    let tostDesigningBox = {
+      position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
+      pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
+    };
     if (game_dates.length == 0) {
       if(!toast.isActive(toast.toastId)){
-        toast.error(t('Please_choose_at_least_one_date_selection'), {
-          position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-          pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
-        });
+        toast.error(t('Please_choose_at_least_one_date_selection'), tostDesigningBox);
     }
       return false;
     }
 
     if (game_dates && game_dates[0].games && game_dates[0].games.length == 0) {
       if(!toast.isActive(toast.toastId)){
-      toast.error(t('Please_select_game_first'), {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
-      });
+      toast.error(t('Please_select_game_first'), tostDesigningBox);
     }
       return false;
     }
@@ -288,37 +286,49 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
 
     if (minLengthValidation) {
       if(!toast.isActive(toast.toastId)){
-      toast.error(t('Please_type_3_or_4_digits_in_number_field'), {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
-      });
+      toast.error(t('Please_type_3_or_4_digits_in_number_field'), tostDesigningBox);
     }
       return false;
     }
 
     if (isDataNotCorrect) {
       if(!toast.isActive(toast.toastId)){
-      toast.error(t('please_enter_valid_amount_against_selected_number'), {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
-      });
+      toast.error(t('please_enter_valid_amount_against_selected_number'), tostDesigningBox);
     }
       return false;
     }
 
     if (options && options.length == 0) {
       if(!toast.isActive(toast.toastId)){
-      toast.error(t('Please_select_at_least_one_number'), {
-        position: "top-right", autoClose: 5000, hideProgressBar: false, closeOnClick: true,
-        pauseOnHover: true, draggable: true, progress: undefined, toastId: 1
-      });
+      toast.error(t('Please_select_at_least_one_number'), tostDesigningBox);
     }
       return false;
     }
 
-    let dataSubmit = { member_id: auth.auth.customer_id, merchant_id: auth.auth.merchant_id, game_dates };
+    let dataSubmit = {game_dates};
     dataSubmit['member_id'] = auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id) : 0;
+    //dataSubmit['member_id'] = 0;
     dataSubmit['merchant_id'] = auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0;
+    //dataSubmit['merchant_id'] = 0;
+
+    if (dataSubmit && dataSubmit.merchant_id == 0) {
+      if(!toast.isActive(toast.toastId)){
+      toast.error(t('merchant_id_connt_be_0'), tostDesigningBox);
+    }
+      return false;
+    }
+
+    if (dataSubmit && dataSubmit.member_id == 0) {
+      if(!toast.isActive(toast.toastId)){
+      toast.error(t('member_id_connt_be_0'), tostDesigningBox);
+    }
+      return false;
+    }
+
+
+
+
+
     setIsLoading(true);
 
     dispatch(lotterySubmit(dataSubmit, response => {
