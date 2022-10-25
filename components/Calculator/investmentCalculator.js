@@ -22,6 +22,8 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
     const { t } = useTranslation();
     const Odds =_calculatorOdds;
     const [amounts, setAmounts] = useState(initState);
+    const [gameCalculate, setGameCalculate] = useState(games);
+
     const [initData, setInitData] = useState(initState);
     const [gameList, setGameList] = useState(games);
     const [clear, setClear] = useState(true);
@@ -34,6 +36,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         const total = Number(big) + Number(small) + Number(A) + Number(C) 
         Object.assign(amounts,{"company":gameList})
         setInitData(amounts)
+        setGameCalculate(gameList)
         if(amounts.bet_no.length == 4){
             amounts.three_A = ''
             amounts.three_C = ''
@@ -150,13 +153,13 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
 
         let companyCount = 0;
 
-        if(gameList['dmc'])
+        if(gameCalculate['dmc'])
         companyCount ++;
 
-        if(gameList['magnum'])
+        if(gameCalculate['magnum'])
         companyCount ++;
 
-        if(gameList['toto'])
+        if(gameCalculate['toto'])
         companyCount ++;
 
             let total = ''
@@ -398,21 +401,21 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <div className="select-gp" id="checkboxes">
                                                         <ul id="checkboxes" className="list-inline">
                                                             <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"magnum":!gameList.magnum})}>
-                                                                <span className={`${gameList.magnum ? "cal-border":"" } outer-circle-gp`} title="Select">
+                                                                <span className={`${gameList.magnum ? "cal-border":"" } outer-circle-gp games-calculate`} title="Select">
                                                                     <span className="inner-circle-gp">
                                                                         <img className={`${gameList.magnum ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
                                                             <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"dmc":!gameList.dmc})}>
-                                                                <span className={`${gameList.dmc ? "cal-border":"" } outer-circle-gp`} title="Select">
+                                                                <span className={`${gameList.dmc ? "cal-border":"" } outer-circle-gp games-calculate`} title="Select">
                                                                     <span className="inner-circle-gp">
                                                                         <img className={`${gameList.dmc ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
                                                             <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"toto":!gameList.toto})}>
-                                                                <span className={`${gameList.toto ? "cal-border":"" } outer-circle-gp`} title="Select">
+                                                                <span className={`${gameList.toto ? "cal-border":"" } outer-circle-gp games-calculate`} title="Select">
                                                                     <span className={`inner-circle-gp`}>
                                                                         <img className={`${gameList.toto ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png" />
                                                                     </span>
@@ -521,8 +524,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                             <div className='absolute-div'>
                                 <div className='inner-abs-div'>
                                     <h5 className='text-uppercase text-center text-white'>Results</h5>
-                                    {gameList.dmc || gameList.magnum || gameList.toto ?
-                                     <div className='company-type-heading d-flex align-items-center' style={{justifyContent:'center'}}>
+                                     <div className='company-type-heading d-flex align-items-center' style={{justifyContent:'center',minHeight:"50px"}}>
 
                                      {Odds.map((e,i)=>{
                                         
@@ -546,11 +548,6 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                               }
                                          })}
                                      </div>
-                                    
-                                    : 
-                                    <></>
-                                    }
-                                   
                                       <WinningData oddsData={Odds[1]}/>
                                 </div>
                             </div>
