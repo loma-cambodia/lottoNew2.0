@@ -1,11 +1,8 @@
-
 import { useTranslation } from "react-i18next";
 import React, { useState, useEffect } from 'react';
 import { combineReducers } from "redux";
-
 import $ from 'jquery'; 
 import { twoDecimalPlaceWithAmount } from "../Utils";
-
 const initState = {
     "bet_no": '',
     "bet_type":'S',
@@ -22,35 +19,31 @@ const games = {
 }
 
 const InvestmentCalculator = ({_calculatorOdds}) => {
-  const { t } = useTranslation();
-
+    const { t } = useTranslation();
     const Odds =_calculatorOdds;
     const [amounts, setAmounts] = useState(initState);
     const [initData, setInitData] = useState(initState);
     const [gameList, setGameList] = useState(games);
     const [clear, setClear] = useState(true);
     const [submit, setSubmit] = useState(false);
-    const [totalBet, setTotalbet] = useState();
-    const [isFourDigits, set] = useState(false)
-    const [active, setActive] = useState(false);
-    console.log("GAMES==>",gameList)
-    const gamesID = 1
     const combine =()=>{
-        console.log("initData:",initData)
-        console.log("gameslist:",gameList)
         const  big = initData.big_bet
         const small = initData.small_bet
         const A = initData.three_A
         const C = initData.three_C
         const total = Number(big) + Number(small) + Number(A) + Number(C) 
-        setTotalbet(total)
-        // setInitData({...initData,"company":gameList})
         Object.assign(amounts,{"company":gameList})
         setInitData(amounts)
-        console.log("calculateData:",initData)
-        console.log("setTotalbetsetTotalbet",totalBet)
+        if(amounts.bet_no.length == 4){
+            amounts.three_A = ''
+            amounts.three_C = ''
+        }
+        if(amounts.bet_no.length == 3){
+            amounts.big_bet = ''
+            amounts.small_bet = ''
+        }
     }
-
+    console.log("GGGGG",gameList)
     const clearInputs = () => {
         console.log('clear')
         $(':input').val(null)
@@ -99,8 +92,6 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
 
           return true
     }
-
-    
 
     function isEveryInputEmpty() {
         var allEmpty = true;
@@ -157,112 +148,92 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
     }
     function WinningData({oddsData}){
 
-     //  console.log('oddsData:',oddsData);
-    //   console.log('gameList:',gameList);
+        let companyCount = 0;
 
-    let companyCount = 0;
+        if(gameList['dmc'])
+        companyCount ++;
 
-    if(gameList['dmc'])
-    companyCount ++;
+        if(gameList['magnum'])
+        companyCount ++;
 
-    if(gameList['magnum'])
-    companyCount ++;
+        if(gameList['toto'])
+        companyCount ++;
 
-    if(gameList['toto'])
-    companyCount ++;
-
-    //console.log('companyCount:',companyCount);
-
-
-        
-
-        //gameList
-        let total = ''
-        const bigInv = ''
-        const smallInv = ''
-        const threeAInv = ''
-        const threeCInv = ''
-        if(initData.bet_type == "S"){
-            if(initData.bet_no.length == 4){
-                total = Number(initData.big_bet) + Number(initData.small_bet)
-                console.log("123",total)
-                bigInv = Number(total/2)
-                smallInv = Number(total/2)
-            }else{
-                total = Number(initData.three_A) + Number(initData.three_C)
-                console.log("123",total)
-                threeAInv = Number(total/2)
-                threeCInv = Number(total/2)
-            }
-        }else if(initData.bet_type == "B"){
-            if(initData.bet_no.length == 4){
-                let combination = 24
-                let result = Number(initData.big_bet) + Number(initData.small_bet) 
-                total =Number(result*combination)
-                console.log("123",total)
-                bigInv = Number(total/2)
-                smallInv = Number(total/2)
-            }else{
-                let combination = 6
-                let result = Number(initData.three_A) + Number(initData.three_C) 
-                total =Number(result*combination)
-                console.log("123",total)
-                threeAInv = Number(total/2)
-                threeCInv = Number(total/2)
-            }
-        }else if(initData.bet_type == "I"){
-            
-                let combination = 24
-                let result = Number(initData.big_bet) + Number(initData.small_bet) 
-                total =Number(result/combination)
-                console.log("123",total)
-                bigInv = Number(total/2)
-                smallInv = Number(total/2)
-        }else if(initData.bet_type == "R"){
-            if(initData.bet_no.length == 4){
-                let result = Number(initData.big_bet) + Number(initData.small_bet)
-                let combination = Number(result*2)
-                total =Number(combination/2)
-                console.log("123",total)
-                bigInv = Number(total/2)
-                smallInv = Number(total/2)
-            }else{
-                let result = Number(initData.three_A) + Number(initData.three_C)
-                let combination = Number(result*2)
-                total =Number(combination/2)
-                console.log("123",total)
-                threeAInv = Number(total/2)
-                threeCInv = Number(total/2)
+            let total = ''
+            const bigInv = ''
+            const smallInv = ''
+            const threeAInv = ''
+            const threeCInv = ''
+            if(initData.bet_type == "S"){
+                if(initData.bet_no.length == 4){
+                    total = Number(initData.big_bet) + Number(initData.small_bet)
+                    console.log("123",total)
+                    bigInv = Number(total/2)
+                    smallInv = Number(total/2)
+                }else{
+                    total = Number(initData.three_A) + Number(initData.three_C)
+                    console.log("123",total)
+                    threeAInv = Number(total/2)
+                    threeCInv = Number(total/2)
+                }
+            }else if(initData.bet_type == "B"){
+                if(initData.bet_no.length == 4){
+                    let combination = 24
+                    let result = Number(initData.big_bet) + Number(initData.small_bet) 
+                    total =Number(result*combination)
+                    console.log("123",total)
+                    bigInv = Number(total/2)
+                    smallInv = Number(total/2)
+                }else{
+                    let combination = 6
+                    let result = Number(initData.three_A) + Number(initData.three_C) 
+                    total =Number(result*combination)
+                    console.log("123",total)
+                    threeAInv = Number(total/2)
+                    threeCInv = Number(total/2)
+                }
+            }else if(initData.bet_type == "I"){
+                    let combination = 24
+                    let result = Number(initData.big_bet) + Number(initData.small_bet) 
+                    total =Number(result/combination)
+                    console.log("123",total)
+                    bigInv = Number(total/2)
+                    smallInv = Number(total/2)
+            }else if(initData.bet_type == "R"){
+                if(initData.bet_no.length == 4){
+                    let result = Number(initData.big_bet) + Number(initData.small_bet)
+                    let combination = Number(result*2)
+                    total =Number(combination/2)
+                    console.log("123",total)
+                    bigInv = Number(total/2)
+                    smallInv = Number(total/2)
+                }else{
+                    let result = Number(initData.three_A) + Number(initData.three_C)
+                    let combination = Number(result*2)
+                    total =Number(combination/2)
+                    console.log("123",total)
+                    threeAInv = Number(total/2)
+                    threeCInv = Number(total/2)
+                }
             }
 
-         
+            if(companyCount){
+                total = total * companyCount;
+                bigInv = bigInv * companyCount;
+                smallInv = smallInv * companyCount;
+                threeAInv = threeAInv * companyCount;
+                threeCInv = threeCInv * companyCount;
+            }
+            function multiplier(data){
+                return(
+                    decimal(data = data * companyCount)
+                )
+            }
 
-
-            
-
-
-
-        }
-
-
-        if(companyCount){
-        total = total * companyCount;
-         bigInv = bigInv * companyCount;
-         smallInv = smallInv * companyCount;
-         threeAInv = threeAInv * companyCount;
-         threeCInv = threeCInv * companyCount;
-        }
-        console.log('total:',total);
-            console.log('companyCount:',companyCount);
-        function multiplier(data){
-            return(
-                decimal(data = data * companyCount)
-            )
-        }
-        if(oddsData){
-        return (
-            <>
-                         
+            if(oddsData){
+            return (
+                <>
+                            
                                     <div className='first-2-lines my-3'>
                                         <table>
                                             <tr>
@@ -275,129 +246,130 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                             </tr>
                                         </table>
                                     </div>
-                                 <div className='bottom-3-col'>
-                                        <div className='row'>
-                                            <div className='col'>
-                                                <div className='prize-div'>
-                                                    <div className='heading-part'>Prize</div>
-                                                    <div className='prize-content-part'>
-                                                        <table className='table'>
-                                                            <tr>
-                                                                <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>1st</div></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>2nd</div></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>3rd</div></td>
-                                                            </tr>   
-                                                            {initData.bet_no.length == 4 ? 
-                                                            <>                                                     
-                                                            <tr>
-                                                                <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Special</div></td>
-                                                            </tr>
-                                                            <tr>
-                                                            <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Consolation</div></td>
-                                                            </tr></>
-                                                            :
-                                                            <tr></tr>
-                                                            }
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            <div className='col'>
-                                                <div className='w-amt-div'>
-                                                    <div className='w-amt-heading'>Winning Amount</div>
-                                                    <div className='blank-div'></div>
-                                                    <div className='prize-content-part'>
-                                                        <table className='table'>
-                                                            <tr>
-                                                            {initData.bet_no.length == 4 ? 
-                                                                <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_first  * smallInv)+Number(oddsData.big_first * bigInv))}</div></td> :
-                                                                <td><div className='w-amt text-end'>{decimal(Number(oddsData.three_a_first * threeAInv)+Number(oddsData.three_c_first * threeCInv))}</div></td>}
-                                                                {/* <td><div className='w-amt text-end'>{big * oddsData.big_first}</div></td>
-                                                                <td><div className='w-amt text-end'>{small * oddsData.small_first}</div></td> */}
-                                                            </tr>
-                                                            <tr>
-                                                            {initData.bet_no.length == 4 ? 
-                                                             <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_second  * smallInv)+Number(oddsData.big_second * bigInv))}</div></td> :
-                                                                // <td><div className='w-amt text-end'>{decimal(Number(initData.big_bet)*Number(oddsData.big_second + oddsData.small_second))}</div></td>:
-                                                                <td><div className='w-amt text-end'>{decimal(Number(threeCInv)*Number(oddsData.three_c_second))}</div></td>}
-
-                                                                {/* <td><div className='w-amt text-end'>{big * oddsData.big_second}</div></td>
-                                                                <td><div className='w-amt text-end'>{small * oddsData.small_second}</div></td> */}
-                                                            </tr>
-                                                            <tr>
-                                                            {initData.bet_no.length == 4 ? 
-                                                             <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_third  * smallInv)+Number(oddsData.big_third * bigInv))}</div></td>:
-                                                                <td><div className='w-amt text-end'>{decimal(Number(threeCInv)*Number(oddsData.three_c_third))}</div></td>}
-
-                                                            </tr>
-                                                            {initData.bet_no.length == 4 ? 
-                                                            <>
+                                    <div className='bottom-3-col'>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <div className='prize-div'>
+                                                        <div className='heading-part'>Prize</div>
+                                                        <div className='prize-content-part'>
+                                                            <table className='table'>
                                                                 <tr>
-                                                                    <td><div className='w-amt text-end'>{decimal(Number(bigInv)*Number(oddsData.big_special))}</div></td>
-                                                                    {/* <td><div className='w-amt text-end'>{ oddsData.big_special * bigValue}</div></td> */}
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>1st</div></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><div className='w-amt text-end'>{decimal(Number(bigInv)*Number(oddsData.big_consolation))}</div></td>
-                                                                </tr>
-                                                            </>
-                                                            :
-                                                            <tr></tr>
-                                                            }
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className='col'>
-                                                <div className='w-amt-div'>
-                                                    <div className='w-amt-heading'>Odds</div>
-                                                    <div className='prize-content-part'>
-                                                    <table className='table text-white'>
-                                                            <tr>
-                                                                <th className='text-end py-2'>Big</th>
-                                                                <th className='text-end py-2'>Small</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <td className='text-end py-2'>{multiplier(oddsData.big_first)}</td>
-                                                                <td className='text-end py-2'>{multiplier(oddsData.small_first)}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td className='text-end py-2'>{multiplier(oddsData.big_second)}</td>
-                                                                <td className='text-end py-2'>{multiplier(oddsData.small_second)}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td className='text-end py-2'>{multiplier(oddsData.big_third)}</td>
-                                                                <td className='text-end py-2'>{multiplier(oddsData.small_third)}</td>
-                                                            </tr>
-                                                            {initData.bet_no.length == 4 ? 
-                                                            <>
-                                                                <tr>
-                                                                    <td className='text-end py-2'>{multiplier(oddsData.big_special)}</td>
-                                                                    <td className='text-end py-2'>-</td>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>2nd</div></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td className='text-end py-2'>{multiplier(oddsData.big_consolation)}</td>
-                                                                    <td className='text-end py-2'>-</td>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>3rd</div></td>
+                                                                </tr>   
+                                                                {initData.bet_no.length == 4 ? 
+                                                                <>                                                     
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Special</div></td>
                                                                 </tr>
-                                                            </>
-                                                            :
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Consolation</div></td>
+                                                                </tr>
+                                                                </>
+                                                                :
                                                                 <tr></tr>
-                                                            }
-                                                        </table>
+                                                                }
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className='col'>
+                                                    <div className='w-amt-div'>
+                                                        <div className='w-amt-heading'>Winning Amount</div>
+                                                        <div className='blank-div'></div>
+                                                            <div className='prize-content-part'>
+                                                                <table className='table'>
+                                                                    <tr>
+                                                                    {initData.bet_no.length == 4 ? 
+                                                                        <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_first  * smallInv)+Number(oddsData.big_first * bigInv))}</div></td> 
+                                                                        :
+                                                                        <td><div className='w-amt text-end'>{decimal(Number(oddsData.three_a_first * threeAInv)+Number(oddsData.three_c_first * threeCInv))}</div></td>
+                                                                    }
+                                                                    </tr>
+                                                                    <tr>
+                                                                    {initData.bet_no.length == 4 ? 
+                                                                        <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_second  * smallInv)+Number(oddsData.big_second * bigInv))}</div></td> 
+                                                                        :
+                                                                        <td><div className='w-amt text-end'>{decimal(Number(threeCInv)*Number(oddsData.three_c_second))}</div></td>
+                                                                    }
+                                                                    </tr>
+                                                                    <tr>
+                                                                    {initData.bet_no.length == 4 ? 
+                                                                        <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_third  * smallInv)+Number(oddsData.big_third * bigInv))}</div></td>
+                                                                        :
+                                                                        <td><div className='w-amt text-end'>{decimal(Number(threeCInv)*Number(oddsData.three_c_third))}</div></td>
+                                                                    }
+                                                                    </tr>
+                                                                    {initData.bet_no.length == 4 ? 
+                                                                    <>
+                                                                        <tr>
+                                                                            <td><div className='w-amt text-end'>{decimal(Number(bigInv)*Number(oddsData.big_special))}</div></td>
+                                                                            {/* <td><div className='w-amt text-end'>{ oddsData.big_special * bigValue}</div></td> */}
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><div className='w-amt text-end'>{decimal(Number(bigInv)*Number(oddsData.big_consolation))}</div></td>
+                                                                        </tr>
+                                                                    </>
+                                                                    :
+                                                                    <tr></tr>
+                                                                    }
+                                                                </table>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div className='col'>
+                                                    <div className='w-amt-div'>
+                                                        <div className='w-amt-heading'>Odds</div>
+                                                        <div className='prize-content-part'>
+                                                        <table className='table text-white'>
+                                                                <tr>
+                                                                    <th className='text-end py-2'>Big</th>
+                                                                    <th className='text-end py-2'>Small</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>{multiplier(oddsData.big_first)}</td>
+                                                                    <td className='text-end py-2'>{multiplier(oddsData.small_first)}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>{multiplier(oddsData.big_second)}</td>
+                                                                    <td className='text-end py-2'>{multiplier(oddsData.small_second)}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>{multiplier(oddsData.big_third)}</td>
+                                                                    <td className='text-end py-2'>{multiplier(oddsData.small_third)}</td>
+                                                                </tr>
+                                                                {initData.bet_no.length == 4 ? 
+                                                                <>
+                                                                    <tr>
+                                                                        <td className='text-end py-2'>{multiplier(oddsData.big_special)}</td>
+                                                                        <td className='text-end py-2'>-</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td className='text-end py-2'>{multiplier(oddsData.big_consolation)}</td>
+                                                                        <td className='text-end py-2'>-</td>
+                                                                    </tr>
+                                                                </>
+                                                                :
+                                                                    <tr></tr>
+                                                                }
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-            </>
-        )
-    }
-        
-    }
+                                        
+                </>
+            )
+        }
+            
+        }
+
     useEffect(()=>{
         isEveryInputEmpty()
         isEveryInputFill()
@@ -531,8 +503,6 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                         </div> 
                                     </div>
                                      } 
-                                   
-                                    
                                     <div className='form-group'>
                                     <div className='row'>
                                     <div className='col-md-6'>
@@ -551,33 +521,36 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                             <div className='absolute-div'>
                                 <div className='inner-abs-div'>
                                     <h5 className='text-uppercase text-center text-white'>Results</h5>
-                                    <div className='company-type-heading d-flex align-items-center' style={{justifyContent:'center',minHeight:'50px'}}>
+                                    {gameList.dmc || gameList.magnum || gameList.toto ?
+                                     <div className='company-type-heading d-flex align-items-center' style={{justifyContent:'center'}}>
 
-                                    {Odds.map((e,i)=>{
-                                       
-                                             let companyName =  e.game_play.name;
-                                            if(companyName == "Toto")
-                                            companyName = 'toto';
-                                            else if(companyName == "Da Ma Cai")
-                                            companyName = 'dmc';
-                                            else if(companyName == "Magnum")
-                                            companyName = 'magnum';
-
-                                        if(gameList[companyName]){
-                                        return(
-                                            <>
-                                               
-                                                    <div className='comapny-type-logo mx-2'>
-                                                        <img src={e.game_play.logo_url}/>
-                                                    </div>
-                                                    <div className='company-type-name text-white'>{e.game_play.name}</div>
-                                                   
-                                            </>
-                                        )
-                                        }
-                                })}
-                                                    </div>
-                                       
+                                     {Odds.map((e,i)=>{
+                                        
+                                              let companyName =  e.game_play.name;
+                                             if(companyName == "Toto")
+                                             companyName = 'toto';
+                                             else if(companyName == "Da Ma Cai")
+                                             companyName = 'dmc';
+                                             else if(companyName == "Magnum")
+                                             companyName = 'magnum';
+ 
+                                         if(gameList[companyName]){
+                                         return(
+                                             <>
+                                                
+                                                     <div className='comapny-type-logo mx-2'><img src={e.game_play.logo_url}/></div>
+                                                     <div className='company-type-name text-white p-2' >{e.game_play.name}</div>
+                                                    
+                                             </>
+                                                 )
+                                              }
+                                         })}
+                                     </div>
+                                    
+                                    : 
+                                    <></>
+                                    }
+                                   
                                       <WinningData oddsData={Odds[1]}/>
                                 </div>
                             </div>
