@@ -272,6 +272,11 @@
     "30th":"30TH",
     "31st":"31ST",
     "merchant has disabled":"Merchant is temporary deactivated. Please contact customer service.",
-    "market has disabled":"Market is closed. No bet is allowed"
+    "market has disabled":"Market is closed. No bet is allowed",
+    "Winning_Calculator":"Winning Calculator",
+    "Straight":"Straight",
+    "Total_No_of_Combination":"Total No. of Combination:",
+    "Total_Cost":"Total Cost:",
+    "Calculate":"Calculate"
 
 }

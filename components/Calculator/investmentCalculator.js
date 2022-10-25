@@ -5,7 +5,7 @@ import $ from 'jquery';
 import { twoDecimalPlaceWithAmount } from "../Utils";
 const initState = {
     "bet_no": '',
-    "bet_type":'S',
+    "bet_type": '',
     "big_bet":'',
     "small_bet":'',
     "three_A":'',
@@ -68,9 +68,16 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     }
 
     const handleBetNumber = (numberInput) =>{
+
+        console.log('handle:',numberInput);
+        let newAmounts = {...amounts};
+
         if (!numberInput.match("^[R-Rr-r0-9]*$")) {
             return false;
           }
+
+
+          
 
           if (
             numberInput &&
@@ -86,7 +93,18 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
             return false;
           }
 
-          setAmounts({...amounts,"bet_no":numberInput})
+          if (numberInput.includes('R') || numberInput.includes('r')){
+               newAmounts = {...newAmounts,"bet_type":'S'};
+            }
+
+
+           newAmounts = {...newAmounts,"bet_no":numberInput};
+
+
+          console.log('newAmounts:',newAmounts);
+          setAmounts(newAmounts);
+
+        
     } 
 
     const handleBetAmount = (numberInput) =>{
@@ -107,15 +125,10 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
           return true
     }
 
+
     function isEveryInputEmpty() {
         var allEmpty = true;
-        
-        
-        // $(':input').each(function() {
-        //     if ($(this).val() !== '') {
-        //         allEmpty = false
-        //     }
-        // });
+     
 
         if(initState !== amounts || gameList !== games){
             allEmpty = true
@@ -131,15 +144,29 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         var isAllFill = false
         var isGamesFill = false
         console.log('isEveryInputFill bfore: ',isAllFill,isGamesFill)
-        if(amounts.bet_no){
-            if(amounts.big_bet|| amounts.small_bet || amounts.three_A || amounts.three_C )
-            {
-                isAllFill = true
+        if(amounts.bet_no && amounts.bet_no.length > 2){
+            switch (amounts.bet_no.length){
+                case 3:
+                    if(amounts.three_A && amounts.three_C)
+                    {
+                        isAllFill = true
+                    }
+                break;
+
+                case 4:
+                    if(amounts.big_bet && amounts.small_bet)
+                    {
+                        isAllFill = true
+                    }
+                break;
             }
         }
         else
             isAllFill = false
 
+            if(amounts.bet_type == ''){
+                isAllFill = false
+            }
 
             if(!gameList.dmc && !gameList.magnum && !gameList.toto)
             {
@@ -257,11 +284,11 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                     <div className='first-2-lines my-3'>
                                         <table>
                                             <tr>
-                                                <td>Total No’s Beted</td>
+                                                <td>{t('Total_No_of_Combination')}</td>
                                                 <td className='text-end fw-bold'>{combination}</td>
                                             </tr>
                                             <tr>
-                                                <td>Total Bet Amount : </td>
+                                                <td>{t('Total_Cost')} </td>
                                                 <td className='text-end fw-bold'>{merchantCurrency} {decimal(total)}</td>
                                             </tr>
                                         </table>
@@ -270,25 +297,25 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                             <div className='row'>
                                                 <div className='col'>
                                                     <div className='prize-div'>
-                                                        <div className='heading-part'>Prize</div>
+                                                        <div className='heading-part'>{t('prize_type')}</div>
                                                         <div className='prize-content-part'>
                                                             <table className='table'>
                                                                 <tr>
-                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>1st</div></td>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('1st_Prize')}</div></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>2nd</div></td>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('2nd_Prize')}</div></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>3rd</div></td>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('3rd_Prize')}</div></td>
                                                                 </tr>   
                                                                 {initData.bet_no.length == 4 ? 
                                                                 <>                                                     
                                                                 <tr>
-                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Special</div></td>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('Special_Prize')}</div></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>Consolation</div></td>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('Consolation_Prize')}</div></td>
                                                                 </tr>
                                                                 </>
                                                                 :
@@ -300,7 +327,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 </div>
                                                 <div className='col'>
                                                     <div className='w-amt-div'>
-                                                        <div className='w-amt-heading'>Winning Amount</div>
+                                                        <div className='w-amt-heading'>{t('Winning_Amount')}</div>
                                                         <div className='blank-div'></div>
                                                             <div className='prize-content-part'>
                                                                 <table className='table'>
@@ -344,12 +371,12 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 </div>
                                                 <div className='col'>
                                                     <div className='w-amt-div'>
-                                                        <div className='w-amt-heading'>Odds</div>
+                                                        <div className='w-amt-heading'>{t('Odds')}</div>
                                                         <div className='prize-content-part'>
                                                         <table className='table text-white'>
                                                                 <tr>
-                                                                    <th className='text-end py-2'>Big</th>
-                                                                    <th className='text-end py-2'>Small</th>
+                                                                    <th className='text-end py-2'>{t('Big_Bet')}</th>
+                                                                    <th className='text-end py-2'>{t('Small_Bet')}</th>
                                                                 </tr>
                                                                 <tr>
                                                                     <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_first) : "0.00"}</td>
@@ -393,8 +420,10 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     useEffect(()=>{
         isEveryInputEmpty()
         isEveryInputFill()
-        console.log("amounts: :",amounts)
-    },[amounts,gameList])
+        console.log("amounts: :",amounts);
+
+        
+    },[amounts,gameList]);
     return (
       <>
        <section className="bg-light custom-padding">
@@ -411,7 +440,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                     <div className='form-group'>
                                         <div className='row'>
                                             <div className='col-md-4 col-lg-5'>
-                                                <b className='mb-2 d-block'>Company</b>
+                                                <b className='mb-2 d-block'>{t('Company')}</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
                                                 <div className="d-flex justify-content-center">
@@ -447,33 +476,39 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                     <div className='form-group'>
                                         <div className='row'>
                                             <div className='col-lg-5 col-md-4'>
-                                                <b className='mb-2 d-block'>Number</b>
+                                                <b className='mb-2 d-block'>{t('Bet_Number')}</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
                                                 <input type="text" className='form-control' 
                                                 value={amounts.bet_no}
                                                 maxLength={4}
                                                 minLength={3}
-                                                onChange={(e) => handleBetNumber(e.target.value)}/>
+                                                onChange={(e) => (handleBetNumber(e.target.value))}/>
                                             </div>
                                         </div>
                                     </div> 
                                     <div className='form-group'>
                                         <div className='row'>
                                             <div className='col-lg-5 col-md-4'>
-                                                <b className='mb-2 d-block'>Bet Type</b>
+                                                <b className='mb-2 d-block'>{t('Bet_Type')}</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8 text-center'>
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "S" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setAmounts({...amounts,"bet_type":"S"})}>S</button>
-
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "B" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setAmounts({...amounts,"bet_type":"B"})}>{t('B')}</button>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "S" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) =>(amounts.bet_type == 'S'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"S"}))}>S</button>
+                                        {amounts.bet_no.includes('r') || amounts.bet_no.includes('R') ? '' : 
+                                        <>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "B" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => (amounts.bet_type == 'B'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"B"}))}>{t('B')}</button>
 
                                         {amounts.bet_no.length == 4 ?                                         
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "I" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'}  title={"iBox"} onClick={(e) => setAmounts({...amounts,"bet_type":"I"})}>{t('I')}</button>
-                                        : '' }
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "I" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'}  title={"iBox"} onClick={(e) => (amounts.bet_type == 'I'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"I"}))}>{t('I')}</button>
+                                        : 
+                                        '' 
+                                        }
 
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "R" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => setAmounts({...amounts,"bet_type":"R"})}>{t('R')}</button>
-                                            </div>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "R" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => (amounts.bet_type == 'R'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"R"}))}>{t('R')}</button>
+                                                                                    
+                                        </>
+                                        }
+                                        </div>
                                         </div>
                                     </div>
                                     {amounts.bet_no.length == 4 ? 
@@ -526,11 +561,11 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                     <div className='form-group'>
                                     <div className='row'>
                                     <div className='col-md-6'>
-                                        <div className="clearfix text-center"><span disabled={clear} role="button" className={`${clear ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> clear? clearInputs():''} >CLEAR</span></div>
+                                        <div className="clearfix text-center"><span disabled={clear} role="button" className={`${clear ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> clear? clearInputs():''} >{t('clear')}</span></div>
                                     </div>
                                     <div className='col-md-6'>
                                         <div className="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
-                                        >Calculate</span></div>
+                                        >{t('Calculate')}</span></div>
                                     </div>
                                 </div>
                                     </div>
@@ -539,34 +574,40 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                         </div>
                         <div className='col-md-7'>
                             <div className='absolute-div'>
+                                {!Odds.length == 1 ? 
+                                <div className='text-center'>
+                                    <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="60" />
+                                </div>
+                                :
                                 <div className='inner-abs-div'>
-                                    <h5 className='text-uppercase text-center text-white'>Results</h5>
+                                    <h5 className='text-uppercase text-center text-white'>{t('Result')}</h5>
                                      <div className='company-type-heading d-flex align-items-center' style={{justifyContent:'center',minHeight:"50px"}}>
 
-                                     {Odds.map((e,i)=>{
-                                        
-                                              let companyName =  e.game_play.name;
-                                             if(companyName == "Toto")
-                                             companyName = 'toto';
-                                             else if(companyName == "Da Ma Cai")
-                                             companyName = 'dmc';
-                                             else if(companyName == "Magnum")
-                                             companyName = 'magnum';
- 
-                                         if(gameList[companyName]){
-                                         return(
-                                             <>
+                                            {Odds.map((e,i)=>{
                                                 
-                                                     <div className='comapny-type-logo mx-2'><img src={e.game_play.logo_url}/></div>
-                                                     <div className='company-type-name text-white p-2' >{e.game_play.name}</div>
-                                                    
-                                             </>
-                                                 )
-                                              }
-                                         })}
+                                                    let companyName =  e.game_play.name;
+                                                    if(companyName == "Toto")
+                                                    companyName = 'toto';
+                                                    else if(companyName == "Da Ma Cai")
+                                                    companyName = 'dmc';
+                                                    else if(companyName == "Magnum")
+                                                    companyName = 'magnum';
+        
+                                                if(gameList[companyName]){
+                                                return(
+                                                    <>
+                                                        
+                                                            <div className='comapny-type-logo mx-2'><img src={e.game_play.logo_url}/></div>
+                                                            <div className='company-type-name text-white p-2' >{e.game_play.name}</div>
+                                                            
+                                                    </>
+                                                        )
+                                                    }
+                                                })}
                                      </div>
                                       <WinningData oddsData={Odds[1]}/>
                                 </div>
+                                }
                             </div>
                          </div>              
                     </div>
