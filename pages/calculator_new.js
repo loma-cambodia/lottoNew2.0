@@ -7,15 +7,11 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import {announcement, userTransactionDetails, winnerResultDetailsSecond, specialDraw} from '../store/actions/homeActions';
 import {getLogin} from '../store/actions/authActions';
-import InvestmentCalculator from '../components/Calculator/investmentCalculator';
-import Calculator from '../components/calculator/Calculator';
-
-
+import Calculator from '../components/calculator/investmentCalculator_new';
+import CalculatorOld from '../components/calculator/Calculator_new';
 
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
   const [active, setActive] = useState(false);
-
-
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const state = useSelector(state => state);
@@ -43,21 +39,10 @@ if(objectWithData.customer_id != 0){
 }
 }, [datauser])
 
-
       const auth = useSelector(state => state.auth);
 
       let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
 
-      let winnerResultDetails = state && state.home && state.home.winnerResultDetails ? state.home.winnerResultDetails : [];
-
-      let language = state && state.auth && state.auth.lang ? state.auth.lang : '';
-
-      let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
-      
-      let specialDrawState = state && state.home && state.home.specialDrawDetails ? state.home.specialDrawDetails : '';
-
-      let calculatorOdds = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : [];
-  console.log("CALC",calculatorOdds)
   return (
     <>
        <Head> 
@@ -65,12 +50,11 @@ if(objectWithData.customer_id != 0){
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 
-     
-      {/* <InvestmentCalculator _calculatorOdds={calculatorOdds}  _auth={auth}/> */}
+    
+      <CalculatorOld _transactions={transactions} _auth={auth} />
 
       <Calculator _transactions={transactions} _auth={auth}/>
-      
-      
+
       <div className={styles.device_detect_for_desktop}> 
         <Footer/>
       </div>

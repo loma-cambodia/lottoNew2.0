@@ -593,7 +593,7 @@ const Calculator = ({ _transactions, _auth }) => {
         <div className="heading-part text-center mb-4">
           {/* <h5 className="text-uppercase fw-bold">{t('how_to')}</h5> */}
           <h2 className="text-uppercase text-color-main fw-bold">
-            {t("Winning Calculator")}
+            {t("Winning_Calculator")}
           </h2>
         </div>
         <div className="clearfix">
@@ -607,7 +607,7 @@ const Calculator = ({ _transactions, _auth }) => {
                         <div className="form-group">
                           <div className="row">
                             <div className="col-md-4">
-                              <b>Company</b>
+                              <b>{t('Company')}</b>
                             </div>
                             <div className="col-md-8">
                               <div className="d-flex">
@@ -651,7 +651,7 @@ const Calculator = ({ _transactions, _auth }) => {
                         <div className="form-group">
                           <div className="row">
                             <div className="col-md-4">
-                              <b>Number</b>
+                              <b>{t('Number')}</b>
                             </div>
                             <div className="col-md-8">
                               <input
@@ -669,10 +669,23 @@ const Calculator = ({ _transactions, _auth }) => {
                           </div>
                         </div>
 
-                        <div className="d-flex mb-3">
+                        <div className='form-group'>
+                            <div className='row'>
+                                <div className='col-lg-4 col-md-4'>
+                                    <b>{t('Bet_Type')}</b>
+                                </div>
+                                <div className='col-lg-8 col-md-8'>
+                                    <button type="button" className={gameType == 's' ? "btn me-1 btn-bordered-theme-active" : "btn me-1 btn-bordered-theme"} onClick={()=>{setGameType('s')}} title="Straight">S</button>
+                                    <button type="button" className={gameType == 'b' ? "btn me-1 btn-bordered-theme-active" : "btn me-1 btn-bordered-theme"} onClick={()=>{setGameType('b')}} title="Box">B</button>
+                                    <button type="button" className={number.length == 3 ? "btn  me-1 btn-bordered-theme-disabled" : gameType == 'i' ? "btn  me-1 btn-bordered-theme-active" : "btn  me-1 btn-bordered-theme"} onClick={number.length != 3 ? ()=>{setGameType('i')} : null} title="iBox">I</button>
+                                    <button type="button" className={gameType == 'r' ? "btn me-1 btn-bordered-theme-active" : "btn me-1 btn-bordered-theme"} onClick={()=>{setGameType('r')}} title="Reverse">R</button>
+                                </div>
+                            </div>
+                        </div>
+                        {/* <div className="d-flex mb-3">
                           <div className="d-flex flex-column gap-2">
                             <div>
-                              <b>Bet Type</b>
+                              <b>{t('Bet_Type')}</b>
                             </div>
                             <div>
                               <div>
@@ -691,12 +704,6 @@ const Calculator = ({ _transactions, _auth }) => {
                                       }}
                                       style={{ cursor: "pointer",fontSize: "14px" }}
                                     >
-                                      {/*  <img
-                                          className="img-fluid"
-                                          src="images\betting\0000.png"
-                                          alt=""
-                                        style={{ width: '20px' }}
-                                      /> */}
                                       Straight
                                     </label>
                                   </div>
@@ -761,14 +768,15 @@ const Calculator = ({ _transactions, _auth }) => {
                                         setGameType("r");
                                       }}
                                     >
-                                      Reverse
+                                      {t('Reverse')}
                                     </label>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
+
                         <>
                               <div className="d-flex gap-2">
                                 <div className="d-flex">
@@ -779,7 +787,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         paddingLeft: "3px",
                                       }}
                                     >
-                                      <b>Big / 3A</b>
+                                      <b>{t('Big')} / 3A</b>
                                     </div>
                                     <div className="">
                                      <input
@@ -801,7 +809,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         paddingLeft: "3px",
                                       }}
                                     >
-                                      <b>Small / 3C</b>
+                                      <b>{t('Small_Bet')}: / 3C</b>
                                     </div>
                                     <div className="">
                                     <input
@@ -849,7 +857,244 @@ const Calculator = ({ _transactions, _auth }) => {
                   </div>
                 </div>
                 <div className="col-md-7 col-sm-6 text-light">
-                  <div className="absolute-div">
+                <div className='absolute-div'>
+                                    <div className='inner-abs-div'>
+                                        <h5 className='text-uppercase text-center text-white'>{t('Result')}</h5>
+                                        <div className='company-type-heading d-flex align-items-center'>
+                                            <div className='comapny-type-logo me-3'>
+                                                <img src={currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Magnum' ? 'assets/images/icons/magnum-square.jpg' : 
+                                                currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Da Ma Cai' ? 'assets/images/icons/damacai-square.jpg' : 
+                                                currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Toto' ? 'assets/images/icons/toto-square.jpg' : null} />
+                                            </div>
+                                            <div className='company-type-name text-white'>
+                                              {t(currentMarket && currentMarket.game_play && currentMarket.game_play.name ? currentMarket.game_play.name : selectedMarket)}
+                                            </div>
+                                        </div>
+                                        <div className='first-2-lines my-3'>
+                                            <table>
+                                                <tr>
+                                                    <td>{t('Total_No_of_Combination')}</td>
+                                                    <td className='text-end fw-bold'>{combo}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{t('Total_Cost')}</td>
+                                                    <td className='text-end fw-bold'>{cost}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div className='bottom-3-col'>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <div className='prize-div'>
+                                                        <div className='heading-part'>{t('Prize')}</div>
+                                                        <div className='prize-content-part'>
+                                                            <table className='table'>
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('1st_Prize')}</div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('2nd_Prize')}</div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('3rd_Prize')}</div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('Special_Prize')}</div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('Consolation_Prize')}</div></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className='col'>
+                                                    <div className='w-amt-div'>
+                                                        <div className='w-amt-heading'>{t('PRIZE_AMOUNT')}</div>
+                                                        <div className='blank-div'></div>
+                                                        <div className='prize-content-part'>
+                                                            <table className='table'>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>{ number.length == 3 ? <>
+                                                                            {parseFloat(
+                                                                            result.d3a_one + result.d3c_one
+                                                                            ).toFixed(2)} 
+                                                                    </>: 
+                                                                    number.length == 4 ? <>
+                                                                        {parseFloat(
+                                                                        result.d4_big_one +
+                                                                        result.d4_small_one
+                                                                        ).toFixed(2)}
+                                                                        </> : '-' }</div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div className='w-amt text-end'>
+
+                                                                            { number.length == 3 ? <>
+                                                                                    {parseFloat(result.d3c_two).toFixed(2)} 
+                                                                            </>: 
+                                                                            number.length == 4 ? <>
+                                                                                {parseFloat(
+                                                                                result.d4_big_two +
+                                                                                result.d4_small_two
+                                                                                ).toFixed(2)}
+                                                                                </> : '-' }
+                                                                        
+                                                                        
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>
+                                                                        { number.length == 3 ? <>
+                                                                                        {parseFloat(result.d3c_three).toFixed(2)} 
+                                                                                </>: 
+                                                                                number.length == 4 ? <>
+                                                                                    {parseFloat(
+                                                                                    result.d4_big_three +
+                                                                                    result.d4_small_three
+                                                                                    ).toFixed(2)}
+                                                                                    </> : '-' }
+                                                                        </div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>
+                                                                            { number.length == 4 ? <>
+                                                                                {parseFloat(
+                                                                                result.d4_big_special
+                                                                                ).toFixed(2)}
+                                                                                </> : '-' }
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>
+                                                                            { number.length == 4 ? <>
+                                                                                        {parseFloat(
+                                                                                        result.d4_big_consolation
+                                                                                        ).toFixed(2)}
+                                                                                        </> : '-' }
+                                                                        </div></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className='col'>
+                                                    <div className='w-amt-div'>
+                                                        <div className='w-amt-heading'>{t('Odds')}</div>
+                                                        <div className='prize-content-part'>
+                                                            <table className='table text-white'>
+                                                                <tr>
+                                                                    <th className='text-end py-2'>{number.length == 4 ? <>{t('Big_Bet')}</> : <>3A</>}</th>
+                                                                    <th className='text-end py-2'>{number.length == 4 ? <>{t('Small_Bet')}</> : <>3C</>}</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>
+                                                                    {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.one
+                                                                            )}
+                                                                        </>: 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d3.a3_one
+                                                                            )}
+                                                                        </>
+                                                                        }
+                                                                    </td>
+                                                                    <td className='text-end py-2'>
+                                                                    {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.small_one
+                                                                            )}
+                                                                        </>: <>
+                                                                            {parseInt(
+                                                                                price.d3.one
+                                                                            )}
+                                                                        </>}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>
+                                                                    {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.two
+                                                                            )}
+                                                                        </>: '-'}
+                                                                    </td>
+                                                                    <td className='text-end py-2'>
+                                                                    {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.small_two
+                                                                            )}
+                                                                        </>: <>
+                                                                            {parseInt(
+                                                                                price.d3.two
+                                                                            )}
+                                                                        </>}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>
+                                                                    {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.three
+                                                                            )}
+                                                                        </>: '-'}
+                                                                    </td>
+                                                                    <td className='text-end py-2'>
+                                                                        {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.small_three
+                                                                            )}
+                                                                        </>: <>
+                                                                            {parseInt(
+                                                                                price.d3.three
+                                                                            )}
+                                                                        </>}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>
+                                                                        { number.length == 4 ?
+                                                                            <>
+                                                                                {parseInt(
+                                                                                price.d4.special
+                                                                                )}
+                                                                            </> : 
+                                                                        '-' }    
+                                                                    </td>
+                                                                    <td className='text-end py-2'>-</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>
+                                                                        { number.length == 4 ?
+                                                                            <>
+                                                                                {parseInt(
+                                                                                price.d4.consolation
+                                                                                )}
+                                                                            </> : 
+                                                                        '-' }                                                                    
+                                                                    </td>
+                                                                    <td className='text-end py-2'>-</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                  {/* <div className="absolute-div">
                     <div className="inner-abs-div">
                       <h3 className="text-center gap-2 justify-content-center d-flex text-uppercase">
                         
@@ -859,19 +1104,19 @@ const Calculator = ({ _transactions, _auth }) => {
                               src={currentMarket && currentMarket.game_play && currentMarket.game_play.logo_url ? currentMarket.game_play.logo_url : "http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png" }
                             />
                           </span>
-                        {currentMarket && currentMarket.game_play && currentMarket.game_play.name ? currentMarket.game_play.name : selectedMarket}
+                        {t(currentMarket && currentMarket.game_play && currentMarket.game_play.name ? currentMarket.game_play.name : selectedMarket)}
                       </h3>
 
                       <div className="absolute-div">
                         <div className="d-flex justify-content-between align-items-center">
                           <label className="" htmlFor="number">
-                            Total No. of Combination:
+                            {t('Total_No_of_Combination')}
                           </label>
                           <span>{combo}</span>
                         </div>
                         <div className="d-flex justify-content-between align-items-center">
                           <label className="" htmlFor="number">
-                            Total Cost:
+                            {t('Total_Cost')}
                           </label>
                           <span>{merchantCurrency} {cost}</span>
                         </div>
@@ -879,7 +1124,7 @@ const Calculator = ({ _transactions, _auth }) => {
                       <div className="col-md-12 flex-column">
                         <div className="absolute-div mt-4">
                           <h4 className="text-center text-uppercase">
-                            <b>Winning Amount</b>
+                            <b>{t('Winning_Amount')}</b>
                           </h4>
                           <table className="text-light table table-borderless">
                             <thead>
@@ -914,7 +1159,7 @@ const Calculator = ({ _transactions, _auth }) => {
                               {number.length == 3 ? (
                                 <>
                                   <tr className="">
-                                    <td style={{ width: "25%" }}>1st Prize </td>
+                                    <td style={{ width: "25%" }}>{t('P1')} </td>
                                     <td
                                       style={{ width: "25%" }}
                                       className="text-left"
@@ -963,7 +1208,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </div>
                                   </tr>
                                   <tr className="">
-                                    <td style={{ width: "25%" }}>2nd Prize </td>
+                                    <td style={{ width: "25%" }}>{t('P2')} </td>
                                     <td
                                       style={{ width: "25%" }}
                                       className="text-left"
@@ -999,7 +1244,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </div>
                                   </tr>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>3rd Prize </td>
+                                    <td style={{ width: "30%" }}>{t('P3')} </td>
                                     <td
                                       style={{ width: "25%" }}
                                       className="text-left"
@@ -1038,7 +1283,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                   </tr>
                                   <tr className="">
                                     <td style={{ width: "30%" }}>
-                                      Special Prize{" "}
+                                      {t('Special_Prize')}
                                     </td>
                                     <td
                                       style={{ width: "25%" }}
@@ -1051,7 +1296,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                   </tr>
                                   <tr className="">
                                     <td style={{ width: "30%" }}>
-                                      Consolation Prize{" "}
+                                      {t('Consolation_Prize')}
                                     </td>
                                     <td
                                       style={{ width: "25%" }}
@@ -1066,7 +1311,7 @@ const Calculator = ({ _transactions, _auth }) => {
                               ) : number.length == 4 ? (
                                 <>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>1st Prize </td>
+                                    <td style={{ width: "30%" }}>{t('P1')} </td>
                                     <td
                                       style={{ width: "30%" }}
                                       className="text-left"
@@ -1093,7 +1338,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       >
                                         <div className="w-100">
                                           <span className="d-flex justify-content-between">
-                                            <span> Big: </span>
+                                            <span> {t('Big')}: </span>
                                             <span>
                                               {merchantCurrency} &nbsp;
                                               {parseFloat(
@@ -1102,7 +1347,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             </span>
                                           </span>
                                           <span className="d-flex justify-content-between">
-                                            <span> Small: </span>
+                                            <span>  {t('Small_Bet')}: </span>
                                             <span>
                                               {merchantCurrency} &nbsp;
                                               {parseFloat(
@@ -1115,7 +1360,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </div>
                                   </tr>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>2nd Prize </td>
+                                    <td style={{ width: "30%" }}>{t('P2')} </td>
                                     <td
                                       style={{ width: "30%" }}
                                       className="text-left"
@@ -1142,7 +1387,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       >
                                         <div className="w-100">
                                           <span className="d-flex justify-content-between">
-                                            <span> Big: </span>
+                                            <span> {t('Big')}: </span>
                                             <span>
                                               {merchantCurrency} &nbsp;
                                               {parseFloat(
@@ -1151,7 +1396,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             </span>
                                           </span>
                                           <span className="d-flex justify-content-between">
-                                            <span> Small: </span>
+                                            <span>  {t('Small_Bet')}: </span>
                                             <span>
                                               {merchantCurrency} &nbsp;
                                               {parseFloat(
@@ -1164,7 +1409,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </div>
                                   </tr>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>3rd Prize </td>
+                                    <td style={{ width: "30%" }}>{t('P3')} </td>
                                     <td
                                       style={{ width: "30%" }}
                                       className="text-left"
@@ -1191,7 +1436,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       >
                                         <div className="w-100">
                                           <span className="d-flex justify-content-between">
-                                            <span> Big: </span>
+                                            <span> {t('Big')}: </span>
                                             <span>
                                               {merchantCurrency} &nbsp;
                                               {parseFloat(
@@ -1200,7 +1445,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             </span>
                                           </span>
                                           <span className="d-flex justify-content-between">
-                                            <span> Small: </span>
+                                            <span>  {t('Small_Bet')}: </span>
                                             <span>
                                               {merchantCurrency} &nbsp;
                                               {parseFloat(
@@ -1214,7 +1459,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                   </tr>
                                   <tr className="">
                                     <td style={{ width: "30%" }}>
-                                      Special Prize{" "}
+                                      {t('Special_Prize')}
                                     </td>
                                     <td
                                       style={{ width: "30%" }}
@@ -1240,7 +1485,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         className="text-left d-flex flex-column"
                                       >
                                           <span className="d-flex justify-content-between w-100">
-                                            <span> Big: </span>
+                                            <span> {t('Big')}: </span>
                                             <span>
                                               {merchantCurrency} &nbsp;
                                               {parseFloat(
@@ -1253,7 +1498,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                   </tr>
                                   <tr className="">
                                     <td style={{ width: "30%" }}>
-                                      Consolation Prize{" "}
+                                      {t('Consolation_Prize')}
                                     </td>
                                     <td
                                       style={{ width: "30%" }}
@@ -1279,7 +1524,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         className="text-left d-flex flex-column"
                                       >
                                           <span className="d-flex justify-content-between">
-                                            <span> Big: </span>
+                                            <span> {t('Big')}: </span>
                                             <span>
                                               {merchantCurrency} &nbsp;
                                               {parseFloat(
@@ -1293,27 +1538,27 @@ const Calculator = ({ _transactions, _auth }) => {
                                 </>
                               ) : (
                                 <>
-                                  <table className="text-light table table-borderless">
+                                  <table class="text-light table table-borderless">
                                     <thead>
-                                      <tr className="">
+                                      <tr class="">
                                         <th style={{ width: "30%" }}></th>
                                         <th
-                                          className="text-left"
+                                          class="text-left"
                                           style={{ width: "30%" }}
                                         ></th>
                                         <th
-                                          className="text-left"
+                                          class="text-left"
                                           style={{ width: "30%" }}
                                         ></th>
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <tr className="">
+                                      <tr class="">
                                         <td style={{ width: "30%" }}>
-                                          1st Prize{" "}
+                                          {t('P1')}
                                         </td>
                                         <td
-                                          className="text-left"
+                                          class="text-left"
                                           style={{ width: "30%" }}
                                         >
                                           <span
@@ -1329,24 +1574,24 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </td>
                                         <div className={styles.device_detect_for_desktop}> 
                                             <td
-                                              className="text-left d-flex flex-column"
+                                              class="text-left d-flex flex-column"
                                               style={{ width: "30%" }}
                                             >
-                                                <span className="d-flex justify-content-start">
+                                                <span class="d-flex justify-content-start">
                                                   <span> 0.00</span>
                                                 </span>
-                                                <span className="d-flex justify-content-start">
+                                                <span class="d-flex justify-content-start">
                                                   <span> 0.00</span>
                                                 </span>
                                             </td>
                                         </div>
                                       </tr>
-                                      <tr className="">
+                                      <tr class="">
                                         <td style={{ width: "30%" }}>
-                                          2nd Prize{" "}
+                                          {t('P2')}
                                         </td>
                                         <td
-                                          className="text-start"
+                                          class="text-start"
                                           style={{ width: "30%" }}
                                         >
                                           <span
@@ -1363,24 +1608,24 @@ const Calculator = ({ _transactions, _auth }) => {
                                         
                                     <div className={styles.device_detect_for_desktop}> 
                                         <td
-                                          className="text-left d-flex flex-column"
+                                          class="text-left d-flex flex-column"
                                           style={{ width: "30%" }}
                                         >
-                                            <span className="d-flex justify-content-start">
+                                            <span class="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
-                                            <span className="d-flex justify-content-start">
+                                            <span class="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                         </td>
                                         </div>
                                       </tr>
-                                      <tr className="">
+                                      <tr class="">
                                         <td style={{ width: "30%" }}>
-                                          3rd Prize{" "}
+                                          {t('P3')}
                                         </td>
                                         <td
-                                          className="text-left"
+                                          class="text-left"
                                           style={{ width: "30%" }}
                                         >
                                           <span
@@ -1397,24 +1642,24 @@ const Calculator = ({ _transactions, _auth }) => {
                                         
                                     <div className={styles.device_detect_for_desktop}> 
                                         <td
-                                          className="text-left d-flex flex-column"
+                                          class="text-left d-flex flex-column"
                                           style={{ width: "30%" }}
                                         >
-                                            <span className="d-flex justify-content-start">
+                                            <span class="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
-                                            <span className="d-flex justify-content-start">
+                                            <span class="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                         </td>
                                         </div>
                                       </tr>
-                                      <tr className="">
+                                      <tr class="">
                                         <td style={{ width: "30%" }}>
-                                          Special Prize{" "}
+                                          {t('Special_Prize')}
                                         </td>
                                         <td
-                                          className="text-left"
+                                          class="text-left"
                                           style={{ width: "30%" }}
                                         >
                                           <span
@@ -1431,21 +1676,21 @@ const Calculator = ({ _transactions, _auth }) => {
                                         
                                     <div className={styles.device_detect_for_desktop}> 
                                         <td
-                                          className="text-left d-flex flex-column"
+                                          class="text-left d-flex flex-column"
                                           style={{ width: "30%" }}
                                         >
-                                            <span className="d-flex justify-content-start">
+                                            <span class="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                         </td>
                                         </div>
                                       </tr>
-                                      <tr className="">
+                                      <tr class="">
                                         <td style={{ width: "30%" }}>
-                                          Consolation Prize{" "}
+                                          {t('Consolation_Prize')}
                                         </td>
                                         <td
-                                          className="text-left"
+                                          class="text-left"
                                           style={{ width: "30%" }}
                                         >
                                           <span
@@ -1461,10 +1706,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </td>
                                     <div className={styles.device_detect_for_desktop}> 
                                         <td
-                                          className="text-left d-flex flex-column"
+                                          class="text-left d-flex flex-column"
                                           style={{ width: "30%" }}
                                         >
-                                            <span className="d-flex justify-content-start">
+                                            <span class="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                         </td>
@@ -1479,7 +1724,7 @@ const Calculator = ({ _transactions, _auth }) => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

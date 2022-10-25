@@ -14,7 +14,7 @@ async function handler(req, res) {
    if(isLocalhost){
     objectWithData.customer_name = "Sushil";
     objectWithData.customer_id = 222;
-    objectWithData.merchant_id = 1;
+    objectWithData.merchant_id = 2;
     objectWithData.language = 'en';
     // objectWithData.customer_name = "Dileep Maurya";
     // objectWithData.customer_id = 9876;
