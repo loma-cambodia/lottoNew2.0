@@ -295,7 +295,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                                 <table className='table'>
                                                                     <tr>
                                                                     {initData.bet_no.length == 4 ? 
-                                                                        <td><div className='w-amt text-end'>{merchantCurrency} {decimal(Number(oddsData.small_first  * smallInv)+Number(oddsData.big_first * bigInv))}</div></td> 
+                                                                        <td><div style={{whiteSpace: 'nowrap',overflow: 'hidden'}} className='w-amt text-end'>{merchantCurrency} {decimal(Number(oddsData.small_first  * smallInv)+Number(oddsData.big_first * bigInv))}</div></td> 
                                                                         :
                                                                         <td><div className='w-amt text-end'>{merchantCurrency} {decimal(Number(oddsData.three_a_first * threeAInv)+Number(oddsData.three_c_first * threeCInv))}</div></td>
                                                                     }
