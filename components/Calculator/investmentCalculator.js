@@ -557,7 +557,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                             <div className='absolute-div'>
                                 <div className='inner-abs-div'>
                                     <h5 className='text-uppercase text-center text-white'>Results</h5>
-                                    <div className='company-type-heading  d-flex align-items-center' style={{justifyContent:'center'}}>
+                                    <div className='d-flex justify-content-center'>
 
                                     {Odds.map((e,i)=>{
                                        
@@ -572,11 +572,11 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                         if(gameList[companyName]){
                                         return(
                                             <>
-                                               
-                                                    <div className='comapny-type-logo me-3'>
+                                                
+                                                    <div className='comapny-type-logo me-3 ' >
                                                         <img src={e.game_play.logo_url}/>
                                                     </div>
-                                                    <div className='company-type-name text-white'>{e.game_play.name}</div>
+                                                    <div className='company-type-name text-white p-2' >{e.game_play.name}</div>
                                                    
                                             </>
                                         )
