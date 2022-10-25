@@ -191,7 +191,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                 }else if(initData.bet_no.length == 3){
                     total = Number(initData.three_A) + Number(initData.three_C)
                     console.log("123",total)
-                    setCombination(2)
+                    setCombination(1)
                     threeAInv = Number(total/2)
                     threeCInv = Number(total/2)
                 }
