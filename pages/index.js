@@ -64,6 +64,7 @@ if(objectWithData.customer_id != 0){
       let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
       
       let specialDrawState = state && state.home && state.home.specialDrawDetails ? state.home.specialDrawDetails : '';
+      
   return (
     <>
        <Head> 
