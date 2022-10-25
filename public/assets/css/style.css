@@ -1069,6 +1069,16 @@
   .selected {
   border-color: #bc2263;
   }
+  @media (max-width:767px) {
+    .games-calculate{
+      width: 40px!important;
+      height: 40px!important;
+    }
+    .clearfix span.d-block.btn-yellow.rounded-full {
+      margin: 10px;
+  }
+  }
+  
   span.outer-circle-gp {
   width: 35px;
   height: 35px;

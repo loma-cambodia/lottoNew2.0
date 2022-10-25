@@ -16,10 +16,10 @@ const Transactions = () => {
                                 <input type="text" className="form-control-custom-big" name="transationid"/>
                             </div>
                         </div>
-                        <div class="col-md-3 col-6">
-                            <div class="form-group">
-                                <label htmlFor="transactionid" class="fw-bold mb-2">{t('transaction_type')}</label>
-                                <select type="text" class="form-control-custom-big" name="transationid">
+                        <div className="col-md-3 col-6">
+                            <div className="form-group">
+                                <label htmlFor="transactionid" className="fw-bold mb-2">{t('transaction_type')}</label>
+                                <select type="text" className="form-control-custom-big" name="transationid">
                                     <option>{t('transaction_type')} 1</option>
                                     <option>{t('transaction_type')} 2</option>
                                     <option>{t('transaction_type')} 3</option>
