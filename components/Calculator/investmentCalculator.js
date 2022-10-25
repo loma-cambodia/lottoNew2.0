@@ -5,7 +5,7 @@ import $ from 'jquery';
 import { twoDecimalPlaceWithAmount } from "../Utils";
 const initState = {
     "bet_no": '',
-    "bet_type":'',
+    "bet_type": '',
     "big_bet":'',
     "small_bet":'',
     "three_A":'',
@@ -69,17 +69,15 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
 
     const handleBetNumber = (numberInput) =>{
 
-        console.log('handle:',numberInput)
+        console.log('handle:',numberInput);
+        let newAmounts = {...amounts};
 
         if (!numberInput.match("^[R-Rr-r0-9]*$")) {
             return false;
           }
 
-          if (numberInput.includes('r')){
-            setAmounts({...amounts,"bet_type":"S"})
-            console.log('handle R:')
 
-        }
+          
 
           if (
             numberInput &&
@@ -90,14 +88,22 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
           ) {
             return false;
           }
-      
           if (numberInput.includes("-") || numberInput.includes(".")) {
             return false;
           }
 
+          if (numberInput.includes('R') || numberInput.includes('r')){
+               newAmounts = {...newAmounts,"bet_type":'S'};
+            }
+
+
+           newAmounts = {...newAmounts,"bet_no":numberInput};
+
+
+          console.log('newAmounts:',newAmounts);
+          setAmounts(newAmounts);
+
         
-          setAmounts({...amounts,"bet_no":numberInput})
-          
     } 
 
     const handleBetAmount = (numberInput) =>{
@@ -413,9 +419,10 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     useEffect(()=>{
         isEveryInputEmpty()
         isEveryInputFill()
+        console.log("amounts: :",amounts);
+
         
-        console.log("amounts: :",amounts)
-    },[amounts,gameList,amounts.bet_type])
+    },[amounts,gameList]);
     return (
       <>
        <section className="bg-light custom-padding">

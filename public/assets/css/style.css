@@ -3502,14 +3502,6 @@ input.daterangepickerstyle-sm {
     padding: 15px 15px;
   }
 }
-
-
-.button-disable{
-  filter: grayscale(1);
-}
-.button-able{
-  filter: none!important;
-}
   /*min-width: auto!important; */
 }
 .margin-left-52px{
@@ -3517,4 +3509,10 @@ input.daterangepickerstyle-sm {
 }
 .cal-border{
   border: 1px solid #bc2263!important
+}
+.button-disable{
+  filter: grayscale(1)!important;
+}
+.button-able{
+  filter: none!important;
 }
