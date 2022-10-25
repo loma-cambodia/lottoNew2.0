@@ -28,6 +28,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     const [gameList, setGameList] = useState(games);
     const [clear, setClear] = useState(true);
     const [submit, setSubmit] = useState(false);
+    const [combination, setCombination] = useState(0);
     let auth = _auth;
     const merchantCurrency =
     auth &&
@@ -63,6 +64,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         setInitData(initState)
         setGameList(games)
         setClear(true)
+        setCombination(0)
     }
 
     const handleBetNumber = (numberInput) =>{
@@ -107,7 +109,8 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
 
     function isEveryInputEmpty() {
         var allEmpty = true;
-    
+        
+        
         // $(':input').each(function() {
         //     if ($(this).val() !== '') {
         //         allEmpty = false
@@ -160,7 +163,9 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     }
     function WinningData({oddsData}){
 
-        let companyCount = 0;
+            
+        let    companyCount = 0;
+       
 
         if(gameCalculate['dmc'])
         companyCount ++;
@@ -179,25 +184,27 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
             if(initData.bet_type == "S"){
                 if(initData.bet_no.length == 4){
                     total = Number(initData.big_bet) + Number(initData.small_bet)
+                    setCombination(2)
                     console.log("123",total)
                     bigInv = Number(total/2)
                     smallInv = Number(total/2)
-                }else{
+                }else if(initData.bet_no.length == 3){
                     total = Number(initData.three_A) + Number(initData.three_C)
                     console.log("123",total)
+                    setCombination(2)
                     threeAInv = Number(total/2)
                     threeCInv = Number(total/2)
                 }
             }else if(initData.bet_type == "B"){
                 if(initData.bet_no.length == 4){
-                    let combination = 24
+                    setCombination(24)
                     let result = Number(initData.big_bet) + Number(initData.small_bet) 
                     total =Number(result*combination)
                     console.log("123",total)
                     bigInv = Number(total/2)
                     smallInv = Number(total/2)
                 }else{
-                    let combination = 6
+                    setCombination(6)
                     let result = Number(initData.three_A) + Number(initData.three_C) 
                     total =Number(result*combination)
                     console.log("123",total)
@@ -205,7 +212,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                     threeCInv = Number(total/2)
                 }
             }else if(initData.bet_type == "I"){
-                    let combination = 24
+                setCombination(24)
                     let result = Number(initData.big_bet) + Number(initData.small_bet) 
                     total =Number(result/combination)
                     console.log("123",total)
@@ -213,16 +220,16 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                     smallInv = Number(total/2)
             }else if(initData.bet_type == "R"){
                 if(initData.bet_no.length == 4){
+                    setCombination(2)
                     let result = Number(initData.big_bet) + Number(initData.small_bet)
-                    let combination = Number(result*2)
-                    total =Number(combination/2)
+                    total =Number(result*combination)
                     console.log("123",total)
                     bigInv = Number(total/2)
                     smallInv = Number(total/2)
                 }else{
+                    setCombination(2)
                     let result = Number(initData.three_A) + Number(initData.three_C)
-                    let combination = Number(result*2)
-                    total =Number(combination/2)
+                    total =Number(result*combination)
                     console.log("123",total)
                     threeAInv = Number(total/2)
                     threeCInv = Number(total/2)
@@ -237,8 +244,9 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                 threeCInv = threeCInv * companyCount;
             }
             function multiplier(data){
+                
                 return(
-                    decimal(data = data * companyCount)
+                    decimal(data =  companyCount * data)
                 )
             }
 
@@ -250,7 +258,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                         <table>
                                             <tr>
                                                 <td>{t('Total_No_of_Combination')}</td>
-                                                <td className='text-end fw-bold'>1</td>
+                                                <td className='text-end fw-bold'>{combination}</td>
                                             </tr>
                                             <tr>
                                                 <td>{t('Total_Cost')} </td>
@@ -300,7 +308,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                                     {initData.bet_no.length == 4 ? 
                                                                         <td><div style={{whiteSpace: 'nowrap',overflow: 'hidden'}} className='w-amt text-end'>{merchantCurrency} {decimal(Number(oddsData.small_first  * smallInv)+Number(oddsData.big_first * bigInv))}</div></td> 
                                                                         :
-                                                                        <td><div className='w-amt text-end'>{merchantCurrency} {decimal(Number(oddsData.three_a_first * threeAInv)+Number(oddsData.three_c_first * threeCInv))}</div></td>
+                                                                        <td><div style={{whiteSpace: 'nowrap',overflow: 'hidden'}} className='w-amt text-end'>{merchantCurrency} {decimal(Number(oddsData.three_a_first * threeAInv)+Number(oddsData.three_c_first * threeCInv))}</div></td>
                                                                     }
                                                                     </tr>
                                                                     <tr>
@@ -344,25 +352,25 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                                     <th className='text-end py-2'>{t('Small_Bet')}</th>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td className='text-end py-2'>{multiplier(oddsData.big_first)}</td>
-                                                                    <td className='text-end py-2'>{multiplier(oddsData.small_first)}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_first) : "0.00"}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_first): "0.00"}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td className='text-end py-2'>{multiplier(oddsData.big_second)}</td>
-                                                                    <td className='text-end py-2'>{multiplier(oddsData.small_second)}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_second) : "0.00"}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_second): "0.00"}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td className='text-end py-2'>{multiplier(oddsData.big_third)}</td>
-                                                                    <td className='text-end py-2'>{multiplier(oddsData.small_third)}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_third): "0.00"}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_third): "0.00"}</td>
                                                                 </tr>
                                                                 {initData.bet_no.length == 4 ? 
                                                                 <>
                                                                     <tr>
-                                                                        <td className='text-end py-2'>{multiplier(oddsData.big_special)}</td>
+                                                                        <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_special): "0.00"}</td>
                                                                         <td className='text-end py-2'>-</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td className='text-end py-2'>{multiplier(oddsData.big_consolation)}</td>
+                                                                        <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_consolation): "0.00"}</td>
                                                                         <td className='text-end py-2'>-</td>
                                                                     </tr>
                                                                 </>
