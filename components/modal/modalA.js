@@ -16,9 +16,9 @@ export default class ModalA extends React.Component {
                                 </h5>
                             </div>
                             <div className="modal-body" >
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-8">
+                                <div className="container-fluid">
+                                    <div className="row">
+                                        <div className="col-8 col-sm-8">
                                             <p>{t('Total_bet_amount')}</p>
                                             <p>{t('Accepted_bet_amount')}</p>
                                             <p>{t('Rebate')}</p>
@@ -33,7 +33,7 @@ export default class ModalA extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer" style={{justifyContent:'center'}}>
+                            <div className="modal-footer" style={{justifyContent:'center'}}>
                             <button type="button" style={{backgroundColor:'#bc2263',fontWeight:'bold'}} className="btn  btn-sm text-white" data-bs-dismiss="modal">{t('Ok')}</button>
                             </div>
                         </div>

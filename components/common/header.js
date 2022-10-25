@@ -183,7 +183,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
 
                             {/* <li className="dropdown-desktop">
                             <a href="#" >{t('History')} </a>
-                            <ul class="sub-menu-desktop">
+                            <ul className="sub-menu-desktop">
                                 <li><Link href="/betting">{t('Betting')}</Link></li>
                                 <li className= {`${router === "/bettingList" ? "active-header":""}`}><Link href="/bettingList">{t('History')}</Link></li>
                             </ul>
@@ -241,7 +241,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
 
                           <li className="dropdown position-relative">
                           <button className="btn btn-danger btn-sm" type="button" onClick={() => logoutUser(auth && auth.auth && auth.auth.id ? auth.auth.id  : 0) } style={{padding:'1px 4px'}}>
-                          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                          <i className="fa-solid fa-arrow-right-from-bracket"></i>
                           </button>
 
                           </li>
