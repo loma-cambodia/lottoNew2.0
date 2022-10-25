@@ -83,27 +83,27 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
 
     const handleBetAmount = (numberInput) =>{
 
-        const specialChars = `\`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`;
-
-        const result = specialChars.split('').some(specialChar => {
-            if (numberInput.includes(specialChar)) {
-                return true;
-            }
-      
+        if (!numberInput.match("^[0-9-.]*$")) {
             return false;
-            });
+        }
 
+        if(numberInput.includes('-') || numberInput.includes('.')){
+            return false;
+        }
 
           if(numberInput.length > 6)
           {
             return false;
           }
 
-          if (numberInput.includes("-") || numberInput.includes(".")) {
-            return false;
-          }
-
           return true
+          
+
+        //   if (numberInput.includes("-") || numberInput.includes(".") || numberInput.includes("+") || numberInput.includes("_")) {
+        //     return false;
+        //   }
+
+        //   return true
     }
 
     
@@ -126,35 +126,47 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         setClear(allEmpty);
     }
 
-    // function isEveryInputFill() {
+    function isEveryInputFill() {
   
-    //     var isAllFill = true
-    //     var isGamesFill = true
-    //     console.log('isEveryInputFill bfore: ',isAllFill,isGamesFill)
-    //     $(':input').each(function() {
-    //         if ($(this).val() == '') {
-    //             isAllFill = false
-    //         }
-    //         else
-    //             isAllFill = true
-    //     });
+        var isAllFill = false
+        var isGamesFill = false
+        console.log('isEveryInputFill bfore: ',isAllFill,isGamesFill)
+        if(initData.bet_no){
+            if((initData.big_bet && initData.small_bet) || (initData.three_A && initData.three_C) )
+            {
+                isAllFill = true
+            }
+        }
+        else
+            isAllFill = false
 
-        
-    //         if(!gameList.dmc && !gameList.magnum && !gameList.toto)
-    //         {
-    //             isGamesFill = false
-    //         }
-    //         else
-    //             isGamesFill = true
 
-    //       if(isAllFill && isGamesFill){
-    //         setSubmit(true)
-    //       }
-    //       else
-    //       setSubmit(false)
 
-    //       console.log('isEveryInputFill after: ',isAllFill,isGamesFill)
-    // }
+
+
+        // $(':input').each(function() {
+        //     if ($(this).val() == '') {
+        //         isAllFill = false
+        //     }
+        //     else
+        //         isAllFill = true
+        // });
+
+            if(!gameList.dmc && !gameList.magnum && !gameList.toto)
+            {
+                isGamesFill = false
+            }
+            else
+                isGamesFill = true
+
+          if(isAllFill && isGamesFill){
+            setSubmit(true)
+          }
+          else
+          setSubmit(false)
+
+          console.log('isEveryInputFill after: ',isAllFill,isGamesFill)
+    }
     function decimal(data){
         return(
             twoDecimalPlaceWithAmount(data,1)
@@ -405,8 +417,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
     }
     useEffect(()=>{
         isEveryInputEmpty()
-        // isEveryInputFill()
-        combine()
+        isEveryInputFill()
         console.log("calculateData:",initData)
     },[initData,gameList])
     return (
@@ -428,7 +439,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                 <b className='mb-2 d-block'>Company</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
-                                                <div class="d-flex">
+                                                <div className="d-flex justify-content-center">
                                                     <div class="select-gp" id="checkboxes">
                                                         <ul id="checkboxes" class="list-inline">
                                                             <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"magnum":!gameList.magnum})}>
@@ -498,7 +509,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>Big</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={initData.big_bet} type="number" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"big_bet":e.target.value}):'')}/>
+                                                    <input value={initData.big_bet} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"big_bet":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -508,7 +519,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>Small</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={initData.small_bet} type="number" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"small_bet":e.target.value}):'')}/>
+                                                    <input value={initData.small_bet} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"small_bet":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -521,7 +532,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                 <b className='mb-2 d-block'>3A</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
-                                                <input value={initData.three_A} type="number" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"three_A":e.target.value}):'')}/>
+                                                <input value={initData.three_A} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"three_A":e.target.value}):'')}/>
                                             </div>
                                         </div>
                                     </div>
@@ -531,7 +542,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>3C</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={initData.three_C} type="number" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"three_C":e.target.value}):'')}/>
+                                                    <input value={initData.three_C} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"three_C":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div> 
@@ -541,13 +552,13 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                     
                                     <div className='form-group'>
                                     <div className='row'>
-                                    <div className=''>
+                                    <div className='col-md-6'>
                                         <div class="clearfix text-center"><span disabled={clear} role="button" className={`${clear ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> clear? clearInputs():''} >CLEAR</span></div>
                                     </div>
-                                    {/* <div className='col-md-6'>
+                                    <div className='col-md-6'>
                                         <div class="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
                                         >Calculate</span></div>
-                                    </div> */}
+                                    </div>
                                 </div>
                                     </div>
                                 </div>
@@ -557,7 +568,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                             <div className='absolute-div'>
                                 <div className='inner-abs-div'>
                                     <h5 className='text-uppercase text-center text-white'>Results</h5>
-                                    <div className='company-type-heading  d-flex align-items-center' style={{justifyContent:'center'}}>
+                                    <div className='company-type-heading d-flex align-items-center' style={{justifyContent:'center',minHeight:'50px'}}>
 
                                     {Odds.map((e,i)=>{
                                        
@@ -573,7 +584,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                         return(
                                             <>
                                                
-                                                    <div className='comapny-type-logo me-3'>
+                                                    <div className='comapny-type-logo mx-2'>
                                                         <img src={e.game_play.logo_url}/>
                                                     </div>
                                                     <div className='company-type-name text-white'>{e.game_play.name}</div>
