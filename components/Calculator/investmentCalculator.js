@@ -81,7 +81,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
           ) {
             return false;
           }
-      
+          
           if (numberInput.includes("-") || numberInput.includes(".")) {
             return false;
           }

@@ -3255,6 +3255,9 @@ section.announcement {
 }
 
 
+}
+
+
 .button-disable{
   filter: grayscale(1);
 }
@@ -3267,7 +3270,6 @@ section.announcement {
 }
 .margin-left-52px{
   margin-left : 52px;
-}
 }
 @media (max-width:768px) {
   .back-section:before {
