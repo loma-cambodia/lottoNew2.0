@@ -617,17 +617,10 @@ const handlePageClick = (event) => {
                                 </DateRangePicker>
                         </div>                    
                     </div>
-<<<<<<< HEAD
-                    <div className="col-md-2 col-6">
-                        <div className="form-group">
-                            <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
-                            <input type="text" onChange={(event) => GetTicketNumber(event)} className="form-control-custom-big" name="transationid"/>
-=======
                     <div class="col-md-2 col-6">
                         <div class="form-group">
                             <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
                             <input type="text" value={ticketNo} onChange={(event) => filterByTicketNumber(event.target.value)} class="form-control-custom-big" name="transationid2"/>
->>>>>>> 4ab5f98223fd7c1c98ed26ae0719da173a6f7717
                         </div>
                     </div>
                     <div className="col-md-2 col-6">
@@ -715,17 +708,10 @@ const handlePageClick = (event) => {
                                                 </DateRangePicker>
                                         </div>                    
                                     </div>
-<<<<<<< HEAD
-                                    <div className="col-md-2 col-12">
-                                        <div className="form-group">
-                                            <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
-                                            <input style={{ width: '100% !important' }} type="text" onChange={(e)=>{setTicketNo(e.target.value)}}  className="form-control-custom-big" value={ticketNo} name="transationid"/>
-=======
                                     <div class="col-md-2 col-12">
                                         <div class="form-group">
                                             <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}1</label>
                                             <input style={{ width: '100% !important' }} type="text" onChange={(event) => filterByTicketNumber(event.target.value)}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
->>>>>>> 4ab5f98223fd7c1c98ed26ae0719da173a6f7717
                                         </div>
                                     </div>
 
@@ -743,17 +729,6 @@ const handlePageClick = (event) => {
                                             </div>
                                         </div>
                                     </div>
-<<<<<<< HEAD
-
-                                    {/* <div className="col-md-3">
-                                        <div className="form-group">
-                                            <label className="d-block">&nbsp;</label>
-                                            <button type="button" className="btn-custom-curve2 w-auto m-2" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
-                                            <button type="button" className="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
-                                        </div>
-                                    </div> */}
-=======
->>>>>>> 4ab5f98223fd7c1c98ed26ae0719da173a6f7717
                                     
                                     <div className={styles.device_detect_for_desktop+" col-md-4"}>
                                         <div className="form-group">
@@ -775,21 +750,9 @@ const handlePageClick = (event) => {
                                         </div>
                                     </div>
                                     
-<<<<<<< HEAD
-                                    <div className="col-md-2 col-12">
-                                        <div className="form-group">
-                                            <label for="transactionid" className="fw-bold mb-2">{t('Company')}</label>
-                                            {/* <select type="text" className="form-control-custom-big" name="transationid">
-                                                <option>All</option>
-                                                <option>Toto</option>
-                                                <option>Magnum</option>
-                                                <option>Da ma cai</option>
-                                            </select> */}
-=======
                                     <div class="col-md-2 col-12">
                                         <div class="form-group">
                                             <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
->>>>>>> 4ab5f98223fd7c1c98ed26ae0719da173a6f7717
                                             <Select 
                                                 options={optionsGamesName} 
                                                 defaultValue = { { value: '', label: t('All') }} 
@@ -821,16 +784,6 @@ const handlePageClick = (event) => {
                                         </div>
                                     </div>
 
-<<<<<<< HEAD
-                                    {/* <div className="col-md-3">
-                                        <div className="form-group">
-                                            <label className="d-block">&nbsp;</label>
-                                            <button type="button" className="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
-                                            <button type="button" className="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
-                                        </div>
-                                    </div> */}
-=======
->>>>>>> 4ab5f98223fd7c1c98ed26ae0719da173a6f7717
                                 </div>
                             )
                         }
