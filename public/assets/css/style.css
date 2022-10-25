@@ -3246,7 +3246,6 @@ section.announcement {
 .bQdYbR{
   min-width: fit-content!important;
 }
-}
 
 .hbotQl{
   white-space: normal!important;
@@ -3511,10 +3510,11 @@ input.daterangepickerstyle-sm {
 .button-able{
   filter: none!important;
 }
-
-.cal-border{
-  border: 1px solid #bc2263!important
+  /*min-width: auto!important; */
 }
 .margin-left-52px{
   margin-left : 52px;
+}
+.cal-border{
+  border: 1px solid #bc2263!important
 }
