@@ -21,8 +21,6 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
     let ticket = _tickets;
 
 
-
-    console.log('ListTable:ticket:',ticket);
     let auth = _auth;
     const items = _tickets;
     let loading =_isLoading;
@@ -56,6 +54,10 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
       const [filterGameType, setFilterGameType] = useState({ value: '', label: t('All')  });
       const [selectedticketId, setSelectedticketId] = useState('');
       const [isLoading, setIsLoading] = useState(false);
+
+      const [dataRecordes, setDataRecordes] = useState(ticket ? ticket : []);
+
+
 
 
 
@@ -139,7 +141,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
       }
 
       const [ticketList, setTicketList] = useState([]);
+
       const [childDataTickets, setChildDataTickets] = useState([]);
+
       const [startRef, setstartRef] = useState();
       
       const [searchAction, setSearchAction] = useState(true);
@@ -282,6 +286,9 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
          return _getDate[2]+'/'+_getDate[1]+'/'+_getDate[0];
       } 
 
+
+      
+
       
 
       const handleEvent = (event, picker) => {
@@ -421,28 +428,7 @@ const handlePageClick = (event) => {
                         </table>
                     </div>
                     <div className={styles.device_detect_for_desktop}>
-                                                    <Table data={currentItems} _childShowTable={childShowTable}/>
-                    </div>
-                    <div class="clearfix d-flex align-items-center justify-content-center">
-                        { pageCount > 1 ?
-                            <ReactPaginate
-                            breakLabel="..."
-                            nextLabel={t('next')} 
-                            onPageChange={handlePageClick}
-                            pageRangeDisplayed={5}
-                            pageCount={pageCount}
-                            previousLabel={t('previous')}
-                            renderOnZeroPageCount={null}
-                            className="pagination"
-                            pageLinkClassName="pagination"
-                            forcePage={currentPage} 
-                            // activeClassName={"pagination__link--active"}
-                        /> : null }
-                
-                        <svg class="hide">
-                            <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
-                            <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
-                        </svg>
+                        <Table data={dataRecordes} _childShowTable={childShowTable}/>
                     </div>
                 </>
             );
@@ -634,7 +620,7 @@ const handlePageClick = (event) => {
                     <div class="col-md-2 col-6">
                         <div class="form-group">
                             <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                            <input type="text" onChange={(event) => GetTicketNumber(event)} class="form-control-custom-big" name="transationid"/>
+                            <input type="text" value={ticketNo} onChange={(event) => filterByTicketNumber(event.target.value)} class="form-control-custom-big" name="transationid2"/>
                         </div>
                     </div>
                     <div class="col-md-2 col-6">
@@ -672,20 +658,26 @@ const handlePageClick = (event) => {
         $('.hideAndShowForMobileView').toggle("slide");
     }
 
-    // useEffect(() => {
-    //     change();
-    //     if(filterGamesName.value === '') {
-    //         setFilterGamesName({ value: '', label: t('All') });
-    //     }
-    //   },[t])
 
       useEffect(() =>{
         change();
       },[fromDate])
+
+
+      const filterByTicketNumber = (getValue) => {
+
+        let newDataRecordes = [];
+        if(getValue)
+           newDataRecordes = ticket && ticket.filter(item => item.Ticket_No.toLowerCase().includes(getValue.toLowerCase()));
+        else 
+           newDataRecordes = ticket;
+
+        setTicketNo(getValue);
+        setDataRecordes(newDataRecordes);
+      } 
+
     return (
         <>
-            {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}
-            {/* <SearchAbleFormParent />  */}
             <div className='showForMobileViewSearch'>
                 <div className="clearfix curved-card">
                     <div className={styles.device_detect_for_mobile+ ' mb-2'}>
@@ -718,8 +710,8 @@ const handlePageClick = (event) => {
                                     </div>
                                     <div class="col-md-2 col-12">
                                         <div class="form-group">
-                                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                                            <input style={{ width: '100% !important' }} type="text" onChange={(e)=>{setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+                                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}1</label>
+                                            <input style={{ width: '100% !important' }} type="text" onChange={(event) => filterByTicketNumber(event.target.value)}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
                                         </div>
                                     </div>
 
@@ -737,14 +729,6 @@ const handlePageClick = (event) => {
                                             </div>
                                         </div>
                                     </div>
-
-                                    {/* <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label class="d-block">&nbsp;</label>
-                                            <button type="button" class="btn-custom-curve2 w-auto m-2" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
-                                            <button type="button" class="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
-                                        </div>
-                                    </div> */}
                                     
                                     <div className={styles.device_detect_for_desktop+" col-md-4"}>
                                         <div className="form-group">
@@ -769,12 +753,6 @@ const handlePageClick = (event) => {
                                     <div class="col-md-2 col-12">
                                         <div class="form-group">
                                             <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
-                                            {/* <select type="text" class="form-control-custom-big" name="transationid">
-                                                <option>All</option>
-                                                <option>Toto</option>
-                                                <option>Magnum</option>
-                                                <option>Da ma cai</option>
-                                            </select> */}
                                             <Select 
                                                 options={optionsGamesName} 
                                                 defaultValue = { { value: '', label: t('All') }} 
@@ -806,13 +784,6 @@ const handlePageClick = (event) => {
                                         </div>
                                     </div>
 
-                                    {/* <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label class="d-block">&nbsp;</label>
-                                            <button type="button" class="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
-                                            <button type="button" class="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
-                                        </div>
-                                    </div> */}
                                 </div>
                             )
                         }

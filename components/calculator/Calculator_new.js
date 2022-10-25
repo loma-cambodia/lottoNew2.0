@@ -851,16 +851,16 @@ const Calculator = ({ _transactions, _auth }) => {
                 <div className="col-md-7 col-sm-6 text-light">
                   <div className="absolute-div">
                     <div className="inner-abs-div">
-                      <div className='company-type-heading d-flex align-items-center mb-4'>
-                          <div className='comapny-type-logo me-3'>
-                              <img src={currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Magnum' ? 'assets/images/icons/magnum-square.jpg' : 
-                              currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Da Ma Cai' ? 'assets/images/icons/damacai-square.jpg' : 
-                              currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Toto' ? 'assets/images/icons/toto-square.jpg' : null} />
-                          </div>
-                          <div className='company-type-name text-white'>
-                            {t(currentMarket && currentMarket.game_play && currentMarket.game_play.name ? currentMarket.game_play.name : selectedMarket)}
-                          </div>
-                      </div>
+                        <div className='company-type-heading d-flex align-items-center mb-4'>
+                            <div className='comapny-type-logo me-3'>
+                                <img src={currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Magnum' ? 'assets/images/icons/magnum-square.jpg' : 
+                                currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Da Ma Cai' ? 'assets/images/icons/damacai-square.jpg' : 
+                                currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Toto' ? 'assets/images/icons/toto-square.jpg' : null} />
+                            </div>
+                            <div className='company-type-name text-white'>
+                              {t(currentMarket && currentMarket.game_play && currentMarket.game_play.name ? currentMarket.game_play.name : selectedMarket)}
+                            </div>
+                        </div>
                       {/* <h3 className="text-center gap-2 justify-content-center d-flex text-uppercase">
                         
                           <span className="selected-gp-btn outer-circle-gp" style={{ height:'45px', width:"45px" }}>
