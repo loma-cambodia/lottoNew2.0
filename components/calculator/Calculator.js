@@ -1293,27 +1293,27 @@ const Calculator = ({ _transactions, _auth }) => {
                                 </>
                               ) : (
                                 <>
-                                  <table class="text-light table table-borderless">
+                                  <table className="text-light table table-borderless">
                                     <thead>
-                                      <tr class="">
+                                      <tr className="">
                                         <th style={{ width: "30%" }}></th>
                                         <th
-                                          class="text-left"
+                                          className="text-left"
                                           style={{ width: "30%" }}
                                         ></th>
                                         <th
-                                          class="text-left"
+                                          className="text-left"
                                           style={{ width: "30%" }}
                                         ></th>
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <tr class="">
+                                      <tr className="">
                                         <td style={{ width: "30%" }}>
                                           1st Prize{" "}
                                         </td>
                                         <td
-                                          class="text-left"
+                                          className="text-left"
                                           style={{ width: "30%" }}
                                         >
                                           <span
@@ -1329,24 +1329,24 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </td>
                                         <div className={styles.device_detect_for_desktop}> 
                                             <td
-                                              class="text-left d-flex flex-column"
+                                              className="text-left d-flex flex-column"
                                               style={{ width: "30%" }}
                                             >
-                                                <span class="d-flex justify-content-start">
+                                                <span className="d-flex justify-content-start">
                                                   <span> 0.00</span>
                                                 </span>
-                                                <span class="d-flex justify-content-start">
+                                                <span className="d-flex justify-content-start">
                                                   <span> 0.00</span>
                                                 </span>
                                             </td>
                                         </div>
                                       </tr>
-                                      <tr class="">
+                                      <tr className="">
                                         <td style={{ width: "30%" }}>
                                           2nd Prize{" "}
                                         </td>
                                         <td
-                                          class="text-start"
+                                          className="text-start"
                                           style={{ width: "30%" }}
                                         >
                                           <span
@@ -1363,24 +1363,24 @@ const Calculator = ({ _transactions, _auth }) => {
                                         
                                     <div className={styles.device_detect_for_desktop}> 
                                         <td
-                                          class="text-left d-flex flex-column"
+                                          className="text-left d-flex flex-column"
                                           style={{ width: "30%" }}
                                         >
-                                            <span class="d-flex justify-content-start">
+                                            <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
-                                            <span class="d-flex justify-content-start">
+                                            <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                         </td>
                                         </div>
                                       </tr>
-                                      <tr class="">
+                                      <tr className="">
                                         <td style={{ width: "30%" }}>
                                           3rd Prize{" "}
                                         </td>
                                         <td
-                                          class="text-left"
+                                          className="text-left"
                                           style={{ width: "30%" }}
                                         >
                                           <span
@@ -1397,24 +1397,24 @@ const Calculator = ({ _transactions, _auth }) => {
                                         
                                     <div className={styles.device_detect_for_desktop}> 
                                         <td
-                                          class="text-left d-flex flex-column"
+                                          className="text-left d-flex flex-column"
                                           style={{ width: "30%" }}
                                         >
-                                            <span class="d-flex justify-content-start">
+                                            <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
-                                            <span class="d-flex justify-content-start">
+                                            <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                         </td>
                                         </div>
                                       </tr>
-                                      <tr class="">
+                                      <tr className="">
                                         <td style={{ width: "30%" }}>
                                           Special Prize{" "}
                                         </td>
                                         <td
-                                          class="text-left"
+                                          className="text-left"
                                           style={{ width: "30%" }}
                                         >
                                           <span
@@ -1431,21 +1431,21 @@ const Calculator = ({ _transactions, _auth }) => {
                                         
                                     <div className={styles.device_detect_for_desktop}> 
                                         <td
-                                          class="text-left d-flex flex-column"
+                                          className="text-left d-flex flex-column"
                                           style={{ width: "30%" }}
                                         >
-                                            <span class="d-flex justify-content-start">
+                                            <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                         </td>
                                         </div>
                                       </tr>
-                                      <tr class="">
+                                      <tr className="">
                                         <td style={{ width: "30%" }}>
                                           Consolation Prize{" "}
                                         </td>
                                         <td
-                                          class="text-left"
+                                          className="text-left"
                                           style={{ width: "30%" }}
                                         >
                                           <span
@@ -1461,10 +1461,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </td>
                                     <div className={styles.device_detect_for_desktop}> 
                                         <td
-                                          class="text-left d-flex flex-column"
+                                          className="text-left d-flex flex-column"
                                           style={{ width: "30%" }}
                                         >
-                                            <span class="d-flex justify-content-start">
+                                            <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                         </td>

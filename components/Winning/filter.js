@@ -241,10 +241,10 @@ const Filter = ({_setFilterParams}) => {
                     </div>
                 </div>
                 <div className={styles.device_detect_for_desktop+' hideAndShowForMobileView'}>
-                    <div class="row">
-                        <div class="col-md-3 col-12">
-                            <div class="form-group">
-                                <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
+                    <div className="row">
+                        <div className="col-md-3 col-12">
+                            <div className="form-group">
+                                <label className="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                 <DateRangePicker
                                 id="daterpicker"
                                             ref={keyRef}
@@ -265,16 +265,16 @@ const Filter = ({_setFilterParams}) => {
                                         </DateRangePicker>
                             </div>                    
                         </div>
-                        <div class="col-md-2 col-12">
-                            <div class="form-group">
-                                <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                                <input id="ticket_no" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setTicketNo(event.target.value)}/>
+                        <div className="col-md-2 col-12">
+                            <div className="form-group">
+                                <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
+                                <input id="ticket_no" type="text" className="form-control-custom-big" name="transationid" onChange={(event) => setTicketNo(event.target.value)}/>
                             </div>
                         </div>
-                        <div class="col-md-2 col-12">
-                            <div class="form-group">
-                                <label for="transactionid" class="fw-bold mb-2">{t('prize_type')}</label>
-                                <select id="prize_type" type="text" class="form-control-custom-big" name="transationid" onChange={(event) => setPrizeType(event.target.value)}>
+                        <div className="col-md-2 col-12">
+                            <div className="form-group">
+                                <label for="transactionid" className="fw-bold mb-2">{t('prize_type')}</label>
+                                <select id="prize_type" type="text" className="form-control-custom-big" name="transationid" onChange={(event) => setPrizeType(event.target.value)}>
                                 <option  value="All">{t('All')}</option>
                                 <option  value="P1">{t('P1')}</option>
                                 <option  value="P2">{t('P2')}</option>

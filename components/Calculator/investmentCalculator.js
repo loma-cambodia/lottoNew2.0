@@ -423,25 +423,25 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
                                                 <div className="d-flex justify-content-center">
-                                                    <div class="select-gp" id="checkboxes">
-                                                        <ul id="checkboxes" class="list-inline">
-                                                            <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"magnum":!gameList.magnum})}>
-                                                                <span class={`${gameList.magnum ? "cal-border":"" } outer-circle-gp`} title="Select">
-                                                                    <span class="inner-circle-gp">
+                                                    <div className="select-gp" id="checkboxes">
+                                                        <ul id="checkboxes" className="list-inline">
+                                                            <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"magnum":!gameList.magnum})}>
+                                                                <span className={`${gameList.magnum ? "cal-border":"" } outer-circle-gp`} title="Select">
+                                                                    <span className="inner-circle-gp">
                                                                         <img className={`${gameList.magnum ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
-                                                            <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"dmc":!gameList.dmc})}>
-                                                                <span class={`${gameList.dmc ? "cal-border":"" } outer-circle-gp`} title="Select">
-                                                                    <span class="inner-circle-gp">
+                                                            <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"dmc":!gameList.dmc})}>
+                                                                <span className={`${gameList.dmc ? "cal-border":"" } outer-circle-gp`} title="Select">
+                                                                    <span className="inner-circle-gp">
                                                                         <img className={`${gameList.dmc ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
-                                                            <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"toto":!gameList.toto})}>
-                                                                <span class={`${gameList.toto ? "cal-border":"" } outer-circle-gp`} title="Select">
-                                                                    <span class={`inner-circle-gp`}>
+                                                            <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"toto":!gameList.toto})}>
+                                                                <span className={`${gameList.toto ? "cal-border":"" } outer-circle-gp`} title="Select">
+                                                                    <span className={`inner-circle-gp`}>
                                                                         <img className={`${gameList.toto ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png" />
                                                                     </span>
                                                                 </span>
@@ -536,10 +536,10 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                     <div className='form-group'>
                                     <div className='row'>
                                     <div className='col-md-6'>
-                                        <div class="clearfix text-center"><span disabled={clear} role="button" className={`${clear ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> clear? clearInputs():''} >CLEAR</span></div>
+                                        <div className="clearfix text-center"><span disabled={clear} role="button" className={`${clear ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> clear? clearInputs():''} >CLEAR</span></div>
                                     </div>
                                     <div className='col-md-6'>
-                                        <div class="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
+                                        <div className="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
                                         >Calculate</span></div>
                                     </div>
                                 </div>
