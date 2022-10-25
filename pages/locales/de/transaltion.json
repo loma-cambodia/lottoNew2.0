@@ -266,5 +266,10 @@
     "31st":"三十一号",
 
     "merchant has disabled":"商户暂时停用，请联系客服",
-    "market has disabled":"盘口已经关闭.  无法下注"
+    "market has disabled":"盘口已经关闭.  无法下注",
+    "Winning_Calculator":"中奖计算机",
+    "Straight":"单一号码",
+    "Total_No_of_Combination":"组合总数",
+    "Total_Cost":"总额",
+    "Calculate":"Calculate"
 }
