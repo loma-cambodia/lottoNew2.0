@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {announcement, userTransactionDetails, winnerResultDetailsSecond, specialDraw} from '../store/actions/homeActions';
 import {getLogin} from '../store/actions/authActions';
 import InvestmentCalculator from '../components/Calculator/investmentCalculator';
-// import Calculator from '../components/calculator/Calculator';
+//import Calculator from '../components/calculator/Calculator';
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
 
 
