@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css';
-import Link from 'next/link';
 import React, { useState,useEffect } from "react";
 import Footer from '../components/common/footer';
 import Header from '../components/common/header';
@@ -10,15 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 import {announcement, userTransactionDetails, winnerResultDetailsSecond, specialDraw} from '../store/actions/homeActions';
 import {getLogin} from '../store/actions/authActions';
 import InvestmentCalculator from '../components/Calculator/investmentCalculator';
+import Calculator from '../components/calculator/Calculator';
+
+
+
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
-
-
   const [active, setActive] = useState(false);
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
   const state = useSelector(state => state);
-
 useEffect(() => {
   dispatch(announcement());
   dispatch(specialDraw());
@@ -30,9 +28,7 @@ useEffect(() => {
 
 
 
-
 useEffect(() => {
-
 let objectWithData = {  
   "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
   "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
@@ -40,8 +36,6 @@ let objectWithData = {
  // "language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en' 
   "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'  
 } 
-
-
 if(objectWithData.customer_id != 0){
     dispatch(getLogin(objectWithData)); 
 }
@@ -71,12 +65,13 @@ if(objectWithData.customer_id != 0){
 
      
       <InvestmentCalculator _calculatorOdds={calculatorOdds}/>
-     
+
+      <Calculator _transactions={transactions} _auth={auth}/>
+      
       
       <div className={styles.device_detect_for_desktop}> 
         <Footer/>
       </div>
-{/*--Footer--*/}
 </>
       
   )
