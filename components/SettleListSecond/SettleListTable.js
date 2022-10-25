@@ -428,29 +428,8 @@ const handlePageClick = (event) => {
                         </table>
                     </div>
                     <div className={styles.device_detect_for_desktop}>
-                                                    <Table data={dataRecordes} _childShowTable={childShowTable}/>
+                        <Table data={dataRecordes} _childShowTable={childShowTable}/>
                     </div>
-                    {/* <div class="clearfix d-flex align-items-center justify-content-center">
-                        { pageCount > 1 ?
-                            <ReactPaginate
-                            breakLabel="..."
-                            nextLabel={t('next')} 
-                            onPageChange={handlePageClick}
-                            pageRangeDisplayed={5}
-                            pageCount={pageCount}
-                            previousLabel={t('previous')}
-                            renderOnZeroPageCount={null}
-                            className="pagination"
-                            pageLinkClassName="pagination"
-                            forcePage={currentPage} 
-                            // activeClassName={"pagination__link--active"}
-                        /> : null }
-                
-                        <svg class="hide">
-                            <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
-                            <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
-                        </svg>
-                    </div> */}
                 </>
             );
         }else{
@@ -679,12 +658,6 @@ const handlePageClick = (event) => {
         $('.hideAndShowForMobileView').toggle("slide");
     }
 
-    // useEffect(() => {
-    //     change();
-    //     if(filterGamesName.value === '') {
-    //         setFilterGamesName({ value: '', label: t('All') });
-    //     }
-    //   },[t])
 
       useEffect(() =>{
         change();
@@ -693,28 +666,18 @@ const handlePageClick = (event) => {
 
       const filterByTicketNumber = (getValue) => {
 
-        console.log('dataRecordes:',dataRecordes);
-
         let newDataRecordes = [];
         if(getValue)
-           newDataRecordes = ticket && ticket.filter(item => item.Ticket_No.includes(getValue));
+           newDataRecordes = ticket && ticket.filter(item => item.Ticket_No.toLowerCase().includes(getValue.toLowerCase()));
         else 
            newDataRecordes = ticket;
 
-        console.log('dataRecordes:',dataRecordes);
-        console.log('newDataRecordes:',newDataRecordes);
         setTicketNo(getValue);
         setDataRecordes(newDataRecordes);
       } 
 
-
-
-
-
     return (
         <>
-            {/* {searchAction ? <SearchAbleFormParent />  : <SearchAbleFormChild /> } */}
-            {/* <SearchAbleFormParent />  */}
             <div className='showForMobileViewSearch'>
                 <div className="clearfix curved-card">
                     <div className={styles.device_detect_for_mobile+ ' mb-2'}>
@@ -766,14 +729,6 @@ const handlePageClick = (event) => {
                                             </div>
                                         </div>
                                     </div>
-
-                                    {/* <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label class="d-block">&nbsp;</label>
-                                            <button type="button" class="btn-custom-curve2 w-auto m-2" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
-                                            <button type="button" class="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
-                                        </div>
-                                    </div> */}
                                     
                                     <div className={styles.device_detect_for_desktop+" col-md-4"}>
                                         <div className="form-group">
@@ -798,12 +753,6 @@ const handlePageClick = (event) => {
                                     <div class="col-md-2 col-12">
                                         <div class="form-group">
                                             <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
-                                            {/* <select type="text" class="form-control-custom-big" name="transationid">
-                                                <option>All</option>
-                                                <option>Toto</option>
-                                                <option>Magnum</option>
-                                                <option>Da ma cai</option>
-                                            </select> */}
                                             <Select 
                                                 options={optionsGamesName} 
                                                 defaultValue = { { value: '', label: t('All') }} 
@@ -835,13 +784,6 @@ const handlePageClick = (event) => {
                                         </div>
                                     </div>
 
-                                    {/* <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label class="d-block">&nbsp;</label>
-                                            <button type="button" class="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
-                                            <button type="button" class="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
-                                        </div>
-                                    </div> */}
                                 </div>
                             )
                         }
