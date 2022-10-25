@@ -66,7 +66,7 @@ if(objectWithData.customer_id != 0){
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 
      
-      <InvestmentCalculator _calculatorOdds={calculatorOdds}  _auth={auth}/>
+      {/* <InvestmentCalculator _calculatorOdds={calculatorOdds}  _auth={auth}/> */}
 
       <Calculator _transactions={transactions} _auth={auth}/>
       
