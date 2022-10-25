@@ -18,7 +18,7 @@ const games = {
     "dmc":false
 }
 
-const InvestmentCalculator = ({_calculatorOdds}) => {
+const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     const { t } = useTranslation();
     const Odds =_calculatorOdds;
     const [amounts, setAmounts] = useState(initState);
@@ -26,6 +26,15 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
     const [gameList, setGameList] = useState(games);
     const [clear, setClear] = useState(true);
     const [submit, setSubmit] = useState(false);
+    let auth = _auth;
+    const merchantCurrency =
+    auth &&
+    auth.auth &&
+    auth.auth.merchant &&
+    auth.auth.merchant.currency &&
+    auth.auth.merchant.currency.code
+      ? auth.auth.merchant.currency.code
+      : "USD";
     const combine =()=>{
         const  big = initData.big_bet
         const small = initData.small_bet
@@ -242,7 +251,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                             </tr>
                                             <tr>
                                                 <td>Total Bet Amount : </td>
-                                                <td className='text-end fw-bold'>{decimal(total)}</td>
+                                                <td className='text-end fw-bold'>{merchantCurrency} {decimal(total)}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -286,33 +295,33 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                                 <table className='table'>
                                                                     <tr>
                                                                     {initData.bet_no.length == 4 ? 
-                                                                        <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_first  * smallInv)+Number(oddsData.big_first * bigInv))}</div></td> 
+                                                                        <td><div className='w-amt text-end'>{merchantCurrency} {decimal(Number(oddsData.small_first  * smallInv)+Number(oddsData.big_first * bigInv))}</div></td> 
                                                                         :
-                                                                        <td><div className='w-amt text-end'>{decimal(Number(oddsData.three_a_first * threeAInv)+Number(oddsData.three_c_first * threeCInv))}</div></td>
+                                                                        <td><div className='w-amt text-end'>{merchantCurrency} {decimal(Number(oddsData.three_a_first * threeAInv)+Number(oddsData.three_c_first * threeCInv))}</div></td>
                                                                     }
                                                                     </tr>
                                                                     <tr>
                                                                     {initData.bet_no.length == 4 ? 
-                                                                        <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_second  * smallInv)+Number(oddsData.big_second * bigInv))}</div></td> 
+                                                                        <td><div className='w-amt text-end'>{merchantCurrency} {decimal(Number(oddsData.small_second  * smallInv)+Number(oddsData.big_second * bigInv))}</div></td> 
                                                                         :
-                                                                        <td><div className='w-amt text-end'>{decimal(Number(threeCInv)*Number(oddsData.three_c_second))}</div></td>
+                                                                        <td><div className='w-amt text-end'>{merchantCurrency} {decimal(Number(threeCInv)*Number(oddsData.three_c_second))}</div></td>
                                                                     }
                                                                     </tr>
                                                                     <tr>
                                                                     {initData.bet_no.length == 4 ? 
-                                                                        <td><div className='w-amt text-end'>{decimal(Number(oddsData.small_third  * smallInv)+Number(oddsData.big_third * bigInv))}</div></td>
+                                                                        <td><div className='w-amt text-end'>{merchantCurrency} {decimal(Number(oddsData.small_third  * smallInv)+Number(oddsData.big_third * bigInv))}</div></td>
                                                                         :
-                                                                        <td><div className='w-amt text-end'>{decimal(Number(threeCInv)*Number(oddsData.three_c_third))}</div></td>
+                                                                        <td><div className='w-amt text-end'>{merchantCurrency} {decimal(Number(threeCInv)*Number(oddsData.three_c_third))}</div></td>
                                                                     }
                                                                     </tr>
                                                                     {initData.bet_no.length == 4 ? 
                                                                     <>
                                                                         <tr>
-                                                                            <td><div className='w-amt text-end'>{decimal(Number(bigInv)*Number(oddsData.big_special))}</div></td>
+                                                                            <td><div className='w-amt text-end'>{merchantCurrency} {decimal(Number(bigInv)*Number(oddsData.big_special))}</div></td>
                                                                             {/* <td><div className='w-amt text-end'>{ oddsData.big_special * bigValue}</div></td> */}
                                                                         </tr>
                                                                         <tr>
-                                                                            <td><div className='w-amt text-end'>{decimal(Number(bigInv)*Number(oddsData.big_consolation))}</div></td>
+                                                                            <td><div className='w-amt text-end'>{merchantCurrency} {decimal(Number(bigInv)*Number(oddsData.big_consolation))}</div></td>
                                                                         </tr>
                                                                     </>
                                                                     :
@@ -395,25 +404,25 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
                                                 <div className="d-flex justify-content-center">
-                                                    <div class="select-gp" id="checkboxes">
-                                                        <ul id="checkboxes" class="list-inline">
-                                                            <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"magnum":!gameList.magnum})}>
-                                                                <span class={`${gameList.magnum ? "cal-border":"" } outer-circle-gp`} title="Select">
-                                                                    <span class="inner-circle-gp">
+                                                    <div className="select-gp" id="checkboxes">
+                                                        <ul id="checkboxes" className="list-inline">
+                                                            <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"magnum":!gameList.magnum})}>
+                                                                <span className={`${gameList.magnum ? "cal-border":"" } outer-circle-gp`} title="Select">
+                                                                    <span className="inner-circle-gp">
                                                                         <img className={`${gameList.magnum ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
-                                                            <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"dmc":!gameList.dmc})}>
-                                                                <span class={`${gameList.dmc ? "cal-border":"" } outer-circle-gp`} title="Select">
-                                                                    <span class="inner-circle-gp">
+                                                            <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"dmc":!gameList.dmc})}>
+                                                                <span className={`${gameList.dmc ? "cal-border":"" } outer-circle-gp`} title="Select">
+                                                                    <span className="inner-circle-gp">
                                                                         <img className={`${gameList.dmc ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
-                                                            <li class=" list-inline-item" onClick={()=> setGameList({...gameList,"toto":!gameList.toto})}>
-                                                                <span class={`${gameList.toto ? "cal-border":"" } outer-circle-gp`} title="Select">
-                                                                    <span class={`inner-circle-gp`}>
+                                                            <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"toto":!gameList.toto})}>
+                                                                <span className={`${gameList.toto ? "cal-border":"" } outer-circle-gp`} title="Select">
+                                                                    <span className={`inner-circle-gp`}>
                                                                         <img className={`${gameList.toto ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png" />
                                                                     </span>
                                                                 </span>
@@ -506,10 +515,10 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                     <div className='form-group'>
                                         <div className='row'>
                                             <div className='col-md-6'>
-                                                <div class="clearfix text-center"><span disabled={clear} role="button" className={`${clear ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> clear? clearInputs():''} >CLEAR</span></div>
+                                                <div className="clearfix text-center"><span disabled={clear} role="button" className={`${clear ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> clear? clearInputs():''} >CLEAR</span></div>
                                             </div>
                                             <div className='col-md-6'>
-                                                <div class="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
+                                                <div className="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
                                                 >Calculate</span></div>
                                             </div>
                                         </div>
