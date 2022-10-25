@@ -73,6 +73,13 @@ const HomeSlider = ({_specialDrawState,datauser,_auth, updateSessionData, setUpd
                 );
             }
         }
+        else {
+            return(
+                <a href="#" style={{pointerEvents:'none'}}>
+                    {t('coming_soon_text')}
+                </a>
+            );
+        }
     }
 
 
