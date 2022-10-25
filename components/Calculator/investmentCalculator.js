@@ -21,11 +21,11 @@ const games = {
 const InvestmentCalculator = ({_calculatorOdds}) => {
     const { t } = useTranslation();
     const Odds =_calculatorOdds;
+    const [amounts, setAmounts] = useState(initState);
     const [initData, setInitData] = useState(initState);
     const [gameList, setGameList] = useState(games);
     const [clear, setClear] = useState(true);
     const [submit, setSubmit] = useState(false);
-    const [isHidden,setIsHidden] = useState("hidden")
     const combine =()=>{
         const  big = initData.big_bet
         const small = initData.small_bet
@@ -33,16 +33,17 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         const C = initData.three_C
         const total = Number(big) + Number(small) + Number(A) + Number(C) 
         setTotalbet(total)
-        Object.assign(initData,{"company":gameList})
+        Object.assign(amounts,{"company":gameList})
+        setInitData(amounts)
     }
     console.log("GGGGG",gameList)
     const clearInputs = () => {
         console.log('clear')
         $(':input').val(null)
+        setAmounts(initState)
         setInitData(initState)
         setGameList(games)
         setClear(true)
-        // isEveryInputFill()
     }
 
     const handleBetNumber = (numberInput) =>{
@@ -64,7 +65,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
             return false;
           }
 
-          setInitData({...initData,"bet_no":numberInput})
+          setAmounts({...amounts,"bet_no":numberInput})
     } 
 
     const handleBetAmount = (numberInput) =>{
@@ -83,13 +84,6 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
           }
 
           return true
-          
-
-        //   if (numberInput.includes("-") || numberInput.includes(".") || numberInput.includes("+") || numberInput.includes("_")) {
-        //     return false;
-        //   }
-
-        //   return true
     }
 
     function isEveryInputEmpty() {
@@ -101,7 +95,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         //     }
         // });
 
-        if(initState !== initData || gameList !== games){
+        if(initState !== amounts || gameList !== games){
             allEmpty = true
         }
         else
@@ -115,8 +109,8 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         var isAllFill = false
         var isGamesFill = false
         console.log('isEveryInputFill bfore: ',isAllFill,isGamesFill)
-        if(initData.bet_no){
-            if((initData.big_bet && initData.small_bet) || (initData.three_A && initData.three_C) )
+        if(amounts.bet_no){
+            if((amounts.big_bet && amounts.small_bet) || (amounts.three_A && amounts.three_C) )
             {
                 isAllFill = true
             }
@@ -124,17 +118,6 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
         else
             isAllFill = false
 
-
-
-
-
-        // $(':input').each(function() {
-        //     if ($(this).val() == '') {
-        //         isAllFill = false
-        //     }
-        //     else
-        //         isAllFill = true
-        // });
 
             if(!gameList.dmc && !gameList.magnum && !gameList.toto)
             {
@@ -383,9 +366,8 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
     useEffect(()=>{
         isEveryInputEmpty()
         isEveryInputFill()
-        console.log("calculateData:",initData)
-    },[initData,gameList])
-
+        console.log("amounts: :",amounts)
+    },[amounts,gameList])
     return (
       <>
        <section className="bg-light custom-padding">
@@ -442,7 +424,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
                                                 <input type="text" className='form-control' 
-                                                value={initData.bet_no}
+                                                value={amounts.bet_no}
                                                 maxLength={4}
                                                 minLength={3}
                                                 onChange={(e) => handleBetNumber(e.target.value)}/>
@@ -455,19 +437,19 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                 <b className='mb-2 d-block'>Bet Type</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8 text-center'>
-                                        <button type="button" className={initData && initData.bet_type && initData.bet_type == "S" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setInitData({...initData,"bet_type":"S"})}>S</button>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "S" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setAmounts({...amounts,"bet_type":"S"})}>S</button>
 
-                                        <button type="button" className={initData && initData.bet_type && initData.bet_type == "B" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setInitData({...initData,"bet_type":"B"})}>{t('B')}</button>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "B" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setAmounts({...amounts,"bet_type":"B"})}>{t('B')}</button>
 
-                                        {initData.bet_no.length == 4 ?                                         
-                                        <button type="button" className={initData && initData.bet_type && initData.bet_type == "I" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'}  title={"iBox"} onClick={(e) => setInitData({...initData,"bet_type":"I"})}>{t('I')}</button>
+                                        {amounts.bet_no.length == 4 ?                                         
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "I" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'}  title={"iBox"} onClick={(e) => setAmounts({...amounts,"bet_type":"I"})}>{t('I')}</button>
                                         : '' }
 
-                                        <button type="button" className={initData && initData.bet_type && initData.bet_type == "R" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => setInitData({...initData,"bet_type":"R"})}>{t('R')}</button>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "R" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => setAmounts({...amounts,"bet_type":"R"})}>{t('R')}</button>
                                             </div>
                                         </div>
                                     </div>
-                                    {initData.bet_no.length == 4 ? 
+                                    {amounts.bet_no.length == 4 ? 
                                     <div>
                                         <div className='form-group'>
                                             <div className='row'>
@@ -475,7 +457,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>Big</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={initData.big_bet} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"big_bet":e.target.value}):'')}/>
+                                                    <input value={amounts.big_bet} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"big_bet":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -485,7 +467,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>Small</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={initData.small_bet} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"small_bet":e.target.value}):'')}/>
+                                                    <input value={amounts.small_bet} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"small_bet":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -498,7 +480,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                 <b className='mb-2 d-block'>3A</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
-                                                <input value={initData.three_A} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"three_A":e.target.value}):'')}/>
+                                                <input value={amounts.three_A} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"three_A":e.target.value}):'')}/>
                                             </div>
                                         </div>
                                     </div>
@@ -508,7 +490,7 @@ const InvestmentCalculator = ({_calculatorOdds}) => {
                                                     <b className='mb-2 d-block'>3C</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={initData.three_C} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setInitData({...initData,"three_C":e.target.value}):'')}/>
+                                                    <input value={amounts.three_C} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"three_C":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div> 
