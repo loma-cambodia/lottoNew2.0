@@ -264,6 +264,13 @@
     "31st":"ទី ៣១",
 
     "merchant has disabled":"អាជីវករត្រូវបានផ្អាកបណ្តោះអាសន្ន។ សូមទាក់ទងផ្នែកបម្រើអតិថិជន។",
-    "market has disabled":"ទីផ្សារបានបិទ។ គ្មានការភ្នាល់ត្រូវបានអនុញ្ញាត"
+    "market has disabled":"ទីផ្សារបានបិទ។ គ្មានការភ្នាល់ត្រូវបានអនុញ្ញាត",
+    "Winning_Calculator":"ម៉ាស៊ីនគណនាចំនួនទឹកប្រាក់ឈ្នះ",
+    "Straight":"ត្រង់",
+    "Total_No_of_Combination":"ចំនួនសរុបនៃបន្សំ៖",
+    "Total_Cost":"តម្លៃសរុប៖",
+    "Magnum":"Magnum",
+    "Da Ma Cai":"Da Ma Cai",
+    "ToTo":"ToTo"
     
 }

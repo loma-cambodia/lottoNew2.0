@@ -7,7 +7,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import {announcement, userTransactionDetails, winnerResultDetailsSecond, specialDraw} from '../store/actions/homeActions';
 import {getLogin} from '../store/actions/authActions';
-import Calculator from '../components/calculator/Calculator';
+import Calculator from '../components/calculator/investmentCalculator';
+import CalculatorOld from '../components/calculator/Calculator';
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ if(objectWithData.customer_id != 0){
 
       <Calculator _transactions={transactions} _auth={auth}/>
 
-      
+      <CalculatorOld _transactions={transactions} _auth={auth} />
       <div className={styles.device_detect_for_desktop}> 
         <Footer/>
       </div>

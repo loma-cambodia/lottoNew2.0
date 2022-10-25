@@ -669,7 +669,20 @@ const Calculator = ({ _transactions, _auth }) => {
                           </div>
                         </div>
 
-                        <div className="d-flex mb-3">
+                        <div className='form-group'>
+                            <div className='row'>
+                                <div className='col-lg-4 col-md-4'>
+                                    <b>{t('Bet_Type')}</b>
+                                </div>
+                                <div className='col-lg-8 col-md-8'>
+                                    <button type="button" className={gameType == 's' ? "btn me-1 btn-bordered-theme-active" : "btn me-1 btn-bordered-theme"} onClick={()=>{setGameType('s')}} title="Straight">S</button>
+                                    <button type="button" className={gameType == 'b' ? "btn me-1 btn-bordered-theme-active" : "btn me-1 btn-bordered-theme"} onClick={()=>{setGameType('b')}} title="Box">B</button>
+                                    <button type="button" className={number.length == 3 ? "btn  me-1 btn-bordered-theme-disabled" : gameType == 'i' ? "btn  me-1 btn-bordered-theme-active" : "btn  me-1 btn-bordered-theme"} onClick={number.length != 3 ? ()=>{setGameType('i')} : null} title="iBox">I</button>
+                                    <button type="button" className={gameType == 'r' ? "btn me-1 btn-bordered-theme-active" : "btn me-1 btn-bordered-theme"} onClick={()=>{setGameType('r')}} title="Reverse">R</button>
+                                </div>
+                            </div>
+                        </div>
+                        {/* <div className="d-flex mb-3">
                           <div className="d-flex flex-column gap-2">
                             <div>
                               <b>{t('Bet_Type')}</b>
@@ -691,12 +704,6 @@ const Calculator = ({ _transactions, _auth }) => {
                                       }}
                                       style={{ cursor: "pointer",fontSize: "14px" }}
                                     >
-                                      {/*  <img
-                                          className="img-fluid"
-                                          src="images\betting\0000.png"
-                                          alt=""
-                                        style={{ width: '20px' }}
-                                      /> */}
                                       Straight
                                     </label>
                                   </div>
@@ -768,7 +775,8 @@ const Calculator = ({ _transactions, _auth }) => {
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
+
                         <>
                               <div className="d-flex gap-2">
                                 <div className="d-flex">
@@ -846,31 +854,258 @@ const Calculator = ({ _transactions, _auth }) => {
                         </div>
                       </div>
                     </div>
-                  </div> 
+                  </div>
                 </div>
                 <div className="col-md-7 col-sm-6 text-light">
-                  <div className="absolute-div">
+                <div className='absolute-div'>
+                                    <div className='inner-abs-div'>
+                                        <h5 className='text-uppercase text-center text-white'>{t('Result')}</h5>
+                                        <div className='company-type-heading d-flex align-items-center'>
+                                            <div className='comapny-type-logo me-3'>
+                                                <img src={currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Magnum' ? 'assets/images/icons/magnum-square.jpg' : 
+                                                currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Da Ma Cai' ? 'assets/images/icons/damacai-square.jpg' : 
+                                                currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Toto' ? 'assets/images/icons/toto-square.jpg' : null} />
+                                            </div>
+                                            <div className='company-type-name text-white'>
+                                              {t(currentMarket && currentMarket.game_play && currentMarket.game_play.name ? currentMarket.game_play.name : selectedMarket)}
+                                            </div>
+                                        </div>
+                                        <div className='first-2-lines my-3'>
+                                            <table>
+                                                <tr>
+                                                    <td>{t('Total_No_of_Combination')}</td>
+                                                    <td className='text-end fw-bold'>{combo}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{t('Total_Cost')}</td>
+                                                    <td className='text-end fw-bold'>{cost}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div className='bottom-3-col'>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <div className='prize-div'>
+                                                        <div className='heading-part'>{t('Prize')}</div>
+                                                        <div className='prize-content-part'>
+                                                            <table className='table'>
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('1st_Prize')}</div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('2nd_Prize')}</div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('3rd_Prize')}</div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('Special_Prize')}</div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('Consolation_Prize')}</div></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className='col'>
+                                                    <div className='w-amt-div'>
+                                                        <div className='w-amt-heading'>{t('PRIZE_AMOUNT')}</div>
+                                                        <div className='blank-div'></div>
+                                                        <div className='prize-content-part'>
+                                                            <table className='table'>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>{ number.length == 3 ? <>
+                                                                            {parseFloat(
+                                                                            result.d3a_one + result.d3c_one
+                                                                            ).toFixed(2)} 
+                                                                    </>: 
+                                                                    number.length == 4 ? <>
+                                                                        {parseFloat(
+                                                                        result.d4_big_one +
+                                                                        result.d4_small_one
+                                                                        ).toFixed(2)}
+                                                                        </> : '-' }</div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div className='w-amt text-end'>
+
+                                                                            { number.length == 3 ? <>
+                                                                                    {parseFloat(result.d3c_two).toFixed(2)} 
+                                                                            </>: 
+                                                                            number.length == 4 ? <>
+                                                                                {parseFloat(
+                                                                                result.d4_big_two +
+                                                                                result.d4_small_two
+                                                                                ).toFixed(2)}
+                                                                                </> : '-' }
+                                                                        
+                                                                        
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>
+                                                                        { number.length == 3 ? <>
+                                                                                        {parseFloat(result.d3c_three).toFixed(2)} 
+                                                                                </>: 
+                                                                                number.length == 4 ? <>
+                                                                                    {parseFloat(
+                                                                                    result.d4_big_three +
+                                                                                    result.d4_small_three
+                                                                                    ).toFixed(2)}
+                                                                                    </> : '-' }
+                                                                        </div></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>
+                                                                            { number.length == 4 ? <>
+                                                                                {parseFloat(
+                                                                                result.d4_big_special
+                                                                                ).toFixed(2)}
+                                                                                </> : '-' }
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div className='w-amt text-end'>
+                                                                            { number.length == 4 ? <>
+                                                                                        {parseFloat(
+                                                                                        result.d4_big_consolation
+                                                                                        ).toFixed(2)}
+                                                                                        </> : '-' }
+                                                                        </div></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className='col'>
+                                                    <div className='w-amt-div'>
+                                                        <div className='w-amt-heading'>{t('Odds')}</div>
+                                                        <div className='prize-content-part'>
+                                                            <table className='table text-white'>
+                                                                <tr>
+                                                                    <th className='text-end py-2'>{number.length == 4 ? <>{t('Big_Bet')}</> : <>3A</>}</th>
+                                                                    <th className='text-end py-2'>{number.length == 4 ? <>{t('Small_Bet')}</> : <>3C</>}</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>
+                                                                    {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.one
+                                                                            )}
+                                                                        </>: 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d3.a3_one
+                                                                            )}
+                                                                        </>
+                                                                        }
+                                                                    </td>
+                                                                    <td className='text-end py-2'>
+                                                                    {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.small_one
+                                                                            )}
+                                                                        </>: <>
+                                                                            {parseInt(
+                                                                                price.d3.one
+                                                                            )}
+                                                                        </>}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>
+                                                                    {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.two
+                                                                            )}
+                                                                        </>: '-'}
+                                                                    </td>
+                                                                    <td className='text-end py-2'>
+                                                                    {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.small_two
+                                                                            )}
+                                                                        </>: <>
+                                                                            {parseInt(
+                                                                                price.d3.two
+                                                                            )}
+                                                                        </>}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>
+                                                                    {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.three
+                                                                            )}
+                                                                        </>: '-'}
+                                                                    </td>
+                                                                    <td className='text-end py-2'>
+                                                                        {number.length == 4 ? 
+                                                                        <>
+                                                                            {parseInt(
+                                                                                price.d4.small_three
+                                                                            )}
+                                                                        </>: <>
+                                                                            {parseInt(
+                                                                                price.d3.three
+                                                                            )}
+                                                                        </>}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>
+                                                                        { number.length == 4 ?
+                                                                            <>
+                                                                                {parseInt(
+                                                                                price.d4.special
+                                                                                )}
+                                                                            </> : 
+                                                                        '-' }    
+                                                                    </td>
+                                                                    <td className='text-end py-2'>-</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className='text-end py-2'>
+                                                                        { number.length == 4 ?
+                                                                            <>
+                                                                                {parseInt(
+                                                                                price.d4.consolation
+                                                                                )}
+                                                                            </> : 
+                                                                        '-' }                                                                    
+                                                                    </td>
+                                                                    <td className='text-end py-2'>-</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                  {/* <div className="absolute-div">
                     <div className="inner-abs-div">
-                      <div className='company-type-heading d-flex align-items-center mb-4'>
-                          <div className='comapny-type-logo me-3'>
-                              <img src={currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Magnum' ? 'assets/images/icons/magnum-square.jpg' : 
-                              currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Da Ma Cai' ? 'assets/images/icons/damacai-square.jpg' : 
-                              currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Toto' ? 'assets/images/icons/toto-square.jpg' : null} />
-                          </div>
-                          <div className='company-type-name text-white'>
-                            {t(currentMarket && currentMarket.game_play && currentMarket.game_play.name ? currentMarket.game_play.name : selectedMarket)}
-                          </div>
-                      </div>
-                      {/* <h3 className="text-center gap-2 justify-content-center d-flex text-uppercase">
+                      <h3 className="text-center gap-2 justify-content-center d-flex text-uppercase">
                         
-                          <span className="selected-gp-btn outer-circle-gp" style={{ height:'45px', width:"45px" }}>
-                            
-                            <img className="img-fluid" src={currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Magnum' ? 'assets/images/icons/magnum-square.jpg' : 
-                            currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Da Ma Cai' ? 'assets/images/icons/damacai-square.jpg' : 
-                            currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Toto' ? 'assets/images/icons/toto-square.jpg' : null} />
+                          <span className="selected-gp-btn outer-circle-gp" style={{ height:'40px', width:"40px" }}>
+                            <img
+                              className="img-fluid"
+                              src={currentMarket && currentMarket.game_play && currentMarket.game_play.logo_url ? currentMarket.game_play.logo_url : "http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png" }
+                            />
                           </span>
                         {t(currentMarket && currentMarket.game_play && currentMarket.game_play.name ? currentMarket.game_play.name : selectedMarket)}
-                      </h3> */}
+                      </h3>
 
                       <div className="absolute-div">
                         <div className="d-flex justify-content-between align-items-center">
@@ -1489,7 +1724,7 @@ const Calculator = ({ _transactions, _auth }) => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
