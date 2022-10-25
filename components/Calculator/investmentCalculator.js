@@ -5,7 +5,7 @@ import $ from 'jquery';
 import { twoDecimalPlaceWithAmount } from "../Utils";
 const initState = {
     "bet_no": '',
-    "bet_type":'S',
+    "bet_type":'',
     "big_bet":'',
     "small_bet":'',
     "three_A":'',
@@ -68,9 +68,18 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     }
 
     const handleBetNumber = (numberInput) =>{
+
+        console.log('handle:',numberInput)
+
         if (!numberInput.match("^[R-Rr-r0-9]*$")) {
             return false;
           }
+
+          if (numberInput.includes('r')){
+            setAmounts({...amounts,"bet_type":"S"})
+            console.log('handle R:')
+
+        }
 
           if (
             numberInput &&
@@ -86,7 +95,9 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
             return false;
           }
 
+        
           setAmounts({...amounts,"bet_no":numberInput})
+          
     } 
 
     const handleBetAmount = (numberInput) =>{
@@ -107,15 +118,10 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
           return true
     }
 
+
     function isEveryInputEmpty() {
         var allEmpty = true;
-        
-        
-        // $(':input').each(function() {
-        //     if ($(this).val() !== '') {
-        //         allEmpty = false
-        //     }
-        // });
+     
 
         if(initState !== amounts || gameList !== games){
             allEmpty = true
@@ -131,15 +137,29 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         var isAllFill = false
         var isGamesFill = false
         console.log('isEveryInputFill bfore: ',isAllFill,isGamesFill)
-        if(amounts.bet_no){
-            if(amounts.big_bet|| amounts.small_bet || amounts.three_A || amounts.three_C )
-            {
-                isAllFill = true
+        if(amounts.bet_no && amounts.bet_no.length > 2){
+            switch (amounts.bet_no.length){
+                case 3:
+                    if(amounts.three_A && amounts.three_C)
+                    {
+                        isAllFill = true
+                    }
+                break;
+
+                case 4:
+                    if(amounts.big_bet && amounts.small_bet)
+                    {
+                        isAllFill = true
+                    }
+                break;
             }
         }
         else
             isAllFill = false
 
+            if(amounts.bet_type == ''){
+                isAllFill = false
+            }
 
             if(!gameList.dmc && !gameList.magnum && !gameList.toto)
             {
@@ -393,8 +413,9 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     useEffect(()=>{
         isEveryInputEmpty()
         isEveryInputFill()
+        
         console.log("amounts: :",amounts)
-    },[amounts,gameList])
+    },[amounts,gameList,amounts.bet_type])
     return (
       <>
        <section className="bg-light custom-padding">
@@ -454,7 +475,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 value={amounts.bet_no}
                                                 maxLength={4}
                                                 minLength={3}
-                                                onChange={(e) => handleBetNumber(e.target.value)}/>
+                                                onChange={(e) => (handleBetNumber(e.target.value))}/>
                                             </div>
                                         </div>
                                     </div> 
@@ -464,16 +485,22 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 <b className='mb-2 d-block'>{t('Bet_Type')}</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8 text-center'>
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "S" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setAmounts({...amounts,"bet_type":"S"})}>S</button>
-
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "B" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => setAmounts({...amounts,"bet_type":"B"})}>{t('B')}</button>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "S" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) =>(amounts.bet_type == 'S'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"S"}))}>S</button>
+                                        {amounts.bet_no.includes('r') ? '' : 
+                                        <>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "B" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => (amounts.bet_type == 'B'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"B"}))}>{t('B')}</button>
 
                                         {amounts.bet_no.length == 4 ?                                         
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "I" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'}  title={"iBox"} onClick={(e) => setAmounts({...amounts,"bet_type":"I"})}>{t('I')}</button>
-                                        : '' }
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "I" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'}  title={"iBox"} onClick={(e) => (amounts.bet_type == 'I'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"I"}))}>{t('I')}</button>
+                                        : 
+                                        '' 
+                                        }
 
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "R" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => setAmounts({...amounts,"bet_type":"R"})}>{t('R')}</button>
-                                            </div>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "R" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => (amounts.bet_type == 'R'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"R"}))}>{t('R')}</button>
+                                                                                    
+                                        </>
+                                        }
+                                        </div>
                                         </div>
                                     </div>
                                     {amounts.bet_no.length == 4 ? 
