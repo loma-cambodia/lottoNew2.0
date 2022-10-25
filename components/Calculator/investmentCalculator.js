@@ -132,7 +132,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         var isGamesFill = false
         console.log('isEveryInputFill bfore: ',isAllFill,isGamesFill)
         if(amounts.bet_no){
-            if((amounts.big_bet && amounts.small_bet) || (amounts.three_A && amounts.three_C) )
+            if(amounts.big_bet|| amounts.small_bet || amounts.three_A || amounts.three_C )
             {
                 isAllFill = true
             }
@@ -184,7 +184,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
             if(initData.bet_type == "S"){
                 if(initData.bet_no.length == 4){
                     total = Number(initData.big_bet) + Number(initData.small_bet)
-                    setCombination(2)
+                    setCombination(1)
                     console.log("123",total)
                     bigInv = Number(total/2)
                     smallInv = Number(total/2)
