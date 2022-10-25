@@ -202,6 +202,10 @@
     "Please_Enter_Valid_Number":"输入有效下注号码",
     "Please_Enter_Amount":"输入投注金额",
 
+    "merchant_id_connt_be_0":"商户 id 必须大于 0",
+    "member_id_connt_be_0":"Member id 必须大于 0",
+
+
     "insuffient_balance":"余额不足", 
     "not_wallet":"您没钱包", 
     "tickect_success":"注单成功创建", 
