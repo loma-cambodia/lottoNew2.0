@@ -56,8 +56,8 @@ if(objectWithData.customer_id != 0){
       
       let specialDrawState = state && state.home && state.home.specialDrawDetails ? state.home.specialDrawDetails : '';
 
-      let calculatorOdds = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : {};
-
+      let calculatorOdds = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : [];
+  console.log("CALC",calculatorOdds)
   return (
     <>
        <Head> 
@@ -66,7 +66,7 @@ if(objectWithData.customer_id != 0){
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 
      
-      <InvestmentCalculator _calculatorOdds={calculatorOdds} _auth={auth}/>
+      <InvestmentCalculator _calculatorOdds={calculatorOdds}  _auth={auth}/>
 
       <Calculator _transactions={transactions} _auth={auth}/>
       

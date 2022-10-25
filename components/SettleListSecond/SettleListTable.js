@@ -428,6 +428,30 @@ const handlePageClick = (event) => {
                         </table>
                     </div>
                     <div className={styles.device_detect_for_desktop}>
+
+                                                    <Table data={currentItems} _childShowTable={childShowTable}/>
+                    </div>
+                    <div className="clearfix d-flex align-items-center justify-content-center">
+                        { pageCount > 1 ?
+                            <ReactPaginate
+                            breakLabel="..."
+                            nextLabel={t('next')} 
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={5}
+                            pageCount={pageCount}
+                            previousLabel={t('previous')}
+                            renderOnZeroPageCount={null}
+                            className="pagination"
+                            pageLinkClassName="pagination"
+                            forcePage={currentPage} 
+                            // activeClassName={"pagination__link--active"}
+                        /> : null }
+                
+                        <svg className="hide">
+                            <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
+                            <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
+                        </svg>
+
                         <Table data={dataRecordes} _childShowTable={childShowTable}/>
                     </div>
                 </>

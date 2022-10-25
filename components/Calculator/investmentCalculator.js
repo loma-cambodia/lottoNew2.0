@@ -88,6 +88,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
           ) {
             return false;
           }
+          
           if (numberInput.includes("-") || numberInput.includes(".")) {
             return false;
           }
@@ -217,7 +218,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                 }else if(initData.bet_no.length == 3){
                     total = Number(initData.three_A) + Number(initData.three_C)
                     console.log("123",total)
-                    setCombination(2)
+                    setCombination(1)
                     threeAInv = Number(total/2)
                     threeCInv = Number(total/2)
                 }
@@ -293,7 +294,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                         </table>
                                     </div>
                                     <div className='bottom-3-col'>
-                                            <div className='row'>
+                                            <div className='row hide-600'>
                                                 <div className='col'>
                                                     <div className='prize-div'>
                                                         <div className='heading-part'>{t('prize_type')}</div>
@@ -408,6 +409,79 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div className='row show-600'>
+<div className='col-12'>
+    <table className='table text-white table-sm table-bordered border small table-header-theme'>
+        <thead>
+        <tr>
+            <th rowSpan={2} className="align-middle">Prize</th>
+            <th rowSpan={2} className='text-end align-middle'>Winning Amount</th>
+            <th colSpan={2} className="text-center align-middle">Odds</th>
+        </tr>
+        <tr>
+            <th className='text-end w-25'>Big</th>
+            <th className='text-end w-25'>Small</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1st</td>
+            {/* <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(oddsData.small_first  * smallInv)+Number(oddsData.big_first * bigInv))}</td>
+             */}
+             {initData.bet_no.length == 4 ? 
+                <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(oddsData.small_first  * smallInv)+Number(oddsData.big_first * bigInv))}</td> 
+                :
+                <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(oddsData.three_a_first * threeAInv)+Number(oddsData.three_c_first * threeCInv))}</td>
+            }
+            <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_first) : "0.00"}</td>
+            <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_first): "0.00"}</td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            {/* <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(oddsData.small_second  * smallInv)+Number(oddsData.big_second * bigInv))}</td> */}
+            {initData.bet_no.length == 4 ? 
+                    <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(oddsData.small_second  * smallInv)+Number(oddsData.big_second * bigInv))}</td> 
+                    :
+                    <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(threeCInv)*Number(oddsData.three_c_second))}</td>
+            }
+            <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_second) : "0.00"}</td>
+            <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_second): "0.00"}</td>
+        </tr>
+        <tr>
+            <td>3rd</td>
+            {/* <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(oddsData.small_third  * smallInv)+Number(oddsData.big_third * bigInv))}</td> */}
+            {initData.bet_no.length == 4 ? 
+                <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(oddsData.small_third  * smallInv)+Number(oddsData.big_third * bigInv))}</td>
+                :
+                <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(threeCInv)*Number(oddsData.three_c_third))}</td>
+            }
+            <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_third): "0.00"}</td>
+            <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_third): "0.00"}</td>
+        </tr>
+        {initData.bet_no.length == 4 ? 
+        <>
+        <tr>
+            <td>Special</td>
+            <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(bigInv)*Number(oddsData.big_special))}</td>
+            <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_special): "0.00"}</td>
+            <td className='text-end'>-</td>
+        </tr>
+        <tr>
+            <td>Consolation</td>
+            <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(bigInv)*Number(oddsData.big_consolation))}</td>
+            <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_consolation): "0.00"}</td>
+            <td className='text-end'>-</td>
+        </tr>
+        </>
+        :
+        
+        <tr></tr>
+        }
+        </tbody>
+        
+    </table>    
+</div>
+</div>
                                         </div>
                                         
                 </>
@@ -493,7 +567,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                             </div>
                                             <div className='col-lg-7 col-md-8 text-center'>
                                         <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "S" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) =>(amounts.bet_type == 'S'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"S"}))}>S</button>
-                                        {amounts.bet_no.includes('r') ? '' : 
+                                        {amounts.bet_no.includes('r') || amounts.bet_no.includes('R') ? '' : 
                                         <>
                                         <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "B" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => (amounts.bet_type == 'B'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"B"}))}>{t('B')}</button>
 
@@ -582,27 +656,27 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                     <h5 className='text-uppercase text-center text-white'>{t('Result')}</h5>
                                      <div className='company-type-heading d-flex align-items-center' style={{justifyContent:'center',minHeight:"50px"}}>
 
-                                     {Odds.map((e,i)=>{
-                                        
-                                              let companyName =  e.game_play.name;
-                                             if(companyName == "Toto")
-                                             companyName = 'toto';
-                                             else if(companyName == "Da Ma Cai")
-                                             companyName = 'dmc';
-                                             else if(companyName == "Magnum")
-                                             companyName = 'magnum';
- 
-                                         if(gameList[companyName]){
-                                         return(
-                                             <>
+                                            {Odds.map((e,i)=>{
                                                 
-                                                     <div className='comapny-type-logo mx-2'><img src={e.game_play.logo_url}/></div>
-                                                     <div className='company-type-name text-white p-2' >{e.game_play.name}</div>
-                                                    
-                                             </>
-                                                 )
-                                              }
-                                         })}
+                                                    let companyName =  e.game_play.name;
+                                                    if(companyName == "Toto")
+                                                    companyName = 'toto';
+                                                    else if(companyName == "Da Ma Cai")
+                                                    companyName = 'dmc';
+                                                    else if(companyName == "Magnum")
+                                                    companyName = 'magnum';
+        
+                                                if(gameList[companyName]){
+                                                return(
+                                                    <>
+                                                        
+                                                            <div className='comapny-type-logo mx-2'><img src={e.game_play.logo_url}/></div>
+                                                            <div className='company-type-name text-white p-2' >{e.game_play.name}</div>
+                                                            
+                                                    </>
+                                                        )
+                                                    }
+                                                })}
                                      </div>
                                       <WinningData oddsData={Odds[1]}/>
                                 </div>

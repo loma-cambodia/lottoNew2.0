@@ -3253,6 +3253,36 @@ section.announcement {
   font-weight: bold!important;
   overflow: visible!important
 }
+
+
+}
+
+
+.button-disable{
+  filter: grayscale(1);
+}
+.button-able{
+  filter: none!important;
+}
+
+.cal-border{
+  border: 1px solid #bc2263!important
+}
+.margin-left-52px{
+  margin-left : 52px;
+}
+@media (max-width:768px) {
+  .back-section:before {
+      width: 100%;
+  }
+  .btn-clear {
+    font-size: 14px;
+  }
+  .btn-yellow {
+    font-size: 14px;
+    padding: 15px 15px;
+  }
+}
 /* Search number Module */
 input.daterangepickerstyle-sm {
   width: 100%;
@@ -3490,32 +3520,7 @@ input.daterangepickerstyle-sm {
   font-size: 24px;
   line-height: 1;
 }
-@media (max-width:768px) {
-  .back-section:before {
-      width: 100%;
-  }
-  .btn-clear {
-    font-size: 14px;
-  }
-  .btn-yellow {
-    font-size: 14px;
-    padding: 15px 15px;
-  }
-}
-  /*min-width: auto!important; */
-}
-.margin-left-52px{
-  margin-left : 52px;
-}
-.cal-border{
-  border: 1px solid #bc2263!important
-}
-.button-disable{
-  filter: grayscale(1)!important;
-}
-.button-able{
-  filter: none!important;
-}
+
 
 /* Search number Module */
 input.daterangepickerstyle-sm {
