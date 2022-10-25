@@ -41,11 +41,11 @@ const Announcement = ({_announcementState, _language}) => {
                           <span className="icon-img-announcement">
                             <img src="assets/images/icons/announcement-icon-white.png" alt="" className="img-fluid"/>
                           </span>
-                          <span class="text-announcement">
-                            <span class="announcement-text">
+                          <span className="text-announcement">
+                            <span className="announcement-text">
                               {t('Announcement')}
                             </span> 
-                            <span class="toggle-icon-news" onClick={() => myFunction() } type="button">
+                            <span className="toggle-icon-news" onClick={() => myFunction() } type="button">
                               +
                             </span>
                           </span>

@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import React, { useState,useEffect } from "react";
 import Footer from '../components/common/footer';
@@ -9,10 +11,9 @@ import {announcement, userTransactionDetails, winnerResultDetailsSecond, special
 import {getLogin} from '../store/actions/authActions';
 import InvestmentCalculator from '../components/Calculator/investmentCalculator';
 import Calculator from '../components/calculator/Calculator';
-
-
-
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
+
+
   const [active, setActive] = useState(false);
 
 
@@ -30,6 +31,7 @@ useEffect(() => {
 
 
 
+
 useEffect(() => {
 let objectWithData = {  
   "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
@@ -38,6 +40,7 @@ let objectWithData = {
  // "language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en' 
   "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'  
 } 
+
 if(objectWithData.customer_id != 0){
     dispatch(getLogin(objectWithData)); 
 }
@@ -66,14 +69,16 @@ if(objectWithData.customer_id != 0){
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 
      
-      {/* <InvestmentCalculator _calculatorOdds={calculatorOdds}  _auth={auth}/> */}
+      <InvestmentCalculator _calculatorOdds={calculatorOdds} _auth={auth}/>
+     
+    
+      {/* <Calculator _transactions={transactions} _auth={auth}/> */}
 
-      <Calculator _transactions={transactions} _auth={auth}/>
-      
       
       <div className={styles.device_detect_for_desktop}> 
         <Footer/>
       </div>
+{/*--Footer--*/}
 </>
       
   )
