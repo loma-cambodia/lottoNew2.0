@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+
+import {serachBettingTips} from '../../store/actions/bettingTips';
+
 import $ from "jquery";
 import moment from "moment";
 import {
@@ -21,6 +24,108 @@ import {
 } from "reactstrap";
 export default function SearchNumber({ _transactions, _auth }) {
   const { t } = useTranslation();
+  const state = useSelector(state => state);
+  const dispatch = useDispatch();
+
+  // const bettingTipsData = {
+  //                           "data": [
+  //                             {
+  //                               "id": 7934,
+  //                               "game_play_id": 3,
+  //                               "fetching_date": "2022-10-05",
+  //                               "result_date": "Wed 05-10-2022",
+  //                               "reference_number": "5530/22",
+  //                               "prize1": "1046",
+  //                               "prize2": "5595",
+  //                               "prize3": "6441",
+  //                               "special1": "0484",
+  //                               "special2": "2796",
+  //                               "special3": "2843",
+  //                               "special4": "9613",
+  //                               "special5": "5391",
+  //                               "special6": "0472",
+  //                               "special7": "3945",
+  //                               "special8": "9353",
+  //                               "special9": "6813",
+  //                               "special10": "8679",
+  //                               "consolation1": "8344",
+  //                               "consolation2": "0822",
+  //                               "consolation3": "9629",
+  //                               "consolation4": "3921",
+  //                               "consolation5": "8404",
+  //                               "consolation6": "8966",
+  //                               "consolation7": "5845",
+  //                               "consolation8": "7320",
+  //                               "consolation9": "5814",
+  //                               "consolation10": "3173",
+  //                               "confirm": "Yes",
+  //                               "created_at": "2022-10-20 16:04:46",
+  //                               "updated_at": "2022-10-20 16:04:46",
+  //                               "deleted_at": null
+  //                             },
+  //                             {
+  //                               "id": 7935,
+  //                               "game_play_id": 1,
+  //                               "fetching_date": "2022-10-05",
+  //                               "result_date": "Wed 05-10-2022",
+  //                               "reference_number": "766/22",
+  //                               "prize1": "6638",
+  //                               "prize2": "2049",
+  //                               "prize3": "5366",
+  //                               "special1": "5064",
+  //                               "special2": "2850",
+  //                               "special3": "6666",
+  //                               "special4": "6386",
+  //                               "special5": "2349",
+  //                               "special6": "7854",
+  //                               "special7": "7894",
+  //                               "special8": "7599",
+  //                               "special9": "6082",
+  //                               "special10": "0799",
+  //                               "consolation1": "0033",
+  //                               "consolation2": "0484",
+  //                               "consolation3": "0785",
+  //                               "consolation4": "9172",
+  //                               "consolation5": "4579",
+  //                               "consolation6": "5925",
+  //                               "consolation7": "8687",
+  //                               "consolation8": "5776",
+  //                               "consolation9": "9394",
+  //                               "consolation10": "5203",
+  //                               "confirm": "Yes",
+  //                               "created_at": "2022-10-20 16:04:46",
+  //                               "updated_at": "2022-10-20 16:04:46",
+  //                               "deleted_at": null
+  //                             }
+  //                           ],
+  //                           "for_card": [
+                              
+  //                           ],
+  //                           "permutation": [
+  //                             "0484",
+  //                             "0448",
+  //                             "0844",
+  //                             "4084",
+  //                             "4048",
+  //                             "4804",
+  //                             "4840",
+  //                             "4480",
+  //                             "4408",
+  //                             "8404",
+  //                             "8440",
+  //                             "8044"
+  //                           ]
+  //                         };
+  // let foo = bettingTipsData.data;
+  // foo.map(game => {
+  //   let keys = Object.keys(game);
+  //   keys.map(game1 => {
+  //     if(game[game1] == '0484')
+  //     console.log('bettingTipsDatabettingTipsData',game1) 
+  //   });
+  // });
+
+
   let transactions = _transactions;
   let oddSet = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : [];
   let prizeObject = [
@@ -50,6 +155,8 @@ export default function SearchNumber({ _transactions, _auth }) {
   const [permutation, setPermutation] = useState(null);
   const [prizeInitData, setPrizeInitData] = useState(prizeObject);
   const [changeData, setChangeData] = useState(0);
+
+  const [searchResultData, setSearchResultData] = useState([]);
 
   function getallcompanydata(){
       let dateAndGameOptionData = [];
@@ -153,6 +260,8 @@ export default function SearchNumber({ _transactions, _auth }) {
     getallcompanydata();
   },[oddSet])
 
+  const bettingTip = state && state.bettingTips && state.bettingTips.bettingsTips ? state.bettingTips.bettingsTips : [];
+
   const searchClick = () => {
     let dateFull = $("#daterangepicker").val();
     let sdate = '';
@@ -183,16 +292,30 @@ export default function SearchNumber({ _transactions, _auth }) {
 
     const searchPostData = {
                       "number":number,
-                      "sdate":sdate,
-                      "edate":edate,
+                      // "sdate":sdate,
+                      // "edate":edate,
+                      "date":dateFull,
                       "company":company,
                       "permutation":permutation,
                       "prize":prizes
                     };
 
-                    console.log('searchPostData',searchPostData);
-
+    const searchResult = dispatch(serachBettingTips(searchPostData));
+    
+    
+    // if(searchResult && searchResult.messages){
+    //   alert('yyss')
+    // }else{
+    //   alert('nnoo')
+    // }
   }
+
+  useEffect(()=>{
+
+  },[bettingTip])
+
+  console.log('searchPostData',bettingTip);
+  
   const resetClick = () => {
     setNumber('');
     $("#daterangepicker").val('');
