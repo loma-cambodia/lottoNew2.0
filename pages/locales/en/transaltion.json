@@ -204,7 +204,11 @@
     "Please_Enter_Valid_Number":"Please Enter Valid Number",
     "Please_Enter_Amount":"Please Enter Amount",
 
-    "insuffient_balance":"Insuffient balance to proceed for this transaction!", 
+    "merchant_id_connt_be_0":"The Merchant id must be greater than 0",
+    "member_id_connt_be_0":"The Member id must be greater than 0",
+
+
+    "insuffient_balance":"Insufficient balance to proceed for this transaction!", 
     "not_wallet":"You do not have wallet", 
     "tickect_success":"Ticket created successfully", 
     "tickect_update":"Ticket updated successfully", 
@@ -269,6 +273,14 @@
     "31st":"31ST",
     "merchant has disabled":"Merchant is temporary deactivated. Please contact customer service.",
     "market has disabled":"Market is closed. No bet is allowed",
+    "Winning_Calculator":"Winning Calculator",
+    "Straight":"Straight",
+    "Total_No_of_Combination":"Total No. of Combination:",
+    "Total_Cost":"Total Cost:",
+    "Magnum":"Magnum",
+    "Da Ma Cai":"Da Ma Cai",
+    "ToTo":"ToTo",
+    "Calculate":"Calculate",
     "coming_soon_text":"Coming Soon"
 
 }
