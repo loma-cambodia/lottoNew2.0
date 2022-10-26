@@ -29,12 +29,12 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     const [clear, setClear] = useState(true);
     const [submit, setSubmit] = useState(false);
     const [combination, setCombination] = useState(0);
-    const [gamePlayID,setGamePlayID] = useState(2)
+    const [gamePlayID,setGamePlayID] = useState(1)
     const OddsSearch = Odds.find(({ game_play_id }) => game_play_id === gamePlayID)
     const ResultData = OddsSearch
     console.log("ODD DATA :",Odds)
     console.log("ODD DATA Game Play:",OddsSearch)
-    console.log("gamePlayID:",gamePlayID)
+    console.log("gamePlayID:",gamePlayID,gameList)
 
     let auth = _auth;
     const merchantCurrency =
@@ -353,6 +353,21 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
             }
 
             if(oddsData){
+                
+                    let name = ''       
+                    let companyName =  oddsData.game_play.name;
+                    if(companyName == "Toto")
+                    companyName = 'toto';
+                    else if(companyName == "Da Ma Cai")
+                    companyName = 'dmc';
+                    else if(companyName == "Magnum")
+                    companyName = 'magnum';
+
+                if(gameList[companyName]){
+                            name = oddsData.game_play.name
+                        
+                    }
+                
             return (
                 <>
                             
@@ -448,7 +463,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 </div>
                                                 <div className='col'>
                                                     <div className='w-amt-div'>
-                                                        <div className='w-amt-heading'>{oddsData.game_play.name} {t('Odds')}</div>
+                                                        <div className='w-amt-heading'>{name} {t('Odds')}</div>
                                                         <div className='prize-content-part'>
                                                         <table className='table text-white'>
                                                                 <tr>
@@ -493,7 +508,8 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                         <tr>
                                                             <th rowSpan={2} className="align-middle">Prize</th>
                                                             <th rowSpan={2} className='text-end align-middle'>Winning Amount</th>
-                                                            <th colSpan={2} className="text-center align-middle">{oddsData.game_play.name}  Odds</th>
+                                                            
+                                                            <th colSpan={2} className="text-center align-middle">{name}  Odds</th>
                                                         </tr>
                                                         <tr>
                                                             <th className='text-end w-25'>Big</th>
