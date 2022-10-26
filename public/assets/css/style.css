@@ -3528,7 +3528,7 @@ input.daterangepickerstyle-sm {
 .w-amt {
   color: #f9d43d;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 1;
 }
 @media (max-width:768px) {
@@ -3567,5 +3567,10 @@ input.daterangepickerstyle-sm {
   }
   .table-header-theme tbody tr td {
     background-color: #b91a5d !important;
+  }
+}
+@media (max-width:1200px) {
+  .w-amt {
+    font-size: 16px;
   }
 }
