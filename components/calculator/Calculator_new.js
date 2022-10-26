@@ -583,23 +583,16 @@ const Calculator = ({ _transactions, _auth }) => {
     setCost("");
     setSelectedMarket(onLoadCompany);
   };
-
-  console.log("price: ", price);
-  console.log("result: ", result);
   function palindrome(str) {
-
       var len = str.length;
       var mid = Math.floor(len/2);
-
       for ( var i = 0; i < mid; i++ ) {
           if (str[i] !== str[len - 1 - i]) {
               return false;
           }
       }
-
       return true;
   }
-
 
   return (
     <section className="bg-light custom-padding">
