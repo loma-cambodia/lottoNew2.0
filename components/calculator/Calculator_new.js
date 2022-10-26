@@ -129,6 +129,7 @@ const Calculator = ({ _transactions, _auth }) => {
       }
     }
     return totalCombination;
+    
   };
 
   useEffect(() => {
