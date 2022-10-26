@@ -76,9 +76,6 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
             return false;
           }
 
-
-          
-
           if (
             numberInput &&
             numberInput.match(/r/i) &&
@@ -93,10 +90,15 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
             return false;
           }
 
-          if (numberInput.includes('R') || numberInput.includes('r')){
-               newAmounts = {...newAmounts,"bet_type":'S'};
+          if (numberInput.includes('R') || numberInput.includes('r') && amounts.bet_type != 'S'){
+            //    newAmounts = {...newAmounts,"bet_type":'S'};
+                    newAmounts = {...newAmounts,"bet_type":''}
             }
 
+            if(numberInput.length != 4 && amounts.bet_type == 'I'){
+                newAmounts = {...newAmounts,"bet_type":''};
+            }
+          
 
            newAmounts = {...newAmounts,"bet_no":numberInput};
 
@@ -127,14 +129,18 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
 
 
     function isEveryInputEmpty() {
-        var allEmpty = true;
+        let allEmpty = true;
      
+        console.log('isEveryInputEmpty initState',initState)
+        console.log('isEveryInputEmpty amounts',amounts)
 
-        if(initState !== amounts || gameList !== games){
+
+        if(initState != amounts || gameList != games){
             allEmpty = true
         }
-        else
+        else{
             allEmpty = false
+        }
     
         setClear(allEmpty);
     }
@@ -184,9 +190,18 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
           console.log('isEveryInputFill after: ',isAllFill,isGamesFill)
     }
     function decimal(data){
-        return(
-            twoDecimalPlaceWithAmount(data,1)
-        )
+
+        if (merchantCurrency == 'KHR')
+        {
+            return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        }
+        else{
+            //put commas for every 3 digits
+            return(
+                twoDecimalPlaceWithAmount(data,1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            )
+        }
+        
     }
     function WinningData({oddsData}){
 
@@ -379,25 +394,25 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                                     <th className='text-end py-2'>{t('Small_Bet')}</th>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_first) : "0.00"}</td>
-                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_first): "0.00"}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_first) : decimal(0)}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_first): decimal(0)}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_second) : "0.00"}</td>
-                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_second): "0.00"}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_second) : decimal(0)}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_second): decimal(0)}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_third): "0.00"}</td>
-                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_third): "0.00"}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_third): decimal(0)}</td>
+                                                                    <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.small_third): decimal(0)}</td>
                                                                 </tr>
                                                                 {initData.bet_no.length == 4 ? 
                                                                 <>
                                                                     <tr>
-                                                                        <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_special): "0.00"}</td>
+                                                                        <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_special): decimal(0)}</td>
                                                                         <td className='text-end py-2'>-</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_consolation): "0.00"}</td>
+                                                                        <td className='text-end py-2'>{gameList['toto'] || gameList['dmc'] || gameList['magnum']  ?multiplier(oddsData.big_consolation): decimal(0)}</td>
                                                                         <td className='text-end py-2'>-</td>
                                                                     </tr>
                                                                 </>
@@ -566,18 +581,18 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 <b className='mb-2 d-block'>{t('Bet_Type')}</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8 text-center'>
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "S" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) =>(amounts.bet_type == 'S'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"S"}))}>S</button>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "S" ? 'btn btn-bordered-theme-active me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) =>(amounts.bet_type == 'S'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"S"}))}>S</button>
                                         {amounts.bet_no.includes('r') || amounts.bet_no.includes('R') ? '' : 
                                         <>
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "B" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => (amounts.bet_type == 'B'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"B"}))}>{t('B')}</button>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "B" ? 'btn btn-bordered-theme-active me-1 active-bet-type' : 'btn-custom-small me-1'} title={"Box"} onClick={(e) => (amounts.bet_type == 'B'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"B"}))}>{t('B')}</button>
 
                                         {amounts.bet_no.length == 4 ?                                         
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "I" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'}  title={"iBox"} onClick={(e) => (amounts.bet_type == 'I'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"I"}))}>{t('I')}</button>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "I" ? 'btn btn-bordered-theme-active me-1 active-bet-type' : 'btn-custom-small me-1'}  title={"iBox"} onClick={(e) => (amounts.bet_type == 'I'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"I"}))}>{t('I')}</button>
                                         : 
                                         '' 
                                         }
 
-                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "R" ? 'btn btn-bordered-theme me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => (amounts.bet_type == 'R'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"R"}))}>{t('R')}</button>
+                                        <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "R" ? 'btn btn-bordered-theme-active me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => (amounts.bet_type == 'R'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"R"}))}>{t('R')}</button>
                                                                                     
                                         </>
                                         }
