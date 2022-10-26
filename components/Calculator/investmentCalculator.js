@@ -108,23 +108,22 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
 
         
     } 
-    function findPermutations(string) {
+    function findPermutations(number) {
         
-        if (!string || typeof string !== "string"){
-            return "Please enter a string"
-          } else if (string.length < 2 ){
-            return string
+        if (!number || typeof number !== "string"){
+          } else if (number.length < 2 ){
+            return number
           }
         
           let permutationsArray = [] 
            
-          for (let i = 0; i < string.length; i++){
-            let char = string[i]
+          for (let i = 0; i < number.length; i++){
+            let char = number[i]
         
-            if (string.indexOf(char) != i)
+            if (number.indexOf(char) != i)
             continue
         
-            let remainingChars = string.slice(0, i) + string.slice(i + 1, string.length)
+            let remainingChars = number.slice(0, i) + number.slice(i + 1, number.length)
         
             for (let permutation of findPermutations(remainingChars)){
               permutationsArray.push(char + permutation) }
@@ -151,17 +150,17 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
           return true
     }
 
-    function isEveryInputEmpty() {
-        let allEmpty = true;
-        if(initState !== amounts || games !== gameList){
-            allEmpty = true
-        }
-        else{
-            allEmpty = false
-        }
+    // function isEveryInputEmpty() {
+    //     let allEmpty = true;
+    //     if(initState !== amounts || games !== gameList){
+    //         allEmpty = true
+    //     }
+    //     else{
+    //         allEmpty = false
+    //     }
     
-        return setClear(allEmpty);
-    }
+    //     return setClear(allEmpty);
+    // }
 
     function isEveryInputFill() {
   
@@ -209,7 +208,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
 
         if (merchantCurrency == 'KHR')
         {
-            return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            return (twoDecimalPlaceWithAmount(data,1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
         }
         else{
             //put commas for every 3 digits
