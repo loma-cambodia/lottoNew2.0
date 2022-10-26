@@ -614,7 +614,7 @@ const Calculator = ({ _transactions, _auth }) => {
           <div className="row justify-conternt-center">
             <div className="col-md-10 offset-md-1">
               <div className="row align-items-center no-gutters g-0">
-                <div className="col-md-5 col-sm-6 back-section">
+                <div className="col-md-5 col-sm-6 back-section1">
                   <div className="clearfix p-4 z-index-1 back-section2 mx-4">
                     <div className="row mt-3 m-auto">
                       <div className="col-md-10 offset-md-1 margin-left-52px">
