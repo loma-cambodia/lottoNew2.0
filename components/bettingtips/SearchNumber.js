@@ -24,7 +24,7 @@ import {
 } from "reactstrap";
 export default function SearchNumber({ _transactions, _auth }) {
   const { t } = useTranslation();
-
+  const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   // const bettingTipsData = {
@@ -156,6 +156,8 @@ export default function SearchNumber({ _transactions, _auth }) {
   const [prizeInitData, setPrizeInitData] = useState(prizeObject);
   const [changeData, setChangeData] = useState(0);
 
+  const [searchResultData, setSearchResultData] = useState([]);
+
   function getallcompanydata(){
       let dateAndGameOptionData = [];
       if(oddSet){
@@ -258,6 +260,8 @@ export default function SearchNumber({ _transactions, _auth }) {
     getallcompanydata();
   },[oddSet])
 
+  const bettingTip = state && state.bettingTips && state.bettingTips.bettingsTips ? state.bettingTips.bettingsTips : [];
+
   const searchClick = () => {
     let dateFull = $("#daterangepicker").val();
     let sdate = '';
@@ -297,10 +301,21 @@ export default function SearchNumber({ _transactions, _auth }) {
                     };
 
     const searchResult = dispatch(serachBettingTips(searchPostData));
-
-                    console.log('searchPostData',searchResult);
-
+    
+    
+    // if(searchResult && searchResult.messages){
+    //   alert('yyss')
+    // }else{
+    //   alert('nnoo')
+    // }
   }
+
+  useEffect(()=>{
+
+  },[bettingTip])
+
+  console.log('searchPostData',bettingTip);
+  
   const resetClick = () => {
     setNumber('');
     $("#daterangepicker").val('');

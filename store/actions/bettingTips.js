@@ -31,11 +31,11 @@ export const serachBettingTips = (getData) => async (dispatch) => {
     ) 
     dispatch({
       type: 'GET_SEARCH_BETTING_TIPS',
-      payload: res.data.data,
+      payload: res.data,
     })
   } catch (e) {
     dispatch({
-      type: 'Get_Tickets_Error',
+      type: 'GET_SEARCH_BETTING_TIPS_ERROR',
       payload: console.log(e),
     })
   }
