@@ -29,7 +29,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     const [clear, setClear] = useState(true);
     const [submit, setSubmit] = useState(false);
     const [combination, setCombination] = useState(0);
-    const [gamePlayID,setGamePlayID] = useState(0)
+    const [gamePlayID,setGamePlayID] = useState(1)
     const OddsSearch = Odds.find(({ game_play_id }) => game_play_id === gamePlayID)
     const ResultData = OddsSearch
     console.log("ODD DATA :",Odds.indexOf('game_play_id',"2"))
