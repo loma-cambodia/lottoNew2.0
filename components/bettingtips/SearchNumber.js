@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -153,6 +154,10 @@ export default function SearchNumber({ _transactions, _auth }) {
   const [bettingInitData, setBettingInitData] = useState([]);
   const [number, setNumber] = useState('');
   const [permutation, setPermutation] = useState(null);
+  const [permutationData, setPermutationData] = useState(null);
+  const [mainCard, setMainCard] = useState(null);
+  const [firstTableData, setFirstTableData] = useState(null);
+  
   const [prizeInitData, setPrizeInitData] = useState(prizeObject);
   const [changeData, setChangeData] = useState(0);
 
@@ -266,9 +271,11 @@ export default function SearchNumber({ _transactions, _auth }) {
     let dateFull = $("#daterangepicker").val();
     let sdate = '';
     let edate = ''; 
+    let mainDateee = '';
     if(dateFull){
         sdate = dateFull.split("-")[0].trim();
         edate = dateFull.split("-")[1].trim();
+        mainDateee = sdate+'-'+edate;
     }
 
     let company = [];
@@ -294,7 +301,7 @@ export default function SearchNumber({ _transactions, _auth }) {
                       "number":number,
                       // "sdate":sdate,
                       // "edate":edate,
-                      "date":dateFull,
+                      "date":mainDateee,
                       "company":company,
                       "permutation":permutation,
                       "prize":prizes
@@ -311,17 +318,52 @@ export default function SearchNumber({ _transactions, _auth }) {
   }
 
   useEffect(()=>{
-
-  },[bettingTip])
+    setPermutationData(bettingTip.permutation);
+    setMainCard(bettingTip.main_card);
+    setFirstTableData(bettingTip.data);
+  },[bettingTip,permutationData,mainCard,firstTableData])
 
   console.log('searchPostData',bettingTip);
-  
+
   const resetClick = () => {
     setNumber('');
     $("#daterangepicker").val('');
     setPermutation(null); 
     getallcompanydata();  
     setPrizeInitData(prizeObject);  
+  }
+
+  function PrizeSetComm({prizeType}){
+    let prizeTypeStyle = '';
+    if(prizeType == 'prize1'){
+      prizeType = "First Prize";
+      prizeTypeStyle = "badge bg-primary";
+
+    }else if(prizeType == 'prize2'){
+      prizeType = "Second Prize";
+      prizeTypeStyle = "badge bg-primary";
+    }else if(prizeType == 'prize3'){
+      prizeType = "Third Prize";
+      prizeTypeStyle = "badge bg-warning text-dark";
+    }
+    
+    else if(prizeType == 'special1' || prizeType == 'special2' || prizeType == 'special3' || prizeType == 'special4' || prizeType == 'special5' || prizeType == 'special6' || prizeType == 'special7' || prizeType == 'special8' || prizeType == 'special9' || prizeType == 'special10'){
+      prizeType = "Special Prize";
+      prizeTypeStyle = "badge bg-info text-white";
+    }
+    else if(prizeType == 'consolation1' || prizeType == 'consolation2' || prizeType == 'consolation3' || prizeType == 'consolation4' || prizeType == 'consolation5' || prizeType == 'consolation6' || prizeType == 'consolation7' || prizeType == 'consolation8' || prizeType == 'consolation9' || prizeType == 'consolation10'){
+      prizeType = "Consolation Prize";
+      prizeTypeStyle = "badge bg-light text-dark border border-dark";
+    }
+
+    else{
+      prizeTypeStyle = "badge bg-light text-dark border border-dark";
+    }
+    return(
+          <span className={prizeTypeStyle}>
+            {prizeType}
+          </span>
+    )
   }
   return (
     <>
@@ -509,81 +551,18 @@ export default function SearchNumber({ _transactions, _auth }) {
         </Container>
         <Container>
           <Card className="alert alert-warning text-dark p-0 rounded-0 border border-warning">
-            <CardHeader className="fw-bold">Total Permutation: 24</CardHeader>
+            <CardHeader className="fw-bold">Total Permutation: {permutationData && permutationData.length}</CardHeader>
             <CardBody>
               <ul className="list-inline mb-0">
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">0234</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">0243</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">0324</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">0342</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">0423</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">0432</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">2034</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">2043</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">2304</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">2340</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">2403</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">2430</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">3024</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">3042</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">3204</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">3240</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">3402</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">3420</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">4023</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">4032</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">4203</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">4230</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">4302</span>
-                </li>
-                <li className="list-inline-item">
-                  <span className="badge bg-light text-dark">4320</span>
-                </li>
+                {permutationData && permutationData.map((value, index)=>{
+                  return (
+                    <>
+                      <li key={index} className="list-inline-item">
+                        <span className="badge bg-light text-dark">{value}</span>
+                      </li>
+                    </>
+                  )
+                })}
               </ul>
             </CardBody>
           </Card>
@@ -601,7 +580,7 @@ export default function SearchNumber({ _transactions, _auth }) {
                     </div>
                     <div className="widget-text">
                       <p className="fw-bold mb-0 fs-5">
-                        <b>326</b>
+                        <b>{mainCard && mainCard.total_hits ? mainCard.total_hits : 0}</b>
                       </p>
                       <p className="mb-0 fs-6">Total Hits</p>
                     </div>
@@ -620,7 +599,7 @@ export default function SearchNumber({ _transactions, _auth }) {
                     </div>
                     <div className="widget-text">
                       <p className="fw-bold mb-0 fs-5">
-                        <b>110 Draws</b>
+                        <b>{mainCard && mainCard.max_draw_gap ? mainCard.max_draw_gap : 0} Draws</b>
                       </p>
                       <p className="mb-0 fs-6">Max DrawGap</p>
                     </div>
@@ -639,7 +618,7 @@ export default function SearchNumber({ _transactions, _auth }) {
                     </div>
                     <div className="widget-text">
                       <p className="fw-bold mb-0 fs-5">
-                        <b>1 Draws</b>
+                        <b>{mainCard && mainCard.min_draw_gap ? mainCard.min_draw_gap : 0 } Draws</b>
                       </p>
                       <p className="mb-0 fs-6">Min DrawGap</p>
                     </div>
@@ -658,7 +637,7 @@ export default function SearchNumber({ _transactions, _auth }) {
                     </div>
                     <div className="widget-text">
                       <p className="fw-bold mb-0 fs-5">
-                        <b>18 Draws</b>
+                        <b>{mainCard && mainCard.avg_draw_gap ? mainCard.avg_draw_gap : 0 } Draws</b>
                       </p>
                       <p className="mb-0 fs-6">Avg DrawGap</p>
                     </div>
@@ -677,7 +656,7 @@ export default function SearchNumber({ _transactions, _auth }) {
                     </div>
                     <div className="widget-text">
                       <p className="fw-bold mb-0 fs-5">
-                        <b>#6155</b>
+                        <b>#{mainCard && mainCard.last_hit_draw_no ? mainCard.last_hit_draw_no : '' }</b>
                       </p>
                       <p className="mb-0 fs-6">Last Hit DrawNo</p>
                     </div>
@@ -696,7 +675,7 @@ export default function SearchNumber({ _transactions, _auth }) {
                     </div>
                     <div className="widget-text">
                       <p className="fw-bold mb-0 fs-5">
-                        <b>#6173</b>
+                        <b>#{mainCard && mainCard.last_hit_draw_id ? mainCard.last_hit_draw_id : '' }</b>
                       </p>
                       <p className="mb-0 fs-6">Estimate Next Hit DrawID</p>
                     </div>
@@ -715,7 +694,9 @@ export default function SearchNumber({ _transactions, _auth }) {
                     </div>
                     <div className="widget-text">
                       <p className="fw-bold mb-0 fs-5">
-                        <b>#6173</b>
+                        <b>#{mainCard && mainCard.last_hit_draw_no && mainCard.avg_draw_gap ?
+                              (parseInt(mainCard.last_hit_draw_no)+parseInt(mainCard.avg_draw_gap)) : '' }
+                        </b>
                       </p>
                       <p className="mb-0 fs-6">Estimate Next Hit DrawNo</p>
                     </div>
@@ -761,913 +742,63 @@ export default function SearchNumber({ _transactions, _auth }) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    <b>2403</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>071/85</td>
-                  <td>#71</td>
-                  <td>05/10/1985</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>
-                    <b>2043</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>010/86</td>
-                  <td>#118</td>
-                  <td>23/01/1986</td>
-                  <td>Thu</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>47</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>
-                    <b>3024</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>022/86</td>
-                  <td>#130</td>
-                  <td>20/02/1986</td>
-                  <td>Thu</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>12</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>
-                    <b>3024</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-primary">Second</span>
-                  </td>
-                  <td>025/86</td>
-                  <td>#133</td>
-                  <td>27/02/1986</td>
-                  <td>Thu</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>3</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>
-                    <b>4023</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>047/86</td>
-                  <td>#156</td>
-                  <td>19/04/1986</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>23</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>
-                    <b>3024</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>054/86</td>
-                  <td>#163</td>
-                  <td>04/05/1986</td>
-                  <td>Sun</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>7</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>
-                    <b>0324</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>064/86</td>
-                  <td>#173</td>
-                  <td>29/05/1986</td>
-                  <td>Thu</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>10</td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>
-                    <b>3204</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>091/86</td>
-                  <td>#200</td>
-                  <td>31/07/1986</td>
-                  <td>Thu</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>27</td>
-                </tr>
-                <tr>
-                  <td>9</td>
-                  <td>
-                    <b>3024</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>125/86</td>
-                  <td>#234</td>
-                  <td>18/10/1986</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>34</td>
-                </tr>
-                <tr>
-                  <td>10</td>
-                  <td>
-                    <b>2430</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>078/87</td>
-                  <td>#344</td>
-                  <td>28/06/1987</td>
-                  <td>Sun</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>110</td>
-                </tr>
-                <tr>
-                  <td>11</td>
-                  <td>
-                    <b>0342</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-primary">Second</span>
-                  </td>
-                  <td>086/87</td>
-                  <td>#353</td>
-                  <td>18/07/1987</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>9</td>
-                </tr>
-                <tr>
-                  <td>12</td>
-                  <td>
-                    <b>0324</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>096/87</td>
-                  <td>#363</td>
-                  <td>09/08/1987</td>
-                  <td>Sun</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>10</td>
-                </tr>
-                <tr>
-                  <td>13</td>
-                  <td>
-                    <b>3240</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>141/87</td>
-                  <td>#408</td>
-                  <td>22/11/1987</td>
-                  <td>Sun</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>45</td>
-                </tr>
-                <tr>
-                  <td>14</td>
-                  <td>
-                    <b>2034</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-primary">Second</span>
-                  </td>
-                  <td>157/87</td>
-                  <td>#425</td>
-                  <td>31/12/1987</td>
-                  <td>Thu</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>17</td>
-                </tr>
-                <tr>
-                  <td>15</td>
-                  <td>
-                    <b>0234</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>029/88</td>
-                  <td>#454</td>
-                  <td>07/03/1988</td>
-                  <td>Mon</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>29</td>
-                </tr>
-                <tr>
-                  <td>16</td>
-                  <td>
-                    <b>2034</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>040/88</td>
-                  <td>#465</td>
-                  <td>02/04/1988</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>11</td>
-                </tr>
-                <tr>
-                  <td>17</td>
-                  <td>
-                    <b>2304</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>041/88</td>
-                  <td>#466</td>
-                  <td>04/04/1988</td>
-                  <td>Mon</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>18</td>
-                  <td>
-                    <b>4032</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-primary">Second</span>
-                  </td>
-                  <td>043/88</td>
-                  <td>#468</td>
-                  <td>09/04/1988</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <td>19</td>
-                  <td>
-                    <b>3402</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>067/88</td>
-                  <td>#492</td>
-                  <td>04/06/1988</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>24</td>
-                </tr>
-                <tr>
-                  <td>20</td>
-                  <td>
-                    <b>2403</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>081/88</td>
-                  <td>#506</td>
-                  <td>07/07/1988</td>
-                  <td>Thu</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>14</td>
-                </tr>
-                <tr>
-                  <td>21</td>
-                  <td>
-                    <b>4302</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>085/88</td>
-                  <td>#510</td>
-                  <td>16/07/1988</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>4</td>
-                </tr>
-                <tr>
-                  <td>22</td>
-                  <td>
-                    <b>2340</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>023/89</td>
-                  <td>#606</td>
-                  <td>23/02/1989</td>
-                  <td>Thu</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>96</td>
-                </tr>
-                <tr>
-                  <td>23</td>
-                  <td>
-                    <b>2430</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-primary">Second</span>
-                  </td>
-                  <td>043/89</td>
-                  <td>#626</td>
-                  <td>10/04/1989</td>
-                  <td>Mon</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>20</td>
-                </tr>
-                <tr>
-                  <td>24</td>
-                  <td>
-                    <b>3402</b>
-                  </td>
-                  <td bgcolor="009900">
-                    <span className="badge bg-warning text-dark">Third</span>
-                  </td>
-                  <td>046/89</td>
-                  <td>#629</td>
-                  <td>17/04/1989</td>
-                  <td>Mon</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>3</td>
-                </tr>
-                <tr>
-                  <td>25</td>
-                  <td>
-                    <b>3240</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>064/89</td>
-                  <td>#647</td>
-                  <td>29/05/1989</td>
-                  <td>Mon</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>18</td>
-                </tr>
-                <tr>
-                  <td>26</td>
-                  <td>
-                    <b>0342</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>072/89</td>
-                  <td>#655</td>
-                  <td>17/06/1989</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>8</td>
-                </tr>
-                <tr>
-                  <td>27</td>
-                  <td>
-                    <b>3402</b>
-                  </td>
-                  <td bgcolor="000099">
-                    <span className="badge bg-primary">Second</span>
-                  </td>
-                  <td>081/89</td>
-                  <td>#665</td>
-                  <td>08/07/1989</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>10</td>
-                </tr>
-                <tr>
-                  <td>28</td>
-                  <td>
-                    <b>4032</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>097/89</td>
-                  <td>#681</td>
-                  <td>14/08/1989</td>
-                  <td>Mon</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>16</td>
-                </tr>
-                <tr>
-                  <td>29</td>
-                  <td>
-                    <b>3024</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>099/89</td>
-                  <td>#683</td>
-                  <td>19/08/1989</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <td>30</td>
-                  <td>
-                    <b>3420</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>127/89</td>
-                  <td>#712</td>
-                  <td>23/10/1989</td>
-                  <td>Mon</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>29</td>
-                </tr>
-                <tr>
-                  <td>31</td>
-                  <td>
-                    <b>4230</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>136/89</td>
-                  <td>#721</td>
-                  <td>13/11/1989</td>
-                  <td>Mon</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>9</td>
-                </tr>
-                <tr>
-                  <td>32</td>
-                  <td>
-                    <b>4230</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>145/89</td>
-                  <td>#730</td>
-                  <td>04/12/1989</td>
-                  <td>Mon</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>9</td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>
-                    <b>4203</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>151/89</td>
-                  <td>#736</td>
-                  <td>18/12/1989</td>
-                  <td>Mon</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>6</td>
-                </tr>
-                <tr>
-                  <td>34</td>
-                  <td>
-                    <b>3420</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>0045/90</td>
-                  <td>#9</td>
-                  <td>03/02/1990</td>
-                  <td>Sat</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png"
-                      alt="Da Ma Cai 1+3D (PMP 1+3D)"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>35</td>
-                  <td>
-                    <b>3042</b>
-                  </td>
-                  <td>
-                    <span className="badge bg-light text-dark border border-dark">
-                      Consolation
-                    </span>
-                  </td>
-                  <td>0066/90</td>
-                  <td>#30</td>
-                  <td>15/04/1990</td>
-                  <td>Sun</td>
-                  <td align="center">
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Da Ma Cai 1+3D (PMP 1+3D)"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td>21</td>
-                </tr>
+                {firstTableData && firstTableData.map((value, index)=>{
+                    let prizeType = '';
+                    let betNum = '';
+                      let keys = Object.keys(value);
+                      keys.map(game1 => {
+                        if(permutationData.length > 0){
+                          permutationData.map(pdata => {
+                            if(value[game1] == pdata){
+                              prizeType = game1; 
+                              betNum = value[game1];
+                            }
+                          })
+                        }else{
+                          if(value[game1] == number){
+                            prizeType = game1; 
+                            betNum = value[game1];
+                          }
+                        }
+                      });
+                    return (
+                      <>
+                        <tr>
+                          <td>{index+1}</td>
+                          <td>
+                            <b>{betNum}</b>
+                          </td>
+                          <td>
+                            <PrizeSetComm prizeType={prizeType} />
+                          </td>
+                          <td>{value.reference_number}</td>
+                          <td>#{value.reference_number.split('/')[0]}</td>
+                          <td>{moment(value.fetching_date).format('DD/MM/YYYY')}</td>
+                          <td>{moment(value.fetching_date).format('ddd')}</td>
+                          <td align="center">
+                            {oddSet.map((game, id) => {
+                              if(game.game_play.id == value.game_play_id){
+                                return(
+                                  <span key={id}>
+                                    <img
+                                      src={game.game_play.logo_url}
+                                      alt="Magnum"
+                                      style={{
+                                        width: "20px",
+                                        height: "20px",
+                                        borderRadius: "50%",
+                                      }}
+                                    />
+                                  </span>
+                                )                            
+                              }
+                            })}
+                          </td>
+                          <td>{value.days_since_last ? value.days_since_last : '-'}</td>
+                        </tr>
+                      </>
+                    )
+                })}
               </tbody>
             </table>
           </div>
@@ -1722,6 +853,10 @@ export default function SearchNumber({ _transactions, _auth }) {
                     />
                   </td>
                 </tr>
+
+
+
+
                 <tr>
                   <td>0234 </td>
                   <td>1</td>
