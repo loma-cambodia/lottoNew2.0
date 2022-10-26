@@ -29,8 +29,11 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     const [clear, setClear] = useState(true);
     const [submit, setSubmit] = useState(false);
     const [combination, setCombination] = useState(0);
-    // console.log("ODD DATA :",Odds)
-    // console.log("ODD DATA Game Play:",Odds.map((item)=>{return(item.game_play_id)}))
+    const [gamePlayID,setGamePlayID] = useState(0)
+    const OddsSearch = Odds.find(({ game_play_id }) => game_play_id === gamePlayID)
+    const ResultData = OddsSearch
+    console.log("ODD DATA :",Odds.indexOf('game_play_id',"2"))
+    console.log("ODD DATA Game Play:",OddsSearch)
     // console.log("ODD DATA Game List:",gameList)
 
     let auth = _auth;
@@ -737,7 +740,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                     }
                                                 })}
                                      </div>
-                                      <WinningData oddsData={Odds[1]}/>
+                                      <WinningData oddsData={ResultData}/>
                                 </div>
                                 }
                             </div>
