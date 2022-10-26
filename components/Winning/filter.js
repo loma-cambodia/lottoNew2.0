@@ -267,13 +267,13 @@ const Filter = ({_setFilterParams}) => {
                         </div>
                         <div className="col-md-2 col-12">
                             <div className="form-group">
-                                <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
+                                <label htmlFor="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
                                 <input id="ticket_no" type="text" className="form-control-custom-big" name="transationid" onChange={(event) => setTicketNo(event.target.value)}/>
                             </div>
                         </div>
                         <div className="col-md-2 col-12">
                             <div className="form-group">
-                                <label for="transactionid" className="fw-bold mb-2">{t('prize_type')}</label>
+                                <label htmlFor="transactionid" className="fw-bold mb-2">{t('prize_type')}</label>
                                 <select id="prize_type" type="text" className="form-control-custom-big" name="transationid" onChange={(event) => setPrizeType(event.target.value)}>
                                 <option  value="All">{t('All')}</option>
                                 <option  value="P1">{t('P1')}</option>

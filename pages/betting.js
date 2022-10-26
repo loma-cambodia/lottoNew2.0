@@ -31,7 +31,6 @@ export default function Betting({datauser, updateSessionData, setUpdateSessionDa
 
       useEffect(() => {
 
-      //  console.log('2222222222222222222222222');
       //   dispatch({
       //     type: "GET_LOGIN_DETAILS",
       //     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
