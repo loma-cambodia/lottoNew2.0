@@ -3125,7 +3125,7 @@ section.announcement {
 
 /* invesment module */ 
  
-.back-section, .back-section2 { 
+.back-section1, .back-section2 { 
   height: auto; 
   padding: 30px; 
   position: relative; 
@@ -3143,7 +3143,7 @@ section.announcement {
   right: -14px;
   top: 13px;
 }
-.back-section:before {
+.back-section1:before {
   height: 90%;
   width: 90%;
   content: '';
@@ -3161,7 +3161,7 @@ section.announcement {
 .z-index-1 {
   z-index: 1;
 }
-.back-section .row { 
+.back-section1 .row { 
   position: relative; 
   z-index: 1; 
 } 
@@ -3177,7 +3177,7 @@ section.announcement {
   color: #fff;
 }
 @media (max-width:574.999px) { 
-  .back-section:before { 
+  .back-section1:before { 
       width: 100%; 
   } 
   .back-section2:before { 

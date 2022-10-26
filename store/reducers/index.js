@@ -43,11 +43,13 @@ import bettingReducers from './bettingReducers';
 import authReducers from './authReducers';
 import homeReducers from './homeReducers';
 import ticketReducers from './ticketReducers';
+import bettingTipsReducer from './bettingTipsReducer';
 
 export default combineReducers({
   users: userReducer,
   betting:bettingReducers,
   auth:authReducers,
   home:homeReducers,
-  tickets:ticketReducers
+  tickets:ticketReducers,
+  bettingTips:bettingTipsReducer
 })
