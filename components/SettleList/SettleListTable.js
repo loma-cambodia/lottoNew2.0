@@ -666,13 +666,13 @@ const handlePageClick = (event) => {
                     </div>
                     <div className="col-md-2 col-6">
                         <div className="form-group">
-                            <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
+                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
                             <input type="text" onChange={(event) => GetTicketNumber(event)} className="form-control-custom-big" name="transationid"/>
                         </div>
                     </div>
                     <div className="col-md-2 col-6">
                         <div className="form-group">
-                            <label for="transactionid" className="fw-bold mb-2">{t('Game')}</label>
+                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Game')}</label>
                             <select type="text" className="form-control-custom-big" name="transationid">
                                 <option>4D</option>
                                 <option>3D</option>
@@ -681,7 +681,7 @@ const handlePageClick = (event) => {
                     </div>
                     <div className="col-md-2 col-6">
                         <div className="form-group">
-                            <label for="transactionid" className="fw-bold mb-2">{t('Company')}</label>
+                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Company')}</label>
                             <select type="text" className="form-control-custom-big" name="transationid">
                                 <option>Toto</option>
                                 <option>Magnum</option>
@@ -725,7 +725,7 @@ const handlePageClick = (event) => {
                         <div className="form-group mb-0">
                             <button className="form-control custom-i-dg" style={{background: '-webkit-linear-gradient(90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100%)' }}> 
                                 <b>{t('betting_history_report')}</b>
-                                <image 
+                                <img
                                     onClick={() => openFilterForMob()}
                                     className="img-fluid" 
                                     src="images\betting\filter-icon.png" 
@@ -751,7 +751,7 @@ const handlePageClick = (event) => {
                                     </div>
                                     <div className="col-md-2 col-12">
                                         <div className="form-group">
-                                            <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
+                                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
                                             <input style={{ width: '100% !important' }} type="text" onChange={(e)=>{setTicketNo(e.target.value)}}  className="form-control-custom-big" value={ticketNo} name="transationid"/>
                                         </div>
                                     </div>
@@ -793,7 +793,7 @@ const handlePageClick = (event) => {
                                 <div className="row">
                                     <div className="col-md-2 col-12">
                                         <div className="form-group">
-                                            <label for="transactionid" className="fw-bold mb-2">{t('Detail_Number')}</label>
+                                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Detail_Number')}</label>
                                             <input type="text" onChange={(e)=>{ 
                                                             setDetailNo(e.target.value)}}  className="form-control-custom-big" value={detailNo} name="transationid"/>
                                         </div>
@@ -801,7 +801,7 @@ const handlePageClick = (event) => {
                                     
                                     <div className="col-md-2 col-12">
                                         <div className="form-group">
-                                            <label for="transactionid" className="fw-bold mb-2">{t('Company')}</label>
+                                            <label htmlFor="transactionid" className="fw-bold mb-2">{t('Company')}</label>
                                             {/* <select type="text" className="form-control-custom-big" name="transationid">
                                                 <option>All</option>
                                                 <option>Toto</option>

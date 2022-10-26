@@ -46,7 +46,6 @@ const HomeSlider = ({_specialDrawState,datauser,_auth, updateSessionData, setUpd
         }
     } 
     function GetDrawDate({specialDrawStateMain}){
-        console.log('111');
         if(specialDrawStateMain && specialDrawStateMain.data){
             if(language == 'ch'){
                 return(
@@ -85,7 +84,7 @@ const HomeSlider = ({_specialDrawState,datauser,_auth, updateSessionData, setUpd
 
     return (
       <>
-     <Carousel autoPlay className="homepage-carousel ">
+     <Carousel autoPlay className="homepage-carousel" showThumbs={false}>
   <div className="item">
     {/*Home */}
             <div className="hero-slider-special-draw">

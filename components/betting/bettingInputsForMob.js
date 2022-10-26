@@ -3,11 +3,8 @@ import { useTranslation } from "react-i18next";
 import FinalDataContainer from './finalDataContainer';
 import {getBettingDates,lotterySubmit} from '../../store/actions/bettingActions';
 import RejectedBedContainer from './rejectedBedContainer';
-
 import {getLogin} from '../../store/actions/authActions';
-
 import { ToastContainer, toast } from 'react-toastify';
-
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -41,7 +38,6 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
     const [mainSubmitData, setMainSubmitData] = useState([]);
     const [pageLoadCount, setPageLoadCount] = useState(1);
     
-    // console.log('localStateDatalocalStateData',localStateInitData);
 
     const [totalAmount, setTotalAmount] = useState('');
 
