@@ -3562,15 +3562,16 @@ input.daterangepickerstyle-sm {
   .absolute-div {
     padding: 8px;
   }
-  .table-header-theme thead tr th {
-    background: #9a0846;
-  }
-  .table-header-theme tbody tr td {
-    background-color: #b91a5d !important;
-  }
+  
 }
 @media (max-width:1200px) {
   .w-amt {
     font-size: 16px;
   }
+}
+.table-header-theme thead tr th {
+  background: #9a0846;
+}
+.table-header-theme tbody tr td {
+  background-color: #b91a5d !important;
 }
