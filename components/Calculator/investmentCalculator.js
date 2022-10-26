@@ -29,12 +29,12 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     const [clear, setClear] = useState(true);
     const [submit, setSubmit] = useState(false);
     const [combination, setCombination] = useState(0);
-    const [gamePlayID,setGamePlayID] = useState(1)
+    const [gamePlayID,setGamePlayID] = useState(2)
     const OddsSearch = Odds.find(({ game_play_id }) => game_play_id === gamePlayID)
     const ResultData = OddsSearch
-    console.log("ODD DATA :",Odds.indexOf('game_play_id',"2"))
+    console.log("ODD DATA :",Odds)
     console.log("ODD DATA Game Play:",OddsSearch)
-    // console.log("ODD DATA Game List:",gameList)
+    console.log("gamePlayID:",gamePlayID)
 
     let auth = _auth;
     const merchantCurrency =
@@ -447,8 +447,8 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                     </div>
                                                 </div>
                                                 <div className='col'>
-                                                    <div className='w-amt-div h-100'>
-                                                        <div className='w-amt-heading'>{Object.keys(gameList) == "dmc" ? "Da Ma Cai": Object.keys(gameList).toString().charAt(0).toUpperCase() + Object.keys(gameList).toString().slice(1) } {t('Odds')}</div>
+                                                    <div className='w-amt-div'>
+                                                        <div className='w-amt-heading'>{oddsData.game_play.name} {t('Odds')}</div>
                                                         <div className='prize-content-part'>
                                                         <table className='table text-white'>
                                                                 <tr>
@@ -493,7 +493,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                         <tr>
                                                             <th rowSpan={2} className="align-middle">Prize</th>
                                                             <th rowSpan={2} className='text-end align-middle'>Winning Amount</th>
-                                                            <th colSpan={2} className="text-center align-middle">Odds</th>
+                                                            <th colSpan={2} className="text-center align-middle">{oddsData.game_play.name}  Odds</th>
                                                         </tr>
                                                         <tr>
                                                             <th className='text-end w-25'>Big</th>
@@ -596,21 +596,21 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 <div className="d-flex justify-content-center">
                                                     <div className="select-gp" id="checkboxes">
                                                         <ul id="checkboxes" className="list-inline">
-                                                            <li className=" list-inline-item" onClick={()=> setGameList({"magnum":!gameList.magnum})}>
+                                                            <li className=" list-inline-item" onClick={()=> {setGameList({"magnum":!gameList.magnum}),setGamePlayID(1)}}>
                                                                 <span className={`${gameList.magnum ? "cal-border":"" } outer-circle-gp games-calculate`} title="Select">
                                                                     <span className="inner-circle-gp">
                                                                         <img className={`${gameList.magnum ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
-                                                            <li className=" list-inline-item" onClick={()=> setGameList({"dmc":!gameList.dmc})}>
+                                                            <li className=" list-inline-item" onClick={()=> {setGameList({"dmc":!gameList.dmc}),setGamePlayID(2)}}>
                                                                 <span className={`${gameList.dmc ? "cal-border":"" } outer-circle-gp games-calculate`} title="Select">
                                                                     <span className="inner-circle-gp">
                                                                         <img className={`${gameList.dmc ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
-                                                            <li className=" list-inline-item" onClick={()=> setGameList({"toto":!gameList.toto})}>
+                                                            <li className=" list-inline-item" onClick={()=> {setGameList({"toto":!gameList.toto}),setGamePlayID(3)}}>
                                                                 <span className={`${gameList.toto ? "cal-border":"" } outer-circle-gp games-calculate`} title="Select">
                                                                     <span className={`inner-circle-gp`}>
                                                                         <img className={`${gameList.toto ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png" />
