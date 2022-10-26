@@ -13,9 +13,9 @@ const initState = {
     "company":''
 }
 const games = {
-    "magnum":false,
-    "toto":false,
-    "dmc":false
+    // "magnum":false,
+    // "toto":false,
+    // "dmc":false
 }
 
 const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
@@ -135,14 +135,14 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         console.log('isEveryInputEmpty amounts',amounts)
 
 
-        if(initState != amounts || gameList != games){
+        if(initState !== amounts || games !== gameList){
             allEmpty = true
         }
         else{
             allEmpty = false
         }
     
-        setClear(allEmpty);
+        return setClear(allEmpty);
     }
 
     function isEveryInputFill() {
@@ -386,7 +386,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 </div>
                                                 <div className='col'>
                                                     <div className='w-amt-div'>
-                                                        <div className='w-amt-heading'>{t('Odds')}</div>
+                                                        <div className='w-amt-heading'>{Object.keys(gameList) == "dmc" ? "Da Ma Cai": Object.keys(gameList).toString().charAt(0).toUpperCase() + Object.keys(gameList).toString().slice(1) } {t('Odds')}</div>
                                                         <div className='prize-content-part'>
                                                         <table className='table text-white'>
                                                                 <tr>
@@ -431,7 +431,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         <tr>
             <th rowSpan={2} className="align-middle">Prize</th>
             <th rowSpan={2} className='text-end align-middle'>Winning Amount</th>
-            <th colSpan={2} className="text-center align-middle">Odds</th>
+            <th colSpan={2} className="text-center align-middle">{Object.keys(gameList) == "dmc" ? "Da Ma Cai": Object.keys(gameList).toString().charAt(0).toUpperCase() + Object.keys(gameList).toString().slice(1) } {t('Odds')}</th>
         </tr>
         <tr>
             <th className='text-end w-25'>Big</th>
@@ -506,7 +506,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         }
 
     useEffect(()=>{
-        isEveryInputEmpty()
+        // isEveryInputEmpty()
         isEveryInputFill()
         console.log("amounts: :",amounts);
 
@@ -534,21 +534,21 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 <div className="d-flex justify-content-center">
                                                     <div className="select-gp" id="checkboxes">
                                                         <ul id="checkboxes" className="list-inline">
-                                                            <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"magnum":!gameList.magnum})}>
+                                                            <li className=" list-inline-item" onClick={()=> setGameList({"magnum":!gameList.magnum})}>
                                                                 <span className={`${gameList.magnum ? "cal-border":"" } outer-circle-gp games-calculate`} title="Select">
                                                                     <span className="inner-circle-gp">
                                                                         <img className={`${gameList.magnum ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
-                                                            <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"dmc":!gameList.dmc})}>
+                                                            <li className=" list-inline-item" onClick={()=> setGameList({"dmc":!gameList.dmc})}>
                                                                 <span className={`${gameList.dmc ? "cal-border":"" } outer-circle-gp games-calculate`} title="Select">
                                                                     <span className="inner-circle-gp">
                                                                         <img className={`${gameList.dmc ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/AODK45ewx2MNpoUjgbRT95Fo5fA9V8gBnsUcJyhH.png" />
                                                                     </span>
                                                                 </span>
                                                             </li>
-                                                            <li className=" list-inline-item" onClick={()=> setGameList({...gameList,"toto":!gameList.toto})}>
+                                                            <li className=" list-inline-item" onClick={()=> setGameList({"toto":!gameList.toto})}>
                                                                 <span className={`${gameList.toto ? "cal-border":"" } outer-circle-gp games-calculate`} title="Select">
                                                                     <span className={`inner-circle-gp`}>
                                                                         <img className={`${gameList.toto ? "button-able":"" } img-fluid`} src="http://api.kk-lotto.com:8080/storage/logos/hTrnoOiPMz9QtA2TWU7b7uTgpOgLFGwCIXKJ6azd.png" />
@@ -569,6 +569,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                             <div className='col-lg-7 col-md-8'>
                                                 <input type="text" className='form-control' 
                                                 value={amounts.bet_no}
+                                                placeholder={t('Please_type_3_or_4_digits_in_number_field')}
                                                 maxLength={4}
                                                 minLength={3}
                                                 onChange={(e) => (handleBetNumber(e.target.value))}/>
@@ -649,7 +650,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                     <div className='form-group'>
                                     <div className='row'>
                                     <div className='col-md-6'>
-                                        <div className="clearfix text-center"><span disabled={clear} role="button" className={`${clear ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> clear? clearInputs():''} >{t('clear')}</span></div>
+                                        <div className="clearfix text-center"><span role="button" className={`d-block btn-yellow rounded-full`} onClick={()=> clearInputs()} >{t('clear')}</span></div>
                                     </div>
                                     <div className='col-md-6'>
                                         <div className="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
