@@ -494,14 +494,14 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                     <table className='table text-white table-sm table-bordered border small table-header-theme'>
                                                         <thead>
                                                         <tr>
-                                                            <th rowSpan={2} className="align-middle">Prize</th>
-                                                            <th rowSpan={2} className='text-end align-middle'>Winning Amount</th>
+                                                            <th rowSpan={2} className="align-middle">{t('prize_type')}</th>
+                                                            <th rowSpan={2} className='text-end align-middle'>{t('Winning_Amount')}</th>
                                                             
-                                                            <th colSpan={2} className="text-center align-middle">{name}  Odds</th>
+                                                            <th colSpan={2} className="text-center align-middle">{name}  {t('Odds')}</th>
                                                         </tr>
                                                         <tr>
-                                                            <th className='text-end w-25'>Big</th>
-                                                            <th className='text-end w-25'>Small</th>
+                                                            <th className='text-end w-25'>{t('Big_Bet')}</th>
+                                                            <th className='text-end w-25'>{t('Small_Bet')}</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -570,7 +570,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                         <thead> 
                                                         <tr> 
                                                             <th rowSpan={2} className="align-middle text-center">{t('prize_type')}</th> 
-                                                            <th rowSpan={2} className='text-end align-middle'>Winning Amount</th> 
+                                                            <th rowSpan={2} className='text-end align-middle'>{t('Winning_Amount')}</th> 
                                                             <th colSpan={2} className="text-center align-middle">{name} {t('Odds')}</th> 
                                                         </tr> 
                                                         <tr> 
