@@ -14,7 +14,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import {announcement, userTransactionDetails, winnerResultDetailsSecond, specialDraw} from '../store/actions/homeActions';
 import {getLogin} from '../store/actions/authActions';
-import Calculator from '../components/calculator/Calculator';
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
 
 
@@ -75,7 +74,6 @@ if(objectWithData.customer_id != 0){
       <HomeSlider _specialDrawState={ specialDrawState} datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData} />
       {announcementState && announcementState.length > 0 ? <Announcement _announcementState={ announcementState}  _language = { language }/> : null}
       <PayoutSection _transactions={transactions}/>
-      <Calculator _transactions={transactions}/>
       <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>
       <HowToPlay/>
       
