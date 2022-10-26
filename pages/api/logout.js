@@ -13,7 +13,7 @@ if(member_id){
   console.log(`${process.env.apiUrl}/member-logout?member_id=${member_id}`);
  const userData = await fetch(`${process.env.apiUrl}/member-logout?member_id=${member_id}`);
  const data = await userData.json();
- console.log('data:',data);
+ //console.log('data:',data);
 }
   
   res.redirect(307, '/');

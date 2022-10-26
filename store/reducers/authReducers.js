@@ -28,6 +28,12 @@ export default function(state = initialState, action){
                 lang:action.payload
     
             }
+        case "AUTH_LOGOUT":
+                return {
+                    ...state,
+                    auth:{},
+                    transactions:{}
+                }
         default: return state
     }
 
