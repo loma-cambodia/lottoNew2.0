@@ -5,7 +5,7 @@ import $ from 'jquery';
 import { twoDecimalPlaceWithAmount } from "../Utils";
 const initState = {
     "bet_no": '',
-    "bet_type": '',
+    "bet_type": 'S',
     "big_bet":'',
     "small_bet":'',
     "three_A":'',
@@ -13,7 +13,7 @@ const initState = {
     "company":''
 }
 const games = {
-    // "magnum":false,
+    "magnum":true
     // "toto":false,
     // "dmc":false
 }
@@ -98,6 +98,10 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                     newAmounts = {...newAmounts,"bet_type":''}
             }
 
+            if (!test_same_digit(numberInput) && amounts.bet_type == 'R'){
+                        newAmounts = {...newAmounts,"bet_type":''}
+                }
+
             if(numberInput.length != 4 && amounts.bet_type == 'I'){
                 newAmounts = {...newAmounts,"bet_type":''};
             }
@@ -170,14 +174,14 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         if(amounts.bet_no && amounts.bet_no.length > 2){
             switch (amounts.bet_no.length){
                 case 3:
-                    if(amounts.three_A && amounts.three_C)
+                    if(amounts.three_A || amounts.three_C)
                     {
                         isAllFill = true
                     }
                 break;
 
                 case 4:
-                    if(amounts.big_bet && amounts.small_bet)
+                    if(amounts.big_bet || amounts.small_bet)
                     {
                         isAllFill = true
                     }
@@ -494,14 +498,14 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                     <table className='table text-white table-sm table-bordered border small table-header-theme'>
                                                         <thead>
                                                         <tr>
-                                                            <th rowSpan={2} className="align-middle">Prize</th>
-                                                            <th rowSpan={2} className='text-end align-middle'>Winning Amount</th>
+                                                            <th rowSpan={2} className="align-middle">{t('prize_type')}</th>
+                                                            <th rowSpan={2} className='text-end align-middle'>{t('Winning_Amount')}</th>
                                                             
-                                                            <th colSpan={2} className="text-center align-middle">{name}  Odds</th>
+                                                            <th colSpan={2} className="text-center align-middle">{name}  {t('Odds')}</th>
                                                         </tr>
                                                         <tr>
-                                                            <th className='text-end w-25'>Big</th>
-                                                            <th className='text-end w-25'>Small</th>
+                                                            <th className='text-end w-25'>{t('Big_Bet')}</th>
+                                                            <th className='text-end w-25'>{t('Small_Bet')}</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -570,7 +574,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                         <thead> 
                                                         <tr> 
                                                             <th rowSpan={2} className="align-middle text-center">{t('prize_type')}</th> 
-                                                            <th rowSpan={2} className='text-end align-middle'>Winning Amount</th> 
+                                                            <th rowSpan={2} className='text-end align-middle'>{t('Winning_Amount')}</th> 
                                                             <th colSpan={2} className="text-center align-middle">{name} {t('Odds')}</th> 
                                                         </tr> 
                                                         <tr> 
@@ -709,7 +713,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                         </div>
                                     </div> 
                                     <div className='form-group'>
-                                        <div className='row'>
+                                        <div className='row' style={{minHeight:'40px'}}>
                                             <div className='col-lg-5 col-md-4'>
                                                 <b className='mb-2 d-block'>{t('Bet_Type')}</b>
                                             </div>
@@ -724,9 +728,9 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                         : 
                                         '' 
                                         }
-
+                                    {amounts.bet_no && test_same_digit(amounts.bet_no) ? '':
                                         <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "R" ? 'btn btn-bordered-theme-active me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => (amounts.bet_type == 'R'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"R"}))}>{t('R')}</button>
-                                                                                    
+                                    }                                 
                                         </>
                                         }
                                         </div>
@@ -781,10 +785,10 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                      } 
                                     <div className='form-group'>
                                     <div className='row'>
-                                    <div className='col-lg-6 col-md-6'>
-                                        <div className="clearfix text-center"><span role="button" className={`d-block btn-yellow rounded-full`} onClick={()=> clearInputs()} >{t('clear')}</span></div>
+                                    <div className='col-lg-5 col-md-5'>
+                                        <div className="clearfix text-center"><span role="button" className={`d-block btn-white rounded-full`} onClick={()=> clearInputs()} >{t('clear')}</span></div>
                                     </div>
-                                    <div className='col-lg-6 col-md-6'>
+                                    <div className='col-lg-7 col-md-7'>
                                         <div className="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
                                         >{t('Calculate')}</span></div>
                                     </div>
