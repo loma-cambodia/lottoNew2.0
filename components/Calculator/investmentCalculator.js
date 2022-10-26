@@ -220,7 +220,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         
     }
 
-    function test_same_digit(num) {
+    function sameDigit(num) {
         const first = num % 10;
         while (num) {
           if (num % 10 !== first) return false;
@@ -248,7 +248,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
             const smallInv = ''
             const threeAInv = ''
             const threeCInv = ''
-            let checkNumber = test_same_digit(initData.bet_no)
+            let checkNumber = sameDigit(initData.bet_no)
             if(initData.bet_type == "S"){
                 if(initData.bet_no.length == 4){
                     if(initData.bet_no.includes('R') || initData.bet_no.includes('r')){
