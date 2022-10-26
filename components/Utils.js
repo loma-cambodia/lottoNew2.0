@@ -26,8 +26,6 @@ export const twoDecimalPlaceWithAmount = (theInput, getCase) => {
 
 export const setUserDataFormat = (data, fromWindow = 1) => {
   //Do something with the input
-
-  //console.log('setUserDataFormat:data:', data);
   
   let newData = {};
   let getData = {};
