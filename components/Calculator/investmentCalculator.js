@@ -30,11 +30,9 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     const [submit, setSubmit] = useState(false);
     const [combination, setCombination] = useState(0);
     const [gamePlayID,setGamePlayID] = useState(1)
+    const [includeR,setIncludeR]= useState(false)
     const OddsSearch = Odds.find(({ game_play_id }) => game_play_id === gamePlayID)
     const ResultData = OddsSearch
-    console.log("ODD DATA :",Odds)
-    console.log("ODD DATA Game Play:",OddsSearch)
-    console.log("gamePlayID:",gamePlayID,gameList)
 
     let auth = _auth;
     const merchantCurrency =
@@ -64,9 +62,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         }
        
     }
-    console.log("GGGGG",gameList)
     const clearInputs = () => {
-        console.log('clear')
         $(':input').val(null)
         setAmounts(initState)
         setInitData(initState)
@@ -77,7 +73,6 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
 
     const handleBetNumber = (numberInput) =>{
 
-        console.log('handle:',numberInput);
         let newAmounts = {...amounts};
 
         if (!numberInput.match("^[R-Rr-r0-9]*$")) {
@@ -110,34 +105,30 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
 
            newAmounts = {...newAmounts,"bet_no":numberInput};
 
-
-          console.log('newAmounts:',newAmounts);
           setAmounts(newAmounts);
 
         
     } 
-    function findPermutations(string) {
+    function findPermutations(number) {
         
-        if (!string || typeof string !== "string"){
-            return "Please enter a string"
-          } else if (string.length < 2 ){
-            return string
+        if (!number || typeof number !== "string"){
+          } else if (number.length < 2 ){
+            return number
           }
         
           let permutationsArray = [] 
            
-          for (let i = 0; i < string.length; i++){
-            let char = string[i]
+          for (let i = 0; i < number.length; i++){
+            let char = number[i]
         
-            if (string.indexOf(char) != i)
+            if (number.indexOf(char) != i)
             continue
         
-            let remainingChars = string.slice(0, i) + string.slice(i + 1, string.length)
+            let remainingChars = number.slice(0, i) + number.slice(i + 1, number.length)
         
             for (let permutation of findPermutations(remainingChars)){
               permutationsArray.push(char + permutation) }
           }
-          console.log("PERMUT",permutationsArray.length)
           setCombination(permutationsArray.length)
           return permutationsArray
      }
@@ -160,28 +151,22 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
           return true
     }
 
-    function isEveryInputEmpty() {
-        let allEmpty = true;
-     
-        console.log('isEveryInputEmpty initState',initState)
-        console.log('isEveryInputEmpty amounts',amounts)
-
-
-        if(initState !== amounts || games !== gameList){
-            allEmpty = true
-        }
-        else{
-            allEmpty = false
-        }
+    // function isEveryInputEmpty() {
+    //     let allEmpty = true;
+    //     if(initState !== amounts || games !== gameList){
+    //         allEmpty = true
+    //     }
+    //     else{
+    //         allEmpty = false
+    //     }
     
-        return setClear(allEmpty);
-    }
+    //     return setClear(allEmpty);
+    // }
 
     function isEveryInputFill() {
   
         var isAllFill = false
         var isGamesFill = false
-        console.log('isEveryInputFill bfore: ',isAllFill,isGamesFill)
         if(amounts.bet_no && amounts.bet_no.length > 2){
             switch (amounts.bet_no.length){
                 case 3:
@@ -219,13 +204,12 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
           else
           setSubmit(false)
 
-          console.log('isEveryInputFill after: ',isAllFill,isGamesFill)
     }
     function decimal(data){
 
         if (merchantCurrency == 'KHR')
         {
-            return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            return (twoDecimalPlaceWithAmount(data,1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
         }
         else{
             //put commas for every 3 digits
@@ -244,7 +228,6 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         }
         return true
       }
-      console.log("test_same_digit",test_same_digit(initData.bet_no))
     
     function WinningData({oddsData}){
 
@@ -268,17 +251,32 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
             let checkNumber = test_same_digit(initData.bet_no)
             if(initData.bet_type == "S"){
                 if(initData.bet_no.length == 4){
-                    total = Number(initData.big_bet) + Number(initData.small_bet)
-                    setCombination(1)
-                    console.log("123",total)
+                    if(initData.bet_no.includes('R') || initData.bet_no.includes('r')){
+                    let result = Number(initData.big_bet) + Number(initData.small_bet)
+                    setCombination(10)
+                    total = Number(result*combination)
                     bigInv = Number(total/2)
                     smallInv = Number(total/2)
-                }else if(initData.bet_no.length == 3){
-                    total = Number(initData.three_A) + Number(initData.three_C)
-                    console.log("123",total)
+                    }else{
+                    total = Number(initData.big_bet) + Number(initData.small_bet)
                     setCombination(1)
-                    threeAInv = Number(total/2)
-                    threeCInv = Number(total/2)
+                    bigInv = Number(total/2)
+                    smallInv = Number(total/2)
+                    }
+                }else if(initData.bet_no.length == 3){
+                   
+                    if(initData.bet_no.includes('R') || initData.bet_no.includes('r')){
+                       let result = Number(initData.three_A) + Number(initData.three_C)
+                        setCombination(10)
+                        total = Number(result*combination)
+                        threeAInv = Number(total/2)
+                        threeCInv = Number(total/2)
+                    }else{
+                        total = Number(initData.three_A) + Number(initData.three_C)
+                        setCombination(1)
+                        threeAInv = Number(total/2)
+                        threeCInv = Number(total/2)
+                    }
                 }
             }else if(initData.bet_type == "B"){
                 if(initData.bet_no.length == 4){
@@ -286,14 +284,12 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                     findPermutations(initData.bet_no)
                     let result = Number(initData.big_bet) + Number(initData.small_bet) 
                     total =Number(result*combination)
-                    console.log("123",total)
                     bigInv = Number(total/2)
                     smallInv = Number(total/2)
                 }else{
                     findPermutations(initData.bet_no)
                     let result = Number(initData.three_A) + Number(initData.three_C) 
                     total =Number(result*combination)
-                    console.log("123",total)
                     threeAInv = Number(total/2)
                     threeCInv = Number(total/2)
                 }
@@ -301,7 +297,6 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                 findPermutations(initData.bet_no)
                     let result = Number(initData.big_bet) + Number(initData.small_bet) 
                     total =Number(result/combination)
-                    console.log("123",total)
                     bigInv = Number(total/2)
                     smallInv = Number(total/2)
             }else if(initData.bet_type == "R"){
@@ -311,14 +306,12 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                     findPermutations(initData.bet_no)
                     let result = Number(initData.big_bet) + Number(initData.small_bet)
                     total =Number(result*combination)
-                    console.log("123",total)
                     bigInv = Number(total/2)
                     smallInv = Number(total/2)
                     }else{
                     setCombination(2)
                     let result = Number(initData.big_bet) + Number(initData.small_bet)
                     total =Number(result*combination)
-                    console.log("123",total)
                     bigInv = Number(total/2)
                     smallInv = Number(total/2)}
                 }else{
@@ -326,14 +319,12 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                     findPermutations(initData.bet_no)
                     let result = Number(initData.three_A) + Number(initData.three_C)
                     total =Number(result*combination)
-                    console.log("123",total)
                     threeAInv = Number(total/2)
                     threeCInv = Number(total/2)
                     }else{
                     setCombination(2)
                     let result = Number(initData.three_A) + Number(initData.three_C)
                     total =Number(result*combination)
-                    console.log("123",total)
                     threeAInv = Number(total/2)
                     threeCInv = Number(total/2)}
                 }
@@ -356,6 +347,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                 
                     let name = ''       
                     let companyName =  oddsData.game_play.name;
+
                     if(companyName == "Toto")
                     companyName = 'toto';
                     else if(companyName == "Da Ma Cai")
@@ -363,15 +355,12 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                     else if(companyName == "Magnum")
                     companyName = 'magnum';
 
-                if(gameList[companyName]){
+                    if(gameList[companyName]){
                             name = oddsData.game_play.name
-                        
-                    }
-                
+                        }
             return (
-                <>
-                            
-                                    <div className='first-2-lines my-3'>
+                <>           
+                    <div className='first-2-lines my-3'>
                                         <table>
 
                                             <tr>
@@ -645,20 +634,15 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 </div> 
                                             </div>   
                                             </div> 
-                                        </div>
-                                        
-                </>
-            )
-        }
-            
+                                        </div>                   
+                 </>
+                )
+            }    
         }
 
     useEffect(()=>{
         // isEveryInputEmpty()
         isEveryInputFill()
-        console.log("amounts: :",amounts);
-
-        
     },[amounts,gameList]);
     return (
       <>
@@ -797,10 +781,10 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                      } 
                                     <div className='form-group'>
                                     <div className='row'>
-                                    <div className='col-md-6'>
+                                    <div className='col-lg-6 col-md-6'>
                                         <div className="clearfix text-center"><span role="button" className={`d-block btn-yellow rounded-full`} onClick={()=> clearInputs()} >{t('clear')}</span></div>
                                     </div>
-                                    <div className='col-md-6 '>
+                                    <div className='col-lg-6 col-md-6'>
                                         <div className="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
                                         >{t('Calculate')}</span></div>
                                     </div>
