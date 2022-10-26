@@ -202,6 +202,10 @@
     "Please_Enter_Valid_Number":"输入有效下注号码",
     "Please_Enter_Amount":"输入投注金额",
 
+    "merchant_id_connt_be_0":"商户 id 必须大于 0",
+    "member_id_connt_be_0":"Member id 必须大于 0",
+
+
     "insuffient_balance":"余额不足", 
     "not_wallet":"您没钱包", 
     "tickect_success":"注单成功创建", 
@@ -266,5 +270,14 @@
     "31st":"三十一号",
 
     "merchant has disabled":"商户暂时停用，请联系客服",
-    "market has disabled":"盘口已经关闭.  无法下注"
+    "market has disabled":"盘口已经关闭.  无法下注",
+    "Winning_Calculator":"中奖计算机",
+    "Straight":"单一号码",
+    "Total_No_of_Combination":"组合总数",
+    "Total_Cost":"总额",
+    "Magnum":"万能",
+    "Da Ma Cai":"大马彩",
+    "Toto":"多多",
+    "Calculate":"Calculate",
+    "coming_soon_text":"快来了"
 }

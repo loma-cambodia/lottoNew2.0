@@ -200,6 +200,9 @@
     "Please_Enter_Valid_Number":"សូមបញ្ចូលលេខដែលមានសុពលភាព",
     "Please_Enter_Amount":"សូមបញ្ចូលចំនួនទឹកប្រាក់",
 
+    "merchant_id_connt_be_0":"លេខសម្គាល់ពាណិជ្ជករត្រូវតែធំជាង 0",
+    "member_id_connt_be_0":"លេខសម្គាល់សមាជិកត្រូវតែធំជាង 0",
+
     "Mo":"ច័ន្ទ",
     "Tu":"អង្គារ",
     "We":"ពុធ",
@@ -264,6 +267,15 @@
     "31st":"ទី ៣១",
 
     "merchant has disabled":"អាជីវករត្រូវបានផ្អាកបណ្តោះអាសន្ន។ សូមទាក់ទងផ្នែកបម្រើអតិថិជន។",
-    "market has disabled":"ទីផ្សារបានបិទ។ គ្មានការភ្នាល់ត្រូវបានអនុញ្ញាត"
+    "market has disabled":"ទីផ្សារបានបិទ។ គ្មានការភ្នាល់ត្រូវបានអនុញ្ញាត",
+    "Winning_Calculator":"ម៉ាស៊ីនគណនាចំនួនទឹកប្រាក់ឈ្នះ",
+    "Straight":"ត្រង់",
+    "Total_No_of_Combination":"ចំនួនសរុបនៃបន្សំ៖",
+    "Total_Cost":"តម្លៃសរុប៖",
+    "Magnum":"Magnum",
+    "Da Ma Cai":"Da Ma Cai",
+    "ToTo":"ToTo",
+    "Calculate":"គណនា",
+    "coming_soon_text":"មកដល់ឆាប់ៗនេះ"
     
 }

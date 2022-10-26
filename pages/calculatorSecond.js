@@ -1,29 +1,25 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css';
 import Link from 'next/link';
+import styles from '../styles/Home.module.css';
 import React, { useState,useEffect } from "react";
 import Footer from '../components/common/footer';
 import Header from '../components/common/header';
-import HomeSlider from '../components/home/homeSlider';
-import Announcement from '../components/home/announcement';
-import PayoutSection from '../components/home/payoutSection';
-import GamePlayPrize from '../components/home/gamePlayPrize';
-import HowToPlay from '../components/home/howToPlay';
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import {announcement, userTransactionDetails, winnerResultDetailsSecond, specialDraw} from '../store/actions/homeActions';
 import {getLogin} from '../store/actions/authActions';
+import InvestmentCalculator from '../components/Calculator/investmentCalculator';
+//import Calculator from '../components/calculator/Calculator';
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
 
 
   const [active, setActive] = useState(false);
+
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
   const state = useSelector(state => state);
-
-
 useEffect(() => {
   dispatch(announcement());
   dispatch(specialDraw());
@@ -37,7 +33,6 @@ useEffect(() => {
 
 
 useEffect(() => {
-
 let objectWithData = {  
   "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
   "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
@@ -45,7 +40,6 @@ let objectWithData = {
  // "language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en' 
   "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'  
 } 
-
 
 if(objectWithData.customer_id != 0){
     dispatch(getLogin(objectWithData)); 
@@ -64,7 +58,9 @@ if(objectWithData.customer_id != 0){
       let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
       
       let specialDrawState = state && state.home && state.home.specialDrawDetails ? state.home.specialDrawDetails : '';
-      
+
+      let calculatorOdds = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : [];
+  console.log("CALC",calculatorOdds)
   return (
     <>
        <Head> 
@@ -72,11 +68,12 @@ if(objectWithData.customer_id != 0){
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 
-      <HomeSlider _specialDrawState={ specialDrawState} datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData} />
-      {announcementState && announcementState.length > 0 ? <Announcement _announcementState={ announcementState}  _language = { language }/> : null}
-      <PayoutSection _transactions={transactions}/>
-      <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>
-      <HowToPlay/>
+     
+      <InvestmentCalculator _calculatorOdds={calculatorOdds} _auth={auth}/>
+     
+    
+      {/* <Calculator _transactions={transactions} _auth={auth}/> */}
+
       
       <div className={styles.device_detect_for_desktop}> 
         <Footer/>

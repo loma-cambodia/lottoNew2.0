@@ -413,33 +413,33 @@ const handlePageClick = (event) => {
                         </table>
                     </div>
                     <div className={styles.device_detect_for_desktop}>
-                        <table class="table small table-bordered">
+                        <table className="table small table-bordered">
                             <thead>
                                 <tr>
                                     <th>{t('No')}</th>
-                                    <th class="text-center">{t('Ticket_No')}</th>
-                                    <th class="text-center">{t('Betting_Time')}</th>
-                                    <th class="text-center">{t('Draw_Date')}</th>
-                                    <th class="text-center">{t('Draw_Id')}</th>
-                                    <th class="text-center">{t('Bet_Number')}</th>
-                                    <th class="text-center">{t('Company')}</th>
-                                    <th class="text-end">{t('Total')}</th>
-                                    <th class="text-end">{t('Rebate')}</th>
-                                    <th class="text-end">{t('Net')}</th>
-                                    <th class="text-end">{t('winning')}</th>
-                                    <th class="text-end">{t('Winning_Loss')}</th>
+                                    <th className="text-center">{t('Ticket_No')}</th>
+                                    <th className="text-center">{t('Betting_Time')}</th>
+                                    <th className="text-center">{t('Draw_Date')}</th>
+                                    <th className="text-center">{t('Draw_Id')}</th>
+                                    <th className="text-center">{t('Bet_Number')}</th>
+                                    <th className="text-center">{t('Company')}</th>
+                                    <th className="text-end">{t('Total')}</th>
+                                    <th className="text-end">{t('Rebate')}</th>
+                                    <th className="text-end">{t('Net')}</th>
+                                    <th className="text-end">{t('winning')}</th>
+                                    <th className="text-end">{t('Winning_Loss')}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {currentItems && currentItems.map((item,i) =>(
                                     <tr key={i}>
                                         <td>{currentPage*itemsPerPage + (i + 1)}</td>
-                                        <td class="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')} >{item.ticket_no}</span></td>
-                                        <td class="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
-                                        <td class="text-center">{moment(item.draw_date).format('DD-MM-YYYY')}</td>
-                                        <td class="text-center">{item.draw_number}</td>
-                                        <td class="text-center">{item.bet_number}</td>
-                                        <td class="text-center">
+                                        <td className="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')} >{item.ticket_no}</span></td>
+                                        <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
+                                        <td className="text-center">{moment(item.draw_date).format('DD-MM-YYYY')}</td>
+                                        <td className="text-center">{item.draw_number}</td>
+                                        <td className="text-center">{item.bet_number}</td>
+                                        <td className="text-center">
                                         {
                                         item.games && item.games.map((item,i) =>(
                                             item.abbreviation
@@ -447,18 +447,18 @@ const handlePageClick = (event) => {
                                         ) 
                                         }
                                     </td>
-                                        <td class="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
-                                        <td class="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
-                                        <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
-                                        <td class="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
-                                        <td class="text-end"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
+                                        <td className="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                                        <td className="text-end"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
 
                     </div>
-                    <div class="clearfix d-flex align-items-center justify-content-center">
+                    <div className="clearfix d-flex align-items-center justify-content-center">
                         { pageCount > 1 ?
                             <ReactPaginate
                             breakLabel="..."
@@ -474,7 +474,7 @@ const handlePageClick = (event) => {
                             // activeClassName={"pagination__link--active"}
                         /> : null }
                 
-                        <svg class="hide">
+                        <svg className="hide">
                             <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
                             <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
                         </svg>
@@ -533,8 +533,8 @@ const handlePageClick = (event) => {
             }
             return (
                 <>
-                <div class="d-flex flex-row">
-                     <div class="p-2">  <button onClick={() => backButton() } className="btn btn-warning ">{t('back')}</button></div>
+                <div className="d-flex flex-row">
+                     <div className="p-2">  <button onClick={() => backButton() } className="btn btn-warning ">{t('back')}</button></div>
                 </div>
               
 
@@ -572,26 +572,26 @@ const handlePageClick = (event) => {
                 </div>
                 
                 <div className={styles.device_detect_for_desktop}>
-                    <table class="table small table-bordered">
+                    <table className="table small table-bordered">
                         <thead>
                             <tr>
                                 <th>{t('No')}</th>
-                                <th class="text-start">{t('Detail_Number')}</th>
-                                <th class="text-center">{t('Betting_Time')}</th>
-                                <th class="text-center">{t('Draw_Date')}</th>
-                                <th class="text-center">{t('game')}</th>
-                                <th class="text-center">{t('Company')}</th>
-                                <th class="text-center">{t('Bet_Number')}</th>
-                                <th class="text-end">{t('Big')}</th>
-                                <th class="text-end">{t('Small_Bet')}</th>
-                                <th class="text-end">3A</th>
-                                <th class="text-end">3C</th>
-                                <th class="text-end">{t('Total')}</th>
-                                <th class="text-end">{t('Rebate')}</th>
-                                <th class="text-end">{t('Net')}</th>
-                                {/* <th class="text-end">{t('Odds')}</th> */}
-                                <th class="text-end">{t('winning')}</th>
-                                <th class="text-end">{t('Winning_Loss')}</th>
+                                <th className="text-start">{t('Detail_Number')}</th>
+                                <th className="text-center">{t('Betting_Time')}</th>
+                                <th className="text-center">{t('Draw_Date')}</th>
+                                <th className="text-center">{t('game')}</th>
+                                <th className="text-center">{t('Company')}</th>
+                                <th className="text-center">{t('Bet_Number')}</th>
+                                <th className="text-end">{t('Big')}</th>
+                                <th className="text-end">{t('Small_Bet')}</th>
+                                <th className="text-end">3A</th>
+                                <th className="text-end">3C</th>
+                                <th className="text-end">{t('Total')}</th>
+                                <th className="text-end">{t('Rebate')}</th>
+                                <th className="text-end">{t('Net')}</th>
+                                {/* <th className="text-end">{t('Odds')}</th> */}
+                                <th className="text-end">{t('winning')}</th>
+                                <th className="text-end">{t('Winning_Loss')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -599,24 +599,24 @@ const handlePageClick = (event) => {
                             {tickets.map((item,id) =>(
                                 <tr key={id}>
                                     <td>{id+1}</td>
-                                    <td class="text-start"><a >{item.child_ticket_no}</a></td>
-                                    <td class="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
-                                    <td class="text-center">{moment(item.ticket.draw_date).format('DD-MM-YYYY')}</td>
-                                    <td class="text-center">{item.game_type}</td>
-                                    <td class="text-center">{item.game && item.game.name ? item.game.name : ""}</td>
-                                    <td class="text-center">{item.lottery_number}</td>
+                                    <td className="text-start"><a >{item.child_ticket_no}</a></td>
+                                    <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
+                                    <td className="text-center">{moment(item.ticket.draw_date).format('DD-MM-YYYY')}</td>
+                                    <td className="text-center">{item.game_type}</td>
+                                    <td className="text-center">{item.game && item.game.name ? item.game.name : ""}</td>
+                                    <td className="text-center">{item.lottery_number}</td>
 
-                                    <td class="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
-                                    <td class="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
-                                    <td class="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
-                                    <td class="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
-                                    <td class="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
-                                    <td class="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
-                                    <td class="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
-                                    {/* <td class="text-end">0.00</td> */}
+                                    <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
+                                    <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>
+                                    <td className="text-end">{MoneyFormatDisplay(item.three_a_amount,1)}</td>
+                                    <td className="text-end">{MoneyFormatDisplay(item.three_c_amount,1)}</td>
+                                    <td className="text-end">{MoneyFormatDisplay(item.bet_amount,1)}</td>
+                                    <td className="text-end">{MoneyFormatDisplay(item.rebate_amount,1)}</td>
+                                    <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount,1)}</td>
+                                    {/* <td className="text-end">0.00</td> */}
                                 
-                                    <td class="text-end"  style={winChild(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
-                                <td class="text-end"  style={winChild(winLoseChild(item.winning_amount,item.bet_net_amount))}>{winLoseChild(item.winning_amount,item.bet_net_amount)}</td>
+                                    <td className="text-end"  style={winChild(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                                <td className="text-end"  style={winChild(winLoseChild(item.winning_amount,item.bet_net_amount))}>{winLoseChild(item.winning_amount,item.bet_net_amount)}</td>
                                     
                                 
                                 </tr>
@@ -636,7 +636,7 @@ const handlePageClick = (event) => {
                 return(
                     
                     <div className='alert alert-warning'>
-                        <div class="d-flex justify-content-between">
+                        <div className="d-flex justify-content-between">
                         <button onClick={() => backButton() } className="btn btn-warning ">{t('back')}</button>
                         </div>
                     <h3 className='text-center'>
@@ -654,46 +654,46 @@ const handlePageClick = (event) => {
     {
         return (
             
-            <div class="clearfix curved-card">
-                <div class="row">
-                    <div class="col-md-3 col-12">
-                        <div class="form-group">
-                            <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
+            <div className="clearfix curved-card">
+                <div className="row">
+                    <div className="col-md-3 col-12">
+                        <div className="form-group">
+                            <label className="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                 <DateRangePicker ref={keyRef} onApply={handleApply1} onCancel={keyRef} initialSettings={{ ranges }} >
                                     <input id='daterangepicker' readOnly name="datefilter" type="text" className="daterangepickerstyle" value={dateRange} />
                                 </DateRangePicker>
                         </div>                    
                     </div>
-                    <div class="col-md-2 col-6">
-                        <div class="form-group">
-                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                            <input type="text" onChange={(event) => GetTicketNumber(event)} class="form-control-custom-big" name="transationid"/>
+                    <div className="col-md-2 col-6">
+                        <div className="form-group">
+                            <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
+                            <input type="text" onChange={(event) => GetTicketNumber(event)} className="form-control-custom-big" name="transationid"/>
                         </div>
                     </div>
-                    <div class="col-md-2 col-6">
-                        <div class="form-group">
-                            <label for="transactionid" class="fw-bold mb-2">{t('Game')}</label>
-                            <select type="text" class="form-control-custom-big" name="transationid">
+                    <div className="col-md-2 col-6">
+                        <div className="form-group">
+                            <label for="transactionid" className="fw-bold mb-2">{t('Game')}</label>
+                            <select type="text" className="form-control-custom-big" name="transationid">
                                 <option>4D</option>
                                 <option>3D</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-2 col-6">
-                        <div class="form-group">
-                            <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
-                            <select type="text" class="form-control-custom-big" name="transationid">
+                    <div className="col-md-2 col-6">
+                        <div className="form-group">
+                            <label for="transactionid" className="fw-bold mb-2">{t('Company')}</label>
+                            <select type="text" className="form-control-custom-big" name="transationid">
                                 <option>Toto</option>
                                 <option>Magnum</option>
                                 <option>Da ma cai</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="d-block">&nbsp;</label>
-                            <button type="button" class="btn-custom-curve2 w-auto">{t('Search')}</button>
-                            <button type="button" class="btn-custom-curve1">{t('Reset')}</button>
+                    <div className="col-md-3">
+                        <div className="form-group">
+                            <label className="d-block">&nbsp;</label>
+                            <button type="button" className="btn-custom-curve2 w-auto">{t('Search')}</button>
+                            <button type="button" className="btn-custom-curve1">{t('Reset')}</button>
                         </div>
                     </div>
                 </div>
@@ -736,10 +736,10 @@ const handlePageClick = (event) => {
                     </div>
                     <div className={styles.device_detect_for_desktop+' hideAndShowForMobileView'}>
                         {searchAction ? (
-                                <div class="row">
-                                    <div class="col-md-3 col-12">
-                                        <div class="form-group">
-                                            <label class="fw-bold mb-2">{t('Select_Date_Range')}</label>
+                                <div className="row">
+                                    <div className="col-md-3 col-12">
+                                        <div className="form-group">
+                                            <label className="fw-bold mb-2">{t('Select_Date_Range')}</label>
                                                 <DateRangePicker format ref={keyRef} onCancel={keyRef} 
                                                 initialSettings={{ startDate: fromDate,
                                                 endDate: toDate,
@@ -749,10 +749,10 @@ const handlePageClick = (event) => {
                                                 </DateRangePicker>
                                         </div>                    
                                     </div>
-                                    <div class="col-md-2 col-12">
-                                        <div class="form-group">
-                                            <label for="transactionid" class="fw-bold mb-2">{t('Ticket_No')}</label>
-                                            <input style={{ width: '100% !important' }} type="text" onChange={(e)=>{setTicketNo(e.target.value)}}  class="form-control-custom-big" value={ticketNo} name="transationid"/>
+                                    <div className="col-md-2 col-12">
+                                        <div className="form-group">
+                                            <label for="transactionid" className="fw-bold mb-2">{t('Ticket_No')}</label>
+                                            <input style={{ width: '100% !important' }} type="text" onChange={(e)=>{setTicketNo(e.target.value)}}  className="form-control-custom-big" value={ticketNo} name="transationid"/>
                                         </div>
                                     </div>
 
@@ -771,11 +771,11 @@ const handlePageClick = (event) => {
                                         </div>
                                     </div>
 
-                                    {/* <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label class="d-block">&nbsp;</label>
-                                            <button type="button" class="btn-custom-curve2 w-auto m-2" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
-                                            <button type="button" class="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
+                                    {/* <div className="col-md-3">
+                                        <div className="form-group">
+                                            <label className="d-block">&nbsp;</label>
+                                            <button type="button" className="btn-custom-curve2 w-auto m-2" onClick={()=>searchGetListonFilter()} >{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve1" onClick={()=>resetFilter()}>{t('Reset')}</button>
                                         </div>
                                     </div> */}
                                     
@@ -790,19 +790,19 @@ const handlePageClick = (event) => {
                                 </div>
                             ) :
                             (
-                                <div class="row">
-                                    <div class="col-md-2 col-12">
-                                        <div class="form-group">
-                                            <label for="transactionid" class="fw-bold mb-2">{t('Detail_Number')}</label>
+                                <div className="row">
+                                    <div className="col-md-2 col-12">
+                                        <div className="form-group">
+                                            <label for="transactionid" className="fw-bold mb-2">{t('Detail_Number')}</label>
                                             <input type="text" onChange={(e)=>{ 
-                                                            setDetailNo(e.target.value)}}  class="form-control-custom-big" value={detailNo} name="transationid"/>
+                                                            setDetailNo(e.target.value)}}  className="form-control-custom-big" value={detailNo} name="transationid"/>
                                         </div>
                                     </div>
                                     
-                                    <div class="col-md-2 col-12">
-                                        <div class="form-group">
-                                            <label for="transactionid" class="fw-bold mb-2">{t('Company')}</label>
-                                            {/* <select type="text" class="form-control-custom-big" name="transationid">
+                                    <div className="col-md-2 col-12">
+                                        <div className="form-group">
+                                            <label for="transactionid" className="fw-bold mb-2">{t('Company')}</label>
+                                            {/* <select type="text" className="form-control-custom-big" name="transationid">
                                                 <option>All</option>
                                                 <option>Toto</option>
                                                 <option>Magnum</option>
@@ -839,11 +839,11 @@ const handlePageClick = (event) => {
                                         </div>
                                     </div>
 
-                                    {/* <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label class="d-block">&nbsp;</label>
-                                            <button type="button" class="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
-                                            <button type="button" class="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
+                                    {/* <div className="col-md-3">
+                                        <div className="form-group">
+                                            <label className="d-block">&nbsp;</label>
+                                            <button type="button" className="btn-custom-curve2 w-auto m-2" onClick = {() => childShowTable(selectedticketId)}>{t('Search')}</button>
+                                            <button type="button" className="btn-custom-curve1" onClick = {() => childDataReset()}>{t('Reset')}</button>
                                         </div>
                                     </div> */}
                                 </div>
@@ -853,7 +853,7 @@ const handlePageClick = (event) => {
                 </div>
             </div>
 
-            <div class="table-responsive my-3">
+            <div className="table-responsive my-3">
                 {isLoading ? 
                 <div className='text-center'>
                      <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="60" />
