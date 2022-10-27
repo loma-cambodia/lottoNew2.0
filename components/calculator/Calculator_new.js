@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import styles from '../../styles/Home.module.css';
+import styles from "../../styles/Home.module.css";
 
 const Calculator = ({ _transactions, _auth }) => {
   const { t } = useTranslation();
@@ -22,7 +22,7 @@ const Calculator = ({ _transactions, _auth }) => {
       ? auth.auth.merchant.currency.code
       : "USD";
 
-  const onLoadCompany =   0;
+  const onLoadCompany = 0;
 
   const [number, setNumber] = useState("");
   const [gameType, setGameType] = useState("s");
@@ -40,7 +40,7 @@ const Calculator = ({ _transactions, _auth }) => {
 
   useEffect(() => {
     setSelectedMarket(onLoadCompany);
-    setCurrentMarket(oddSet[0])
+    setCurrentMarket(oddSet[0]);
   }, [onLoadCompany, oddSet]);
 
   const [price, setPrice] = useState({
@@ -129,7 +129,6 @@ const Calculator = ({ _transactions, _auth }) => {
       }
     }
     return totalCombination;
-    
   };
 
   useEffect(() => {
@@ -156,8 +155,8 @@ const Calculator = ({ _transactions, _auth }) => {
         },
       });
     }
-    if(gameType == 'i' && number.length == 3){
-      setGameType('s')
+    if (gameType == "i" && number.length == 3) {
+      setGameType("s");
     }
     handelChange();
   }, [number, big, small, c3, a3, gameType, combo, selectedMarket]);
@@ -184,7 +183,6 @@ const Calculator = ({ _transactions, _auth }) => {
     let priceCalculation = {};
 
     //setCombo(1);
-
 
     if (!numberInput.match("^[R-Rr-r0-9]*$")) {
       return false;
@@ -249,32 +247,31 @@ const Calculator = ({ _transactions, _auth }) => {
         setC3(_3cInput);
       }
     } else if (key == 4) {
-      if (
-        !bigInput.match("^[0-9-.]*$") ||
-        !smallInput.match("^[0-9-.]*$")
-      ) {
+      if (!bigInput.match("^[0-9-.]*$") || !smallInput.match("^[0-9-.]*$")) {
         return false;
       }
 
-      if(key == 3){
-        if(_3aInput.includes("-") ||
-        _3aInput.includes(".") ||
-        _3cInput.includes("-") ||
-        _3cInput.includes(".")){
-          return false
+      if (key == 3) {
+        if (
+          _3aInput.includes("-") ||
+          _3aInput.includes(".") ||
+          _3cInput.includes("-") ||
+          _3cInput.includes(".")
+        ) {
+          return false;
         }
-      } else if( key == 4 ){
-        if(bigInput.includes("-") ||
-        bigInput.includes(".") ||
-        smallInput.includes("-") ||
-        smallInput.includes(".")){
+      } else if (key == 4) {
+        if (
+          bigInput.includes("-") ||
+          bigInput.includes(".") ||
+          smallInput.includes("-") ||
+          smallInput.includes(".")
+        ) {
           return false;
         }
       } else {
         return false;
-      } 
-
-      
+      }
 
       if (_3aInput && key > 0) {
         setA3(_3aInput);
@@ -564,15 +561,16 @@ const Calculator = ({ _transactions, _auth }) => {
     setResult(object);
 
     setRepNumber(repeatedNumber);
+    
   };
 
   const handelReset = () => {
     // $("#amountValDefaltB").val('');
     // $("#amountValDefaltS").val('');
-    $("#bigValue").val('');
-    $("#3aValue3").val('');
-    $("#smallValue").val('');
-    $("#3cValue3").val('');
+    $("#bigValue").val("");
+    $("#3aValue3").val("");
+    $("#smallValue").val("");
+    $("#3cValue3").val("");
     setA3("");
     setBig("");
     setC3("");
@@ -585,14 +583,14 @@ const Calculator = ({ _transactions, _auth }) => {
     setSelectedMarket(onLoadCompany);
   };
   function palindrome(str) {
-      var len = str.length;
-      var mid = Math.floor(len/2);
-      for ( var i = 0; i < mid; i++ ) {
-          if (str[i] !== str[len - 1 - i]) {
-              return false;
-          }
+    var len = str.length;
+    var mid = Math.floor(len / 2);
+    for (var i = 0; i < mid; i++) {
+      if (str[i] !== str[len - 1 - i]) {
+        return false;
       }
-      return true;
+    }
+    return true;
   }
 
   return (
@@ -615,41 +613,48 @@ const Calculator = ({ _transactions, _auth }) => {
                         <div className="form-group">
                           <div className="row">
                             <div className="col-md-4">
-                              <b>{t('Company')}</b>
+                              <b>{t("Company")}</b>
                             </div>
                             <div className="col-md-8">
                               <div className="d-flex">
                                 <div className="select-gp" id="checkboxes">
                                   <ul id="checkboxes" className="list-inline">
-
-                                      {oddSet.map((item, index)=>{
-                                        console.log('itemitemitem',item);
-                                        return(
-                                          <>
-                                            <li key={index} className=" list-inline-item">
-                                              <span
-                                                className={
-                                                  selectedMarket == index
-                                                    ? "selected-gp-btn outer-circle-gp"
-                                                    : "outer-circle-gp"
-                                                }
-                                                title="Select"
-                                                onClick={() => {
-                                                  setSelectedMarket(index);
-                                                }}
-                                              >
-                                                <span className="inner-circle-gp">
-                                                  <img
-                                                    className="img-fluid"
-                                                    src={item && item.game_play && item.game_play.logo_url ? item.game_play.logo_url : "http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png" }
-                                                  />
-                                                </span>
+                                    {oddSet.map((item, index) => {
+                                      console.log("itemitemitem", item);
+                                      return (
+                                        <>
+                                          <li
+                                            key={index}
+                                            className=" list-inline-item"
+                                          >
+                                            <span
+                                              className={
+                                                selectedMarket == index
+                                                  ? "selected-gp-btn outer-circle-gp"
+                                                  : "outer-circle-gp"
+                                              }
+                                              title="Select"
+                                              onClick={() => {
+                                                setSelectedMarket(index);
+                                              }}
+                                            >
+                                              <span className="inner-circle-gp">
+                                                <img
+                                                  className="img-fluid"
+                                                  src={
+                                                    item &&
+                                                    item.game_play &&
+                                                    item.game_play.logo_url
+                                                      ? item.game_play.logo_url
+                                                      : "http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
+                                                  }
+                                                />
                                               </span>
-                                            </li>
-                                          </>
-                                        )
-
-                                      })}
+                                            </span>
+                                          </li>
+                                        </>
+                                      );
+                                    })}
                                   </ul>
                                 </div>
                               </div>
@@ -659,7 +664,7 @@ const Calculator = ({ _transactions, _auth }) => {
                         <div className="form-group">
                           <div className="row">
                             <div className="col-md-4">
-                              <b>{t('Number')}</b>
+                              <b>{t("Number")}</b>
                             </div>
                             <div className="col-md-8">
                               <input
@@ -680,7 +685,7 @@ const Calculator = ({ _transactions, _auth }) => {
                         <div className="d-flex mb-3">
                           <div className="d-flex flex-column gap-2">
                             <div>
-                              <b>{t('Bet_Type')}</b>
+                              <b>{t("Bet_Type")}</b>
                             </div>
                             <div>
                               <div>
@@ -697,7 +702,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                       onClick={() => {
                                         setGameType("s");
                                       }}
-                                      style={{ cursor: "pointer",fontSize: "14px" }}
+                                      style={{
+                                        cursor: "pointer",
+                                        fontSize: "14px",
+                                      }}
                                     >
                                       {/*  <img
                                           className="img-fluid"
@@ -717,7 +725,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                           : "form-control disable"
                                       }
                                       title="Enabled"
-                                      style={{ cursor: "pointer",fontSize: "14px" }}
+                                      style={{
+                                        cursor: "pointer",
+                                        fontSize: "14px",
+                                      }}
                                       onClick={() => {
                                         setGameType("b");
                                       }}
@@ -735,7 +746,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                             : "form-control disable"
                                         }
                                         title="iBox"
-                                        style={{ cursor: "pointer",fontSize: "14px" }}
+                                        style={{
+                                          cursor: "pointer",
+                                          fontSize: "14px",
+                                        }}
                                         onClick={() => {
                                           setGameType("i");
                                         }}
@@ -743,45 +757,54 @@ const Calculator = ({ _transactions, _auth }) => {
                                         iBox
                                       </label>
                                     </div>
-                                  ) : 
-                                  <div className="">
+                                  ) : (
+                                    <div className="">
                                       <label
                                         for="forIboxValue"
                                         className="form-control disable"
                                         title="Disabled"
-                                        style={{ cursor: "help",fontSize: "14px" }}
+                                        style={{
+                                          cursor: "help",
+                                          fontSize: "14px",
+                                        }}
                                       >
                                         iBox
                                       </label>
                                     </div>
-                                  }
+                                  )}
                                   <div className="">
-                                  {palindrome(number) ? (
-                                    <label
-                                      for="forReverseValue"
-                                      className={"form-control disable"}
-                                      title="Disabled"
-                                      style={{ cursor: "help",fontSize: "14px" }}
-                                    >
-                                      {t('Reverse')}
-                                    </label> )
-                                    :
-                                    <label
-                                      for="forReverseValue"
-                                      className={
-                                        gameType == "r"
-                                          ? " form-control show-Selected-bet"
-                                          : "form-control disable"
-                                      }
-                                      title="Enabled"
-                                      style={{ cursor: "pointer",fontSize: "14px" }}
-                                      onClick={() => {
-                                        setGameType("r");
-                                      }}
-                                    >
-                                      {t('Reverse')}
-                                    </label>
-                                  }
+                                    {palindrome(number) ? (
+                                      <label
+                                        for="forReverseValue"
+                                        className={"form-control disable"}
+                                        title="Disabled"
+                                        style={{
+                                          cursor: "help",
+                                          fontSize: "14px",
+                                        }}
+                                      >
+                                        {t("Reverse")}
+                                      </label>
+                                    ) : (
+                                      <label
+                                        for="forReverseValue"
+                                        className={
+                                          gameType == "r"
+                                            ? " form-control show-Selected-bet"
+                                            : "form-control disable"
+                                        }
+                                        title="Enabled"
+                                        style={{
+                                          cursor: "pointer",
+                                          fontSize: "14px",
+                                        }}
+                                        onClick={() => {
+                                          setGameType("r");
+                                        }}
+                                      >
+                                        {t("Reverse")}
+                                      </label>
+                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -789,53 +812,77 @@ const Calculator = ({ _transactions, _auth }) => {
                           </div>
                         </div>
                         <>
-                              <div className="d-flex gap-2">
-                                <div className="d-flex">
-                                  <div className="d-flex flex-column">
-                                    <div
-                                      style={{
-                                        marginBottom: "10px",
-                                        paddingLeft: "3px",
-                                      }}
-                                    >
-                                      <b>{t('Big')} / 3A</b>
-                                    </div>
-                                    <div className="">
-                                     <input
-                                      className="form-control"
-                                      id={number.length ==3 ? "3aValue3" : number.length == 4 ? "bigValue" : "amountValDefaltB"}
-                                      maxLength={6}
-                                      value={number.length ==3 ? a3 : number.length == 4 ? big : null}
-                                      onChange={handelChange}
-                                      autoComplete="off"
-                                    />
-                                    </div>
-                                  </div>
+                          <div className="d-flex gap-2">
+                            <div className="d-flex">
+                              <div className="d-flex flex-column">
+                                <div
+                                  style={{
+                                    marginBottom: "10px",
+                                    paddingLeft: "3px",
+                                  }}
+                                >
+                                  <b>{t("Big")} / 3A</b>
                                 </div>
-                                <div className="d-flex">
-                                  <div className="d-flex flex-column">
-                                    <div
-                                      style={{
-                                        marginBottom: "10px",
-                                        paddingLeft: "3px",
-                                      }}
-                                    >
-                                      <b>{t('Small_Bet')}: / 3C</b>
-                                    </div>
-                                    <div className="">
-                                    <input
-                                      className="form-control"
-                                      id={number.length ==3 ? "3cValue3" : number.length == 4 ? "smallValue" : "amountValDefaltS"}
-                                      maxLength={6}
-                                      value={number.length ==3 ? c3 : number.length == 4 ? small : null}
-                                      onChange={handelChange}
-                                      autoComplete="off"
-                                    />
-                                    </div>
-                                  </div>
+                                <div className="">
+                                  <input
+                                    className="form-control"
+                                    id={
+                                      number.length == 3
+                                        ? "3aValue3"
+                                        : number.length == 4
+                                        ? "bigValue"
+                                        : "amountValDefaltB"
+                                    }
+                                    maxLength={6}
+                                    value={
+                                      number.length == 3
+                                        ? a3
+                                        : number.length == 4
+                                        ? big
+                                        : null
+                                    }
+                                    onChange={handelChange}
+                                    autoComplete="off"
+                                  />
                                 </div>
                               </div>
-                            </>
+                            </div>
+                            <div className="d-flex">
+                              <div className="d-flex flex-column">
+                                <div
+                                  style={{
+                                    marginBottom: "10px",
+                                    paddingLeft: "3px",
+                                  }}
+                                >
+                                  <b>{t("Small_Bet")}: / 3C</b>
+                                </div>
+                                <div className="">
+                                  <input
+                                    className="form-control"
+                                    id={
+                                      number.length == 3
+                                        ? "3cValue3"
+                                        : number.length == 4
+                                        ? "smallValue"
+                                        : "amountValDefaltS"
+                                    }
+                                    maxLength={6}
+                                    value={
+                                      number.length == 3
+                                        ? c3
+                                        : number.length == 4
+                                        ? small
+                                        : null
+                                    }
+                                    onChange={handelChange}
+                                    autoComplete="off"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </>
                         {/* </div> */}
 
                         <div className="mt-2">
@@ -854,32 +901,54 @@ const Calculator = ({ _transactions, _auth }) => {
                                 <span
                                   role="button"
                                   className="d-block btn btn-warning rounded-full mt-2 text-light"
-                                  style={{ fontWeight: "700", background:"#c22361" }}
+                                  style={{
+                                    fontWeight: "700",
+                                    background: "#c22361",
+                                  }}
                                 >
                                   CLEAR
                                 </span>
                               </div>
                             </div>
-
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div> 
+                  </div>
                 </div>
                 <div className="col-md-7 col-sm-6 text-light">
                   <div className="absolute-div">
                     <div className="inner-abs-div">
-                        <div className='company-type-heading d-flex align-items-center mb-4'>
-                            <div className='comapny-type-logo me-3'>
-                                <img src={currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Magnum' ? 'assets/images/icons/magnum-square.jpg' : 
-                                currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Da Ma Cai' ? 'assets/images/icons/damacai-square.jpg' : 
-                                currentMarket && currentMarket.game_play && currentMarket.game_play.name == 'Toto' ? 'assets/images/icons/toto-square.jpg' : null} />
-                            </div>
-                            <div className='company-type-name text-white'>
-                              {t(currentMarket && currentMarket.game_play && currentMarket.game_play.name ? currentMarket.game_play.name : selectedMarket)}
-                            </div>
+                      <div className="company-type-heading d-flex align-items-center mb-4">
+                        <div className="comapny-type-logo me-3">
+                          <img
+                            src={
+                              currentMarket &&
+                              currentMarket.game_play &&
+                              currentMarket.game_play.name == "Magnum"
+                                ? "assets/images/icons/magnum-square.jpg"
+                                : currentMarket &&
+                                  currentMarket.game_play &&
+                                  currentMarket.game_play.name == "Da Ma Cai"
+                                ? "assets/images/icons/damacai-square.jpg"
+                                : currentMarket &&
+                                  currentMarket.game_play &&
+                                  currentMarket.game_play.name == "Toto"
+                                ? "assets/images/icons/toto-square.jpg"
+                                : null
+                            }
+                          />
                         </div>
+                        <div className="company-type-name text-white">
+                          {t(
+                            currentMarket &&
+                              currentMarket.game_play &&
+                              currentMarket.game_play.name
+                              ? currentMarket.game_play.name
+                              : selectedMarket
+                          )}
+                        </div>
+                      </div>
                       {/* <h3 className="text-center gap-2 justify-content-center d-flex text-uppercase">
                         
                           <span className="selected-gp-btn outer-circle-gp" style={{ height:'45px', width:"45px" }}>
@@ -894,21 +963,23 @@ const Calculator = ({ _transactions, _auth }) => {
                       <div className="absolute-div">
                         <div className="d-flex justify-content-between align-items-center">
                           <label className="" htmlFor="number">
-                            {t('Total_No_of_Combination')}
+                            {t("Total_No_of_Combination")}
                           </label>
                           <span>{combo}</span>
                         </div>
                         <div className="d-flex justify-content-between align-items-center">
                           <label className="" htmlFor="number">
-                            {t('Total_Cost')}
+                            {t("Total_Cost")}
                           </label>
-                          <span>{merchantCurrency} {cost}</span>
+                          <span>
+                            {merchantCurrency} {cost}
+                          </span>
                         </div>
                       </div>
                       <div className="col-md-12 flex-column">
                         <div className="absolute-div mt-4">
                           <h4 className="text-center text-uppercase">
-                            <b>{t('Winning_Amount')}</b>
+                            <b>{t("Winning_Amount")}</b>
                           </h4>
                           <table className="text-light table table-borderless">
                             <thead>
@@ -923,7 +994,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                     <th
                                       style={{ width: "30%" }}
                                       className="text-left"
-                                    ></th>
+                                    >
+                                      3A / 3C
+                                    </th>
                                   </>
                                 ) : number.length == 4 ? (
                                   <>
@@ -933,8 +1006,12 @@ const Calculator = ({ _transactions, _auth }) => {
                                     ></th>
                                     <th
                                       style={{ width: "30%" }}
-                                      className="text-left"
-                                    ></th>
+                                      className={
+                                        styles.device_detect_for_mobile
+                                      }
+                                    >
+                                      {t("Big")}/{t("Small_Bet")}
+                                    </th>
                                   </>
                                 ) : null}
                               </tr>
@@ -943,134 +1020,189 @@ const Calculator = ({ _transactions, _auth }) => {
                               {number.length == 3 ? (
                                 <>
                                   <tr className="">
-                                    <td style={{ width: "25%" }}>{t('P1')} </td>
+                                    <td style={{ width: "25%" }}>{t("P1")} </td>
                                     <td
                                       style={{ width: "25%" }}
                                       className="text-left"
                                     >
-                                    <span
-                                      style={{
-                                        color: "rgb(255, 228, 0)",
-                                        fontSize: "20px",
-                                        fontWeight: "700",
-                                      }}
-                                      className={" text-left row"}
-                                    >
-                                      <span className="col-md-3 col-12">{merchantCurrency}&nbsp;</span>
-                                      <span className="col-md-9 col-12">
-                                        {merchantCurrency == 'KHR' ? parseFloat(
-                                          result.d3a_one + result.d3c_one
-                                        ) : parseFloat(
-                                          result.d3a_one + result.d3c_one
-                                        ).toFixed(2)}
+                                      <span
+                                        style={{
+                                          color: "rgb(255, 228, 0)",
+                                          fontSize: "20px",
+                                          fontWeight: "700",
+                                        }}
+                                        className={" text-left row"}
+                                      >
+                                        <span className="col-md-3 col-12">
+                                          {merchantCurrency}&nbsp;
+                                        </span>
+                                        <span className="col-md-9 col-12">
+                                          {merchantCurrency == "KHR"
+                                            ? parseFloat(
+                                                result.d3a_one + result.d3c_one
+                                              )
+                                            : parseFloat(
+                                                result.d3a_one + result.d3c_one
+                                              ).toFixed(2)}
+                                        </span>
                                       </span>
+                                    </td>
 
-                                    </span>
-                                    </td>
-                                    
-                                    <div className={styles.device_detect_for_desktop}> 
-                                      <td
-                                        style={{ width: "100%" }}
-                                        className="text-left d-flex flex-column"
-                                      >
-                                        <div className="w-100">
-                                          <span className="d-flex justify-content-between">
-                                            <span> 3A: </span>
-                                            <span>
-                                              {merchantCurrency} &nbsp;
-                                              {parseFloat(price.d3.a3_one).toFixed(
-                                                2
-                                              )}
-                                            </span>
-                                          </span>
-                                          <span className="d-flex justify-content-between">
-                                            <span> 3C: </span>
-                                            <span>
-                                              {merchantCurrency} &nbsp;
-                                              {parseFloat(price.d3.one).toFixed(
-                                                2
-                                              )}
-                                            </span>
-                                          </span>
-                                        </div>
-                                      </td>
-                                    </div>
-                                  </tr>
-                                  <tr className="">
-                                    <td style={{ width: "25%" }}>{t('P2')} </td>
-                                    <td
-                                      style={{ width: "25%" }}
-                                      className="text-left"
-                                    >
-                                      <span
-                                        style={{
-                                          color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
-                                        }}
-                                        className={" text-left row"}
-                                      >
-                                        <span className="col-md-3 col-12">{merchantCurrency}&nbsp;</span>
-                                        <span className="col-md-9 col-12">
-                                          {merchantCurrency == 'KHR' ? parseFloat(result.d3c_two) : parseFloat(result.d3c_two).toFixed(2)}
-                                        </span>
-                                      </span>
-                                    </td>
-                                    
-                                    <div className={styles.device_detect_for_desktop}> 
-                                      <td
-                                        style={{ width: "100%" }}
-                                        className="text-left d-flex flex-column"
-                                      >
-                                          <span className="d-flex justify-content-between">
-                                            <span> 3C: </span>
-                                            <span>
-                                              {merchantCurrency} &nbsp;
-                                              {merchantCurrency == 'KHR' ? parseFloat(price.d3.two) : parseFloat(price.d3.two).toFixed(2)}
-                                            </span>
-                                          </span>
-                                      </td>
-                                    </div>
-                                  </tr>
-                                  <tr className="">
-                                    <td style={{ width: "30%" }}>{t('P3')} </td>
-                                    <td
-                                      style={{ width: "25%" }}
-                                      className="text-left"
-                                    >
-                                      <span
-                                        style={{
-                                          color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
-                                        }}
-                                        className={" text-left row"}
-                                      >
-                                        <span className="col-md-3 col-12">{merchantCurrency}&nbsp;</span>
-                                        <span className="col-md-9 col-12">
-                                          {merchantCurrency == 'KHR' ? parseFloat(result.d3c_three) : parseFloat(result.d3c_three).toFixed(2)}
-                                        </span>
-                                      </span>
-                                    </td>
-                                    
-                                    <div className={styles.device_detect_for_desktop}> 
+                                    {/* <div className={styles.device_detect_for_desktop}>  */}
                                     <td
                                       style={{ width: "100%" }}
                                       className="text-left d-flex flex-column"
                                     >
+                                      <div className="w-100">
                                         <span className="d-flex justify-content-between">
-                                          <span> 3C: </span>
+                                          <span
+                                            className={
+                                              styles.device_detect_for_desktop
+                                            }
+                                          >
+                                            {" "}
+                                            3A:{" "}
+                                          </span>
                                           <span>
-                                            {merchantCurrency}                                            
-                                            {merchantCurrency == 'KHR' ? parseFloat(price.d3.three) : parseFloat(price.d3.three).toFixed(2) }
+                                            {merchantCurrency} &nbsp;
+                                            {merchantCurrency == "KHR"
+                                              ? parseFloat(price.d3.a3_one)
+                                              : parseFloat(
+                                                  price.d3.a3_one
+                                                ).toFixed(2)}
                                           </span>
                                         </span>
+                                        <span className="d-flex justify-content-between">
+                                          <span
+                                            className={
+                                              styles.device_detect_for_desktop
+                                            }
+                                          >
+                                            {" "}
+                                            3C:{" "}
+                                          </span>
+                                          <span>
+                                            {merchantCurrency} &nbsp;
+                                            {merchantCurrency == "KHR"
+                                              ? parseFloat(price.d3.one)
+                                              : parseFloat(
+                                                  price.d3.one
+                                                ).toFixed(2)}
+                                          </span>
+                                        </span>
+                                      </div>
                                     </td>
-                                    </div>
+                                    {/* </div> */}
+                                  </tr>
+                                  <tr className="">
+                                    <td style={{ width: "25%" }}>{t("P2")} </td>
+                                    <td
+                                      style={{ width: "25%" }}
+                                      className="text-left"
+                                    >
+                                      <span
+                                        style={{
+                                          color: "rgb(255, 228, 0)",
+                                          fontSize: "20px",
+                                          fontWeight: "700",
+                                        }}
+                                        className={" text-left row"}
+                                      >
+                                        <span className="col-md-3 col-12">
+                                          {merchantCurrency}&nbsp;
+                                        </span>
+                                        <span className="col-md-9 col-12">
+                                          {merchantCurrency == "KHR"
+                                            ? parseFloat(result.d3c_two)
+                                            : parseFloat(
+                                                result.d3c_two
+                                              ).toFixed(2)}
+                                        </span>
+                                      </span>
+                                    </td>
+
+                                    {/* <div className={styles.device_detect_for_desktop}>  */}
+                                    <td
+                                      style={{ width: "100%" }}
+                                      className="text-left d-flex flex-column"
+                                    >
+                                      <span className="d-flex justify-content-between">
+                                        <span
+                                          className={
+                                            styles.device_detect_for_desktop
+                                          }
+                                        >
+                                          {" "}
+                                          3C:{" "}
+                                        </span>
+                                        <span>
+                                          {merchantCurrency} &nbsp;
+                                          {merchantCurrency == "KHR"
+                                            ? parseFloat(price.d3.two)
+                                            : parseFloat(price.d3.two).toFixed(
+                                                2
+                                              )}
+                                        </span>
+                                      </span>
+                                    </td>
+                                    {/* </div> */}
+                                  </tr>
+                                  <tr className="">
+                                    <td style={{ width: "30%" }}>{t("P3")} </td>
+                                    <td
+                                      style={{ width: "25%" }}
+                                      className="text-left"
+                                    >
+                                      <span
+                                        style={{
+                                          color: "rgb(255, 228, 0)",
+                                          fontSize: "20px",
+                                          fontWeight: "700",
+                                        }}
+                                        className={" text-left row"}
+                                      >
+                                        <span className="col-md-3 col-12">
+                                          {merchantCurrency}&nbsp;
+                                        </span>
+                                        <span className="col-md-9 col-12">
+                                          {merchantCurrency == "KHR"
+                                            ? parseFloat(result.d3c_three)
+                                            : parseFloat(
+                                                result.d3c_three
+                                              ).toFixed(2)}
+                                        </span>
+                                      </span>
+                                    </td>
+
+                                    {/* <div className={styles.device_detect_for_desktop}>  */}
+                                    <td
+                                      style={{ width: "100%" }}
+                                      className="text-left d-flex flex-column"
+                                    >
+                                      <span className="d-flex justify-content-between">
+                                        <span
+                                          className={
+                                            styles.device_detect_for_desktop
+                                          }
+                                        >
+                                          {" "}
+                                          3C:{" "}
+                                        </span>
+                                        <span>
+                                          {merchantCurrency}
+                                          {merchantCurrency == "KHR"
+                                            ? parseFloat(price.d3.three)
+                                            : parseFloat(
+                                                price.d3.three
+                                              ).toFixed(2)}
+                                        </span>
+                                      </span>
+                                    </td>
+                                    {/* </div> */}
                                   </tr>
                                   <tr className="">
                                     <td style={{ width: "30%" }}>
-                                      {t('Special_Prize')}
+                                      {t("Special_Prize")}
                                     </td>
                                     <td
                                       style={{ width: "25%" }}
@@ -1083,7 +1215,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                   </tr>
                                   <tr className="">
                                     <td style={{ width: "30%" }}>
-                                      {t('Consolation_Prize')}
+                                      {t("Consolation_Prize")}
                                     </td>
                                     <td
                                       style={{ width: "25%" }}
@@ -1098,7 +1230,7 @@ const Calculator = ({ _transactions, _auth }) => {
                               ) : number.length == 4 ? (
                                 <>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>{t('P1')} </td>
+                                    <td style={{ width: "30%" }}>{t("P1")} </td>
                                     <td
                                       style={{ width: "30%" }}
                                       className="text-left"
@@ -1111,38 +1243,64 @@ const Calculator = ({ _transactions, _auth }) => {
                                         }}
                                         className={" text-left row"}
                                       >
-                                        <span className="col-md-3 col-12">{merchantCurrency}&nbsp;</span>
+                                        <span className="col-md-3 col-12">
+                                          {merchantCurrency}&nbsp;
+                                        </span>
                                         <span className="col-md-9 col-12">
-                                          {merchantCurrency == 'KHR' ? parseFloat(result.d4_big_one +result.d4_small_one) : parseFloat(result.d4_big_one +result.d4_small_one).toFixed(2)}
+                                          {merchantCurrency == "KHR"
+                                            ? parseInt(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one))
+                                            : parseFloat(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toFixed(2)}
                                         </span>
                                       </span>
                                     </td>
-                                    <div className={styles.device_detect_for_desktop}> 
-                                      <td
-                                        style={{ width: "100%" }}
-                                        className="text-left d-flex flex-column"
-                                      >
-                                        <div className="w-100">
-                                          <span className="d-flex justify-content-between">
-                                            <span> {t('Big')}: </span>
-                                            <span>
-                                              {merchantCurrency} &nbsp;
-                                              {merchantCurrency == 'KHR' ? parseFloat(price.d4.one) : parseFloat(price.d4.one).toFixed(2) }
-                                            </span>
+                                    {/* <div className={styles.device_detect_for_desktop}>  */}
+                                    <td
+                                      style={{ width: "100%" }}
+                                      className="text-left d-flex flex-column"
+                                    >
+                                      <div className="w-100">
+                                        <span className="d-flex justify-content-between">
+                                          <span
+                                            className={
+                                              styles.device_detect_for_desktop
+                                            }
+                                          >
+                                            {" "}
+                                            {t("Big")}:{" "}
                                           </span>
-                                          <span className="d-flex justify-content-between">
-                                            <span>  {t('Small_Bet')}: </span>
-                                            <span>
-                                              {merchantCurrency} &nbsp;
-                                              {merchantCurrency == 'KHR' ? parseFloat(price.d4.small_one) : parseFloat(price.d4.small_one).toFixed(2)}
-                                            </span>
+                                          <span>
+                                            {merchantCurrency} &nbsp;
+                                            {merchantCurrency == "KHR"
+                                              ? parseInt(price.d4.one)
+                                              : parseFloat(
+                                                  price.d4.one
+                                                ).toFixed(2)}
                                           </span>
-                                        </div>
-                                      </td>
-                                    </div>
+                                        </span>
+                                        <span className="d-flex justify-content-between">
+                                          <span
+                                            className={
+                                              styles.device_detect_for_desktop
+                                            }
+                                          >
+                                            {" "}
+                                            {t("Small_Bet")}:{" "}
+                                          </span>
+                                          <span>
+                                            {merchantCurrency} &nbsp;
+                                            {merchantCurrency == "KHR"
+                                              ? parseInt(price.d4.small_one)
+                                              : parseFloat(
+                                                  price.d4.small_one
+                                                ).toFixed(2)}
+                                          </span>
+                                        </span>
+                                      </div>
+                                    </td>
+                                    {/* </div> */}
                                   </tr>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>{t('P2')} </td>
+                                    <td style={{ width: "30%" }}>{t("P2")} </td>
                                     <td
                                       style={{ width: "30%" }}
                                       className="text-left"
@@ -1155,37 +1313,62 @@ const Calculator = ({ _transactions, _auth }) => {
                                         }}
                                         className="text-left row"
                                       >
-                                        <span className="col-md-3 col-12">{merchantCurrency}&nbsp;</span>
+                                        <span className="col-md-3 col-12">
+                                          {merchantCurrency}&nbsp;
+                                        </span>
                                         <span className="col-md-9 col-12">
-                                        {merchantCurrency == 'KHR' ? parseFloat(result.d4_big_two + result.d4_small_two) : parseFloat(result.d4_big_two + result.d4_small_two).toFixed(2)}</span>
+                                          {merchantCurrency == "KHR"
+                                            ? parseInt(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two))
+                                            : parseFloat(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two)).toFixed(2)}
+                                        </span>
                                       </span>
                                     </td>
-                                    <div className={styles.device_detect_for_desktop}> 
-                                      <td
-                                        style={{ width: "100%" }}
-                                        className="text-left d-flex flex-column"
-                                      >
-                                        <div className="w-100">
-                                          <span className="d-flex justify-content-between">
-                                            <span> {t('Big')}: </span>
-                                            <span>
-                                              {merchantCurrency} &nbsp;
-                                              {merchantCurrency == 'KHR' ? parseFloat(price.d4.two) : parseFloat(price.d4.two).toFixed(2)}
-                                            </span>
+                                    {/* <div className={styles.device_detect_for_desktop}>  */}
+                                    <td
+                                      style={{ width: "100%" }}
+                                      className="text-left d-flex flex-column"
+                                    >
+                                      <div className="w-100">
+                                        <span className="d-flex justify-content-between">
+                                          <span
+                                            className={
+                                              styles.device_detect_for_desktop
+                                            }
+                                          >
+                                            {" "}
+                                            {t("Big")}:{" "}
                                           </span>
-                                          <span className="d-flex justify-content-between">
-                                            <span>  {t('Small_Bet')}: </span>
-                                            <span>
-                                              {merchantCurrency} &nbsp;
-                                              {merchantCurrency == 'KHR' ? parseFloat(price.d4.small_two) : parseFloat(price.d4.small_two).toFixed(2)}
-                                            </span>
+                                          <span>
+                                            {merchantCurrency} &nbsp;
+                                            {merchantCurrency == "KHR"
+                                              ? parseInt(price.d4.two)
+                                              : parseFloat(price.d4.two).toFixed(2)}
                                           </span>
-                                        </div>
-                                      </td>
-                                    </div>
+                                        </span>
+                                        <span className="d-flex justify-content-between">
+                                          <span
+                                            className={
+                                              styles.device_detect_for_desktop
+                                            }
+                                          >
+                                            {" "}
+                                            {t("Small_Bet")}:{" "}
+                                          </span>
+                                          <span>
+                                            {merchantCurrency} &nbsp;
+                                            {merchantCurrency == "KHR"
+                                              ? parseInt(price.d4.small_two)
+                                              : parseFloat(
+                                                  price.d4.small_two
+                                                ).toFixed(2)}
+                                          </span>
+                                        </span>
+                                      </div>
+                                    </td>
+                                    {/* </div> */}
                                   </tr>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>{t('P3')} </td>
+                                    <td style={{ width: "30%" }}>{t("P3")} </td>
                                     <td
                                       style={{ width: "30%" }}
                                       className="text-left"
@@ -1198,38 +1381,65 @@ const Calculator = ({ _transactions, _auth }) => {
                                         }}
                                         className="text-left row"
                                       >
-                                        <span className="col-md-3 col-12">{merchantCurrency}&nbsp;</span>
+                                        <span className="col-md-3 col-12">
+                                          {merchantCurrency}&nbsp;
+                                        </span>
                                         <span className="col-md-9 col-12">
-                                        {merchantCurrency == 'KHR' ? parseFloat(result.d4_big_three + result.d4_small_three) : parseFloat(result.d4_big_three + result.d4_small_three).toFixed(2)}</span>
+                                          {merchantCurrency == "KHR"
+                                            ? parseInt(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three))
+                                            : parseFloat(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three)).toFixed(2)}
+                                        </span>
                                       </span>
                                     </td>
-                                    <div className={styles.device_detect_for_desktop}> 
-                                      <td
-                                        style={{ width: "100%" }}
-                                        className="text-left d-flex flex-column"
-                                      >
-                                        <div className="w-100">
-                                          <span className="d-flex justify-content-between">
-                                            <span> {t('Big')}: </span>
-                                            <span>
-                                              {merchantCurrency} &nbsp;
-                                              {merchantCurrency == 'KHR' ? parseFloat(price.d4.three) : parseFloat(price.d4.three).toFixed(2)}
-                                            </span>
+                                    {/* <div className={styles.device_detect_for_desktop}>  */}
+                                    <td
+                                      style={{ width: "100%" }}
+                                      className="text-left d-flex flex-column"
+                                    >
+                                      <div className="w-100">
+                                        <span className="d-flex justify-content-between">
+                                          <span
+                                            className={
+                                              styles.device_detect_for_desktop
+                                            }
+                                          >
+                                            {" "}
+                                            {t("Big")}:{" "}
                                           </span>
-                                          <span className="d-flex justify-content-between">
-                                            <span>  {t('Small_Bet')}: </span>
-                                            <span>
-                                              {merchantCurrency} &nbsp;
-                                              {merchantCurrency == 'KHR' ? parseFloat(price.d4.small_three) : parseFloat(price.d4.small_three).toFixed(2)}
-                                            </span>
+                                          <span>
+                                            {merchantCurrency} &nbsp;
+                                            {merchantCurrency == "KHR"
+                                              ? parseInt(price.d4.three)
+                                              : parseFloat(
+                                                  price.d4.three
+                                                ).toFixed(2)}
                                           </span>
-                                        </div>
-                                      </td>
-                                    </div>
+                                        </span>
+                                        <span className="d-flex justify-content-between">
+                                          <span
+                                            className={
+                                              styles.device_detect_for_desktop
+                                            }
+                                          >
+                                            {" "}
+                                            {t("Small_Bet")}:{" "}
+                                          </span>
+                                          <span>
+                                            {merchantCurrency} &nbsp;
+                                            {merchantCurrency == "KHR"
+                                              ? parseInt(price.d4.small_three)
+                                              : parseFloat(
+                                                  price.d4.small_three
+                                                ).toFixed(2)}
+                                          </span>
+                                        </span>
+                                      </div>
+                                    </td>
+                                    {/* </div> */}
                                   </tr>
                                   <tr className="">
                                     <td style={{ width: "30%" }}>
-                                      {t('Special_Prize')}
+                                      {t("Special_Prize")}
                                     </td>
                                     <td
                                       style={{ width: "30%" }}
@@ -1243,29 +1453,47 @@ const Calculator = ({ _transactions, _auth }) => {
                                         }}
                                         className="text-left row"
                                       >
-                                        <span className="col-md-3 col-12">{merchantCurrency}&nbsp;</span>
+                                        <span className="col-md-3 col-12">
+                                          {merchantCurrency}&nbsp;
+                                        </span>
                                         <span className="col-md-9 col-12">
-                                        {merchantCurrency == 'KHR' ? parseFloat(result.d4_big_special) : parseFloat(result.d4_big_special).toFixed(2)}</span>
+                                          {merchantCurrency == "KHR"
+                                            ? parseInt(result.d4_big_special)
+                                            : parseFloat(
+                                                result.d4_big_special
+                                              ).toFixed(2)}
+                                        </span>
                                       </span>
                                     </td>
-                                    <div className={styles.device_detect_for_desktop}> 
-                                      <td
-                                        style={{ width: "100%" }}
-                                        className="text-left d-flex flex-column"
-                                      >
-                                          <span className="d-flex justify-content-between w-100">
-                                            <span> {t('Big')}: </span>
-                                            <span>
-                                              {merchantCurrency} &nbsp;
-                                              {merchantCurrency == 'KHR' ? parseFloat(price.d4.special) : parseFloat(price.d4.special).toFixed(2)}
-                                            </span>
-                                          </span>
-                                      </td>
-                                    </div>
+                                    {/* <div className={styles.device_detect_for_desktop}>  */}
+                                    <td
+                                      style={{ width: "100%" }}
+                                      className="text-left d-flex flex-column"
+                                    >
+                                      <span className="d-flex justify-content-between w-100">
+                                        <span
+                                          className={
+                                            styles.device_detect_for_desktop
+                                          }
+                                        >
+                                          {" "}
+                                          {t("Big")}:{" "}
+                                        </span>
+                                        <span>
+                                          {merchantCurrency} &nbsp;
+                                          {merchantCurrency == "KHR"
+                                            ? parseInt(price.d4.special)
+                                            : parseFloat(
+                                                price.d4.special
+                                              ).toFixed(2)}
+                                        </span>
+                                      </span>
+                                    </td>
+                                    {/* </div> */}
                                   </tr>
                                   <tr className="">
                                     <td style={{ width: "30%" }}>
-                                      {t('Consolation_Prize')}
+                                      {t("Consolation_Prize")}
                                     </td>
                                     <td
                                       style={{ width: "30%" }}
@@ -1279,25 +1507,45 @@ const Calculator = ({ _transactions, _auth }) => {
                                         }}
                                         className="text-left row"
                                       >
-                                        <span className="col-md-3 col-12">{merchantCurrency}&nbsp;</span>
+                                        <span className="col-md-3 col-12">
+                                          {merchantCurrency}&nbsp;
+                                        </span>
                                         <span className="col-md-9 col-12">
-                                        {merchantCurrency == 'KHR' ? parseFloat(result.d4_big_consolation) : parseFloat(result.d4_big_consolation).toFixed(2)}</span>
+                                          {merchantCurrency == "KHR"
+                                            ? parseInt(
+                                                result.d4_big_consolation
+                                              )
+                                            : parseFloat(
+                                                result.d4_big_consolation
+                                              ).toFixed(2)}
+                                        </span>
                                       </span>
                                     </td>
-                                    <div className={styles.device_detect_for_desktop}> 
-                                      <td
-                                        style={{ width: "100%" }}
-                                        className="text-left d-flex flex-column"
-                                      >
-                                          <span className="d-flex justify-content-between">
-                                            <span> {t('Big')}: </span>
-                                            <span>
-                                              {merchantCurrency} &nbsp;
-                                              {merchantCurrency == 'KHR' ? parseFloat(price.d4.consolation) : parseFloat(price.d4.consolation).toFixed(2)}
-                                            </span>
-                                          </span>
-                                      </td>
-                                    </div>
+                                    {/* <div className={styles.device_detect_for_desktop}>  */}
+                                    <td
+                                      style={{ width: "100%" }}
+                                      className="text-left d-flex flex-column"
+                                    >
+                                      <span className="d-flex justify-content-between">
+                                        <span
+                                          className={
+                                            styles.device_detect_for_desktop
+                                          }
+                                        >
+                                          {" "}
+                                          {t("Big")}:{" "}
+                                        </span>
+                                        <span>
+                                          {merchantCurrency} &nbsp;
+                                          {merchantCurrency == "KHR"
+                                            ? parseInt(price.d4.consolation)
+                                            : parseFloat(
+                                                price.d4.consolation
+                                              ).toFixed(2)}
+                                        </span>
+                                      </span>
+                                    </td>
+                                    {/* </div> */}
                                   </tr>
                                 </>
                               ) : (
@@ -1319,7 +1567,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     <tbody>
                                       <tr className="">
                                         <td style={{ width: "30%" }}>
-                                          {t('P1')}
+                                          {t("P1")}
                                         </td>
                                         <td
                                           className="text-left"
@@ -1336,23 +1584,23 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {merchantCurrency}&nbsp;0.00
                                           </span>
                                         </td>
-                                        <div className={styles.device_detect_for_desktop}> 
-                                            <td
-                                              className="text-left d-flex flex-column"
-                                              style={{ width: "30%" }}
-                                            >
-                                                <span className="d-flex justify-content-start">
-                                                  <span> 0.00</span>
-                                                </span>
-                                                <span className="d-flex justify-content-start">
-                                                  <span> 0.00</span>
-                                                </span>
-                                            </td>
-                                        </div>
+                                        {/* <div className={styles.device_detect_for_desktop}>  */}
+                                        <td
+                                          className="text-left d-flex flex-column"
+                                          style={{ width: "30%" }}
+                                        >
+                                          <span className="d-flex justify-content-start">
+                                            <span> 0.00</span>
+                                          </span>
+                                          <span className="d-flex justify-content-start">
+                                            <span> 0.00</span>
+                                          </span>
+                                        </td>
+                                        {/* </div> */}
                                       </tr>
                                       <tr className="">
                                         <td style={{ width: "30%" }}>
-                                          {t('P2')}
+                                          {t("P2")}
                                         </td>
                                         <td
                                           className="text-start"
@@ -1369,24 +1617,28 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {merchantCurrency}&nbsp;0.00
                                           </span>
                                         </td>
-                                        
-                                    <div className={styles.device_detect_for_desktop}> 
-                                        <td
-                                          className="text-left d-flex flex-column"
-                                          style={{ width: "30%" }}
+
+                                        <div
+                                          className={
+                                            styles.device_detect_for_desktop
+                                          }
                                         >
+                                          <td
+                                            className="text-left d-flex flex-column"
+                                            style={{ width: "30%" }}
+                                          >
                                             <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                             <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
-                                        </td>
+                                          </td>
                                         </div>
                                       </tr>
                                       <tr className="">
                                         <td style={{ width: "30%" }}>
-                                          {t('P3')}
+                                          {t("P3")}
                                         </td>
                                         <td
                                           className="text-left"
@@ -1403,24 +1655,28 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {merchantCurrency}&nbsp;0.00
                                           </span>
                                         </td>
-                                        
-                                    <div className={styles.device_detect_for_desktop}> 
-                                        <td
-                                          className="text-left d-flex flex-column"
-                                          style={{ width: "30%" }}
+
+                                        <div
+                                          className={
+                                            styles.device_detect_for_desktop
+                                          }
                                         >
+                                          <td
+                                            className="text-left d-flex flex-column"
+                                            style={{ width: "30%" }}
+                                          >
                                             <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                             <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
-                                        </td>
+                                          </td>
                                         </div>
                                       </tr>
                                       <tr className="">
                                         <td style={{ width: "30%" }}>
-                                          {t('Special_Prize')}
+                                          {t("Special_Prize")}
                                         </td>
                                         <td
                                           className="text-left"
@@ -1437,21 +1693,25 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {merchantCurrency}&nbsp;0.00
                                           </span>
                                         </td>
-                                        
-                                    <div className={styles.device_detect_for_desktop}> 
-                                        <td
-                                          className="text-left d-flex flex-column"
-                                          style={{ width: "30%" }}
+
+                                        <div
+                                          className={
+                                            styles.device_detect_for_desktop
+                                          }
                                         >
+                                          <td
+                                            className="text-left d-flex flex-column"
+                                            style={{ width: "30%" }}
+                                          >
                                             <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
-                                        </td>
+                                          </td>
                                         </div>
                                       </tr>
                                       <tr className="">
                                         <td style={{ width: "30%" }}>
-                                          {t('Consolation_Prize')}
+                                          {t("Consolation_Prize")}
                                         </td>
                                         <td
                                           className="text-left"
@@ -1468,15 +1728,19 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {merchantCurrency}&nbsp;0.00
                                           </span>
                                         </td>
-                                    <div className={styles.device_detect_for_desktop}> 
-                                        <td
-                                          className="text-left d-flex flex-column"
-                                          style={{ width: "30%" }}
+                                        <div
+                                          className={
+                                            styles.device_detect_for_desktop
+                                          }
                                         >
+                                          <td
+                                            className="text-left d-flex flex-column"
+                                            style={{ width: "30%" }}
+                                          >
                                             <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
-                                        </td>
+                                          </td>
                                         </div>
                                       </tr>
                                     </tbody>

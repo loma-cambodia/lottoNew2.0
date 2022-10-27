@@ -157,6 +157,7 @@ export default function SearchNumber({ _transactions, _auth }) {
   const [permutationData, setPermutationData] = useState(null);
   const [mainCard, setMainCard] = useState(null);
   const [firstTableData, setFirstTableData] = useState(null);
+  const [search, setSearch] = useState(0)
   
   const [prizeInitData, setPrizeInitData] = useState(prizeObject);
   const [changeData, setChangeData] = useState(0);
@@ -331,6 +332,18 @@ export default function SearchNumber({ _transactions, _auth }) {
     setPermutation(null); 
     getallcompanydata();  
     setPrizeInitData(prizeObject);  
+    
+  }
+
+  const getNetDrawDate = () =>{
+    let numberCount = mainCard && mainCard.avg_draw_gap ? mainCard.avg_draw_gap : 0;
+    if(numberCount != 0){
+      const countNumber = numberCount * 3;
+      let maxDate = moment().add('days', countNumber).format('DD/MM/YYYY');
+      return maxDate;
+    }else{
+      return '--';
+    }
   }
 
   function PrizeSetComm({prizeType}){
@@ -365,6 +378,378 @@ export default function SearchNumber({ _transactions, _auth }) {
           </span>
     )
   }
+
+  function getCountsPrizeSetComm(prizeType){
+    // console.log('totalCounts',prizeType);
+    let st1	= 0;
+    let nd2	= 0;
+    let rd3	= 0;
+    let Spe	= 0;
+    let Con = 0;
+    if(prizeType == 'prize1'){
+      st1++;
+    }else if(prizeType == 'prize2'){
+      nd2++;
+    }else if(prizeType == 'prize3'){
+      rd3++;
+    }else if(prizeType == 'special1' || prizeType == 'special2' || prizeType == 'special3' || prizeType == 'special4' || prizeType == 'special5' || prizeType == 'special6' || prizeType == 'special7' || prizeType == 'special8' || prizeType == 'special9' || prizeType == 'special10'){
+      Spe++;
+    }
+    else if(prizeType == 'consolation1' || prizeType == 'consolation2' || prizeType == 'consolation3' || prizeType == 'consolation4' || prizeType == 'consolation5' || prizeType == 'consolation6' || prizeType == 'consolation7' || prizeType == 'consolation8' || prizeType == 'consolation9' || prizeType == 'consolation10'){
+      Con++;
+    }
+    let totalCounts = {
+                        "st1": st1,
+                        "nd2": nd2,
+                        "rd3": rd3,
+                        "Spe": Spe,
+                        "Con": Con
+                      } ;
+    return totalCounts;
+  }
+
+  function PermutationDataTable({_permutationData,_firstTableData}){ 
+    if(_permutationData && _permutationData.length > 0){
+      {_permutationData && _permutationData.map((pdata, index)=>{
+        let prizeType = '';
+        let betNum = '';
+        {_firstTableData && _firstTableData.map(value => {
+          let keys = Object.keys(value);
+          keys.map(game1 => {
+            if(value[game1] == pdata){
+              prizeType = game1; 
+              betNum = value[game1];
+            }
+          });
+        })} 
+        // console.log('prizeTypeprizeType',prizeType);
+        console.log('prizeTypebetNumsssssssssss',_permutationData.length);
+        return (
+            <tr key={index}>
+              <td>{pdata}</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>12</td>
+              <td>12</td>
+              <td align="right">
+                <b>27</b>
+              </td>
+              <td align="right">7120</td>
+              <td align="right">6500</td>
+              <td>19/06/2022</td>
+              <td>Sun</td>
+              <td>
+                <span className="badge bg-info text-white">Special</span>
+              </td>
+              <td>
+                <img
+                  src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
+                  alt=""
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                  }}
+                />
+              </td>
+            </tr>
+        )
+      })}
+    }
+    
+    // else{
+
+    // }
+
+    // {firstTableData && firstTableData.map((value, index)=>{
+    //   let prizeType = '';
+    //   let betNum = '';
+    //     let keys = Object.keys(value);
+    //     keys.map(game1 => {
+    //       if(permutationData.length > 0){
+    //         permutationData.map(pdata => {
+    //           if(value[game1] == pdata){
+    //             prizeType = game1; 
+    //             betNum = value[game1];
+    //           }
+    //         })
+    //       }else{
+    //         if(value[game1] == number){
+    //           prizeType = game1; 
+    //           betNum = value[game1];
+    //         }
+    //       }
+    //     });
+    //   return (
+    //     <>
+    //       <tr>
+    //         <td>0234 </td>
+    //         <td>1</td>
+    //         <td>1</td>
+    //         <td>1</td>
+    //         <td>12</td>
+    //         <td>12</td>
+    //         <td align="right">
+    //           <b>27</b>
+    //         </td>
+    //         <td align="right">7120</td>
+    //         <td align="right">6500</td>
+    //         <td>19/06/2022</td>
+    //         <td>Sun</td>
+    //         <td>
+    //           <span className="badge bg-info text-white">Special</span>
+    //         </td>
+    //         <td>
+    //           <img
+    //             src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
+    //             alt=""
+    //             style={{
+    //               width: "20px",
+    //               height: "20px",
+    //               borderRadius: "50%",
+    //             }}
+    //           />
+    //         </td>
+    //       </tr>
+    //     </>
+    //   )
+    // })}
+  }
+
+  function ForData(){
+        let st1m	= 0;
+        let nd2m	= 0;
+        let rd3m	= 0;
+        let Spem	= 0;
+        let Conm = 0;
+        let totalm = 0;
+        let LastDrawDate = '-';
+        let LastDrawDay = '-';
+        let lastPrize = '';
+        let LastGameId = '';
+        {firstTableData && firstTableData.map(value => {
+          let keys = Object.keys(value);
+          keys.map(game1 => {
+            if(value[game1] == number){
+              let totalCounts = getCountsPrizeSetComm(game1);
+              console.log('totalCounts',totalCounts.st1)
+              st1m	= st1m+totalCounts.st1;
+              nd2m	= nd2m+totalCounts.nd2;
+              rd3m	= rd3m+totalCounts.rd3;
+              Spem	= Spem+totalCounts.Spe;
+              Conm  = Conm+totalCounts.Con;
+
+              totalm = st1m+nd2m+rd3m+Spem+Conm;
+              lastPrize = game1;
+              LastDrawDate = moment(value.fetching_date).format('DD/MM/YYYY');
+              LastDrawDay = moment(value.fetching_date).format('ddd');
+              LastGameId = value.game_play_id;
+            }
+          });
+        })} 
+        return (
+          <>
+            <tr>
+              <td>{firstTableData && number}</td>
+              <td>{st1m != 0 ? st1m : '' }</td>
+              <td>{nd2m != 0 ? nd2m : '' }</td>
+              <td>{rd3m != 0 ? rd3m : '' }</td>
+              <td>{Spem != 0 ? Spem : '' }</td>
+              <td>{Conm != 0 ? Conm : '' }</td>
+              <td align="right">
+                <b>{totalm != 0 ? totalm : '' }</b>
+              </td>
+              <td align="right">7120</td>
+              <td align="right">6500</td>
+              <td>{LastDrawDate}</td>
+              <td>{LastDrawDay}</td>
+              <td>
+                <PrizeSetComm prizeType={lastPrize} />
+              </td>
+              <td>
+              
+                {oddSet.map((game, id) => {
+                  if(LastGameId && game.game_play.id == LastGameId){
+                    return(
+                      <span key={id}>
+                        <img
+                          src={game.game_play.logo_url}
+                          alt=""
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            borderRadius: "50%",
+                          }}
+                        />
+                      </span>
+                    )                            
+                  }
+                })}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Total</b>
+              </td>
+              <td>{st1m != 0 ? st1m : '' }</td>
+              <td>{nd2m != 0 ? nd2m : '' }</td>
+              <td>{rd3m != 0 ? rd3m : '' }</td>
+              <td>{Spem != 0 ? Spem : '' }</td>
+              <td>{Conm != 0 ? Conm : '' }</td>
+              <td align="right">
+                <b>{totalm != 0 ? totalm : '' }</b>
+              </td>
+              <td align="right">7120</td>
+              <td align="right">6500</td>
+              <td align="right">
+                <b>&nbsp;</b>
+              </td>
+              <td align="right">
+                <b>&nbsp;</b>
+              </td>
+              <td align="right">
+                <b>&nbsp;</b>
+              </td>
+              <td align="right">
+                <b>&nbsp;</b>
+              </td>
+            </tr>
+          </>
+        )
+  }
+
+    // function ForDataFirst(){
+    //   let mainst1m	= 0;
+    //   let mainnd2m	= 0;
+    //   let mainrd3m	= 0;
+    //   let mainSpem	= 0;
+    //   let mainConm = 0;
+    //   let maintotalm = 0;
+    //   {permutationData && permutationData.map((pdata, index)=>{
+    //     let st1m	= 0;
+    //     let nd2m	= 0;
+    //     let rd3m	= 0;
+    //     let Spem	= 0;
+    //     let Conm = 0;
+    //     let totalm = 0;
+    //     let LastDrawDate = '-';
+    //     let LastDrawDay = '-';
+    //     let lastPrize = '';
+    //     let LastGameId = '';
+    //     {firstTableData && firstTableData.map(value => {
+    //       let keys = Object.keys(value);
+    //       keys.map(game1 => {
+    //         if(value[game1] == pdata){
+    //           let totalCounts = getCountsPrizeSetComm(game1);
+    //           console.log('totalCounts',totalCounts.st1)
+    //           st1m	= st1m+totalCounts.st1;
+    //           nd2m	= nd2m+totalCounts.nd2;
+    //           rd3m	= rd3m+totalCounts.rd3;
+    //           Spem	= Spem+totalCounts.Spe;
+    //           Conm  = Conm+totalCounts.Con;
+
+    //           totalm = st1m+nd2m+rd3m+Spem+Conm;
+    //           lastPrize = game1;
+    //         }
+    //       });
+    //       LastDrawDate = moment(value.fetching_date).format('DD/MM/YYYY');
+    //       LastDrawDay = moment(value.fetching_date).format('ddd');
+    //       LastGameId = value.game_play_id;
+    //     })} 
+
+    //     return (
+    //         <tr key={index}>
+    //           <td>{pdata}</td>
+    //           <td>{st1m != 0 ? st1m : '' }</td>
+    //           <td>{nd2m != 0 ? nd2m : '' }</td>
+    //           <td>{rd3m != 0 ? rd3m : '' }</td>
+    //           <td>{Spem != 0 ? Spem : '' }</td>
+    //           <td>{Conm != 0 ? Conm : '' }</td>
+    //           <td align="right">
+    //             <b>{totalm != 0 ? totalm : '' }</b>
+    //           </td>
+    //           <td align="right">7120</td>
+    //           <td align="right">6500</td>
+    //           <td>{LastDrawDate}</td>
+    //           <td>{LastDrawDay}</td>
+    //           <td>
+    //             <PrizeSetComm prizeType={lastPrize} />
+    //           </td>
+    //           <td>
+              
+    //             {oddSet.map((game, id) => {
+    //               if(LastGameId && game.game_play.id == LastGameId){
+    //                 return(
+    //                   <span key={id}>
+    //                     <img
+    //                       src={game.game_play.logo_url}
+    //                       alt=""
+    //                       style={{
+    //                         width: "20px",
+    //                         height: "20px",
+    //                         borderRadius: "50%",
+    //                       }}
+    //                     />
+    //                   </span>
+    //                 )                            
+    //               }
+    //             })}
+    //           </td>
+    //         </tr>
+    //     )
+    //   })}
+    //   <tr>
+    //     <td>
+    //       <b>Total</b>
+    //     </td>
+    //     <td>
+    //       <b>{mainst1m}</b>
+    //     </td>
+    //     <td>
+    //       <b>{mainnd2m}</b>
+    //     </td>
+    //     <td>
+    //       <b>{mainrd3m}</b>
+    //     </td>
+    //     <td>
+    //       <b>{mainSpem}</b>
+    //     </td>
+    //     <td>
+    //       <b>{mainConm}</b>
+    //     </td>
+    //     <td align="right">
+    //       <b>{maintotalm}</b>
+    //     </td>
+    //     <td align="right">
+    //       <b>254720</b>
+    //     </td>
+    //     <td align="right">
+    //       <b>241500</b>
+    //     </td>
+    //     <td align="right">
+    //       <b>&nbsp;</b>
+    //     </td>
+    //     <td align="right">
+    //       <b>&nbsp;</b>
+    //     </td>
+    //     <td align="right">
+    //       <b>&nbsp;</b>
+    //     </td>
+    //     <td align="right">
+    //       <b>&nbsp;</b>
+    //     </td>
+    //   </tr> 
+    // }
+
+
+
+    let mainst1m	= 0;
+    let mainnd2m	= 0;
+    let mainrd3m	= 0;
+    let mainSpem	= 0;
+    let mainConm = 0;
+    let maintotalm = 0;
   return (
     <>
       <section className="custom-breadcrumb">
@@ -402,7 +787,7 @@ export default function SearchNumber({ _transactions, _auth }) {
                     maxLength={4}
                     required
                     autoComplete="off"
-                    value={number}
+                    value={number && !search ? number: ""}
                   />
                 </FormGroup>
               </Col>
@@ -677,7 +1062,8 @@ export default function SearchNumber({ _transactions, _auth }) {
                       <p className="fw-bold mb-0 fs-5">
                         <b>#{mainCard && mainCard.last_hit_draw_id ? mainCard.last_hit_draw_id : '' }</b>
                       </p>
-                      <p className="mb-0 fs-6">Estimate Next Hit DrawID</p>
+                      {/* <p className="mb-0 fs-6">Estimate Next Hit DrawID</p> */}
+                      <p className="mb-0 fs-6">Last Hit DrawID</p>
                     </div>
                   </div>
                 </CardBody>
@@ -715,7 +1101,7 @@ export default function SearchNumber({ _transactions, _auth }) {
                     </div>
                     <div className="widget-text">
                       <p className="fw-bold mb-0 fs-5">
-                        <b>28-12-2022</b>
+                        <b>{getNetDrawDate()}</b>
                       </p>
                       <p className="mb-0 fs-6">Estimate Next Draw Date</p>
                     </div>
@@ -782,7 +1168,7 @@ export default function SearchNumber({ _transactions, _auth }) {
                                   <span key={id}>
                                     <img
                                       src={game.game_play.logo_url}
-                                      alt="Magnum"
+                                      alt=""
                                       style={{
                                         width: "20px",
                                         height: "20px",
@@ -824,515 +1210,131 @@ export default function SearchNumber({ _transactions, _auth }) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-
-
-
-
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>0234 </td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>12</td>
-                  <td>12</td>
-                  <td align="right">
-                    <b>27</b>
-                  </td>
-                  <td align="right">7120</td>
-                  <td align="right">6500</td>
-                  <td>19/06/2022</td>
-                  <td>Sun</td>
-                  <td>
-                    <span className="badge bg-info text-white">Special</span>
-                  </td>
-                  <td>
-                    <img
-                      src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                      alt="Magnum"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <b>Total</b>
-                  </td>
-                  <td>
-                    <b>41</b>
-                  </td>
-                  <td>
-                    <b>31</b>
-                  </td>
-                  <td>
-                    <b>36</b>
-                  </td>
-                  <td>
-                    <b>391</b>
-                  </td>
-                  <td>
-                    <b>417</b>
-                  </td>
-                  <td align="right">
-                    <b>916</b>
-                  </td>
-                  <td align="right">
-                    <b>254720</b>
-                  </td>
-                  <td align="right">
-                    <b>241500</b>
-                  </td>
-                  <td align="right">
-                    <b>&nbsp;</b>
-                  </td>
-                  <td align="right">
-                    <b>&nbsp;</b>
-                  </td>
-                  <td align="right">
-                    <b>&nbsp;</b>
-                  </td>
-                  <td align="right">
-                    <b>&nbsp;</b>
-                  </td>
-                </tr>
+                  {permutationData && permutationData.length > 0 ? 
+                    <>
+                      {permutationData && permutationData.map((pdata, index)=>{
+                        let st1m	= 0;
+                        let nd2m	= 0;
+                        let rd3m	= 0;
+                        let Spem	= 0;
+                        let Conm = 0;
+                        let totalm = 0;
+                        let LastDrawDate = '-';
+                        let LastDrawDay = '-';
+                        let lastPrize = '';
+                        let LastGameId = '';
+                        {firstTableData && firstTableData.map(value => {
+                          let keys = Object.keys(value);
+                          keys.map(game1 => {
+                            if(value[game1] == pdata){
+                              let totalCounts = getCountsPrizeSetComm(game1);
+                              st1m	= st1m+totalCounts.st1;
+                              nd2m	= nd2m+totalCounts.nd2;
+                              rd3m	= rd3m+totalCounts.rd3;
+                              Spem	= Spem+totalCounts.Spe;
+                              Conm  = Conm+totalCounts.Con;
+                              totalm = st1m+nd2m+rd3m+Spem+Conm;
+                              lastPrize = game1;
+                              LastDrawDate = moment(value.fetching_date).format('DD/MM/YYYY');
+                              LastDrawDay = moment(value.fetching_date).format('ddd');
+                              LastGameId = value.game_play_id;
+                            }
+                          });
+                        })} 
+                        mainst1m	= mainst1m+st1m;
+                        mainnd2m	= mainnd2m+nd2m;
+                        mainrd3m	= mainrd3m+rd3m;
+                        mainSpem	= mainSpem+Spem;
+                        mainConm = mainConm+Conm;
+                        maintotalm = maintotalm+totalm;
+                        return (
+                            <tr key={index}>
+                              <td>{pdata}</td>
+                              <td>{st1m != 0 ? st1m : '' }</td>
+                              <td>{nd2m != 0 ? nd2m : '' }</td>
+                              <td>{rd3m != 0 ? rd3m : '' }</td>
+                              <td>{Spem != 0 ? Spem : '' }</td>
+                              <td>{Conm != 0 ? Conm : '' }</td>
+                              <td align="right">
+                                <b>{totalm != 0 ? totalm : '' }</b>
+                              </td>
+                              <td align="right">7120</td>
+                              <td align="right">6500</td>
+                              <td>{LastDrawDate}</td>
+                              <td>{LastDrawDay}</td>
+                              <td>
+                                <PrizeSetComm prizeType={lastPrize} />
+                              </td>
+                              <td>
+                              
+                                {oddSet.map((game, id) => {
+                                  if(LastGameId && game.game_play.id == LastGameId){
+                                    return(
+                                      <span key={id}>
+                                        <img
+                                          src={game.game_play.logo_url}
+                                          alt=""
+                                          style={{
+                                            width: "20px",
+                                            height: "20px",
+                                            borderRadius: "50%",
+                                          }}
+                                        />
+                                      </span>
+                                    )                            
+                                  }
+                                })}
+                              </td>
+                            </tr>
+                        )
+                      })}
+                      <tr>
+                        <td>
+                          <b>Total</b>
+                        </td>
+                        <td>
+                          <b>{mainst1m}</b>
+                        </td>
+                        <td>
+                          <b>{mainnd2m}</b>
+                        </td>
+                        <td>
+                          <b>{mainrd3m}</b>
+                        </td>
+                        <td>
+                          <b>{mainSpem}</b>
+                        </td>
+                        <td>
+                          <b>{mainConm}</b>
+                        </td>
+                        <td align="right">
+                          <b>{maintotalm}</b>
+                        </td>
+                        <td align="right">
+                          <b>254720</b>
+                        </td>
+                        <td align="right">
+                          <b>241500</b>
+                        </td>
+                        <td align="right">
+                          <b>&nbsp;</b>
+                        </td>
+                        <td align="right">
+                          <b>&nbsp;</b>
+                        </td>
+                        <td align="right">
+                          <b>&nbsp;</b>
+                        </td>
+                        <td align="right">
+                          <b>&nbsp;</b>
+                        </td>
+                      </tr> 
+                    </>
+                    : 
+                    <>
+                      <ForData />
+                    </>
+                  }
               </tbody>
             </table>
           </div>
