@@ -73,6 +73,9 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
 
     const handleBetNumber = (numberInput) =>{
 
+        // setInitData(initState)
+        // setCombination(0)
+
         let newAmounts = {...amounts};
 
         if (!numberInput.match("^[R-Rr-r0-9]*$")) {
@@ -224,13 +227,14 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         
     }
 
-    function sameDigit(num) {
-        const first = num % 10;
-        while (num) {
-          if (num % 10 !== first) return false;
-      num = Math.floor(num / 10);
-        }
-        return true
+    function test_same_digit(num) {
+        const len = num.length;
+    for (let i = 0; i < len / 2; i++) {
+      if (num[i] !== num[len - 1 - i]) {
+        return false;
+      }
+    }
+    return true;
       }
     
     function WinningData({oddsData}){
@@ -252,7 +256,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
             const smallInv = ''
             const threeAInv = ''
             const threeCInv = ''
-            let checkNumber = sameDigit(initData.bet_no)
+            let checkNumber = test_same_digit(initData.bet_no)
             if(initData.bet_type == "S"){
                 if(initData.bet_no.length == 4){
                     if(initData.bet_no.includes('R') || initData.bet_no.includes('r')){
