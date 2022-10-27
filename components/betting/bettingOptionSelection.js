@@ -309,6 +309,8 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
     dataSubmit['member_id'] = auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id) : 0;
     //dataSubmit['member_id'] = 0;
     dataSubmit['merchant_id'] = auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0;
+
+    dataSubmit['token'] = auth && auth.auth && auth.auth.token ? auth.auth.token : "";
     //dataSubmit['merchant_id'] = 0;
 
     if (dataSubmit && dataSubmit.merchant_id == 0) {
@@ -324,7 +326,6 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
     }
       return false;
     }
-
 
 
 
