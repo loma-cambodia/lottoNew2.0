@@ -227,6 +227,10 @@ const Calculator = ({ _transactions, _auth }) => {
       setCost("");
     }
 
+    if(gameType == 'r' && palindrome == true){
+      setGameType('s')
+    }
+
     if (key == 3) {
       if (!_3aInput.match("^[0-9-.]*$") || !_3cInput.match("^[0-9-.]*$")) {
         return false;
@@ -575,7 +579,7 @@ const Calculator = ({ _transactions, _auth }) => {
     setBig("");
     setC3("");
     setCombo("");
-    setGameType("");
+    setGameType("s");
     setNumber("");
     setResult("");
     setSmall("");
@@ -713,7 +717,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           alt=""
                                         style={{ width: '20px' }}
                                       /> */}
-                                      Straight
+                                      {t('Straight')}
                                     </label>
                                   </div>
                                   <div>
@@ -855,7 +859,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     paddingLeft: "3px",
                                   }}
                                 >
-                                  <b>{t("Small_Bet")}: / 3C</b>
+                                  <b>{t("Small_Bet")} / 3C</b>
                                 </div>
                                 <div className="">
                                   <input
@@ -977,7 +981,7 @@ const Calculator = ({ _transactions, _auth }) => {
                         </div>
                       </div>
                       <div className="col-md-12 flex-column">
-                        <div className="absolute-div1 mt-4">
+                        <div className="absolute-div1 mt-4 height-380px">
                           <h4 className="text-center text-uppercase">
                             <b>{t("Winning_Amount")}</b>
                           </h4>
@@ -1284,7 +1288,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             }
                                           >
                                             {" "}
-                                            {t("Small_Bet")}:{" "}
+                                            {t("Small_Bet")}{" "}
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
@@ -1352,7 +1356,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             }
                                           >
                                             {" "}
-                                            {t("Small_Bet")}:{" "}
+                                            {t("Small_Bet")}{" "}
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
@@ -1422,7 +1426,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             }
                                           >
                                             {" "}
-                                            {t("Small_Bet")}:{" "}
+                                            {t("Small_Bet")}{" "}
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
