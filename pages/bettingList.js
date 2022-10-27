@@ -51,6 +51,7 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       //     payload: datauser && datauser.user && datauser.user.data ? datauser.user.data : {}
       // })
 
+
       let objectWithData = {
         "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
         "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
@@ -62,7 +63,7 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       dispatch(getLogin(objectWithData));
       }
       let d = new Date();
-      dispatch(searchTicketData(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''),setIsLoading(false))
+      dispatch(searchTicketData(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),'',datauser.user.data.token ? datauser.user.data.token : ""),setIsLoading(false))
       }, [datauser])
       
 
@@ -74,7 +75,7 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       // const ticketSearch = []
       const GetTicketNumber = (member_id,dateRange,ticketNo) => {
        // const number = e.target.value
-        dispatch(searchTicketData(member_id,dateRange,ticketNo));
+        dispatch(searchTicketData(member_id,dateRange,ticketNo,datauser.user.data.token ? datauser.user.data.token : ""));
         }
 
         // const handlePageClick = (event) => {

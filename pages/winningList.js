@@ -59,13 +59,13 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
   const getWinningList = () =>{
     setIsLoading(true); 
 
-    dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0 ,filterParams? filterParams:'', response =>{
+    dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0 ,filterParams? filterParams:'',datauser.user.data.token ? datauser.user.data.token : "", response =>{
 
         if(response.statusCode  == 201  || response.statusCode  == 200 )
         {
 
           if(response.statusCode == 200)
-          {            
+          {             
 
             setWinningList(response.data.data.data)
             setIsLoading(false); 
