@@ -22,7 +22,7 @@ export const serachBettingTips = (getData) => async (dispatch) => {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     }
-    let URL = `${API_BASE_URL}/getBetTips?number=${number}${com}&permutation=${permutation}`;
+    let URL = `${API_BASE_URL}/getBetTips?number=${number}${com}&permutation=${permutation}&date_range=${date}`;
 
     const res = await axios.get(
       `${URL}`,{
