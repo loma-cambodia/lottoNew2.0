@@ -2,10 +2,13 @@ import axios from 'axios'
 //let API_BASE_URL = 'http://api.kk-lotto.com:8080/api';
 let API_BASE_URL = process.env.apiUrl
 
-export const getBettingDates = () => async (dispatch) => {
+export const getBettingDates = (token ='') => async (dispatch) => {
   try {
     //    const res = await axios.get(`http://uat.kk-lotto.com/b2b/api/dates`);
-    const res = await axios.get(`${API_BASE_URL}/dates/all`)
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+     };
+    const res = await axios.get(`${API_BASE_URL}/dates/all`,config)
     dispatch({
       type: 'GET_DATES',
       payload: res.data.data,
@@ -23,7 +26,7 @@ export const lotterySubmit = (sendData, callback) => async (dispatch) => {
 
   try {
     const headers = {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json','Authorization': `Bearer ${sendData.token}`
     }
     const res = await axios.post(`${API_BASE_URL}/tickets`, sendData, {
       headers: headers,
