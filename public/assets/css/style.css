@@ -3054,15 +3054,32 @@ section.announcement {
 
 /* .iSAVrt */
 /* .bQdYbR  */
+.kmecXQ{
+  min-width: 50px!important
+}
+.hbotQl{
+  overflow: visible!important;
+  font-size: 14px!important;
+}
 .glyQNg{
-  padding: 2px!important;
-  padding-left: 15px!important;
+  /* padding: 2px!important;
+  padding-left: 15px!important; */
 }
 /* invesment module */  
 .eVPPvF{
-  padding: 2px!important;
-  padding-left: 15px!important;
+  /* padding: 2px!important;
+  padding-left: 15px!important; */
 
+}
+.rdt_Table{
+  min-width: fit-content!important;
+}
+.rdt_TableCell:first-child, .rdt_TableCol:first-child{
+  min-width: 10px!important;
+  text-align: center!important;
+}
+.rdt_TableHead{
+  font-weight: bold!important;
 }
 .back-section {  
   height: auto;  
@@ -3093,9 +3110,9 @@ section.announcement {
   border-radius: 15px;  
   box-shadow: 0px 0px 18px 8px rgb(0 0 0 / 20%);  
 }  
-.bQdYbR{
+/* .bQdYbR{
   min-width: 80px!important;
-}
+} */
 @media (max-width:574.999px) {  
   .back-section:before {  
       width: 100%;  
