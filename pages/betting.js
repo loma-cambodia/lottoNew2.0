@@ -24,9 +24,9 @@ export default function Betting({datauser, updateSessionData, setUpdateSessionDa
       const auth = useSelector(state => state.auth)
        useEffect(() => {
         if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
-        dispatch(userTransactionDetails(datauser.user.data.merchant_id));
+        dispatch(userTransactionDetails(datauser.user.data.merchant_id, datauser.user.data.token ? datauser.user.data.token : ""));
        // dispatch(userTransactionDetails());
-          dispatch(getBettingDates());
+          dispatch(getBettingDates(datauser.user.data.token ? datauser.user.data.token : ""));
       },[dispatch]);
 
       useEffect(() => {
