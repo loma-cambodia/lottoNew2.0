@@ -3033,6 +3033,9 @@ section.announcement {
   background: #bc2263;
   color: #fff;
 }
+.height-380px{
+  height: 380px !important;
+}
 @media (max-width:574.999px) { 
   .back-section1:before { 
       width: 100%; 
@@ -3052,6 +3055,9 @@ section.announcement {
     box-sizing: border-box;
     border-radius: 15px;
     box-shadow: 0px 0px 18px 8px rgb(0 0 0 / 20%);
+  }
+  .height-380px{
+    height: auto !important;
   }
 }
 
