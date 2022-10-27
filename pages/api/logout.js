@@ -9,6 +9,8 @@ async function handler(req, res, session) {
 
   let member_id = req.query.member_id;
   req.session.destroy();
+
+  
 if(member_id){
   console.log(`${process.env.apiUrl}/member-logout?member_id=${member_id}`);
  const userData = await fetch(`${process.env.apiUrl}/member-logout?member_id=${member_id}`);

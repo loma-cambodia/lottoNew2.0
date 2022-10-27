@@ -5,7 +5,7 @@ import $ from 'jquery';
 import { twoDecimalPlaceWithAmount } from "../Utils";
 const initState = {
     "bet_no": '',
-    "bet_type": '',
+    "bet_type": 'S',
     "big_bet":'',
     "small_bet":'',
     "three_A":'',
@@ -13,7 +13,7 @@ const initState = {
     "company":''
 }
 const games = {
-    // "magnum":false,
+    "magnum":true
     // "toto":false,
     // "dmc":false
 }
@@ -73,6 +73,9 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
 
     const handleBetNumber = (numberInput) =>{
 
+        // setInitData(initState)
+        // setCombination(0)
+
         let newAmounts = {...amounts};
 
         if (!numberInput.match("^[R-Rr-r0-9]*$")) {
@@ -97,6 +100,10 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
             //    newAmounts = {...newAmounts,"bet_type":'S'};
                     newAmounts = {...newAmounts,"bet_type":''}
             }
+
+            if (!test_same_digit(numberInput) && amounts.bet_type == 'R'){
+                        newAmounts = {...newAmounts,"bet_type":''}
+                }
 
             if(numberInput.length != 4 && amounts.bet_type == 'I'){
                 newAmounts = {...newAmounts,"bet_type":''};
@@ -170,14 +177,14 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         if(amounts.bet_no && amounts.bet_no.length > 2){
             switch (amounts.bet_no.length){
                 case 3:
-                    if(amounts.three_A && amounts.three_C)
+                    if(amounts.three_A || amounts.three_C)
                     {
                         isAllFill = true
                     }
                 break;
 
                 case 4:
-                    if(amounts.big_bet && amounts.small_bet)
+                    if(amounts.big_bet || amounts.small_bet)
                     {
                         isAllFill = true
                     }
@@ -221,12 +228,13 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     }
 
     function test_same_digit(num) {
-        const first = num % 10;
-        while (num) {
-          if (num % 10 !== first) return false;
-      num = Math.floor(num / 10);
-        }
-        return true
+        const len = num.length;
+    for (let i = 0; i < len / 2; i++) {
+      if (num[i] !== num[len - 1 - i]) {
+        return false;
+      }
+    }
+    return true;
       }
     
     function WinningData({oddsData}){
@@ -363,15 +371,17 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                     <div className='first-2-lines my-3'>
                                         <table>
 
-                                            <tr>
-                                                <td>{t('Total_No_of_Combination')}</td>
-                                                <td className='text-end fw-bold'>{combination}</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>{t('Total_Cost')} </td>
-                                                <td className='text-end fw-bold'>{merchantCurrency} {decimal(total)}</td>
-                                            </tr>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{t('Total_No_of_Combination')}</td>
+                                                    <td className='text-end fw-bold'>{combination}</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>{t('Total_Cost')} </td>
+                                                    <td className='text-end fw-bold'>{merchantCurrency} {decimal(total)}</td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                     <div className='bottom-3-col'>
@@ -709,7 +719,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                         </div>
                                     </div> 
                                     <div className='form-group'>
-                                        <div className='row'>
+                                        <div className='row' style={{minHeight:'40px'}}>
                                             <div className='col-lg-5 col-md-4'>
                                                 <b className='mb-2 d-block'>{t('Bet_Type')}</b>
                                             </div>
@@ -724,9 +734,9 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                         : 
                                         '' 
                                         }
-
+                                    {amounts.bet_no && test_same_digit(amounts.bet_no) ? '':
                                         <button type="button" className={amounts && amounts.bet_type && amounts.bet_type == "R" ? 'btn btn-bordered-theme-active me-1 active-bet-type' : 'btn-custom-small me-1'} title={t("Reverse")} onClick={(e) => (amounts.bet_type == 'R'? setAmounts({...amounts,"bet_type":""}) : setAmounts({...amounts,"bet_type":"R"}))}>{t('R')}</button>
-                                                                                    
+                                    }                                 
                                         </>
                                         }
                                         </div>
@@ -781,10 +791,10 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                      } 
                                     <div className='form-group'>
                                     <div className='row'>
-                                    <div className='col-lg-6 col-md-6'>
-                                        <div className="clearfix text-center"><span role="button" className={`d-block btn-yellow rounded-full`} onClick={()=> clearInputs()} >{t('clear')}</span></div>
+                                    <div className='col-lg-5 col-md-5'>
+                                        <div className="clearfix text-center"><span role="button" className={`d-block btn-white rounded-full`} onClick={()=> clearInputs()} >{t('clear')}</span></div>
                                     </div>
-                                    <div className='col-lg-6 col-md-6'>
+                                    <div className='col-lg-7 col-md-7'>
                                         <div className="clearfix text-center"><span role="button" className={`${submit ? "":"button-disable" } d-block btn-yellow rounded-full`} onClick={()=> submit? combine():''}
                                         >{t('Calculate')}</span></div>
                                     </div>
@@ -816,12 +826,10 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         
                                                 if(gameList[companyName]){
                                                 return(
-                                                    <>
-                                                        
+                                                    <div className="d-flex" key={i}>
                                                             <div className='comapny-type-logo mx-2'><img src={e.game_play.logo_url}/></div>
-                                                            <div className='company-type-name text-white p-2' >{e.game_play.name}</div>
-                                                            
-                                                    </>
+                                                            <div className='company-type-name text-white p-2'>{e.game_play.name}</div>  
+                                                    </div>
                                                         )
                                                     }
                                                 })}

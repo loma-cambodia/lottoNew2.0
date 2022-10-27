@@ -10,9 +10,9 @@ const { t } = useTranslation();
     <div className="container">
         <div className="footer-row">
             <div className="footer-logo">
-                <a href="#">
-                    <img src="assets/images/logo-footer.png" style={{}} className="img-fluid"/>
-                </a>
+                    <Link href="/" className="logo-link">
+                      <img src="assets/images/logo-footer.png" style={{}} className="img-fluid" role="button"/>
+                    </Link> 
             </div>
             <div className="footer-links ms-auto">
                 <div className="clearfix">
