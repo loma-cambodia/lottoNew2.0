@@ -111,7 +111,8 @@ function MyApp({ Component, pageProps,user }) {
   }
 
   if (isLoading) return <p>{t('Loading')}...</p>
-  if (!data) return <p>{t('no_profile_data')}</p>
+ // if (!data) return <p>{t('no_profile_data')}</p>
+ if (!data) return <p>{t('Loading')}</p>
   if(Object.keys(data.user.data).length === 0){
     return (
       <Notfound action={'0'} />
