@@ -25,11 +25,11 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
 
 
 useEffect(() => {
-  dispatch(announcement());
-  dispatch(specialDraw());
+  dispatch(announcement(datauser.user.data.token ? datauser.user.data.token : ""));
+  dispatch(specialDraw(datauser.user.data.token ? datauser.user.data.token : ""));
   if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
-    dispatch(userTransactionDetails(datauser.user.data.merchant_id));
-  dispatch(winnerResultDetailsSecond());
+    dispatch(userTransactionDetails(datauser.user.data.merchant_id, datauser.user.data.token ? datauser.user.data.token : "" ));
+  dispatch(winnerResultDetailsSecond(datauser.user.data.token ? datauser.user.data.token : ""));
 }, [datauser]);
 
 

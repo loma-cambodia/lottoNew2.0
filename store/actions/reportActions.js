@@ -3,7 +3,7 @@ import axios from 'axios'
  const API_BASE_URL = process.env.apiUrl
 
 
-export const getTicketDataSettled = (id) => async (dispatch) => {
+export const getTicketDataSettled = (id,token ='') => async (dispatch) => {
   const userId = id
    try {
      const headers = {
@@ -27,7 +27,7 @@ export const getTicketDataSettled = (id) => async (dispatch) => {
    }
  }
 
-export const searchTicketData = (member_id,date_range, ticketNumber) => async (dispatch) => {
+export const searchTicketData = (member_id,date_range, ticketNumber, token ='') => async (dispatch) => {
   try {
     const headers = {
       'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ export const searchTicketData = (member_id,date_range, ticketNumber) => async (d
 }
 
 
-export const searchTicketDataSettled = (member_id,date_range, ticketNumber) => async (dispatch) => {
+export const searchTicketDataSettled = (member_id,date_range, ticketNumber, token ='') => async (dispatch) => {
   try {
     const headers = {
       'Content-Type': 'application/json',
@@ -106,11 +106,13 @@ export const getLotteryDetailsList = (getData) => async (dispatch) => {
   let child_ticket_no = getData.child_ticket_no;
   let game_play_id = getData.game_play_id;
   let game_type = getData.game_type;
-
+  let token = getData.token;
+  
   try {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
+      'Authorization': `Bearer ${token}`
     }
 
 
@@ -150,10 +152,13 @@ export const filterLotteryDetailsList = (getData) => async (dispatch) => {
   let child_ticket_no = getData.child_ticket_no;
   let game_play_id = getData.game_play_id;
   let game_type = getData.game_type;
+  let token = getData.token;
   try {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
+      'Authorization': `Bearer ${token}`
+
     }
     let URL = `${API_BASE_URL}/betListById?id=${ticketId}`;
 

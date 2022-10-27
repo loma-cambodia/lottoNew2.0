@@ -47,6 +47,7 @@ export const setUserDataFormat = (data, fromWindow = 1) => {
   newData.language = getData && getData.language  && getData.language.locale ? {locale:getData.language.locale, name:getData.language.name} : {locale:'', name:''};
   newData.wallet = getData && getData.wallet && getData.wallet.amount ? {amount:getData.wallet.amount, name:getData.language.name} : {amount:'', name:''} ;
   newData.merchant = getData && getData.merchant && getData.merchant.currency && getData.merchant.currency.code ? {currency:{code:getData.merchant.currency.code}} : {} ;
+  newData.token = getData && getData.token ? getData.token : "" ;
 
   return newData;
 };
