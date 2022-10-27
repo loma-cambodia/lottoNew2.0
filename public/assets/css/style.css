@@ -540,6 +540,36 @@
     }
     .background {
       background: url(../images/vector-bg.png);
+  }
+  .btn-white {
+    background-image: white;
+    border: 1px solid #303030;
+    padding: 15px 30px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    text-transform: uppercase;
+    font-family: "Open Sans";
+    transition: all 250ms;
+  }
+  .btn-white:hover {
+    background: #eeeeee; /* Old browsers */
+    background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #eeeeee 0%,#eeeeee 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #eeeeee 0%,#eeeeee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
+    color: black;
+    border: 1px solid #d8d8d8;
+
+}
+  .rounded-full {
+  border-radius: 30px;
+  }
+  .hero-slider-normal-one {
+      background: url(../images/bg-slider/win-big-bg.png);
+      background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -1238,6 +1268,126 @@
     .btn-delete-small:focus-within,
     .btn-delete-small:hover {
     box-shadow: 0px 6px 3px rgba(0, 0, 0, 0.3);
+   
+  }
+  .clearfix span.d-block.rounded-full {
+    margin: 5px 0px;
+}
+  
+  span.outer-circle-gp {
+  width: 35px;
+  height: 35px;
+  display: block;
+  border-radius: 50%;
+  border: 1px solid;
+  overflow: hidden;
+  padding: 3px;
+  cursor: pointer;
+  line-height: 15px;
+  }
+  span.selected-gp-btn {
+  border-color: #bc2263;
+  }
+  .select-gp ul {
+  margin: 0;
+  padding: 0;
+  }
+  span.inner-circle-gp {
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  }
+  span.outer-circle-gp span.inner-circle-gp img {
+  filter: grayscale(100%);
+  }
+  span.outer-circle-gp.selected-gp-btn span.inner-circle-gp img {
+  filter: grayscale(0%);
+  }
+  .round {
+  position: relative;
+  width: 35px;
+  }
+  .round label {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 28px;
+  }
+  .round label:after {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #ccc;
+  content: "";
+  left: 5px;
+  position: absolute;
+  top: 5px;
+  border: 1px solid #ddd;
+  }
+  .round input[type="checkbox"] {
+  visibility: hidden;
+  }
+  .round input[type="checkbox"]:checked + label {
+  background-color: #fff;
+  border: 1px solid #bc2263;
+  }
+  .round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  background-color: #bc2263;
+  }
+  .selected .day-n-date p {
+  color: #bc2263;
+  }
+  .sno {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-color: #ccc;
+  color: #000;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  font-size: 14px;
+  }
+  .form-control-custom {
+  border: 1px solid #ddd;
+  border-radius: 10px 0;
+  padding: 4px 10px;
+  font-size: 13px;
+  width: 150px;
+  max-width: 100%;
+  }
+  .form-control-custom:focus,
+  .form-control-custom:focus-visible {
+  border: 1px solid #bc2263;
+  box-shadow: none;
+  outline: 0;
+  }
+  .btn-custom-small {
+  border: 1px solid #bc2263;
+  color: #bc2263;
+  background-color: #fff;
+  max-width: 30px;
+  max-height: 30px;
+  width: 30px;
+  border-radius: 10px 0;
+  transition: 0.5s;
+  }
+  .btn-custom-small-disabled {
+      border: 1px solid #bc2263;
+      color: #bc2263;
+      background-color: #fff;
+      max-width: 30px;
+      max-height: 30px;
+      width: 30px;
+      border-radius: 10px 0;
+      transition: 0.5s;
     }
 
 
@@ -2902,8 +3052,18 @@ section.announcement {
   max-width: 130px; 
 }
 
+/* .iSAVrt */
+/* .bQdYbR  */
+.glyQNg{
+  padding: 2px!important;
+  padding-left: 15px!important;
+}
 /* invesment module */  
-  
+.eVPPvF{
+  padding: 2px!important;
+  padding-left: 15px!important;
+
+}
 .back-section {  
   height: auto;  
   padding: 30px;  
@@ -2933,7 +3093,9 @@ section.announcement {
   border-radius: 15px;  
   box-shadow: 0px 0px 18px 8px rgb(0 0 0 / 20%);  
 }  
-  
+.bQdYbR{
+  min-width: 80px!important;
+}
 @media (max-width:574.999px) {  
   .back-section:before {  
       width: 100%;  
