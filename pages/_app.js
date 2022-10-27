@@ -43,10 +43,12 @@ function MyApp({ Component, pageProps,user }) {
   const [isLoading, setLoading] = useState(false);
   const [updateSessionData, setUpdateSessionData] = useState(1);
   let timeoutSetting = logoutTimeInIdealCondition * 60 * 1000;
+
+
+  //console.log('data.user.data:',data.user.data);
   const onIdle = () => {
 
-   // console.log('is Ideal');
-    //if(isIdle)
+
     userLogout()
   }
   const {
@@ -94,27 +96,23 @@ function MyApp({ Component, pageProps,user }) {
   }, [updateSessionData])
 
   const userLogout = () => {
-    let member_id = user && user.auth && user.auth.id ? user.auth.id : 0;
+
+    let member_id = data && data.user && data.user.data && data.user.data.id ? data.user.data.id : 0;
+   // console.log('member_id":',member_id);
     fetch(`/api/logout?member_id=${member_id}`)
       .then((res) => {
         let response = res.json();
-        console.log('userLogout:res:',res);
+       // console.log('userLogout:res:',res);
         setData({user:{data:{}}})
         dispatch({
           type: "AUTH_LOGOUT"
         });
-
-
-
-        //localStorage.removeItem('name');
-        
-       // window.location.reload();
-
       })
   }
 
   if (isLoading) return <p>{t('Loading')}...</p>
-  if (!data) return <p>{t('no_profile_data')}</p>
+ // if (!data) return <p>{t('no_profile_data')}</p>
+ if (!data) return <p>{t('Loading')}</p>
   if(Object.keys(data.user.data).length === 0){
     return (
       <Notfound action={'0'} />

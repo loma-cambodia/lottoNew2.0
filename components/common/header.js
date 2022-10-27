@@ -24,9 +24,6 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
 
    const state = useSelector(state => state);
 
-   //console.log('datauser:',datauser);
-
-   
    let language = '';
 
    if(auth && auth.lang){
@@ -43,6 +40,9 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language])
+
+ 
+
 
 
 
@@ -73,21 +73,10 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
   
 
   const loginAPICall = () => {
-
-    // let objectWithData = {
-    //    "customer_name": auth && auth.auth && auth.auth.customer_name ? auth.auth.customer_name : '',
-    //    "customer_id":  auth && auth.auth && auth.auth.customer_id ? parseInt(auth.auth.customer_id) : 0,
-    //    "merchant_id":  auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0,
-    //    "language":  auth && auth.auth && auth.auth.language ? auth.auth.language.locale : 'en',
-    //    //"language":   auth && auth.lang ? auth.lang : 'en'
-    // } 
-  // dispatch(getLogin(objectWithData));
-   setUpdateSessionData(updateSessionData + 1); 
+      setUpdateSessionData(updateSessionData + 1); 
  }
 
-
   function LangTypeFun({langTypeVal}){
-    // alert(langTypeVal)
     if (langTypeVal == 'en') {
       return(
         <>
@@ -134,7 +123,6 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
   }
 
 
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
 
@@ -155,32 +143,20 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                    
                           <ul className="desktop-menu-list">
                             <li className= {`${router.pathname === "/" ? "active-header":""}`}>
-                            <Link className= "active" href="/">{t('Homepage')}</Link>
-                              {/* <a className="active" href="#">Home</a> */}
+                              <Link className= "active" href="/">{t('Homepage')}</Link>
                             </li>
                             <li className= {`${router.pathname === "/betting" ? "active-header":""}`}>
-                            <Link href="/betting">{t('Betting')}</Link>
-                              {/* <a  href="#">Betting</a> */}
+                              <Link href="/betting">{t('Betting')}</Link>
                             </li>
                             <li className= {`${router.pathname === "/bettingList" ? "active-header":""}`}>
-                            <Link href="/bettingList">
-                              {t('BettingList')} 
-                              {/* Betting List */}
-                              </Link>
+                              <Link href="/bettingList">{t('BettingList')}</Link>
                             </li>
-                            
                             <li className= {`${router.pathname === "/settleList" ? "active-header":""}`}>
-                            <Link href="/settleList">  
-                             {t('betting_history')}
-                              {/* Betting List */}
-                              </Link>
+                              <Link href="/settleList">{t('betting_history')}</Link>
                             </li>
                             <li className= {`${router.pathname === "/winningList" ? "active-header":""}`}>
-                            <Link href="/winningList">
-                              {t('winning_list')} 
-                              </Link>
-                              </li>
-
+                              <Link href="/winningList">{t('winning_list')}</Link>
+                            </li>
                             {/* <li className="dropdown-desktop">
                             <a href="#" >{t('History')} </a>
                             <ul className="sub-menu-desktop">
@@ -239,12 +215,11 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                           </div>
                           </li>
 
-                          <li className="dropdown position-relative">
+                          {/* <li className="dropdown position-relative">
                           <button className="btn btn-danger btn-sm" type="button" onClick={() => logoutUser(auth && auth.auth && auth.auth.id ? auth.auth.id  : 0) } style={{padding:'1px 4px'}}>
                           <i className="fa-solid fa-arrow-right-from-bracket"></i>
                           </button>
-
-                          </li>
+                          </li> */}
 
 
 
