@@ -3022,7 +3022,7 @@ section.announcement {
   position: relative; 
   z-index: 1; 
 } 
-.absolute-div { 
+.absolute-div1 { 
   background: #c22361; 
   padding: 15px; 
   box-sizing: border-box; 
@@ -3045,6 +3045,13 @@ section.announcement {
   }
   .clearfix.p-4.z-index-1.back-section2.mx-4 {
     margin-left: -4px !important;
+  }
+  .absolute-div1 {
+    background: #c22361;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-shadow: 0px 0px 18px 8px rgb(0 0 0 / 20%);
   }
 }
 

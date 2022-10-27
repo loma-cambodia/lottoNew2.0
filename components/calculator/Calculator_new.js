@@ -917,7 +917,7 @@ const Calculator = ({ _transactions, _auth }) => {
                   </div>
                 </div>
                 <div className="col-md-7 col-sm-6 text-light">
-                  <div className="absolute-div">
+                  <div className="absolute-div1">
                     <div className="inner-abs-div">
                       <div className="company-type-heading d-flex align-items-center mb-4">
                         <div className="comapny-type-logo me-3">
@@ -960,7 +960,7 @@ const Calculator = ({ _transactions, _auth }) => {
                         {t(currentMarket && currentMarket.game_play && currentMarket.game_play.name ? currentMarket.game_play.name : selectedMarket)}
                       </h3> */}
 
-                      <div className="absolute-div">
+                      <div className="absolute-div1">
                         <div className="d-flex justify-content-between align-items-center">
                           <label className="" htmlFor="number">
                             {t("Total_No_of_Combination")}
@@ -977,7 +977,7 @@ const Calculator = ({ _transactions, _auth }) => {
                         </div>
                       </div>
                       <div className="col-md-12 flex-column">
-                        <div className="absolute-div mt-4">
+                        <div className="absolute-div1 mt-4">
                           <h4 className="text-center text-uppercase">
                             <b>{t("Winning_Amount")}</b>
                           </h4>
