@@ -709,7 +709,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 <b className='mb-2 d-block'>{t('Bet_Number')}</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
-                                                <input type="text" className='form-control' 
+                                                <input type="text" className='form-control-2' 
                                                 value={amounts.bet_no}
                                                 placeholder={t('Please_type_3_or_4_digits_in_number_field')}
                                                 maxLength={4}
@@ -750,7 +750,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                     <b className='mb-2 d-block'>Big</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={amounts.big_bet} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"big_bet":e.target.value}):'')}/>
+                                                    <input value={amounts.big_bet} type="text" className='form-control-2' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"big_bet":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -760,7 +760,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                     <b className='mb-2 d-block'>Small</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={amounts.small_bet} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"small_bet":e.target.value}):'')}/>
+                                                    <input value={amounts.small_bet} type="text" className='form-control-2' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"small_bet":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -773,7 +773,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 <b className='mb-2 d-block'>3A</b>
                                             </div>
                                             <div className='col-lg-7 col-md-8'>
-                                                <input value={amounts.three_A} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"three_A":e.target.value}):'')}/>
+                                                <input value={amounts.three_A} type="text" className='form-control-2' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"three_A":e.target.value}):'')}/>
                                             </div>
                                         </div>
                                     </div>
@@ -783,7 +783,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                     <b className='mb-2 d-block'>3C</b>
                                                 </div>
                                                 <div className='col-lg-7 col-md-8'>
-                                                    <input value={amounts.three_C} type="text" className='form-control' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"three_C":e.target.value}):'')}/>
+                                                    <input value={amounts.three_C} type="text" className='form-control-2' onChange={(e)=>(handleBetAmount(e.target.value) ? setAmounts({...amounts,"three_C":e.target.value}):'')}/>
                                                 </div>
                                             </div>
                                         </div> 
