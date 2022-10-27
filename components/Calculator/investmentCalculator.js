@@ -371,15 +371,17 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                     <div className='first-2-lines my-3'>
                                         <table>
 
-                                            <tr>
-                                                <td>{t('Total_No_of_Combination')}</td>
-                                                <td className='text-end fw-bold'>{combination}</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>{t('Total_Cost')} </td>
-                                                <td className='text-end fw-bold'>{merchantCurrency} {decimal(total)}</td>
-                                            </tr>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{t('Total_No_of_Combination')}</td>
+                                                    <td className='text-end fw-bold'>{combination}</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>{t('Total_Cost')} </td>
+                                                    <td className='text-end fw-bold'>{merchantCurrency} {decimal(total)}</td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                     <div className='bottom-3-col'>
@@ -825,12 +827,10 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
         
                                                 if(gameList[companyName]){
                                                 return(
-                                                    <>
-                                                        
+                                                    <div className="d-flex" key={i}>
                                                             <div className='comapny-type-logo mx-2'><img src={e.game_play.logo_url}/></div>
-                                                            <div className='company-type-name text-white p-2' >{e.game_play.name}</div>
-                                                            
-                                                    </>
+                                                            <div className='company-type-name text-white p-2'>{e.game_play.name}</div>  
+                                                    </div>
                                                         )
                                                     }
                                                 })}

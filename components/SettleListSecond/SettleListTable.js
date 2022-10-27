@@ -452,7 +452,7 @@ const handlePageClick = (event) => {
                             <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
                         </svg>
 
-                        <Table data={dataRecordes} _childShowTable={childShowTable}/>
+                        {/* <Table data={dataRecordes} _childShowTable={childShowTable}/> */}
                     </div>
                 </>
             );
@@ -547,6 +547,8 @@ const handlePageClick = (event) => {
                 </div>
                 
                 <div className={styles.device_detect_for_desktop}>
+                <Table_Child data={tickets}/>
+
                     <table className="table small table-bordered">
                         <thead>
                             <tr>
@@ -604,8 +606,6 @@ const handlePageClick = (event) => {
                             ): null}
                         </tbody>
                     </table>
-                    <Table_Child data={tickets}/>
-
                 </div>
                 </>
             );
