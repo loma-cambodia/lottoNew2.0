@@ -2,11 +2,12 @@ import axios from 'axios'
 
 const API_BASE_URL = process.env.apiUrl
 
-export const getWinningData = (id,filters,callback) => async (dispatch) => {
+export const getWinningData = (id,filters,token="",callback) => async (dispatch) => {
     let urlHit = ''
     let ticketNo = filters.ticketNo || ""
     let prizeType = filters.prizeType || ""
     let dateRange = filters.dateRange || ""
+
     
     if (prizeType == 'All'){
         prizeType = ""
@@ -16,6 +17,7 @@ export const getWinningData = (id,filters,callback) => async (dispatch) => {
     try {
       const headers = {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
 
       
