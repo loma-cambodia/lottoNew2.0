@@ -167,8 +167,8 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                             <li className= {`${router.pathname === "/results" ? "active-header":""}`}>
                               <Link href="/results" >{t('Result')}</Link>
                             </li>
-                            <li className= {`${router.pathname === "/calculator_new" ? "active-header":""}`}>
-                              <Link href="/calculator_new" >{t('Calculator')}</Link>
+                            <li className= {`${router.pathname === "/calculator" ? "active-header":""}`}>
+                              <Link href="/calculator" >{t('Calculator')}</Link>
                             </li>
                           </ul>
                   </div>
@@ -261,8 +261,8 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                         <Link href="/results" >{t('Result')}</Link>  
                     </li>
                     
-                    <li className= {`${router.pathname === "/calculator_new" ? "active-header-mobile":""}`}>
-                      <Link href="/calculator_new" >{t('Calculator')}</Link>
+                    <li className= {`${router.pathname === "/calculator" ? "active-header-mobile":""}`}>
+                      <Link href="/calculator" >{t('Calculator')}</Link>
                     </li>
                   </ul>
               </div>

@@ -332,7 +332,6 @@ export default function SearchNumber({ _transactions, _auth }) {
     setPermutation(null); 
     getallcompanydata();  
     setPrizeInitData(prizeObject);  
-    
   }
 
   const getNetDrawDate = () =>{
