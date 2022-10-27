@@ -45,6 +45,7 @@ import homeReducers from './homeReducers';
 import ticketReducers from './ticketReducers';
 import bettingTipsReducer from './bettingTipsReducer';
 
+
 export default combineReducers({
   users: userReducer,
   betting:bettingReducers,
