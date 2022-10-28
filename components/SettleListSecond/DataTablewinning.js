@@ -25,13 +25,25 @@ const Table = props => {
         }
      };                   
                                   
-    const customStyles ={
+     const customStyles = {
         rows: {
             style: {
-                fontSize: '14px',
+                minWidth: 'fit-content', // override the row height
             },
         },
-    }
+        headCells: {
+            style: {
+                paddingLeft: '8px', // override the cell padding for head cells
+                paddingRight: '8px',
+            },
+        },
+        cells: {
+            style: {
+                paddingLeft: '8px', // override the cell padding for data cells
+                paddingRight: '8px',
+            },
+        },
+    };
     const columns = [
         {
             name: 'No',

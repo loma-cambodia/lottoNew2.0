@@ -30,7 +30,6 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     const [submit, setSubmit] = useState(false);
     const [combination, setCombination] = useState(0);
     const [gamePlayID,setGamePlayID] = useState(1)
-    const [includeR,setIncludeR]= useState(false)
     const OddsSearch = Odds.find(({ game_play_id }) => game_play_id === gamePlayID)
     const ResultData = OddsSearch
 
@@ -502,7 +501,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                             <div className='row show-600'>
                                                 <div className='col-12'>
                                                     <table className='table text-white table-sm table-bordered border small table-header-theme'>
-                                                        <thead>
+                                                        <thead style={{borderColor:'#dd3b73'}}>
                                                         <tr>
                                                             <th rowSpan={2} className="align-middle">{t('prize_type')}</th>
                                                             <th rowSpan={2} className='text-end align-middle'>{t('Winning_Amount')}</th>
@@ -514,7 +513,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                             <th className='text-end w-25'>{t('Small_Bet')}</th>
                                                         </tr>
                                                         </thead>
-                                                        <tbody>
+                                                        <tbody style={{borderColor:'#dd3b73'}}>
                                                         <tr>
                                                             <td>1st</td>
                                                             {/* <td className='text-end text-warning fw-bold'>{merchantCurrency} {decimal(Number(oddsData.small_first  * smallInv)+Number(oddsData.big_first * bigInv))}</td>
@@ -577,7 +576,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                 <div className='col-12'> 
                                                 <div className='clearfix'> 
                                                     <table className='table text-white table-sm table-bordered border small table-header-theme mb-0' style={{verticalAlign:'middle'}}> 
-                                                        <thead> 
+                                                        <thead style={{borderColor:'#dd3b73'}}> 
                                                         <tr> 
                                                             <th rowSpan={2} className="align-middle text-center">{t('prize_type')}</th> 
                                                             <th rowSpan={2} className='text-end align-middle'>{t('Winning_Amount')}</th> 
@@ -588,7 +587,7 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
                                                             <th className='text-end w-25'>{t('Small_Bet')}</th> 
                                                         </tr> 
                                                         </thead> 
-                                                        <tbody> 
+                                                        <tbody style={{borderColor:'#dd3b73'}}> 
                                                         <tr> 
                                                             <td><div className='prize-value bg-white rounded text-center text-color-main fw-bold'>{t('P1')}</div></td> 
                                                             {initData.bet_no.length == 4 ? 
@@ -656,7 +655,8 @@ const InvestmentCalculator = ({_calculatorOdds,_auth}) => {
     },[amounts,gameList]);
     return (
       <>
-       <section className="bg-light custom-padding">
+       {/* <section className="bg-light custom-padding"> */}
+       <section className="page-content custom-padding vh-100 background">
                         <div className="container">
                 <div className="heading-part text-center mb-4">
                     {/* <h5 className="text-uppercase fw-bold">{t('how_to')}</h5> */}
