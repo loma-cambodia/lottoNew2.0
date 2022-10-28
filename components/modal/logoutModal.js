@@ -29,9 +29,9 @@ const LogoutModal = ({_logoutStatus,_memberId}) => {
     return (
         <>
         <Modal
+        animation={false}
             isOpen={logoutData}
             style={customStyles}
-            contentLabel="Example Modal"
           >
                 <div className="modal-header text-white px-2 py-3 modal-dialog-centered" style={{ backgroundColor: '#bf2262' }}>
                   <h5 className="modal-title" id="bettingModal" style={{ paddingLeft: '10px',fontWeight:'bold' }}>

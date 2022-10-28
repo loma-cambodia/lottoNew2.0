@@ -224,11 +224,11 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                           <i className="fa-solid fa-arrow-right-from-bracket"></i>
                           </button>
                           </li> */}
-                          <li className="dropdown position-relative">
+                          {/* <li className="dropdown position-relative">
                           <button className="btn btn-danger btn-sm" type="button" onClick={() => setLogoutData(true) } style={{padding:'1px 4px'}}>
                           <i className="fa-solid fa-arrow-right-from-bracket"></i>
                           </button>
-                          </li>
+                          </li> */}
 
 
 
