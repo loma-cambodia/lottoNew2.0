@@ -24,9 +24,16 @@ export const getBettingDates = (token ='') => async (dispatch) => {
 export const lotterySubmit = (sendData, callback) => async (dispatch) => {
   // return false;
 
+  console.log('lotterySubmit:sendData:', sendData);
+
+
+
   try {
+
+    //let kk_lotto_token = '';
+    let token = localStorage.getItem("kk_lotto_token")
     const headers = {
-      'Content-Type': 'application/json','Authorization': `Bearer ${sendData.token}`
+      'Content-Type': 'application/json','Authorization': `Bearer ${token}`
     }
     const res = await axios.post(`${API_BASE_URL}/tickets`, sendData, {
       headers: headers,

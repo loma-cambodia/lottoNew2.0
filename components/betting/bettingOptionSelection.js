@@ -311,7 +311,7 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
     dataSubmit['merchant_id'] = auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id : 0;
 
     dataSubmit['token'] = auth && auth.auth && auth.auth.token ? auth.auth.token : "";
-    //dataSubmit['merchant_id'] = 0;
+
 
     if (dataSubmit && dataSubmit.merchant_id == 0) {
       if(!toast.isActive(toast.toastId)){
