@@ -6,11 +6,13 @@ let API_BASE_URL = process.env.apiUrl
 
 export const getResults = (sendData,token='',callback) => async (dispatch) => {
   let urlHit = ''
+
+  let kk_lotto_token = localStorage.getItem("kk_lotto_token")
    
   try {
     const headers = {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${kk_lotto_token}`
     }
     if(sendData === undefined){
       urlHit = `${API_BASE_URL}/results/get-by-date`;
@@ -46,8 +48,10 @@ export const getResults = (sendData,token='',callback) => async (dispatch) => {
 
 export const getLatestResultDate = (callback) => async (dispatch) => {
   try {
+
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token")
     const headers = {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json','Authorization': `Bearer ${kk_lotto_token}`
     }
     let urlHit = `${API_BASE_URL}/results/get-by-date`;
 
