@@ -855,8 +855,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                       for="forBoxValue"
                                       className={
                                         gameType == "s"
-                                          ? " form-control show-Selected-bet"
-                                          : "form-control disable"
+                                          ? " btn me-1 btn-bordered-theme-active"
+                                          : "btn me-1 btn-bordered-theme"
                                       }
                                       title="Enabled"
                                       onClick={() => {
@@ -879,7 +879,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       style={{
                                         cursor: "",
                                         fontSize: "14px",
-                                        border: "red 1px solid",
+                                        // border: "red 1px solid",
                                       }}
                                     >
                                     Box
@@ -893,7 +893,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
-                                          border: "red 1px solid",
+                                          // border: "red 1px solid",
                                         }}
                                       >
                                         Box
@@ -903,8 +903,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                         for="forBoxValue"
                                         className={
                                           gameType == "b"
-                                            ? " form-control show-Selected-bet"
-                                            : "form-control disable"
+                                            ? " btn me-1 btn-bordered-theme-active"
+                                            : "btn me-1 btn-bordered-themes"
                                         }
                                         title="Enabled"
                                         style={{
@@ -925,8 +925,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                         for="forIboxValue"
                                         className={
                                           gameType == "i"
-                                            ? " form-control show-Selected-bet"
-                                            : "form-control disable"
+                                            ? " btn me-1 btn-bordered-theme-active"
+                                            : "btn me-1 btn-bordered-theme"
                                         }
                                         title="iBox"
                                         style={{
@@ -949,7 +949,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
-                                          border: "red 1px solid",
+                                          // border: "red 1px solid",
                                         }}
                                       >
                                         iBox
@@ -965,7 +965,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
-                                          border: "red 1px solid",
+                                          // border: "red 1px solid",
                                         }}
                                       >
                                         {t("Reverse")}
@@ -975,8 +975,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                         for="forReverseValue"
                                         className={
                                           gameType == "r"
-                                            ? " form-control show-Selected-bet"
-                                            : "form-control disable"
+                                            ? " btn me-1 btn-bordered-theme-active"
+                                            : "btn me-1 btn-bordered-theme"
                                         }
                                         title="Enabled"
                                         style={{

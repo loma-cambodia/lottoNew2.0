@@ -53,7 +53,7 @@ if(objectWithData.customer_id != 0){
     
       <CalculatorOld _transactions={transactions} _auth={auth} />
 
-      {/* <Calculator _transactions={transactions} _auth={auth}/> */}
+      <Calculator _transactions={transactions} _auth={auth}/> 
 
       <div className={styles.device_detect_for_desktop}> 
         <Footer/>
