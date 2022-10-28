@@ -23,8 +23,9 @@ const ResultNew = ({ _setDate,_auth}) => {
   
   const [isLoading, setIsLoading] = React.useState(true);
   useEffect(() => {
+    if(_auth && _auth.auth && _auth.auth.token)
     getLatestDrawDate();
-  }, []);
+  }, [_auth]);
 
   //   FOR RESULT
   useEffect(() => {
@@ -33,8 +34,9 @@ const ResultNew = ({ _setDate,_auth}) => {
 
   const getLatestDrawDate = () => {
     let dataSubmit = undefined;
+    console.log('_auth.auth.token:',_auth.auth.token);
     dispatch(
-      getResults(dataSubmit, (response) => {
+      getResults(dataSubmit,_auth.auth.token ? _auth.auth.token : "", (response) => {
         if (response.statusCode == 201 || response.statusCode == 200) {
           if (response.statusCode == 200) {
 
@@ -75,7 +77,7 @@ const ResultNew = ({ _setDate,_auth}) => {
     
     let dataSubmit = calendarDate;
     dispatch(
-      getResults(dataSubmit, (response) => {
+      getResults(dataSubmit,_auth.auth.token ? _auth.auth.token : "", (response) => {
         setIsLoading(false)
         if (response.statusCode == 201 || response.statusCode == 200) {
           if (response.statusCode == 200) {
