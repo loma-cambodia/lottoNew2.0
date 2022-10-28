@@ -14,6 +14,8 @@ import {setUserDataFormat} from '../components/Utils';
 import { useIdleTimer } from 'react-idle-timer'
 import { useDispatch, useSelector } from "react-redux";
 
+import axios from 'axios';
+
 let logoutTimeInIdealCondition = process.env.logoutTimeInIdealCondition;
 
 export const getServerSideProps = withIronSessionSsr(
@@ -44,6 +46,40 @@ function MyApp({ Component, pageProps,user }) {
   const [updateSessionData, setUpdateSessionData] = useState(1);
   let timeoutSetting = logoutTimeInIdealCondition * 60 * 1000;
 
+  axios.interceptors.request.use(
+    
+    config => {
+      const token = user && user._auth && user._auth.auth && user._auth.auth.token ? user._auth.auth.token : "";
+      //if (token) {
+       // config.headers['Authorization'] = 'Bearer ' + token
+        //config.headers['send'] = 'Bearer ' + token
+      //}
+      // config.headers['Content-Type'] = 'application/json';
+      
+      return config
+    },
+    error => {
+      Promise.reject(error)
+    }
+  )
+  
+  
+  axios.interceptors.response.use(
+    response => {
+      console.log('interceptor ivoked - response', response)
+      return response
+    },
+    async function (error) {
+      const originalRequest = error.config
+      console.log('interceptor ivoked - response error.response.status', error.response.status)
+  
+      if (error.response.status === 401) {
+        console.log('auAuthrized code');
+        userLogout()
+      }
+      return Promise.reject(error)
+    }
+  )
 
   //console.log('data.user.data:',data.user.data);
   const onIdle = () => {
