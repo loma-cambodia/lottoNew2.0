@@ -12,9 +12,8 @@ const LogoutModal = ({_logoutStatus,_memberId}) => {
     //     let response = res.json();
     //     window.close();
     //   })
-    //   window.close();
-        // window.opener = null;
-        window.open('', '_self','');
+        // location.reload();
+        // window.open(window.location.href)
         window.close();
       };
     const customStyles = {
