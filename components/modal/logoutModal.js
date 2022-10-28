@@ -2,6 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Modal } from "reactstrap";
 const LogoutModal = ({_logoutStatus,_memberId}) => {
+
+
     const logoutData = _logoutStatus
     const MemberId = _memberId
     const closeTab = (member_id) => {
