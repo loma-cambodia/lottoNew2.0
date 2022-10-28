@@ -122,7 +122,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
       window.location.reload();
   })
   }
-  const [logoutStatus,setLogoutData] = useState(false)
+  // const [logoutStatus,setLogoutData] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
 
@@ -130,7 +130,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
    
     return (
       <>
-      <LogoutModal _logoutStatus={logoutStatus} _memberId={auth && auth.auth && auth.auth.id ? auth.auth.id  : 0}/>
+      {/* <LogoutModal _logoutStatus={logoutStatus} _memberId={auth && auth.auth && auth.auth.id ? auth.auth.id  : 0}/> */}
       <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
         <header className="header-top" data-spy="affix" data-offset-top="197">
           <div className="container">
