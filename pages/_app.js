@@ -125,9 +125,12 @@ function MyApp({ Component, pageProps,user }) {
         let newData = {};
       if(data && data.user && data.user.data){
 
+
+
         newData = setUserDataFormat(data);
       }
-        setData({user:{data:newData}})
+        setData({user:{data:newData}});
+        localStorage.setItem("kk_lotto_token", newData.token)
       })
   }, [updateSessionData])
 
