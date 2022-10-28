@@ -49,7 +49,7 @@ let objectWithData = {
 
 
 if(objectWithData.customer_id != 0){
-    dispatch(getLogin(objectWithData)); 
+   // dispatch(getLogin(objectWithData)); 
 }
 }, [datauser])
 

@@ -1185,6 +1185,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
         let saveLOttoData = {
             "member_id":auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,
             "merchant_id":auth && auth.auth && auth.auth.merchant_id ? auth.auth.merchant_id: 0,
+            "token":auth && auth.auth && auth.auth.token ? auth.auth.token: "",
             game_dates
         }
         setIsLoading(true);
