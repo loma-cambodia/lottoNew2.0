@@ -2,7 +2,7 @@ import axios from 'axios'
 
  const API_BASE_URL = process.env.apiUrl
 
-export const serachBettingTips = (getData) => async (dispatch) => {
+export const serachBettingTips = (getData,token="") => async (dispatch) => {
     console.log('getData',getData);
 
   let company = getData.company;
@@ -21,6 +21,7 @@ export const serachBettingTips = (getData) => async (dispatch) => {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
+      'Authorization': `Bearer ${token}`
     }
     let URL = `${API_BASE_URL}/getBetTips?number=${number}${com}&permutation=${permutation}&date_range=${date}`;
 

@@ -20,10 +20,16 @@ export const userTransactionDetails = (merchant_id, token ='') => async (dispatc
       payload: res.data.data,
     })
   } catch (e) {
-    dispatch({
-      type: 'USERS_ERROR',
-      payload: console.log(e),
-    })
+
+
+    console.log('e:',e);
+
+     console.log('Catch in marchant !');
+
+    // dispatch({
+    //   type: 'USERS_ERROR',
+    //   payload: console.log(e),
+    // })
   }
 }
 
