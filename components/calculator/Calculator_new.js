@@ -775,12 +775,11 @@ const Calculator = ({ _transactions, _auth }) => {
                       <div className="col-md-10 offset-md-1 ml-2">
                         <div className="form-group">
                           <div className="row">
-                            <div className="col-md-5">
+                            <div className="col-md-4">
                               <b>{t("Company")}</b>
                             </div>
-                            <div className="col-md-7">
-                              <div className="d-flex">
-                                <div className="select-gp" id="checkboxes">
+                            <div className="col-md-8">
+                                <div className="select-gp" id="checkboxes" style={{paddingLeft: '15px',whiteSpace: 'nowrap'}}>
                                   <ul id="checkboxes" className="list-inline">
                                     {oddSet.map((item, index) => {
                                       console.log("itemitemitem", item);
@@ -820,7 +819,6 @@ const Calculator = ({ _transactions, _auth }) => {
                                     })}
                                   </ul>
                                 </div>
-                              </div>
                             </div>
                           </div>
                         </div>

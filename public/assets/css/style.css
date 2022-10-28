@@ -4237,7 +4237,7 @@ input.daterangepickerstyle-sm {
   }
   @media (max-width:768px) {
     .back-section:before {
-        width: 100%;
+        width: 100%!important;
     }
     .btn-clear {
       font-size: 14px;
