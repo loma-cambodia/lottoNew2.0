@@ -14,7 +14,7 @@ export default function SearchNumber({datauser, updateSessionData, setUpdateSess
     const state = useSelector(state => state);
     useEffect(() => {
         if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
-        dispatch(userTransactionDetails(datauser.user.data.merchant_id));
+        dispatch(userTransactionDetails(datauser.user.data.merchant_id,datauser.user.data.token ? datauser.user.data.token : ""));
     }, [datauser]);
     const auth = useSelector(state => state.auth);
     let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
@@ -24,7 +24,7 @@ export default function SearchNumber({datauser, updateSessionData, setUpdateSess
                 <title>{t('tittle_main')}</title>          
             </Head>
             <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
-            <SearchNumbers _transactions={transactions} _auth={auth} />
+            <SearchNumbers _transactions={transactions} _auth={auth} datauser={datauser} />
             <div className={styles.device_detect_for_desktop}> 
                 <Footer/>
             </div>

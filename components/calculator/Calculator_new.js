@@ -36,6 +36,7 @@ const Calculator = ({ _transactions, _auth }) => {
   const [result, setResult] = useState({});
   const [cost, setCost] = useState(0);
   const [RepNumber, setRepNumber] = useState(0);
+  const [resultObj, setResultObj] = useState(0);
   const [currency, setCurrency] = useState("USD");
 
   useEffect(() => {
@@ -371,6 +372,10 @@ const Calculator = ({ _transactions, _auth }) => {
       setGameType('s')
     }
 
+    if(number.length < 3){
+      setGameType('s')
+    }
+
     if (key == 3) {
       if (!_3aInput.match("^[0-9-.]*$") || !_3cInput.match("^[0-9-.]*$")) {
         return false;
@@ -702,11 +707,15 @@ const Calculator = ({ _transactions, _auth }) => {
           ? parseInt(smallInput) * parseInt(price.d4.small_three)
           : 0;
     }
-    setResult(object);
-
+    setResultObj(object);
+    setResult("");
     setRepNumber(repeatedNumber);
     
   };
+
+  const handleCalculate = () => {
+    setResult(resultObj);
+  }
 
   const handelReset = () => {
     // $("#amountValDefaltB").val('');
@@ -836,166 +845,83 @@ const Calculator = ({ _transactions, _auth }) => {
                                 value={number}
                                 onChange={handelChange}
                                 autoComplete="off"
+                                title="Enter 3 or 4 Digit Number"
                               />
-                              {/* <input type="text" className='form-control' /> */}
                             </div>
                           </div>
                         </div>
 
-                        <div className="d-flex mb-3">
-                          <div className="d-flex flex-column gap-2">
-                            <div>
-                              <b>{t("Bet_Type")}</b>
-                            </div>
-                            <div>
-                              <div>
-                                <div className="d-flex justify-content-between gap-2">
-                                  <div className="">
-                                    <label
+                        <div className='form-group'>
+                            <div className='row'>
+                                <div className='col-lg-4 col-md-4'>
+                                    <b>{t('Bet_Type')}</b>
+                                </div>
+                                <div className='col-lg-8 col-md-8'>
+                                    
+                                    <button
                                       for="forBoxValue"
                                       className={
                                         gameType == "s"
-                                          ? " form-control show-Selected-bet"
-                                          : "form-control disable"
+                                          ? " btn me-1 btn-bordered-theme-active"
+                                           : "btn me-1 btn-bordered-theme"
                                       }
-                                      title="Enabled"
+                                      title="Straight"
                                       onClick={() => {
                                         setGameType("s");
                                       }}
-                                      style={{
-                                        cursor: "pointer",
-                                        fontSize: "14px",
-                                      }}
                                     >
-                                      {t('Straight')}
-                                    </label>
-                                  </div>
-                                  <div>
-                                  {checkRnumber(number) ?
-                                    <label
+                                      S
+                                    </button>
+                                    
+                                    <button
                                       for="forBoxValue"
-                                      className="form-control disable"
-                                      title="Desable"
-                                      style={{
-                                        cursor: "",
-                                        fontSize: "14px",
-                                        border: "red 1px solid",
+                                      className={
+                                        gameType == "b"
+                                          ? " btn me-1 btn-bordered-theme-active"
+                                           : checkRnumber(number) || witchTypesOf(number)==0 ? "btn me-1 btn-bordered-theme-disabled" : "btn me-1 btn-bordered-theme"
+                                      }
+                                      title="Box"
+                                      onClick={checkRnumber(number) || witchTypesOf(number)==0 ? null : () => {
+                                        setGameType("b");
                                       }}
                                     >
-                                    Box
-                                    </label>
-                                    :
-                                    witchTypesOf(number)==0 ?
-                                        <label
-                                        for="forBoxValue"
-                                        className="form-control disable"
-                                        title="Desable"
-                                        style={{
-                                          cursor: "",
-                                          fontSize: "14px",
-                                          border: "red 1px solid",
-                                        }}
-                                      >
-                                        Box
-                                      </label>
-                                      : 
-                                      <label
-                                        for="forBoxValue"
-                                        className={
-                                          gameType == "b"
-                                            ? " form-control show-Selected-bet"
-                                            : "form-control disable"
-                                        }
-                                        title="Enabled"
-                                        style={{
-                                          cursor: "pointer",
-                                          fontSize: "14px",
-                                        }}
-                                        onClick={() => {
-                                          setGameType("b");
-                                        }}
-                                      >
-                                        Box
-                                      </label>
-                                    }
-                                  </div>
-                                  {witchTypesOf(number)!=0 && !checkRnumber(number) && number.length > 3 ? (
-                                    <div className="">
-                                      <label
-                                        for="forIboxValue"
-                                        className={
-                                          gameType == "i"
-                                            ? " form-control show-Selected-bet"
-                                            : "form-control disable"
-                                        }
-                                        title="iBox"
-                                        style={{
-                                          cursor: "pointer",
-                                          fontSize: "14px",
-                                        }}
-                                        onClick={() => {
-                                          setGameType("i");
-                                        }}
-                                      >
-                                        iBox
-                                      </label>
-                                    </div>
-                                  ) : (
-                                    <div className="">
-                                      <label
-                                        for="forIboxValue"
-                                        className="form-control disable"
-                                        title="Disabled"
-                                        style={{
-                                          cursor: "",
-                                          fontSize: "14px",
-                                          border: "red 1px solid",
-                                        }}
-                                      >
-                                        iBox
-                                      </label>
-                                    </div>
-                                  )}
-                                  <div className="">
-                                    {checkRnumber(number) || palindrome(number) ? (
-                                      <label
-                                        for="forReverseValue"
-                                        className={"form-control disable"}
-                                        title="Disabled"
-                                        style={{
-                                          cursor: "",
-                                          fontSize: "14px",
-                                          border: "red 1px solid",
-                                        }}
-                                      >
-                                        {t("Reverse")}
-                                      </label>
-                                    ) : (
-                                      <label
-                                        for="forReverseValue"
-                                        className={
-                                          gameType == "r"
-                                            ? " form-control show-Selected-bet"
-                                            : "form-control disable"
-                                        }
-                                        title="Enabled"
-                                        style={{
-                                          cursor: "pointer",
-                                          fontSize: "14px",
-                                        }}
-                                        onClick={() => {
-                                          setGameType("r");
-                                        }}
-                                      >
-                                        {t("Reverse")}
-                                      </label>
-                                    )}
-                                  </div>
+                                      {t('B')}
+                                    </button>
+
+
+                                    <button
+                                      for="forBoxValue"
+                                      className={
+                                        gameType == "i"
+                                          ? " btn me-1 btn-bordered-theme-active"
+                                           : witchTypesOf(number)!=0 && !checkRnumber(number) && number.length > 3 ? "btn me-1 btn-bordered-theme" : "btn me-1 btn-bordered-theme-disabled"
+                                      }
+                                      title="iBox"
+                                      onClick={witchTypesOf(number)!=0 && !checkRnumber(number) && number.length > 3 ? () => {
+                                        setGameType("i");
+                                      } : null}
+                                    >
+                                      {t('I')}
+                                    </button>
+
+                                    <button
+                                      for="forBoxValue"
+                                      title={t('Reverse')}
+                                      className={
+                                        gameType == "r"
+                                          ? " btn me-1 btn-bordered-theme-active"
+                                           : checkRnumber(number) || palindrome(number) || number.length < 3 ? "btn me-1 btn-bordered-theme-disabled" : "btn me-1 btn-bordered-theme"
+                                      }
+                                      onClick={checkRnumber(number) || palindrome(number) ? null : () => {
+                                        setGameType("r");
+                                      }}
+                                    >
+                                      {t('R')}
+                                    </button>
                                 </div>
-                              </div>
                             </div>
-                          </div>
                         </div>
+
                         <>
                           <div className="d-flex gap-2">
                             <div className="d-flex">
@@ -1019,7 +945,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         ? "bigValue"
                                         : "amountValDefaltB"
                                     }
-                                    maxLength={6}
+                                    maxLength={merchantCurrency == 'KHR' ? 7 : 4}
                                     value={
                                       number.length == 3
                                         ? a3
@@ -1054,7 +980,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         ? "smallValue"
                                         : "amountValDefaltS"
                                     }
-                                    maxLength={6}
+                                    maxLength={merchantCurrency == 'KHR' ? 7 : 4}
                                     value={
                                       number.length == 3
                                         ? c3
@@ -1080,20 +1006,57 @@ const Calculator = ({ _transactions, _auth }) => {
                               justifyContent: "center",
                             }}
                           >
-                            <div className="col-md-8">
+                            <div className="col-md-7">
+                              <div
+                                className="clearfix text-center"
+                              >
+                                {number.length >= 3 && (a3 || c3 || big || small) && gameType ?
+                                      <span
+                                        onClick={handleCalculate}
+                                        role="button"
+                                        className="d-block btn btn-warning rounded-full mt-2 text-light text-uppercase"
+                                        style={{
+                                          fontWeight: "600",
+                                          background: "#c22361",
+                                        }}
+                                        title={t('Calculate')}
+                                        >
+                                        {t('Calculate')}
+                                        </span>
+                                   :
+                                  
+                                    <span
+                                      role="button"
+                                      className="d-block btn btn-warning rounded-full mt-2 text-light text-uppercase"
+                                      style={{
+                                        fontWeight: "600",
+                                        background: "gray",
+                                      }}
+                                      title={t('Calculate')}
+                                    >
+                                      {t('Calculate')}
+                                    </span>
+
+                                  }
+                              </div>
+                              
+                              </div>
+                              <div className="col-md-5">
                               <div
                                 onClick={handelReset}
                                 className="clearfix text-center"
                               >
                                 <span
                                   role="button"
-                                  className="d-block btn btn-warning rounded-full mt-2 text-light"
+                                  className="d-block btn rounded-full mt-2 text-dark text-uppercase"
                                   style={{
-                                    fontWeight: "700",
-                                    background: "#c22361",
+                                    fontWeight: "600",
+                                    color: 'black',
+                                    border: '1px solid black'
                                   }}
+                                  title={t('clear')}
                                 >
-                                  CLEAR
+                                  {t('clear')}
                                 </span>
                               </div>
                             </div>
@@ -1152,14 +1115,14 @@ const Calculator = ({ _transactions, _auth }) => {
                           <label className="" htmlFor="number">
                             {t("Total_No_of_Combination")}
                           </label>
-                          <span>{combo}</span>
+                          <span>{result ? combo : 0}</span>
                         </div>
                         <div className="d-flex justify-content-between align-items-center">
                           <label className="" htmlFor="number">
                             {t("Total_Cost")}
                           </label>
                           <span>
-                            {merchantCurrency} {parseInt(cost).toLocaleString()}
+                            {merchantCurrency} {result ? parseInt(cost).toLocaleString() : 0}
                           </span>
                         </div>
                       </div>
@@ -1217,22 +1180,21 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseFloat(
                                                 result.d3a_one + result.d3c_one
                                               ).toLocaleString()
-                                            : parseFloat(
+                                            : result ? parseFloat(
                                                 result.d3a_one + result.d3c_one
-                                              ).toLocaleString()}
+                                              ).toLocaleString() : 0}
                                         </span>
                                       </span>
                                     </td>
@@ -1255,11 +1217,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
-                                            {merchantCurrency == "KHR"
+                                            {result && merchantCurrency == "KHR"
                                               ? parseFloat(price.d3.a3_one).toLocaleString()
-                                              : parseFloat(
+                                              : result ? parseFloat(
                                                   price.d3.a3_one
-                                                ).toLocaleString()}
+                                                ).toLocaleString() : 0}
                                           </span>
                                         </span>                                    
                                       : <></>}
@@ -1275,11 +1237,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
-                                            {merchantCurrency == "KHR"
+                                            {result && merchantCurrency == "KHR"
                                               ? parseFloat(price.d3.one).toLocaleString()
-                                              : parseFloat(
+                                              : result ? parseFloat(
                                                   price.d3.one
-                                                ).toLocaleString()}
+                                                ).toLocaleString() : 0}
                                           </span>
                                         </span>                                      
                                       : <></>}
@@ -1296,20 +1258,19 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseFloat(result.d3c_two).toLocaleString()
-                                            : parseFloat(
+                                            : result ? parseFloat(
                                                 result.d3c_two
-                                              ).toLocaleString()}
+                                              ).toLocaleString() : 0}
                                         </span>
                                       </span>
                                     </td>
@@ -1331,9 +1292,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                         <span>
                                           {merchantCurrency} &nbsp;
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseFloat(price.d3.two).toLocaleString()
-                                            : parseFloat(price.d3.two).toLocaleString()}
+                                            : result ? parseFloat(price.d3.two).toLocaleString() : 0}
                                         </span>
                                       </span>                                      
                                       : <></>}
@@ -1349,20 +1310,19 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseFloat(result.d3c_three).toLocaleString()
-                                            : parseFloat(
+                                            : result ? parseFloat(
                                                 result.d3c_three
-                                              ).toLocaleString()}
+                                              ).toLocaleString() : 0}
                                         </span>
                                       </span>
                                     </td>
@@ -1384,43 +1344,18 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                         <span>
                                           {merchantCurrency}
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseFloat(price.d3.three).toLocaleString()
-                                            : parseFloat(
+                                            : result ? parseFloat(
                                                 price.d3.three
-                                              ).toLocaleString()}
+                                              ).toLocaleString():0}
                                         </span>
                                       </span>                                      
                                       : <></>}
                                     </td>
                                     {/* </div> */}
                                   </tr>
-                                  <tr className="">
-                                    <td style={{ width: "30%" }}>
-                                      {t("Special_Prize")}
-                                    </td>
-                                    <td
-                                      style={{ width: "25%" }}
-                                      className="text-left"
-                                    ></td>
-                                    <td
-                                      style={{ width: "50%" }}
-                                      className="text-left"
-                                    ></td>
-                                  </tr>
-                                  <tr className="">
-                                    <td style={{ width: "30%" }}>
-                                      {t("Consolation_Prize")}
-                                    </td>
-                                    <td
-                                      style={{ width: "25%" }}
-                                      className="text-left"
-                                    ></td>
-                                    <td
-                                      style={{ width: "25%" }}
-                                      className="text-left"
-                                    ></td>
-                                  </tr>
+
                                 </>
                               ) : number.length == 4 ? (
                                 <>
@@ -1433,18 +1368,17 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseInt(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one).toLocaleString())
-                                            : parseFloat(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString()}
+                                            : result ? parseFloat(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString() : 0}
                                         </span>
                                       </span>
                                     </td>
@@ -1466,11 +1400,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
-                                            {merchantCurrency == "KHR"
+                                            {result && merchantCurrency == "KHR"
                                               ? parseInt(price.d4.one).toLocaleString()
-                                              : parseFloat(
+                                              : result ? parseFloat(
                                                   price.d4.one
-                                                ).toLocaleString()}
+                                                ).toLocaleString() : 0}
                                           </span>
                                         </span>
                                       : <></>}
@@ -1486,11 +1420,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
-                                            {merchantCurrency == "KHR"
+                                            {result && merchantCurrency == "KHR"
                                               ? parseInt(price.d4.small_one).toLocaleString()
-                                              : parseFloat(
+                                              : result ? parseFloat(
                                                   price.d4.small_one
-                                                ).toLocaleString()}
+                                                ).toLocaleString() : 0}
                                           </span>
                                         </span>
                                       : <></>}
@@ -1507,18 +1441,17 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseInt(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two)).toLocaleString()
-                                            : parseFloat(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two)).toLocaleString()}
+                                            : result ? parseFloat(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two)).toLocaleString() : 0}
                                         </span>
                                       </span>
                                     </td>
@@ -1540,9 +1473,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
-                                            {merchantCurrency == "KHR"
+                                            {result && merchantCurrency == "KHR"
                                               ? parseInt(price.d4.two).toLocaleString()
-                                              : parseFloat(price.d4.two).toLocaleString()}
+                                              : result ? parseFloat(price.d4.two).toLocaleString() : 0}
                                           </span>
                                         </span> 
                                       : <></>}
@@ -1558,11 +1491,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
-                                            {merchantCurrency == "KHR"
+                                            {result && merchantCurrency == "KHR"
                                               ? parseInt(price.d4.small_two).toLocaleString()
-                                              : parseFloat(
+                                              : result ? parseFloat(
                                                   price.d4.small_two
-                                                ).toLocaleString()}
+                                                ).toLocaleString() : 0}
                                           </span>
                                         </span>                                    
                                       : <></>}
@@ -1579,18 +1512,17 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseInt(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three)).toLocaleString()
-                                            : parseFloat(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three)).toLocaleString()}
+                                            : result ? parseFloat(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three)).toLocaleString() : 0}
                                         </span>
                                       </span>
                                     </td>
@@ -1612,11 +1544,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                             </span>
                                             <span>
                                               {merchantCurrency} &nbsp;
-                                              {merchantCurrency == "KHR"
+                                              {result && merchantCurrency == "KHR"
                                                 ? parseInt(price.d4.three).toLocaleString()
-                                                : parseFloat(
+                                                : result ? parseFloat(
                                                     price.d4.three
-                                                  ).toLocaleString()}
+                                                  ).toLocaleString() : 0}
                                             </span>
                                           </span> : <></>
                                         }
@@ -1632,11 +1564,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
-                                            {merchantCurrency == "KHR"
+                                            {result && merchantCurrency == "KHR"
                                               ? parseInt(price.d4.small_three).toLocaleString()
-                                              : parseFloat(
+                                              : result ? parseFloat(
                                                   price.d4.small_three
-                                                ).toLocaleString()}
+                                                ).toLocaleString() : 0}
                                           </span>
                                         </span>                                    
                                         : <></>}
@@ -1655,20 +1587,19 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseInt(result.d4_big_special).toLocaleString()
-                                            : parseFloat(
+                                            : result ? parseFloat(
                                                 result.d4_big_special
-                                              ).toLocaleString()}
+                                              ).toLocaleString() : 0}
                                         </span>
                                       </span>
                                     </td>
@@ -1689,11 +1620,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                         <span>
                                           {merchantCurrency} &nbsp;
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseInt(price.d4.special).toLocaleString()
-                                            : parseFloat(
+                                            : result ? parseFloat(
                                                 price.d4.special
-                                              ).toLocaleString()}
+                                              ).toLocaleString() : 0}
                                         </span>
                                       </span>
                                       
@@ -1713,22 +1644,21 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseInt(
                                                 result.d4_big_consolation
                                               ).toLocaleString()
-                                            : parseFloat(
+                                            : result ? parseFloat(
                                                 result.d4_big_consolation
-                                              ).toLocaleString()}
+                                              ).toLocaleString() : 0}
                                         </span>
                                       </span>
                                     </td>
@@ -1749,11 +1679,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                         <span>
                                           {merchantCurrency} &nbsp;
-                                          {merchantCurrency == "KHR"
+                                          {result && merchantCurrency == "KHR"
                                             ? parseInt(price.d4.consolation).toLocaleString()
-                                            : parseFloat(
+                                            : result ? parseFloat(
                                                 price.d4.consolation
-                                              ).toLocaleString()}
+                                              ).toLocaleString() : 0}
                                         </span>
                                       </span>
                                       
@@ -1791,7 +1721,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             style={{
                                               color: "rgb(255, 228, 0)",
                                               fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
                                             className="text-left"
                                           >
@@ -1818,7 +1748,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             style={{
                                               color: "rgb(255, 228, 0)",
                                               fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
                                             className="text-left"
                                           >
@@ -1856,7 +1786,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             style={{
                                               color: "rgb(255, 228, 0)",
                                               fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
                                             className="text-left"
                                           >
@@ -1894,7 +1824,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             style={{
                                               color: "rgb(255, 228, 0)",
                                               fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
                                             className="text-left"
                                           >
@@ -1929,7 +1859,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             style={{
                                               color: "rgb(255, 228, 0)",
                                               fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
                                             className="text-left"
                                           >
