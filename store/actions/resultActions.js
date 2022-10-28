@@ -4,12 +4,13 @@ import moment from 'moment';
 //let API_BASE_URL = 'http://api.kk-lotto.com:8080/api';
 let API_BASE_URL = process.env.apiUrl
 
-export const getResults = (sendData,callback) => async (dispatch) => {
+export const getResults = (sendData,token='',callback) => async (dispatch) => {
   let urlHit = ''
    
   try {
     const headers = {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     }
     if(sendData === undefined){
       urlHit = `${API_BASE_URL}/results/get-by-date`;
