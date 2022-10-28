@@ -25,7 +25,9 @@ const Calculator = ({ _transactions, _auth }) => {
 
   const onLoadCompany = 0;
 
+  const [currencyLimit, setCurrencyLimit] = useState(4)
   const [calculate, setGameCalculate] = useState(false);
+  const [validate, setValidate] = useState(false);
   const [number, setNumber] = useState("");
   const [gameType, setGameType] = useState("s");
   const [currentMarket, setCurrentMarket] = useState(oddSet[0]);
@@ -44,6 +46,10 @@ const Calculator = ({ _transactions, _auth }) => {
     setSelectedMarket(onLoadCompany);
     setCurrentMarket(oddSet[0]);
   }, [onLoadCompany, oddSet]);
+
+  useEffect(() =>{
+      merchantCurrency == 'KHR' ? setCurrencyLimit(7):setCurrencyLimit(4)
+  },[auth])
 
   const [price, setPrice] = useState({
     d4: {
@@ -300,10 +306,36 @@ const Calculator = ({ _transactions, _auth }) => {
     if (gameType == "i" && number.length == 3) {
       setGameType("s");
     }
-    handelChange();
+    handelChange()
+
+      switch (number.length){
+        case 3:
+          if(c3 || a3){
+            setValidate(true)
+            console.log('Validate true')
+          }
+        break;
+
+        case 4:
+          if(small || big){
+            setValidate(true)
+            console.log('Validate true')
+          }
+        break;
+
+        default:
+          setValidate(false)
+          console.log('Validate false')
+
+      }
+
+
   }, [number, big, small, c3, a3, gameType, combo, selectedMarket]);
 
   const handelChange = () => {
+    setValidate(false)
+    setGameCalculate(false)
+
     const key = number.length;
     let numberInput = $("#number").val();
     let _3aInput = $("#3aValue3").val();
@@ -325,6 +357,7 @@ const Calculator = ({ _transactions, _auth }) => {
     let priceCalculation = {};
 
     //setCombo(1);
+
 
     if (!numberInput.match("^[R-Rr-r0-9]*$")) {
       return false;
@@ -707,6 +740,10 @@ const Calculator = ({ _transactions, _auth }) => {
     setResult(object);
 
     setRepNumber(repeatedNumber);
+
+    // if (){
+    //   if()
+    // }
     
   };
 
@@ -727,6 +764,7 @@ const Calculator = ({ _transactions, _auth }) => {
     setSmall("");
     setCost("");
     setSelectedMarket(onLoadCompany);
+    setValidate(false)
     setGameCalculate(false)
   };
   function palindrome(str) {
@@ -757,7 +795,7 @@ const Calculator = ({ _transactions, _auth }) => {
 
   // console.log('witchTypesOf(number)',witchTypesOf(number));
   return (
-    <section className="bg-light custom-padding">
+    <section className="bg-light custom-padding" style={{height:'100vh'}}>
       <div className="container">
         <div className="heading-part text-center mb-4">
           {/* <h5 className="text-uppercase fw-bold">{t('how_to')}</h5> */}
@@ -859,7 +897,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           ? "btn me-1 btn-bordered-theme-active"
                                           : "btn me-1 btn-bordered-theme disable"
                                       }
-                                      title="Enabled"
+                                      title={t('Straight')}
                                       onClick={() => {
                                         setGameType("s");
                                       }}
@@ -876,7 +914,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     <label
                                       for="forBoxValue"
                                       className="btn me-1 disable"
-                                      title="Desable"
+                                      title={t('Box')}
                                       style={{
                                         cursor: "",
                                         fontSize: "14px",
@@ -898,7 +936,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         <label
                                         for="forBoxValue"
                                         className="btn me-1 disable"
-                                        title="Desable"
+                                        title={t('Box')}
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
@@ -923,7 +961,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             ? " btn me-1 btn-bordered-theme-active"
                                             : "btn me-1 btn-bordered-theme disable"
                                         }
-                                        title="Enabled"
+                                        title={t('Box')}
                                         style={{
                                           cursor: "pointer",
                                           fontSize: "14px",
@@ -945,7 +983,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             ? "btn me-1 btn-bordered-theme-active"
                                             : "btn me-1 btn-bordered-theme disable"
                                         }
-                                        title="iBox"
+                                        title={t('iBox')}
                                         style={{
                                           cursor: "pointer",
                                           fontSize: "14px",
@@ -962,7 +1000,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <label
                                         for="forIboxValue"
                                         className="btn me-1 disable"
-                                        title="Disabled"
+                                        title={t('iBox')}
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
@@ -986,7 +1024,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <label
                                         for="forReverseValue"
                                         className="btn me-1 disable"
-                                        title="Disabled"
+                                        title={t('Reverse')}
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
@@ -1011,7 +1049,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             ? "btn me-1 btn-bordered-theme-active"
                                             : "btn me-1 btn-bordered-theme disable"
                                         }
-                                        title="Enabled"
+                                        title={t('Reverse')}
                                         style={{
                                           cursor: "pointer",
                                           fontSize: "14px",
@@ -1053,8 +1091,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                         ? "bigValue"
                                         : "amountValDefaltB"
                                     }
-                                    maxLength={6}
-                                    value={
+                                    maxLength={currencyLimit}
+                                    defaultValue={
                                       number.length == 3
                                         ? a3
                                         : number.length == 4
@@ -1089,8 +1127,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                         ? "smallValue"
                                         : "amountValDefaltS"
                                     }
-                                    maxLength={6}
-                                    value={
+                                    maxLength={currencyLimit}
+                                    defaultValue={
                                       number.length == 3
                                         ? c3
                                         : number.length == 4
@@ -1124,7 +1162,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       color:'grey'
                                     }}
                                   >
-                                    {t('Clear')}
+                                    {t('clear')}
                                   </span>
                                 </div>
                               </div>
@@ -1136,12 +1174,13 @@ const Calculator = ({ _transactions, _auth }) => {
                             >
                               <div className="">
                                 <div
-                                  onClick={()=>{number.length >= 3 ? setGameCalculate(true):''}}
-                                  className="clearfix text-center"
+                                  onClick={()=>{validate ? setGameCalculate(true):''}}
+                                  className={`clearfix text-center`}
                                 >
                                   <span
                                     role="button"
-                                    className="btn rounded-full mt-2 text-light btn-cal"
+                                    className={`${validate ? "":"cal-disable"} btn rounded-full mt-2 text-light btn-cal`}
+
                                     style={{
                                       fontWeight: "700",
                                       background: "#c22361",
@@ -1450,6 +1489,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </td>
                                     {/* </div> */}
                                   </tr>
+                                  {number.length == 4 ? 
+                                  <>
                                   <tr className="">
                                     <td style={{ width: "30%" }}>
                                       {t("Special_Prize")}
@@ -1476,6 +1517,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left"
                                     ></td>
                                   </tr>
+                                  </>
+                                  :
+                                  '' 
+                                  }
                                 </>
                               ) : number.length == 4 && calculate ? (
                                 <>
@@ -2023,6 +2068,9 @@ const Calculator = ({ _transactions, _auth }) => {
         </div>
       </div>
       <style jsx>{`
+      .cal-disable{
+        filter: grayscale(1)!important,
+      }
        .btn-cal:hover, .btn-clr:hover{
         color: #000;
 
