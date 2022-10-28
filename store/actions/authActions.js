@@ -29,12 +29,12 @@ import {setUserDataFormat} from '../../components/Utils';
       //     payload: res && res.data && res.data.data ? res.data.data : {}
       // });
 
-          if(res && res.data && res.data.data  && res.data.data.language && res.data.data.language.locale){
-                dispatch( {
-                  type: "CHANGE_LANGUAGE",
-                  payload: res.data.data.language.locale
-              });
-            }
+          // if(res && res.data && res.data.data  && res.data.data.language && res.data.data.language.locale){
+          //       dispatch( {
+          //         type: "CHANGE_LANGUAGE",
+          //         payload: res.data.data.language.locale
+          //     });
+          //   }
 
 
 

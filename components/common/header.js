@@ -59,8 +59,8 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
       } 
       
       if(objectWithData.customer_id != 0){
-          dispatch(getLogin(objectWithData));
-          setUpdateSessionData(updateSessionData + 1); 
+         // dispatch(getLogin(objectWithData));
+         // setUpdateSessionData(updateSessionData + 1); 
       }
 
         i18n.changeLanguage(l);
