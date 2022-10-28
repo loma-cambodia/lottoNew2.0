@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "../../styles/Home.module.css";
 
+
 const Calculator = ({ _transactions, _auth }) => {
   const { t } = useTranslation();
   let transactions = _transactions;
@@ -24,6 +25,7 @@ const Calculator = ({ _transactions, _auth }) => {
 
   const onLoadCompany = 0;
 
+  const [calculate, setGameCalculate] = useState(false);
   const [number, setNumber] = useState("");
   const [gameType, setGameType] = useState("s");
   const [currentMarket, setCurrentMarket] = useState(oddSet[0]);
@@ -725,6 +727,7 @@ const Calculator = ({ _transactions, _auth }) => {
     setSmall("");
     setCost("");
     setSelectedMarket(onLoadCompany);
+    setGameCalculate(false)
   };
   function palindrome(str) {
     var len = str.length;
@@ -769,13 +772,13 @@ const Calculator = ({ _transactions, _auth }) => {
                 <div className="col-md-5 col-sm-6 back-section1">
                   <div className="clearfix p-4 z-index-1 back-section2 mx-4">
                     <div className="row mt-3 m-auto">
-                      <div className="col-md-10 offset-md-1 margin-left-52px">
+                      <div className="col-md-10 offset-md-1 ml-2">
                         <div className="form-group">
                           <div className="row">
-                            <div className="col-md-4">
+                            <div className="col-md-5">
                               <b>{t("Company")}</b>
                             </div>
-                            <div className="col-md-8">
+                            <div className="col-md-7">
                               <div className="d-flex">
                                 <div className="select-gp" id="checkboxes">
                                   <ul id="checkboxes" className="list-inline">
@@ -823,10 +826,10 @@ const Calculator = ({ _transactions, _auth }) => {
                         </div>
                         <div className="form-group">
                           <div className="row">
-                            <div className="col-md-4">
+                            <div className="col-md-5">
                               <b>{t("Number")}</b>
                             </div>
-                            <div className="col-md-8">
+                            <div className="col-md-7">
                               <input
                                 className="form-control"
                                 id="number"
@@ -880,11 +883,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                         cursor: "",
                                         fontSize: "14px",
                                         // border: "red 1px solid",
-                                        border: '2px solid #bc2263',
+                                        border: '1px solid #adb5bd',
                                         width: '35px',
                                         height: '35px',
                                         textAlign: 'center',
-                                        color: '#bc2263',
+                                        color: '#adb5bd',
                                         fontWeight: 'bold',
                                         lineHeight: '22px',
                                         textAlign: 'center'
@@ -902,7 +905,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           cursor: "",
                                           fontSize: "14px",
                                           // border: "red 1px solid",
-                                          border: '2px solid #adb5bd',
+                                          border: '1px solid #adb5bd',
                                           width: '35px',
                                           height: '35px',
                                           textAlign: 'center',
@@ -966,7 +969,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           cursor: "",
                                           fontSize: "14px",
                                           // border: "red 1px solid",
-                                          border: '2px solid #adb5bd',
+                                          border: '1px solid #adb5bd',
                                           width: '35px',
                                           height: '35px',
                                           textAlign: 'center',
@@ -990,7 +993,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           cursor: "",
                                           fontSize: "14px",
                                           // border: "red 1px solid",
-                                          border: '2px solid #adb5bd',
+                                          border: '1px solid #adb5bd',
                                           width: '35px',
                                           height: '35px',
                                           textAlign: 'center',
@@ -1036,6 +1039,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                   style={{
                                     marginBottom: "10px",
                                     paddingLeft: "3px",
+                                    whiteSpace:'nowrap'
                                   }}
                                 >
                                   <b>{ number.length == 3 ? "3A" : number.length == 4 ? t("Big") : `${t("Big")} / 3A` }</b>
@@ -1071,6 +1075,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                   style={{
                                     marginBottom: "10px",
                                     paddingLeft: "3px",
+                                    whiteSpace:'nowrap'
                                   }}
                                 >
                                   <b>{ number.length == 3 ? "3C" : number.length == 4 ? t("Small_Bet") : `${t("Small_Bet")} / 3C` }</b>
@@ -1102,31 +1107,51 @@ const Calculator = ({ _transactions, _auth }) => {
                             </div>
                           </div>
                         </>
-                        {/* </div> */}
-
-                        <div className="mt-2">
-                          <div
-                            className="row m-auto"
-                            style={{
-                              display: "flex",
-                              justifyContent: "center",
-                            }}
-                          >
-                            <div className="col-md-8">
-                              <div
-                                onClick={handelReset}
-                                className="clearfix text-center"
-                              >
-                                <span
-                                  role="button"
-                                  className="d-block btn btn-warning rounded-full mt-2 text-light"
-                                  style={{
-                                    fontWeight: "700",
-                                    background: "#c22361",
-                                  }}
+                        <div className="row">
+                          <div className="col-5 mt-2">
+                            <div
+                              className=""
+                            >
+                              <div className="">
+                                <div
+                                  onClick={handelReset}
+                                  className="clearfix text-center"
                                 >
-                                  CLEAR
-                                </span>
+                                  <span
+                                    role="button"
+                                    className="btn rounded-full mt-2 btn-clr"
+                                    style={{
+                                      fontWeight: "700",
+                                      border:"1px solid grey",
+                                      color:'grey'
+                                    }}
+                                  >
+                                    {t('Clear')}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-7 mt-2">
+                            <div
+                              className=""
+                            >
+                              <div className="">
+                                <div
+                                  onClick={()=>{number.length >= 3 ? setGameCalculate(true):''}}
+                                  className="clearfix text-center"
+                                >
+                                  <span
+                                    role="button"
+                                    className="btn rounded-full mt-2 text-light btn-cal"
+                                    style={{
+                                      fontWeight: "700",
+                                      background: "#c22361",
+                                    }}
+                                  >
+                                    {t('Calculate')}
+                                  </span>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -1204,7 +1229,7 @@ const Calculator = ({ _transactions, _auth }) => {
                             <thead>
                               <tr className="">
                                 <th style={{ width: "30%" }}></th>
-                                {number.length == 3 ? (
+                                {number.length == 3 && calculate ? (
                                   <>
                                     <th
                                       style={{ width: "40%" }}
@@ -1219,7 +1244,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       3A/3C
                                     </th>
                                   </>
-                                ) : number.length == 4 ? (
+                                ) : number.length == 4 && calculate ? (
                                   <>
                                     <th
                                       style={{ width: "40%" }}
@@ -1238,7 +1263,7 @@ const Calculator = ({ _transactions, _auth }) => {
                               </tr>
                             </thead>
                             <tbody>
-                              {number.length == 3 ? (
+                              {number.length == 3 && calculate ? (
                                 <>
                                   <tr className="">
                                     <td style={{ width: "25%" }}>{t("P1")} </td>
@@ -1454,7 +1479,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     ></td>
                                   </tr>
                                 </>
-                              ) : number.length == 4 ? (
+                              ) : number.length == 4 && calculate ? (
                                 <>
                                   <tr className="">
                                     <td style={{ width: "30%" }}>{t("P1")} </td>
@@ -1999,6 +2024,21 @@ const Calculator = ({ _transactions, _auth }) => {
           </div>
         </div>
       </div>
+      <style jsx>{`
+       .btn-cal:hover, .btn-clr:hover{
+        color: #000;
+
+        box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
+       }
+       .btn-cal:active{
+        color: #000;
+        background:rgb(156 11 70)!important;
+       }
+       .btn-clr:active{
+        border:1px solid rgb(194, 35, 97)!important;
+        color: rgb(194, 35, 97)!important;
+        }
+      `}</style>
     </section>
   );
 };
