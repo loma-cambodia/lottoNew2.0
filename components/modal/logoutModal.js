@@ -22,7 +22,7 @@ const LogoutModal = ({_logoutStatus,_memberId}) => {
           marginRight: '-50%',
           transform: 'translate(-50%, -50%)',
           width: 'fit-content',
-          borderRadius: '12px',
+          borderRadius: '15px',
           padding: 0
         },
       };
@@ -34,7 +34,7 @@ const LogoutModal = ({_logoutStatus,_memberId}) => {
             contentLabel="Example Modal"
           >
                 <div className="modal-header text-white px-2 py-3 modal-dialog-centered" style={{ backgroundColor: '#bf2262' }}>
-                  <h5 className="modal-title" id="bettingModal" style={{ paddingLeft: '10px' }}>
+                  <h5 className="modal-title" id="bettingModal" style={{ paddingLeft: '10px',fontWeight:'bold' }}>
                   <i class="fa fa-exclamation-triangle"></i> Warning
                   </h5>
                 </div>
