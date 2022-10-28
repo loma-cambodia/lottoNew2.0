@@ -12,10 +12,9 @@ const LogoutModal = ({_logoutStatus,_memberId}) => {
     //     let response = res.json();
     //     window.close();
     //   })
-    //   window.close();
-        window.opener = null;
-        window.open('', '_self');
-        window.close();
+        location.reload();
+        // window.open(window.location.href)
+        // window.close(window.location.href);
       };
     const customStyles = {
         content: {
