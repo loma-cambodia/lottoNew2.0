@@ -14,7 +14,7 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
   const state = useSelector(state => state);
 useEffect(() => {
   if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
-    dispatch(userTransactionDetails(datauser.user.data.merchant_id,datauser.user.data.token ? datauser.user.data.token : ""));
+    dispatch(userTransactionDetails(datauser.user.data.merchant_id,datauser.user.data.token ? datauser.user.data.token : "" ));
 }, [datauser]);
 
 useEffect(() => {
@@ -40,7 +40,7 @@ if(objectWithData.customer_id != 0){
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <InvestmentCalculator _calculatorOdds={calculatorOdds} _auth={auth}/>
-      <div className={styles.device_detect_for_desktop}> 
+      <div className={styles.device_detect_for_desktop }> 
         <Footer/>
       </div>
     </>

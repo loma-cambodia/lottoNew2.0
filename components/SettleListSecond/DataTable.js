@@ -25,13 +25,26 @@ const Table = props => {
         }
      };
                                  
-    const customStyles ={
-        rows: {
-            style: {
-                fontSize: '14px',
+            //  Internally, customStyles will deep merges your customStyles with the default styling.
+        const customStyles = {
+            rows: {
+                style: {
+                    minHeight: '72px', // override the row height
+                },
             },
-        },
-    }
+            headCells: {
+                style: {
+                    paddingLeft: '8px', // override the cell padding for head cells
+                    paddingRight: '8px',
+                },
+            },
+            cells: {
+                style: {
+                    paddingLeft: '8px', // override the cell padding for data cells
+                    paddingRight: '8px',
+                },
+            },
+        };
     const columns = [
         {
             name: t('No'),
@@ -48,13 +61,19 @@ const Table = props => {
         },
         {
             name: t('Betting_Time'),
+            selector:row=> moment(row.draw_date).format('DD-MM-YYYY'),
             sortable: true,
-            cell:row =>row.Betting_Time
+            // cell:row =>row.created_at
         },
         {
             name: t('Draw_Date'),
             sortable: true,
-            cell:row =>row.Draw_Date
+            cell:row =>moment(row.created_at).format('DD-MM-YYYY HH:mm:ss')
+        },
+        {
+            name: t('Draw_Id'),
+            sortable: true,
+            cell:row =>row.draw_number
         },
         {
             name: t('Bet_Number'),
