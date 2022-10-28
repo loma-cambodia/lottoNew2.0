@@ -15,6 +15,7 @@ import {useRouter} from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
 import {getLogin} from '../../store/actions/authActions';
 import {twoDecimalPlaceWithAmount, twoDecimalPlaceWithoutRound} from './../Utils';
+import LogoutModal from "../modal/logoutModal";
 
 
 const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
@@ -121,8 +122,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
       window.location.reload();
   })
   }
-
-
+  const [logoutStatus,setLogoutData] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
 
@@ -130,6 +130,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
    
     return (
       <>
+      <LogoutModal _logoutStatus={logoutStatus} _memberId={auth && auth.auth && auth.auth.id ? auth.auth.id  : 0}/>
       <link href="assets/text-fonts/poppins/poppins-font.css" rel="stylesheet" />
         <header className="header-top" data-spy="affix" data-offset-top="197">
           <div className="container">
@@ -223,6 +224,11 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                           <i className="fa-solid fa-arrow-right-from-bracket"></i>
                           </button>
                           </li> */}
+                          <li className="dropdown position-relative">
+                          <button className="btn btn-danger btn-sm" type="button" onClick={() => setLogoutData(true) } style={{padding:'1px 4px'}}>
+                          <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                          </button>
+                          </li>
 
 
 

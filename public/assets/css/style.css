@@ -4382,3 +4382,20 @@ input.daterangepickerstyle-sm {
   outline: 0;
   box-shadow: 0 0 0 0.25rem #ffc10724;
 }
+
+.btn.btn-outline-danger {
+  --bs-btn-color: #bf2262;
+  --bs-btn-border-color: #bf2262;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #bf2262;
+  --bs-btn-hover-border-color: #bf2262;
+  --bs-btn-focus-shadow-rgb: 220,53,69;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #bf2262;
+  --bs-btn-active-border-color: #bf2262;
+  --bs-btn-active-shadow: inset 0 3px 5pxrgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #bf2262;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #bf2262;
+  --bs-gradient: none;
+}
