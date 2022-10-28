@@ -51,24 +51,7 @@ const Calculator = ({ _transactions, _auth }) => {
       merchantCurrency == 'KHR' ? setCurrencyLimit(7):setCurrencyLimit(4)
   },[auth])
 
-  const [price, setPrice] = useState({
-    d4: {
-      one: 3500,
-      two: 1200,
-      three: 600,
-      special: 240,
-      consolation: 80,
-      small_one: 5000,
-      small_two: 2400,
-      small_three: 1200,
-    },
-    d3: {
-      a3_one: 840,
-      one: 280,
-      two: 280,
-      three: 280,
-    },
-  });
+  const [price, setPrice] = useState();
 
 
 
@@ -1157,7 +1140,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     role="button"
                                     className="btn rounded-full mt-2 btn-clr"
                                     style={{
-                                      fontWeight: "700",
+                                      fontWeight: "600",
                                       border:"1px solid grey",
                                       color:'grey'
                                     }}
@@ -1182,7 +1165,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     className={`${validate ? "":"cal-disable"} btn rounded-full mt-2 text-light btn-cal`}
 
                                     style={{
-                                      fontWeight: "700",
+                                      fontWeight: "600",
                                       background: "#c22361",
                                     }}
                                   >
@@ -1311,10 +1294,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1390,10 +1372,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1443,10 +1424,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1477,7 +1457,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           3C:{" "}
                                         </span>
                                         <span>
-                                          {merchantCurrency}
+                                          {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
                                             ? parseFloat(price.d3.three).toLocaleString()
                                             : parseFloat(
@@ -1533,17 +1513,16 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
                                           {merchantCurrency == "KHR"
-                                            ? parseInt(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one).toLocaleString())
+                                            ? parseInt(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString()
                                             : parseFloat(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString()}
                                         </span>
                                       </span>
@@ -1607,10 +1586,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1679,10 +1657,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1755,10 +1732,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1813,10 +1789,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1890,12 +1865,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span
                                             style={{
                                               color: "rgb(255, 228, 0)",
-                                              fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
-                                            className="text-left"
+                                            className="font-20px-17px text-left"
                                           >
-                                            {merchantCurrency}&nbsp;0.00
+                                            {merchantCurrency}&nbsp; {merchantCurrency == 'KHR' ? '0':'0.00'}
                                           </span>
                                         </td>
                                         {/* <div className={styles.device_detect_for_desktop}>  */}
@@ -1917,12 +1891,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span
                                             style={{
                                               color: "rgb(255, 228, 0)",
-                                              fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
-                                            className="text-left"
+                                            className="font-20px-17px text-left"
                                           >
-                                            {merchantCurrency}&nbsp;0.00
+                                            {merchantCurrency}&nbsp; {merchantCurrency == 'KHR' ? '0':'0.00'}
                                           </span>
                                         </td>
 
@@ -1955,12 +1928,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span
                                             style={{
                                               color: "rgb(255, 228, 0)",
-                                              fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
-                                            className="text-left"
+                                            className="font-20px-17px text-left"
                                           >
-                                            {merchantCurrency}&nbsp;0.00
+                                            {merchantCurrency}&nbsp; {merchantCurrency == 'KHR' ? '0':'0.00'}
                                           </span>
                                         </td>
 
@@ -1993,12 +1965,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span
                                             style={{
                                               color: "rgb(255, 228, 0)",
-                                              fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
-                                            className="text-left"
+                                            className="font-20px-17px text-left"
                                           >
-                                            {merchantCurrency}&nbsp;0.00
+                                            {merchantCurrency}&nbsp; {merchantCurrency == 'KHR' ? '0':'0.00'}
                                           </span>
                                         </td>
 
@@ -2028,12 +1999,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span
                                             style={{
                                               color: "rgb(255, 228, 0)",
-                                              fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
-                                            className="text-left"
+                                            className="font-20px-17px text-left"
                                           >
-                                            {merchantCurrency}&nbsp;0.00
+                                            {merchantCurrency}&nbsp; {merchantCurrency == 'KHR' ? '0':'0.00'}
                                           </span>
                                         </td>
                                         <div
@@ -2083,6 +2053,9 @@ const Calculator = ({ _transactions, _auth }) => {
        .btn-clr:active{
         border:1px solid rgb(194, 35, 97)!important;
         color: rgb(194, 35, 97)!important;
+        }
+        @media (max-width:575px){
+
         }
       `}</style>
     </section>

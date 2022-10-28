@@ -172,7 +172,7 @@
     .right-part-menu .right-part-list li .user-details .reload-icon span :hover{
       transform: rotate(90deg);
       transition: 'transform 150ms ease';
-      box-shadow: 0px 5px 15px 5px rgba(255, 0, 106, 0.555);
+    box-shadow: 0px 0px 20px 4px rgb(255 0 106 / 56%);
       }
     .right-part-menu .right-part-list li .user-details .reload-icon span img {
     width: 100%;
@@ -557,7 +557,6 @@
   .btn-white:hover {
     color: #bc2263;
     border: 1px solid #bc2263;
-
 }
   .rounded-full {
   border-radius: 30px;
@@ -3029,7 +3028,7 @@ section.announcement {
   color: #fff;
 }
 .height-380px{
-  height: 380px !important;
+  height: 400px !important;
 }
 .font-20px-17px{
   font-size: 20px !important;
@@ -4237,7 +4236,7 @@ input.daterangepickerstyle-sm {
   }
   @media (max-width:768px) {
     .back-section:before {
-        width: 100%!important;
+        width: 100% !important;
     }
     .btn-clear {
       font-size: 14px;
@@ -4364,4 +4363,45 @@ input.daterangepickerstyle-sm {
 }
 .table-header-theme tbody tr td {
   background-color: #b91a5d !important;
+}
+.form-control-2 {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-control-2:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #ffc107;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem #ffc10724;
+}
+
+.btn.btn-outline-danger {
+  --bs-btn-color: #bf2262;
+  --bs-btn-border-color: #bf2262;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #bf2262;
+  --bs-btn-hover-border-color: #bf2262;
+  --bs-btn-focus-shadow-rgb: 220,53,69;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #bf2262;
+  --bs-btn-active-border-color: #bf2262;
+  --bs-btn-active-shadow: inset 0 3px 5pxrgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #bf2262;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #bf2262;
+  --bs-gradient: none;
 }

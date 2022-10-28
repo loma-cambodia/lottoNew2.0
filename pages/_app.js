@@ -15,6 +15,7 @@ import { useIdleTimer } from 'react-idle-timer'
 import { useDispatch, useSelector } from "react-redux";
 
 import axios from 'axios';
+import LogoutModal from "../components/modal/logoutModal";
 
 let logoutTimeInIdealCondition = process.env.logoutTimeInIdealCondition;
 
@@ -44,6 +45,7 @@ function MyApp({ Component, pageProps,user }) {
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(false);
   const [updateSessionData, setUpdateSessionData] = useState(1);
+  const [isIdleData,setIdleData] = useState(false)
   let timeoutSetting = logoutTimeInIdealCondition * 60 * 1000;
 
   axios.interceptors.request.use(
@@ -83,9 +85,8 @@ function MyApp({ Component, pageProps,user }) {
 
   //console.log('data.user.data:',data.user.data);
   const onIdle = () => {
-
-
-    userLogout()
+    setIdleData(true)
+    userLogoutPopUp()
   }
   const {
     isIdle,
@@ -149,6 +150,16 @@ function MyApp({ Component, pageProps,user }) {
       })
   }
 
+  const userLogoutPopUp = () => {
+
+    let member_id = data && data.user && data.user.data && data.user.data.id ? data.user.data.id : 0;
+    fetch(`/api/logout?member_id=${member_id}`)
+      .then((res) => {
+        let response = res.json();
+
+      })
+  }
+
   if (isLoading) return <p>{t('Loading')}...</p>
  // if (!data) return <p>{t('no_profile_data')}</p>
  if (!data) return <p>{t('Loading')}</p>
@@ -175,6 +186,7 @@ function MyApp({ Component, pageProps,user }) {
           />
           <Provider store={store}>
           <Component {...pageProps} datauser={data}  updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
+          <LogoutModal _logoutStatus={isIdleData} _memberId={data && data.user && data.user.data && data.user.data.id ? data.user.data.id : 0}/>
           </Provider>
         </> 
       );
