@@ -47,7 +47,7 @@ let objectWithData = {
   "token": datauser.user.data.token ? datauser.user.data.token : ""  
 } 
 
-
+// console.log('datauserdatauser',datauser.user.data.token)
 if(objectWithData.customer_id != 0){
     dispatch(getLogin(objectWithData)); 
 }
