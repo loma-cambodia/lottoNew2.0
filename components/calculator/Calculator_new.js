@@ -62,6 +62,146 @@ const Calculator = ({ _transactions, _auth }) => {
     },
   });
 
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////
+
+
+
+    var firstDigit = 1;
+    var secondDigit = 1;
+    var thirdDigit = 1;
+    var fourthDigit = 1;
+
+    const witchTypesOf = (_getNumber) => {
+        var num = _getNumber;
+        var numArray = numberToArray(num);
+        var first = firstDigitFunction(numArray, firstDigit = 1);
+        var second = secondDigitFunction(numArray, secondDigit = 1);
+        var third = thirdDigitFunction(numArray, thirdDigit = 1);
+        var fourth = fourthDigitFunction(numArray, fourthDigit = 1);
+        if (typeof num === 'string') {
+          if (num.length == 4) {
+              if (first == 1 && second == 1 && third == 1 && fourth == 1) {
+                  return 24;
+              }
+              if (first == 2 || second == 2 || third == 2 || fourth == 2) {
+                  if (first == 2 && second == 2 && third == 2 && fourth == 2) {
+                      return 6;
+                  } else {
+                      return 12;
+                  }
+              }
+              if (first == 3 || second == 3 || third == 3 || fourth == 3) {
+                  return 4;
+              }
+          }
+          if (num.length == 3) {
+              if (first == 1 && second == 1 && third == 1) {
+                  return 24;
+              }
+              if (first == 2 || second == 2 || third == 2) {
+                  if (first == 2 && second == 2 && third == 2) {
+                      return 6;
+                  } else {
+                      return 12;
+                  }
+              }
+              if (first == 3 || second == 3 || third == 3) {
+                  return 0;
+              }
+          }
+        }
+        return 0;
+    }
+
+        
+    const firstDigitFunction = (numArray, firstDigit) => {
+        if (numArray) {
+            if (numArray[0] == numArray[1]) {
+                firstDigit++;
+            }
+            if (numArray[0] == numArray[2]) {
+                firstDigit++;
+            }
+            if (numArray[0] == numArray[3]) {
+                firstDigit++;
+            }
+            return firstDigit;
+        }
+    }
+    const secondDigitFunction = (numArray, secondDigit) => {
+        if (numArray) {
+            if (numArray[1] == numArray[0]) {
+                secondDigit++;
+            }
+            if (numArray[1] == numArray[2]) {
+                secondDigit++;
+            }
+            if (numArray[1] == numArray[3]) {
+                secondDigit++;
+            }
+            return secondDigit;
+        }
+    }
+    const thirdDigitFunction = (numArray, thirdDigit) => {
+        if (numArray) {
+            if (numArray[2] == numArray[1]) {
+                thirdDigit++;
+            }
+            if (numArray[2] == numArray[0]) {
+                thirdDigit++;
+            }
+            if (numArray[2] == numArray[3]) {
+                thirdDigit++;
+            }
+            return thirdDigit;
+        }
+    }
+    const fourthDigitFunction = (numArray, fourthDigit) => {
+        if (numArray) {
+            if (numArray[3] == numArray[1]) {
+                fourthDigit++;
+            }
+            if (numArray[3] == numArray[2]) {
+                fourthDigit++;
+            }
+            if (numArray[3] == numArray[0]) {
+                fourthDigit++;
+            }
+            return fourthDigit;
+        }
+    }
+
+    
+    const numberToArray = (num) => {
+        if (typeof num === 'string') {
+            var digits = num.toString().split('');
+            return digits.map(Number)
+        }
+    }
+
+
+    /////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
   console.log("currentMarket: ", price);
   const checkPalindrome = (string) => {
     const len = string.length;
@@ -596,7 +736,23 @@ const Calculator = ({ _transactions, _auth }) => {
     }
     return true;
   }
+  function checkRnumber(numm){
+    if(numm.includes("R")){
+      if(gameType == "b" || gameType == "i" || gameType == "r"){
+        setGameType('s');
+      }
+      return numm.includes("R");
+    }else if(numm.includes("r")){
+      if(gameType == "b" || gameType == "i" || gameType == "r"){
+        setGameType("s");
+      }
+      return numm.includes("r");
+    }else{
+      return false;
+    }
+  }
 
+  // console.log('witchTypesOf(number)',witchTypesOf(number));
   return (
     <section className="bg-light custom-padding">
       <div className="container">
@@ -711,36 +867,59 @@ const Calculator = ({ _transactions, _auth }) => {
                                         fontSize: "14px",
                                       }}
                                     >
-                                      {/*  <img
-                                          className="img-fluid"
-                                          src="images\betting\0000.png"
-                                          alt=""
-                                        style={{ width: '20px' }}
-                                      /> */}
                                       {t('Straight')}
                                     </label>
                                   </div>
                                   <div>
+                                  {checkRnumber(number) ?
                                     <label
                                       for="forBoxValue"
-                                      className={
-                                        gameType == "b"
-                                          ? " form-control show-Selected-bet"
-                                          : "form-control disable"
-                                      }
-                                      title="Enabled"
+                                      className="form-control disable"
+                                      title="Desable"
                                       style={{
-                                        cursor: "pointer",
+                                        cursor: "",
                                         fontSize: "14px",
-                                      }}
-                                      onClick={() => {
-                                        setGameType("b");
+                                        border: "red 1px solid",
                                       }}
                                     >
-                                      Box
+                                    Box
                                     </label>
+                                    :
+                                    witchTypesOf(number)==0 ?
+                                        <label
+                                        for="forBoxValue"
+                                        className="form-control disable"
+                                        title="Desable"
+                                        style={{
+                                          cursor: "",
+                                          fontSize: "14px",
+                                          border: "red 1px solid",
+                                        }}
+                                      >
+                                        Box
+                                      </label>
+                                      : 
+                                      <label
+                                        for="forBoxValue"
+                                        className={
+                                          gameType == "b"
+                                            ? " form-control show-Selected-bet"
+                                            : "form-control disable"
+                                        }
+                                        title="Enabled"
+                                        style={{
+                                          cursor: "pointer",
+                                          fontSize: "14px",
+                                        }}
+                                        onClick={() => {
+                                          setGameType("b");
+                                        }}
+                                      >
+                                        Box
+                                      </label>
+                                    }
                                   </div>
-                                  {number.length > 3 ? (
+                                  {witchTypesOf(number)!=0 && !checkRnumber(number) && number.length > 3 ? (
                                     <div className="">
                                       <label
                                         for="forIboxValue"
@@ -768,8 +947,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                         className="form-control disable"
                                         title="Disabled"
                                         style={{
-                                          cursor: "help",
+                                          cursor: "",
                                           fontSize: "14px",
+                                          border: "red 1px solid",
                                         }}
                                       >
                                         iBox
@@ -777,14 +957,15 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </div>
                                   )}
                                   <div className="">
-                                    {palindrome(number) ? (
+                                    {checkRnumber(number) || palindrome(number) ? (
                                       <label
                                         for="forReverseValue"
                                         className={"form-control disable"}
                                         title="Disabled"
                                         style={{
-                                          cursor: "help",
+                                          cursor: "",
                                           fontSize: "14px",
+                                          border: "red 1px solid",
                                         }}
                                       >
                                         {t("Reverse")}
@@ -829,6 +1010,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                 </div>
                                 <div className="">
                                   <input
+                                  onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                     className="form-control"
                                     id={
                                       number.length == 3
@@ -863,6 +1045,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                 </div>
                                 <div className="">
                                   <input
+                                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                     className="form-control"
                                     id={
                                       number.length == 3
@@ -976,7 +1159,7 @@ const Calculator = ({ _transactions, _auth }) => {
                             {t("Total_Cost")}
                           </label>
                           <span>
-                            {merchantCurrency} {cost}
+                            {merchantCurrency} {parseInt(cost).toLocaleString()}
                           </span>
                         </div>
                       </div>
@@ -997,9 +1180,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                     ></th>
                                     <th
                                       style={{ width: "30%" }}
-                                      className="text-left"
+                                      className={
+                                        styles.device_detect_for_mobile
+                                      }
                                     >
-                                      3A / 3C
+                                      3A/3C
                                     </th>
                                   </>
                                 ) : number.length == 4 ? (
@@ -1044,10 +1229,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {merchantCurrency == "KHR"
                                             ? parseFloat(
                                                 result.d3a_one + result.d3c_one
-                                              )
+                                              ).toLocaleString()
                                             : parseFloat(
                                                 result.d3a_one + result.d3c_one
-                                              ).toFixed(2)}
+                                              ).toLocaleString()}
                                         </span>
                                       </span>
                                     </td>
@@ -1058,6 +1243,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left d-flex flex-column"
                                     >
                                       <div className="w-100">
+                                      {a3 ? 
                                         <span className="d-flex justify-content-between">
                                           <span
                                             className={
@@ -1070,12 +1256,14 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span>
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
-                                              ? parseFloat(price.d3.a3_one)
+                                              ? parseFloat(price.d3.a3_one).toLocaleString()
                                               : parseFloat(
                                                   price.d3.a3_one
-                                                ).toFixed(2)}
+                                                ).toLocaleString()}
                                           </span>
-                                        </span>
+                                        </span>                                    
+                                      : <></>}
+                                        {c3 ? 
                                         <span className="d-flex justify-content-between">
                                           <span
                                             className={
@@ -1088,12 +1276,13 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span>
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
-                                              ? parseFloat(price.d3.one)
+                                              ? parseFloat(price.d3.one).toLocaleString()
                                               : parseFloat(
                                                   price.d3.one
-                                                ).toFixed(2)}
+                                                ).toLocaleString()}
                                           </span>
-                                        </span>
+                                        </span>                                      
+                                      : <></>}
                                       </div>
                                     </td>
                                     {/* </div> */}
@@ -1117,10 +1306,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                         <span className="col-md-9 col-12">
                                           {merchantCurrency == "KHR"
-                                            ? parseFloat(result.d3c_two)
+                                            ? parseFloat(result.d3c_two).toLocaleString()
                                             : parseFloat(
                                                 result.d3c_two
-                                              ).toFixed(2)}
+                                              ).toLocaleString()}
                                         </span>
                                       </span>
                                     </td>
@@ -1130,6 +1319,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       style={{ width: "100%" }}
                                       className="text-left d-flex flex-column"
                                     >
+                                    {c3 ? 
                                       <span className="d-flex justify-content-between">
                                         <span
                                           className={
@@ -1142,12 +1332,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                         <span>
                                           {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
-                                            ? parseFloat(price.d3.two)
-                                            : parseFloat(price.d3.two).toFixed(
-                                                2
-                                              )}
+                                            ? parseFloat(price.d3.two).toLocaleString()
+                                            : parseFloat(price.d3.two).toLocaleString()}
                                         </span>
-                                      </span>
+                                      </span>                                      
+                                      : <></>}
                                     </td>
                                     {/* </div> */}
                                   </tr>
@@ -1170,10 +1359,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                         <span className="col-md-9 col-12">
                                           {merchantCurrency == "KHR"
-                                            ? parseFloat(result.d3c_three)
+                                            ? parseFloat(result.d3c_three).toLocaleString()
                                             : parseFloat(
                                                 result.d3c_three
-                                              ).toFixed(2)}
+                                              ).toLocaleString()}
                                         </span>
                                       </span>
                                     </td>
@@ -1183,6 +1372,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       style={{ width: "100%" }}
                                       className="text-left d-flex flex-column"
                                     >
+                                      {c3 ? 
                                       <span className="d-flex justify-content-between">
                                         <span
                                           className={
@@ -1195,12 +1385,13 @@ const Calculator = ({ _transactions, _auth }) => {
                                         <span>
                                           {merchantCurrency}
                                           {merchantCurrency == "KHR"
-                                            ? parseFloat(price.d3.three)
+                                            ? parseFloat(price.d3.three).toLocaleString()
                                             : parseFloat(
                                                 price.d3.three
-                                              ).toFixed(2)}
+                                              ).toLocaleString()}
                                         </span>
-                                      </span>
+                                      </span>                                      
+                                      : <></>}
                                     </td>
                                     {/* </div> */}
                                   </tr>
@@ -1252,8 +1443,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                         <span className="col-md-9 col-12">
                                           {merchantCurrency == "KHR"
-                                            ? parseInt(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one))
-                                            : parseFloat(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toFixed(2)}
+                                            ? parseInt(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one).toLocaleString())
+                                            : parseFloat(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString()}
                                         </span>
                                       </span>
                                     </td>
@@ -1263,6 +1454,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left d-flex flex-column"
                                     >
                                       <div className="w-100">
+                                      {big ? 
                                         <span className="d-flex justify-content-between">
                                           <span
                                             className={
@@ -1275,12 +1467,14 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span>
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
-                                              ? parseInt(price.d4.one)
+                                              ? parseInt(price.d4.one).toLocaleString()
                                               : parseFloat(
                                                   price.d4.one
-                                                ).toFixed(2)}
+                                                ).toLocaleString()}
                                           </span>
                                         </span>
+                                      : <></>}
+                                      {small ? 
                                         <span className="d-flex justify-content-between">
                                           <span
                                             className={
@@ -1288,17 +1482,18 @@ const Calculator = ({ _transactions, _auth }) => {
                                             }
                                           >
                                             {" "}
-                                            {t("Small_Bet")}{" "}
+                                            {t("Small_Bet")}:{" "}
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
-                                              ? parseInt(price.d4.small_one)
+                                              ? parseInt(price.d4.small_one).toLocaleString()
                                               : parseFloat(
                                                   price.d4.small_one
-                                                ).toFixed(2)}
+                                                ).toLocaleString()}
                                           </span>
                                         </span>
+                                      : <></>}
                                       </div>
                                     </td>
                                     {/* </div> */}
@@ -1322,8 +1517,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                         <span className="col-md-9 col-12">
                                           {merchantCurrency == "KHR"
-                                            ? parseInt(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two))
-                                            : parseFloat(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two)).toFixed(2)}
+                                            ? parseInt(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two)).toLocaleString()
+                                            : parseFloat(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two)).toLocaleString()}
                                         </span>
                                       </span>
                                     </td>
@@ -1333,6 +1528,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left d-flex flex-column"
                                     >
                                       <div className="w-100">
+                                      {big ?
                                         <span className="d-flex justify-content-between">
                                           <span
                                             className={
@@ -1345,10 +1541,12 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span>
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
-                                              ? parseInt(price.d4.two)
-                                              : parseFloat(price.d4.two).toFixed(2)}
+                                              ? parseInt(price.d4.two).toLocaleString()
+                                              : parseFloat(price.d4.two).toLocaleString()}
                                           </span>
-                                        </span>
+                                        </span> 
+                                      : <></>}
+                                      {small ? 
                                         <span className="d-flex justify-content-between">
                                           <span
                                             className={
@@ -1356,17 +1554,18 @@ const Calculator = ({ _transactions, _auth }) => {
                                             }
                                           >
                                             {" "}
-                                            {t("Small_Bet")}{" "}
+                                            {t("Small_Bet")}:{" "}
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
-                                              ? parseInt(price.d4.small_two)
+                                              ? parseInt(price.d4.small_two).toLocaleString()
                                               : parseFloat(
                                                   price.d4.small_two
-                                                ).toFixed(2)}
+                                                ).toLocaleString()}
                                           </span>
-                                        </span>
+                                        </span>                                    
+                                      : <></>}
                                       </div>
                                     </td>
                                     {/* </div> */}
@@ -1390,8 +1589,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                         <span className="col-md-9 col-12">
                                           {merchantCurrency == "KHR"
-                                            ? parseInt(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three))
-                                            : parseFloat(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three)).toFixed(2)}
+                                            ? parseInt(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three)).toLocaleString()
+                                            : parseFloat(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three)).toLocaleString()}
                                         </span>
                                       </span>
                                     </td>
@@ -1401,6 +1600,27 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left d-flex flex-column"
                                     >
                                       <div className="w-100">
+                                        {big ? 
+                                          <span className="d-flex justify-content-between">
+                                            <span
+                                              className={
+                                                styles.device_detect_for_desktop
+                                              }
+                                            >
+                                              {" "}
+                                              {t("Big")}:{" "}
+                                            </span>
+                                            <span>
+                                              {merchantCurrency} &nbsp;
+                                              {merchantCurrency == "KHR"
+                                                ? parseInt(price.d4.three).toLocaleString()
+                                                : parseFloat(
+                                                    price.d4.three
+                                                  ).toLocaleString()}
+                                            </span>
+                                          </span> : <></>
+                                        }
+                                        {small ? 
                                         <span className="d-flex justify-content-between">
                                           <span
                                             className={
@@ -1408,35 +1628,18 @@ const Calculator = ({ _transactions, _auth }) => {
                                             }
                                           >
                                             {" "}
-                                            {t("Big")}:{" "}
+                                            {t("Small_Bet")}:{" "}
                                           </span>
                                           <span>
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
-                                              ? parseInt(price.d4.three)
-                                              : parseFloat(
-                                                  price.d4.three
-                                                ).toFixed(2)}
-                                          </span>
-                                        </span>
-                                        <span className="d-flex justify-content-between">
-                                          <span
-                                            className={
-                                              styles.device_detect_for_desktop
-                                            }
-                                          >
-                                            {" "}
-                                            {t("Small_Bet")}{" "}
-                                          </span>
-                                          <span>
-                                            {merchantCurrency} &nbsp;
-                                            {merchantCurrency == "KHR"
-                                              ? parseInt(price.d4.small_three)
+                                              ? parseInt(price.d4.small_three).toLocaleString()
                                               : parseFloat(
                                                   price.d4.small_three
-                                                ).toFixed(2)}
+                                                ).toLocaleString()}
                                           </span>
-                                        </span>
+                                        </span>                                    
+                                        : <></>}
                                       </div>
                                     </td>
                                     {/* </div> */}
@@ -1462,10 +1665,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                         <span className="col-md-9 col-12">
                                           {merchantCurrency == "KHR"
-                                            ? parseInt(result.d4_big_special)
+                                            ? parseInt(result.d4_big_special).toLocaleString()
                                             : parseFloat(
                                                 result.d4_big_special
-                                              ).toFixed(2)}
+                                              ).toLocaleString()}
                                         </span>
                                       </span>
                                     </td>
@@ -1474,6 +1677,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       style={{ width: "100%" }}
                                       className="text-left d-flex flex-column"
                                     >
+                                      {big ? 
                                       <span className="d-flex justify-content-between w-100">
                                         <span
                                           className={
@@ -1486,12 +1690,15 @@ const Calculator = ({ _transactions, _auth }) => {
                                         <span>
                                           {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
-                                            ? parseInt(price.d4.special)
+                                            ? parseInt(price.d4.special).toLocaleString()
                                             : parseFloat(
                                                 price.d4.special
-                                              ).toFixed(2)}
+                                              ).toLocaleString()}
                                         </span>
                                       </span>
+                                      
+                                      : <></>}
+
                                     </td>
                                     {/* </div> */}
                                   </tr>
@@ -1518,10 +1725,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {merchantCurrency == "KHR"
                                             ? parseInt(
                                                 result.d4_big_consolation
-                                              )
+                                              ).toLocaleString()
                                             : parseFloat(
                                                 result.d4_big_consolation
-                                              ).toFixed(2)}
+                                              ).toLocaleString()}
                                         </span>
                                       </span>
                                     </td>
@@ -1530,6 +1737,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       style={{ width: "100%" }}
                                       className="text-left d-flex flex-column"
                                     >
+                                      {big ? 
                                       <span className="d-flex justify-content-between">
                                         <span
                                           className={
@@ -1542,12 +1750,14 @@ const Calculator = ({ _transactions, _auth }) => {
                                         <span>
                                           {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
-                                            ? parseInt(price.d4.consolation)
+                                            ? parseInt(price.d4.consolation).toLocaleString()
                                             : parseFloat(
                                                 price.d4.consolation
-                                              ).toFixed(2)}
+                                              ).toLocaleString()}
                                         </span>
                                       </span>
+                                      
+                                      : <></>}
                                     </td>
                                     {/* </div> */}
                                   </tr>
@@ -1593,12 +1803,6 @@ const Calculator = ({ _transactions, _auth }) => {
                                           className="text-left d-flex flex-column"
                                           style={{ width: "30%" }}
                                         >
-                                          <span className="d-flex justify-content-start">
-                                            <span> 0.00</span>
-                                          </span>
-                                          <span className="d-flex justify-content-start">
-                                            <span> 0.00</span>
-                                          </span>
                                         </td>
                                         {/* </div> */}
                                       </tr>
@@ -1631,12 +1835,12 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                             <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
-                                            </span>
+                                            </span> */}
                                           </td>
                                         </div>
                                       </tr>
@@ -1669,12 +1873,12 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
                                             </span>
                                             <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
-                                            </span>
+                                            </span> */}
                                           </td>
                                         </div>
                                       </tr>
@@ -1707,9 +1911,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
-                                            </span>
+                                            </span> */}
                                           </td>
                                         </div>
                                       </tr>
@@ -1741,9 +1945,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-start">
                                               <span> 0.00</span>
-                                            </span>
+                                            </span> */}
                                           </td>
                                         </div>
                                       </tr>
