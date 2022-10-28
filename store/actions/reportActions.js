@@ -112,9 +112,11 @@ export const getLotteryDetailsList = (getData) => async (dispatch) => {
   let child_ticket_no = getData.child_ticket_no;
   let game_play_id = getData.game_play_id;
   let game_type = getData.game_type;
-  let token = getData.token;
+  //let token = getData.token;
   
   try {
+
+    let token = localStorage.getItem("kk_lotto_token")
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -158,8 +160,9 @@ export const filterLotteryDetailsList = (getData) => async (dispatch) => {
   let child_ticket_no = getData.child_ticket_no;
   let game_play_id = getData.game_play_id;
   let game_type = getData.game_type;
-  let token = getData.token;
+  //let token = getData.token;
   try {
+    let token = localStorage.getItem("kk_lotto_token")
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
