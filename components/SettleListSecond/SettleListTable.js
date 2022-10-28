@@ -429,6 +429,49 @@ const handlePageClick = (event) => {
                     </div>
                     <div className={styles.device_detect_for_desktop}>
 
+                    <table className="table small table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>{t('No')}</th>
+                                    <th className="text-center">{t('Ticket_No')}</th>
+                                    <th className="text-center">{t('Betting_Time')}</th>
+                                    <th className="text-center">{t('Draw_Date')}</th>
+                                    <th className="text-center">{t('Draw_Id')}</th>
+                                    <th className="text-center">{t('Bet_Number')}</th>
+                                    <th className="text-center">{t('Company')}</th>
+                                    <th className="text-end">{t('Total')}</th>
+                                    <th className="text-end">{t('Rebate')}</th>
+                                    <th className="text-end">{t('Net')}</th>
+                                    <th className="text-end">{t('winning')}</th>
+                                    <th className="text-end">{t('Winning_Loss')}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {currentItems && currentItems.map((item,i) =>(
+                                    <tr key={i}>
+                                        <td>{currentPage*itemsPerPage + (i + 1)}</td>
+                                        <td className="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')} >{item.ticket_no}</span></td>
+                                        <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
+                                        <td className="text-center">{moment(item.draw_date).format('DD-MM-YYYY')}</td>
+                                        <td className="text-center">{item.draw_number}</td>
+                                        <td className="text-center">{item.bet_number}</td>
+                                        <td className="text-center">
+                                        {
+                                        item.games && item.games.map((item,i) =>(
+                                            item.abbreviation
+                                        )
+                                        ) 
+                                        }
+                                    </td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.total_amount, 1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.rebate_amount, 1)}</td>
+                                        <td className="text-end">{MoneyFormatDisplay(item.bet_net_amount, 1)}</td>
+                                        <td className="text-end"  style={winParent(item.winning_amount)}>{MoneyFormatDisplay(item.winning_amount,1)}</td>
+                                        <td className="text-end"  style={winParent(winLose(item.winning_amount,item.bet_net_amount))}>{winLose(item.winning_amount,item.bet_net_amount)}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                                                     <Table data={currentItems} _childShowTable={childShowTable}/>
                     </div>
                     <div className="clearfix d-flex align-items-center justify-content-center">

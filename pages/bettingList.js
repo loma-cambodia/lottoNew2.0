@@ -60,7 +60,7 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
        "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
       } 
       if(objectWithData.customer_id != 0){
-      dispatch(getLogin(objectWithData));
+      //dispatch(getLogin(objectWithData));
       }
       let d = new Date();
       dispatch(searchTicketData(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),'',datauser.user.data.token ? datauser.user.data.token : ""),setIsLoading(false))
@@ -91,7 +91,7 @@ export default function BettingList({datauser, updateSessionData, setUpdateSessi
       {/* <Header datauser={datauser}/> */}
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <ListBanner/>
-      <section className="page-content custom-padding vh-70 background">
+      <section className="page-content custom-padding vh-70 ">
     <div className="container">
         {/* <ListFilter/> */}
          <ListTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth} _isLoading={isLoading}/> 

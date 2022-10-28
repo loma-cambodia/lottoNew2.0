@@ -7,6 +7,7 @@ import {setUserDataFormat} from '../../components/Utils';
 
                const headers = {
                 'Content-Type': 'application/json',
+                'Accept' : 'application/json'
               }
 
         const res = await axios.post(`/api/updateUser`,objectWithData,{headers: headers});

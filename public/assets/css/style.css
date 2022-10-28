@@ -555,13 +555,8 @@
     transition: all 250ms;
   }
   .btn-white:hover {
-    background: #eeeeee; /* Old browsers */
-    background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #eeeeee 0%,#eeeeee 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #eeeeee 0%,#eeeeee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
-    color: black;
-    border: 1px solid #d8d8d8;
+    color: #bc2263;
+    border: 1px solid #bc2263;
 
 }
   .rounded-full {
@@ -3073,15 +3068,32 @@ section.announcement {
 
 /* .iSAVrt */
 /* .bQdYbR  */
+.kmecXQ{
+  min-width: 50px!important
+}
+.hbotQl{
+  overflow: visible!important;
+  font-size: 14px!important;
+}
 .glyQNg{
-  padding: 2px!important;
-  padding-left: 15px!important;
+  /* padding: 2px!important;
+  padding-left: 15px!important; */
 }
 /* invesment module */  
 .eVPPvF{
-  padding: 2px!important;
-  padding-left: 15px!important;
+  /* padding: 2px!important;
+  padding-left: 15px!important; */
 
+}
+.rdt_Table{
+  min-width: fit-content!important;
+}
+.rdt_TableCell:first-child, .rdt_TableCol:first-child{
+  min-width: 10px!important;
+  text-align: center!important;
+}
+.rdt_TableHead{
+  font-weight: bold!important;
 }
 .back-section {  
   height: auto;  
@@ -3112,9 +3124,9 @@ section.announcement {
   border-radius: 15px;  
   box-shadow: 0px 0px 18px 8px rgb(0 0 0 / 20%);  
 }  
-.bQdYbR{
+/* .bQdYbR{
   min-width: 80px!important;
-}
+} */
 @media (max-width:574.999px) {  
   .back-section:before {  
       width: 100%;  

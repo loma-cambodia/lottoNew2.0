@@ -100,7 +100,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
         //"language":   datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
         "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
       } 
-      dispatch(getLogin(objectWithData));
+      //dispatch(getLogin(objectWithData));
 
       }, [datauser])
       
@@ -170,7 +170,7 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <WinngListBanner/>
-      <section className="page-content custom-padding background vh-70">
+      <section className="page-content custom-padding  vh-70">
         <div className="container">
         <Filter _setFilterParams={setFilterParams} />
 

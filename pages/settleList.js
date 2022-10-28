@@ -53,7 +53,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
         "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
       } 
       if(objectWithData.customer_id != 0){
-      dispatch(getLogin(objectWithData));
+      //dispatch(getLogin(objectWithData));
       }
       }, [datauser])
 
@@ -101,7 +101,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       
       <SettleBanner/>
-      <section className="page-content custom-padding background vh-70">
+      <section className="page-content custom-padding  vh-70">
           <div className="container">
                 <SettleTable _tickets={tickets} _ticketsChild={ticketsChild} _GetTicketNumber={GetTicketNumber} _auth={auth} _resetTable={resetTable} _isLoading={isLoading}/> 
           </div>

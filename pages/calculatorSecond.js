@@ -14,7 +14,7 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
   const state = useSelector(state => state);
 useEffect(() => {
   if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
-    dispatch(userTransactionDetails(datauser.user.data.merchant_id));
+    dispatch(userTransactionDetails(datauser.user.data.merchant_id,datauser.user.data.token ? datauser.user.data.token : "" ));
 }, [datauser]);
 
 useEffect(() => {
@@ -26,7 +26,7 @@ let objectWithData = {
 } 
 
 if(objectWithData.customer_id != 0){
-    dispatch(getLogin(objectWithData)); 
+   // dispatch(getLogin(objectWithData)); 
 }
 }, [datauser])
 
