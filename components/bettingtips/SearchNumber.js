@@ -23,7 +23,7 @@ import {
   Input,
   Row,
 } from "reactstrap";
-export default function SearchNumber({ _transactions, _auth }) {
+export default function SearchNumber({ _transactions, _auth,datauser }) {
   const { t } = useTranslation();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -161,8 +161,9 @@ export default function SearchNumber({ _transactions, _auth }) {
   
   const [prizeInitData, setPrizeInitData] = useState(prizeObject);
   const [changeData, setChangeData] = useState(0);
-
+  
   const [searchResultData, setSearchResultData] = useState([]);
+  const [reserAllData, setReserAllData] = useState(false);
 
   function getallcompanydata(){
       let dateAndGameOptionData = [];
@@ -269,6 +270,7 @@ export default function SearchNumber({ _transactions, _auth }) {
   const bettingTip = state && state.bettingTips && state.bettingTips.bettingsTips ? state.bettingTips.bettingsTips : [];
 
   const searchClick = () => {
+    // resetClick();
     let dateFull = $("#daterangepicker").val();
     let sdate = '';
     let edate = ''; 
@@ -308,9 +310,12 @@ export default function SearchNumber({ _transactions, _auth }) {
                       "prize":prizes
                     };
 
-    const searchResult = dispatch(serachBettingTips(searchPostData));
+    const searchResult = dispatch(serachBettingTips(searchPostData,datauser.user.data.token ? datauser.user.data.token : ""));
     
-    
+    if(searchResult){
+      setReserAllData(true); 
+    }
+   
     // if(searchResult && searchResult.messages){
     //   alert('yyss')
     // }else{
@@ -319,19 +324,24 @@ export default function SearchNumber({ _transactions, _auth }) {
   }
 
   useEffect(()=>{
-    setPermutationData(bettingTip.permutation);
-    setMainCard(bettingTip.main_card);
-    setFirstTableData(bettingTip.data);
-  },[bettingTip,permutationData,mainCard,firstTableData])
+    if(reserAllData){
+      setPermutationData(bettingTip.permutation);
+      setMainCard(bettingTip.main_card);
+      setFirstTableData(bettingTip.data);
+    }
+  },[bettingTip,permutationData,mainCard,firstTableData,reserAllData])
 
   console.log('searchPostData',bettingTip);
 
   const resetClick = () => {
+    setReserAllData(false);
     setNumber('');
     $("#daterangepicker").val('');
     setPermutation(null); 
     getallcompanydata();  
     setPrizeInitData(prizeObject);  
+    setPermutationData([]);
+    setFirstTableData([]);
   }
 
   const getNetDrawDate = () =>{
@@ -405,115 +415,6 @@ export default function SearchNumber({ _transactions, _auth }) {
                         "Con": Con
                       } ;
     return totalCounts;
-  }
-
-  function PermutationDataTable({_permutationData,_firstTableData}){ 
-    if(_permutationData && _permutationData.length > 0){
-      {_permutationData && _permutationData.map((pdata, index)=>{
-        let prizeType = '';
-        let betNum = '';
-        {_firstTableData && _firstTableData.map(value => {
-          let keys = Object.keys(value);
-          keys.map(game1 => {
-            if(value[game1] == pdata){
-              prizeType = game1; 
-              betNum = value[game1];
-            }
-          });
-        })} 
-        // console.log('prizeTypeprizeType',prizeType);
-        console.log('prizeTypebetNumsssssssssss',_permutationData.length);
-        return (
-            <tr key={index}>
-              <td>{pdata}</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>12</td>
-              <td>12</td>
-              <td align="right">
-                <b>27</b>
-              </td>
-              <td align="right">7120</td>
-              <td align="right">6500</td>
-              <td>19/06/2022</td>
-              <td>Sun</td>
-              <td>
-                <span className="badge bg-info text-white">Special</span>
-              </td>
-              <td>
-                <img
-                  src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-                  alt=""
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "50%",
-                  }}
-                />
-              </td>
-            </tr>
-        )
-      })}
-    }
-    
-    // else{
-
-    // }
-
-    // {firstTableData && firstTableData.map((value, index)=>{
-    //   let prizeType = '';
-    //   let betNum = '';
-    //     let keys = Object.keys(value);
-    //     keys.map(game1 => {
-    //       if(permutationData.length > 0){
-    //         permutationData.map(pdata => {
-    //           if(value[game1] == pdata){
-    //             prizeType = game1; 
-    //             betNum = value[game1];
-    //           }
-    //         })
-    //       }else{
-    //         if(value[game1] == number){
-    //           prizeType = game1; 
-    //           betNum = value[game1];
-    //         }
-    //       }
-    //     });
-    //   return (
-    //     <>
-    //       <tr>
-    //         <td>0234 </td>
-    //         <td>1</td>
-    //         <td>1</td>
-    //         <td>1</td>
-    //         <td>12</td>
-    //         <td>12</td>
-    //         <td align="right">
-    //           <b>27</b>
-    //         </td>
-    //         <td align="right">7120</td>
-    //         <td align="right">6500</td>
-    //         <td>19/06/2022</td>
-    //         <td>Sun</td>
-    //         <td>
-    //           <span className="badge bg-info text-white">Special</span>
-    //         </td>
-    //         <td>
-    //           <img
-    //             src="http://api.kk-lotto.com:8080/storage/logos/uSBcaSYf5xV0MW6zt53yhklZhrJcbiv8tmLs8GiS.png"
-    //             alt=""
-    //             style={{
-    //               width: "20px",
-    //               height: "20px",
-    //               borderRadius: "50%",
-    //             }}
-    //           />
-    //         </td>
-    //       </tr>
-    //     </>
-    //   )
-    // })}
   }
 
   function ForData(){
@@ -617,131 +518,6 @@ export default function SearchNumber({ _transactions, _auth }) {
           </>
         )
   }
-
-    // function ForDataFirst(){
-    //   let mainst1m	= 0;
-    //   let mainnd2m	= 0;
-    //   let mainrd3m	= 0;
-    //   let mainSpem	= 0;
-    //   let mainConm = 0;
-    //   let maintotalm = 0;
-    //   {permutationData && permutationData.map((pdata, index)=>{
-    //     let st1m	= 0;
-    //     let nd2m	= 0;
-    //     let rd3m	= 0;
-    //     let Spem	= 0;
-    //     let Conm = 0;
-    //     let totalm = 0;
-    //     let LastDrawDate = '-';
-    //     let LastDrawDay = '-';
-    //     let lastPrize = '';
-    //     let LastGameId = '';
-    //     {firstTableData && firstTableData.map(value => {
-    //       let keys = Object.keys(value);
-    //       keys.map(game1 => {
-    //         if(value[game1] == pdata){
-    //           let totalCounts = getCountsPrizeSetComm(game1);
-    //           console.log('totalCounts',totalCounts.st1)
-    //           st1m	= st1m+totalCounts.st1;
-    //           nd2m	= nd2m+totalCounts.nd2;
-    //           rd3m	= rd3m+totalCounts.rd3;
-    //           Spem	= Spem+totalCounts.Spe;
-    //           Conm  = Conm+totalCounts.Con;
-
-    //           totalm = st1m+nd2m+rd3m+Spem+Conm;
-    //           lastPrize = game1;
-    //         }
-    //       });
-    //       LastDrawDate = moment(value.fetching_date).format('DD/MM/YYYY');
-    //       LastDrawDay = moment(value.fetching_date).format('ddd');
-    //       LastGameId = value.game_play_id;
-    //     })} 
-
-    //     return (
-    //         <tr key={index}>
-    //           <td>{pdata}</td>
-    //           <td>{st1m != 0 ? st1m : '' }</td>
-    //           <td>{nd2m != 0 ? nd2m : '' }</td>
-    //           <td>{rd3m != 0 ? rd3m : '' }</td>
-    //           <td>{Spem != 0 ? Spem : '' }</td>
-    //           <td>{Conm != 0 ? Conm : '' }</td>
-    //           <td align="right">
-    //             <b>{totalm != 0 ? totalm : '' }</b>
-    //           </td>
-    //           <td align="right">7120</td>
-    //           <td align="right">6500</td>
-    //           <td>{LastDrawDate}</td>
-    //           <td>{LastDrawDay}</td>
-    //           <td>
-    //             <PrizeSetComm prizeType={lastPrize} />
-    //           </td>
-    //           <td>
-              
-    //             {oddSet.map((game, id) => {
-    //               if(LastGameId && game.game_play.id == LastGameId){
-    //                 return(
-    //                   <span key={id}>
-    //                     <img
-    //                       src={game.game_play.logo_url}
-    //                       alt=""
-    //                       style={{
-    //                         width: "20px",
-    //                         height: "20px",
-    //                         borderRadius: "50%",
-    //                       }}
-    //                     />
-    //                   </span>
-    //                 )                            
-    //               }
-    //             })}
-    //           </td>
-    //         </tr>
-    //     )
-    //   })}
-    //   <tr>
-    //     <td>
-    //       <b>Total</b>
-    //     </td>
-    //     <td>
-    //       <b>{mainst1m}</b>
-    //     </td>
-    //     <td>
-    //       <b>{mainnd2m}</b>
-    //     </td>
-    //     <td>
-    //       <b>{mainrd3m}</b>
-    //     </td>
-    //     <td>
-    //       <b>{mainSpem}</b>
-    //     </td>
-    //     <td>
-    //       <b>{mainConm}</b>
-    //     </td>
-    //     <td align="right">
-    //       <b>{maintotalm}</b>
-    //     </td>
-    //     <td align="right">
-    //       <b>254720</b>
-    //     </td>
-    //     <td align="right">
-    //       <b>241500</b>
-    //     </td>
-    //     <td align="right">
-    //       <b>&nbsp;</b>
-    //     </td>
-    //     <td align="right">
-    //       <b>&nbsp;</b>
-    //     </td>
-    //     <td align="right">
-    //       <b>&nbsp;</b>
-    //     </td>
-    //     <td align="right">
-    //       <b>&nbsp;</b>
-    //     </td>
-    //   </tr> 
-    // }
-
-
 
     let mainst1m	= 0;
     let mainnd2m	= 0;
