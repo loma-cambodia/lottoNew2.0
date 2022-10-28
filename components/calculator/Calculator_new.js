@@ -1006,7 +1006,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     paddingLeft: "3px",
                                   }}
                                 >
-                                  <b>{t("Big")} / 3A</b>
+                                  <b>{ number.length == 3 ? "3A" : number.length == 4 ? t("Big") : `${t("Big")} / 3A` }</b>
                                 </div>
                                 <div className="">
                                   <input
@@ -1041,7 +1041,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     paddingLeft: "3px",
                                   }}
                                 >
-                                  <b>{t("Small_Bet")} / 3C</b>
+                                  <b>{ number.length == 3 ? "3C" : number.length == 4 ? t("Small_Bet") : `${t("Small_Bet")} / 3C` }</b>
                                 </div>
                                 <div className="">
                                   <input
