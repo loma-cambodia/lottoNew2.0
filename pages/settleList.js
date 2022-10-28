@@ -62,7 +62,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
       let d = new Date()
       useEffect(() => {
         // dispatch(getTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0));
-        dispatch(searchTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
+        dispatch(searchTicketDataSettled(datauser && datauser.user && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),'',datauser.user.data.token ? datauser.user.data.token : ""));
         }, [])
   
 
@@ -80,7 +80,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
 
       const ticketSearch = []
       const GetTicketNumber = (member_id,dateRange,ticketNo) => {
-        dispatch(searchTicketDataSettled(member_id,dateRange,ticketNo));
+        dispatch(searchTicketDataSettled(member_id,dateRange,ticketNo,datauser.user.data.token ? datauser.user.data.token : ""));
         }
 
         const handlePageClick = (event) => {
@@ -91,7 +91,7 @@ export default function SettleList({datauser,updateSessionData, setUpdateSession
         const resetTable = ()=>{
           // dispatch(getTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0));
           let d = new Date();
-          dispatch(searchTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),''));
+          dispatch(searchTicketDataSettled(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0,formatDate2(d)+ ' - ' + formatDate2(d),'',datauser.user.data.token ? datauser.user.data.token : ""));
         }
   return (
     <> 

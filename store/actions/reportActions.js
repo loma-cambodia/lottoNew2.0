@@ -9,6 +9,7 @@ export const getTicketDataSettled = (id,token ='') => async (dispatch) => {
      const headers = {
        'Content-Type': 'application/json',
        'Access-Control-Allow-Origin': '*',
+       'Authorization': `Bearer ${token}`
      }
      const res = await axios.get(
          `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=SETTLED`,{
@@ -28,10 +29,14 @@ export const getTicketDataSettled = (id,token ='') => async (dispatch) => {
  }
 
 export const searchTicketData = (member_id,date_range, ticketNumber, token ='') => async (dispatch) => {
+
+
+  console.log('searchTicketData:token',token);
   try {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
+      'Authorization': `Bearer ${token}`
     }
 
      date_range = date_range.replace(" ", "");
@@ -69,6 +74,7 @@ export const searchTicketDataSettled = (member_id,date_range, ticketNumber, toke
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
+      'Authorization': `Bearer ${token}`
     }
 
      date_range = date_range.replace(" ", "");
