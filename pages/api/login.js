@@ -12,14 +12,14 @@ async function handler(req, res) {
 
    let objectWithData = {};
    if(isLocalhost){
-    // objectWithData.customer_name = "Sushil";
-    // objectWithData.customer_id = 222;
-    // objectWithData.merchant_id = 2;
-    // objectWithData.language = 'en';
-    objectWithData.customer_name = "Dileep Maurya";
-    objectWithData.customer_id = 112;
-    objectWithData.merchant_id = 1;
+    objectWithData.customer_name = "Sushil";
+    objectWithData.customer_id = 222;
+    objectWithData.merchant_id = 2;
     objectWithData.language = 'en';
+    // objectWithData.customer_name = "Dileep Maurya";
+    // objectWithData.customer_id = 112;
+    // objectWithData.merchant_id = 1;
+    // objectWithData.language = 'en';
    }else{
 
     objectWithData.customer_name = req.body.customer_name;

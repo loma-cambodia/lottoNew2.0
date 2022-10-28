@@ -3036,6 +3036,9 @@ section.announcement {
 .height-380px{
   height: 380px !important;
 }
+.font-20px-17px{
+  font-size: 20px !important;
+}
 @media (max-width:574.999px) { 
   .back-section1:before { 
       width: 100%; 
@@ -3058,6 +3061,9 @@ section.announcement {
   }
   .height-380px{
     height: auto !important;
+  }
+  .font-20px-17px{
+    font-size: 17px !important;
   }
 }
 
