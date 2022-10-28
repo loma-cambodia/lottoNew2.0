@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import {announcement, userTransactionDetails, winnerResultDetailsSecond, specialDraw} from '../store/actions/homeActions';
 import {getLogin} from '../store/actions/authActions';
+import { Modal } from 'reactstrap';
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
 
 
@@ -65,12 +66,83 @@ if(objectWithData.customer_id != 0){
       
       let specialDrawState = state && state.home && state.home.specialDrawDetails ? state.home.specialDrawDetails : '';
       
+
+
+      // MODAL
+      let customerId = datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0
+      const modelCloseCustom = () => {
+      }
+      console.log("authauthauth",customerId)
+      function isOpen(id){
+        if(id == 0){
+          return true
+        }
+      }
+      function closeTab(close){
+        if(close){
+          window.close()
+        }
+      }
+      function closeModal() {
+        // references are now sync'd and can be accessed.
+        // subtitle.style.color = '#f00';
+      }
+      function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        // subtitle.style.color = '#f00';
+      }
+      const customStyles = {
+        content: {
+          top: '45%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'fit-content',
+          borderRadius: '12px',
+          padding: 0
+        },
+      };
   return (
     <>
        <Head> 
           <title>{t('tittle_main')}</title>          
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
+
+
+
+      {/* MODAL */}
+      <Modal
+          // isOpen={isOpen(customerId)}
+          isOpen={true}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          {/* <div className='modal-dialog'> */}
+            {/* <div className="modal-content"> */}
+              <div className="modal-header text-white px-2 py-3" style={{ backgroundColor: '#dc3545' }}>
+                <h5 className="modal-title" id="bettingModal" style={{ paddingLeft: '10px' }}>
+                  Warning
+                </h5>
+              </div>
+              <div className="modal-body p-3" >
+                <div className="container-fluid table-wrapper-scroll-y my-custom-scrollbar">
+                  <h4>Your login session has been expire, please login again to continue.</h4>
+                </div>
+              </div>
+              <div className="modal-footer px-2 py-3 border-top" style={{ justifyContent: 'center' }}>
+                <button type="button" style={{ backgroundColor: '#dc3545', fontWeight: 'bold' }} className="btn  btn-sm text-white" onClick={closeTab(false)}>OK</button>
+              </div>
+            {/* </div> */}
+          {/* </div> */}
+        </Modal>
+
+
+
 
       <HomeSlider _specialDrawState={ specialDrawState} datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData} />
       {announcementState && announcementState.length > 0 ? <Announcement _announcementState={ announcementState}  _language = { language }/> : null}
