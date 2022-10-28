@@ -1,16 +1,20 @@
 import axios from 'axios'
-let API_BASE_URL = process.env.fronEndUrl;
+let API_BASE_URL = process.env.apiUrl;
+
 import {setUserDataFormat} from '../../components/Utils';
   export const getLogin = (objectWithData) => async dispatch => {
-    
-    try{
-
-               const headers = {
+    try{  
+      let token = localStorage.getItem("kk_lotto_token")
+      const headers = {
                 'Content-Type': 'application/json',
-                'Accept' : 'application/json'
+                'Accept' : 'application/json',
+                'Authorization': `Bearer ${token}`
               }
 
-        const res = await axios.post(`/api/updateUser`,objectWithData,{headers: headers});
+
+        // console.log('objectWithData:',objectWithData);
+
+        const res = await axios.get(`${API_BASE_URL}/getUserData`,{headers: headers});
         let oldData = {};
         if(res && res.data && res.data.data){
            oldData =  setUserDataFormat(res.data.data,2);
