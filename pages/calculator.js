@@ -19,7 +19,7 @@ useEffect(() => {
   dispatch(announcement());
   dispatch(specialDraw());
   if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
-    dispatch(userTransactionDetails(datauser.user.data.merchant_id));
+  dispatch(userTransactionDetails(datauser.user.data.merchant_id,datauser.user.data.token ? datauser.user.data.token : ""));
   dispatch(winnerResultDetailsSecond());
 }, [datauser]);
 
