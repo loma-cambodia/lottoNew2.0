@@ -85,9 +85,8 @@ function MyApp({ Component, pageProps,user }) {
 
   //console.log('data.user.data:',data.user.data);
   const onIdle = () => {
-
     setIdleData(true)
-    // userLogoutPopUp()
+    userLogoutPopUp()
   }
   const {
     isIdle,
@@ -154,15 +153,10 @@ function MyApp({ Component, pageProps,user }) {
   const userLogoutPopUp = () => {
 
     let member_id = data && data.user && data.user.data && data.user.data.id ? data.user.data.id : 0;
-   // console.log('member_id":',member_id);
     fetch(`/api/logout?member_id=${member_id}`)
       .then((res) => {
         let response = res.json();
-       // console.log('userLogout:res:',res);
-        //setData({user:{data:{}}})
-       // dispatch({
-          //type: "AUTH_LOGOUT"
-       // });
+
       })
   }
 
@@ -192,7 +186,7 @@ function MyApp({ Component, pageProps,user }) {
           />
           <Provider store={store}>
           <Component {...pageProps} datauser={data}  updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
-          <LogoutModal _logoutStatus={isIdleData}/>
+          <LogoutModal _logoutStatus={isIdleData} _memberId={data && data.user && data.user.data && data.user.data.id ? data.user.data.id : 0}/>
           </Provider>
         </> 
       );
