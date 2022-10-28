@@ -7,11 +7,15 @@ const LogoutModal = ({_logoutStatus,_memberId}) => {
     const logoutData = _logoutStatus
     const MemberId = _memberId
     const closeTab = (member_id) => {
-        fetch(`/api/logout?member_id=${member_id}`)
-        .then((res) => { let response = res.json(); 
-            window.close();
-      })
+    //   fetch(`/api/logout?member_id=${member_id}`)
+    //   .then((res) => {
+    //     let response = res.json();
+    //     window.close();
+    //   })
     //   window.close();
+        window.opener = null;
+        window.open('', '_self');
+        window.close();
       };
     const customStyles = {
         content: {
