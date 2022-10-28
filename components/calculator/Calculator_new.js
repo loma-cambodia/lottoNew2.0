@@ -855,8 +855,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                       for="forBoxValue"
                                       className={
                                         gameType == "s"
-                                          ? " btn me-1 btn-bordered-theme-active"
-                                          : "btn me-1 btn-bordered-theme"
+                                          ? "btn me-1 btn-bordered-theme-active"
+                                          : "btn me-1 btn-bordered-theme disable"
                                       }
                                       title="Enabled"
                                       onClick={() => {
@@ -867,36 +867,52 @@ const Calculator = ({ _transactions, _auth }) => {
                                         fontSize: "14px",
                                       }}
                                     >
-                                      {t('Straight')}
+                                      S
                                     </label>
                                   </div>
                                   <div>
                                   {checkRnumber(number) ?
                                     <label
                                       for="forBoxValue"
-                                      className="form-control disable"
+                                      className="btn me-1 disable"
                                       title="Desable"
                                       style={{
                                         cursor: "",
                                         fontSize: "14px",
                                         // border: "red 1px solid",
+                                        border: '2px solid #bc2263',
+                                        width: '35px',
+                                        height: '35px',
+                                        textAlign: 'center',
+                                        color: '#bc2263',
+                                        fontWeight: 'bold',
+                                        lineHeight: '22px',
+                                        textAlign: 'center'
                                       }}
                                     >
-                                    Box
+                                    B
                                     </label>
                                     :
                                     witchTypesOf(number)==0 ?
                                         <label
                                         for="forBoxValue"
-                                        className="form-control disable"
+                                        className="btn me-1 disable"
                                         title="Desable"
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
                                           // border: "red 1px solid",
+                                          border: '2px solid #adb5bd',
+                                          width: '35px',
+                                          height: '35px',
+                                          textAlign: 'center',
+                                          color: '#adb5bd',
+                                          fontWeight: 'bold',
+                                          lineHeight: '22px',
+                                          textAlign: 'center'
                                         }}
                                       >
-                                        Box
+                                        B
                                       </label>
                                       : 
                                       <label
@@ -904,7 +920,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         className={
                                           gameType == "b"
                                             ? " btn me-1 btn-bordered-theme-active"
-                                            : "btn me-1 btn-bordered-themes"
+                                            : "btn me-1 btn-bordered-theme disable"
                                         }
                                         title="Enabled"
                                         style={{
@@ -915,7 +931,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           setGameType("b");
                                         }}
                                       >
-                                        Box
+                                        B
                                       </label>
                                     }
                                   </div>
@@ -925,8 +941,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                         for="forIboxValue"
                                         className={
                                           gameType == "i"
-                                            ? " btn me-1 btn-bordered-theme-active"
-                                            : "btn me-1 btn-bordered-theme"
+                                            ? "btn me-1 btn-bordered-theme-active"
+                                            : "btn me-1 btn-bordered-theme disable"
                                         }
                                         title="iBox"
                                         style={{
@@ -937,22 +953,30 @@ const Calculator = ({ _transactions, _auth }) => {
                                           setGameType("i");
                                         }}
                                       >
-                                        iBox
+                                        I
                                       </label>
                                     </div>
                                   ) : (
                                     <div className="">
                                       <label
                                         for="forIboxValue"
-                                        className="form-control disable"
+                                        className="btn me-1 disable"
                                         title="Disabled"
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
                                           // border: "red 1px solid",
+                                          border: '2px solid #adb5bd',
+                                          width: '35px',
+                                          height: '35px',
+                                          textAlign: 'center',
+                                          color: '#adb5bd',
+                                          fontWeight: 'bold',
+                                          lineHeight: '22px',
+                                          textAlign: 'center'
                                         }}
                                       >
-                                        iBox
+                                        I
                                       </label>
                                     </div>
                                   )}
@@ -960,23 +984,31 @@ const Calculator = ({ _transactions, _auth }) => {
                                     {checkRnumber(number) || palindrome(number) ? (
                                       <label
                                         for="forReverseValue"
-                                        className={"form-control disable"}
+                                        className="btn me-1 disable"
                                         title="Disabled"
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
                                           // border: "red 1px solid",
+                                          border: '2px solid #adb5bd',
+                                          width: '35px',
+                                          height: '35px',
+                                          textAlign: 'center',
+                                          color: '#adb5bd',
+                                          fontWeight: 'bold',
+                                          lineHeight: '22px',
+                                          textAlign: 'center'
                                         }}
                                       >
-                                        {t("Reverse")}
+                                        R
                                       </label>
                                     ) : (
                                       <label
                                         for="forReverseValue"
                                         className={
                                           gameType == "r"
-                                            ? " btn me-1 btn-bordered-theme-active"
-                                            : "btn me-1 btn-bordered-theme"
+                                            ? "btn me-1 btn-bordered-theme-active"
+                                            : "btn me-1 btn-bordered-theme disable"
                                         }
                                         title="Enabled"
                                         style={{
@@ -987,7 +1019,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           setGameType("r");
                                         }}
                                       >
-                                        {t("Reverse")}
+                                        R
                                       </label>
                                     )}
                                   </div>
