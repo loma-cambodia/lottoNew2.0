@@ -17,10 +17,11 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
   const state = useSelector(state => state);
 useEffect(() => {
   //dispatch(announcement());
-  dispatch(specialDraw());
+  dispatch(specialDraw(datauser.user.data.token ? datauser.user.data.token : ""));
   if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
   dispatch(userTransactionDetails(datauser.user.data.merchant_id,datauser.user.data.token ? datauser.user.data.token : ""));
-  dispatch(winnerResultDetailsSecond());
+ // dispatch(winnerResultDetailsSecond());
+  dispatch(winnerResultDetailsSecond(datauser.user.data.token ? datauser.user.data.token : ""));
 }, [datauser]);
 
 
@@ -53,7 +54,7 @@ if(objectWithData.customer_id != 0){
     
       <CalculatorOld _transactions={transactions} _auth={auth} />
 
-      {/* <Calculator _transactions={transactions} _auth={auth}/> */}
+      {/* <Calculator _transactions={transactions} _auth={auth}/>  */}
 
       <div className={styles.device_detect_for_desktop}> 
         <Footer/>

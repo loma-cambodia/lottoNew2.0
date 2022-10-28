@@ -28,6 +28,11 @@ async function handler(req, res) {
     // objectWithData.customer_id = 112;
     // objectWithData.merchant_id = 1;
     // objectWithData.language = 'en';
+    //   objectWithData.customer_name = "voan";
+    //   objectWithData.customer_id = 115;
+    //  objectWithData.merchant_id = 1;
+    //  objectWithData.language = 'en';
+
    }else{
 
     objectWithData.customer_name = req.body.customer_name;
