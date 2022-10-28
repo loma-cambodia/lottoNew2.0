@@ -5,6 +5,8 @@ import { withIronSessionApiRoute } from 'iron-session/next'
 //let ttl = 60 + 60; //  60 seconds
 let isLocalhost = process.env.isLocalhost;
 
+let loginUser = process.env.loginUser;
+
 let ttl = 60 + 32400 // 9 hours
 
 async function handler(req, res) {
@@ -12,16 +14,8 @@ async function handler(req, res) {
 
    let objectWithData = {};
    if(isLocalhost){
-    objectWithData.customer_name = "Sushil";
-    objectWithData.customer_id = 222;
-    objectWithData.merchant_id = 2;
-    objectWithData.language = 'en';
-    // objectWithData.customer_name = "Dileep Maurya Loma Technology";
-    // objectWithData.customer_id = 113;
-    // objectWithData.merchant_id = 1;
-    // objectWithData.language = 'en';
+      objectWithData=loginUser;
    }else{
-
     objectWithData.customer_name = req.body.customer_name;
     objectWithData.customer_id = req.body.customer_id;
     objectWithData.merchant_id = req.body.enterprise_id;
@@ -40,7 +34,7 @@ async function handler(req, res) {
 
   if (data.success == true) {
     req.session.user = data
-    await req.session.save()
+    await req.session.save();
     res.redirect(307, '/')
     res.send('You are Logged in, Please Go back')
   } else {

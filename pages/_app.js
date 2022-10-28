@@ -14,6 +14,9 @@ import {setUserDataFormat} from '../components/Utils';
 import { useIdleTimer } from 'react-idle-timer'
 import { useDispatch, useSelector } from "react-redux";
 
+import axios from 'axios';
+import LogoutModal from "../components/modal/logoutModal";
+
 let logoutTimeInIdealCondition = process.env.logoutTimeInIdealCondition;
 
 export const getServerSideProps = withIronSessionSsr(
@@ -42,14 +45,49 @@ function MyApp({ Component, pageProps,user }) {
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(false);
   const [updateSessionData, setUpdateSessionData] = useState(1);
+  const [isIdleData,setIdleData] = useState(false)
   let timeoutSetting = logoutTimeInIdealCondition * 60 * 1000;
 
+  axios.interceptors.request.use(
+    
+    config => {
+      const token = user && user._auth && user._auth.auth && user._auth.auth.token ? user._auth.auth.token : "";
+      //if (token) {
+       // config.headers['Authorization'] = 'Bearer ' + token
+        //config.headers['send'] = 'Bearer ' + token
+      //}
+      // config.headers['Content-Type'] = 'application/json';
+      
+      return config
+    },
+    error => {
+      Promise.reject(error)
+    }
+  )
+  
+  
+  axios.interceptors.response.use(
+    response => {
+      console.log('interceptor ivoked - response', response)
+      return response
+    },
+    async function (error) {
+      const originalRequest = error.config
+      console.log('interceptor ivoked - response error.response.status', error.response.status)
+  
+      if (error.response.status === 401) {
+        console.log('auAuthrized code');
+        userLogout()
+      }
+      return Promise.reject(error)
+    }
+  )
 
   //console.log('data.user.data:',data.user.data);
   const onIdle = () => {
 
-
-    userLogout()
+    setIdleData(true)
+    // userLogoutPopUp()
   }
   const {
     isIdle,
@@ -89,9 +127,12 @@ function MyApp({ Component, pageProps,user }) {
         let newData = {};
       if(data && data.user && data.user.data){
 
+
+
         newData = setUserDataFormat(data);
       }
-        setData({user:{data:newData}})
+        setData({user:{data:newData}});
+        localStorage.setItem("kk_lotto_token", newData.token)
       })
   }, [updateSessionData])
 
@@ -107,6 +148,21 @@ function MyApp({ Component, pageProps,user }) {
         dispatch({
           type: "AUTH_LOGOUT"
         });
+      })
+  }
+
+  const userLogoutPopUp = () => {
+
+    let member_id = data && data.user && data.user.data && data.user.data.id ? data.user.data.id : 0;
+   // console.log('member_id":',member_id);
+    fetch(`/api/logout?member_id=${member_id}`)
+      .then((res) => {
+        let response = res.json();
+       // console.log('userLogout:res:',res);
+        //setData({user:{data:{}}})
+       // dispatch({
+          //type: "AUTH_LOGOUT"
+       // });
       })
   }
 
@@ -136,6 +192,7 @@ function MyApp({ Component, pageProps,user }) {
           />
           <Provider store={store}>
           <Component {...pageProps} datauser={data}  updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
+          <LogoutModal _logoutStatus={isIdleData}/>
           </Provider>
         </> 
       );

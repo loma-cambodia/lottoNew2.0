@@ -40,7 +40,7 @@ if(objectWithData.customer_id != 0){
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
       <InvestmentCalculator _calculatorOdds={calculatorOdds} _auth={auth}/>
-      <div className={styles.device_detect_for_desktop}> 
+      <div className={styles.device_detect_for_desktop }> 
         <Footer/>
       </div>
     </>
