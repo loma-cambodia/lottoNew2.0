@@ -6,13 +6,13 @@ export default [
     Betting_Time: "1988 1",
     Draw_Date: "92 1",
     Draw_Id: "92 1",
-    Bet_Number: "Tim Burton 1",
+    Bet_Number: "575 1",
     Company: "Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page 1",
-    Total:'A couple of recently deceased ghosts contract the services of a ',
+    Total:'44 ',
     Rebate:"",
-    Net: "Tim Burton",
-    winning: "Tim Burton",
-    Winning_Loss: "Tim Burton"
+    Net: "888",
+    winning: 575,
+    Winning_Loss: 575
   },
   {
     id: 2,
@@ -21,13 +21,13 @@ export default [
     Betting_Time: "1988",
     Draw_Date: "92",
     Draw_Id: "92",
-    Bet_Number: "Tim Burton",
+    Bet_Number: 575,
     Company: "Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page",
-    Total:'A couple of recently deceased ghosts contract the services of a ',
+    Total:'898 ',
     Rebate:"",
-    Net: "Tim Burton",
-    winning: "Tim Burton",
-    Winning_Loss: "Tim Burton"
+    Net: "888",
+    winning: 575,
+    Winning_Loss: 575
   },
   {
     id: 3,
@@ -36,13 +36,13 @@ export default [
     Betting_Time: "1988",
     Draw_Date: "92",
     Draw_Id: "92",
-    Bet_Number: "Tim Burton",
+    Bet_Number: 575,
     Company: "Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page",
-    Total:'A couple of recently deceased ghosts contract the services of a ',
+    Total:'4562 ',
     Rebate:"",
-    Net: "Tim Burton",
-    winning: "Tim Burton",
-    Winning_Loss: "Tim Burton"
+    Net: "888",
+    winning: 575,
+    Winning_Loss: 575
   },
   {
     id: 4,
@@ -51,13 +51,13 @@ export default [
     Betting_Time: "1988",
     Draw_Date: "92",
     Draw_Id: "92",
-    Bet_Number: "Tim Burton",
+    Bet_Number: 575,
     Company: "Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page",
-    Total:'A couple of recently deceased ghosts contract the services of a ',
+    Total:'433 ',
     Rebate:"",
-    Net: "Tim Burton",
-    winning: "Tim Burton",
-    Winning_Loss: "Tim Burton"
+    Net: "888",
+    winning: 575,
+    Winning_Loss: 575
   },
   {
     id: 5,
@@ -66,13 +66,13 @@ export default [
     Betting_Time: "1988",
     Draw_Date: "92",
     Draw_Id: "92",
-    Bet_Number: "Tim Burton",
+    Bet_Number: 575,
     Company: "Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page",
-    Total:'A couple of recently deceased ghosts contract the services of a ',
+    Total:'4565552 ',
     Rebate:"",
-    Net: "Tim Burton",
-    winning: "Tim Burton",
-    Winning_Loss: "Tim Burton"
+    Net: 575,
+    winning: 575,
+    Winning_Loss: 575
   },
   {
     id: 6,
@@ -81,13 +81,13 @@ export default [
     Betting_Time: "1988",
     Draw_Date: "92",
     Draw_Id: "92",
-    Bet_Number: "Tim Burton",
+    Bet_Number: 575,
     Company: "Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page",
-    Total:'A couple of recently deceased ghosts contract the services of a ',
+    Total:'4562 ',
     Rebate:"",
-    Net: "Tim Burton",
-    winning: "Tim Burton",
-    Winning_Loss: "Tim Burton"
+    Net: 575,
+    winning: 575,
+    Winning_Loss: 575
   },
   {
     id: 7,
@@ -96,13 +96,13 @@ export default [
     Betting_Time: "1988",
     Draw_Date: "92",
     Draw_Id: "92",
-    Bet_Number: "Tim Burton",
+    Bet_Number: 575,
     Company: "Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page",
-    Total:'A couple of recently deceased ghosts contract the services of a ',
+    Total:'4562 ',
     Rebate:"",
-    Net: "Tim Burton",
-    winning: "Tim Burton",
-    Winning_Loss: "Tim Burton"
+    Net: 575,
+    winning: 575,
+    Winning_Loss: 575
   },
   {
     id: 8,
@@ -111,13 +111,13 @@ export default [
     Betting_Time: "1988",
     Draw_Date: "92",
     Draw_Id: "92",
-    Bet_Number: "Tim Burton",
+    Bet_Number: 575,
     Company: "Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page",
-    Total:'A couple of recently deceased ghosts contract the services of a ',
+    Total:'4562 ',
     Rebate:"",
-    Net: "Tim Burton",
-    winning: "Tim Burton",
-    Winning_Loss: "Tim Burton"
+    Net: 575,
+    winning: 575,
+    Winning_Loss: 575
   },
   {
     id: 9,
@@ -126,13 +126,13 @@ export default [
     Betting_Time: "1988",
     Draw_Date: "92",
     Draw_Id: "92",
-    Bet_Number: "Tim Burton",
+    Bet_Number: 575,
     Company: "Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page",
-    Total:'A couple of recently deceased ghosts contract the services of a ',
+    Total:'4562 ',
     Rebate:"",
-    Net: "Tim Burton",
-    winning: "Tim Burton",
-    Winning_Loss: "Tim Burton"
+    Net: 575,
+    winning: 575,
+    Winning_Loss: 575
   },
   {
     id: 10,
@@ -141,13 +141,13 @@ export default [
     Betting_Time: "1988",
     Draw_Date: "92",
     Draw_Id: "92",
-    Bet_Number: "Tim Burton",
+    Bet_Number: 575,
     Company: "Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page",
-    Total:'A couple of recently deceased ghosts contract the services of a ',
+    Total:'4562 ',
     Rebate:"",
-    Net: "Tim Burton",
-    winning: "Tim Burton",
-    Winning_Loss: "Tim Burton"
+    Net: 575,
+    winning: 575,
+    Winning_Loss: 575
   },
   
   

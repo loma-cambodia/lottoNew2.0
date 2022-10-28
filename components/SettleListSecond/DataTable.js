@@ -61,13 +61,19 @@ const Table = props => {
         },
         {
             name: t('Betting_Time'),
+            selector:row=> moment(row.draw_date).format('DD-MM-YYYY'),
             sortable: true,
-            cell:row =>row.Betting_Time
+            // cell:row =>row.created_at
         },
         {
             name: t('Draw_Date'),
             sortable: true,
-            cell:row =>row.Draw_Date
+            cell:row =>moment(row.created_at).format('DD-MM-YYYY HH:mm:ss')
+        },
+        {
+            name: t('Draw_Id'),
+            sortable: true,
+            cell:row =>row.draw_number
         },
         {
             name: t('Bet_Number'),
