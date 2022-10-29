@@ -149,7 +149,6 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
   }, [oddSet]);
 
   const searchClick = () => {
-    setReserAllData(true);
     let toastId = null
     if(number.length < 3){
         if(!toast.isActive(toastId)){
@@ -206,12 +205,14 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
     }
     const searchPostData = {
       number: number,
-      date: '',
+      date: mainDateee,
       company: company,
       permutation: permutation,
       prize: prizes,
     };
     _GetSearchNumber(searchPostData, datauser.user.data.token ? datauser.user.data.token : "");
+    
+    setReserAllData(true);
   };
 
   useEffect(() => {
@@ -219,6 +220,10 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
       setPermutationData(bettingTip.permutation);
       setMainCard(bettingTip.main_card);
       setFirstTableData(bettingTip.data);
+    }else{
+      setPermutationData([]);
+      setMainCard([]);
+      setFirstTableData([]);
     }
     if(permutationData && mainCard && firstTableData && reserAllData){
       setIsLoading(loading)
