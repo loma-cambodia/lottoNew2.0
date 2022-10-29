@@ -49,6 +49,7 @@ const Calculator = ({ _transactions, _auth }) => {
 
   useEffect(() =>{
       merchantCurrency == 'KHR' ? setCurrencyLimit(7):setCurrencyLimit(4)
+      console.log('currency: ',auth)
   },[auth])
 
   const [price, setPrice] = useState();
@@ -778,7 +779,7 @@ const Calculator = ({ _transactions, _auth }) => {
 
   // console.log('witchTypesOf(number)',witchTypesOf(number));
   return (
-    <section className="bg-light custom-padding" style={{height:'100vh'}}>
+    <section className="bg-light custom-padding h-100">
       <div className="container">
         <div className="heading-part text-center mb-4">
           {/* <h5 className="text-uppercase fw-bold">{t('how_to')}</h5> */}
@@ -1320,7 +1321,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     >
                                       <div className="w-100">
                                       {a3 ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1329,7 +1330,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             3A:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseFloat(price.d3.a3_one).toLocaleString()
@@ -1340,7 +1341,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>                                    
                                       : <></>}
                                         {c3 ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1349,7 +1350,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             3C:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseFloat(price.d3.one).toLocaleString()
@@ -1395,7 +1396,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left d-flex flex-column"
                                     >
                                     {c3 ? 
-                                      <span className="d-flex justify-content-between">
+                                      <span className="d-flex justify-content-between w-100">
                                         <span
                                           className={
                                             styles.device_detect_for_desktop
@@ -1447,7 +1448,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left d-flex flex-column"
                                     >
                                       {c3 ? 
-                                      <span className="d-flex justify-content-between">
+                                      <span className="d-flex justify-content-between w-100">
                                         <span
                                           className={
                                             styles.device_detect_for_desktop
@@ -1534,7 +1535,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     >
                                       <div className="w-100">
                                       {big ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1543,7 +1544,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             {t("Big")}:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseInt(price.d4.one).toLocaleString()
@@ -1554,7 +1555,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                       : <></>}
                                       {small ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1563,7 +1564,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             {t("Small_Bet")}:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseInt(price.d4.small_one).toLocaleString()
@@ -1607,7 +1608,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     >
                                       <div className="w-100">
                                       {big ?
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1616,7 +1617,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             {t("Big")}:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseInt(price.d4.two).toLocaleString()
@@ -1625,7 +1626,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span> 
                                       : <></>}
                                       {small ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1634,7 +1635,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             {t("Small_Bet")}:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseInt(price.d4.small_two).toLocaleString()
@@ -1678,7 +1679,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     >
                                       <div className="w-100">
                                         {big ? 
-                                          <span className="d-flex justify-content-between">
+                                          <span className="d-flex justify-content-between w-100">
                                             <span
                                               className={
                                                 styles.device_detect_for_desktop
@@ -1687,7 +1688,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                               {" "}
                                               {t("Big")}:{" "}
                                             </span>
-                                            <span>
+                                            <span className="currency-span">
                                               {merchantCurrency} &nbsp;
                                               {merchantCurrency == "KHR"
                                                 ? parseInt(price.d4.three).toLocaleString()
@@ -1698,7 +1699,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           </span> : <></>
                                         }
                                         {small ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1707,7 +1708,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             {t("Small_Bet")}:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseInt(price.d4.small_three).toLocaleString()
@@ -1763,7 +1764,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {" "}
                                           {t("Big")}:{" "}
                                         </span>
-                                        <span>
+                                        <span className="currency-span">
                                           {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
                                             ? parseInt(price.d4.special).toLocaleString()
@@ -1813,7 +1814,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left d-flex flex-column"
                                     >
                                       {big ? 
-                                      <span className="d-flex justify-content-between">
+                                      <span className="d-flex justify-content-between w-100">
                                         <span
                                           className={
                                             styles.device_detect_for_desktop
@@ -1822,7 +1823,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {" "}
                                           {t("Big")}:{" "}
                                         </span>
-                                        <span>
+                                        <span className="currency-span">
                                           {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
                                             ? parseInt(price.d4.consolation).toLocaleString()
@@ -1853,7 +1854,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         ></th>
                                       </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody className="align-middle">
                                       <tr className="">
                                         <td style={{ width: "30%" }}>
                                           {t("P1")}
@@ -1908,10 +1909,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            {/* <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span>
-                                            <span className="d-flex justify-content-start">
+                                            <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span> */}
                                           </td>
@@ -1945,10 +1946,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            {/* <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span>
-                                            <span className="d-flex justify-content-start">
+                                            <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span> */}
                                           </td>
@@ -1982,7 +1983,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            {/* <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span> */}
                                           </td>
@@ -2015,7 +2016,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            {/* <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span> */}
                                           </td>
@@ -2038,6 +2039,9 @@ const Calculator = ({ _transactions, _auth }) => {
         </div>
       </div>
       <style jsx>{`
+      .currency-span{
+        width:77.45px!important;
+      }
       .cal-disable{
         filter: grayscale(1)!important,
       }
