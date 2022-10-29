@@ -220,11 +220,12 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
       setPermutationData(bettingTip.permutation);
       setMainCard(bettingTip.main_card);
       setFirstTableData(bettingTip.data);
-    }else{
-      setPermutationData([]);
-      setMainCard([]);
-      setFirstTableData([]);
     }
+    // else{
+    //   setPermutationData([]);
+    //   setMainCard([]);
+    //   setFirstTableData([]);
+    // }
     if(permutationData && mainCard && firstTableData && reserAllData){
       setIsLoading(loading)
     }
@@ -244,6 +245,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
     setPrizeInitData(prizeObject);
     setPermutationData([]);
     setFirstTableData([]);
+    setMainCard([]);
     // _GetSearchNumber([]);
   };
 
@@ -693,7 +695,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
         <Container>
           <Card className="alert alert-warning text-dark p-0 rounded-0 border border-warning">
             <CardHeader className="fw-bold">
-              Total Permutation: {permutationData && permutationData.length ? permutationData.length : 1}
+              Total Permutation: {permutationData && permutationData.length ? permutationData.length : numberM ? numberM : ''}
             </CardHeader>
             <CardBody>
               <ul className="list-inline mb-0">
