@@ -6,9 +6,11 @@ import store from './../store';
 export const userTransactionDetails = (merchant_id, token ='') => async (dispatch) => {
   
   //let token = '2920|dyQI6UYfOtusAwaVCsW5pUGNdL2QcOWq5TZDjW4r';
+  let kk_lotto_token = localStorage.getItem("kk_lotto_token");
+
 
   const headers = {
-           'Content-Type': 'application/json','Authorization': `Bearer ${token}`
+           'Content-Type': 'application/json','Authorization': `Bearer ${kk_lotto_token}`
       }
 
   try {
@@ -35,8 +37,10 @@ export const userTransactionDetails = (merchant_id, token ='') => async (dispatc
 
 export const winnerResultDetails = (token ='') => async (dispatch) => {
   try {
+
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token");
     const config = {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${kk_lotto_token}` }
      };
     const res = await axios.get(`${API_BASE_URL}/result/latest`,config)
     dispatch({
@@ -53,8 +57,9 @@ export const winnerResultDetails = (token ='') => async (dispatch) => {
 
 export const winnerResultDetailsSecond = (token ='') => async (dispatch) => {
   try {
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token");
     const config = {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${kk_lotto_token}` }
      };
     const res = await axios.get(`${API_BASE_URL}/result/latest`,config)
     dispatch({
@@ -71,8 +76,10 @@ export const winnerResultDetailsSecond = (token ='') => async (dispatch) => {
 
 export const announcement = (token = '') => async (dispatch) => {
   try {
+
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token");
     const config = {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${kk_lotto_token}` }
      };
     const res = await axios.get(`${API_BASE_URL}/announcements/latest`,config)
     dispatch({
@@ -90,8 +97,9 @@ export const announcement = (token = '') => async (dispatch) => {
 
 export const specialDraw = (token ='') => async (dispatch) => {
   try {
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token");
     const config = {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${kk_lotto_token}` }
      };
     const res = await axios.get(`${API_BASE_URL}/special-draw/latest`,config)
     dispatch({
