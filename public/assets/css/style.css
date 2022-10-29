@@ -2713,7 +2713,7 @@
   }
   .react-datepicker__day {
     position: relative;
-    /* pointer-events: none; */
+    pointer-events: none;
   }
   .react-datepicker__day:after {
     background-color: transparent;
