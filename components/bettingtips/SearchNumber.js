@@ -693,10 +693,11 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
         <Container>
           <Card className="alert alert-warning text-dark p-0 rounded-0 border border-warning">
             <CardHeader className="fw-bold">
-              Total Permutation: {permutationData && permutationData.length}
+              Total Permutation: {permutationData && permutationData.length ? permutationData.length : 1}
             </CardHeader>
             <CardBody>
               <ul className="list-inline mb-0">
+                {reserAllData && permutationData && permutationData.length ? '' : numberM}
                 {reserAllData && permutationData &&
                   permutationData.map((value, index) => {
                     return (
@@ -1025,7 +1026,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
               <tbody>
                 {firstTableData && permutationData && permutationData.length > 0 ? (
                   <>
-                    {permutationData ?
+                    {firstTableData.length > 0 && permutationData ?
                       permutationData.map((pdata, index) => {
                         let st1m = 0;
                         let nd2m = 0;
