@@ -33,14 +33,14 @@ export default function SearchNumber({datauser, updateSessionData, setUpdateSess
     }, [datauser,action]);
     const auth = useSelector(state => state.auth);
     let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
-    
-    return (
+    let isLoading = state && state.bettingTips && state.bettingTips.loading ? state.bettingTips.loading : false;
+    return ( 
         <>
             <Head> 
                 <title>{t('tittle_main')}</title>          
             </Head>
             <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
-            <SearchNumbers _transactions={transactions} _auth={auth} datauser={datauser} _GetSearchNumber={GetSearchNumber} _bettingTip={bettingTip} />
+            <SearchNumbers _transactions={transactions} _auth={auth} datauser={datauser} _GetSearchNumber={GetSearchNumber} _bettingTip={bettingTip} _isLoading={isLoading} />
             <div className={styles.device_detect_for_desktop} _setAction={setAction}> 
                 <Footer/>
             </div>

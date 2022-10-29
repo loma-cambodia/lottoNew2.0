@@ -171,6 +171,9 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                             <li className= {`${router.pathname === "/calculator" ? "active-header":""}`}>
                               <Link href="/calculator" >{t('Calculator')}</Link>
                             </li>
+                            <li className= {`${router.pathname === "/searchNumber" ? "active-header":""}`}>
+                              <Link href="/searchNumber" >{t('Betting Tips')}</Link>
+                            </li>
                           </ul>
                   </div>
                   <div className="right-part-menu">
@@ -269,6 +272,10 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                     
                     <li className= {`${router.pathname === "/calculator" ? "active-header-mobile":""}`}>
                       <Link href="/calculator" >{t('Calculator')}</Link>
+                    </li>
+                    
+                    <li className= {`${router.pathname === "/searchNumber" ? "active-header-mobile":""}`}>
+                      <Link href="/searchNumber" >{t('Betting Tips')}</Link>
                     </li>
                   </ul>
               </div>

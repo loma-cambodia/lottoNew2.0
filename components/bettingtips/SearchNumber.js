@@ -10,8 +10,9 @@ import {Card,CardBody,CardHeader,Col,Container,Form,FormGroup,Input,Row,} from "
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function SearchNumber({ _transactions, _auth, datauser, _GetSearchNumber,_bettingTip }) {
+export default function SearchNumber({ _transactions, _auth, datauser, _GetSearchNumber,_bettingTip,_isLoading }) {
   const bettingTip = _bettingTip;
+  let loading =_isLoading;
   // console.log('bettingTipbettingTip',bettingTip)
   const { t } = useTranslation();
   const state = useSelector((state) => state);
@@ -50,7 +51,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
   const [changeData, setChangeData] = useState(0);
   // const [searchResultData, setSearchResultData] = useState([]);
   const [reserAllData, setReserAllData] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [numberM, setNumberM] = useState('');
   
   function getallcompanydata() {
@@ -176,12 +177,14 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
       return false;
     }
     if(!permutation){
-      toast.error(t('Please_select_Permutation'), 
-      {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-      pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+      if(!toast.isActive(toastId)){
+          toast.error(t('Please_select_Permutation'), 
+          {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+          pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+      }
       return false;
     }
-
+    setIsLoading(true);
     let dateFull = $("#daterangepicker").val();
     let sdate = "";
     let edate = "";
@@ -207,10 +210,9 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
       permutation: permutation,
       prize: prizes,
     };
-    let response = _GetSearchNumber(searchPostData, datauser.user.data.token ? datauser.user.data.token : "");
-    if(response){
-      setReserAllData(true);
-    }
+    _GetSearchNumber(searchPostData, datauser.user.data.token ? datauser.user.data.token : "");
+    
+    setReserAllData(true);
   };
 
   useEffect(() => {
@@ -218,13 +220,24 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
       setPermutationData(bettingTip.permutation);
       setMainCard(bettingTip.main_card);
       setFirstTableData(bettingTip.data);
+    }else{
+      setPermutationData([]);
+      setMainCard([]);
+      setFirstTableData([]);
     }
+    if(permutationData && mainCard && firstTableData && reserAllData){
+      setIsLoading(loading)
+    }
+    // if(bettingTip, permutationData, mainCard, firstTableData, reserAllData,isLoading){
+    //   setIsLoading(false);
+    // }
+
   }, [bettingTip, permutationData, mainCard, firstTableData, reserAllData]);
 
   const resetClick = () => {
     setReserAllData(false);
     setNumber("");
-    // $("#daterangepicker").val("");
+    setNumberM("");
     change();
     setPermutation(null);
     getallcompanydata();
@@ -378,6 +391,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
     }
     return (
       <>
+      {firstTableData && mainNum ?
         <tr>
           <td>{firstTableData && mainNum}</td>
           <td>{st1m != 0 ? st1m : ""}</td>
@@ -388,8 +402,8 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
           <td align="right">
             <b>{totalm != 0 ? totalm : ""}</b>
           </td>
-          <td align="right">--</td>
-          <td align="right">--</td>
+          {/* <td align="right">--</td>
+          <td align="right">--</td> */}
           <td>{LastDrawDate}</td>
           <td>{LastDrawDay}</td>
           <td>
@@ -415,6 +429,17 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
             })}
           </td>
         </tr>
+        :
+        <tr>
+          <td colSpan={11}>
+            <div className='alert alert-warning'>
+                <h3 className='text-center'>
+                    {t('no_data_found')}
+                </h3>
+            </div>
+          </td>
+        </tr>
+      }
         <tr>
           <td>
             <b>Total</b>
@@ -427,8 +452,8 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
           <td align="right">
             <b>{totalm != 0 ? totalm : ""}</b>
           </td>
-          <td align="right">--</td>
-          <td align="right">--</td>
+          {/* <td align="right">--</td>
+          <td align="right">--</td> */}
           <td align="right">
             <b>&nbsp;</b>
           </td>
@@ -455,6 +480,16 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
   return (
     <>
     <ToastContainer />
+      {isLoading ? (
+        <div className="loader-Mob-1">
+            <div className="loader-Mob-2">
+                <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50"/>
+            </div>
+        </div>) : (
+        <div>
+            
+        </div>
+      )}
       <section className="custom-breadcrumb">
         <div className="container">
           <div className="breadcrumb-heading">
@@ -888,7 +923,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                 </tr>
               </thead>
               <tbody>
-                {firstTableData &&
+                {firstTableData && firstTableData.length > 0 ?
                   firstTableData.map((value, index) => {
                     let prizeType = "";
                     let betNum = "";
@@ -951,7 +986,18 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                         </tr>
                       </>
                     );
-                  })}
+                  })
+                  :
+                  <tr>
+                    <td colSpan={9}>
+                      <div className='alert alert-warning'>
+                          <h3 className='text-center'>
+                              {t('no_data_found')}
+                          </h3>
+                      </div>
+                    </td>
+                  </tr>
+                  }
               </tbody>
             </table>
           </div>
@@ -968,8 +1014,8 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                   <th>Spe</th>
                   <th>Con</th>
                   <th className="text-end">Total</th>
-                  <th className="text-end">Big</th>
-                  <th className="text-end">Small</th>
+                  {/* <th className="text-end">Big</th>
+                  <th className="text-end">Small</th> */}
                   <th>LastDraw</th>
                   <th>Day</th>
                   <th>Prize</th>
@@ -977,9 +1023,9 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                 </tr>
               </thead>
               <tbody>
-                {permutationData && permutationData.length > 0 ? (
+                {firstTableData && permutationData && permutationData.length > 0 ? (
                   <>
-                    {permutationData &&
+                    {permutationData ?
                       permutationData.map((pdata, index) => {
                         let st1m = 0;
                         let nd2m = 0;
@@ -1034,8 +1080,8 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                             <td align="right">
                               <b>{totalm != 0 ? totalm : ""}</b>
                             </td>
-                            <td align="right">--</td>
-                            <td align="right">--</td>
+                            {/* <td align="right">--</td>
+                            <td align="right">--</td> */}
                             <td>{LastDrawDate}</td>
                             <td>{LastDrawDay}</td>
                             <td>
@@ -1065,7 +1111,18 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                             </td>
                           </tr>
                         );
-                      })}
+                      })
+                      :
+                      <tr>
+                        <td colSpan={11}>
+                          <div className='alert alert-warning'>
+                              <h3 className='text-center'>
+                                  {t('no_data_found')}
+                              </h3>
+                          </div>
+                        </td>
+                      </tr>
+                      }
                     <tr>
                       <td>
                         <b>Total</b>
@@ -1088,12 +1145,12 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                       <td align="right">
                         <b>{maintotalm}</b>
                       </td>
-                      <td align="right">
+                      {/* <td align="right">
                         <b>--</b>
                       </td>
                       <td align="right">
                         <b>--</b>
-                      </td>
+                      </td> */}
                       <td align="right">
                         <b>&nbsp;</b>
                       </td>
