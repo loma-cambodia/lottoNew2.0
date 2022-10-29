@@ -21,11 +21,13 @@ const Calculator = ({ _transactions, _auth }) => {
     auth.auth.merchant.currency &&
     auth.auth.merchant.currency.code
       ? auth.auth.merchant.currency.code
-      : "USD";
+      : "KHR";
 
   const onLoadCompany = 0;
 
+  const [currencyLimit, setCurrencyLimit] = useState(4)
   const [calculate, setGameCalculate] = useState(false);
+  const [validate, setValidate] = useState(false);
   const [number, setNumber] = useState("");
   const [gameType, setGameType] = useState("s");
   const [currentMarket, setCurrentMarket] = useState(oddSet[0]);
@@ -45,24 +47,12 @@ const Calculator = ({ _transactions, _auth }) => {
     setCurrentMarket(oddSet[0]);
   }, [onLoadCompany, oddSet]);
 
-  const [price, setPrice] = useState({
-    d4: {
-      one: 3500,
-      two: 1200,
-      three: 600,
-      special: 240,
-      consolation: 80,
-      small_one: 5000,
-      small_two: 2400,
-      small_three: 1200,
-    },
-    d3: {
-      a3_one: 840,
-      one: 280,
-      two: 280,
-      three: 280,
-    },
-  });
+  useEffect(() =>{
+      merchantCurrency == 'KHR' ? setCurrencyLimit(7):setCurrencyLimit(4)
+      console.log('currency: ',auth)
+  },[auth])
+
+  const [price, setPrice] = useState();
 
 
 
@@ -300,10 +290,36 @@ const Calculator = ({ _transactions, _auth }) => {
     if (gameType == "i" && number.length == 3) {
       setGameType("s");
     }
-    handelChange();
+    handelChange()
+
+      switch (number.length){
+        case 3:
+          if(c3 || a3){
+            setValidate(true)
+            console.log('Validate true')
+          }
+        break;
+
+        case 4:
+          if(small || big){
+            setValidate(true)
+            console.log('Validate true')
+          }
+        break;
+
+        default:
+          setValidate(false)
+          console.log('Validate false')
+
+      }
+
+
   }, [number, big, small, c3, a3, gameType, combo, selectedMarket]);
 
   const handelChange = () => {
+    setValidate(false)
+    setGameCalculate(false)
+
     const key = number.length;
     let numberInput = $("#number").val();
     let _3aInput = $("#3aValue3").val();
@@ -325,6 +341,7 @@ const Calculator = ({ _transactions, _auth }) => {
     let priceCalculation = {};
 
     //setCombo(1);
+
 
     if (!numberInput.match("^[R-Rr-r0-9]*$")) {
       return false;
@@ -707,6 +724,10 @@ const Calculator = ({ _transactions, _auth }) => {
     setResult(object);
 
     setRepNumber(repeatedNumber);
+
+    // if (){
+    //   if()
+    // }
     
   };
 
@@ -727,6 +748,7 @@ const Calculator = ({ _transactions, _auth }) => {
     setSmall("");
     setCost("");
     setSelectedMarket(onLoadCompany);
+    setValidate(false)
     setGameCalculate(false)
   };
   function palindrome(str) {
@@ -757,7 +779,7 @@ const Calculator = ({ _transactions, _auth }) => {
 
   // console.log('witchTypesOf(number)',witchTypesOf(number));
   return (
-    <section className="bg-light custom-padding">
+    <section className="bg-light custom-padding h-100">
       <div className="container">
         <div className="heading-part text-center mb-4">
           {/* <h5 className="text-uppercase fw-bold">{t('how_to')}</h5> */}
@@ -775,12 +797,11 @@ const Calculator = ({ _transactions, _auth }) => {
                       <div className="col-md-10 offset-md-1 ml-2">
                         <div className="form-group">
                           <div className="row">
-                            <div className="col-md-5">
+                            <div className="col-md-4">
                               <b>{t("Company")}</b>
                             </div>
-                            <div className="col-md-7">
-                              <div className="d-flex">
-                                <div className="select-gp" id="checkboxes">
+                            <div className="col-md-8">
+                                <div className="select-gp" id="checkboxes" style={{paddingLeft: '15px',whiteSpace: 'nowrap'}}>
                                   <ul id="checkboxes" className="list-inline">
                                     {oddSet.map((item, index) => {
                                       console.log("itemitemitem", item);
@@ -820,7 +841,6 @@ const Calculator = ({ _transactions, _auth }) => {
                                     })}
                                   </ul>
                                 </div>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -861,7 +881,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           ? "btn me-1 btn-bordered-theme-active"
                                           : "btn me-1 btn-bordered-theme disable"
                                       }
-                                      title="Enabled"
+                                      title={t('Straight')}
                                       onClick={() => {
                                         setGameType("s");
                                       }}
@@ -878,7 +898,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     <label
                                       for="forBoxValue"
                                       className="btn me-1 disable"
-                                      title="Desable"
+                                      title={t('Box')}
                                       style={{
                                         cursor: "",
                                         fontSize: "14px",
@@ -900,7 +920,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         <label
                                         for="forBoxValue"
                                         className="btn me-1 disable"
-                                        title="Desable"
+                                        title={t('Box')}
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
@@ -925,7 +945,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             ? " btn me-1 btn-bordered-theme-active"
                                             : "btn me-1 btn-bordered-theme disable"
                                         }
-                                        title="Enabled"
+                                        title={t('Box')}
                                         style={{
                                           cursor: "pointer",
                                           fontSize: "14px",
@@ -947,7 +967,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             ? "btn me-1 btn-bordered-theme-active"
                                             : "btn me-1 btn-bordered-theme disable"
                                         }
-                                        title="iBox"
+                                        title={t('iBox')}
                                         style={{
                                           cursor: "pointer",
                                           fontSize: "14px",
@@ -964,7 +984,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <label
                                         for="forIboxValue"
                                         className="btn me-1 disable"
-                                        title="Disabled"
+                                        title={t('iBox')}
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
@@ -988,7 +1008,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <label
                                         for="forReverseValue"
                                         className="btn me-1 disable"
-                                        title="Disabled"
+                                        title={t('Reverse')}
                                         style={{
                                           cursor: "",
                                           fontSize: "14px",
@@ -1013,7 +1033,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             ? "btn me-1 btn-bordered-theme-active"
                                             : "btn me-1 btn-bordered-theme disable"
                                         }
-                                        title="Enabled"
+                                        title={t('Reverse')}
                                         style={{
                                           cursor: "pointer",
                                           fontSize: "14px",
@@ -1055,8 +1075,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                         ? "bigValue"
                                         : "amountValDefaltB"
                                     }
-                                    maxLength={6}
-                                    value={
+                                    maxLength={currencyLimit}
+                                    defaultValue={
                                       number.length == 3
                                         ? a3
                                         : number.length == 4
@@ -1091,8 +1111,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                         ? "smallValue"
                                         : "amountValDefaltS"
                                     }
-                                    maxLength={6}
-                                    value={
+                                    maxLength={currencyLimit}
+                                    defaultValue={
                                       number.length == 3
                                         ? c3
                                         : number.length == 4
@@ -1121,12 +1141,12 @@ const Calculator = ({ _transactions, _auth }) => {
                                     role="button"
                                     className="btn rounded-full mt-2 btn-clr"
                                     style={{
-                                      fontWeight: "700",
+                                      fontWeight: "600",
                                       border:"1px solid grey",
                                       color:'grey'
                                     }}
                                   >
-                                    {t('Clear')}
+                                    {t('clear')}
                                   </span>
                                 </div>
                               </div>
@@ -1138,14 +1158,15 @@ const Calculator = ({ _transactions, _auth }) => {
                             >
                               <div className="">
                                 <div
-                                  onClick={()=>{number.length >= 3 ? setGameCalculate(true):''}}
-                                  className="clearfix text-center"
+                                  onClick={()=>{validate ? setGameCalculate(true):''}}
+                                  className={`clearfix text-center`}
                                 >
                                   <span
                                     role="button"
-                                    className="btn rounded-full mt-2 text-light btn-cal"
+                                    className={`${validate ? "":"cal-disable"} btn rounded-full mt-2 text-light btn-cal`}
+
                                     style={{
-                                      fontWeight: "700",
+                                      fontWeight: "600",
                                       background: "#c22361",
                                     }}
                                   >
@@ -1274,10 +1295,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1301,7 +1321,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     >
                                       <div className="w-100">
                                       {a3 ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1310,7 +1330,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             3A:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseFloat(price.d3.a3_one).toLocaleString()
@@ -1321,7 +1341,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>                                    
                                       : <></>}
                                         {c3 ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1330,7 +1350,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             3C:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseFloat(price.d3.one).toLocaleString()
@@ -1353,10 +1373,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1377,7 +1396,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left d-flex flex-column"
                                     >
                                     {c3 ? 
-                                      <span className="d-flex justify-content-between">
+                                      <span className="d-flex justify-content-between w-100">
                                         <span
                                           className={
                                             styles.device_detect_for_desktop
@@ -1386,7 +1405,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {" "}
                                           3C:{" "}
                                         </span>
-                                        <span>
+                                        <span className="currency-span">
                                           {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
                                             ? parseFloat(price.d3.two).toLocaleString()
@@ -1406,10 +1425,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1430,7 +1448,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left d-flex flex-column"
                                     >
                                       {c3 ? 
-                                      <span className="d-flex justify-content-between">
+                                      <span className="d-flex justify-content-between w-100">
                                         <span
                                           className={
                                             styles.device_detect_for_desktop
@@ -1439,8 +1457,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {" "}
                                           3C:{" "}
                                         </span>
-                                        <span>
-                                          {merchantCurrency}
+                                        <span className="currency-span">
+                                          {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
                                             ? parseFloat(price.d3.three).toLocaleString()
                                             : parseFloat(
@@ -1452,6 +1470,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </td>
                                     {/* </div> */}
                                   </tr>
+                                  {number.length == 4 ? 
+                                  <>
                                   <tr className="">
                                     <td style={{ width: "30%" }}>
                                       {t("Special_Prize")}
@@ -1478,6 +1498,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left"
                                     ></td>
                                   </tr>
+                                  </>
+                                  :
+                                  '' 
+                                  }
                                 </>
                               ) : number.length == 4 && calculate ? (
                                 <>
@@ -1490,17 +1514,16 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className={" text-left row"}
+                                        className={"font-20px-17px text-left row"}
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
                                           {merchantCurrency == "KHR"
-                                            ? parseInt(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one).toLocaleString())
+                                            ? parseInt(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString()
                                             : parseFloat(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString()}
                                         </span>
                                       </span>
@@ -1512,7 +1535,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     >
                                       <div className="w-100">
                                       {big ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1521,7 +1544,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             {t("Big")}:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseInt(price.d4.one).toLocaleString()
@@ -1532,7 +1555,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span>
                                       : <></>}
                                       {small ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1541,7 +1564,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             {t("Small_Bet")}:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseInt(price.d4.small_one).toLocaleString()
@@ -1564,10 +1587,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1586,7 +1608,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     >
                                       <div className="w-100">
                                       {big ?
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1595,7 +1617,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             {t("Big")}:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseInt(price.d4.two).toLocaleString()
@@ -1604,7 +1626,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </span> 
                                       : <></>}
                                       {small ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1613,7 +1635,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             {t("Small_Bet")}:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseInt(price.d4.small_two).toLocaleString()
@@ -1636,10 +1658,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1658,7 +1679,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     >
                                       <div className="w-100">
                                         {big ? 
-                                          <span className="d-flex justify-content-between">
+                                          <span className="d-flex justify-content-between w-100">
                                             <span
                                               className={
                                                 styles.device_detect_for_desktop
@@ -1667,7 +1688,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                               {" "}
                                               {t("Big")}:{" "}
                                             </span>
-                                            <span>
+                                            <span className="currency-span">
                                               {merchantCurrency} &nbsp;
                                               {merchantCurrency == "KHR"
                                                 ? parseInt(price.d4.three).toLocaleString()
@@ -1678,7 +1699,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           </span> : <></>
                                         }
                                         {small ? 
-                                        <span className="d-flex justify-content-between">
+                                        <span className="d-flex justify-content-between w-100">
                                           <span
                                             className={
                                               styles.device_detect_for_desktop
@@ -1687,7 +1708,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {" "}
                                             {t("Small_Bet")}:{" "}
                                           </span>
-                                          <span>
+                                          <span className="currency-span">
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseInt(price.d4.small_three).toLocaleString()
@@ -1712,10 +1733,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1744,7 +1764,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {" "}
                                           {t("Big")}:{" "}
                                         </span>
-                                        <span>
+                                        <span className="currency-span">
                                           {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
                                             ? parseInt(price.d4.special).toLocaleString()
@@ -1770,10 +1790,9 @@ const Calculator = ({ _transactions, _auth }) => {
                                       <span
                                         style={{
                                           color: "rgb(255, 228, 0)",
-                                          fontSize: "20px",
-                                          fontWeight: "700",
+                                          fontWeight: "600",
                                         }}
-                                        className="text-left row"
+                                        className="font-20px-17px text-left row"
                                       >
                                         <span className="col-md-3 col-12">
                                           {merchantCurrency}&nbsp;
@@ -1795,7 +1814,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       className="text-left d-flex flex-column"
                                     >
                                       {big ? 
-                                      <span className="d-flex justify-content-between">
+                                      <span className="d-flex justify-content-between w-100">
                                         <span
                                           className={
                                             styles.device_detect_for_desktop
@@ -1804,7 +1823,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {" "}
                                           {t("Big")}:{" "}
                                         </span>
-                                        <span>
+                                        <span className="currency-span">
                                           {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
                                             ? parseInt(price.d4.consolation).toLocaleString()
@@ -1835,7 +1854,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         ></th>
                                       </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody className="align-middle">
                                       <tr className="">
                                         <td style={{ width: "30%" }}>
                                           {t("P1")}
@@ -1847,12 +1866,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span
                                             style={{
                                               color: "rgb(255, 228, 0)",
-                                              fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
-                                            className="text-left"
+                                            className="font-20px-17px text-left"
                                           >
-                                            {merchantCurrency}&nbsp;0.00
+                                            {merchantCurrency}&nbsp; {merchantCurrency == 'KHR' ? '0':'0.00'}
                                           </span>
                                         </td>
                                         {/* <div className={styles.device_detect_for_desktop}>  */}
@@ -1874,12 +1892,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span
                                             style={{
                                               color: "rgb(255, 228, 0)",
-                                              fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
-                                            className="text-left"
+                                            className="font-20px-17px text-left"
                                           >
-                                            {merchantCurrency}&nbsp;0.00
+                                            {merchantCurrency}&nbsp; {merchantCurrency == 'KHR' ? '0':'0.00'}
                                           </span>
                                         </td>
 
@@ -1892,10 +1909,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            {/* <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span>
-                                            <span className="d-flex justify-content-start">
+                                            <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span> */}
                                           </td>
@@ -1912,12 +1929,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span
                                             style={{
                                               color: "rgb(255, 228, 0)",
-                                              fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
-                                            className="text-left"
+                                            className="font-20px-17px text-left"
                                           >
-                                            {merchantCurrency}&nbsp;0.00
+                                            {merchantCurrency}&nbsp; {merchantCurrency == 'KHR' ? '0':'0.00'}
                                           </span>
                                         </td>
 
@@ -1930,10 +1946,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            {/* <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span>
-                                            <span className="d-flex justify-content-start">
+                                            <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span> */}
                                           </td>
@@ -1950,12 +1966,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span
                                             style={{
                                               color: "rgb(255, 228, 0)",
-                                              fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
-                                            className="text-left"
+                                            className="font-20px-17px text-left"
                                           >
-                                            {merchantCurrency}&nbsp;0.00
+                                            {merchantCurrency}&nbsp; {merchantCurrency == 'KHR' ? '0':'0.00'}
                                           </span>
                                         </td>
 
@@ -1968,7 +1983,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            {/* <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span> */}
                                           </td>
@@ -1985,12 +2000,11 @@ const Calculator = ({ _transactions, _auth }) => {
                                           <span
                                             style={{
                                               color: "rgb(255, 228, 0)",
-                                              fontSize: "20px",
-                                              fontWeight: "700",
+                                              fontWeight: "600",
                                             }}
-                                            className="text-left"
+                                            className="font-20px-17px text-left"
                                           >
-                                            {merchantCurrency}&nbsp;0.00
+                                            {merchantCurrency}&nbsp; {merchantCurrency == 'KHR' ? '0':'0.00'}
                                           </span>
                                         </td>
                                         <div
@@ -2002,7 +2016,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             className="text-left d-flex flex-column"
                                             style={{ width: "30%" }}
                                           >
-                                            {/* <span className="d-flex justify-content-start">
+                                            {/* <span className="d-flex justify-content-between w-100">
                                               <span> 0.00</span>
                                             </span> */}
                                           </td>
@@ -2025,6 +2039,12 @@ const Calculator = ({ _transactions, _auth }) => {
         </div>
       </div>
       <style jsx>{`
+      .currency-span{
+        width:77.45px!important;
+      }
+      .cal-disable{
+        filter: grayscale(1)!important,
+      }
        .btn-cal:hover, .btn-clr:hover{
         color: #000;
 
@@ -2037,6 +2057,9 @@ const Calculator = ({ _transactions, _auth }) => {
        .btn-clr:active{
         border:1px solid rgb(194, 35, 97)!important;
         color: rgb(194, 35, 97)!important;
+        }
+        @media (max-width:575px){
+
         }
       `}</style>
     </section>
