@@ -15,9 +15,11 @@ export const getWinningData = (id,filters,token="",callback) => async (dispatch)
 
 
     try {
+
+      let kk_lotto_token = localStorage.getItem("kk_lotto_token");
       const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${kk_lotto_token}`
       }
 
       
