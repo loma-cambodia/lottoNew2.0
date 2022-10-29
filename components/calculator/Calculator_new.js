@@ -21,7 +21,7 @@ const Calculator = ({ _transactions, _auth }) => {
     auth.auth.merchant.currency &&
     auth.auth.merchant.currency.code
       ? auth.auth.merchant.currency.code
-      : "USD";
+      : "KHR";
 
   const onLoadCompany = 0;
 
@@ -1405,7 +1405,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {" "}
                                           3C:{" "}
                                         </span>
-                                        <span>
+                                        <span className="currency-span">
                                           {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
                                             ? parseFloat(price.d3.two).toLocaleString()
@@ -1457,7 +1457,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {" "}
                                           3C:{" "}
                                         </span>
-                                        <span>
+                                        <span className="currency-span">
                                           {merchantCurrency} &nbsp;
                                           {merchantCurrency == "KHR"
                                             ? parseFloat(price.d3.three).toLocaleString()
