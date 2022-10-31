@@ -174,9 +174,9 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                             <li className= {`${router.pathname === "/calculator" ? "active-header":""}`}>
                               <Link href="/calculator" >{t('Calculator')}</Link>
                             </li>
-                            {/* <li className= {`${router.pathname === "/searchNumber" ? "active-header":""}`}>
+                            <li className= {`${router.pathname === "/searchNumber" ? "active-header":""}`}>
                               <Link href="/searchNumber" >{t('Betting Tips')}</Link>
-                            </li> */}
+                            </li>
                           </ul>
                   </div>
                   <div className="right-part-menu">
