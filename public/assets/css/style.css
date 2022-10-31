@@ -1008,39 +1008,39 @@
         display: none;
     }
     .mobile-menu-list ul.list-unstyled li.submenu-mobile a.collapsed::after {
-        content: "";
-        width: 15px;
-        height: 15px;
-        background-image: url(../images/icons/dow_arrow.png);
-        position: absolute;
-        top: 34%;
-        right: -20px;
-        background-size: cover;
-        transition: 0.5s;
-        transform: rotateX(0deg);
-    }
-    .mobile-menu-list ul.list-unstyled li.submenu-mobile a::after {
-        content: "";
-        width: 15px;
-        height: 15px;
-        background-image: url(../images/icons/dow_arrow.png);
-        position: absolute;
-        top: 34%;
-        right: -20px;
-        background-size: cover;
-        transform: rotateX(180deg);
-    }
-    .mobile-menu-list ul.list-unstyled li.submenu-mobile a.collapsed::after {
-        content: "";
-        width: 15px;
-        height: 15px;
-        background-image: url(../images/icons/dow_arrow.png);
-        position: absolute;
-        top: 34%;
-        right: -20px;
-        background-size: cover;
-        transform: rotateX(0deg);
-    }
+      content: "";
+      width: 15px;
+      height: 15px;
+      background-image: url(../images/icons/dow_arrow.png);
+      position: absolute;
+      top: 34%;
+      right: -20px;
+      background-size: cover;
+      transition: 0.5s;
+      transform: rotateX(0deg);
+  }
+  .mobile-menu-list ul.list-unstyled li.submenu-mobile a::after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background-image: url(../images/icons/dow_arrow.png);
+    position: absolute;
+    top: 34%;
+    right: -20px;
+    background-size: cover;
+    transform: rotateX(180deg);
+}
+.mobile-menu-list ul.list-unstyled li.submenu-mobile a.collapsed::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(../images/icons/dow_arrow.png);
+  position: absolute;
+  top: 34%;
+  right: -20px;
+  background-size: cover;
+  transform: rotateX(0deg);
+}
     .custom-breadcrumb {
     padding: 20px 0;
     background: #bc2263 url(../images/hero-building.png);
