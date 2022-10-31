@@ -24,7 +24,7 @@ const { t } = useTranslation();
                         <li className="list-inline-item"><Link href="/winningList"><a>{t('winning_list')}</a></Link></li>
                         <li className="list-inline-item"><Link href="/results"><a>{t('Result')}</a></Link></li>
                         <li className="list-inline-item"><Link href="/calculator" ><a>{t('Calculator')}</a></Link></li>
-                        <li className="list-inline-item"><Link href="/searchNumber" ><a>{t('Betting Tips')}</a></Link></li>
+                        <li className="list-inline-item"><Link href="/analysis" ><a>{t('Betting_Tips')}</a></Link></li>
                     </ul>
                 </div>
                 {/* <div className="clearfix my-3">
