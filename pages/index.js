@@ -60,7 +60,7 @@ if(objectWithData.customer_id != 0){
 
       let winnerResultDetails = state && state.home && state.home.winnerResultDetails ? state.home.winnerResultDetails : [];
 
-      let language = state && state.auth && state.auth.lang ? state.auth.lang : '';
+      let language = state && state.auth && state.auth.auth && state.auth.auth.language && state.auth.auth.language.locale ? state.auth.auth.language.locale : '';
 
       let announcementState = state && state.home && state.home.announcementDetails ? state.home.announcementDetails : '';
       
