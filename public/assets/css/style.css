@@ -3031,7 +3031,7 @@ section.announcement {
   height: 400px !important;
 }
 .font-20px-17px{
-  font-size: 20px !important;
+  font-size: 20px;
 }
 @media (max-width:574.999px) { 
   .back-section1:before { 
@@ -4404,4 +4404,33 @@ input.daterangepickerstyle-sm {
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #bf2262;
   --bs-gradient: none;
+}
+@media (max-width:1200px) {
+  .font-20px-17px{
+    font-size: 14px;
+  }
+  .absolute-div1 table {
+    font-size: 12px;
+  }
+}
+@media (max-width:991px) {
+  .font-20px-17px{
+    font-size: 16px;
+  }
+  .absolute-div1 table {
+    font-size: 12px;
+  }
+}
+@media (max-width:767.999px) { 
+  .back-section2::before {
+    height: 100%;
+    width: 100%;
+    right: 0;
+  }
+  .back-section1:before {
+    display: none;
+  }
+  .back-section1 .clearfix.p-4.z-index-1.back-section2.mx-4 {
+    margin: 0 !important;
+  }
 }
