@@ -2033,34 +2033,6 @@ const Calculator = ({ _transactions, _auth }) => {
           </div>
         </div>
       </div>
-      <style jsx>{`
-      .sb-padding{
-          padding-right:5px;
-        }
-      .currency-span{
-        width:100px!important;
-      }
-      .cal-disable{
-        filter: grayscale(1)!important,
-      }
-       .btn-cal:hover, .btn-clr:hover{
-        color: #000;
-
-        box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
-       }
-       .btn-cal:active{
-        color: #000;
-        background:rgb(156 11 70)!important;
-       }
-       .btn-clr:active{
-        border:1px solid rgb(194, 35, 97)!important;
-        color: rgb(194, 35, 97)!important;
-        }
-        @media (max-width:575px){
-
-        }
-        
-      `}</style>
     </section>
   );
 };
