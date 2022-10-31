@@ -6,10 +6,11 @@ import axios from 'axios'
 export const getTicketDataSettled = (id,token ='') => async (dispatch) => {
   const userId = id
    try {
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token");
      const headers = {
        'Content-Type': 'application/json',
        'Access-Control-Allow-Origin': '*',
-       'Authorization': `Bearer ${token}`
+       'Authorization': `Bearer ${kk_lotto_token}`
      }
      const res = await axios.get(
          `${API_BASE_URL}/betList?member_id=${userId}&ticket_status=SETTLED`,{
@@ -33,10 +34,11 @@ export const searchTicketData = (member_id,date_range, ticketNumber, token ='') 
 
   console.log('searchTicketData:token',token);
   try {
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token");
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${kk_lotto_token}`
     }
 
      date_range = date_range.replace(" ", "");
@@ -71,10 +73,11 @@ export const searchTicketData = (member_id,date_range, ticketNumber, token ='') 
 
 export const searchTicketDataSettled = (member_id,date_range, ticketNumber, token ='') => async (dispatch) => {
   try {
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token");
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${kk_lotto_token}`
     }
 
      date_range = date_range.replace(" ", "");

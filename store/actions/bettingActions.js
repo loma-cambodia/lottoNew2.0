@@ -5,8 +5,9 @@ let API_BASE_URL = process.env.apiUrl
 export const getBettingDates = (token ='') => async (dispatch) => {
   try {
     //    const res = await axios.get(`http://uat.kk-lotto.com/b2b/api/dates`);
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token");
     const config = {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${kk_lotto_token}` }
      };
     const res = await axios.get(`${API_BASE_URL}/dates/all`,config)
     dispatch({
@@ -24,16 +25,17 @@ export const getBettingDates = (token ='') => async (dispatch) => {
 export const lotterySubmit = (sendData, callback) => async (dispatch) => {
   // return false;
 
-  console.log('lotterySubmit:sendData:', sendData);
+  //console.log('lotterySubmit:sendData:', sendData);
 
 
 
   try {
 
     //let kk_lotto_token = '';
-    let token = localStorage.getItem("kk_lotto_token")
+   // let token = localStorage.getItem("kk_lotto_token");
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token");
     const headers = {
-      'Content-Type': 'application/json','Authorization': `Bearer ${token}`
+      'Content-Type': 'application/json','Authorization': `Bearer ${kk_lotto_token}`
     }
     const res = await axios.post(`${API_BASE_URL}/tickets`, sendData, {
       headers: headers,
