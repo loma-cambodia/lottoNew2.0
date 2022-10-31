@@ -21,7 +21,7 @@ const Calculator = ({ _transactions, _auth }) => {
     auth.auth.merchant.currency &&
     auth.auth.merchant.currency.code
       ? auth.auth.merchant.currency.code
-      : "KHR";
+      : "USD";
 
   const onLoadCompany = 0;
 
@@ -721,13 +721,10 @@ const Calculator = ({ _transactions, _auth }) => {
           ? parseInt(smallInput) * parseInt(price.d4.small_three)
           : 0;
     }
+
     setResult(object);
 
     setRepNumber(repeatedNumber);
-
-    // if (){
-    //   if()
-    // }
     
   };
 
@@ -1237,7 +1234,7 @@ const Calculator = ({ _transactions, _auth }) => {
                             {t("Total_Cost")}
                           </label>
                           <span>
-                            {merchantCurrency} {parseInt(cost).toLocaleString()}
+                            {merchantCurrency} {merchantCurrency == 'KHR' ? parseInt(cost).toLocaleString():parseInt(cost).toLocaleString(undefined, {minimumFractionDigits: 2})}
                           </span>
                         </div>
                       </div>
@@ -1522,9 +1519,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
+                                          {/* this is */}
                                           {merchantCurrency == "KHR"
                                             ? parseInt(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString()
-                                            : parseFloat(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString()}
+                                            : parseFloat(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                         </span>
                                       </span>
                                     </td>
@@ -1550,7 +1548,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                               ? parseInt(price.d4.one).toLocaleString()
                                               : parseFloat(
                                                   price.d4.one
-                                                ).toLocaleString()}
+                                                ).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                           </span>
                                         </span>
                                       : <></>}
@@ -1570,7 +1568,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                               ? parseInt(price.d4.small_one).toLocaleString()
                                               : parseFloat(
                                                   price.d4.small_one
-                                                ).toLocaleString()}
+                                                ).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                           </span>
                                         </span>
                                       : <></>}
@@ -1597,7 +1595,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         <span className="col-md-9 col-12">
                                           {merchantCurrency == "KHR"
                                             ? parseInt(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two)).toLocaleString()
-                                            : parseFloat(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two)).toLocaleString()}
+                                            : parseFloat(parseFloat(result.d4_big_two) + parseFloat(result.d4_small_two)).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                         </span>
                                       </span>
                                     </td>
@@ -1621,7 +1619,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             {merchantCurrency} &nbsp;
                                             {merchantCurrency == "KHR"
                                               ? parseInt(price.d4.two).toLocaleString()
-                                              : parseFloat(price.d4.two).toLocaleString()}
+                                              : parseFloat(price.d4.two).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                           </span>
                                         </span> 
                                       : <></>}
@@ -1641,7 +1639,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                               ? parseInt(price.d4.small_two).toLocaleString()
                                               : parseFloat(
                                                   price.d4.small_two
-                                                ).toLocaleString()}
+                                                ).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                           </span>
                                         </span>                                    
                                       : <></>}
@@ -1668,7 +1666,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         <span className="col-md-9 col-12">
                                           {merchantCurrency == "KHR"
                                             ? parseInt(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three)).toLocaleString()
-                                            : parseFloat(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three)).toLocaleString()}
+                                            : parseFloat(parseFloat(result.d4_big_three) + parseFloat(result.d4_small_three)).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                         </span>
                                       </span>
                                     </td>
@@ -1694,7 +1692,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                                 ? parseInt(price.d4.three).toLocaleString()
                                                 : parseFloat(
                                                     price.d4.three
-                                                  ).toLocaleString()}
+                                                  ).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                             </span>
                                           </span> : <></>
                                         }
@@ -1714,7 +1712,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                               ? parseInt(price.d4.small_three).toLocaleString()
                                               : parseFloat(
                                                   price.d4.small_three
-                                                ).toLocaleString()}
+                                                ).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                           </span>
                                         </span>                                    
                                         : <></>}
@@ -1745,7 +1743,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             ? parseInt(result.d4_big_special).toLocaleString()
                                             : parseFloat(
                                                 result.d4_big_special
-                                              ).toLocaleString()}
+                                              ).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                         </span>
                                       </span>
                                     </td>
@@ -1770,7 +1768,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             ? parseInt(price.d4.special).toLocaleString()
                                             : parseFloat(
                                                 price.d4.special
-                                              ).toLocaleString()}
+                                              ).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                         </span>
                                       </span>
                                       
@@ -1804,7 +1802,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                               ).toLocaleString()
                                             : parseFloat(
                                                 result.d4_big_consolation
-                                              ).toLocaleString()}
+                                              ).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                         </span>
                                       </span>
                                     </td>
@@ -1829,7 +1827,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                             ? parseInt(price.d4.consolation).toLocaleString()
                                             : parseFloat(
                                                 price.d4.consolation
-                                              ).toLocaleString()}
+                                              ).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                         </span>
                                       </span>
                                       
@@ -2040,7 +2038,7 @@ const Calculator = ({ _transactions, _auth }) => {
       </div>
       <style jsx>{`
       .currency-span{
-        width:77.45px!important;
+        width:115px!important;
       }
       .cal-disable{
         filter: grayscale(1)!important,
