@@ -187,7 +187,7 @@ function MyApp({ Component, pageProps,user }) {
           />
           <Provider store={store}>
           <Component {...pageProps} datauser={data}  updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
-          <LogoutModal _logoutStatus={isIdleData} _memberId={data && data.user && data.user.data && data.user.data.id ? data.user.data.id : 0}/>
+          <LogoutModal _logoutStatus={isIdleData}/>
           </Provider>
         </> 
       );
