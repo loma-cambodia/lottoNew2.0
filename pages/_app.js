@@ -83,11 +83,15 @@ function MyApp({ Component, pageProps,user }) {
     }
   )
 
+  useEffect(()=>{
+    //console.log('ideal State')
+  },[isIdleData, data])
+
   //console.log('data.user.data:',data.user.data);
   const onIdle = () => {
-    //setIdleData(true)
+    setIdleData(true)
     //userLogoutPopUp()
-    userLogout();
+    //userLogout();
   }
   const {
     isIdle,
@@ -187,7 +191,7 @@ function MyApp({ Component, pageProps,user }) {
           />
           <Provider store={store}>
           <Component {...pageProps} datauser={data}  updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
-          <LogoutModal _logoutStatus={isIdleData}/>
+          <LogoutModal _logoutStatus={isIdleData} _setData = {setData} _setIdleData={setIdleData} _memberId={data && data.user && data.user.data && data.user.data.id ? data.user.data.id : 0}/>
           </Provider>
         </> 
       );

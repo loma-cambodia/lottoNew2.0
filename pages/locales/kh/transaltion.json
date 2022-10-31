@@ -277,6 +277,28 @@
     "ToTo":"ToTo",
     "Calculate":"គណនា",
     "coming_soon_text":"មកដល់ឆាប់ៗនេះ",
-    "Calculator":"ម៉ាស៊ីនគិតលេខ"
+    "Calculator":"ម៉ាស៊ីនគិតលេខ",
+    
+    "Betting_Tips":"Analysis",
+    "Start_Date":"Start Date",
+    "End_Date":"End Date",
+    "Permutation":"Permutation",
+    "Prize":"Prize",
+    "Top_3":"Top 3",
+    "Total_Permutation":"Total Permutation",
+    "Total_Hits":"Total Hits",
+    "Min_DrawGap":"Min DrawGap",
+    "Max_DrawGap":"Max Draw Gap",
+    "Draws":"Draws",
+    "Last_Hit_DrawNo":"Last Hit Draw No",
+    "Last_Hit_DrawID":"Last Hit Draw ID",
+    "Estimate_Next_Hit_DrawNo":"Estimate Next Hit Draw No",
+    "Estimate_Next_Draw_Date":"Estimate Next Hit Draw Date",
+    "DrawID":"Draw ID",
+    "DrawNo":"Draw No",
+    "Day":"Day",
+    "Source":"Source",
+    "DrawGap":"Draw Gap",
+    "LastDraw":"Last Draw"
     
 }

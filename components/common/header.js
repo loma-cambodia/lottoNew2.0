@@ -165,21 +165,21 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                               <Link href="/results" >{t('Result')}</Link>
                             </li>
                             <li className="dropdown-desktop">
-                              <a className= {`${router.pathname === "/calculator" || router.pathname === "/searchNumber" ? "under-line-link":""}`} href="#" >{t('Utility')} </a>
+                              <a className= {`${router.pathname === "/calculator" || router.pathname === "/analysis" ? "under-line-link":""}`} href="#" >{t('Utility')} </a>
                               <ul className="sub-menu-desktop">
                                 <li style={{whiteSpace:"nowrap"}} className= {`${router.pathname === "/calculator" ? "active-header":""}`}>
                                   <Link href="/calculator">{t('Calculator')}</Link>
                                 </li>                                
-                                <li style={{whiteSpace:"nowrap"}} className= {`${router.pathname === "/searchNumber" ? "active-header":""}`}>
-                                  <Link href="/searchNumber" >{t('Betting Tips')}</Link>
+                                <li style={{whiteSpace:"nowrap"}} className= {`${router.pathname === "/analysis" ? "active-header":""}`}>
+                                  <Link href="/analysis" >{t('Betting_Tips')}</Link>
                                 </li>                            
                               </ul>
                            </li>
                             {/* <li className= {`${router.pathname === "/calculator" ? "active-header":""}`}>
                               <Link href="/calculator" >{t('Calculator')}</Link>
                             </li>
-                            {/* <li className= {`${router.pathname === "/searchNumber" ? "active-header":""}`}>
-                              <Link href="/searchNumber" >{t('Betting Tips')}</Link>
+                            {/* <li className= {`${router.pathname === "/analysis" ? "active-header":""}`}>
+                              <Link href="/analysis" >{t('Betting_Tips')}</Link>
                             </li> */}
                           </ul>
                   </div>
@@ -293,8 +293,8 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                                   <li  className= {`${router.pathname === "/calculator" ? "active-header-mobile":""} list-unstyled`}>
                                     <Link href="/calculator">{t('Calculator')}</Link>
                                   </li>
-                                  <li  className= {`${router.pathname === "/searchNumber" ? "active-header-mobile":""} list-unstyled`}>
-                                    <Link href="/searchNumber" >{t('Betting Tips')}</Link>
+                                  <li  className= {`${router.pathname === "/analysis" ? "active-header-mobile":""} list-unstyled`}>
+                                    <Link href="/analysis" >{t('Betting_Tips')}</Link>
                                   </li>
                               </ul>
                             </div>
