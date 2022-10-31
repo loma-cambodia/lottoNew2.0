@@ -284,21 +284,25 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                     <li className= {`${router.pathname === "/searchNumber" ? "active-header-mobile":""}`}>
                       <Link href="/searchNumber" >{t('Betting Tips')}</Link>
                     </li>
+                    
+                    {/* <li class="submenu-mobile">
+                    <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"
+                    className= {`${router.pathname === "/calculator" || router.pathname === "/searchNumber" ? "active-header-mobile":""}`}>{t('Utility')} </a>
+                          <div class="collapse" id="collapseExample">
+                              <ul style={{padding:'0px'}}>
+                                  <li  className= {`${router.pathname === "/calculator" ? "active-header-mobile":""} list-unstyled`}>
+                                    <Link href="/calculator">{t('Calculator')}</Link>
+                                  </li>
+                                  <li  className= {`${router.pathname === "/searchNumber" ? "active-header-mobile":""} list-unstyled`}>
+                                    <Link href="/searchNumber" >{t('Betting Tips')}</Link>
+                                  </li>
+                              </ul>
+                            </div>
+                      </li> */}
                   </ul>
               </div>
         </div>
-        <style jsx>{`
-      .under-line-link{
-        /* text-decoration: underline #bc2263 2px!important; */
-        color: #bc2263!important;
-        }
-        .desktop-menu .desktop-menu-list li.dropdown-desktop .sub-menu-desktop{
-          min-width: fit-content!important;
-          padding: 10px!important;
-        }
-      `}</style>
       </>
     )
   }
   export default Header;
-  

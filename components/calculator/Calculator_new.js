@@ -786,9 +786,9 @@ const Calculator = ({ _transactions, _auth }) => {
         </div>
         <div className="clearfix">
           <div className="row justify-conternt-center">
-            <div className="col-md-10 offset-md-1">
+            <div className="col-lg-10 offset-lg-1 col-md-12">
               <div className="row align-items-center no-gutters g-0">
-                <div className="col-md-5 col-sm-6 back-section1">
+                <div className="col-md-5 back-section1">
                   <div className="clearfix p-4 z-index-1 back-section2 mx-4">
                     <div className="row mt-3 m-auto">
                       <div className="col-md-10 offset-md-1 ml-2">
@@ -803,7 +803,6 @@ const Calculator = ({ _transactions, _auth }) => {
                                     {oddSet.map((item, index) => {
                                       console.log("itemitemitem", item);
                                       return (
-                                        <>
                                           <li
                                             key={index}
                                             className=" list-inline-item"
@@ -833,7 +832,6 @@ const Calculator = ({ _transactions, _auth }) => {
                                               </span>
                                             </span>
                                           </li>
-                                        </>
                                       );
                                     })}
                                   </ul>
@@ -1022,7 +1020,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       >
                                         R
                                       </label>
-                                    ) : (
+                                    ) : ( number.length >= 3 ? 
                                       <label
                                         for="forReverseValue"
                                         className={
@@ -1040,7 +1038,28 @@ const Calculator = ({ _transactions, _auth }) => {
                                         }}
                                       >
                                         R
-                                      </label>
+                                      </label> 
+                                      :
+                                      <label
+                                      for="forReverseValue"
+                                      className={"btn me-1 disable"}
+                                      title={t('Reverse')}
+                                      style={{
+                                        cursor: "",
+                                        fontSize: "14px",
+                                        // border: "red 1px solid",
+                                        border: '1px solid #adb5bd',
+                                        width: '35px',
+                                        height: '35px',
+                                        textAlign: 'center',
+                                        color: '#adb5bd',
+                                        fontWeight: 'bold',
+                                        lineHeight: '22px',
+                                        textAlign: 'center'
+                                      }}
+                                    >
+                                      R
+                                    </label>
                                     )}
                                   </div>
                                 </div>
@@ -1178,7 +1197,7 @@ const Calculator = ({ _transactions, _auth }) => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-7 col-sm-6 text-light">
+                <div className="col-md-7 text-light">
                   <div className="absolute-div1">
                     <div className="inner-abs-div">
                       <div className="company-type-heading d-flex align-items-center mb-4">
@@ -1314,15 +1333,13 @@ const Calculator = ({ _transactions, _auth }) => {
                                     {/* <div className={styles.device_detect_for_desktop}>  */}
                                     <td
                                       style={{ width: "100%" }}
-                                      className="text-left d-flex flex-column"
+                                      className="text-left "
                                     >
                                       <div className="w-100">
                                       {a3 ? 
                                         <span className="d-flex justify-content-between w-100">
                                           <span
-                                            className={
-                                              styles.device_detect_for_desktop
-                                            }
+                                            className={`${styles.device_detect_for_desktop} sb-padding`}
                                           >
                                             {" "}
                                             3A:{" "}
@@ -1340,9 +1357,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         {c3 ? 
                                         <span className="d-flex justify-content-between w-100">
                                           <span
-                                            className={
-                                              styles.device_detect_for_desktop
-                                            }
+                                            className={`${styles.device_detect_for_desktop} sb-padding`}
                                           >
                                             {" "}
                                             3C:{" "}
@@ -1390,7 +1405,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     {/* <div className={styles.device_detect_for_desktop}>  */}
                                     <td
                                       style={{ width: "100%" }}
-                                      className="text-left d-flex flex-column"
+                                      className="text-left "
                                     >
                                     {c3 ? 
                                       <span className="d-flex justify-content-between w-100">
@@ -1442,7 +1457,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     {/* <div className={styles.device_detect_for_desktop}>  */}
                                     <td
                                       style={{ width: "100%" }}
-                                      className="text-left d-flex flex-column"
+                                      className="text-left "
                                     >
                                       {c3 ? 
                                       <span className="d-flex justify-content-between w-100">
@@ -1503,9 +1518,8 @@ const Calculator = ({ _transactions, _auth }) => {
                               ) : number.length == 4 && calculate ? (
                                 <>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>{t("P1")} </td>
+                                    <td>{t("P1")} </td>
                                     <td
-                                      style={{ width: "30%" }}
                                       className="text-left"
                                     >
                                       <span
@@ -1528,16 +1542,13 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </td>
                                     {/* <div className={styles.device_detect_for_desktop}>  */}
                                     <td
-                                      style={{ width: "100%" }}
-                                      className="text-left d-flex flex-column"
+                                      className="text-left ps-3"
                                     >
                                       <div className="w-100">
                                       {big ? 
                                         <span className="d-flex justify-content-between w-100">
                                           <span
-                                            className={
-                                              styles.device_detect_for_desktop
-                                            }
+                                            className={`${styles.device_detect_for_desktop} sb-padding`}
                                           >
                                             {" "}
                                             {t("Big")}:{" "}
@@ -1555,9 +1566,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       {small ? 
                                         <span className="d-flex justify-content-between w-100">
                                           <span
-                                            className={
-                                              styles.device_detect_for_desktop
-                                            }
+                                            className={`${styles.device_detect_for_desktop} sb-padding`}
                                           >
                                             {" "}
                                             {t("Small_Bet")}:{" "}
@@ -1577,9 +1586,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                     {/* </div> */}
                                   </tr>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>{t("P2")} </td>
+                                    <td>{t("P2")} </td>
                                     <td
-                                      style={{ width: "30%" }}
                                       className="text-left"
                                     >
                                       <span
@@ -1601,16 +1609,13 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </td>
                                     {/* <div className={styles.device_detect_for_desktop}>  */}
                                     <td
-                                      style={{ width: "100%" }}
-                                      className="text-left d-flex flex-column"
+                                      className="text-left ps-3"
                                     >
                                       <div className="w-100">
                                       {big ?
                                         <span className="d-flex justify-content-between w-100">
                                           <span
-                                            className={
-                                              styles.device_detect_for_desktop
-                                            }
+                                            className={`${styles.device_detect_for_desktop} sb-padding`}
                                           >
                                             {" "}
                                             {t("Big")}:{" "}
@@ -1626,9 +1631,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                       {small ? 
                                         <span className="d-flex justify-content-between w-100">
                                           <span
-                                            className={
-                                              styles.device_detect_for_desktop
-                                            }
+                                            className={`${styles.device_detect_for_desktop} sb-padding`}
                                           >
                                             {" "}
                                             {t("Small_Bet")}:{" "}
@@ -1648,9 +1651,8 @@ const Calculator = ({ _transactions, _auth }) => {
                                     {/* </div> */}
                                   </tr>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>{t("P3")} </td>
+                                    <td>{t("P3")} </td>
                                     <td
-                                      style={{ width: "30%" }}
                                       className="text-left"
                                     >
                                       <span
@@ -1672,8 +1674,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </td>
                                     {/* <div className={styles.device_detect_for_desktop}>  */}
                                     <td
-                                      style={{ width: "100%" }}
-                                      className="text-left d-flex flex-column"
+                                      className="text-left ps-3"
                                     >
                                       <div className="w-100">
                                         {big ? 
@@ -1699,9 +1700,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         {small ? 
                                         <span className="d-flex justify-content-between w-100">
                                           <span
-                                            className={
-                                              styles.device_detect_for_desktop
-                                            }
+                                            className={`${styles.device_detect_for_desktop} sb-padding`}
                                           >
                                             {" "}
                                             {t("Small_Bet")}:{" "}
@@ -1721,11 +1720,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                     {/* </div> */}
                                   </tr>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>
+                                    <td>
                                       {t("Special_Prize")}
                                     </td>
                                     <td
-                                      style={{ width: "30%" }}
                                       className="text-left"
                                     >
                                       <span
@@ -1749,8 +1747,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </td>
                                     {/* <div className={styles.device_detect_for_desktop}>  */}
                                     <td
-                                      style={{ width: "100%" }}
-                                      className="text-left d-flex flex-column"
+                                      className="text-left ps-3"
                                     >
                                       {big ? 
                                       <span className="d-flex justify-content-between w-100">
@@ -1778,11 +1775,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                     {/* </div> */}
                                   </tr>
                                   <tr className="">
-                                    <td style={{ width: "30%" }}>
+                                    <td>
                                       {t("Consolation_Prize")}
                                     </td>
                                     <td
-                                      style={{ width: "30%" }}
                                       className="text-left"
                                     >
                                       <span
@@ -1808,8 +1804,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     </td>
                                     {/* <div className={styles.device_detect_for_desktop}>  */}
                                     <td
-                                      style={{ width: "100%" }}
-                                      className="text-left d-flex flex-column"
+                                      className="text-left ps-3"
                                     >
                                       {big ? 
                                       <span className="d-flex justify-content-between w-100">
@@ -1873,7 +1868,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                         </td>
                                         {/* <div className={styles.device_detect_for_desktop}>  */}
                                         <td
-                                          className="text-left d-flex flex-column"
+                                          className="text-left "
                                           style={{ width: "30%" }}
                                         >
                                         </td>
@@ -1904,7 +1899,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           }
                                         >
                                           <td
-                                            className="text-left d-flex flex-column"
+                                            className="text-left "
                                             style={{ width: "30%" }}
                                           >
                                             {/* <span className="d-flex justify-content-between w-100">
@@ -1941,7 +1936,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           }
                                         >
                                           <td
-                                            className="text-left d-flex flex-column"
+                                            className="text-left "
                                             style={{ width: "30%" }}
                                           >
                                             {/* <span className="d-flex justify-content-between w-100">
@@ -1978,7 +1973,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           }
                                         >
                                           <td
-                                            className="text-left d-flex flex-column"
+                                            className="text-left "
                                             style={{ width: "30%" }}
                                           >
                                             {/* <span className="d-flex justify-content-between w-100">
@@ -2011,7 +2006,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                           }
                                         >
                                           <td
-                                            className="text-left d-flex flex-column"
+                                            className="text-left "
                                             style={{ width: "30%" }}
                                           >
                                             {/* <span className="d-flex justify-content-between w-100">
@@ -2036,30 +2031,6 @@ const Calculator = ({ _transactions, _auth }) => {
           </div>
         </div>
       </div>
-      <style jsx>{`
-      .currency-span{
-        width:115px!important;
-      }
-      .cal-disable{
-        filter: grayscale(1)!important,
-      }
-       .btn-cal:hover, .btn-clr:hover{
-        color: #000;
-
-        box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
-       }
-       .btn-cal:active{
-        color: #000;
-        background:rgb(156 11 70)!important;
-       }
-       .btn-clr:active{
-        border:1px solid rgb(194, 35, 97)!important;
-        color: rgb(194, 35, 97)!important;
-        }
-        @media (max-width:575px){
-
-        }
-      `}</style>
     </section>
   );
 };

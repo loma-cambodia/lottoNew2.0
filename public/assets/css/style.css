@@ -63,7 +63,6 @@
     }
     .desktop-menu .desktop-menu-list li.dropdown-desktop .sub-menu-desktop {
     display: none;
-    min-width: 250px;
     background: #fff;
     position: absolute;
     top: 132%;
@@ -71,6 +70,8 @@
     border: 1px solid #ddd;
     z-index: 1051;
     border-radius: 20px 0;
+    min-width: fit-content!important;
+    padding: 10px!important;
     }
     .desktop-menu .desktop-menu-list li.dropdown-desktop:hover .sub-menu-desktop {
     display: block;
@@ -967,6 +968,10 @@
         align-items: center;
         text-align: center;
     }
+    .list-unstyled {
+      padding-left: 0!important;
+      list-style: none!important;
+  }
     .mobile-menu-list ul.list-unstyled {
         width: fit-content;
         margin: 0 auto;
@@ -992,6 +997,10 @@
         color: #fff;
         text-decoration: none;
     }
+    .under-line-link{
+      /* text-decoration: underline #bc2263 2px!important; */
+      color: #bc2263!important;
+      }
     .mobile-menu-list ul.list-unstyled li.submenu-mobile a {
         position: relative;
     }
@@ -3050,7 +3059,7 @@ section.announcement {
   height: 400px !important;
 }
 .font-20px-17px{
-  font-size: 20px !important;
+  font-size: 20px;
 }
 @media (max-width:574.999px) { 
   .back-section1:before { 
@@ -4423,4 +4432,55 @@ input.daterangepickerstyle-sm {
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #bf2262;
   --bs-gradient: none;
+}
+@media (max-width:1200px) {
+  .font-20px-17px{
+    font-size: 14px;
+  }
+  .absolute-div1 table {
+    font-size: 12px;
+  }
+}
+@media (max-width:991px) {
+  .font-20px-17px{
+    font-size: 16px;
+  }
+  .absolute-div1 table {
+    font-size: 12px;
+  }
+}
+@media (max-width:767.999px) { 
+  .back-section2::before {
+    height: 100%;
+    width: 100%;
+    right: 0;
+  }
+  .back-section1:before {
+    display: none;
+  }
+  .back-section1 .clearfix.p-4.z-index-1.back-section2.mx-4 {
+    margin: 0 !important;
+  }
+}
+.sb-padding{
+  padding-right:5px;
+}
+.currency-span{
+width:100px!important;
+}
+.cal-disable{
+filter: grayscale(1)!important;
+}
+.btn-cal:hover, .btn-clr:hover{
+color: #000;
+
+box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
+}
+.btn-cal:active{
+color: #000;
+background:rgb(156 11 70)!important;
+}
+.btn-clr:active{
+border:1px solid rgb(194, 35, 97)!important;
+color: rgb(194, 35, 97)!important;
 }
