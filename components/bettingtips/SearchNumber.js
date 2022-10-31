@@ -188,21 +188,12 @@ export default function SearchNumber({
       return false;
     }
     setIsLoading(true);
-    // console.log('startDate',startDate);
-    // console.log('startDate',);
-    // return false;
     let mainDateee =
       moment(startDate).format("DD/MM/YYYY") +
       "-" +
       moment(endDate).format("DD/MM/YYYY");
     let sdate = "";
     let edate = "";
-    // let mainDateee = "";
-    // if (dateFull) {
-    //   sdate = dateFull.split("-")[0].trim();
-    //   edate = dateFull.split("-")[1].trim();
-    //   mainDateee = sdate + "-" + edate;
-    // }
     let prizes = [];
     if (prizeInitData) {
       prizeInitData.map((prize) => {
