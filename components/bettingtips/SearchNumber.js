@@ -4,42 +4,65 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import $ from "jquery";
 import moment from "moment";
-import {DateRangePicker,daterangepicker,} from "react-bootstrap-daterangepicker";
-import "bootstrap-daterangepicker/daterangepicker.css";
-import {Card,CardBody,CardHeader,Col,Container,Form,FormGroup,Input,Row,} from "reactstrap";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Row,
+} from "reactstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import DatePicker from "react-datepicker";
 
-export default function SearchNumber({ _transactions, _auth, datauser, _GetSearchNumber,_bettingTip,_isLoading }) {
+import { subDays, addDays } from "date-fns";
+import "react-datepicker/dist/react-datepicker.css";
+import { changeLanguage } from "i18next";
+
+export default function SearchNumber({
+  _transactions,
+  _auth,
+  datauser,
+  _GetSearchNumber,
+  _bettingTip,
+  _isLoading,
+}) {
   const bettingTip = _bettingTip;
-  let loading =_isLoading;
+  let loading = _isLoading;
   // console.log('bettingTipbettingTip',bettingTip)
   const { t } = useTranslation();
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   let transactions = _transactions;
-  let oddSet = transactions && transactions.market && transactions.market.odd_settings ? transactions.market.odd_settings : [];
+  let oddSet =
+    transactions && transactions.market && transactions.market.odd_settings
+      ? transactions.market.odd_settings
+      : [];
   let prizeObject = [
     {
       id: "1",
-      name: "Top 3",
+      name: "Top_3",
       value: "top3",
       selected: false,
     },
     {
       id: "2",
-      name: "Special",
+      name: "S",
       value: "special",
       selected: false,
     },
     {
       id: "3",
-      name: "Second",
-      value: "second",
+      name: "C",
+      value: "consolation",
       selected: false,
     },
   ];
-  const keyRef = useRef();
+  // const keyRef = useRef();
   const [bettingInitData, setBettingInitData] = useState([]);
   const [number, setNumber] = useState("");
   const [permutation, setPermutation] = useState(null);
@@ -52,8 +75,8 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
   // const [searchResultData, setSearchResultData] = useState([]);
   const [reserAllData, setReserAllData] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [numberM, setNumberM] = useState('');
-  
+  const [numberM, setNumberM] = useState("");
+
   function getallcompanydata() {
     let dateAndGameOptionData = [];
     if (oddSet) {
@@ -103,60 +126,26 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
     }
   };
 
-  const change = () => {
-    const date = document.getElementById("daterangepicker");
-    $('input[name="datefilter"]').daterangepicker({
-      locale: {
-        applyLabel: t("submit"),
-        cancelLabel: t("clear"),
-        format: "DD/MM/YYYY",
-        customRangeLabel: t("custom_range"),
-        daysOfWeek: [
-          t("Su"),
-          t("Mo"),
-          t("Tu"),
-          t("We"),
-          t("Th"),
-          t("Fr"),
-          t("Sa"),
-        ],
-        monthNames: [
-          t("January"),
-          t("February"),
-          t("March"),
-          t("April"),
-          t("May"),
-          t("June"),
-          t("July"),
-          t("August"),
-          t("September"),
-          t("October"),
-          t("November"),
-          t("December"),
-        ],
-      },
-      startDate: moment(new Date()),
-      endDate: moment(new Date()),
-    });
-  };
-
-  useEffect(() => {
-    change();
-  }, [t]);
-
   useEffect(() => {
     getallcompanydata();
   }, [oddSet]);
 
   const searchClick = () => {
-    let toastId = null
-    if(number.length < 3){
-        if(!toast.isActive(toastId)){
-            toast.error(t('Please_Enter_Valid_Number'), 
-            {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-            pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
-        }
-        return false;
+    let toastId = null;
+    if (number.length < 3) {
+      if (!toast.isActive(toastId)) {
+        toast.error(t("Please_Enter_Valid_Number"), {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          toastId: 1,
+        });
+      }
+      return false;
     }
     setNumberM(number);
     let company = [];
@@ -168,32 +157,52 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
         }
       });
     }
-    if(company.length == 0){
-      if(!toast.isActive(toastId)){
-          toast.error(t('Please_select_game_first'), 
-          {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-          pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+    if (company.length == 0) {
+      if (!toast.isActive(toastId)) {
+        toast.error(t("Please_select_game_first"), {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          toastId: 1,
+        });
       }
       return false;
     }
-    if(!permutation){
-      if(!toast.isActive(toastId)){
-          toast.error(t('Please_select_Permutation'), 
-          {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
-          pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+    if (!permutation) {
+      if (!toast.isActive(toastId)) {
+        toast.error(t("Please_select_Permutation"), {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          toastId: 1,
+        });
       }
       return false;
     }
     setIsLoading(true);
-    let dateFull = $("#daterangepicker").val();
+    // console.log('startDate',startDate);
+    // console.log('startDate',);
+    // return false;
+    let mainDateee =
+      moment(startDate).format("DD/MM/YYYY") +
+      "-" +
+      moment(endDate).format("DD/MM/YYYY");
     let sdate = "";
     let edate = "";
-    let mainDateee = "";
-    if (dateFull) {
-      sdate = dateFull.split("-")[0].trim();
-      edate = dateFull.split("-")[1].trim();
-      mainDateee = sdate + "-" + edate;
-    }
+    // let mainDateee = "";
+    // if (dateFull) {
+    //   sdate = dateFull.split("-")[0].trim();
+    //   edate = dateFull.split("-")[1].trim();
+    //   mainDateee = sdate + "-" + edate;
+    // }
     let prizes = [];
     if (prizeInitData) {
       prizeInitData.map((prize) => {
@@ -210,8 +219,11 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
       permutation: permutation,
       prize: prizes,
     };
-    _GetSearchNumber(searchPostData, datauser.user.data.token ? datauser.user.data.token : "");
-    
+    _GetSearchNumber(
+      searchPostData,
+      datauser.user.data.token ? datauser.user.data.token : ""
+    );
+
     setReserAllData(true);
   };
 
@@ -221,32 +233,23 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
       setMainCard(bettingTip.main_card);
       setFirstTableData(bettingTip.data);
     }
-    // else{
-    //   setPermutationData([]);
-    //   setMainCard([]);
-    //   setFirstTableData([]);
-    // }
-    if(permutationData && mainCard && firstTableData && reserAllData){
-      setIsLoading(loading)
+    if (permutationData && mainCard && firstTableData && reserAllData) {
+      setIsLoading(loading);
     }
-    // if(bettingTip, permutationData, mainCard, firstTableData, reserAllData,isLoading){
-    //   setIsLoading(false);
-    // }
-
   }, [bettingTip, permutationData, mainCard, firstTableData, reserAllData]);
 
   const resetClick = () => {
     setReserAllData(false);
     setNumber("");
     setNumberM("");
-    change();
     setPermutation(null);
     getallcompanydata();
     setPrizeInitData(prizeObject);
     setPermutationData([]);
     setFirstTableData([]);
     setMainCard([]);
-    // _GetSearchNumber([]);
+    setStartDate(new Date("01/01/2016"));
+    setEndDate(new Date());
   };
 
   const getNetDrawDate = () => {
@@ -393,58 +396,56 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
     }
     return (
       <>
-      {firstTableData && mainNum ?
-        <tr>
-          <td>{firstTableData && mainNum}</td>
-          <td>{st1m != 0 ? st1m : ""}</td>
-          <td>{nd2m != 0 ? nd2m : ""}</td>
-          <td>{rd3m != 0 ? rd3m : ""}</td>
-          <td>{Spem != 0 ? Spem : ""}</td>
-          <td>{Conm != 0 ? Conm : ""}</td>
-          <td align="right">
-            <b>{totalm != 0 ? totalm : ""}</b>
-          </td>
-          {/* <td align="right">--</td>
+        {firstTableData && mainNum ? (
+          <tr>
+            <td>{firstTableData && mainNum}</td>
+            <td>{st1m != 0 ? st1m : ""}</td>
+            <td>{nd2m != 0 ? nd2m : ""}</td>
+            <td>{rd3m != 0 ? rd3m : ""}</td>
+            <td>{Spem != 0 ? Spem : ""}</td>
+            <td>{Conm != 0 ? Conm : ""}</td>
+            <td align="right">
+              <b>{totalm != 0 ? totalm : ""}</b>
+            </td>
+            {/* <td align="right">--</td>
           <td align="right">--</td> */}
-          <td>{LastDrawDate}</td>
-          <td>{LastDrawDay}</td>
-          <td>
-            <PrizeSetComm prizeType={lastPrize} />
-          </td>
-          <td>
-            {oddSet.map((game, id) => {
-              if (LastGameId && game.game_play.id == LastGameId) {
-                return (
-                  <span key={id}>
-                    <img
-                      src={game.game_play.logo_url}
-                      alt=""
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </span>
-                );
-              }
-            })}
-          </td>
-        </tr>
-        :
-        <tr>
-          <td colSpan={11}>
-            <div className='alert alert-warning'>
-                <h3 className='text-center'>
-                    {t('no_data_found')}
-                </h3>
-            </div>
-          </td>
-        </tr>
-      }
+            <td>{LastDrawDate}</td>
+            <td>{LastDrawDay}</td>
+            <td>
+              <PrizeSetComm prizeType={lastPrize} />
+            </td>
+            <td>
+              {oddSet.map((game, id) => {
+                if (LastGameId && game.game_play.id == LastGameId) {
+                  return (
+                    <span key={id}>
+                      <img
+                        src={game.game_play.logo_url}
+                        alt=""
+                        style={{
+                          width: "20px",
+                          height: "20px",
+                          borderRadius: "50%",
+                        }}
+                      />
+                    </span>
+                  );
+                }
+              })}
+            </td>
+          </tr>
+        ) : (
+          <tr>
+            <td colSpan={11}>
+              <div className="alert alert-warning">
+                <h3 className="text-center">{t("no_data_found")}</h3>
+              </div>
+            </td>
+          </tr>
+        )}
         <tr>
           <td>
-            <b>Total</b>
+            <b>{t('Total')}</b>
           </td>
           <td>{st1m != 0 ? st1m : ""}</td>
           <td>{nd2m != 0 ? nd2m : ""}</td>
@@ -479,28 +480,83 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
   let mainSpem = 0;
   let mainConm = 0;
   let maintotalm = 0;
+
+  // DATEpICKER
+
+  const [startDate, setStartDate] = useState(new Date("01/01/2016"));
+  const [endDate, setEndDate] = useState(new Date());
+  const getYear = (date) => {
+    return moment(date).year();
+  };
+  const range = (startDate, toDate) => {
+    let rangeArray = [];
+    let dif = toDate - startDate;
+    for (let index = 0; index < dif; index++) {
+      rangeArray.push(startDate + index);
+    }
+    return rangeArray;
+  };
+  const getMonth = (date) => {
+    return moment(date).month();
+  };
+  const sYears = range(2016, getYear(new Date()) + 1);
+  const eYears = range(moment(startDate).year(), getYear(new Date()) + 1);
+  const sMonths = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const eMonths = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   return (
     <>
-    <ToastContainer />
+      <ToastContainer />
       {isLoading ? (
         <div className="loader-Mob-1">
-            <div className="loader-Mob-2">
-                <img src="assets/images/loader.gif" alt="" className="img-icon-prize" width="50"/>
-            </div>
-        </div>) : (
-        <div>
-            
+          <div className="loader-Mob-2">
+            <img
+              src="assets/images/loader.gif"
+              alt=""
+              className="img-icon-prize"
+              width="50"
+            />
+          </div>
         </div>
+      ) : (
+        <div></div>
       )}
       <section className="custom-breadcrumb">
         <div className="container">
           <div className="breadcrumb-heading">
-            <h1 className="text-uppercase">Betting Tips</h1>
+            <h1 className="text-uppercase">{t("Betting_Tips")}</h1>
           </div>
           <div className="breadcrumb-list">
             <ul>
               <li>
-                <span>{t("Homepage")} / Betting Tips</span>
+                <span>
+                  {t("Homepage")} / {t("Betting_Tips")}
+                </span>
               </li>
             </ul>
           </div>
@@ -512,7 +568,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
             <Row className="justify-content-center">
               <Col sm="6" lg="1" md="3">
                 <FormGroup>
-                  <label className="fw-bold mb-2">Number</label>
+                  <label className="fw-bold mb-2">{t("Number")}</label>
                   <input
                     onKeyPress={(event) => {
                       if (!/[0-9]/.test(event.key)) {
@@ -531,10 +587,77 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                   />
                 </FormGroup>
               </Col>
-              <Col sm="6" lg="2" md="3">
+              <Col sm="6" lg="2" md="2">
                 <FormGroup>
-                  <label className="fw-bold mb-2">Range</label>
-                  <DateRangePicker
+                  <label className="fw-bold mb-2">{t("Start_Date")}</label>
+                  <DatePicker
+                    className="search-number-daterangepickerstyle"
+                    dayClassName={(date) => "react-datepicker__day_sushil"}
+                    renderCustomHeader={({
+                      date,
+                      changeYear,
+                      changeMonth,
+                      decreaseMonth,
+                      increaseMonth,
+                      prevMonthButtonDisabled,
+                      nextMonthButtonDisabled,
+                    }) => (
+                      <div
+                        style={{
+                          // margin: 10,
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <button
+                          className="btn-custom-curve1-sm"
+                          onClick={decreaseMonth}
+                          disabled={prevMonthButtonDisabled}
+                        >
+                          {"<"}
+                        </button>
+                        <select
+                          className="form-control-custom"
+                          value={getYear(date)}
+                          onChange={({ target: { value } }) =>
+                            changeYear(value)
+                          }
+                        >
+                          {sYears.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+
+                        <select
+                          className="form-control-custom"
+                          value={sMonths[getMonth(date)]}
+                          onChange={({ target: { value } }) =>
+                            changeMonth(sMonths.indexOf(value))
+                          }
+                        >
+                          {sMonths.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+
+                        <button
+                          className="btn-custom-curve1-sm"
+                          onClick={increaseMonth}
+                          disabled={nextMonthButtonDisabled}
+                        >
+                          {">"}
+                        </button>
+                      </div>
+                    )}
+                    value={moment(startDate).format("DD/MM/YYYY")}
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                  />
+                  {/* <DateRangePicker
                     onChange={(e) => searchClick(e.target.value)}
                     id="daterpicker"
                     ref={keyRef}
@@ -545,7 +668,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                       cancelLabel: t("Cancel"),
                       applyLabel: t("apply"),
                     }}
-                  >
+                  > 
                     <input
                       id="daterangepicker"
                       readOnly
@@ -553,12 +676,100 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                       className="daterangepickerstyle-sm"
                       name="datefilter"
                     />
-                  </DateRangePicker>
+                  </DateRangePicker>*/}
+                </FormGroup>
+              </Col>
+              <Col sm="6" lg="2" md="2">
+                <FormGroup>
+                  <label className="fw-bold mb-2">{t("End_Date")}</label>
+
+                  <DatePicker
+                    className="search-number-daterangepickerstyle"
+                    dayClassName={(date) => "react-datepicker__day_sushil"}
+                    renderCustomHeader={({
+                      date,
+                      changeYear,
+                      changeMonth,
+                      decreaseMonth,
+                      increaseMonth,
+                      prevMonthButtonDisabled,
+                      nextMonthButtonDisabled,
+                    }) => (
+                      <div
+                        style={{
+                          margin: 10,
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <button
+                          className="btn-custom-curve1-sm"
+                          onClick={decreaseMonth}
+                          disabled={prevMonthButtonDisabled}
+                        >
+                          {"<"}
+                        </button>
+                        <select
+                          className="form-control-custom"
+                          value={getYear(date)}
+                          onChange={({ target: { value } }) =>
+                            changeYear(value)
+                          }
+                        >
+                          {eYears.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+
+                        <select
+                          className="form-control-custom"
+                          value={eMonths[getMonth(date)]}
+                          onChange={({ target: { value } }) =>
+                            changeMonth(eMonths.indexOf(value))
+                          }
+                        >
+                          {eMonths.map((option, id) => (
+                            <>
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                              {/* {
+                                  id <= moment(startDate).month() ? 
+                                  <>
+                                      <option key={option} value={option}>
+                                          {option}
+                                      </option>
+                                  </> : <>
+                                      <option key={option} value={option}>
+                                          {option}
+                                      </option>
+                                  </>
+                              } */}
+                            </>
+                          ))}
+                        </select>
+
+                        <button
+                          className="btn-custom-curve1-sm"
+                          onClick={increaseMonth}
+                          disabled={nextMonthButtonDisabled}
+                        >
+                          {">"}
+                        </button>
+                      </div>
+                    )}
+                    excludeDates={[addDays(new Date(), 1)]}
+                    value={moment(endDate).format("DD/MM/YYYY")}
+                    selected={endDate}
+                    onChange={(date) => setEndDate(date)}
+                  />
                 </FormGroup>
               </Col>
               <Col sm="6" lg="2" md="3">
                 <FormGroup>
-                  <label className="fw-bold mb-2">Company</label>
+                  <label className="fw-bold mb-2">{t("Company")}</label>
                   <ul className="list-inline mb-0 small-company">
                     {oddSet.map((game, id) => (
                       <li
@@ -590,7 +801,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
               </Col>
               <Col sm="6" lg="2" md="3">
                 <FormGroup>
-                  <label className="fw-bold mb-2">Permutation</label>
+                  <label className="fw-bold mb-2">{t("Permutation")}</label>
                   <ul className="list-inline mb-0 small">
                     <li className="list-inline-item">
                       <div className="form-check">
@@ -635,7 +846,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
               </Col>
               <Col sm="6" lg="3" md="6">
                 <FormGroup>
-                  <label className="fw-bold mb-2">Prize</label>
+                  <label className="fw-bold mb-2">{t("Prize")}</label>
                   <ul className="list-inline mb-0 small">
                     {prizeInitData.map((prize, id) => (
                       <li key={id} className="list-inline-item">
@@ -655,11 +866,11 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                             {prize.id == 3 ? (
                               <>
                                 <span className="badge bg-primary">
-                                  {prize.name}
+                                  {t(prize.name)}
                                 </span>
                               </>
                             ) : (
-                              prize.name
+                              t(prize.name)
                             )}
                           </label>
                         </div>
@@ -668,16 +879,16 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                   </ul>
                 </FormGroup>
               </Col>
-              <Col sm="6" lg="2" md="6">
-                <FormGroup>
-                  <label className="d-block mb-2">&nbsp;</label>
+              <Col sm="12" lg="12" md="12">
+                <FormGroup style={{ float: "right" }}>
+                  {/* <label className="d-block mb-2">&nbsp;</label> */}
                   <button
                     onClick={() => searchClick()}
                     type="button"
                     id="search"
                     className="btn-custom-curve2-sm w-auto me-2"
                   >
-                    Search
+                    {t("Search")}
                   </button>
                   <button
                     onClick={() => resetClick()}
@@ -685,7 +896,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                     id="reset"
                     className="btn-custom-curve1-sm"
                   >
-                    Reset
+                    {t("Reset")}
                   </button>
                 </FormGroup>
               </Col>
@@ -695,12 +906,16 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
         <Container>
           <Card className="alert alert-warning text-dark p-0 rounded-0 border border-warning">
             <CardHeader className="fw-bold">
-              Total Permutation: {permutationData && permutationData.length ? permutationData.length : numberM ? numberM : ''}
+              {t('Total_Permutation')}:{" "}
+              {permutationData && permutationData.length ? permutationData.length : numberM ? 1 : ""}
             </CardHeader>
             <CardBody>
               <ul className="list-inline mb-0">
-                {reserAllData && permutationData && permutationData.length ? '' : numberM}
-                {reserAllData && permutationData &&
+                {reserAllData && permutationData && permutationData.length
+                  ? ""
+                  : numberM}
+                {reserAllData &&
+                  permutationData &&
                   permutationData.map((value, index) => {
                     return (
                       <>
@@ -735,7 +950,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                             : 0}
                         </b>
                       </p>
-                      <p className="mb-0 fs-6">Total Hits</p>
+                      <p className="mb-0 fs-6">{t('Total_Hits')}</p>
                     </div>
                   </div>
                 </CardBody>
@@ -756,10 +971,10 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                           {mainCard && mainCard.max_draw_gap
                             ? mainCard.max_draw_gap
                             : 0}{" "}
-                          Draws
+                          {t('Draws')}
                         </b>
                       </p>
-                      <p className="mb-0 fs-6">Max DrawGap</p>
+                      <p className="mb-0 fs-6">{t('Max_DrawGap')}</p>
                     </div>
                   </div>
                 </CardBody>
@@ -780,10 +995,10 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                           {mainCard && mainCard.min_draw_gap
                             ? mainCard.min_draw_gap
                             : 0}{" "}
-                          Draws
+                          {t('Draws')}
                         </b>
                       </p>
-                      <p className="mb-0 fs-6">Min DrawGap</p>
+                      <p className="mb-0 fs-6">{t('Min_DrawGap')}</p>
                     </div>
                   </div>
                 </CardBody>
@@ -804,10 +1019,10 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                           {mainCard && mainCard.avg_draw_gap
                             ? mainCard.avg_draw_gap
                             : 0}{" "}
-                          Draws
+                          {t('Draws')}
                         </b>
                       </p>
-                      <p className="mb-0 fs-6">Avg DrawGap</p>
+                      <p className="mb-0 fs-6">{t('Avg_DrawGap')}</p>
                     </div>
                   </div>
                 </CardBody>
@@ -831,7 +1046,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                             : ""}
                         </b>
                       </p>
-                      <p className="mb-0 fs-6">Last Hit DrawNo</p>
+                      <p className="mb-0 fs-6">{t('Last_Hit_DrawNo')}</p>
                     </div>
                   </div>
                 </CardBody>
@@ -855,7 +1070,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                             : ""}
                         </b>
                       </p>
-                      <p className="mb-0 fs-6">Last Hit DrawID</p>
+                      <p className="mb-0 fs-6">{t('Last_Hit_DrawID')}</p>
                     </div>
                   </div>
                 </CardBody>
@@ -882,7 +1097,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                             : ""}
                         </b>
                       </p>
-                      <p className="mb-0 fs-6">Estimate Next Hit DrawNo</p>
+                      <p className="mb-0 fs-6">{t('Estimate_Next_Hit_DrawNo')}</p>
                     </div>
                   </div>
                 </CardBody>
@@ -901,7 +1116,7 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                       <p className="fw-bold mb-0 fs-5">
                         <b>{getNetDrawDate()}</b>
                       </p>
-                      <p className="mb-0 fs-6">Estimate Next Draw Date</p>
+                      <p className="mb-0 fs-6">{t('Estimate_Next_Draw_Date')}</p>
                     </div>
                   </div>
                 </CardBody>
@@ -914,19 +1129,19 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
             <table className="table table-striped table-sm small table-bordered">
               <thead className="bg-dark text-white">
                 <tr>
-                  <th>No</th>
-                  <th>Number</th>
-                  <th>Prize</th>
-                  <th>DrawID</th>
-                  <th>DrawNo</th>
-                  <th>Date</th>
-                  <th>Day</th>
-                  <th className="text-center">Source</th>
-                  <th>DrawGap</th>
+                  <th>{t('No')}</th>
+                  <th>{t('Number')}</th>
+                  <th>{t('Prize')}</th>
+                  <th>{t('DrawID')}</th>
+                  <th>{t('DrawNo')}</th>
+                  <th>{t('Date')}</th>
+                  <th>{t('Day')}</th>
+                  <th className="text-center">{t('Source')}</th>
+                  <th>{t('DrawGap')}</th>
                 </tr>
               </thead>
               <tbody>
-                {firstTableData && firstTableData.length > 0 ?
+                {firstTableData && firstTableData.length > 0 ? (
                   firstTableData.map((value, index) => {
                     let prizeType = "";
                     let betNum = "";
@@ -990,17 +1205,15 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                       </>
                     );
                   })
-                  :
+                ) : (
                   <tr>
                     <td colSpan={9}>
-                      <div className='alert alert-warning'>
-                          <h3 className='text-center'>
-                              {t('no_data_found')}
-                          </h3>
+                      <div className="alert alert-warning">
+                        <h3 className="text-center">{t("no_data_found")}</h3>
                       </div>
                     </td>
                   </tr>
-                  }
+                )}
               </tbody>
             </table>
           </div>
@@ -1010,25 +1223,27 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
             <table className="table table-striped table-sm small table-bordered">
               <thead className="bg-dark text-white">
                 <tr>
-                  <th>Number</th>
-                  <th>1st</th>
-                  <th>2nd</th>
-                  <th>3rd</th>
-                  <th>Spe</th>
-                  <th>Con</th>
-                  <th className="text-end">Total</th>
+                  <th>{t('Number')}</th>
+                  <th>{t('1st')}</th>
+                  <th>{t('2nd')}</th>
+                  <th>{t('3rd')}</th>
+                  <th>{t('S')}</th>
+                  <th>{t('C')}</th>
+                  <th className="text-end">{t('Total')}</th>
                   {/* <th className="text-end">Big</th>
                   <th className="text-end">Small</th> */}
-                  <th>LastDraw</th>
-                  <th>Day</th>
-                  <th>Prize</th>
-                  <th>Source</th>
+                  <th>{t('LastDraw')}</th>
+                  <th>{t('Day')}</th>
+                  <th>{t('Prize')}</th>
+                  <th>{t('Source')}</th>
                 </tr>
               </thead>
               <tbody>
-                {firstTableData && permutationData && permutationData.length > 0 ? (
+                {firstTableData &&
+                permutationData &&
+                permutationData.length > 0 ? (
                   <>
-                    {firstTableData.length > 0 && permutationData ?
+                    {firstTableData.length > 0 && permutationData ? (
                       permutationData.map((pdata, index) => {
                         let st1m = 0;
                         let nd2m = 0;
@@ -1115,20 +1330,20 @@ export default function SearchNumber({ _transactions, _auth, datauser, _GetSearc
                           </tr>
                         );
                       })
-                      :
+                    ) : (
                       <tr>
                         <td colSpan={11}>
-                          <div className='alert alert-warning'>
-                              <h3 className='text-center'>
-                                  {t('no_data_found')}
-                              </h3>
+                          <div className="alert alert-warning">
+                            <h3 className="text-center">
+                              {t("no_data_found")}
+                            </h3>
                           </div>
                         </td>
                       </tr>
-                      }
+                    )}
                     <tr>
                       <td>
-                        <b>Total</b>
+                        <b>{t('Total')}</b>
                       </td>
                       <td>
                         <b>{mainst1m}</b>

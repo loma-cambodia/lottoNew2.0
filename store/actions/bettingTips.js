@@ -18,10 +18,11 @@ export const serachBettingTips = (getData,token="") => async (dispatch) => {
 
 
   try {
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token");
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${kk_lotto_token}`
     }
     let URL = `${API_BASE_URL}/getBetTips?number=${number}${com}&permutation=${permutation}&date_range=${date}`;
 
