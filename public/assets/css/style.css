@@ -2728,6 +2728,21 @@
     position: relative;
     pointer-events: auto !important;
   }
+  .search-number-daterangepickerstyle {
+    border: 1px solid #ddd;
+    border-radius: 10px 0;
+    display: flex;
+    align-items: center;
+    padding: 5px 5px;
+    min-height: 30px;
+    font-size: 12px;
+    height: 31px !important;
+  }
+  .search-number-daterangepickerstyle:focus, .search-number-daterangepickerstyle:focus-visible {
+    border: 1px solid #bc2263 !important;
+    box-shadow: none;
+    outline: 0;
+  }
     @media (min-width: 576px) {
     .container-sm,
     .container {
