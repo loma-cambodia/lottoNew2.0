@@ -304,7 +304,9 @@
     "DrawNo":"Draw No",
     "Day":"Day",
     "Source":"Source",
-    "DrawGap":"Draw Gap"
+    "DrawGap":"Draw Gap",
+    "Utility":"Utility",
+    "Please_select_Permutation":"Please select Permutation"
 
 
 }
