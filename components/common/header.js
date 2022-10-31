@@ -303,60 +303,6 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                   </ul>
               </div>
         </div>
-        <style jsx>{`
-      .under-line-link{
-        /* text-decoration: underline #bc2263 2px!important; */
-        color: #bc2263!important;
-        }
-        .desktop-menu .desktop-menu-list li.dropdown-desktop .sub-menu-desktop{
-          min-width: fit-content!important;
-          padding: 10px!important;
-        }
-        .mobile-menu-list ul.list-unstyled li.submenu-mobile a {
-        position: relative;
-    }
-    .list-unstyled {
-    padding-left: 0!important;
-    list-style: none!important;
-}
-    .submenu-mobile .collapse ul li a::after {
-        display: none;
-    }
-    .mobile-menu-list ul.list-unstyled li.submenu-mobile a.collapsed::after {
-        content: "";
-        width: 15px;
-        height: 15px;
-        background-image: url(../images/icons/dow_arrow.png);
-        position: absolute;
-        top: 34%;
-        right: -20px;
-        background-size: cover;
-        transition: 0.5s;
-        transform: rotateX(0deg);
-    }
-    .mobile-menu-list ul.list-unstyled li.submenu-mobile a::after {
-        content: "";
-        width: 15px;
-        height: 15px;
-        background-image: url(../images/icons/dow_arrow.png);
-        position: absolute;
-        top: 34%;
-        right: -20px;
-        background-size: cover;
-        transform: rotateX(180deg);
-    }
-    .mobile-menu-list ul.list-unstyled li.submenu-mobile a.collapsed::after {
-        content: "";
-        width: 15px;
-        height: 15px;
-        background-image: url(../images/icons/dow_arrow.png);
-        position: absolute;
-        top: 34%;
-        right: -20px;
-        background-size: cover;
-        transform: rotateX(0deg);
-    }
-      `}</style>
       </>
     )
   }
