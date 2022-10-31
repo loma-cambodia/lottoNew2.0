@@ -282,6 +282,12 @@
     "ToTo":"ToTo",
     "Calculate":"Calculate",
     "coming_soon_text":"Coming Soon",
-    "Calculator":"Calculator"
+    "Calculator":"Calculator",
+
+
+    "warning": "Warning",
+    "session_expired": "Your login session has expired.",
+    "continue_login": "Please login again to continue.",
+    "ok": "Okay"
 
 }
