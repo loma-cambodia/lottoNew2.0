@@ -1,21 +1,23 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import { Modal } from "reactstrap";
-const LogoutModal = ({_logoutStatus,_memberId}) => {
-
+const LogoutModal = ({_logoutStatus,_setData,_setIdleData,_memberId}) => {
+  const dispatch = useDispatch();
+  //const setData = _setData
 
     const logoutData = _logoutStatus
     const MemberId = _memberId
     const closeTab = (member_id) => {
-    //   fetch(`/api/logout?member_id=${member_id}`)
-    //   .then((res) => {
-    //     let response = res.json();
-    //     window.close();
-    //   })
-        // location.reload();
-        // window.open(window.location.href)
-        window.open('', '_self', '');
-        setTimeout(window.close, 1000);
+      fetch(`/api/logout?member_id=${member_id}`)
+      .then((res) => {
+        let response = res.json();
+        _setData({user:{data:{}}})
+        _setIdleData(false);
+        dispatch({
+          type: "AUTH_LOGOUT"
+        });
+      })
       };
     const customStyles = {
         content: {
