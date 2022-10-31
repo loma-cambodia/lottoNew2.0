@@ -282,6 +282,11 @@
     "coming_soon_text":"快来了",
     "Calculator":"计算器",
 
+
+    "warning": "警告",
+    "session_expired": "您的登录会话已过期。",
+    "continue_login": "请重新登录以继续。",
+    "ok": "好的",
     "Betting_Tips":"分析",
     "Start_Date":"开始日期",
     "End_Date":"结束日期",
