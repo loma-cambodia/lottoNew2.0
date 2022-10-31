@@ -20,7 +20,7 @@ const Calculator = ({ _transactions, _auth }) => {
     auth.auth.merchant &&
     auth.auth.merchant.currency &&
     auth.auth.merchant.currency.code
-      ? "USD"
+      ? auth.auth.merchant.currency.code
       : "USD";
 
   const onLoadCompany = 0;
