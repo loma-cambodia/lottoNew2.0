@@ -85,8 +85,8 @@ function MyApp({ Component, pageProps,user }) {
 
   //console.log('data.user.data:',data.user.data);
   const onIdle = () => {
-    // setIdleData(true)
-    // userLogoutPopUp()
+    //setIdleData(true)
+    //userLogoutPopUp()
     userLogout();
   }
   const {

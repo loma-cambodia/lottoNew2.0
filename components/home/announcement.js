@@ -11,12 +11,12 @@ const Announcement = ({_announcementState, _language}) => {
           <Marquee direction="left" pauseOnHover={true} speed={50}>
             <ul className="list-inline " >
               {announcementDataNew.map((item, id) => {
-
-               // console.log('announcementDataNew:item:',item);
+              //   console.log('lang',_language)
+              //  console.log('announcementDataNew:item:',item);
               //  console.log('announcementDataNew:language:',item.content[language]);
                 if(item.content && item.content[language]){
                      let content = item.content[language];
-                     content = content.replace( /(<([^>]+)>)/ig, '');
+                    content = content.replace( /(<([^>]+)>)/ig, '');
                   return(
                     <li key={id} className="list-inline-item">
                       {/* <div dangerouslySetInnerHTML={{ __html: item.content[language] }}></div> */}

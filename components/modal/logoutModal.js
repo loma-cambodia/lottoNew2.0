@@ -7,7 +7,8 @@ const LogoutModal = ({_logoutStatus}) => {
     const logoutData = _logoutStatus
     const closeTab = () => {
     
-        window.close();
+        // window.close();
+        location.reload()
    
       };
     const customStyles = {
