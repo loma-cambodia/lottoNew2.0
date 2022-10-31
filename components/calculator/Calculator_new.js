@@ -1522,9 +1522,10 @@ const Calculator = ({ _transactions, _auth }) => {
                                           {merchantCurrency}&nbsp;
                                         </span>
                                         <span className="col-md-9 col-12">
+                                          {/* this is */}
                                           {merchantCurrency == "KHR"
                                             ? parseInt(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString()
-                                            : parseFloat(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one)).toLocaleString()}
+                                            : (parseFloat(parseFloat(result.d4_big_one) + parseFloat(result.d4_small_one))).toLocaleString()}
                                         </span>
                                       </span>
                                     </td>
