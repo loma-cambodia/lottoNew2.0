@@ -278,6 +278,12 @@
     "Calculate":"គណនា",
     "coming_soon_text":"មកដល់ឆាប់ៗនេះ",
     "Calculator":"ម៉ាស៊ីនគិតលេខ",
+
+
+    "warning": "ការព្រមាន",
+    "session_expired": "វគ្គចូលរបស់អ្នកបានផុតកំណត់ហើយ។",
+    "continue_login": "សូមចូលម្តងទៀតដើម្បីបន្ត។",
+    "ok": "យល់ព្រម",
     
     "Betting_Tips":"ការវិភាគ",
     "Start_Date":"ថ្ងៃ​ចាប់ផ្តើម",
