@@ -33,6 +33,8 @@ const LogoutModal = ({_logoutStatus,_setData,_setIdleData,_memberId}) => {
           padding: 0
         },
       };
+
+      
     return (
         <>
         <Modal
