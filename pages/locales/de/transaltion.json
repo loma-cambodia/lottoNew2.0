@@ -292,6 +292,7 @@
     "Total_Hits":"中奖总数",
     "Min_DrawGap":"最小拉差",
     "Max_DrawGap":"最大间隔期数",
+    "Avg_DrawGap":"平均平局差距",
     "Draws":"期",
     "Last_Hit_DrawNo":"最后开彩期数",
     "Last_Hit_DrawID":"最后开彩代号",
@@ -302,6 +303,7 @@
     "Day":"星期",
     "Source":"来源",
     "DrawGap":"间隔期数",
-    "LastDraw":"最后开彩"
+    "Utility":"效用"
+
 
 }
