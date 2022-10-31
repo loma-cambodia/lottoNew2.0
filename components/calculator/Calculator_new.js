@@ -729,8 +729,8 @@ const Calculator = ({ _transactions, _auth }) => {
   };
 
   const handelReset = () => {
-    // $("#amountValDefaltB").val('');
-    // $("#amountValDefaltS").val('');
+    $("#amountValDefaltB").val('');
+    $("#amountValDefaltS").val('');
     $("#bigValue").val("");
     $("#3aValue3").val("");
     $("#smallValue").val("");
