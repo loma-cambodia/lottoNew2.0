@@ -464,6 +464,7 @@
     margin-right: 20px !important;
     position: relative;
     color: #fff;
+    float: left;
     }
     .marque-div ul li:hover {
     cursor: pointer;
