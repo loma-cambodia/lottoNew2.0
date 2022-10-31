@@ -13,7 +13,7 @@ import Link from 'next/link';
 
 import {useRouter} from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
-import {getLogin} from '../../store/actions/authActions';
+import {updateUserWithSession} from '../../store/actions/authActions';
 import {twoDecimalPlaceWithAmount, twoDecimalPlaceWithoutRound} from './../Utils';
 import LogoutModal from "../modal/logoutModal";
 
@@ -26,6 +26,9 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
    const state = useSelector(state => state);
 
    let language = '';
+
+   console.log('Header:state:',state);
+   console.log('Header:datauser:',datauser);
 
    if(auth && auth.lang){
     language = auth.lang;
@@ -52,15 +55,15 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
 
 
       let objectWithData = {
-        "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
-        "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
-        "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
-        "language":   l  
+         "customer_name": datauser && datauser.user && datauser.user.data && datauser.user.data.customer_name ? datauser.user.data.customer_name : '',
+         "customer_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.customer_id ? datauser.user.data.customer_id : 0,
+         "merchant_id":  datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id ? datauser.user.data.merchant_id : 0,
+         "language":   l  
       } 
       
       if(objectWithData.customer_id != 0){
-          dispatch(getLogin(objectWithData));
-          setUpdateSessionData(updateSessionData + 1); 
+          dispatch(updateUserWithSession(objectWithData));
+         // setUpdateSessionData(updateSessionData + 1); 
       }
 
         i18n.changeLanguage(l);
