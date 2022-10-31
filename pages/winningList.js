@@ -55,11 +55,12 @@ export default function WinningList({datauser,updateSessionData, setUpdateSessio
        return parseFloat(lottery.slave_net_amount).toFixed(2)
     }
  };
-
+ 
   const getWinningList = () =>{
     setIsLoading(true); 
 
-    dispatch(getWinningData(auth && auth.auth && auth.auth.id ? parseInt(auth.auth.id): 0 ,filterParams? filterParams:'',datauser.user.data.token ? datauser.user.data.token : "", response =>{
+    console.log("IDID",datauser)
+    dispatch(getWinningData(datauser && datauser.user.data && datauser.user.data.id ? parseInt(datauser.user.data.id): 0 ,filterParams? filterParams:'',datauser.user.data.token ? datauser.user.data.token : "", response =>{
 
         if(response.statusCode  == 201  || response.statusCode  == 200 )
         {
