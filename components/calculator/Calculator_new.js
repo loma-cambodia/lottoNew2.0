@@ -803,7 +803,6 @@ const Calculator = ({ _transactions, _auth }) => {
                                     {oddSet.map((item, index) => {
                                       console.log("itemitemitem", item);
                                       return (
-                                        <>
                                           <li
                                             key={index}
                                             className=" list-inline-item"
@@ -833,7 +832,6 @@ const Calculator = ({ _transactions, _auth }) => {
                                               </span>
                                             </span>
                                           </li>
-                                        </>
                                       );
                                     })}
                                   </ul>

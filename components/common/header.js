@@ -288,7 +288,6 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                     {/* <li class="submenu-mobile">
                     <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"
                     className= {`${router.pathname === "/calculator" || router.pathname === "/searchNumber" ? "active-header-mobile":""}`}>{t('Utility')} </a>
-
                           <div class="collapse" id="collapseExample">
                               <ul style={{padding:'0px'}}>
                                   <li  className= {`${router.pathname === "/calculator" ? "active-header-mobile":""} list-unstyled`}>
@@ -307,4 +306,3 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
     )
   }
   export default Header;
-  
