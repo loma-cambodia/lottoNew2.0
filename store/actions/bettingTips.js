@@ -16,6 +16,12 @@ export const serachBettingTips = (getData,token="") => async (dispatch) => {
         com = com + `&company[${index}]=${cpny}`
     });
 
+  let pri = ""
+
+    prize.forEach((cpny2, index2) => {
+      pri = pri + `&company[${index2}]=${cpny2}`
+    });
+
 
   try {
     let kk_lotto_token = localStorage.getItem("kk_lotto_token");
@@ -24,7 +30,7 @@ export const serachBettingTips = (getData,token="") => async (dispatch) => {
       'Access-Control-Allow-Origin': '*',
       'Authorization': `Bearer ${kk_lotto_token}`
     }
-    let URL = `${API_BASE_URL}/getBetTips?number=${number}${com}&permutation=${permutation}&date_range=${date}`;
+    let URL = `${API_BASE_URL}/getBetTips?number=${number}${com}${pri}&permutation=${permutation}&date_range=${date}`;
 
     const res = await axios.get(
       `${URL}`,{
