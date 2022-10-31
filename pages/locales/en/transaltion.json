@@ -284,6 +284,11 @@
     "coming_soon_text":"Coming Soon",
     "Calculator":"Calculator",
 
+
+    "warning": "Warning",
+    "session_expired": "Your login session has expired.",
+    "continue_login": "Please login again to continue.",
+    "ok": "Okay",
     "Betting_Tips":"Analysis",
     "Start_Date":"Start Date",
     "End_Date":"End Date",
@@ -304,7 +309,9 @@
     "DrawNo":"Draw No",
     "Day":"Day",
     "Source":"Source",
-    "DrawGap":"Draw Gap"
+    "DrawGap":"Draw Gap",
+    "Utility":"Utility",
+    "Please_select_Permutation":"Please select Permutation"
 
 
 }
