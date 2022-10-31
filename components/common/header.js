@@ -284,6 +284,22 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                     <li className= {`${router.pathname === "/searchNumber" ? "active-header-mobile":""}`}>
                       <Link href="/searchNumber" >{t('Betting Tips')}</Link>
                     </li>
+                    
+                    {/* <li class="submenu-mobile">
+                    <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"
+                    className= {`${router.pathname === "/calculator" || router.pathname === "/searchNumber" ? "active-header-mobile":""}`}>{t('Utility')} </a>
+
+                          <div class="collapse" id="collapseExample">
+                              <ul style={{padding:'0px'}}>
+                                  <li  className= {`${router.pathname === "/calculator" ? "active-header-mobile":""} list-unstyled`}>
+                                    <Link href="/calculator">{t('Calculator')}</Link>
+                                  </li>
+                                  <li  className= {`${router.pathname === "/searchNumber" ? "active-header-mobile":""} list-unstyled`}>
+                                    <Link href="/searchNumber" >{t('Betting Tips')}</Link>
+                                  </li>
+                              </ul>
+                            </div>
+                      </li> */}
                   </ul>
               </div>
         </div>
@@ -296,6 +312,50 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
           min-width: fit-content!important;
           padding: 10px!important;
         }
+        .mobile-menu-list ul.list-unstyled li.submenu-mobile a {
+        position: relative;
+    }
+    .list-unstyled {
+    padding-left: 0!important;
+    list-style: none!important;
+}
+    .submenu-mobile .collapse ul li a::after {
+        display: none;
+    }
+    .mobile-menu-list ul.list-unstyled li.submenu-mobile a.collapsed::after {
+        content: "";
+        width: 15px;
+        height: 15px;
+        background-image: url(../images/icons/dow_arrow.png);
+        position: absolute;
+        top: 34%;
+        right: -20px;
+        background-size: cover;
+        transition: 0.5s;
+        transform: rotateX(0deg);
+    }
+    .mobile-menu-list ul.list-unstyled li.submenu-mobile a::after {
+        content: "";
+        width: 15px;
+        height: 15px;
+        background-image: url(../images/icons/dow_arrow.png);
+        position: absolute;
+        top: 34%;
+        right: -20px;
+        background-size: cover;
+        transform: rotateX(180deg);
+    }
+    .mobile-menu-list ul.list-unstyled li.submenu-mobile a.collapsed::after {
+        content: "";
+        width: 15px;
+        height: 15px;
+        background-image: url(../images/icons/dow_arrow.png);
+        position: absolute;
+        top: 34%;
+        right: -20px;
+        background-size: cover;
+        transform: rotateX(0deg);
+    }
       `}</style>
       </>
     )
