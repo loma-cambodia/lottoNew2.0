@@ -280,5 +280,28 @@
     "Toto":"多多",
     "Calculate":"计算",
     "coming_soon_text":"快来了",
-    "Calculator":"计算器"
+    "Calculator":"计算器",
+
+    "Betting_Tips":"分析",
+    "Start_Date":"开始日期",
+    "End_Date":"结束日期",
+    "Permutation":"组合",
+    "Prize":"奖项",
+    "Top_3":"头二三奖",
+    "Total_Permutation":"组合总数",
+    "Total_Hits":"中奖总数",
+    "Min_DrawGap":"最小拉差",
+    "Max_DrawGap":"最大间隔期数",
+    "Draws":"期",
+    "Last_Hit_DrawNo":"最后开彩期数",
+    "Last_Hit_DrawID":"最后开彩代号",
+    "Estimate_Next_Hit_DrawNo":"预测中奖期数",
+    "Estimate_Next_Draw_Date":"预测中奖日期",
+    "DrawID":"开奖代号",
+    "DrawNo":"开彩期数",
+    "Day":"星期",
+    "Source":"来源",
+    "DrawGap":"间隔期数",
+    "LastDraw":"最后开彩"
+
 }

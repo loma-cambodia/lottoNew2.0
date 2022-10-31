@@ -248,7 +248,8 @@ export default function SearchNumber({
     setPermutationData([]);
     setFirstTableData([]);
     setMainCard([]);
-    // _GetSearchNumber([]);
+    setStartDate(new Date("01/01/2016"));
+    setEndDate(new Date());
   };
 
   const getNetDrawDate = () => {
@@ -906,11 +907,7 @@ export default function SearchNumber({
           <Card className="alert alert-warning text-dark p-0 rounded-0 border border-warning">
             <CardHeader className="fw-bold">
               {t('Total_Permutation')}:{" "}
-              {permutationData && permutationData.length
-                ? permutationData.length
-                : numberM
-                ? numberM
-                : ""}
+              {permutationData && permutationData.length ? permutationData.length : numberM ? 1 : ""}
             </CardHeader>
             <CardBody>
               <ul className="list-inline mb-0">
@@ -1100,7 +1097,7 @@ export default function SearchNumber({
                             : ""}
                         </b>
                       </p>
-                      <p className="mb-0 fs-6">{('Estimate_Next_Hit_DrawNo')}</p>
+                      <p className="mb-0 fs-6">{t('Estimate_Next_Hit_DrawNo')}</p>
                     </div>
                   </div>
                 </CardBody>
@@ -1119,7 +1116,7 @@ export default function SearchNumber({
                       <p className="fw-bold mb-0 fs-5">
                         <b>{getNetDrawDate()}</b>
                       </p>
-                      <p className="mb-0 fs-6">{('Estimate_Next_Draw_Date')}</p>
+                      <p className="mb-0 fs-6">{t('Estimate_Next_Draw_Date')}</p>
                     </div>
                   </div>
                 </CardBody>
