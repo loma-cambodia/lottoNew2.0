@@ -277,18 +277,18 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                         <Link href="/results" >{t('Result')}</Link>  
                     </li>
                     
-                    <li className= {`${router.pathname === "/calculator" ? "active-header-mobile":""}`}>
+                    {/* <li className= {`${router.pathname === "/calculator" ? "active-header-mobile":""}`}>
                       <Link href="/calculator" >{t('Calculator')}</Link>
                     </li>
                     
-                    <li className= {`${router.pathname === "/analysis" ? "active-header-mobile":""}`}>
-                      <Link href="/analysis" >{t('Betting_Tips')}</Link>
-                    </li>
+                    <li className= {`${router.pathname === "/searchNumber" ? "active-header-mobile":""}`}>
+                      <Link href="/searchNumber" >{t('Betting Tips')}</Link>
+                    </li> */}
                     
-                    {/* <li class="submenu-mobile">
+                    <li class="submenu-mobile">
                     <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"
-                    className= {`${router.pathname === "/calculator" || router.pathname === "/analysis" ? "active-header-mobile":""}`}>{t('Utility')} </a>
-                          <div class="collapse" id="collapseExample">
+                    className= {`${router.pathname === "/calculator" || router.pathname === "/searchNumber" ? "active-header-mobile":""}`}>{t('Utility')} </a>
+                          <div className="collapse" id="collapseExample">
                               <ul style={{padding:'0px'}}>
                                   <li  className= {`${router.pathname === "/calculator" ? "active-header-mobile":""} list-unstyled`}>
                                     <Link href="/calculator">{t('Calculator')}</Link>
@@ -298,7 +298,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                                   </li>
                               </ul>
                             </div>
-                      </li> */}
+                      </li>
                   </ul>
               </div>
         </div>
