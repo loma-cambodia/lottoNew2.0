@@ -4473,15 +4473,18 @@ width:100px!important;
 filter: grayscale(1)!important;
 }
 .btn-cal:hover, .btn-clr:hover{
-color: #000;
+color: white!important;
+/* background:#c22361!important; */
 
 box-shadow: 0px 8px 9px 0px rgb(0 0 0 / 27%);
 }
 .btn-cal:active{
 color: #000;
-background:rgb(156 11 70)!important;
+/* background:rgb(156 11 70)!important; */
+box-shadow: inset 0px 0px 20px 10px rgb(0 0 0 / 20%);
 }
 .btn-clr:active{
-border:1px solid rgb(194, 35, 97)!important;
-color: rgb(194, 35, 97)!important;
+/* border:1px solid rgb(194, 35, 97)!important; */
+/* color: rgb(194, 35, 97)!important; */
+box-shadow: inset 0px 0px 20px 10px rgb(0 0 0 / 20%);
 }
