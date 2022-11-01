@@ -264,14 +264,15 @@ export default function SearchNumber({
   };
   function PrizeSetComm({ prizeType }) {
     let prizeTypeStyle = "";
+    let prizeTypeY = "";
     if (prizeType == "prize1") {
-      prizeType = "First Prize";
+      prizeTypeY = "1st_Prize";
       prizeTypeStyle = "badge bg-primary";
     } else if (prizeType == "prize2") {
-      prizeType = "Second Prize";
+      prizeTypeY = "2nd_Prize";
       prizeTypeStyle = "badge bg-primary";
     } else if (prizeType == "prize3") {
-      prizeType = "Third Prize";
+      prizeTypeY = "3rd_Prize";
       prizeTypeStyle = "badge bg-warning text-dark";
     } else if (
       prizeType == "special1" ||
@@ -285,7 +286,7 @@ export default function SearchNumber({
       prizeType == "special9" ||
       prizeType == "special10"
     ) {
-      prizeType = "Special Prize";
+      prizeTypeY = "Special_Prize";
       prizeTypeStyle = "badge bg-info text-white";
     } else if (
       prizeType == "consolation1" ||
@@ -299,12 +300,12 @@ export default function SearchNumber({
       prizeType == "consolation9" ||
       prizeType == "consolation10"
     ) {
-      prizeType = "Consolation Prize";
+      prizeTypeY = "Consolation_Prize";
       prizeTypeStyle = "badge bg-light text-dark border border-dark";
     } else {
       prizeTypeStyle = "badge bg-light text-dark border border-dark";
     }
-    return <span className={prizeTypeStyle}>{prizeType}</span>;
+    return <span className={prizeTypeStyle}>{t(prizeTypeY)}</span>;
   }
 
   function getCountsPrizeSetComm(prizeType) {
@@ -373,15 +374,15 @@ export default function SearchNumber({
         firstTableData.map((value) => {
           let keys = Object.keys(value);
           keys.map((game1) => {
-            if (value[game1] == numberM) {
+            if (game1 != 'id' && value[game1] == numberM) {
               mainNum = value[game1];
               let totalCounts = getCountsPrizeSetComm(game1);
-              console.log("totalCounts", totalCounts.st1);
-              st1m = st1m + totalCounts.st1;
-              nd2m = nd2m + totalCounts.nd2;
-              rd3m = rd3m + totalCounts.rd3;
-              Spem = Spem + totalCounts.Spe;
-              Conm = Conm + totalCounts.Con;
+              // console.log("totalCounts", totalCounts.Con);
+              st1m = parseInt(st1m) + parseInt(totalCounts.st1);  
+              nd2m = parseInt(nd2m) + parseInt(totalCounts.nd2);
+              rd3m = parseInt(rd3m) + parseInt(totalCounts.rd3);
+              Spem = parseInt(Spem) + parseInt(totalCounts.Spe);
+              Conm = parseInt(Conm) + parseInt(totalCounts.Con);
 
               totalm = st1m + nd2m + rd3m + Spem + Conm;
               lastPrize = game1;
@@ -527,661 +528,770 @@ export default function SearchNumber({
     "November",
     "December",
   ];
+  return (
+    <>
+      <ToastContainer />
+      <section className="custom-breadcrumb">
+        <div className="container">
+          <div className="breadcrumb-heading">
+            <h1 className="text-uppercase">{t("Betting_Tips")}</h1>
+          </div>
+          <div className="breadcrumb-list">
+            <ul>
+              <li>
+                <span>
+                  {t("Homepage")} / {t("Betting_Tips")}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section className="search-number custom-padding">
+        <Container>
+          <div className="clearfix curved-card bg-light shadow-sm mb-3">
+                <Row className="justify-content-center">
+                  <Col sm="6" lg="1" md="3">
+                    <FormGroup>
+                      <label className="fw-bold mb-2">{t("Number")}</label>
+                      <input
+                        onKeyPress={(event) => {
+                          if (!/[0-9]/.test(event.key)) {
+                            event.preventDefault();
+                          }
+                        }}
+                        onChange={(e) => setNumber(e.target.value)}
+                        type="text"
+                        placeholder="number"
+                        className="form-control-custom"
+                        minLength={3}
+                        maxLength={4}
+                        required
+                        autoComplete="off"
+                        value={number && !search ? number : ""}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col sm="6" lg="2" md="2">
+                    <FormGroup>
+                      <label className="fw-bold mb-2">{t("Start_Date")}</label>
+                      <DatePicker
+                        className="search-number-daterangepickerstyle"
+                        dayClassName={(date) => "react-datepicker__day_sushil"}
+                        renderCustomHeader={({
+                          date,
+                          changeYear,
+                          changeMonth,
+                          decreaseMonth,
+                          increaseMonth,
+                          prevMonthButtonDisabled,
+                          nextMonthButtonDisabled,
+                        }) => (
+                          <div
+                            style={{
+                              // margin: 10,
+                              display: "flex",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <button
+                              className="btn-custom-curve1-sm"
+                              onClick={decreaseMonth}
+                              disabled={prevMonthButtonDisabled}
+                            >
+                              {"<"}
+                            </button>
+                            <select
+                              className="form-control-custom"
+                              value={getYear(date)}
+                              onChange={({ target: { value } }) =>
+                                changeYear(value)
+                              }
+                            >
+                              {sYears.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </select>
 
+                            <select
+                              className="form-control-custom"
+                              value={sMonths[getMonth(date)]}
+                              onChange={({ target: { value } }) =>
+                                changeMonth(sMonths.indexOf(value))
+                              }
+                            >
+                              {sMonths.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </select>
 
-  if(bettingTip){
-    return (
-      <>
-        <ToastContainer />
-        <section className="custom-breadcrumb">
-          <div className="container">
-            <div className="breadcrumb-heading">
-              <h1 className="text-uppercase">{t("Betting_Tips")}</h1>
-            </div>
-            <div className="breadcrumb-list">
-              <ul>
-                <li>
-                  <span>
-                    {t("Homepage")} / {t("Betting_Tips")}
-                  </span>
-                </li>
-              </ul>
+                            <button
+                              className="btn-custom-curve1-sm"
+                              onClick={increaseMonth}
+                              disabled={nextMonthButtonDisabled}
+                            >
+                              {">"}
+                            </button>
+                          </div>
+                        )}
+                        value={moment(startDate).format("DD/MM/YYYY")}
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col sm="6" lg="2" md="2">
+                    <FormGroup>
+                      <label className="fw-bold mb-2">{t("End_Date")}</label>
+
+                      <DatePicker
+                        className="search-number-daterangepickerstyle"
+                        dayClassName={(date) => "react-datepicker__day_sushil"}
+                        renderCustomHeader={({
+                          date,
+                          changeYear,
+                          changeMonth,
+                          decreaseMonth,
+                          increaseMonth,
+                          prevMonthButtonDisabled,
+                          nextMonthButtonDisabled,
+                        }) => (
+                          <div
+                            style={{
+                              margin: 10,
+                              display: "flex",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <button
+                              className="btn-custom-curve1-sm"
+                              onClick={decreaseMonth}
+                              disabled={prevMonthButtonDisabled}
+                            >
+                              {"<"}
+                            </button>
+                            <select
+                              className="form-control-custom"
+                              value={getYear(date)}
+                              onChange={({ target: { value } }) =>
+                                changeYear(value)
+                              }
+                            >
+                              {eYears.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </select>
+
+                            <select
+                              className="form-control-custom"
+                              value={eMonths[getMonth(date)]}
+                              onChange={({ target: { value } }) =>
+                                changeMonth(eMonths.indexOf(value))
+                              }
+                            >
+                              {eMonths.map((option, id) => (
+                                <>
+                                  <option key={option} value={option}>
+                                    {option}
+                                  </option>
+                                  {/* {
+                                      id <= moment(startDate).month() ? 
+                                      <>
+                                          <option key={option} value={option}>
+                                              {option}
+                                          </option>
+                                      </> : <>
+                                          <option key={option} value={option}>
+                                              {option}
+                                          </option>
+                                      </>
+                                  } */}
+                                </>
+                              ))}
+                            </select>
+
+                            <button
+                              className="btn-custom-curve1-sm"
+                              onClick={increaseMonth}
+                              disabled={nextMonthButtonDisabled}
+                            >
+                              {">"}
+                            </button>
+                          </div>
+                        )}
+                        excludeDates={[addDays(new Date(), 1)]}
+                        value={moment(endDate).format("DD/MM/YYYY")}
+                        selected={endDate}
+                        onChange={(date) => setEndDate(date)}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col sm="6" lg="2" md="3">
+                    <FormGroup>
+                      <label className="fw-bold mb-2">{t("Company")}</label>
+                      <ul className="list-inline mb-0 small-company">
+                        {oddSet.map((game, id) => (
+                          <li
+                            key={id}
+                            onClick={() => selectCompany(game.game_play.id)}
+                            className=" list-inline-item"
+                          >
+                            <span
+                              className={`${
+                                bettingInitData &&
+                                bettingInitData[id] &&
+                                bettingInitData[id].selected
+                                  ? "selected-gp-btn"
+                                  : ""
+                              } outer-circle-gp`}
+                              title="Select"
+                            >
+                              <span className="inner-circle-gp">
+                                <img
+                                  className="img-fluid"
+                                  src={game.game_play.logo_url}
+                                />
+                              </span>
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </FormGroup>
+                  </Col>
+                  <Col sm="6" lg="2" md="3">
+                    <FormGroup>
+                      <label className="fw-bold mb-2">{t("Permutation")}</label>
+                      <ul className="list-inline mb-0 small">
+                        <li className="list-inline-item">
+                          <div className="form-check">
+                            <input
+                              onChange={(e) => setPermutation(e.target.value)}
+                              className="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault1"
+                              value={1}
+                              checked={`${permutation == 1 ? "checked" : ""}`}
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="flexRadioDefault1"
+                            >
+                              Yes
+                            </label>
+                          </div>
+                        </li>
+                        <li className="list-inline-item">
+                          <div className="form-check">
+                            <input
+                              onChange={(e) => setPermutation(e.target.value)}
+                              className="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault2"
+                              value={0}
+                              checked={`${permutation == 0 ? "checked" : ""}`}
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="flexRadioDefault2"
+                            >
+                              No
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
+                    </FormGroup>
+                  </Col>
+                  <Col sm="6" lg="3" md="6">
+                    <FormGroup>
+                      <label className="fw-bold mb-2">{t("Prize")}</label>
+                      <ul className="list-inline mb-0 small">
+                        {prizeInitData.map((prize, id) => (
+                          <li key={id} className="list-inline-item">
+                            <div className="form-check">
+                              <input
+                                onClick={() => selectPrize(prize.id)}
+                                className="form-check-input"
+                                type="checkbox"
+                                value={prize.value}
+                                id={"flexCheckDefault2" + prize.id}
+                                checked={prize.selected ? "checked" : ""}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor={"flexCheckDefault2" + prize.id}
+                              >
+                                {prize.id == 3 ? (
+                                  <>
+                                    <span className="badge bg-primary">
+                                      {t(prize.name)}
+                                    </span>
+                                  </>
+                                ) : (
+                                  t(prize.name)
+                                )}
+                              </label>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </FormGroup>
+                  </Col>
+                  <Col sm="12" lg="12" md="12">
+                    <FormGroup style={{ float: "right" }}>
+                      {/* <label className="d-block mb-2">&nbsp;</label> */}
+                      <button
+                        onClick={() => searchClick()}
+                        type="button"
+                        id="search"
+                        className="btn-custom-curve2-sm w-auto me-2"
+                      >
+                        {t("Search")}
+                      </button>
+                      <button
+                        onClick={() => resetClick()}
+                        type="button"
+                        id="reset"
+                        className="btn-custom-curve1-sm"
+                      >
+                        {t("Reset")}
+                      </button>
+                    </FormGroup>
+                  </Col>
+                </Row>
+          </div>
+        </Container>
+        {isLoading ? (
+          <div className="" style={{ height: '400px'  }}>
+            <div className="loader-Mob-2">
+              <img
+                src="assets/images/loader.gif"
+                alt=""
+                className="img-icon-prize"
+                width="50"
+              />
             </div>
           </div>
-        </section>
-        <section className="search-number custom-padding">
-          <Container>
-            <div className="clearfix curved-card bg-light shadow-sm mb-3">
+        ) : (
+          <>
+            {bettingTip && mainCard && firstTableData && reserAllData  ?
+              <>
+                <Container>
+                  <Card className="alert alert-warning text-dark p-0 rounded-0 border border-warning">
+                    <CardHeader className="fw-bold">
+                      {t('Total_Permutation')}:{" "}
+                      {permutationData && permutationData.length ? permutationData.length : numberM ? 1 : ""}
+                    </CardHeader>
+                    <CardBody>
+                      <ul className="list-inline mb-0">
+                        {reserAllData && permutationData && permutationData.length
+                          ? ""
+                          : numberM}
+                        {reserAllData &&
+                          permutationData &&
+                          permutationData.map((value, index) => {
+                            return (
+                              <>
+                                <li key={index} className="list-inline-item">
+                                  <span className="badge bg-light text-dark">
+                                    {value}
+                                  </span>
+                                </li>
+                              </>
+                            );
+                          })}
+                      </ul>
+                    </CardBody>
+                  </Card>
+                </Container>
+                <Container>
                   <Row className="justify-content-center">
-                    <Col sm="6" lg="1" md="3">
-                      <FormGroup>
-                        <label className="fw-bold mb-2">{t("Number")}</label>
-                        <input
-                          onKeyPress={(event) => {
-                            if (!/[0-9]/.test(event.key)) {
-                              event.preventDefault();
-                            }
-                          }}
-                          onChange={(e) => setNumber(e.target.value)}
-                          type="text"
-                          placeholder="number"
-                          className="form-control-custom"
-                          minLength={3}
-                          maxLength={4}
-                          required
-                          autoComplete="off"
-                          value={number && !search ? number : ""}
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col sm="6" lg="2" md="2">
-                      <FormGroup>
-                        <label className="fw-bold mb-2">{t("Start_Date")}</label>
-                        <DatePicker
-                          className="search-number-daterangepickerstyle"
-                          dayClassName={(date) => "react-datepicker__day_sushil"}
-                          renderCustomHeader={({
-                            date,
-                            changeYear,
-                            changeMonth,
-                            decreaseMonth,
-                            increaseMonth,
-                            prevMonthButtonDisabled,
-                            nextMonthButtonDisabled,
-                          }) => (
-                            <div
-                              style={{
-                                // margin: 10,
-                                display: "flex",
-                                justifyContent: "center",
-                              }}
-                            >
-                              <button
-                                className="btn-custom-curve1-sm"
-                                onClick={decreaseMonth}
-                                disabled={prevMonthButtonDisabled}
-                              >
-                                {"<"}
-                              </button>
-                              <select
-                                className="form-control-custom"
-                                value={getYear(date)}
-                                onChange={({ target: { value } }) =>
-                                  changeYear(value)
-                                }
-                              >
-                                {sYears.map((option) => (
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                ))}
-                              </select>
-  
-                              <select
-                                className="form-control-custom"
-                                value={sMonths[getMonth(date)]}
-                                onChange={({ target: { value } }) =>
-                                  changeMonth(sMonths.indexOf(value))
-                                }
-                              >
-                                {sMonths.map((option) => (
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                ))}
-                              </select>
-  
-                              <button
-                                className="btn-custom-curve1-sm"
-                                onClick={increaseMonth}
-                                disabled={nextMonthButtonDisabled}
-                              >
-                                {">"}
-                              </button>
-                            </div>
-                          )}
-                          value={moment(startDate).format("DD/MM/YYYY")}
-                          selected={startDate}
-                          onChange={(date) => setStartDate(date)}
-                        />
-                        {/* <DateRangePicker
-                          onChange={(e) => searchClick(e.target.value)}
-                          id="daterpicker"
-                          ref={keyRef}
-                          onCancel={keyRef}
-                          locale={{
-                            customRangeLabel: t("custom_range"),
-                            toLabel: "To",
-                            cancelLabel: t("Cancel"),
-                            applyLabel: t("apply"),
-                          }}
-                        > 
-                          <input
-                            id="daterangepicker"
-                            readOnly
-                            type="text"
-                            className="daterangepickerstyle-sm"
-                            name="datefilter"
-                          />
-                        </DateRangePicker>*/}
-                      </FormGroup>
-                    </Col>
-                    <Col sm="6" lg="2" md="2">
-                      <FormGroup>
-                        <label className="fw-bold mb-2">{t("End_Date")}</label>
-  
-                        <DatePicker
-                          className="search-number-daterangepickerstyle"
-                          dayClassName={(date) => "react-datepicker__day_sushil"}
-                          renderCustomHeader={({
-                            date,
-                            changeYear,
-                            changeMonth,
-                            decreaseMonth,
-                            increaseMonth,
-                            prevMonthButtonDisabled,
-                            nextMonthButtonDisabled,
-                          }) => (
-                            <div
-                              style={{
-                                margin: 10,
-                                display: "flex",
-                                justifyContent: "center",
-                              }}
-                            >
-                              <button
-                                className="btn-custom-curve1-sm"
-                                onClick={decreaseMonth}
-                                disabled={prevMonthButtonDisabled}
-                              >
-                                {"<"}
-                              </button>
-                              <select
-                                className="form-control-custom"
-                                value={getYear(date)}
-                                onChange={({ target: { value } }) =>
-                                  changeYear(value)
-                                }
-                              >
-                                {eYears.map((option) => (
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                ))}
-                              </select>
-  
-                              <select
-                                className="form-control-custom"
-                                value={eMonths[getMonth(date)]}
-                                onChange={({ target: { value } }) =>
-                                  changeMonth(eMonths.indexOf(value))
-                                }
-                              >
-                                {eMonths.map((option, id) => (
-                                  <>
-                                    <option key={option} value={option}>
-                                      {option}
-                                    </option>
-                                    {/* {
-                                        id <= moment(startDate).month() ? 
-                                        <>
-                                            <option key={option} value={option}>
-                                                {option}
-                                            </option>
-                                        </> : <>
-                                            <option key={option} value={option}>
-                                                {option}
-                                            </option>
-                                        </>
-                                    } */}
-                                  </>
-                                ))}
-                              </select>
-  
-                              <button
-                                className="btn-custom-curve1-sm"
-                                onClick={increaseMonth}
-                                disabled={nextMonthButtonDisabled}
-                              >
-                                {">"}
-                              </button>
-                            </div>
-                          )}
-                          excludeDates={[addDays(new Date(), 1)]}
-                          value={moment(endDate).format("DD/MM/YYYY")}
-                          selected={endDate}
-                          onChange={(date) => setEndDate(date)}
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col sm="6" lg="2" md="3">
-                      <FormGroup>
-                        <label className="fw-bold mb-2">{t("Company")}</label>
-                        <ul className="list-inline mb-0 small-company">
-                          {oddSet.map((game, id) => (
-                            <li
-                              key={id}
-                              onClick={() => selectCompany(game.game_play.id)}
-                              className=" list-inline-item"
-                            >
-                              <span
-                                className={`${
-                                  bettingInitData &&
-                                  bettingInitData[id] &&
-                                  bettingInitData[id].selected
-                                    ? "selected-gp-btn"
-                                    : ""
-                                } outer-circle-gp`}
-                                title="Select"
-                              >
-                                <span className="inner-circle-gp">
-                                  <img
-                                    className="img-fluid"
-                                    src={game.game_play.logo_url}
-                                  />
-                                </span>
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </FormGroup>
-                    </Col>
-                    <Col sm="6" lg="2" md="3">
-                      <FormGroup>
-                        <label className="fw-bold mb-2">{t("Permutation")}</label>
-                        <ul className="list-inline mb-0 small">
-                          <li className="list-inline-item">
-                            <div className="form-check">
-                              <input
-                                onChange={(e) => setPermutation(e.target.value)}
-                                className="form-check-input"
-                                type="radio"
-                                name="flexRadioDefault"
-                                id="flexRadioDefault1"
-                                value={1}
-                                checked={`${permutation == 1 ? "checked" : ""}`}
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="flexRadioDefault1"
-                              >
-                                Yes
-                              </label>
-                            </div>
-                          </li>
-                          <li className="list-inline-item">
-                            <div className="form-check">
-                              <input
-                                onChange={(e) => setPermutation(e.target.value)}
-                                className="form-check-input"
-                                type="radio"
-                                name="flexRadioDefault"
-                                id="flexRadioDefault2"
-                                value={0}
-                                checked={`${permutation == 0 ? "checked" : ""}`}
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="flexRadioDefault2"
-                              >
-                                No
-                              </label>
-                            </div>
-                          </li>
-                        </ul>
-                      </FormGroup>
-                    </Col>
-                    <Col sm="6" lg="3" md="6">
-                      <FormGroup>
-                        <label className="fw-bold mb-2">{t("Prize")}</label>
-                        <ul className="list-inline mb-0 small">
-                          {prizeInitData.map((prize, id) => (
-                            <li key={id} className="list-inline-item">
-                              <div className="form-check">
-                                <input
-                                  onClick={() => selectPrize(prize.id)}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  value={prize.value}
-                                  id={"flexCheckDefault2" + prize.id}
-                                  checked={prize.selected ? "checked" : ""}
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor={"flexCheckDefault2" + prize.id}
-                                >
-                                  {prize.id == 3 ? (
-                                    <>
-                                      <span className="badge bg-primary">
-                                        {t(prize.name)}
-                                      </span>
-                                    </>
-                                  ) : (
-                                    t(prize.name)
-                                  )}
-                                </label>
+                    <Col md="3">
+                      <Card className="border-info">
+                        <CardBody>
+                          <div className="d-flex align-items-center">
+                            <div className="icon-widget bg-info rounded">
+                              <div className="icon-widget-out">
+                                <img src="assets/images/target.png" />
                               </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </FormGroup>
+                            </div>
+                            <div className="widget-text">
+                              <p className="fw-bold mb-0 fs-5">
+                                <b>
+                                  {mainCard && mainCard.total_hits
+                                    ? mainCard.total_hits
+                                    : 0}
+                                </b>
+                              </p>
+                              <p className="mb-0 fs-6">{t('Total_Hits')}</p>
+                            </div>
+                          </div>
+                        </CardBody>
+                      </Card>
                     </Col>
-                    <Col sm="12" lg="12" md="12">
-                      <FormGroup style={{ float: "right" }}>
-                        {/* <label className="d-block mb-2">&nbsp;</label> */}
-                        <button
-                          onClick={() => searchClick()}
-                          type="button"
-                          id="search"
-                          className="btn-custom-curve2-sm w-auto me-2"
-                        >
-                          {t("Search")}
-                        </button>
-                        <button
-                          onClick={() => resetClick()}
-                          type="button"
-                          id="reset"
-                          className="btn-custom-curve1-sm"
-                        >
-                          {t("Reset")}
-                        </button>
-                      </FormGroup>
+                    <Col md="3">
+                      <Card className="border-info">
+                        <CardBody>
+                          <div className="d-flex align-items-center">
+                            <div className="icon-widget bg-info rounded">
+                              <div className="icon-widget-out">
+                                <img src="assets/images/gap.png" />
+                              </div>
+                            </div>
+                            <div className="widget-text">
+                              <p className="fw-bold mb-0 fs-5">
+                                <b>
+                                  {mainCard && mainCard.max_draw_gap
+                                    ? mainCard.max_draw_gap
+                                    : 0}{" "}
+                                  {t('Draws')}
+                                </b>
+                              </p>
+                              <p className="mb-0 fs-6">{t('Max_DrawGap')}</p>
+                            </div>
+                          </div>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                    <Col md="3">
+                      <Card className="border-info">
+                        <CardBody>
+                          <div className="d-flex align-items-center">
+                            <div className="icon-widget bg-info rounded">
+                              <div className="icon-widget-out">
+                                <img src="assets/images/min-gap.png" />
+                              </div>
+                            </div>
+                            <div className="widget-text">
+                              <p className="fw-bold mb-0 fs-5">
+                                <b>
+                                  {mainCard && mainCard.min_draw_gap
+                                    ? mainCard.min_draw_gap
+                                    : 0}{" "}
+                                  {t('Draws')}
+                                </b>
+                              </p>
+                              <p className="mb-0 fs-6">{t('Min_DrawGap')}</p>
+                            </div>
+                          </div>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                    <Col md="3">
+                      <Card className="border-info">
+                        <CardBody>
+                          <div className="d-flex align-items-center">
+                            <div className="icon-widget bg-info rounded">
+                              <div className="icon-widget-out">
+                                <img src="assets/images/avg-gap.png" />
+                              </div>
+                            </div>
+                            <div className="widget-text">
+                              <p className="fw-bold mb-0 fs-5">
+                                <b>
+                                  {mainCard && mainCard.avg_draw_gap
+                                    ? mainCard.avg_draw_gap
+                                    : 0}{" "}
+                                  {t('Draws')}
+                                </b>
+                              </p>
+                              <p className="mb-0 fs-6">{t('Avg_DrawGap')}</p>
+                            </div>
+                          </div>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                    <Col md="3">
+                      <Card className="border-info">
+                        <CardBody>
+                          <div className="d-flex align-items-center">
+                            <div className="icon-widget bg-info rounded">
+                              <div className="icon-widget-out">
+                                <img src="assets/images/last-hit.png" />
+                              </div>
+                            </div>
+                            <div className="widget-text">
+                              <p className="fw-bold mb-0 fs-5">
+                                <b>
+                                  #
+                                  {mainCard && mainCard.last_hit_draw_no
+                                    ? mainCard.last_hit_draw_no
+                                    : ""}
+                                </b>
+                              </p>
+                              <p className="mb-0 fs-6">{t('Last_Hit_DrawNo')}</p>
+                            </div>
+                          </div>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                    <Col md="3">
+                      <Card className="border-info">
+                        <CardBody>
+                          <div className="d-flex align-items-center">
+                            <div className="icon-widget bg-info rounded">
+                              <div className="icon-widget-out">
+                                <img src="assets/images/next-hit.png" />
+                              </div>
+                            </div>
+                            <div className="widget-text">
+                              <p className="fw-bold mb-0 fs-5">
+                                <b>
+                                  #
+                                  {mainCard && mainCard.last_hit_draw_id
+                                    ? mainCard.last_hit_draw_id
+                                    : ""}
+                                </b>
+                              </p>
+                              <p className="mb-0 fs-6">{t('Last_Hit_DrawID')}</p>
+                            </div>
+                          </div>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                    <Col md="3">
+                      <Card className="border-info">
+                        <CardBody>
+                          <div className="d-flex align-items-center">
+                            <div className="icon-widget bg-info rounded">
+                              <div className="icon-widget-out">
+                                <img src="assets/images/latest.png" />
+                              </div>
+                            </div>
+                            <div className="widget-text">
+                              <p className="fw-bold mb-0 fs-5">
+                                <b>
+                                  #
+                                  {mainCard &&
+                                  mainCard.last_hit_draw_no &&
+                                  mainCard.avg_draw_gap
+                                    ? parseInt(mainCard.last_hit_draw_no) +
+                                      parseInt(mainCard.avg_draw_gap)
+                                    : ""}
+                                </b>
+                              </p>
+                              <p className="mb-0 fs-6">{t('Estimate_Next_Hit_DrawNo')}</p>
+                            </div>
+                          </div>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                    <Col md="3">
+                      <Card className="border-info">
+                        <CardBody>
+                          <div className="d-flex align-items-center">
+                            <div className="icon-widget bg-info rounded">
+                              <div className="icon-widget-out">
+                                <img src="assets/images/icons/calendar-small.png" />
+                              </div>
+                            </div>
+                            <div className="widget-text">
+                              <p className="fw-bold mb-0 fs-5">
+                                <b>{getNetDrawDate()}</b>
+                              </p>
+                              <p className="mb-0 fs-6">{t('Estimate_Next_Draw_Date')}</p>
+                            </div>
+                          </div>
+                        </CardBody>
+                      </Card>
                     </Col>
                   </Row>
-            </div>
-          </Container>
-          {isLoading ? (
-            <div className="">
-              <div className="loader-Mob-2">
-                <img
-                  src="assets/images/loader.gif"
-                  alt=""
-                  className="img-icon-prize"
-                  width="50"
-                />
-              </div>
-            </div>
-          ) : (
-            <>
-              {bettingTip && mainCard && firstTableData && reserAllData  ?
-                <>
-                  <Container>
-                    <Card className="alert alert-warning text-dark p-0 rounded-0 border border-warning">
-                      <CardHeader className="fw-bold">
-                        {t('Total_Permutation')}:{" "}
-                        {permutationData && permutationData.length ? permutationData.length : numberM ? 1 : ""}
-                      </CardHeader>
-                      <CardBody>
-                        <ul className="list-inline mb-0">
-                          {reserAllData && permutationData && permutationData.length
-                            ? ""
-                            : numberM}
-                          {reserAllData &&
-                            permutationData &&
-                            permutationData.map((value, index) => {
-                              return (
-                                <>
-                                  <li key={index} className="list-inline-item">
-                                    <span className="badge bg-light text-dark">
-                                      {value}
-                                    </span>
-                                  </li>
-                                </>
-                              );
-                            })}
-                        </ul>
-                      </CardBody>
-                    </Card>
-                  </Container>
-                  <Container>
-                    <Row className="justify-content-center">
-                      <Col md="3">
-                        <Card className="border-info">
-                          <CardBody>
-                            <div className="d-flex align-items-center">
-                              <div className="icon-widget bg-info rounded">
-                                <div className="icon-widget-out">
-                                  <img src="assets/images/target.png" />
-                                </div>
-                              </div>
-                              <div className="widget-text">
-                                <p className="fw-bold mb-0 fs-5">
-                                  <b>
-                                    {mainCard && mainCard.total_hits
-                                      ? mainCard.total_hits
-                                      : 0}
-                                  </b>
-                                </p>
-                                <p className="mb-0 fs-6">{t('Total_Hits')}</p>
-                              </div>
-                            </div>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                      <Col md="3">
-                        <Card className="border-info">
-                          <CardBody>
-                            <div className="d-flex align-items-center">
-                              <div className="icon-widget bg-info rounded">
-                                <div className="icon-widget-out">
-                                  <img src="assets/images/gap.png" />
-                                </div>
-                              </div>
-                              <div className="widget-text">
-                                <p className="fw-bold mb-0 fs-5">
-                                  <b>
-                                    {mainCard && mainCard.max_draw_gap
-                                      ? mainCard.max_draw_gap
-                                      : 0}{" "}
-                                    {t('Draws')}
-                                  </b>
-                                </p>
-                                <p className="mb-0 fs-6">{t('Max_DrawGap')}</p>
-                              </div>
-                            </div>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                      <Col md="3">
-                        <Card className="border-info">
-                          <CardBody>
-                            <div className="d-flex align-items-center">
-                              <div className="icon-widget bg-info rounded">
-                                <div className="icon-widget-out">
-                                  <img src="assets/images/min-gap.png" />
-                                </div>
-                              </div>
-                              <div className="widget-text">
-                                <p className="fw-bold mb-0 fs-5">
-                                  <b>
-                                    {mainCard && mainCard.min_draw_gap
-                                      ? mainCard.min_draw_gap
-                                      : 0}{" "}
-                                    {t('Draws')}
-                                  </b>
-                                </p>
-                                <p className="mb-0 fs-6">{t('Min_DrawGap')}</p>
-                              </div>
-                            </div>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                      <Col md="3">
-                        <Card className="border-info">
-                          <CardBody>
-                            <div className="d-flex align-items-center">
-                              <div className="icon-widget bg-info rounded">
-                                <div className="icon-widget-out">
-                                  <img src="assets/images/avg-gap.png" />
-                                </div>
-                              </div>
-                              <div className="widget-text">
-                                <p className="fw-bold mb-0 fs-5">
-                                  <b>
-                                    {mainCard && mainCard.avg_draw_gap
-                                      ? mainCard.avg_draw_gap
-                                      : 0}{" "}
-                                    {t('Draws')}
-                                  </b>
-                                </p>
-                                <p className="mb-0 fs-6">{t('Avg_DrawGap')}</p>
-                              </div>
-                            </div>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                      <Col md="3">
-                        <Card className="border-info">
-                          <CardBody>
-                            <div className="d-flex align-items-center">
-                              <div className="icon-widget bg-info rounded">
-                                <div className="icon-widget-out">
-                                  <img src="assets/images/last-hit.png" />
-                                </div>
-                              </div>
-                              <div className="widget-text">
-                                <p className="fw-bold mb-0 fs-5">
-                                  <b>
-                                    #
-                                    {mainCard && mainCard.last_hit_draw_no
-                                      ? mainCard.last_hit_draw_no
-                                      : ""}
-                                  </b>
-                                </p>
-                                <p className="mb-0 fs-6">{t('Last_Hit_DrawNo')}</p>
-                              </div>
-                            </div>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                      <Col md="3">
-                        <Card className="border-info">
-                          <CardBody>
-                            <div className="d-flex align-items-center">
-                              <div className="icon-widget bg-info rounded">
-                                <div className="icon-widget-out">
-                                  <img src="assets/images/next-hit.png" />
-                                </div>
-                              </div>
-                              <div className="widget-text">
-                                <p className="fw-bold mb-0 fs-5">
-                                  <b>
-                                    #
-                                    {mainCard && mainCard.last_hit_draw_id
-                                      ? mainCard.last_hit_draw_id
-                                      : ""}
-                                  </b>
-                                </p>
-                                <p className="mb-0 fs-6">{t('Last_Hit_DrawID')}</p>
-                              </div>
-                            </div>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                      <Col md="3">
-                        <Card className="border-info">
-                          <CardBody>
-                            <div className="d-flex align-items-center">
-                              <div className="icon-widget bg-info rounded">
-                                <div className="icon-widget-out">
-                                  <img src="assets/images/latest.png" />
-                                </div>
-                              </div>
-                              <div className="widget-text">
-                                <p className="fw-bold mb-0 fs-5">
-                                  <b>
-                                    #
-                                    {mainCard &&
-                                    mainCard.last_hit_draw_no &&
-                                    mainCard.avg_draw_gap
-                                      ? parseInt(mainCard.last_hit_draw_no) +
-                                        parseInt(mainCard.avg_draw_gap)
-                                      : ""}
-                                  </b>
-                                </p>
-                                <p className="mb-0 fs-6">{t('Estimate_Next_Hit_DrawNo')}</p>
-                              </div>
-                            </div>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                      <Col md="3">
-                        <Card className="border-info">
-                          <CardBody>
-                            <div className="d-flex align-items-center">
-                              <div className="icon-widget bg-info rounded">
-                                <div className="icon-widget-out">
-                                  <img src="assets/images/icons/calendar-small.png" />
-                                </div>
-                              </div>
-                              <div className="widget-text">
-                                <p className="fw-bold mb-0 fs-5">
-                                  <b>{getNetDrawDate()}</b>
-                                </p>
-                                <p className="mb-0 fs-6">{t('Estimate_Next_Draw_Date')}</p>
-                              </div>
-                            </div>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                    </Row>
-                  </Container>
-                  <Container>
-                    <div className="table-responsive">
-                      <table className="table table-striped table-sm small table-bordered">
-                        <thead className="bg-dark text-white">
-                          <tr>
-                            <th>{t('No')}</th>
-                            <th>{t('Number')}</th>
-                            <th>{t('Prize')}</th>
-                            <th>{t('DrawID')}</th>
-                            <th>{t('DrawNo')}</th>
-                            <th>{t('Date')}</th>
-                            <th>{t('Day')}</th>
-                            <th className="text-center">{t('Source')}</th>
-                            <th>{t('DrawGap')}</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {firstTableData && firstTableData.length > 0 ? (
-                            firstTableData.map((value, index) => {
-                              let prizeType = "";
-                              let betNum = "";
-                              let keys = Object.keys(value);
-                              keys.map((game1) => {
-                                if (permutationData.length > 0) {
-                                  permutationData.map((pdata) => {
-                                    if (value[game1] == pdata) {
-                                      prizeType = game1;
-                                      betNum = value[game1];
-                                    }
-                                  });
-                                } else {
-                                  if (value[game1] == numberM) {
+                </Container>
+                <Container>
+                  <div className="table-responsive">
+                    <table className="table table-striped table-sm small table-bordered">
+                      <thead className="bg-dark text-white">
+                        <tr>
+                          <th>{t('No')}</th>
+                          <th>{t('Number')}</th>
+                          <th>{t('Prize')}</th>
+                          <th>{t('DrawID')}</th>
+                          <th>{t('DrawNo')}</th>
+                          <th>{t('Date')}</th>
+                          <th>{t('Day')}</th>
+                          <th className="text-center">{t('Source')}</th>
+                          <th>{t('DrawGap')}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {firstTableData && firstTableData.length > 0 ? (
+                          firstTableData.map((value, index) => {
+                            let prizeType = "";
+                            let betNum = "";
+                            let keys = Object.keys(value);
+                            keys.map((game1) => {
+                              if (permutationData.length > 0) {
+                                permutationData.map((pdata) => {
+                                  if (value[game1] == pdata) {
                                     prizeType = game1;
                                     betNum = value[game1];
                                   }
+                                });
+                              } else {
+                                if (value[game1] == numberM) {
+                                  prizeType = game1;
+                                  betNum = value[game1];
                                 }
-                              });
-                              return (
-                                <>
-                                  <tr>
-                                    <td>{index + 1}</td>
+                              }
+                            });
+                            return (
+                              <>
+                                <tr>
+                                  <td>{index + 1}</td>
+                                  <td>
+                                    <b>{betNum}</b>
+                                  </td>
+                                  <td>
+                                    <PrizeSetComm prizeType={prizeType} />
+                                  </td>
+                                  <td>{value.reference_number}</td>
+                                  <td>#{value.reference_number.split("/")[0]}</td>
+                                  <td>
+                                    {moment(value.fetching_date).format("DD/MM/YYYY")}
+                                  </td>
+                                  <td>{t(moment(value.fetching_date).format("ddd"))}</td>
+                                  <td align="center">
+                                    {oddSet.map((game, id) => {
+                                      if (game.game_play.id == value.game_play_id) {
+                                        return (
+                                          <span key={id}>
+                                            <img
+                                              src={game.game_play.logo_url}
+                                              alt=""
+                                              style={{
+                                                width: "20px",
+                                                height: "20px",
+                                                borderRadius: "50%",
+                                              }}
+                                            />
+                                          </span>
+                                        );
+                                      }
+                                    })}
+                                  </td>
+                                  <td>
+                                    {value.days_since_last
+                                      ? value.days_since_last
+                                      : "-"}
+                                  </td>
+                                </tr>
+                              </>
+                            );
+                          })
+                        ) : (
+                          <tr>
+                            <td colSpan={9}>
+                              <div className="alert alert-warning">
+                                <h3 className="text-center">{t("no_data_found")}</h3>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </Container>
+                <Container>
+                  <div className="table-responsive">
+                    <table className="table table-striped table-sm small table-bordered">
+                      <thead className="bg-dark text-white">
+                        <tr>
+                          <th>{t('Number')}</th>
+                          <th>{t('1st')}</th>
+                          <th>{t('2nd')}</th>
+                          <th>{t('3rd')}</th>
+                          <th>{t('S')}</th>
+                          <th>{t('C')}</th>
+                          <th className="text-end">{t('Total')}</th>
+                          {/* <th className="text-end">Big</th>
+                          <th className="text-end">Small</th> */}
+                          <th>{t('LastDraw')}</th>
+                          <th>{t('Day')}</th>
+                          <th>{t('Prize')}</th>
+                          <th>{t('Source')}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {firstTableData &&
+                        permutationData &&
+                        permutationData.length > 0 ? (
+                          <>
+                            {firstTableData.length > 0 && permutationData ? (
+                              permutationData.map((pdata, index) => {
+                                let st1m = 0;
+                                let nd2m = 0;
+                                let rd3m = 0;
+                                let Spem = 0;
+                                let Conm = 0;
+                                let totalm = 0;
+                                let LastDrawDate = "-";
+                                let LastDrawDay = "-";
+                                let lastPrize = "";
+                                let LastGameId = "";
+                                let totalCounts = [];
+                                {
+                                  firstTableData &&
+                                    firstTableData.map((value) => {
+                                      let keys = Object.keys(value);
+                                      keys.map((game1) => {
+                                        if (game1 != 'id' && value[game1] == pdata) {
+                                          totalCounts = getCountsPrizeSetComm(game1);
+                                          st1m = parseInt(st1m) + parseInt(totalCounts.st1);
+                                          nd2m = parseInt(nd2m) + parseInt(totalCounts.nd2);
+                                          rd3m = parseInt(rd3m) + parseInt(totalCounts.rd3);
+                                          Spem = parseInt(Spem) + parseInt(totalCounts.Spe);
+                                          Conm = parseInt(Conm) + parseInt(totalCounts.Con);
+                                          totalm = st1m + nd2m + rd3m + Spem + Conm;
+                                          lastPrize = game1;
+                                          LastDrawDate = moment(
+                                            value.fetching_date
+                                          ).format("DD/MM/YYYY");
+                                          LastDrawDay = moment(
+                                            value.fetching_date
+                                          ).format("ddd");
+                                          LastGameId = value.game_play_id;
+                                        }
+                                      });
+                                    });
+                                }
+                                console.log('ConmConm',totalCounts)
+                                mainst1m = mainst1m + st1m;
+                                mainnd2m = mainnd2m + nd2m;
+                                mainrd3m = mainrd3m + rd3m;
+                                mainSpem = mainSpem + Spem;
+                                mainConm = mainConm + Conm;
+                                maintotalm = maintotalm + totalm;
+                                return (
+                                  <tr key={index}>
+                                    <td>{pdata}</td>
+                                    <td>{st1m != 0 ? st1m : ""}</td>
+                                    <td>{nd2m != 0 ? nd2m : ""}</td>
+                                    <td>{rd3m != 0 ? rd3m : ""}</td>
+                                    <td>{Spem != 0 ? Spem : ""}</td>
+                                    <td>{Conm != 0 ? Conm : ""}</td>
+                                    <td align="right">
+                                      <b>{totalm != 0 ? totalm : ""}</b>
+                                    </td>
+                                    {/* <td align="right">--</td>
+                                    <td align="right">--</td> */}
+                                    <td>{LastDrawDate}</td>
+                                    <td>{t(LastDrawDay)}</td>
                                     <td>
-                                      <b>{betNum}</b>
+                                      <PrizeSetComm prizeType={lastPrize} />
                                     </td>
                                     <td>
-                                      <PrizeSetComm prizeType={prizeType} />
-                                    </td>
-                                    <td>{value.reference_number}</td>
-                                    <td>#{value.reference_number.split("/")[0]}</td>
-                                    <td>
-                                      {moment(value.fetching_date).format("DD/MM/YYYY")}
-                                    </td>
-                                    <td>{moment(value.fetching_date).format("ddd")}</td>
-                                    <td align="center">
                                       {oddSet.map((game, id) => {
-                                        if (game.game_play.id == value.game_play_id) {
+                                        if (
+                                          LastGameId &&
+                                          game.game_play.id == LastGameId
+                                        ) {
                                           return (
                                             <span key={id}>
                                               <img
@@ -1198,229 +1308,82 @@ export default function SearchNumber({
                                         }
                                       })}
                                     </td>
-                                    <td>
-                                      {value.days_since_last
-                                        ? value.days_since_last
-                                        : "-"}
-                                    </td>
                                   </tr>
-                                </>
-                              );
-                            })
-                          ) : (
-                            <tr>
-                              <td colSpan={9}>
-                                <div className="alert alert-warning">
-                                  <h3 className="text-center">{t("no_data_found")}</h3>
-                                </div>
-                              </td>
-                            </tr>
-                          )}
-                        </tbody>
-                      </table>
-                    </div>
-                  </Container>
-                  <Container>
-                    <div className="table-responsive">
-                      <table className="table table-striped table-sm small table-bordered">
-                        <thead className="bg-dark text-white">
-                          <tr>
-                            <th>{t('Number')}</th>
-                            <th>{t('1st')}</th>
-                            <th>{t('2nd')}</th>
-                            <th>{t('3rd')}</th>
-                            <th>{t('S')}</th>
-                            <th>{t('C')}</th>
-                            <th className="text-end">{t('Total')}</th>
-                            {/* <th className="text-end">Big</th>
-                            <th className="text-end">Small</th> */}
-                            <th>{t('LastDraw')}</th>
-                            <th>{t('Day')}</th>
-                            <th>{t('Prize')}</th>
-                            <th>{t('Source')}</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {firstTableData &&
-                          permutationData &&
-                          permutationData.length > 0 ? (
-                            <>
-                              {firstTableData.length > 0 && permutationData ? (
-                                permutationData.map((pdata, index) => {
-                                  let st1m = 0;
-                                  let nd2m = 0;
-                                  let rd3m = 0;
-                                  let Spem = 0;
-                                  let Conm = 0;
-                                  let totalm = 0;
-                                  let LastDrawDate = "-";
-                                  let LastDrawDay = "-";
-                                  let lastPrize = "";
-                                  let LastGameId = "";
-                                  {
-                                    firstTableData &&
-                                      firstTableData.map((value) => {
-                                        let keys = Object.keys(value);
-                                        keys.map((game1) => {
-                                          if (value[game1] == pdata) {
-                                            let totalCounts =
-                                              getCountsPrizeSetComm(game1);
-                                            st1m = st1m + totalCounts.st1;
-                                            nd2m = nd2m + totalCounts.nd2;
-                                            rd3m = rd3m + totalCounts.rd3;
-                                            Spem = Spem + totalCounts.Spe;
-                                            Conm = Conm + totalCounts.Con;
-                                            totalm = st1m + nd2m + rd3m + Spem + Conm;
-                                            lastPrize = game1;
-                                            LastDrawDate = moment(
-                                              value.fetching_date
-                                            ).format("DD/MM/YYYY");
-                                            LastDrawDay = moment(
-                                              value.fetching_date
-                                            ).format("ddd");
-                                            LastGameId = value.game_play_id;
-                                          }
-                                        });
-                                      });
-                                  }
-                                  mainst1m = mainst1m + st1m;
-                                  mainnd2m = mainnd2m + nd2m;
-                                  mainrd3m = mainrd3m + rd3m;
-                                  mainSpem = mainSpem + Spem;
-                                  mainConm = mainConm + Conm;
-                                  maintotalm = maintotalm + totalm;
-                                  return (
-                                    <tr key={index}>
-                                      <td>{pdata}</td>
-                                      <td>{st1m != 0 ? st1m : ""}</td>
-                                      <td>{nd2m != 0 ? nd2m : ""}</td>
-                                      <td>{rd3m != 0 ? rd3m : ""}</td>
-                                      <td>{Spem != 0 ? Spem : ""}</td>
-                                      <td>{Conm != 0 ? Conm : ""}</td>
-                                      <td align="right">
-                                        <b>{totalm != 0 ? totalm : ""}</b>
-                                      </td>
-                                      {/* <td align="right">--</td>
-                                      <td align="right">--</td> */}
-                                      <td>{LastDrawDate}</td>
-                                      <td>{LastDrawDay}</td>
-                                      <td>
-                                        <PrizeSetComm prizeType={lastPrize} />
-                                      </td>
-                                      <td>
-                                        {oddSet.map((game, id) => {
-                                          if (
-                                            LastGameId &&
-                                            game.game_play.id == LastGameId
-                                          ) {
-                                            return (
-                                              <span key={id}>
-                                                <img
-                                                  src={game.game_play.logo_url}
-                                                  alt=""
-                                                  style={{
-                                                    width: "20px",
-                                                    height: "20px",
-                                                    borderRadius: "50%",
-                                                  }}
-                                                />
-                                              </span>
-                                            );
-                                          }
-                                        })}
-                                      </td>
-                                    </tr>
-                                  );
-                                })
-                              ) : (
-                                <tr>
-                                  <td colSpan={11}>
-                                    <div className="alert alert-warning">
-                                      <h3 className="text-center">
-                                        {t("no_data_found")}
-                                      </h3>
-                                    </div>
-                                  </td>
-                                </tr>
-                              )}
+                                );
+                              })
+                            ) : (
                               <tr>
-                                <td>
-                                  <b>{t('Total')}</b>
-                                </td>
-                                <td>
-                                  <b>{mainst1m}</b>
-                                </td>
-                                <td>
-                                  <b>{mainnd2m}</b>
-                                </td>
-                                <td>
-                                  <b>{mainrd3m}</b>
-                                </td>
-                                <td>
-                                  <b>{mainSpem}</b>
-                                </td>
-                                <td>
-                                  <b>{mainConm}</b>
-                                </td>
-                                <td align="right">
-                                  <b>{maintotalm}</b>
-                                </td>
-                                {/* <td align="right">
-                                  <b>--</b>
-                                </td>
-                                <td align="right">
-                                  <b>--</b>
-                                </td> */}
-                                <td align="right">
-                                  <b>&nbsp;</b>
-                                </td>
-                                <td align="right">
-                                  <b>&nbsp;</b>
-                                </td>
-                                <td align="right">
-                                  <b>&nbsp;</b>
-                                </td>
-                                <td align="right">
-                                  <b>&nbsp;</b>
+                                <td colSpan={11}>
+                                  <div className="alert alert-warning">
+                                    <h3 className="text-center">
+                                      {t("no_data_found")}
+                                    </h3>
+                                  </div>
                                 </td>
                               </tr>
-                            </>
-                          ) : (
-                            <>
-                              <ForData />
-                            </>
-                          )}
-                        </tbody>
-                      </table>
-                    </div>
-                  </Container>
-                </>
-                : 
-                <Container style={{ height: '385px'  }}>
-                    <div className="alert alert-warning">
-                      <h3 className="text-center">{t("no_data_found")}</h3>
-                    </div>
+                            )}
+                            <tr>
+                              <td>
+                                <b>{t('Total')}</b>
+                              </td>
+                              <td>
+                                <b>{mainst1m}</b>
+                              </td>
+                              <td>
+                                <b>{mainnd2m}</b>
+                              </td>
+                              <td>
+                                <b>{mainrd3m}</b>
+                              </td>
+                              <td>
+                                <b>{mainSpem}</b>
+                              </td>
+                              <td>
+                                <b>{mainConm}</b>
+                              </td>
+                              <td align="right">
+                                <b>{maintotalm}</b>
+                              </td>
+                              {/* <td align="right">
+                                <b>--</b>
+                              </td>
+                              <td align="right">
+                                <b>--</b>
+                              </td> */}
+                              <td align="right">
+                                <b>&nbsp;</b>
+                              </td>
+                              <td align="right">
+                                <b>&nbsp;</b>
+                              </td>
+                              <td align="right">
+                                <b>&nbsp;</b>
+                              </td>
+                              <td align="right">
+                                <b>&nbsp;</b>
+                              </td>
+                            </tr>
+                          </>
+                        ) : (
+                          <>
+                            <ForData />
+                          </>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
                 </Container>
-              }
-            </>
-          )}
-        </section>
-      </>
-    );
-  }else{
-
-    return (
-      <div className='alert alert-warning'>
-                    <h3 className='text-center'>
-                    {t('no_data_found')}
-                    </h3>
-               </div>
-    );
-
-  }
-
-
-
-
-  
+              </>
+              : 
+              <Container style={{ height: '400px'  }}>
+                  <div className="alert alert-warning">
+                    <h3 className="text-center">{t("no_data_found")}</h3>
+                  </div>
+              </Container>
+            }
+          </>
+        )}
+      </section>
+    </>
+  );
 }
