@@ -47,7 +47,7 @@ export default function SearchNumber({
       id: "1",
       name: "Top_3",
       value: "top3",
-      selected: false,
+      selected: true,
     },
     {
       id: "2",
@@ -264,14 +264,15 @@ export default function SearchNumber({
   };
   function PrizeSetComm({ prizeType }) {
     let prizeTypeStyle = "";
+    let prizeTypeY = "";
     if (prizeType == "prize1") {
-      prizeType = "First Prize";
+      prizeTypeY = "First Prize";
       prizeTypeStyle = "badge bg-primary";
     } else if (prizeType == "prize2") {
-      prizeType = "Second Prize";
+      prizeTypeY = "Second Prize";
       prizeTypeStyle = "badge bg-primary";
     } else if (prizeType == "prize3") {
-      prizeType = "Third Prize";
+      prizeTypeY = "Third Prize";
       prizeTypeStyle = "badge bg-warning text-dark";
     } else if (
       prizeType == "special1" ||
@@ -285,7 +286,7 @@ export default function SearchNumber({
       prizeType == "special9" ||
       prizeType == "special10"
     ) {
-      prizeType = "Special Prize";
+      prizeTypeY = "Special Prize";
       prizeTypeStyle = "badge bg-info text-white";
     } else if (
       prizeType == "consolation1" ||
@@ -299,12 +300,12 @@ export default function SearchNumber({
       prizeType == "consolation9" ||
       prizeType == "consolation10"
     ) {
-      prizeType = "Consolation Prize";
+      prizeTypeY = "Consolation Prize";
       prizeTypeStyle = "badge bg-light text-dark border border-dark";
     } else {
       prizeTypeStyle = "badge bg-light text-dark border border-dark";
     }
-    return <span className={prizeTypeStyle}>{prizeType}</span>;
+    return <span className={prizeTypeStyle}>{prizeTypeY}</span>;
   }
 
   function getCountsPrizeSetComm(prizeType) {
@@ -373,15 +374,15 @@ export default function SearchNumber({
         firstTableData.map((value) => {
           let keys = Object.keys(value);
           keys.map((game1) => {
-            if (value[game1] == numberM) {
+            if (game1 != 'id' && value[game1] == numberM) {
               mainNum = value[game1];
               let totalCounts = getCountsPrizeSetComm(game1);
-              console.log("totalCounts", totalCounts.st1);
-              st1m = st1m + totalCounts.st1;
-              nd2m = nd2m + totalCounts.nd2;
-              rd3m = rd3m + totalCounts.rd3;
-              Spem = Spem + totalCounts.Spe;
-              Conm = Conm + totalCounts.Con;
+              // console.log("totalCounts", totalCounts.Con);
+              st1m = parseInt(st1m) + parseInt(totalCounts.st1);  
+              nd2m = parseInt(nd2m) + parseInt(totalCounts.nd2);
+              rd3m = parseInt(rd3m) + parseInt(totalCounts.rd3);
+              Spem = parseInt(Spem) + parseInt(totalCounts.Spe);
+              Conm = parseInt(Conm) + parseInt(totalCounts.Con);
 
               totalm = st1m + nd2m + rd3m + Spem + Conm;
               lastPrize = game1;
@@ -641,26 +642,6 @@ export default function SearchNumber({
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
                       />
-                      {/* <DateRangePicker
-                        onChange={(e) => searchClick(e.target.value)}
-                        id="daterpicker"
-                        ref={keyRef}
-                        onCancel={keyRef}
-                        locale={{
-                          customRangeLabel: t("custom_range"),
-                          toLabel: "To",
-                          cancelLabel: t("Cancel"),
-                          applyLabel: t("apply"),
-                        }}
-                      > 
-                        <input
-                          id="daterangepicker"
-                          readOnly
-                          type="text"
-                          className="daterangepickerstyle-sm"
-                          name="datefilter"
-                        />
-                      </DateRangePicker>*/}
                     </FormGroup>
                   </Col>
                   <Col sm="6" lg="2" md="2">
@@ -828,7 +809,7 @@ export default function SearchNumber({
                       </ul>
                     </FormGroup>
                   </Col>
-                  {/* <Col sm="6" lg="3" md="6">
+                  <Col sm="6" lg="3" md="6">
                     <FormGroup>
                       <label className="fw-bold mb-2">{t("Prize")}</label>
                       <ul className="list-inline mb-0 small">
@@ -862,10 +843,10 @@ export default function SearchNumber({
                         ))}
                       </ul>
                     </FormGroup>
-                  </Col> */}
-                  <Col sm="6" lg="3" md="6">
+                  </Col>
+                  <Col sm="12" lg="12" md="12">
                     <FormGroup style={{ float: "right" }}>
-                      <label className="d-block mb-2">&nbsp;</label>
+                      {/* <label className="d-block mb-2">&nbsp;</label> */}
                       <button
                         onClick={() => searchClick()}
                         type="button"
@@ -1254,19 +1235,19 @@ export default function SearchNumber({
                                 let LastDrawDay = "-";
                                 let lastPrize = "";
                                 let LastGameId = "";
+                                let totalCounts = [];
                                 {
                                   firstTableData &&
                                     firstTableData.map((value) => {
                                       let keys = Object.keys(value);
                                       keys.map((game1) => {
-                                        if (value[game1] == pdata) {
-                                          let totalCounts =
-                                            getCountsPrizeSetComm(game1);
-                                          st1m = st1m + totalCounts.st1;
-                                          nd2m = nd2m + totalCounts.nd2;
-                                          rd3m = rd3m + totalCounts.rd3;
-                                          Spem = Spem + totalCounts.Spe;
-                                          Conm = Conm + totalCounts.Con;
+                                        if (game1 != 'id' && value[game1] == pdata) {
+                                          totalCounts = getCountsPrizeSetComm(game1);
+                                          st1m = parseInt(st1m) + parseInt(totalCounts.st1);
+                                          nd2m = parseInt(nd2m) + parseInt(totalCounts.nd2);
+                                          rd3m = parseInt(rd3m) + parseInt(totalCounts.rd3);
+                                          Spem = parseInt(Spem) + parseInt(totalCounts.Spe);
+                                          Conm = parseInt(Conm) + parseInt(totalCounts.Con);
                                           totalm = st1m + nd2m + rd3m + Spem + Conm;
                                           lastPrize = game1;
                                           LastDrawDate = moment(
@@ -1280,6 +1261,7 @@ export default function SearchNumber({
                                       });
                                     });
                                 }
+                                console.log('ConmConm',totalCounts)
                                 mainst1m = mainst1m + st1m;
                                 mainnd2m = mainnd2m + nd2m;
                                 mainrd3m = mainrd3m + rd3m;
@@ -1393,7 +1375,7 @@ export default function SearchNumber({
                 </Container>
               </>
               : 
-              <Container style={{ height: '385px'  }}>
+              <Container style={{ height: '400px'  }}>
                   <div className="alert alert-warning">
                     <h3 className="text-center">{t("no_data_found")}</h3>
                   </div>
