@@ -501,33 +501,42 @@ export default function SearchNumber({
   const sYears = range(2016, getYear(new Date()) + 1);
   const eYears = range(moment(startDate).year(), getYear(new Date()) + 1);
   const sMonths = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    t("January"),
+    t("February"),
+    t("March"),
+    t("April"),
+    t("May"),
+    t("June"),
+    t("July"),
+    t("August"),
+    t("September"),
+    t("October"),
+    t("November"),
+    t("December"),
   ];
   const eMonths = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    t("January"),
+    t("February"),
+    t("March"),
+    t("April"),
+    t("May"),
+    t("June"),
+    t("July"),
+    t("August"),
+    t("September"),
+    t("October"),
+    t("November"),
+    t("December"),
   ];
+  let days =  [t('Su'), t('Mo'), t('Tu'), t('We'), t('Th'), t('Fr'), t('Sa')]
+  const locale = {
+    localize: {
+      day: n => days[n]
+    },
+    formatLong: {
+      date: () => 'mm/dd/yyyy'
+    }
+  }
   return (
     <>
       <ToastContainer />
@@ -562,7 +571,7 @@ export default function SearchNumber({
                         }}
                         onChange={(e) => setNumber(e.target.value)}
                         type="text"
-                        placeholder="number"
+                        placeholder={t("Number")}
                         className="form-control-custom"
                         minLength={3}
                         maxLength={4}
@@ -576,6 +585,7 @@ export default function SearchNumber({
                     <FormGroup>
                       <label className="fw-bold mb-2">{t("Start_Date")}</label>
                       <DatePicker
+                        locale={locale}
                         className="search-number-daterangepickerstyle"
                         dayClassName={(date) => "react-datepicker__day_sushil"}
                         renderCustomHeader={({
@@ -649,6 +659,7 @@ export default function SearchNumber({
                       <label className="fw-bold mb-2">{t("End_Date")}</label>
 
                       <DatePicker
+                        locale={locale}
                         className="search-number-daterangepickerstyle"
                         dayClassName={(date) => "react-datepicker__day_sushil"}
                         renderCustomHeader={({
@@ -750,7 +761,7 @@ export default function SearchNumber({
                                   ? "selected-gp-btn"
                                   : ""
                               } outer-circle-gp`}
-                              title="Select"
+                              title={t('Select')}
                             >
                               <span className="inner-circle-gp">
                                 <img
