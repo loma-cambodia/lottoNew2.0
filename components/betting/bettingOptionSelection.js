@@ -103,7 +103,6 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
   const auth = _auth;
   let random = Math.floor(1000 + Math.random() * 9000);
 
-
   const [resultData, setResultData] = React.useState({});
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -155,7 +154,8 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
         "games": item.games.map(itemGame => {
           itemGame.selected = false;
           return itemGame;
-        })
+        }),
+        "status":item.status
       }
       dateAndGameOptionData.push(tempObject);
     });
