@@ -266,13 +266,13 @@ export default function SearchNumber({
     let prizeTypeStyle = "";
     let prizeTypeY = "";
     if (prizeType == "prize1") {
-      prizeTypeY = "First Prize";
+      prizeTypeY = "1st_Prize";
       prizeTypeStyle = "badge bg-primary";
     } else if (prizeType == "prize2") {
-      prizeTypeY = "Second Prize";
+      prizeTypeY = "2nd_Prize";
       prizeTypeStyle = "badge bg-primary";
     } else if (prizeType == "prize3") {
-      prizeTypeY = "Third Prize";
+      prizeTypeY = "3rd_Prize";
       prizeTypeStyle = "badge bg-warning text-dark";
     } else if (
       prizeType == "special1" ||
@@ -286,7 +286,7 @@ export default function SearchNumber({
       prizeType == "special9" ||
       prizeType == "special10"
     ) {
-      prizeTypeY = "Special Prize";
+      prizeTypeY = "Special_Prize";
       prizeTypeStyle = "badge bg-info text-white";
     } else if (
       prizeType == "consolation1" ||
@@ -300,12 +300,12 @@ export default function SearchNumber({
       prizeType == "consolation9" ||
       prizeType == "consolation10"
     ) {
-      prizeTypeY = "Consolation Prize";
+      prizeTypeY = "Consolation_Prize";
       prizeTypeStyle = "badge bg-light text-dark border border-dark";
     } else {
       prizeTypeStyle = "badge bg-light text-dark border border-dark";
     }
-    return <span className={prizeTypeStyle}>{prizeTypeY}</span>;
+    return <span className={prizeTypeStyle}>{t(prizeTypeY)}</span>;
   }
 
   function getCountsPrizeSetComm(prizeType) {
@@ -1156,7 +1156,7 @@ export default function SearchNumber({
                                   <td>
                                     {moment(value.fetching_date).format("DD/MM/YYYY")}
                                   </td>
-                                  <td>{moment(value.fetching_date).format("ddd")}</td>
+                                  <td>{t(moment(value.fetching_date).format("ddd"))}</td>
                                   <td align="center">
                                     {oddSet.map((game, id) => {
                                       if (game.game_play.id == value.game_play_id) {
@@ -1282,7 +1282,7 @@ export default function SearchNumber({
                                     {/* <td align="right">--</td>
                                     <td align="right">--</td> */}
                                     <td>{LastDrawDate}</td>
-                                    <td>{LastDrawDay}</td>
+                                    <td>{t(LastDrawDay)}</td>
                                     <td>
                                       <PrizeSetComm prizeType={lastPrize} />
                                     </td>
