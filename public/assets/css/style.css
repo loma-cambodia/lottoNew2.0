@@ -200,6 +200,8 @@
     }
     
     .play-lottery-btn {
+      
+    transition: all 250ms;
     display: inline-block;
     color: #000;
     /* --bs-link-hover-color: #bc2263; */
