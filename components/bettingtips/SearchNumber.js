@@ -828,7 +828,7 @@ export default function SearchNumber({
                       </ul>
                     </FormGroup>
                   </Col>
-                  <Col sm="6" lg="3" md="6">
+                  {/* <Col sm="6" lg="3" md="6">
                     <FormGroup>
                       <label className="fw-bold mb-2">{t("Prize")}</label>
                       <ul className="list-inline mb-0 small">
@@ -862,10 +862,10 @@ export default function SearchNumber({
                         ))}
                       </ul>
                     </FormGroup>
-                  </Col>
-                  <Col sm="12" lg="12" md="12">
+                  </Col> */}
+                  <Col sm="6" lg="3" md="6">
                     <FormGroup style={{ float: "right" }}>
-                      {/* <label className="d-block mb-2">&nbsp;</label> */}
+                      <label className="d-block mb-2">&nbsp;</label>
                       <button
                         onClick={() => searchClick()}
                         type="button"
