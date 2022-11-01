@@ -9,14 +9,12 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
     const [initData, setInitData] = useState(item);
     const [active, setActive] = useState(false);
 
-
     const getDateName =(dateString) => {
         var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         var d = new Date(dateString);
         var dayName = days[d.getDay()];
         return dayName
     }
-
     const findArrayIndex = (arr,gId) =>{
 
 
@@ -105,24 +103,43 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
     return(
         <div className="col-md-3 col-sm-6" 
         >
+           
         <div 
         className= {`${initData.selected ? "selected":"unselected"} date-lottery-selector`}>
             {/* <div className="d-flex align-items-center"
                     onClick={() => selectUnSelectDate(!initData.selected)}
             > */}
            <div className="d-flex align-items-center"> 
-                <div className="round">
-                    <input type="checkbox" id={initData.id} defaultChecked={initData.selected} />
-                    <label htmlFor={initData.id}
-                        onClick={() => selectUnSelectDate(!initData.selected, item.id)}
-                    ></label>
-                </div>
-                <div className="day-n-date" style={{cursor:'pointer'}}
-                    onClick={() => selectUnSelectDate(!initData.selected, item.id)}
-                >
-                    <p className="fw-bold mb-0">{t(initData.day)}</p>
-                    <p className="mb-0">{initData.date}</p>
-                </div>
+           {initData.status == "upcoming" ? 
+
+                    <>
+                    <div className="round">
+                        <input type="checkbox" id={initData.id} defaultChecked={initData.selected} disabled/>
+                        <label htmlFor={initData.id}></label>
+                    </div>
+                    <div className="day-n-date">
+                        <p className="fw-bold mb-0">{t(initData.day)}</p>
+                        <p className="mb-0">{initData.date}</p>
+                    </div>
+                    </>
+         
+                : 
+                        <>
+                        <div className="round">
+                            <input type="checkbox" id={initData.id} defaultChecked={initData.selected} />
+                            <label htmlFor={initData.id}
+                                onClick={() => selectUnSelectDate(!initData.selected, item.id)}
+                            ></label>
+                        </div>
+                        <div className="day-n-date" style={{cursor:'pointer'}}
+                            onClick={() => selectUnSelectDate(!initData.selected, item.id)}
+                        >
+                            <p className="fw-bold mb-0">{t(initData.day)}</p>
+                            <p className="mb-0">{initData.date}</p>
+                        </div>
+                        </>
+           }
+                
             </div>
             <div className="d-flex">
                 <div className='round'/>
