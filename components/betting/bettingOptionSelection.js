@@ -102,7 +102,6 @@ const BettingOptionSelection = ({ _bettingDatesStore, _lotterySubmitRecords, _be
 
   const auth = _auth;
   let random = Math.floor(1000 + Math.random() * 9000);
-  console.log("_bettingDatesStore",_bettingDatesStore)
 
   const [resultData, setResultData] = React.useState({});
 
