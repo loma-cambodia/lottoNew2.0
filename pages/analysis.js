@@ -41,9 +41,9 @@ export default function SearchNumber({datauser, updateSessionData, setUpdateSess
             </Head>
             <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
             <SearchNumbers _transactions={transactions} _auth={auth} datauser={datauser} _GetSearchNumber={GetSearchNumber} _bettingTip={bettingTip} _isLoading={isLoading} />
-            <div className={styles.device_detect_for_desktop} _setAction={setAction}> 
+            <div className={styles.device_detect_for_desktop}> 
                 <Footer/>
-            </div>
+            </div> 
         </> 
     )
 }
