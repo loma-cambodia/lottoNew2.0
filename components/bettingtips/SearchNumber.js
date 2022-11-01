@@ -47,7 +47,7 @@ export default function SearchNumber({
       id: "1",
       name: "Top_3",
       value: "top3",
-      selected: true,
+      selected: false,
     },
     {
       id: "2",
@@ -888,7 +888,7 @@ export default function SearchNumber({
           </div>
         </Container>
         {isLoading ? (
-          <div className="">
+          <div className="" style={{ height: '400px'  }}>
             <div className="loader-Mob-2">
               <img
                 src="assets/images/loader.gif"
