@@ -409,7 +409,7 @@ export default function SearchNumber({
             {/* <td align="right">--</td>
           <td align="right">--</td> */}
             <td>{LastDrawDate}</td>
-            <td>{LastDrawDay}</td>
+            <td>{t(LastDrawDay)}</td>
             <td>
               <PrizeSetComm prizeType={lastPrize} />
             </td>
