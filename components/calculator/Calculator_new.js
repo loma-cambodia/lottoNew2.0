@@ -776,7 +776,7 @@ const Calculator = ({ _transactions, _auth }) => {
 
   // console.log('witchTypesOf(number)',witchTypesOf(number));
   return (
-    <section className="bg-light custom-padding h-100">
+    <section className="bg-light custom-padding h-100 pt-5">
       <div className="container">
         <div className="heading-part text-center mb-4">
           {/* <h5 className="text-uppercase fw-bold">{t('how_to')}</h5> */}
@@ -1144,7 +1144,7 @@ const Calculator = ({ _transactions, _auth }) => {
                           </div>
                         </>
                         <div className="row">
-                          <div className="col-5 mt-2">
+                          <div className="col-6 mt-2">
                             <div
                               className=""
                             >
@@ -1158,8 +1158,12 @@ const Calculator = ({ _transactions, _auth }) => {
                                     className="btn rounded-full mt-2 btn-clr"
                                     style={{
                                       fontWeight: "600",
-                                      border:"1px solid grey",
-                                      color:'grey'
+                                      border:"0px",
+                                      backgroundImage: '-webkit-linear-gradient( 90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100% )',
+                                      color:'black',
+                                      minWidth:'94.11px',
+                                      minHeight: '38px',
+                                      fontFamily: "Open Sans"
                                     }}
                                   >
                                     {t('clear')}
@@ -1168,7 +1172,7 @@ const Calculator = ({ _transactions, _auth }) => {
                               </div>
                             </div>
                           </div>
-                          <div className="col-7 mt-2">
+                          <div className="col-6 mt-2">
                             <div
                               className=""
                             >
@@ -1184,6 +1188,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                     style={{
                                       fontWeight: "600",
                                       background: "#c22361",
+                                      fontFamily: "Open Sans"
                                     }}
                                   >
                                     {t('Calculate')}
