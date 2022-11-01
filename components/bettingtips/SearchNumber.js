@@ -371,10 +371,9 @@ export default function SearchNumber({
     {
       firstTableData &&
         firstTableData.map((value) => {
-          let findPrice = false;
           let keys = Object.keys(value);
           keys.map((game1) => {
-            if (value[game1] == numberM && findPrice == false) {
+            if (value[game1] == numberM) {
               mainNum = value[game1];
               let totalCounts = getCountsPrizeSetComm(game1);
               console.log("totalCounts", totalCounts.st1);
@@ -389,7 +388,6 @@ export default function SearchNumber({
               LastDrawDate = moment(value.fetching_date).format("DD/MM/YYYY");
               LastDrawDay = moment(value.fetching_date).format("ddd");
               LastGameId = value.game_play_id;
-              findPrice = true;
             }
           });
         });
@@ -1150,26 +1148,21 @@ export default function SearchNumber({
                               let prizeType = "";
                               let betNum = "";
                               let keys = Object.keys(value);
-                              let findValue = false;
                               keys.map((game1) => {
                                 if (permutationData.length > 0) {
                                   permutationData.map((pdata) => {
-                                    if (value[game1] == pdata && findValue == false) {
+                                    if (value[game1] == pdata) {
                                       prizeType = game1;
                                       betNum = value[game1];
-                                      findValue = true
                                     }
                                   });
                                 } else {
-                                  if (value[game1] == numberM && findValue == false) {
-                                      prizeType = game1;
-                                      findValue = true
-                                      betNum = value[game1];
+                                  if (value[game1] == numberM) {
+                                    prizeType = game1;
+                                    betNum = value[game1];
                                   }
                                 }
                               });
-                              /* console.log('index no perm number ', numberM)
-                              console.log('index no perm prizeType ', prizeType) */
                               return (
                                 <>
                                   <tr>

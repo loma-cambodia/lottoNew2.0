@@ -19,7 +19,7 @@ export const serachBettingTips = (getData,token="") => async (dispatch) => {
   let pri = ""
 
     prize.forEach((cpny2, index2) => {
-      pri = pri + `&company[${index2}]=${cpny2}`
+      pri = pri + `&prize[${index2}]=${cpny2}`
     });
 
 
