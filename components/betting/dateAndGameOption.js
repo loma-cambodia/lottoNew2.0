@@ -15,7 +15,6 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
         var dayName = days[d.getDay()];
         return dayName
     }
-    console.log("initData",initData)
     const findArrayIndex = (arr,gId) =>{
 
 
