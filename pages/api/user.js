@@ -2,6 +2,8 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 function handler(req, res, session) {
   const user = req.session.user;
+
+  console.log('Section: user":',user);
   res.send({ user });
 }
 
