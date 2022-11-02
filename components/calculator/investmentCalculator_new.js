@@ -61,8 +61,6 @@ const Calculator = ({ _transactions, _auth }) => {
       three: 280,
     },
   });
-
-  console.log("currentMarket: ", price);
   const checkPalindrome = (string) => {
     const len = string.length;
     for (let i = 0; i < len / 2; i++) {
@@ -584,8 +582,6 @@ const Calculator = ({ _transactions, _auth }) => {
     setSelectedMarket(onLoadCompany);
   };
 
-  console.log("price: ", price);
-  console.log("result: ", result);
 
   return (
     <section className="bg-light custom-padding">
@@ -615,7 +611,6 @@ const Calculator = ({ _transactions, _auth }) => {
                                   <ul id="checkboxes" className="list-inline">
 
                                       {oddSet.map((item, index)=>{
-                                        console.log('itemitemitem',item);
                                         return(
                                           <>
                                             <li key={index} className=" list-inline-item">
