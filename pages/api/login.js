@@ -35,6 +35,7 @@ async function handler(req, res) {
   const data = await userData.json();
 
   console.log('data:',`${data}`);
+  console.log(data);
 
   if (data.success == true) {
     req.session.user = data
