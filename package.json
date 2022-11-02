@@ -6,10 +6,11 @@
     "dev": "next dev",
     "localhost": "next dev",
     "staging": "next -p 81",
-    "stagingbuild": "next start -p 81",
+    "stagingstart": "next start -p 81",
     "live": "next -p 80",
+    "livestart": "next start -p 80",
     "build": "next build",
-    "start": "next start -p 81",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
