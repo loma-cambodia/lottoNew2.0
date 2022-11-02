@@ -575,6 +575,7 @@ export default function SearchNumber({
                         required
                         autoComplete="off"
                         value={number && !search ? number : ""}
+                        title={t("Number")}
                       />
                     </FormGroup>
                   </Col>
@@ -1160,7 +1161,7 @@ export default function SearchNumber({
                                     <PrizeSetComm prizeType={prizeType} />
                                   </td>
                                   <td>{value.reference_number}</td>
-                                  <td>#{value.reference_number.split("/")[0]}</td>
+                                  <td>#{value.id}</td>
                                   <td>
                                     {moment(value.fetching_date).format("DD/MM/YYYY")}
                                   </td>
