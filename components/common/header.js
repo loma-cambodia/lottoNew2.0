@@ -27,9 +27,6 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
 
    let language = '';
 
-   console.log('Header:state:',state);
-   console.log('Header:datauser:',datauser);
-
    if(auth && auth.lang){
     language = auth.lang;
    }else {
