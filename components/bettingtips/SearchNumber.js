@@ -33,7 +33,6 @@ export default function SearchNumber({
 }) {
   const bettingTip = _bettingTip;
   let loading = _isLoading;
-  // console.log('bettingTipbettingTip',bettingTip)
   const { t } = useTranslation();
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -209,7 +208,6 @@ export default function SearchNumber({
         }
       });
     }
-    // console.log('objectobject',prizes);
     // return false;
     const searchPostData = {
       number: number,
@@ -377,7 +375,6 @@ export default function SearchNumber({
             if (game1 != 'id' && value[game1] == numberM) {
               mainNum = value[game1];
               let totalCounts = getCountsPrizeSetComm(game1);
-              // console.log("totalCounts", totalCounts.Con);
               st1m = parseInt(st1m) + parseInt(totalCounts.st1);  
               nd2m = parseInt(nd2m) + parseInt(totalCounts.nd2);
               rd3m = parseInt(rd3m) + parseInt(totalCounts.rd3);
@@ -413,7 +410,7 @@ export default function SearchNumber({
             <td>
               <PrizeSetComm prizeType={lastPrize} />
             </td>
-            <td>
+            <td align="center">
               {oddSet.map((game, id) => {
                 if (LastGameId && game.game_play.id == LastGameId) {
                   return (
@@ -425,7 +422,7 @@ export default function SearchNumber({
                           width: "20px",
                           height: "20px",
                           borderRadius: "50%",
-                        }}
+                        }} 
                       />
                     </span>
                   );
@@ -578,6 +575,7 @@ export default function SearchNumber({
                         required
                         autoComplete="off"
                         value={number && !search ? number : ""}
+                        title={t("Number")}
                       />
                     </FormGroup>
                   </Col>
@@ -1117,7 +1115,7 @@ export default function SearchNumber({
                 </Container>
                 <Container>
                   <div className="table-responsive">
-                    <table className="table table-striped table-sm small table-bordered">
+                    <table className="table table-striped table-sm small table-bordered text-center">
                       <thead className="bg-dark text-white">
                         <tr>
                           <th>{t('No')}</th>
@@ -1163,7 +1161,7 @@ export default function SearchNumber({
                                     <PrizeSetComm prizeType={prizeType} />
                                   </td>
                                   <td>{value.reference_number}</td>
-                                  <td>#{value.reference_number.split("/")[0]}</td>
+                                  <td>#{value.id}</td>
                                   <td>
                                     {moment(value.fetching_date).format("DD/MM/YYYY")}
                                   </td>
@@ -1211,7 +1209,7 @@ export default function SearchNumber({
                 </Container>
                 <Container>
                   <div className="table-responsive">
-                    <table className="table table-striped table-sm small table-bordered">
+                    <table className="table table-striped table-sm small table-bordered text-center">
                       <thead className="bg-dark text-white">
                         <tr>
                           <th>{t('Number')}</th>
@@ -1226,7 +1224,7 @@ export default function SearchNumber({
                           <th>{t('LastDraw')}</th>
                           <th>{t('Day')}</th>
                           <th>{t('Prize')}</th>
-                          <th>{t('Source')}</th>
+                          <th className="text-center">{t('Source')}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -1272,7 +1270,6 @@ export default function SearchNumber({
                                       });
                                     });
                                 }
-                                console.log('ConmConm',totalCounts)
                                 mainst1m = mainst1m + st1m;
                                 mainnd2m = mainnd2m + nd2m;
                                 mainrd3m = mainrd3m + rd3m;
@@ -1297,7 +1294,7 @@ export default function SearchNumber({
                                     <td>
                                       <PrizeSetComm prizeType={lastPrize} />
                                     </td>
-                                    <td>
+                                    <td align="center">
                                       {oddSet.map((game, id) => {
                                         if (
                                           LastGameId &&
