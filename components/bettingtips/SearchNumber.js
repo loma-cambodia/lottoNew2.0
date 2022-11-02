@@ -837,15 +837,7 @@ export default function SearchNumber({
                                 className="form-check-label"
                                 htmlFor={"flexCheckDefault2" + prize.id}
                               >
-                                {prize.id == 3 ? (
-                                  <>
-                                    <span className="badge bg-primary">
-                                      {t(prize.name)}
-                                    </span>
-                                  </>
-                                ) : (
-                                  t(prize.name)
-                                )}
+                                 {t(prize.name)}
                               </label>
                             </div>
                           </li>
