@@ -1113,7 +1113,7 @@ export default function SearchNumber({
                     </Col>
                   </Row>
                 </Container>
-                <Container>
+                <Container>   
                   <div className="table-responsive">
                     <table className="table table-striped table-sm small table-bordered text-center">
                       <thead className="bg-dark text-white">
