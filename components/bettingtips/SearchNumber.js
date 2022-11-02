@@ -33,7 +33,6 @@ export default function SearchNumber({
 }) {
   const bettingTip = _bettingTip;
   let loading = _isLoading;
-  // console.log('bettingTipbettingTip',bettingTip)
   const { t } = useTranslation();
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -209,7 +208,6 @@ export default function SearchNumber({
         }
       });
     }
-    // console.log('objectobject',prizes);
     // return false;
     const searchPostData = {
       number: number,
@@ -377,7 +375,6 @@ export default function SearchNumber({
             if (game1 != 'id' && value[game1] == numberM) {
               mainNum = value[game1];
               let totalCounts = getCountsPrizeSetComm(game1);
-              // console.log("totalCounts", totalCounts.Con);
               st1m = parseInt(st1m) + parseInt(totalCounts.st1);  
               nd2m = parseInt(nd2m) + parseInt(totalCounts.nd2);
               rd3m = parseInt(rd3m) + parseInt(totalCounts.rd3);
@@ -1272,7 +1269,6 @@ export default function SearchNumber({
                                       });
                                     });
                                 }
-                                console.log('ConmConm',totalCounts)
                                 mainst1m = mainst1m + st1m;
                                 mainnd2m = mainnd2m + nd2m;
                                 mainrd3m = mainrd3m + rd3m;

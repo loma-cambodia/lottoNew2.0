@@ -282,7 +282,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
                       <Link href="/searchNumber" >{t('Betting Tips')}</Link>
                     </li> */}
                     
-                    <li class="submenu-mobile">
+                    <li className="submenu-mobile">
                     <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"
                     className= {`${router.pathname === "/calculator" || router.pathname === "/searchNumber" ? "active-header-mobile":""}`}>{t('Utility')} </a>
                           <div className="collapse" id="collapseExample">
