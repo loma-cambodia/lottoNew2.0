@@ -86,7 +86,6 @@ export const announcement = (token = '') => async (dispatch) => {
       type: 'ANNOUNCEMENT_DETAILS',
       payload: res.data,
     })
-    console.log("ANNOUNCEMENT_DETAILS",res)
   } catch (e) {
     dispatch({
       type: 'USERS_ERROR',
@@ -106,7 +105,6 @@ export const specialDraw = (token ='') => async (dispatch) => {
       type: 'SPECIALDRAW_DETAILS',
       payload: res.data,
     })
-    console.log("SPECIALDRAW_DETAILS",res)
   } catch (e) {
     dispatch({
       type: 'USERS_ERROR',
