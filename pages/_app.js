@@ -68,13 +68,10 @@ function MyApp({ Component, pageProps,user }) {
   
   axios.interceptors.response.use(
     response => {
-      console.log('interceptor ivoked - response', response)
       return response
     },
     async function (error) {
       const originalRequest = error.config
-      console.log('interceptor ivoked - response error.response.status', error.response.status)
-  
       if (error.response.status === 401) {
         console.log('auAuthrized code');
         userLogout()
@@ -83,11 +80,10 @@ function MyApp({ Component, pageProps,user }) {
     }
   )
 
-  useEffect(()=>{
-    //console.log('ideal State')
-  },[isIdleData, data])
+  // useEffect(()=>{
+ 
+  // },[isIdleData, data])
 
-  //console.log('data.user.data:',data.user.data);
   const onIdle = () => {
     setIdleData(true)
     //userLogoutPopUp()
@@ -143,11 +139,9 @@ function MyApp({ Component, pageProps,user }) {
   const userLogout = () => {
 
     let member_id = data && data.user && data.user.data && data.user.data.id ? data.user.data.id : 0;
-   // console.log('member_id":',member_id);
     fetch(`/api/logout?member_id=${member_id}`)
       .then((res) => {
         let response = res.json();
-       // console.log('userLogout:res:',res);
         setData({user:{data:{}}})
         dispatch({
           type: "AUTH_LOGOUT"
