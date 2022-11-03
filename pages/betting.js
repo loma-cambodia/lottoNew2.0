@@ -43,11 +43,9 @@ export default function Betting({datauser, updateSessionData, setUpdateSessionDa
        "language":   state && state.auth && state.auth.lang  ? state.auth.lang : datauser && datauser.user && datauser.user.data && datauser.user.data.language &&  datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
       } 
       if(objectWithData.customer_id != 0){
-        dispatch(getLogin(objectWithData));
+      //  dispatch(getLogin(objectWithData));
       }
-      }, [datauser])
-
-      ;
+      }, [datauser]);
 
 
       let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
