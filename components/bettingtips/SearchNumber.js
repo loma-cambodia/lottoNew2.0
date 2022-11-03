@@ -249,17 +249,17 @@ export default function SearchNumber({
     setEndDate(new Date());
   };
 
-  const getNetDrawDate = () => {
-    let numberCount =
-      mainCard && mainCard.avg_draw_gap ? mainCard.avg_draw_gap : 0;
-    if (numberCount != 0) {
-      const countNumber = numberCount * 3;
-      let maxDate = moment().add("days", countNumber).format("DD/MM/YYYY");
-      return maxDate;
-    } else {
-      return "--";
-    }
-  };
+  // const getNetDrawDate = () => {
+  //   let numberCount =
+  //     mainCard && mainCard.avg_draw_gap ? mainCard.avg_draw_gap : 0;
+  //   if (numberCount != 0) {
+  //     const countNumber = numberCount;
+  //     let maxDate = moment().add("days", countNumber).format("DD/MM/YYYY");
+  //     return maxDate;
+  //   } else {
+  //     return "--";
+  //   }
+  // };
   function PrizeSetComm({ prizeType }) {
     let prizeTypeStyle = "";
     let prizeTypeY = "";
@@ -1095,7 +1095,10 @@ export default function SearchNumber({
                             </div>
                             <div className="widget-text">
                               <p className="fw-bold mb-0 fs-5">
-                                <b>{getNetDrawDate()}</b>
+                                <b>
+                                  {/* {getNetDrawDate()}  */}
+                                  {mainCard && mainCard.estimate_next_draw_date ? mainCard.estimate_next_draw_date : 0}
+                                </b>
                               </p>
                               <p className="mb-0 fs-6">{t('Estimate_Next_Draw_Date')}</p>
                             </div>
