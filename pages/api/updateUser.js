@@ -51,7 +51,7 @@ export default withIronSessionApiRoute(handler, {
   cookieName: 'myapp_cookiename',
   cookieOptions: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: false,
     sameSite: 'lax',
     maxAge: ttl === 0 ? 2147483647 : ttl,
     path: '/',
