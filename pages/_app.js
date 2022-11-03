@@ -122,17 +122,15 @@ function MyApp({ Component, pageProps,user }) {
   })
   useEffect(() => {
     fetch('/api/user')
-      .then((res) => {
-      console.log('then: ',res.json())
-        res.json()
-      
-      })
+      .then((res) => res.json())
       .then((data) => {
         let newData = {};
       if(data && data.user && data.user.data){
         newData = setUserDataFormat(data);
       }
-      console.log('then then: ',newData)
+      console.log('then then data: ',data)
+      console.log('then then newData: ',newData)
+
         setData({user:{data:newData}});
         localStorage.setItem("kk_lotto_token", newData.token)
       })
