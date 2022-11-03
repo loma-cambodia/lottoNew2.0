@@ -134,6 +134,7 @@ function MyApp({ Component, pageProps,user }) {
         setData({user:{data:newData}});
         localStorage.setItem("kk_lotto_token", newData.token)
       })
+      location.reload();
   }, [updateSessionData])
 
   const userLogout = () => {
