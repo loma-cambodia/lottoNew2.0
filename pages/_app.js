@@ -35,7 +35,7 @@ export const getServerSideProps = withIronSessionSsr(
     password: "complex_password_at_least_32_characters_long",
     // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
     cookieOptions: {
-      secure: process.env.NODE_ENV === "production",
+      secure: false,
     },
   },
 );
@@ -126,13 +126,18 @@ function MyApp({ Component, pageProps,user }) {
       .then((data) => {
         let newData = {};
       if(data && data.user && data.user.data){
-
-
-
         newData = setUserDataFormat(data);
       }
+      
+      console.log('then then data: ',data)
+      console.log('then then newData: ',newData)
+
         setData({user:{data:newData}});
         localStorage.setItem("kk_lotto_token", newData.token)
+        if(typeof localStorage.getItem('reload') === "undefined"){
+          localStorage.setItem("reload", true)
+          location.reload();
+        }
       })
   }, [updateSessionData])
 
