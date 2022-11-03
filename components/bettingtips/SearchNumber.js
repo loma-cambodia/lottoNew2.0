@@ -253,7 +253,7 @@ export default function SearchNumber({
     let numberCount =
       mainCard && mainCard.avg_draw_gap ? mainCard.avg_draw_gap : 0;
     if (numberCount != 0) {
-      const countNumber = numberCount * 3;
+      const countNumber = numberCount;
       let maxDate = moment().add("days", countNumber).format("DD/MM/YYYY");
       return maxDate;
     } else {
