@@ -13,13 +13,13 @@ const SettleBanner = () => {
             <div className="breadcrumb-heading">
                 <h1>{t('betting_history')} </h1>
             </div>
-            <div className="breadcrumb-list">
+            {/* <div className="breadcrumb-list">
                 <ul>
                     <li>
                         <span>{t('Homepage')} / {t('betting_history')}</span>
                     </li>
                 </ul>
-            </div>
+            </div> */}
         </div>
     </section>
         {/*--Breadcrumb--*/}
