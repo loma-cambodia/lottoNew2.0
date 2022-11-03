@@ -48,6 +48,8 @@ function MyApp({ Component, pageProps,user }) {
   const [isIdleData,setIdleData] = useState(false)
   let timeoutSetting = logoutTimeInIdealCondition * 60 * 1000;
 
+  console.log('MyApp:');
+
   axios.interceptors.request.use(
     
     config => {
