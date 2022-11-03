@@ -120,6 +120,7 @@ function MyApp({ Component, pageProps,user }) {
     syncTimers: 200,
     leaderElection: false
   })
+
   useEffect(() => {
     fetch('/api/user')
       .then((res) => res.json())
@@ -128,16 +129,14 @@ function MyApp({ Component, pageProps,user }) {
       if(data && data.user && data.user.data){
         newData = setUserDataFormat(data);
       }
-      
-      console.log('then then data: ',data)
-      console.log('then then newData: ',newData)
-
+        console.log('useEffect:data: ',data)
+        console.log('useEffect:newData:',newData)
         setData({user:{data:newData}});
         localStorage.setItem("kk_lotto_token", newData.token)
-        if(typeof localStorage.getItem('reload') === "undefined"){
-          localStorage.setItem("reload", true)
-          location.reload();
-        }
+       // if(typeof localStorage.getItem('reload') === "undefined"){
+        //  localStorage.setItem("reload", true)
+         // location.reload();
+        //}
       })
   }, [updateSessionData])
 
