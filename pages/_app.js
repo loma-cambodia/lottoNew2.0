@@ -133,6 +133,11 @@ function MyApp({ Component, pageProps,user }) {
 
         setData({user:{data:newData}});
         localStorage.setItem("kk_lotto_token", newData.token)
+        if(localStorage.getItem('reload') == undefined){
+          localStorage.setItem("reload", true)
+          location.reload();
+        }
+        
       })
       location.reload();
   }, [updateSessionData])
