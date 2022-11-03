@@ -10,12 +10,12 @@ const Banner2 = () => {
             <div className="breadcrumb-heading">
                 <h1 className="text-uppercase">{t('Past_Draw_Result')}</h1>
             </div>
-            <div className="breadcrumb-list">
+            {/* <div className="breadcrumb-list">
                 <ul>
                 
                 <li><span>{t('Homepage')} / {t('Past_Draw_Result')}</span></li>
                 </ul>
-            </div>
+            </div> */}
         </div>
     </section>
         </>
