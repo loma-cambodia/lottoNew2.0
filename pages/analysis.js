@@ -31,11 +31,11 @@ export default function SearchNumber({datauser, updateSessionData, setUpdateSess
         if(datauser && datauser.user && datauser.user.data && datauser.user.data.merchant_id)
         dispatch(userTransactionDetails(datauser.user.data.merchant_id,datauser.user.data.token ? datauser.user.data.token : ""));
     }, [datauser,action]);
-    const auth = useSelector(state => state.auth);
+    const auth = useSelector(state => state.auth)
     let transactions = state && state.auth && state.auth.transactions ? state.auth.transactions : {};
     let isLoading = state && state.bettingTips && state.bettingTips.loading ? state.bettingTips.loading : false;
     return ( 
-        <>
+        <> 
             <Head> 
                 <title>{t('tittle_main')}</title>          
             </Head>

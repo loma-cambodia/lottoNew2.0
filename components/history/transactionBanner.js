@@ -13,11 +13,11 @@ const TransactionBanner = () => {
                 <div className="breadcrumb-heading">
                     <h1>{t('Transaction_Details')}</h1>
                 </div>
-                <div className="breadcrumb-list">
+                {/* <div className="breadcrumb-list">
                     <ul>
                         <li><span>{t('Homepage')} / {t('Transaction_Details')}</span></li>
                     </ul>
-                </div>
+                </div> */}
             </div>
         </section>
         {/*--Breadcrumb--*/}

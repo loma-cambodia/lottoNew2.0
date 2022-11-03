@@ -542,7 +542,7 @@ export default function SearchNumber({
           <div className="breadcrumb-heading">
             <h1 className="text-uppercase">{t("Betting_Tips")}</h1>
           </div>
-          <div className="breadcrumb-list">
+          {/* <div className="breadcrumb-list">
             <ul>
               <li>
                 <span>
@@ -550,7 +550,7 @@ export default function SearchNumber({
                 </span>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </section>
       <section className="search-number custom-padding">
