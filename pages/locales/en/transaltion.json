@@ -193,7 +193,7 @@
     "September":"September",
     "October":"October",
     "November":"November",
-    "December":"December",
+    "December":"December", 
  
     "Please_choose_at_least_one_date_selection":"Please select the draw date",
     "Please_select_game_first":"Please select company ",
@@ -312,7 +312,10 @@
     "DrawGap":"Draw Gap",
     "Utility":"Utility",
     "Please_select_Permutation":"Please select Permutation",
-    "LastDraw":"Last Draw"
+    "LastDraw":"Last Draw",
+    "Yes":"Yes",
+    "Not":"No",
+    "Please_Enter_Bet_Number":"Please Enter Bet Number"
 
 
 }
