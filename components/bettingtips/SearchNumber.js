@@ -410,7 +410,7 @@ export default function SearchNumber({
             <td>
               <PrizeSetComm prizeType={lastPrize} />
             </td>
-            <td>
+            <td align="center">
               {oddSet.map((game, id) => {
                 if (LastGameId && game.game_play.id == LastGameId) {
                   return (
@@ -422,7 +422,7 @@ export default function SearchNumber({
                           width: "20px",
                           height: "20px",
                           borderRadius: "50%",
-                        }}
+                        }} 
                       />
                     </span>
                   );
@@ -575,6 +575,7 @@ export default function SearchNumber({
                         required
                         autoComplete="off"
                         value={number && !search ? number : ""}
+                        title={t("Number")}
                       />
                     </FormGroup>
                   </Col>
@@ -836,15 +837,7 @@ export default function SearchNumber({
                                 className="form-check-label"
                                 htmlFor={"flexCheckDefault2" + prize.id}
                               >
-                                {prize.id == 3 ? (
-                                  <>
-                                    <span className="badge bg-primary">
-                                      {t(prize.name)}
-                                    </span>
-                                  </>
-                                ) : (
-                                  t(prize.name)
-                                )}
+                                 {t(prize.name)}
                               </label>
                             </div>
                           </li>
@@ -1112,9 +1105,9 @@ export default function SearchNumber({
                     </Col>
                   </Row>
                 </Container>
-                <Container>
+                <Container>   
                   <div className="table-responsive">
-                    <table className="table table-striped table-sm small table-bordered">
+                    <table className="table table-striped table-sm small table-bordered text-center">
                       <thead className="bg-dark text-white">
                         <tr>
                           <th>{t('No')}</th>
@@ -1160,7 +1153,7 @@ export default function SearchNumber({
                                     <PrizeSetComm prizeType={prizeType} />
                                   </td>
                                   <td>{value.reference_number}</td>
-                                  <td>#{value.reference_number.split("/")[0]}</td>
+                                  <td>#{value.id}</td>
                                   <td>
                                     {moment(value.fetching_date).format("DD/MM/YYYY")}
                                   </td>
@@ -1208,7 +1201,7 @@ export default function SearchNumber({
                 </Container>
                 <Container>
                   <div className="table-responsive">
-                    <table className="table table-striped table-sm small table-bordered">
+                    <table className="table table-striped table-sm small table-bordered text-center">
                       <thead className="bg-dark text-white">
                         <tr>
                           <th>{t('Number')}</th>
@@ -1223,7 +1216,7 @@ export default function SearchNumber({
                           <th>{t('LastDraw')}</th>
                           <th>{t('Day')}</th>
                           <th>{t('Prize')}</th>
-                          <th>{t('Source')}</th>
+                          <th className="text-center">{t('Source')}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -1293,7 +1286,7 @@ export default function SearchNumber({
                                     <td>
                                       <PrizeSetComm prizeType={lastPrize} />
                                     </td>
-                                    <td>
+                                    <td align="center">
                                       {oddSet.map((game, id) => {
                                         if (
                                           LastGameId &&

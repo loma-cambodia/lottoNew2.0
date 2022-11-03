@@ -311,7 +311,8 @@
     "Source":"Source",
     "DrawGap":"Draw Gap",
     "Utility":"Utility",
-    "Please_select_Permutation":"Please select Permutation"
+    "Please_select_Permutation":"Please select Permutation",
+    "LastDraw":"Last Draw"
 
 
 }
