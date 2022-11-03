@@ -128,18 +128,17 @@ function MyApp({ Component, pageProps,user }) {
       if(data && data.user && data.user.data){
         newData = setUserDataFormat(data);
       }
+      
       console.log('then then data: ',data)
       console.log('then then newData: ',newData)
 
         setData({user:{data:newData}});
         localStorage.setItem("kk_lotto_token", newData.token)
-        if(localStorage.getItem('reload') == undefined){
+        if(typeof localStorage.getItem('reload') === "undefined"){
           localStorage.setItem("reload", true)
           location.reload();
         }
-        
       })
-      location.reload();
   }, [updateSessionData])
 
   const userLogout = () => {
