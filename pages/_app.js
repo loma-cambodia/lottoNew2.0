@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import axios from 'axios';
 import LogoutModal from "../components/modal/logoutModal";
+import {getLogin} from '../store/actions/authActions';
 
 let logoutTimeInIdealCondition = process.env.logoutTimeInIdealCondition;
 
@@ -139,6 +140,20 @@ function MyApp({ Component, pageProps,user }) {
         //  localStorage.setItem("reload", true)
          // location.reload();
         //}
+
+        newData.language.locale
+
+         let objectWithData = {
+           "customer_name":  newData && newData.customer_name ? newData.customer_name : '',
+           "customer_id":  newData && newData.customer_id ? newData.customer_id : 0,
+           "merchant_id":  newData && newData.merchant_id ? newData.merchant_id : 0,
+          "language":   newData && newData.language && newData.language.locale ? newData.language.locale : 'en'
+         } 
+
+         if(objectWithData.customer_id != 0){
+           dispatch(getLogin(objectWithData));
+         }
+
       })
   }, [updateSessionData])
 
