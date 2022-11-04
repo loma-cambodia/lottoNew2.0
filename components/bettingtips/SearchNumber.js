@@ -141,7 +141,7 @@ export default function SearchNumber({
     let toastId = null;
     if (number.length < 3) {
       if (!toast.isActive(toastId)) {
-        toast.error(t("Please_Enter_Valid_Number"), {
+        toast.error(t("Please_Enter_Bet_Number"), {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -792,7 +792,7 @@ export default function SearchNumber({
                               className="form-check-label"
                               htmlFor="flexRadioDefault1"
                             >
-                              Yes
+                              {t('Yes')}
                             </label>
                           </div>
                         </li>
@@ -811,7 +811,7 @@ export default function SearchNumber({
                               className="form-check-label"
                               htmlFor="flexRadioDefault2"
                             >
-                              No
+                              {t('Not')}
                             </label>
                           </div>
                         </li>
