@@ -1127,7 +1127,7 @@
     line-height: 15px;
     }
     span.selected-gp-btn {
-    border-color: #bc2263;
+    border-color: #bc2263 !important;
     }
     .select-gp ul {
     margin: 0;

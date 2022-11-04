@@ -13,12 +13,11 @@ const Banner = () => {
                 <div className="breadcrumb-heading">
                     <h1>{t('Betting')}</h1>
                 </div>
-                <div className="breadcrumb-list">
-                    {/*ddsdsshd */}
+                {/* <div className="breadcrumb-list">
                     <ul>
                         <li><span>{t('Homepage')} / {t('Betting')}</span></li>
                     </ul>
-                </div>
+                </div> */}
             </div>
         </section>
         {/*--Breadcrumb--*/}

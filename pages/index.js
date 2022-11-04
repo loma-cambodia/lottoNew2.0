@@ -20,9 +20,7 @@ export default function Home({datauser, updateSessionData, setUpdateSessionData}
   const [active, setActive] = useState(false);
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
   const state = useSelector(state => state);
-
 
 useEffect(() => {
   dispatch(announcement(datauser.user.data.token ? datauser.user.data.token : ""));

@@ -10,12 +10,12 @@ const Banner = () => {
             <div className="breadcrumb-heading">
                 <h1 className="text-uppercase">{t('winning_list')}</h1>
             </div>
-            <div className="breadcrumb-list">
+            {/* <div className="breadcrumb-list">
                 <ul>
                 
                 <li><span>{t('Homepage')} / {t('winning_list')}</span></li>
                 </ul>
-            </div>
+            </div> */}
         </div>
     </section>
         </>

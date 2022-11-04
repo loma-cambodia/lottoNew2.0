@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import axios from 'axios';
 import LogoutModal from "../components/modal/logoutModal";
+import {getLogin} from '../store/actions/authActions';
 
 let logoutTimeInIdealCondition = process.env.logoutTimeInIdealCondition;
 
@@ -35,7 +36,7 @@ export const getServerSideProps = withIronSessionSsr(
     password: "complex_password_at_least_32_characters_long",
     // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
     cookieOptions: {
-      secure: process.env.NODE_ENV === "production",
+      secure: false,
     },
   },
 );
@@ -47,6 +48,8 @@ function MyApp({ Component, pageProps,user }) {
   const [updateSessionData, setUpdateSessionData] = useState(1);
   const [isIdleData,setIdleData] = useState(false)
   let timeoutSetting = logoutTimeInIdealCondition * 60 * 1000;
+
+  console.log('MyApp:');
 
   axios.interceptors.request.use(
     
@@ -120,19 +123,37 @@ function MyApp({ Component, pageProps,user }) {
     syncTimers: 200,
     leaderElection: false
   })
+
   useEffect(() => {
     fetch('/api/user')
       .then((res) => res.json())
       .then((data) => {
         let newData = {};
       if(data && data.user && data.user.data){
-
-
-
         newData = setUserDataFormat(data);
       }
+        console.log('useEffect:data: ',data)
+        console.log('useEffect:newData:',newData)
         setData({user:{data:newData}});
         localStorage.setItem("kk_lotto_token", newData.token)
+       // if(typeof localStorage.getItem('reload') === "undefined"){
+        //  localStorage.setItem("reload", true)
+         // location.reload();
+        //}
+
+        newData.language.locale
+
+         let objectWithData = {
+           "customer_name":  newData && newData.customer_name ? newData.customer_name : '',
+           "customer_id":  newData && newData.customer_id ? newData.customer_id : 0,
+           "merchant_id":  newData && newData.merchant_id ? newData.merchant_id : 0,
+          "language":   newData && newData.language && newData.language.locale ? newData.language.locale : 'en'
+         } 
+
+         if(objectWithData.customer_id != 0){
+           dispatch(getLogin(objectWithData));
+         }
+
       })
   }, [updateSessionData])
 
