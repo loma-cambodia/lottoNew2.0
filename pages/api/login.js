@@ -22,7 +22,7 @@ async function handler(req, res) {
     objectWithData.language = req.body.language;
    }
 
-   console.log('mamber login url:',`${process.env.apiUrl}/member-login`);
+  // console.log('mamber login url:',`${process.env.apiUrl}/member-login`);
 
   const userData = await fetch(`${process.env.apiUrl}/member-login`, {
     method: 'POST',
@@ -42,7 +42,7 @@ async function handler(req, res) {
     await req.session.save();
     //res.redirect(307, '/')
     res.redirect(301, '/');
-    location.reload();
+   // location.reload();
     res.send('You are Logged in, Please Go back')
   } else {
     res.send('Worng Data')

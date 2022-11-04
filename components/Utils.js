@@ -50,7 +50,9 @@ export const setUserDataFormat = (data, fromWindow = 1) => {
   newData.wallet = getData && getData.wallet && getData.wallet.amount ? {amount:getData.wallet.amount, name:getData.language.name} : {amount:'', name:''} ;
   newData.merchant = getData && getData.merchant && getData.merchant.currency && getData.merchant.currency.code ? {currency:{code:getData.merchant.currency.code}} : {} ;
   if(fromWindow == 1 || fromWindow == 3)
-   newData.token = getData && getData.token ? getData.token : "" ;
+ newData.token = getData && getData.token ? getData.token : "" ;
+ //if(fromWindow == 1)
+  // newData.token = getData && getData.token ? getData.token : "" ;
 
 
 // console.log('getDatagetData',newData.token)

@@ -132,8 +132,8 @@ function MyApp({ Component, pageProps,user }) {
       if(data && data.user && data.user.data){
         newData = setUserDataFormat(data);
       }
-        console.log('useEffect:data: ',data)
-        console.log('useEffect:newData:',newData)
+       // console.log('useEffect:data: ',data)
+       // console.log('useEffect:newData:',newData)
         setData({user:{data:newData}});
         localStorage.setItem("kk_lotto_token", newData.token)
        // if(typeof localStorage.getItem('reload') === "undefined"){
@@ -141,7 +141,6 @@ function MyApp({ Component, pageProps,user }) {
          // location.reload();
         //}
 
-        newData.language.locale
 
          let objectWithData = {
            "customer_name":  newData && newData.customer_name ? newData.customer_name : '',
