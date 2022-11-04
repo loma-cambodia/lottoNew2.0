@@ -28,19 +28,24 @@ const Table = props => {
      const customStyles = {
         rows: {
             style: {
-                minWidth: 'fit-content', // override the row height
+                minWidth: 'fit-content',
+                paddingTop: '10px',
+                paddingBottom: '10px',
             },
         },
         headCells: {
             style: {
-                paddingLeft: '8px', // override the cell padding for head cells
-                paddingRight: '8px',
+                paddingLeft: '4px', // override the cell padding for head cells
+                paddingRight: '4px',
+                maxWidth: 'fit-content',
+
             },
         },
         cells: {
             style: {
-                paddingLeft: '8px', // override the cell padding for data cells
-                paddingRight: '8px',
+                paddingLeft: '4px', // override the cell padding for data cells
+                paddingRight: '4px',
+                maxWidth: 'fit-content',
             },
         },
     };
@@ -48,10 +53,11 @@ const Table = props => {
         {
             name: 'No',
             cell: (row, index) => index+1,
+            sortable: true
         },
         {
             name: t('Detail_Number'),
-            selector: "child_ticket_no",
+            selector: row => row.child_ticket_no,
             sortable: true
         },
         {
@@ -66,59 +72,60 @@ const Table = props => {
         },
         {
             name: t('game'),
-            selector: "game_type",
+            selector: row=>row.game_type,
             sortable: true,
         },
         {
             name: t('Company'),
             sortable: true,
+            selector:row => row.game.name ? row.game.name : "",
             cell:row => row.game.name ? row.game.name : ""
         },
         {
             name: t('Bet_Number'),
-            selector: "lottery_number",
+            selector: row=>row.lottery_number,
             sortable: true,
         },
         {
         name: t('Big'),
-        selector: "big_bet_amount",
+        selector: row=>row.big_bet_amount,
         sortable: true,
         },
         {
         name: t('Small_Bet'),
-        selector: "small_bet_amount",
+        selector: row=>row.small_bet_amount,
         sortable: true,
         },
         {
         name: "3A",
-        selector: "three_a_amount",
+        selector: row=>row.three_a_amount,
         sortable: true
         },
         {
         name: "3C",
-        selector: "three_c_amount",
+        selector: row=>row.three_c_amount,
         sortable: true,
         },
         {
         name: t('Total'),
-        selector: "bet_amount",
+        selector: row=>row.bet_amount,
         sortable: true,
         },
         {
             name: t('Rebate'),
-            selector: "rebate_amount",
+            selector: row=>row.rebate_amount,
             sortable: true,
 
         },
         {
             name: t('Net'),
-            selector: "bet_net_amount",
+            selector: row => row.bet_net_amount.toFixed(2),
             sortable: true,
 
         },
         {
             name: t('winning'),
-            selector: "winning_amount",
+            selector: row => row.winning_amount.toFixed(2),
             sortable: true,
 
         },
@@ -154,7 +161,6 @@ const Table = props => {
       pagination
       paginationComponentOptions={paginationComponentOptions}
       customStyles={customStyles}  
-      dense  
     />
   );
 };

@@ -9,6 +9,7 @@ import {announcement, userTransactionDetails, winnerResultDetailsSecond, special
 import {getLogin} from '../store/actions/authActions';
 import Calculator from '../components/calculator/investmentCalculator_new';
 import CalculatorOld from '../components/calculator/Calculator_new';
+import ListBanner from '../components/Calculator/BannerCalculator';
 
 export default function Home({datauser, updateSessionData, setUpdateSessionData}) {
   const [active, setActive] = useState(false);
@@ -42,7 +43,7 @@ useEffect(() => {
       </Head>
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 
-    
+      <ListBanner/>
       <CalculatorOld _transactions={transactions} _auth={auth}/>
 
       {/* <Calculator _transactions={transactions} _auth={auth}/>  */}

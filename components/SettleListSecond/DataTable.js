@@ -73,6 +73,7 @@ const Table = props => {
         {
             name: t('Draw_Id'),
             sortable: true,
+            selector: row => row.draw_number,
             cell:row =>row.draw_number
         },
         {
@@ -83,7 +84,8 @@ const Table = props => {
         {
             name: t('Company'),
             sortable: true,
-            cell:row => row.Company
+            selector: row => row.Company,
+            cell: row => row.Company
         },
         {
         name: t('Total'),
@@ -92,7 +94,7 @@ const Table = props => {
         },
         {
             name: t('Rebate'),
-            selector: row => row.Rebate,
+            selector: row => row.bet_net_amount,
             sortable: true,
 
         },
@@ -110,15 +112,15 @@ const Table = props => {
         },
         {
             name: t('Winning_Loss'),
-            selector: row => row.winning_amount + row.bet_net_amount,
+            selector: row => row.winning + row.bet_net_amount,
             sortable: true,
             conditionalCellStyles: [
                 {
-                    when: row => row.winning_amount + row.bet_net_amount > 0,
+                    when: row => row.winning + row.bet_net_amount > 0,
                     style: {color:"green",fontWeight:"bold"}
                 },
                 {
-                    when: row => row.winning_amount + row.bet_net_amount <= 0,
+                    when: row => row.winning + row.bet_net_amount <= 0,
                     style: {color:"red",fontWeight:"bold"},
                 },
                                     ],

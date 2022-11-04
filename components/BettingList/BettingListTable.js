@@ -591,13 +591,13 @@ const handlePageClick = (event) => {
                             <thead>
                                 <tr>
                                     <th>{t('No.')}</th>
-                                    <th className="text-start">{t('Detail_Number')}</th>
+                                    <th className="text-center">{t('Detail_Number')}</th>
                                     {/* <th className="text-start">Detail Number</th> */}
                                     <th className="text-center">{t('Betting_Time')}</th>
                                     <th className="text-center">{t('Draw_Date')}</th>
                                     <th className="text-center">{t('game')}</th>
                                     <th className="text-center">{t('Company')}</th>
-                                    <th className="text-start">{t('Bet_Number')}</th>
+                                    <th className="text-center">{t('Bet_Number')}</th>
 
                                     <th className="text-end">{t('Big_Bet')}</th>
                                     <th className="text-end">{t('Small_Bet')}</th>
@@ -615,12 +615,12 @@ const handlePageClick = (event) => {
                                 {tickets.map((item,id) =>(
                                     <tr key={id}>
                                         <td>{id+1}</td>
-                                        <td className="text-start"><a >{item.child_ticket_no}</a></td>
+                                        <td className="text-center"><a >{item.child_ticket_no}</a></td>
                                         <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td className="text-center">{moment(item.ticket.betting_date ).format('DD-MM-YYYY')}</td>
                                         <td className="text-center">{item.game_type}</td>
-                                        <td className="text-end">{item.game && item.game.name ? item.game.name : ""}</td>
-                                        <td className="text-start">{item.lottery_number}</td>
+                                        <td className="text-center">{item.game && item.game.name ? item.game.name : ""}</td>
+                                        <td className="text-center">{item.lottery_number}</td>
 
                                         <td className="text-end">{MoneyFormatDisplay(item.big_bet_amount,1)}</td>
                                         <td className="text-end">{MoneyFormatDisplay(item.small_bet_amount,1)}</td>

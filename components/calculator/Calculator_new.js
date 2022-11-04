@@ -296,21 +296,17 @@ const Calculator = ({ _transactions, _auth }) => {
         case 3:
           if(c3 || a3){
             setValidate(true)
-            console.log('Validate true')
           }
         break;
 
         case 4:
           if(small || big){
             setValidate(true)
-            console.log('Validate true')
           }
         break;
 
         default:
           setValidate(false)
-          console.log('Validate false')
-
       }
 
 
@@ -552,7 +548,7 @@ const Calculator = ({ _transactions, _auth }) => {
     if (key > 0) setCombo(totalCombo);
     else setCombo(0);
 
-    if (key >= 3) console.log("object: ", object);
+    // if (key >= 3) console.log("object: ", object);
 
     let totalCost =
       parseInt(c3 ? c3 : 0) +
@@ -778,12 +774,12 @@ const Calculator = ({ _transactions, _auth }) => {
   return (
     <section className="bg-light custom-padding h-100 pt-5">
       <div className="container">
-        <div className="heading-part text-center mb-4">
-          {/* <h5 className="text-uppercase fw-bold">{t('how_to')}</h5> */}
+        {/* <div className="heading-part text-center mb-4">
+          <h5 className="text-uppercase fw-bold">{t('how_to')}</h5>
           <h2 className="text-uppercase text-color-main fw-bold">
             {t("Winning_Calculator")}
           </h2>
-        </div>
+        </div> */}
         <div className="clearfix">
           <div className="row justify-conternt-center">
             <div className="col-lg-10 offset-lg-1 col-md-12">
@@ -801,7 +797,7 @@ const Calculator = ({ _transactions, _auth }) => {
                                 <div className="select-gp" id="checkboxes" style={{paddingLeft: '15px',whiteSpace: 'nowrap'}}>
                                   <ul id="checkboxes" className="list-inline">
                                     {oddSet.map((item, index) => {
-                                      console.log("itemitemitem", item);
+                                      // console.log("itemitemitem", item);
                                       return (
                                           <li
                                             key={index}
