@@ -17,12 +17,10 @@ import {updateUserWithSession} from '../../store/actions/authActions';
 import {twoDecimalPlaceWithAmount, twoDecimalPlaceWithoutRound} from './../Utils';
 import LogoutModal from "../modal/logoutModal";
 
-
 const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
 
    const dispatch = useDispatch();
    let auth = _auth;
-
    const state = useSelector(state => state);
 
    let language = '';
@@ -43,8 +41,6 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
   }, [language])
 
  
-
-
 
 
   const changeLangm = (l) => {
