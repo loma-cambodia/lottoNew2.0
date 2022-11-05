@@ -83,6 +83,7 @@ const ResultNew = ({ _setDate,_auth}) => {
   const getSelectedDrawDate = () => {
     
     let dataSubmit = calendarDate;
+    console.log("calendarDate",calendarDate)
     dispatch(
       getResults(dataSubmit,_auth.auth.token ? _auth.auth.token : "", (response) => {
         setIsLoading(false)
@@ -221,6 +222,7 @@ const locale = {
 <DatePicker
                         locale={locale}
                         className="search-number-daterangepickerstyle"
+                        dateFormat="dd/MM/yyyy"
                         // dayClassName={(date) => "react-datepicker__day_sushil"}
                         renderCustomHeader={({
                           date,
@@ -292,6 +294,7 @@ const locale = {
                           // setIsLoading(true)
                           setCalendarDate(date);
                         }}
+                        disabledKeyboardNavigation
                         ref={datepickerRef}
                         onChange={(date) => setCalendarDate(date)}
                       />
