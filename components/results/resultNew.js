@@ -14,7 +14,7 @@ import { getDisplayName } from "next/dist/shared/lib/utils";
 const ResultNew = ({ _setDate,_auth}) => {
   const { t } = useTranslation();
   let lang = _auth.lang
-  const [startDate, setStartDate] = useState(new Date());
+  // const [startDate, setStartDate] = useState(new Date());
   const [highlightedData, setHighlightedData] = useState();
   const [calendarDate, setCalendarDate] = useState();
   const [initResult, setResult] = useState([]);
@@ -120,17 +120,60 @@ const ResultNew = ({ _setDate,_auth}) => {
     datepickerElement.setFocus(true);
   }
 
- let days =  [t('Su'), t('Mo'), t('Tu'), t('We'), t('Th'), t('Fr'), t('Sa')]
-  let  months = [t('January'), t('February'), t('March'), t('April'), t('May'), t('June'), t('July'), t('August'), t('September'), t('October'), t('November'), t('December')]
-  const locale = {
-    localize: {
-      day: n => days[n],
-      month: n => months[n]
-    },
-    formatLong: {
-      date: () => 'mm/dd/yyyy'
-    }
+//  let days =  [t('Su'), t('Mo'), t('Tu'), t('We'), t('Th'), t('Fr'), t('Sa')]
+//   let  months = [t('January'), t('February'), t('March'), t('April'), t('May'), t('June'), t('July'), t('August'), t('September'), t('October'), t('November'), t('December')]
+//   const locale = {
+//     localize: {
+//       day: n => days[n],
+//       month: n => months[n]
+//     },
+//     formatLong: {
+//       date: () => 'mm/dd/yyyy'
+//     }
+//   }
+
+const [startDate, setStartDate] = useState(new Date());
+// const [endDate, setEndDate] = useState(new Date());
+const getYear = (date) => {
+  return moment(date).year();
+};
+const range = (startDate, toDate) => {
+  let rangeArray = [];
+  let dif = toDate - startDate;
+  for (let index = 0; index < dif; index++) {
+    rangeArray.push(startDate + index);
   }
+  return rangeArray;
+};
+const getMonth = (date) => {
+  return moment(date).month();
+};
+const sYears = range(2016, getYear(new Date()) + 1);
+// const eYears = range(moment(startDate).year(), getYear(new Date()) + 1);
+const sMonths = [
+  t("January"),
+  t("February"),
+  t("March"),
+  t("April"),
+  t("May"),
+  t("June"),
+  t("July"),
+  t("August"),
+  t("September"),
+  t("October"),
+  t("November"),
+  t("December"),
+];
+
+let days =  [t('Su'), t('Mo'), t('Tu'), t('We'), t('Th'), t('Fr'), t('Sa')]
+const locale = {
+  localize: {
+    day: n => days[n]
+  },
+  formatLong: {
+    date: () => 'mm/dd/yyyy'
+  }
+}
  
   return (
     <>
@@ -149,7 +192,7 @@ const ResultNew = ({ _setDate,_auth}) => {
               id="datepicker"
             >
               {/* <input type="text" className="form-control" id="date"/> */}
-              <DatePicker
+              {/* <DatePicker
                 dateFormat="dd/MM/yyyy"
                 selected={calendarDate}
                 locale={locale}
@@ -166,16 +209,93 @@ const ResultNew = ({ _setDate,_auth}) => {
                   setCalendarDate(date);
                 }}
                 
-              />
+              /> */}
 
-              <span
+<DatePicker
+                        locale={locale}
+                        className="search-number-daterangepickerstyle"
+                        dayClassName={(date) => "react-datepicker__day_sushil"}
+                        renderCustomHeader={({
+                          date,
+                          changeYear,
+                          changeMonth,
+                          decreaseMonth,
+                          increaseMonth,
+                          prevMonthButtonDisabled,
+                          nextMonthButtonDisabled,
+                        }) => (
+                          <div
+                            style={{
+                              // margin: 10,
+                              display: "flex",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <button
+                              className="btn-custom-curve1-sm"
+                              onClick={decreaseMonth}
+                              disabled={prevMonthButtonDisabled}
+                            >
+                              {"<"}
+                            </button>
+                            <select
+                              className="form-control-custom"
+                              value={getYear(date)}
+                              onChange={({ target: { value } }) =>
+                                changeYear(value)
+                              }
+                            >
+                              {sYears.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </select>
+
+                            <select
+                              className="form-control-custom"
+                              value={sMonths[getMonth(date)]}
+                              onChange={({ target: { value } }) =>
+                                changeMonth(sMonths.indexOf(value))
+                              }
+                            >
+                              {sMonths.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </select>
+
+                            <button
+                              className="btn-custom-curve1-sm"
+                              onClick={increaseMonth}
+                              disabled={nextMonthButtonDisabled}
+                            >
+                              {">"}
+                            </button>
+                          </div>
+                        )}
+                        excludeDates={[addDays(new Date(), 1)]}
+                        highlightDates={highlightedData}
+                        maxDate={new Date()}
+                        value={calendarDate || startDate}
+                        selected={calendarDate}
+                        onSelect={(date) => {
+                          // setIsLoading(true)
+                          setCalendarDate(date);
+                        }}
+                        ref={datepickerRef}
+                        onChange={(date) => setCalendarDate(date)}
+                      />
+
+              {/* <span
                 className="input-group-append"
                 onClick={() => handleClickDatepickerIcon()}
               >
                 <span className="input-group-text bg-light d-block">
                   <i className="fa-regular fa-calendar"></i>
                 </span>
-              </span>
+              </span> */}
             </div>
           </div>
         </div>
