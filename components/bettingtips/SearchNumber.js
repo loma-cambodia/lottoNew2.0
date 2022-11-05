@@ -80,13 +80,13 @@ export default function SearchNumber({
     let dateAndGameOptionData = [];
     if (oddSet) {
       let tempObject = [];
-      oddSet.map((game,id) => {
-        if(id==0){
+      oddSet.map((game, id) => {
+        if (id == 0) {
           tempObject = {
             game_play_id: game.game_play.id,
             selected: true,
           };
-        }else{
+        } else {
           tempObject = {
             game_play_id: game.game_play.id,
             selected: false,
@@ -375,7 +375,7 @@ export default function SearchNumber({
             if (game1 != 'id' && value[game1] == numberM) {
               mainNum = value[game1];
               let totalCounts = getCountsPrizeSetComm(game1);
-              st1m = parseInt(st1m) + parseInt(totalCounts.st1);  
+              st1m = parseInt(st1m) + parseInt(totalCounts.st1);
               nd2m = parseInt(nd2m) + parseInt(totalCounts.nd2);
               rd3m = parseInt(rd3m) + parseInt(totalCounts.rd3);
               Spem = parseInt(Spem) + parseInt(totalCounts.Spe);
@@ -422,7 +422,7 @@ export default function SearchNumber({
                           width: "20px",
                           height: "20px",
                           borderRadius: "50%",
-                        }} 
+                        }}
                       />
                     </span>
                   );
@@ -525,7 +525,7 @@ export default function SearchNumber({
     t("November"),
     t("December"),
   ];
-  let days =  [t('Su'), t('Mo'), t('Tu'), t('We'), t('Th'), t('Fr'), t('Sa')]
+  let days = [t('Su'), t('Mo'), t('Tu'), t('We'), t('Th'), t('Fr'), t('Sa')]
   const locale = {
     localize: {
       day: n => days[n]
@@ -556,160 +556,160 @@ export default function SearchNumber({
       <section className="search-number custom-padding">
         <Container>
           <div className="clearfix curved-card bg-light shadow-sm mb-3">
-                <Row className="justify-content-center">
-                  <Col sm="6" lg="1" md="3">
-                    <FormGroup>
-                      <label className="fw-bold mb-2">{t("Number")}</label>
-                      <input
-                        onKeyPress={(event) => {
-                          if (!/[0-9]/.test(event.key)) {
-                            event.preventDefault();
-                          }
+            <Row className="justify-content-center">
+              <Col sm="6" lg="1" md="3">
+                <FormGroup>
+                  <label className="fw-bold mb-2">{t("Number")}</label>
+                  <input
+                    onKeyPress={(event) => {
+                      if (!/[0-9]/.test(event.key)) {
+                        event.preventDefault();
+                      }
+                    }}
+                    onChange={(e) => setNumber(e.target.value)}
+                    type="text"
+                    placeholder={t("Number")}
+                    className="form-control-custom"
+                    minLength={3}
+                    maxLength={4}
+                    required
+                    autoComplete="off"
+                    value={number && !search ? number : ""}
+                    title={t("Number")}
+                  />
+                </FormGroup>
+              </Col>
+              <Col sm="6" lg="2" md="2">
+                <FormGroup>
+                  <label className="fw-bold mb-2">{t("Start_Date")}</label>
+                  <DatePicker
+                    locale={locale}
+                    className="search-number-daterangepickerstyle"
+                    dayClassName={(date) => "react-datepicker__day_sushil"}
+                    renderCustomHeader={({
+                      date,
+                      changeYear,
+                      changeMonth,
+                      decreaseMonth,
+                      increaseMonth,
+                      prevMonthButtonDisabled,
+                      nextMonthButtonDisabled,
+                    }) => (
+                      <div
+                        style={{
+                          // margin: 10,
+                          display: "flex",
+                          justifyContent: "center",
                         }}
-                        onChange={(e) => setNumber(e.target.value)}
-                        type="text"
-                        placeholder={t("Number")}
-                        className="form-control-custom"
-                        minLength={3}
-                        maxLength={4}
-                        required
-                        autoComplete="off"
-                        value={number && !search ? number : ""}
-                        title={t("Number")}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col sm="6" lg="2" md="2">
-                    <FormGroup>
-                      <label className="fw-bold mb-2">{t("Start_Date")}</label>
-                      <DatePicker
-                        locale={locale}
-                        className="search-number-daterangepickerstyle"
-                        dayClassName={(date) => "react-datepicker__day_sushil"}
-                        renderCustomHeader={({
-                          date,
-                          changeYear,
-                          changeMonth,
-                          decreaseMonth,
-                          increaseMonth,
-                          prevMonthButtonDisabled,
-                          nextMonthButtonDisabled,
-                        }) => (
-                          <div
-                            style={{
-                              // margin: 10,
-                              display: "flex",
-                              justifyContent: "center",
-                            }}
-                          >
-                            <button
-                              className="btn-custom-curve1-sm"
-                              onClick={decreaseMonth}
-                              disabled={prevMonthButtonDisabled}
-                            >
-                              {"<"}
-                            </button>
-                            <select
-                              className="form-control-custom"
-                              value={getYear(date)}
-                              onChange={({ target: { value } }) =>
-                                changeYear(value)
-                              }
-                            >
-                              {sYears.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </select>
+                      >
+                        <button
+                          className="btn-custom-curve1-sm"
+                          onClick={decreaseMonth}
+                          disabled={prevMonthButtonDisabled}
+                        >
+                          {"<"}
+                        </button>
+                        <select
+                          className="form-control-custom"
+                          value={getYear(date)}
+                          onChange={({ target: { value } }) =>
+                            changeYear(value)
+                          }
+                        >
+                          {sYears.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
 
-                            <select
-                              className="form-control-custom"
-                              value={sMonths[getMonth(date)]}
-                              onChange={({ target: { value } }) =>
-                                changeMonth(sMonths.indexOf(value))
-                              }
-                            >
-                              {sMonths.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </select>
+                        <select
+                          className="form-control-custom"
+                          value={sMonths[getMonth(date)]}
+                          onChange={({ target: { value } }) =>
+                            changeMonth(sMonths.indexOf(value))
+                          }
+                        >
+                          {sMonths.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
 
-                            <button
-                              className="btn-custom-curve1-sm"
-                              onClick={increaseMonth}
-                              disabled={nextMonthButtonDisabled}
-                            >
-                              {">"}
-                            </button>
-                          </div>
-                        )}
-                        value={moment(startDate).format("DD/MM/YYYY")}
-                        selected={startDate}
-                        onChange={(date) => setStartDate(date)}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col sm="6" lg="2" md="2">
-                    <FormGroup>
-                      <label className="fw-bold mb-2">{t("End_Date")}</label>
+                        <button
+                          className="btn-custom-curve1-sm"
+                          onClick={increaseMonth}
+                          disabled={nextMonthButtonDisabled}
+                        >
+                          {">"}
+                        </button>
+                      </div>
+                    )}
+                    value={moment(startDate).format("DD/MM/YYYY")}
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                  />
+                </FormGroup>
+              </Col>
+              <Col sm="6" lg="2" md="2">
+                <FormGroup>
+                  <label className="fw-bold mb-2">{t("End_Date")}</label>
 
-                      <DatePicker
-                        locale={locale}
-                        className="search-number-daterangepickerstyle"
-                        dayClassName={(date) => "react-datepicker__day_sushil"}
-                        renderCustomHeader={({
-                          date,
-                          changeYear,
-                          changeMonth,
-                          decreaseMonth,
-                          increaseMonth,
-                          prevMonthButtonDisabled,
-                          nextMonthButtonDisabled,
-                        }) => (
-                          <div
-                            style={{
-                              margin: 10,
-                              display: "flex",
-                              justifyContent: "center",
-                            }}
-                          >
-                            <button
-                              className="btn-custom-curve1-sm"
-                              onClick={decreaseMonth}
-                              disabled={prevMonthButtonDisabled}
-                            >
-                              {"<"}
-                            </button>
-                            <select
-                              className="form-control-custom"
-                              value={getYear(date)}
-                              onChange={({ target: { value } }) =>
-                                changeYear(value)
-                              }
-                            >
-                              {eYears.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </select>
+                  <DatePicker
+                    locale={locale}
+                    className="search-number-daterangepickerstyle"
+                    dayClassName={(date) => "react-datepicker__day_sushil"}
+                    renderCustomHeader={({
+                      date,
+                      changeYear,
+                      changeMonth,
+                      decreaseMonth,
+                      increaseMonth,
+                      prevMonthButtonDisabled,
+                      nextMonthButtonDisabled,
+                    }) => (
+                      <div
+                        style={{
+                          margin: 10,
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <button
+                          className="btn-custom-curve1-sm"
+                          onClick={decreaseMonth}
+                          disabled={prevMonthButtonDisabled}
+                        >
+                          {"<"}
+                        </button>
+                        <select
+                          className="form-control-custom"
+                          value={getYear(date)}
+                          onChange={({ target: { value } }) =>
+                            changeYear(value)
+                          }
+                        >
+                          {eYears.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
 
-                            <select
-                              className="form-control-custom"
-                              value={eMonths[getMonth(date)]}
-                              onChange={({ target: { value } }) =>
-                                changeMonth(eMonths.indexOf(value))
-                              }
-                            >
-                              {eMonths.map((option, id) => (
-                                <>
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                  {/* {
+                        <select
+                          className="form-control-custom"
+                          value={eMonths[getMonth(date)]}
+                          onChange={({ target: { value } }) =>
+                            changeMonth(eMonths.indexOf(value))
+                          }
+                        >
+                          {eMonths.map((option, id) => (
+                            <>
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                              {/* {
                                       id <= moment(startDate).month() ? 
                                       <>
                                           <option key={option} value={option}>
@@ -721,156 +721,155 @@ export default function SearchNumber({
                                           </option>
                                       </>
                                   } */}
-                                </>
-                              ))}
-                            </select>
+                            </>
+                          ))}
+                        </select>
 
-                            <button
-                              className="btn-custom-curve1-sm"
-                              onClick={increaseMonth}
-                              disabled={nextMonthButtonDisabled}
-                            >
-                              {">"}
-                            </button>
-                          </div>
-                        )}
-                        excludeDates={[addDays(new Date(), 1)]}
-                        value={moment(endDate).format("DD/MM/YYYY")}
-                        selected={endDate}
-                        onChange={(date) => setEndDate(date)}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col sm="6" lg="2" md="3">
-                    <FormGroup>
-                      <label className="fw-bold mb-2">{t("Company")}</label>
-                      <ul className="list-inline mb-0 small-company">
-                        {oddSet.map((game, id) => (
-                          <li
-                            key={id}
-                            onClick={() => selectCompany(game.game_play.id)}
-                            className=" list-inline-item"
+                        <button
+                          className="btn-custom-curve1-sm"
+                          onClick={increaseMonth}
+                          disabled={nextMonthButtonDisabled}
+                        >
+                          {">"}
+                        </button>
+                      </div>
+                    )}
+                    excludeDates={[addDays(new Date(), 1)]}
+                    value={moment(endDate).format("DD/MM/YYYY")}
+                    selected={endDate}
+                    onChange={(date) => setEndDate(date)}
+                  />
+                </FormGroup>
+              </Col>
+              <Col sm="6" lg="2" md="3">
+                <FormGroup>
+                  <label className="fw-bold mb-2">{t("Company")}</label>
+                  <ul className="list-inline mb-0 small-company">
+                    {oddSet.map((game, id) => (
+                      <li
+                        key={id}
+                        onClick={() => selectCompany(game.game_play.id)}
+                        className=" list-inline-item"
+                      >
+                        <span
+                          className={`${bettingInitData &&
+                            bettingInitData[id] &&
+                            bettingInitData[id].selected
+                            ? "selected-gp-btn"
+                            : ""
+                            } outer-circle-gp`}
+                          title={t('Select')}
+                        >
+                          <span className="inner-circle-gp">
+                            <img
+                              className="img-fluid"
+                              src={game.game_play.logo_url}
+                            />
+                          </span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </FormGroup>
+              </Col>
+              <Col sm="6" lg="2" md="3">
+                <FormGroup>
+                  <label className="fw-bold mb-2">{t("Permutation")}</label>
+                  <ul className="list-inline mb-0 small">
+                    <li className="list-inline-item">
+                      <div className="form-check">
+                        <input
+                          onChange={(e) => setPermutation(e.target.value)}
+                          className="form-check-input"
+                          type="radio"
+                          name="flexRadioDefault"
+                          id="flexRadioDefault1"
+                          value={1}
+                          checked={`${permutation == 1 ? "checked" : ""}`}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="flexRadioDefault1"
+                        >
+                          {t('Yes')}
+                        </label>
+                      </div>
+                    </li>
+                    <li className="list-inline-item">
+                      <div className="form-check">
+                        <input
+                          onChange={(e) => setPermutation(e.target.value)}
+                          className="form-check-input"
+                          type="radio"
+                          name="flexRadioDefault"
+                          id="flexRadioDefault2"
+                          value={0}
+                          checked={`${permutation == 0 ? "checked" : ""}`}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="flexRadioDefault2"
+                        >
+                          {t('Not')}
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </FormGroup>
+              </Col>
+              <Col sm="6" lg="3" md="6">
+                <FormGroup>
+                  <label className="fw-bold mb-2">{t("Prize")}</label>
+                  <ul className="list-inline mb-0 small">
+                    {prizeInitData.map((prize, id) => (
+                      <li key={id} className="list-inline-item">
+                        <div className="form-check">
+                          <input
+                            onClick={() => selectPrize(prize.id)}
+                            className="form-check-input"
+                            type="checkbox"
+                            value={prize.value}
+                            id={"flexCheckDefault2" + prize.id}
+                            checked={prize.selected ? "checked" : ""}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor={"flexCheckDefault2" + prize.id}
                           >
-                            <span
-                              className={`${
-                                bettingInitData &&
-                                bettingInitData[id] &&
-                                bettingInitData[id].selected
-                                  ? "selected-gp-btn"
-                                  : ""
-                              } outer-circle-gp`}
-                              title={t('Select')}
-                            >
-                              <span className="inner-circle-gp">
-                                <img
-                                  className="img-fluid"
-                                  src={game.game_play.logo_url}
-                                />
-                              </span>
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </FormGroup>
-                  </Col>
-                  <Col sm="6" lg="2" md="3">
-                    <FormGroup>
-                      <label className="fw-bold mb-2">{t("Permutation")}</label>
-                      <ul className="list-inline mb-0 small">
-                        <li className="list-inline-item">
-                          <div className="form-check">
-                            <input
-                              onChange={(e) => setPermutation(e.target.value)}
-                              className="form-check-input"
-                              type="radio"
-                              name="flexRadioDefault"
-                              id="flexRadioDefault1"
-                              value={1}
-                              checked={`${permutation == 1 ? "checked" : ""}`}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="flexRadioDefault1"
-                            >
-                              {t('Yes')}
-                            </label>
-                          </div>
-                        </li>
-                        <li className="list-inline-item">
-                          <div className="form-check">
-                            <input
-                              onChange={(e) => setPermutation(e.target.value)}
-                              className="form-check-input"
-                              type="radio"
-                              name="flexRadioDefault"
-                              id="flexRadioDefault2"
-                              value={0}
-                              checked={`${permutation == 0 ? "checked" : ""}`}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="flexRadioDefault2"
-                            >
-                              {t('Not')}
-                            </label>
-                          </div>
-                        </li>
-                      </ul>
-                    </FormGroup>
-                  </Col>
-                  <Col sm="6" lg="3" md="6">
-                    <FormGroup>
-                      <label className="fw-bold mb-2">{t("Prize")}</label>
-                      <ul className="list-inline mb-0 small">
-                        {prizeInitData.map((prize, id) => (
-                          <li key={id} className="list-inline-item">
-                            <div className="form-check">
-                              <input
-                                onClick={() => selectPrize(prize.id)}
-                                className="form-check-input"
-                                type="checkbox"
-                                value={prize.value}
-                                id={"flexCheckDefault2" + prize.id}
-                                checked={prize.selected ? "checked" : ""}
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor={"flexCheckDefault2" + prize.id}
-                              >
-                                 {t(prize.name)}
-                              </label>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </FormGroup>
-                  </Col>
-                  <Col sm="12" lg="12" md="12">
-                    <FormGroup style={{ float: "right" }}>
-                      {/* <label className="d-block mb-2">&nbsp;</label> */}
-                      <button
-                        onClick={() => searchClick()}
-                        type="button"
-                        id="search"
-                        className="btn-custom-curve2-sm w-auto me-2"
-                      >
-                        {t("Search")}
-                      </button>
-                      <button
-                        onClick={() => resetClick()}
-                        type="button"
-                        id="reset"
-                        className="btn-custom-curve1-sm"
-                      >
-                        {t("Reset")}
-                      </button>
-                    </FormGroup>
-                  </Col>
-                </Row>
+                            {t(prize.name)}
+                          </label>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </FormGroup>
+              </Col>
+              <Col sm="12" lg="12" md="12">
+                <FormGroup style={{ float: "right" }}>
+                  {/* <label className="d-block mb-2">&nbsp;</label> */}
+                  <button
+                    onClick={() => searchClick()}
+                    type="button"
+                    id="search"
+                    className="btn-custom-curve2-sm w-auto me-2"
+                  >
+                    {t("Search")}
+                  </button>
+                  <button
+                    onClick={() => resetClick()}
+                    type="button"
+                    id="reset"
+                    className="btn-custom-curve1-sm"
+                  >
+                    {t("Reset")}
+                  </button>
+                </FormGroup>
+              </Col>
+            </Row>
           </div>
         </Container>
         {isLoading ? (
-          <div className="" style={{ height: '400px'  }}>
+          <div className="" style={{ height: '400px' }}>
             <div className="loader-Mob-2">
               <img
                 src="assets/images/loader.gif"
@@ -882,7 +881,7 @@ export default function SearchNumber({
           </div>
         ) : (
           <>
-            {bettingTip && mainCard && firstTableData && reserAllData  ?
+            {bettingTip && mainCard && firstTableData && reserAllData ?
               <>
                 <Container>
                   <Card className="alert alert-warning text-dark p-0 rounded-0 border border-warning">
@@ -1071,10 +1070,10 @@ export default function SearchNumber({
                                 <b>
                                   #
                                   {mainCard &&
-                                  mainCard.last_hit_draw_no &&
-                                  mainCard.avg_draw_gap
+                                    mainCard.last_hit_draw_no &&
+                                    mainCard.avg_draw_gap
                                     ? parseInt(mainCard.last_hit_draw_no) +
-                                      parseInt(mainCard.avg_draw_gap)
+                                    parseInt(mainCard.avg_draw_gap)
                                     : ""}
                                 </b>
                               </p>
@@ -1108,7 +1107,7 @@ export default function SearchNumber({
                     </Col>
                   </Row>
                 </Container>
-                <Container>   
+                <Container>
                   <div className="table-responsive">
                     <table className="table table-striped table-sm small table-bordered text-center">
                       <thead className="bg-dark text-white">
@@ -1121,7 +1120,7 @@ export default function SearchNumber({
                           <th>{t('Date')}</th>
                           <th>{t('Day')}</th>
                           <th className="text-center">{t('Source')}</th>
-                          <th>{t('DrawGap')}</th>
+                          {/* <th>{t('DrawGap')}</th> */}
                         </tr>
                       </thead>
                       <tbody>
@@ -1180,11 +1179,11 @@ export default function SearchNumber({
                                       }
                                     })}
                                   </td>
-                                  <td>
+                                  {/* <td>
                                     {value.days_since_last
                                       ? value.days_since_last
                                       : "-"}
-                                  </td>
+                                  </td> */}
                                 </tr>
                               </>
                             );
@@ -1224,8 +1223,8 @@ export default function SearchNumber({
                       </thead>
                       <tbody>
                         {firstTableData &&
-                        permutationData &&
-                        permutationData.length > 0 ? (
+                          permutationData &&
+                          permutationData.length > 0 ? (
                           <>
                             {firstTableData.length > 0 && permutationData ? (
                               permutationData.map((pdata, index) => {
@@ -1377,11 +1376,11 @@ export default function SearchNumber({
                   </div>
                 </Container>
               </>
-              : 
-              <Container style={{ height: '400px'  }}>
-                  <div className="alert alert-warning">
-                    <h3 className="text-center">{t("no_data_found")}</h3>
-                  </div>
+              :
+              <Container style={{ height: '400px' }}>
+                <div className="alert alert-warning">
+                  <h3 className="text-center">{t("no_data_found")}</h3>
+                </div>
               </Container>
             }
           </>
