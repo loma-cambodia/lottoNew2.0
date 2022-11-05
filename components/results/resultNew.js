@@ -214,7 +214,7 @@ const locale = {
 <DatePicker
                         locale={locale}
                         className="search-number-daterangepickerstyle"
-                        dayClassName={(date) => "react-datepicker__day_sushil"}
+                        // dayClassName={(date) => "react-datepicker__day_sushil"}
                         renderCustomHeader={({
                           date,
                           changeYear,
@@ -232,7 +232,8 @@ const locale = {
                             }}
                           >
                             <button
-                              className="btn-custom-curve1-sm"
+                              className="btn-custom-curve1-sm2"
+                              
                               onClick={decreaseMonth}
                               disabled={prevMonthButtonDisabled}
                             >
@@ -267,7 +268,7 @@ const locale = {
                             </select>
 
                             <button
-                              className="btn-custom-curve1-sm"
+                              className="btn-custom-curve1-sm2"
                               onClick={increaseMonth}
                               disabled={nextMonthButtonDisabled}
                             >
