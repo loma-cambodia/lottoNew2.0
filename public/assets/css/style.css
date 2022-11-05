@@ -3270,6 +3270,21 @@ input.daterangepickerstyle-sm {
   transition: 0.5s;
   font-size: 12px;
 }
+.btn-custom-curve1-sm2 {
+  border: 1px solid #ffffff;
+  padding: 4px 10px;
+  text-align: center;
+  background-color: #fff;
+  color: #000000;
+  text-transform: uppercase;
+  border-radius: 10px 0;
+  transition: 0.5s;
+  font-size: 12px;
+}
+.btn-custom-curve1-sm2:hover, .btn-custom-curve1-sm2:focus, .btn-custom-curve1-sm2:active, .btn-custom-curve1-sm2:focus-visible, .btn-custom-curve1-sm2:focus-within {
+  background-color: #bc2263;
+  color: #fff;
+}
 .btn-custom-curve1-sm:hover, .btn-custom-curve1-sm:focus, .btn-custom-curve1-sm:active, .btn-custom-curve1-sm:focus-visible, .btn-custom-curve1-sm:focus-within {
   background-color: #bc2263;
   color: #fff;
