@@ -3871,7 +3871,7 @@ input.daterangepickerstyle-sm {
     height: 38px;
   }
   .react-datepicker__day.react-datepicker__day--highlighted{
-    background-color: #ffd4e5 ;
+    background-color: #ffd4e5;
     color: #000;
     pointer-events: all;
   }

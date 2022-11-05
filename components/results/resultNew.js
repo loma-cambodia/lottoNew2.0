@@ -23,12 +23,19 @@ const ResultNew = ({ _setDate,_auth}) => {
   
   const [isLoading, setIsLoading] = React.useState(true);
   useEffect(() => {
-    if(_auth && _auth.auth && _auth.auth.token)
-    getLatestDrawDate();
+    if(_auth && _auth.auth && _auth.auth.token){
+     
+      setTimeout(function(){ 
+        console.log('1');
+        getLatestDrawDate();
+       }, 1000);
+   
+    }
   }, [_auth]);
 
   //   FOR RESULT
   useEffect(() => {
+    console.log('2');
     getSelectedDrawDate();
   }, [calendarDate]);
 
