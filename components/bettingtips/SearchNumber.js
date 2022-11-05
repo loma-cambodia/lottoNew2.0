@@ -603,7 +603,7 @@ export default function SearchNumber({
                             }}
                           >
                             <button
-                              className="btn-custom-curve1-sm"
+                              className="btn-custom-curve1-sm2"
                               onClick={decreaseMonth}
                               disabled={prevMonthButtonDisabled}
                             >
@@ -638,7 +638,7 @@ export default function SearchNumber({
                             </select>
 
                             <button
-                              className="btn-custom-curve1-sm"
+                              className="btn-custom-curve1-sm2"
                               onClick={increaseMonth}
                               disabled={nextMonthButtonDisabled}
                             >
