@@ -214,7 +214,7 @@ const locale = {
 <DatePicker
                         locale={locale}
                         className="search-number-daterangepickerstyle"
-                        dayClassName={(date) => "react-datepicker__day_sushil"}
+                        // dayClassName={(date) => "react-datepicker__day_sushil"}
                         renderCustomHeader={({
                           date,
                           changeYear,
