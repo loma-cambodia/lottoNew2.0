@@ -28,7 +28,7 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
       
         gameImage = 'assets/images/icons/toto.png';
         cardName = 'card toto'
-    }else if(item.game_play_id == 6){
+    }else if(item.game_play_id == 6 || item.game_play_id == 3){
         gameImage = 'assets/images/icons/damacai.png';
         cardName = 'card damamcai'
     }
