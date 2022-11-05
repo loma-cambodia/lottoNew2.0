@@ -7,9 +7,10 @@ let API_BASE_URL = process.env.apiUrl
 export const getResults = (sendData,token='',callback) => async (dispatch) => {
   let urlHit = ''
 
-  let kk_lotto_token = localStorage.getItem("kk_lotto_token")
+  
    
   try {
+    let kk_lotto_token = localStorage.getItem("kk_lotto_token")
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${kk_lotto_token}`
