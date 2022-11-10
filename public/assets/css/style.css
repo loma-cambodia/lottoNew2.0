@@ -3114,10 +3114,18 @@ section.announcement {
   padding-left: 15px!important; */
 
 }
+/* .rdt_TableCell {
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+.rdt_TableCol {
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+} */
 .rdt_Table{
   min-width: fit-content!important;
 }
 .rdt_TableCell:first-child, .rdt_TableCol:first-child{
+  /* border-left: 1px solid rgba(0, 0, 0, 0.12); */
   min-width: 10px!important;
   text-align: center!important;
 }

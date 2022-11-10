@@ -41,7 +41,7 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
                             <div className="logo-gp-prize">
                                 <div className="logo-gp-prize-outer">
                                     <div className="logo-gp-prize-inner">
-                                        <img  src={gameImage} alt="" className="img-icon-prize"/>
+                                        <img  src={item.game_play.logo_url} alt="" className="img-icon-prize"/>
                                     </div>
                                 </div>
                             </div>

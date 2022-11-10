@@ -149,6 +149,65 @@ export default [
     winning: 575,
     Winning_Loss: 575
   },
-  
+  {
+    id: 7,
+    title: "Beetlejuice 7",
+    Ticket_No:"ZT0001 7",
+    Betting_Time: "1988",
+    Draw_Date: "92",
+    draw_number: "a92",
+    bet_net_amount: 575,
+    Company: "Page",
+    Total:'4562 ',
+    Rebate:"",
+    Net: 575,
+    winning: 575,
+    Winning_Loss: 575
+  },
+  {
+    id: 111,
+    title: "Beetlejuice 8",
+    Ticket_No:"mT0001 8",
+    Betting_Time: "1988",
+    Draw_Date: "92",
+    draw_number: "a92",
+    bet_net_amount: 575,
+    Company: "Baldwin, Geena Davis, Annie McEnroe, Maurice Page",
+    Total:'4562 ',
+    Rebate:"",
+    Net: 575,
+    winning: 575,
+    Winning_Loss: 575
+  },
+  {
+    id: 32,
+    title: "Beetlejuice 9",
+    Ticket_No:"fT0001 9",
+    Betting_Time: "1988",
+    Draw_Date: "92",
+    draw_number: "a92",
+    bet_net_amount: 575,
+    Company: "Annie McEnroe, Maurice Page",
+    Total:'4562 ',
+    Rebate:"",
+    Net: 575,
+    winning: 575,
+    Winning_Loss: 575
+  },
+  {
+    id: 12,
+    title: "Beetlejuice 10",
+    Ticket_No:"T0001 10",
+    Betting_Time: "1988",
+    Draw_Date: "92",
+    draw_number: "a92",
+    bet_net_amount: 575,
+    Company: "Maurice Page",
+    Total:'4562 ',
+    Rebate:"",
+    Net: 575,
+    winning: 575,
+    Winning_Loss: 575
+  },
   
 ];
