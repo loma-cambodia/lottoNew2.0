@@ -77,7 +77,7 @@ function MyApp({ Component, pageProps,user }) {
       const originalRequest = error.config
       if (error.response.status === 401) {
         console.log('auAuthrized code');
-       // userLogout()
+       userLogout()
       }
       return Promise.reject(error)
     }
