@@ -60,7 +60,6 @@ export const updateUserWithSession = (objectWithData) => async dispatch => {
       const headers = {'Content-Type': 'application/json'}
       const res = await axios.post(`/api/updateUser`,objectWithData,{headers: headers});
       let oldData = {};
-      console.log('res:',res);
       if(res && res.data && res.data.data){
          oldData =  setUserDataFormat(res.data.data,3);
          console.log('oldData:',oldData);
