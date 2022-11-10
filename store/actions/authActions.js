@@ -62,7 +62,7 @@ export const updateUserWithSession = (objectWithData) => async dispatch => {
       let oldData = {};
       if(res && res.data && res.data.data){
          oldData =  setUserDataFormat(res.data.data,3);
-         console.log('oldData:',oldData);
+        //  console.log('oldData:',oldData);
          dispatch({
           type: "GET_LOGIN_DETAILS",
           payload: oldData

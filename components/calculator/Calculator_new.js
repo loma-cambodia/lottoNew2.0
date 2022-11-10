@@ -49,7 +49,7 @@ const Calculator = ({ _transactions, _auth }) => {
 
   useEffect(() =>{
       merchantCurrency == 'KHR' ? setCurrencyLimit(7):setCurrencyLimit(4)
-      console.log('currency: ',auth)
+      // console.log('currency: ',auth)
   },[auth])
 
   const [price, setPrice] = useState();
@@ -194,7 +194,7 @@ const Calculator = ({ _transactions, _auth }) => {
 
 
 
-  console.log("currentMarket: ", price);
+  // console.log("currentMarket: ", price);
   const checkPalindrome = (string) => {
     const len = string.length;
     for (let i = 0; i < len / 2; i++) {

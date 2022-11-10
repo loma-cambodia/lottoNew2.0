@@ -26,7 +26,7 @@ const ResultNew = ({ _setDate,_auth}) => {
     if(_auth && _auth.auth && _auth.auth.token){
      
       setTimeout(function(){ 
-        console.log('1');
+        // console.log('1');
         getLatestDrawDate();
        }, 1000);
    
@@ -35,13 +35,13 @@ const ResultNew = ({ _setDate,_auth}) => {
 
   //   FOR RESULT
   useEffect(() => {
-    console.log('2');
+    // console.log('2');
     getSelectedDrawDate();
   }, [calendarDate]);
 
   const getLatestDrawDate = () => {
     let dataSubmit = undefined;
-    console.log('_auth.auth.token:',_auth.auth.token);
+    // console.log('_auth.auth.token:',_auth.auth.token);
     dispatch(
       getResults(dataSubmit,_auth.auth.token ? _auth.auth.token : "", (response) => {
         if (response.statusCode == 201 || response.statusCode == 200) {
@@ -83,7 +83,7 @@ const ResultNew = ({ _setDate,_auth}) => {
   const getSelectedDrawDate = () => {
     
     let dataSubmit = calendarDate;
-    console.log("calendarDate",calendarDate)
+    // console.log("calendarDate",calendarDate)
     dispatch(
       getResults(dataSubmit,_auth.auth.token ? _auth.auth.token : "", (response) => {
         setIsLoading(false)
