@@ -28,7 +28,7 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
       
         gameImage = 'assets/images/icons/toto.png';
         cardName = 'card toto'
-    }else if(item.game_play_id == 6 || item.game_play_id == 3){
+    }else if(item.game_play_id == 6 || item.game_play_id == 3){ 
         gameImage = 'assets/images/icons/damacai.png';
         cardName = 'card damamcai'
     }
@@ -46,7 +46,7 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
                                 </div>
                             </div>
                             <div className="name-lottery">
-                                <p className="fw-bold">{item.title}</p>
+                                <p className="fw-bold">{item.name}</p>
                                 <p className="date-cal"><span className="small-calendar"><img src="assets/images/icons/calendar-small.png" alt=""/></span>{item.fetching_date}</p>
                                 <p className="date-cal">{getDateName(item.fetching_date)}</p>
                             </div>

@@ -13,29 +13,30 @@ import Link from 'next/link';
 
 import {useRouter} from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
-import {updateUserWithSession} from '../../store/actions/authActions';
+import {updateUser, updateUserWithSession} from '../../store/actions/authActions';
 import {twoDecimalPlaceWithAmount, twoDecimalPlaceWithoutRound} from './../Utils';
 import LogoutModal from "../modal/logoutModal";
 
-const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
+const Header = ({_auth,datauser, updateSessionData, setUpdateSessionData}) => {
 
    const dispatch = useDispatch();
    let auth = _auth;
    const state = useSelector(state => state);
 
    let language = '';
-
+   let langg = auth && auth.auth && auth.auth.language && auth.auth.language.locale ? auth.auth.language.locale : 'en';
    if(auth && auth.lang){
     language = auth.lang;
    }else {
-    language = datauser && datauser.user && datauser.user.data && datauser.user.data.language && datauser.user.data.language.locale ? datauser.user.data.language.locale : 'en'
+    language = langg
    }
 
   const { t } = useTranslation();
   const [langType, setLangType] = useState(language);
   const router = useRouter()
   const {id} = router.query
-
+   console.log("AUTH",auth)
+   console.log("AUTH",datauser)
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language])
@@ -55,7 +56,7 @@ const Header = ({datauser,_auth, updateSessionData, setUpdateSessionData}) => {
       } 
       
       if(objectWithData.customer_id != 0){
-          dispatch(updateUserWithSession(objectWithData));
+          dispatch(updateUser(objectWithData));
          // setUpdateSessionData(updateSessionData + 1); 
       }
 
