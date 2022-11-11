@@ -4512,3 +4512,6 @@ box-shadow: inset 0px 0px 20px 10px rgb(0 0 0 / 20%);
 /* color: rgb(194, 35, 97)!important; */
 box-shadow: inset 0px 0px 20px 10px rgb(0 0 0 / 20%);
 }
+.footer-links ul li a:hover {
+    color: #ffc107;
+}

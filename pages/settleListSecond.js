@@ -21,7 +21,7 @@ export default function SettleListSecond({datauser,updateSessionData, setUpdateS
   const auth = useSelector(state => state.auth);
 
 
-  console.log('dataDummy:',dataDummy);
+  // console.log('dataDummy:',dataDummy);
 
   const [active, setActive] = useState(false);
   const state = useSelector(state => state);

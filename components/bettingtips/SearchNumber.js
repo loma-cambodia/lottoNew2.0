@@ -786,7 +786,7 @@ export default function SearchNumber({
                               name="flexRadioDefault"
                               id="flexRadioDefault1"
                               value={1}
-                              checked={`${permutation == 1 ? "checked" : ""}`}
+                              defaultChecked={`${permutation == 1 ? "checked" : ""}`}
                             />
                             <label
                               className="form-check-label"
@@ -805,7 +805,7 @@ export default function SearchNumber({
                               name="flexRadioDefault"
                               id="flexRadioDefault2"
                               value={0}
-                              checked={`${permutation == 0 ? "checked" : ""}`}
+                              defaultChecked={`${permutation == 0 ? "checked" : ""}`}
                             />
                             <label
                               className="form-check-label"
@@ -831,7 +831,7 @@ export default function SearchNumber({
                                 type="checkbox"
                                 value={prize.value}
                                 id={"flexCheckDefault2" + prize.id}
-                                checked={prize.selected ? "checked" : ""}
+                                defaultChecked={prize.selected ? "checked" : ""}
                               />
                               <label
                                 className="form-check-label"
@@ -1134,14 +1134,18 @@ export default function SearchNumber({
                               if (permutationData.length > 0) {
                                 permutationData.map((pdata) => {
                                   if (value[game1] == pdata) {
-                                    prizeType.push(game1);
-                                    betNum = value[game1];
+                                    if(prizeType.some(f=> f.includes(game1.substring(0,6))) == false ){
+                                      prizeType.push(game1);
+                                      betNum = value[game1];
+                                    }
                                   }
                                 });
                               } else {
                                 if (value[game1] == numberM) {
-                                  prizeType.push(game1);
-                                  betNum = value[game1];
+                                  if(prizeType.some(f=> f.includes(game1.substring(0,6))) == false ){
+                                    prizeType.push(game1);
+                                    betNum = value[game1];
+                                  }
                                 }
                               }
                             });

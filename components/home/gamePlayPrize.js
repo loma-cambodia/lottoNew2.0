@@ -93,7 +93,7 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
                             <table className="table-custom">
                             <tbody>
                                 <tr>
-                                    <td colspan="5" className="border-bottom border-light">{t('Special_Prize')}</td>
+                                    <td colSpan="5" className="border-bottom border-light">{t('Special_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td className="border-bottom border-light">{item.special1}</td>
@@ -116,7 +116,7 @@ const GamePlayPrize = ({_winnerResultDetails}) => {
                             <table className="table-custom">
                             <tbody>
                                 <tr>
-                                    <td colspan="5" className="border-bottom border-light">{t('Consolation_Prize')}</td>
+                                    <td colSpan="5" className="border-bottom border-light">{t('Consolation_Prize')}</td>
                                 </tr>
                                 <tr>
                                     <td className="border-bottom border-light">{item.consolation1}</td>
