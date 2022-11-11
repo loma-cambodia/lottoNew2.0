@@ -3,7 +3,7 @@ import axios from 'axios'
  const API_BASE_URL = process.env.apiUrl
 
 export const serachBettingTips = (getData,token="") => async (dispatch) => {
-    console.log('getData',getData);
+    // console.log('getData',getData);
 
   let company = getData.company;
   let date = getData.date;
