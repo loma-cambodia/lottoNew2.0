@@ -28,6 +28,8 @@ async function handler(req, res) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache,no-store',
+
     },
     body: JSON.stringify(objectWithData),
   })
@@ -41,7 +43,7 @@ async function handler(req, res) {
     req.session.user = data
     await req.session.save();
     //res.redirect(307, '/')
-    res.redirect(301, '/');
+    res.redirect(302, '/');
    // location.reload();
     res.send('You are Logged in, Please Go back')
   } else {
