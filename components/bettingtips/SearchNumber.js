@@ -1127,20 +1127,20 @@ export default function SearchNumber({
                       <tbody>
                         {firstTableData && firstTableData.length > 0 ? (
                           firstTableData.map((value, index) => {
-                            let prizeType = "";
+                            let prizeType = [];
                             let betNum = "";
                             let keys = Object.keys(value);
                             keys.map((game1) => {
                               if (permutationData.length > 0) {
                                 permutationData.map((pdata) => {
                                   if (value[game1] == pdata) {
-                                    prizeType = game1;
+                                    prizeType.push(game1);
                                     betNum = value[game1];
                                   }
                                 });
                               } else {
                                 if (value[game1] == numberM) {
-                                  prizeType = game1;
+                                  prizeType.push(game1);
                                   betNum = value[game1];
                                 }
                               }
@@ -1153,7 +1153,10 @@ export default function SearchNumber({
                                     <b>{betNum}</b>
                                   </td>
                                   <td>
-                                    <PrizeSetComm prizeType={prizeType} />
+                                    {
+                                      prizeType.map((pt)=>(<> <PrizeSetComm prizeType={pt} /> </>))
+                                    }
+                                    
                                   </td>
                                   <td>{value.reference_number}</td>
                                   <td>#{value.id}</td>
