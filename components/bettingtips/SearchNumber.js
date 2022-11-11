@@ -23,7 +23,8 @@ import { subDays, addDays } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { changeLanguage } from "i18next";
 //import DrawSummaryBoxes from './drawSummaryBoxes';
-
+import TotalPermutationBox from './TotalPermutationBox';
+// import Table1 from './FirstTableData'
 export default function SearchNumber({
   _transactions,
   _auth,
@@ -885,42 +886,16 @@ export default function SearchNumber({
           <>
             {bettingTip && mainCard && firstTableData && reserAllData  ?
               <>
-                <Container>
-                  <Card className="alert alert-warning text-dark p-0 rounded-0 border border-warning">
-                    <CardHeader className="fw-bold">
-                      {t('Total_Permutation')}:{" "}
-                      {permutationData && permutationData.length ? permutationData.length : numberM ? 1 : ""}
-                    </CardHeader>
-                    <CardBody>
-                      <ul className="list-inline mb-0">
-                        {reserAllData && permutationData && permutationData.length
-                          ? ""
-                          : numberM}
-                        {reserAllData &&
-                          permutationData &&
-                          permutationData.map((value, index) => {
-                            return (
-                              <>
-                                <li key={index} className="list-inline-item">
-                                  <span className="badge bg-light text-dark">
-                                    {value}
-                                  </span>
-                                </li>
-                              </>
-                            );
-                          })}
-                      </ul>
-                    </CardBody>
-                  </Card>
-                </Container>
                
                
-               
+                <TotalPermutationBox permutationData ={permutationData} numberM={numberM} reserAllData={reserAllData}/> 
+
                 
                 
                 {/* <DrawSummaryBoxes mainCard ={mainCard}/>  */}
                 
-                
+                {/* <Table1 permutationData ={permutationData} numberM={numberM} reserAllData={reserAllData}/>  */}
+
                 <Container>   
                   <div className="table-responsive">
                     <table className="table table-striped table-sm small table-bordered text-center">
@@ -934,7 +909,6 @@ export default function SearchNumber({
                           <th>{t('Date')}</th>
                           <th>{t('Day')}</th>
                           <th className="text-center">{t('Source')}</th>
-                          <th>{t('DrawGap')}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -1008,11 +982,7 @@ export default function SearchNumber({
                                       }
                                     })}
                                   </td>
-                                  <td>
-                                    {value.days_since_last
-                                      ? value.days_since_last
-                                      : "-"}
-                                  </td>
+                                 
                                 </tr>
                               </>
                             );
