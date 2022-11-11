@@ -35,8 +35,6 @@ const Header = ({_auth,datauser, updateSessionData, setUpdateSessionData}) => {
   const [langType, setLangType] = useState(language);
   const router = useRouter()
   const {id} = router.query
-   console.log("AUTH",auth)
-   console.log("AUTH",datauser)
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language])
