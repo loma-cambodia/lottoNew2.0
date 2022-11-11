@@ -1134,7 +1134,7 @@ export default function SearchNumber({
                               if (permutationData.length > 0) {
                                 permutationData.map((pdata) => {
                                   if (value[game1] == pdata) {
-                                    if(prizeType.some(f=> f.includes(game1.substring(0,5))) == false ){
+                                    if(prizeType.some(f=> f.includes(game1.substring(0,6))) == false ){
                                       prizeType.push(game1);
                                       betNum = value[game1];
                                     }
@@ -1142,7 +1142,7 @@ export default function SearchNumber({
                                 });
                               } else {
                                 if (value[game1] == numberM) {
-                                  if(prizeType.some(f=> f.includes(game1.substring(0,5))) == false ){
+                                  if(prizeType.some(f=> f.includes(game1.substring(0,6))) == false ){
                                     prizeType.push(game1);
                                     betNum = value[game1];
                                   }
