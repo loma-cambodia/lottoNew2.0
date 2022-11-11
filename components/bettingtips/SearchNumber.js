@@ -1134,14 +1134,18 @@ export default function SearchNumber({
                               if (permutationData.length > 0) {
                                 permutationData.map((pdata) => {
                                   if (value[game1] == pdata) {
-                                    prizeType.push(game1);
-                                    betNum = value[game1];
+                                    if(prizeType.some(f=> f.includes(game1.substring(0,5))) == false ){
+                                      prizeType.push(game1);
+                                      betNum = value[game1];
+                                    }
                                   }
                                 });
                               } else {
                                 if (value[game1] == numberM) {
-                                  prizeType.push(game1);
-                                  betNum = value[game1];
+                                  if(prizeType.some(f=> f.includes(game1.substring(0,5))) == false ){
+                                    prizeType.push(game1);
+                                    betNum = value[game1];
+                                  }
                                 }
                               }
                             });
