@@ -1128,37 +1128,45 @@ export default function SearchNumber({
                         {firstTableData && firstTableData.length > 0 ? (
                           firstTableData.map((value, index) => {
                             let prizeType = [];
-                            let betNum = "";
+                            let betNum = [];
                             let keys = Object.keys(value);
                             keys.map((game1) => {
                               if (permutationData.length > 0) {
                                 permutationData.map((pdata) => {
                                   if (value[game1] == pdata) {
-                                    if(prizeType.some(f=> f.includes(game1.substring(0,6))) == false ){
+                                    console.log('value[game1] pdata : '+index+ ' ',pdata)
+                                    console.log('value[game1] : '+index+ ' ',value[game1])
+                                    console.log('value[game1] game1 : '+index+ ' ',game1)
+                                    console.log('value[game1] value : '+index+ ' ',value)
+                                    // if(prizeType.some(f=> f.includes(game1.substring(0,6))) == false ){
                                       prizeType.push(game1);
-                                      betNum = value[game1];
-                                    }
+                                      betNum.push(value[game1]);
+                                    // }
                                   }
                                 });
-                              } else {
+                              } 
+                              else {
                                 if (value[game1] == numberM) {
                                   if(prizeType.some(f=> f.includes(game1.substring(0,6))) == false ){
                                     prizeType.push(game1);
-                                    betNum = value[game1];
+                                    // betNum = value[game1];
+                                    betNum.push(value[game1]);
+
                                   }
                                 }
                               }
                             });
+                            console.log('value[game1] prizeType : '+index+ ' ',prizeType)
                             return (
                               <>
                                 <tr>
                                   <td>{index + 1}</td>
                                   <td>
-                                    <b>{betNum}</b>
+                                    <b>{betNum.map((bv)=>(<>{bv}<br></br></>))}</b>
                                   </td>
                                   <td>
                                     {
-                                      prizeType.map((pt)=>(<> <PrizeSetComm prizeType={pt} /> </>))
+                                      prizeType.map((pt)=>(<> <PrizeSetComm prizeType={pt} /><br></br> </>))
                                     }
                                     
                                   </td>
