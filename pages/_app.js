@@ -49,7 +49,6 @@ function MyApp({ Component, pageProps,user }) {
   const [isIdleData,setIdleData] = useState(false)
   let timeoutSetting = logoutTimeInIdealCondition * 60 * 1000;
 
-  // console.log('MyApp:');
 
   axios.interceptors.request.use(
     
@@ -76,7 +75,6 @@ function MyApp({ Component, pageProps,user }) {
     async function (error) {
       const originalRequest = error.config
       if (error.response.status === 401) {
-        // console.log('auAuthrized code');
        userLogout()
       }
       return Promise.reject(error)
