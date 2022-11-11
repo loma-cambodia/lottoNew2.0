@@ -12,8 +12,7 @@ import logger from 'redux-logger';
 const initalState = {};
 
 // middleware
-// const middleware = [thunk,logger];
-const middleware = [thunk];
+const middleware = [thunk,logger];
 
 const composeEnhancers = typeof window != 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

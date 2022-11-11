@@ -786,7 +786,7 @@ export default function SearchNumber({
                               name="flexRadioDefault"
                               id="flexRadioDefault1"
                               value={1}
-                              checked={`${permutation == 1 ? "checked" : ""}`}
+                              defaultChecked={`${permutation == 1 ? "checked" : ""}`}
                             />
                             <label
                               className="form-check-label"
@@ -805,7 +805,7 @@ export default function SearchNumber({
                               name="flexRadioDefault"
                               id="flexRadioDefault2"
                               value={0}
-                              checked={`${permutation == 0 ? "checked" : ""}`}
+                              defaultChecked={`${permutation == 0 ? "checked" : ""}`}
                             />
                             <label
                               className="form-check-label"
@@ -831,7 +831,7 @@ export default function SearchNumber({
                                 type="checkbox"
                                 value={prize.value}
                                 id={"flexCheckDefault2" + prize.id}
-                                checked={prize.selected ? "checked" : ""}
+                                defaultChecked={prize.selected ? "checked" : ""}
                               />
                               <label
                                 className="form-check-label"
