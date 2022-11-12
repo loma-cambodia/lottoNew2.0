@@ -55,19 +55,19 @@ export default function SearchNumber({
       id: "2",
       name: "S",
       value: "special",
-      selected: false,
+      selected: true,
     },
     {
       id: "3",
       name: "C",
       value: "consolation",
-      selected: false,
+      selected: true,
     },
   ];
   // const keyRef = useRef();
   const [bettingInitData, setBettingInitData] = useState([]);
   const [number, setNumber] = useState("");
-  const [permutation, setPermutation] = useState(0);
+  const [permutation, setPermutation] = useState(1);
   const [permutationData, setPermutationData] = useState(null);
   const [mainCard, setMainCard] = useState(null);
   const [firstTableData, setFirstTableData] = useState(null);
