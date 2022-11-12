@@ -41,7 +41,7 @@ const ListTable = ({_tickets,_ticketsChild, _GetTicketNumber,_auth,_resetTable,_
     });
 
 
-      const itemsPerPage  = 10;
+      const itemsPerPage  = 5;
  
       const [currentItems, setCurrentItems] = useState(null);
       const [pageCount, setPageCount] = useState(0);
@@ -472,7 +472,7 @@ const handlePageClick = (event) => {
                                 ))}
                             </tbody>
                         </table>
-                                                    <Table data={currentItems} _childShowTable={childShowTable}/>
+                                                    <Table data={ticket} _childShowTable={childShowTable}/>
                     </div>
                     <div className="clearfix d-flex align-items-center justify-content-center">
                         { pageCount > 1 ?

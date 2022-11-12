@@ -36,19 +36,23 @@ const Table = props => {
                 style: {
                     paddingLeft: '8px', // override the cell padding for head cells
                     paddingRight: '8px',
+                    borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
+                    borderTop: '1px solid rgba(0, 0, 0, 0.12)'
                 },
             },
             cells: {
                 style: {
                     paddingLeft: '8px', // override the cell padding for data cells
                     paddingRight: '8px',
+                    borderLeft: '1px solid rgba(0, 0, 0, 0.12)'
                 },
             },
         };
     const columns = [
         {
             name: t('No'),
-            cell: (row, index) => index+1,
+            selector: (row, index) => row.id,
+            sortable: true,
         },
         {
             name: t('Ticket_No'),

@@ -29,8 +29,8 @@ const Table = props => {
         rows: {
             style: {
                 minWidth: 'fit-content',
-                paddingTop: '10px',
-                paddingBottom: '10px',
+                // paddingTop: '10px',
+                // paddingBottom: '10px',
             },
         },
         headCells: {
@@ -38,6 +38,9 @@ const Table = props => {
                 paddingLeft: '4px', // override the cell padding for head cells
                 paddingRight: '4px',
                 maxWidth: 'fit-content',
+                borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
+                borderTop: '1px solid rgba(0, 0, 0, 0.12)',
+                // justifyContent: 'center'
 
             },
         },
@@ -46,6 +49,8 @@ const Table = props => {
                 paddingLeft: '4px', // override the cell padding for data cells
                 paddingRight: '4px',
                 maxWidth: 'fit-content',
+                borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
+                justifyContent: 'center',
             },
         },
     };
