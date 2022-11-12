@@ -191,7 +191,7 @@ const Header = ({_auth,datauser, updateSessionData, setUpdateSessionData}) => {
                               </span></span>
                           </li>
                           <li className="hide-650">
-                              <Link href="/betting"><span className="play-lottery-btn " role="button">{t('Play_Lottery')}</span></Link>
+                              <Link href="/betting"><span className="play-lottery-btn " role="button">{t('Play_now')}</span></Link>
                           </li>
                           <li className="dropdown position-relative">
                           <div className="">

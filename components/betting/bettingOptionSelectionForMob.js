@@ -333,6 +333,7 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
                                                     _gameCount={gameCount}
                                                     _setBettingInitData={setBettingInitData}
                                                     _setActiveAll={setActiveAll}
+                                                    _gameSelectOrNot={gameSelectOrNot}
             />) )}
 
 
