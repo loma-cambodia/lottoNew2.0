@@ -16,7 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {updateUser, updateUserWithSession} from '../../store/actions/authActions';
 import {twoDecimalPlaceWithAmount, twoDecimalPlaceWithoutRound} from './../Utils';
 import LogoutModal from "../modal/logoutModal";
-import styles from '../../styles/Home.module.css';
 
 const Header = ({_auth,datauser, updateSessionData, setUpdateSessionData}) => {
 
@@ -191,7 +190,7 @@ const Header = ({_auth,datauser, updateSessionData, setUpdateSessionData}) => {
 
                               </span></span>
                           </li>
-                          <li className={styles.device_detect_for_desktop}>
+                          <li className="hide-650">
                               <Link href="/betting"><span className="play-lottery-btn " role="button">{t('Play_now')}</span></Link>
                           </li>
                           <li className="dropdown position-relative">

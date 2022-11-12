@@ -23,7 +23,7 @@ const customStyles = {
   }; 
 
 const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
-    _bettingInitData,_limit,_gameCount,_setBettingInitData,_setActiveAll}) => {
+    _bettingInitData,_limit,_gameCount,_setBettingInitData,_setActiveAll,_gameSelectOrNot}) => {
     let limit = _limit;
 
     const auth = useSelector(state => state.auth);
@@ -66,7 +66,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             return(
                 <>
                     <div className='col-6'>
-                        <button disabled className="form-control text-light" style={{ background: 'black' }}> 
+                        <button disabled className="form-control text-secondary" style={{ background: 'lightgray' }}> 
                             <b>{t('BET')}</b> 
                         </button> 
                     </div>
@@ -142,6 +142,14 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             }
         }
         if(curserPointer == 'number4d'){
+            if(!_gameSelectOrNot){
+                let toastId = null
+                if(!toast.isActive(toastId)){
+                    toast.error(t('select_game_and_date'), 
+                    {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                    pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+                }
+            }
             let numberVal = numberValue4D.toString();
             if (numberVal.includes("R")){
                 if(getValue == "R"){
@@ -164,6 +172,15 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             }
         }
         if(curserPointer == 'number3d'){
+            if(!_gameSelectOrNot){
+                let toastId = null
+                if(!toast.isActive(toastId)){
+                    toast.error(t('select_game_and_date'), 
+                    {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                    pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+                }
+                return false;
+            }
             let numberVal = numberValue3D.toString();
             if (numberVal.includes("R")){
                 if(getValue == "R"){
@@ -907,6 +924,15 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
     }
     
     const previewSubmitData = (getAction, getIndex = 0) => {
+        if(!_gameSelectOrNot){
+            let toastId = null
+            if(!toast.isActive(toastId)){
+                toast.error(t('select_game_and_date'), 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+            }
+            return false;
+        }
         let finalSubmitData = _finalSubmitData;
         if(getAction == 'remove'){
             finalSubmitData = finalSubmitData.filter((item,id) => id != getIndex);
@@ -1267,11 +1293,11 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
     return (
        
         <>
-        <ToastContainer />
-            {activeGameType ? 
-                <>  
-                    <div className="row" onClick={() => hideError()}>
-                        <div className="col-6">
+            <ToastContainer />
+            <div className="row g-1" onClick={() => hideError()}>
+                {activeGameType ? 
+                    <>  
+                        <div className="col-6" style={{ padding: '-1px' }}>
                             <input type="text" 
                                 inputMode='none'
                                 className="form-control" 
@@ -1286,7 +1312,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                                 style={{ border: curserPointer == 'number4d' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
-                        <div className="col-3">
+                        <div style={{position:'relative',padding: '0px'}} className="col-3">
                             <input 
                                 inputMode='none'
                                 type="text" 
@@ -1301,7 +1327,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                             <span className="betTip" id={'ErrorBig'}></span>
                             <span className="betTip" id={'amountAsNull'}></span>
                         </div>
-                        <div className="col-3">
+                        <div style={{position:'relative',padding: '-0.9px'}} className="col-3">
                             <input 
                                 inputMode='none'
                                 type="text" 
@@ -1315,12 +1341,11 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                             <span className="betTip" id={'ErrorSmall'}></span>
                             <span className="betTip" id={'amountAsNull'}></span>
                         </div>
-                    </div>
-                </> : 
-                
-                <>
-                    <div onClick={() => hideError()} className="row">
-                        <div className="col-6">
+                        
+                    </> : 
+                    
+                    <>
+                        <div className="col-6" style={{ padding: '-1px' }}>
                             <input type="text" 
                                 inputMode='none'
                                 className="form-control" 
@@ -1335,7 +1360,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                                 style={{ border: curserPointer == 'number3d' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
-                        <div className="col-3">
+                        <div style={{position:'relative',padding: '0px'}} className="col-3">
                             <input 
                                 inputMode='none'
                                 type="text" 
@@ -1351,7 +1376,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                             <span className="betTip" id={'ErrorA'}></span>
                             <span className="betTip" id={'amountAsNull'}></span>
                         </div>
-                        <div className="col-3">  
+                        <div style={{position:'relative',padding: '-0.9px'}} className="col-3">  
                             <input 
                                 inputMode='none'
                                 type="text" 
@@ -1367,9 +1392,9 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                             <span className="betTip" id={'ErrorC'}></span>
                             <span className="betTip" id={'amountAsNull'}></span>
                         </div>
-                    </div>
-                </>  
-            }
+                    </>  
+                }
+            </div>
 
                 {isLoading ? (
                     <div className="loader-Mob-1">
