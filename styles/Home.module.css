@@ -258,7 +258,7 @@ footer.logo {
 
 @media(max-width:580px) {
   .device_detect_for_desktop {
-    display: none;
+    display: none !important;
   }
   .device_detect_for_mobile {
     display: block;

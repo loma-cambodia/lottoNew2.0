@@ -1271,7 +1271,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             {activeGameType ? 
                 <>  
                     <div className="row" onClick={() => hideError()}>
-                        <div className="col-6" style={{ padding: '-1px' }}>
+                        <div className="col-6">
                             <input type="text" 
                                 inputMode='none'
                                 className="form-control" 
@@ -1286,7 +1286,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                                 style={{ border: curserPointer == 'number4d' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
-                        <div style={{position:'relative',padding: '0px'}} className="col-3">
+                        <div className="col-3">
                             <input 
                                 inputMode='none'
                                 type="text" 
@@ -1301,7 +1301,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                             <span className="betTip" id={'ErrorBig'}></span>
                             <span className="betTip" id={'amountAsNull'}></span>
                         </div>
-                        <div style={{position:'relative',padding: '-0.9px'}} className="col-3">
+                        <div className="col-3">
                             <input 
                                 inputMode='none'
                                 type="text" 
@@ -1320,7 +1320,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                 
                 <>
                     <div onClick={() => hideError()} className="row">
-                        <div className="col-6" style={{ padding: '-1px' }}>
+                        <div className="col-6">
                             <input type="text" 
                                 inputMode='none'
                                 className="form-control" 
@@ -1335,7 +1335,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                                 style={{ border: curserPointer == 'number3d' ? ' 2px solid #bc2263' : '' }}
                             />
                         </div>
-                        <div style={{position:'relative',padding: '0px'}} className="col-3">
+                        <div className="col-3">
                             <input 
                                 inputMode='none'
                                 type="text" 
@@ -1351,7 +1351,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                             <span className="betTip" id={'ErrorA'}></span>
                             <span className="betTip" id={'amountAsNull'}></span>
                         </div>
-                        <div style={{position:'relative',padding: '-0.9px'}} className="col-3">  
+                        <div className="col-3">  
                             <input 
                                 inputMode='none'
                                 type="text" 
