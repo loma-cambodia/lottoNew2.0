@@ -50,7 +50,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
 
     const [isLoading,  setIsLoading] = React.useState(false);
 
-
+  
     function SubmitButtonShows(){
         if(mainSubmitData.length != 0){
             return(
