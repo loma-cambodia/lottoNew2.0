@@ -248,6 +248,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
         setA3Value('');
         setC3Value('');
         
+        callActiveInputBetNumber();
 
         let localStateInitData = {
             number: { value: "", disabled: 0 },
@@ -261,6 +262,17 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
         
         let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}}];
         _setLocalStateInitDataParent(bettingInputsData);
+       
+    }
+    const callActiveInputBetNumber = () => { 
+        if(activeGameType == false){
+            // alert('3d');
+            setCurserPointer('number3d');       
+        }
+        if(activeGameType == true){
+            // alert('4d');
+            setCurserPointer('number4d');       
+        }
     }
     const resetAllData = () => {
         // alert('pppp');
@@ -1155,6 +1167,9 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                 setLocalStateData('');
                 allClearData();
             }
+            
+            callActiveInputBetNumber();
+        
         }
         _setFinalSubmitData(finalSubmitData);
 
