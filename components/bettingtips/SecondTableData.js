@@ -247,7 +247,7 @@ import {
                           <th>{t('3rd')}</th>
                           <th>{t('S')}</th>
                           <th>{t('C')}</th>
-                          <th className="text-end">{t('Total')}</th>
+                          <th className="text-end">{t('Total_Count')}</th>
                           {/* <th className="text-end">Big</th>
                           <th className="text-end">Small</th> */}
                           <th>{t('LastDraw')}</th>

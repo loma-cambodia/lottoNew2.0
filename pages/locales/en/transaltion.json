@@ -315,7 +315,8 @@
     "LastDraw":"Last Draw",
     "Yes":"Yes",
     "Not":"No",
-    "Please_Enter_Bet_Number":"Please Enter Bet Number"
+    "Please_Enter_Bet_Number":"Please Enter Bet Number",
+    "Total_Count":"Total Count"
 
 
 }
