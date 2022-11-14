@@ -143,7 +143,7 @@ export default function SearchNumber({
 
   const searchClick = () => {
     let toastId = null;
-    if (number.length < 3) {
+    if (number.length < 4) {
       if (!toast.isActive(toastId)) {
         toast.error(t("Please_Enter_Bet_Number"), {
           position: "top-right",
