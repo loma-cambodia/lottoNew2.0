@@ -34,13 +34,13 @@ import {
                 permutationData &&
                 permutationData.map((value, index) => {
                   return (
-                    <>
+                    
                       <li key={index} className="list-inline-item">
                         <span className="badge bg-light text-dark">
                           {value}
                         </span>
                       </li>
-                    </>
+                    
                   );
                 })}
             </ul>

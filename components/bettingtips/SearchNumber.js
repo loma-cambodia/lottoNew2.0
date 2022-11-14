@@ -79,7 +79,7 @@ export default function SearchNumber({
   const [isLoading, setIsLoading] = useState(false);
   const [numberM, setNumberM] = useState("");
 
-  function getallcompanydata() {
+  const getallcompanydata = ()=> {
     let dateAndGameOptionData = [];
     if (oddSet) {
       let tempObject = [];
@@ -133,6 +133,7 @@ export default function SearchNumber({
         else setChangeData(1);
       }
       setPrizeInitData(data);
+      console.log(data)
     }
   };
 
@@ -142,18 +143,25 @@ export default function SearchNumber({
 
   const searchClick = () => {
     let toastId = null;
-    if (number.length < 3) {
+    let toast_style = {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      toastId: 1,
+    }
+    if (number.length == 0) {
       if (!toast.isActive(toastId)) {
-        toast.error(t("Please_Enter_Bet_Number"), {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          toastId: 1,
-        });
+        toast.error(t("Please_Enter_Bet_Number"), toast_style);
+      }
+      return false;
+    }
+    else if (number.length > 0 && number.length < 4){
+      if (!toast.isActive(toastId)) {
+        toast.error(t("Please_Enter_Valid_Number"), toast_style);
       }
       return false;
     }
@@ -210,6 +218,14 @@ export default function SearchNumber({
           prizes.push(tempObject);
         }
       });
+    }
+
+    if(prizeInitData.every(element => element.selected == false))
+    {
+      setPrizeInitData(prizeObject)
+      $('#flexCheckDefault21').prop('checked',true);
+      $('#flexCheckDefault22').prop('checked',true);
+      $('#flexCheckDefault23').prop('checked',true);
     }
     // return false;
     const searchPostData = {
