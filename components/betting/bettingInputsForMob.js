@@ -23,7 +23,7 @@ const customStyles = {
   }; 
 
 const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,activeGameType, _finalSubmitData, _setFinalSubmitData,
-    _bettingInitData,_limit,_gameCount,_setBettingInitData,_setActiveAll}) => {
+    _bettingInitData,_limit,_gameCount,_setBettingInitData,_setActiveAll,_gameSelectOrNot}) => {
     let limit = _limit;
 
     const auth = useSelector(state => state.auth);
@@ -50,7 +50,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
 
     const [isLoading,  setIsLoading] = React.useState(false);
 
-
+  
     function SubmitButtonShows(){
         if(mainSubmitData.length != 0){
             return(
@@ -66,7 +66,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             return(
                 <>
                     <div className='col-6'>
-                        <button disabled className="form-control text-light" style={{ background: 'black' }}> 
+                        <button disabled className="form-control text-secondary" style={{ background: 'lightgray' }}> 
                             <b>{t('BET')}</b> 
                         </button> 
                     </div>
@@ -142,6 +142,14 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             }
         }
         if(curserPointer == 'number4d'){
+            if(!_gameSelectOrNot){
+                let toastId = null
+                if(!toast.isActive(toastId)){
+                    toast.error(t('select_game_and_date'), 
+                    {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                    pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+                }
+            }
             let numberVal = numberValue4D.toString();
             if (numberVal.includes("R")){
                 if(getValue == "R"){
@@ -164,6 +172,15 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
             }
         }
         if(curserPointer == 'number3d'){
+            if(!_gameSelectOrNot){
+                let toastId = null
+                if(!toast.isActive(toastId)){
+                    toast.error(t('select_game_and_date'), 
+                    {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                    pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+                }
+                return false;
+            }
             let numberVal = numberValue3D.toString();
             if (numberVal.includes("R")){
                 if(getValue == "R"){
@@ -231,6 +248,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
         setA3Value('');
         setC3Value('');
         
+        callActiveInputBetNumber();
 
         let localStateInitData = {
             number: { value: "", disabled: 0 },
@@ -244,6 +262,17 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
         
         let bettingInputsData = [ {name:'01',dataInit:{...localStateInitData}}];
         _setLocalStateInitDataParent(bettingInputsData);
+       
+    }
+    const callActiveInputBetNumber = () => { 
+        if(activeGameType == false){
+            // alert('3d');
+            setCurserPointer('number3d');       
+        }
+        if(activeGameType == true){
+            // alert('4d');
+            setCurserPointer('number4d');       
+        }
     }
     const resetAllData = () => {
         // alert('pppp');
@@ -907,6 +936,15 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
     }
     
     const previewSubmitData = (getAction, getIndex = 0) => {
+        if(!_gameSelectOrNot){
+            let toastId = null
+            if(!toast.isActive(toastId)){
+                toast.error(t('select_game_and_date'), 
+                {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+                pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+            }
+            return false;
+        }
         let finalSubmitData = _finalSubmitData;
         if(getAction == 'remove'){
             finalSubmitData = finalSubmitData.filter((item,id) => id != getIndex);
@@ -1129,6 +1167,9 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                 setLocalStateData('');
                 allClearData();
             }
+            
+            callActiveInputBetNumber();
+        
         }
         _setFinalSubmitData(finalSubmitData);
 
@@ -1267,10 +1308,10 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
     return (
        
         <>
-        <ToastContainer />
-            {activeGameType ? 
-                <>  
-                    <div className="row" onClick={() => hideError()}>
+            <ToastContainer />
+            <div className="row g-1" onClick={() => hideError()}>
+                {activeGameType ? 
+                    <>  
                         <div className="col-6" style={{ padding: '-1px' }}>
                             <input type="text" 
                                 inputMode='none'
@@ -1315,11 +1356,10 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                             <span className="betTip" id={'ErrorSmall'}></span>
                             <span className="betTip" id={'amountAsNull'}></span>
                         </div>
-                    </div>
-                </> : 
-                
-                <>
-                    <div onClick={() => hideError()} className="row">
+                        
+                    </> : 
+                    
+                    <>
                         <div className="col-6" style={{ padding: '-1px' }}>
                             <input type="text" 
                                 inputMode='none'
@@ -1367,9 +1407,9 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
                             <span className="betTip" id={'ErrorC'}></span>
                             <span className="betTip" id={'amountAsNull'}></span>
                         </div>
-                    </div>
-                </>  
-            }
+                    </>  
+                }
+            </div>
 
                 {isLoading ? (
                     <div className="loader-Mob-1">

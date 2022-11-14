@@ -44,7 +44,7 @@
     "smalltext_lotto":"Lotteries",
     "Net_Amount":"Net Amount",
     "Total":"Total",
-    "Result":"Results",
+    "Result":"Draw Result",
     "Bet_Details":"Bet Details",
     "Success":"Success",
     "Winning_Amount":" Winning Amount",
@@ -315,7 +315,8 @@
     "LastDraw":"Last Draw",
     "Yes":"Yes",
     "Not":"No",
-    "Please_Enter_Bet_Number":"Please Enter Bet Number"
+    "Please_Enter_Bet_Number":"Please Enter Bet Number",
+    "Total_Count":"Total Count"
 
 
 }

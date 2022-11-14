@@ -44,7 +44,7 @@
     "smalltext_lotto":"彩票",
     "Net_Amount":"净额",
     "Total":"总金额",
-    "Result":"结果",
+    "Result":"开奖成绩",
     "Bet_Details":"投注详情",
     "Success":"成功",
     "Winning_Amount":"中奖金额",
@@ -313,7 +313,7 @@
     "LastDraw":"最后抽奖",
     "Yes":"是",
     "Not":"否",
-    "Please_Enter_Bet_Number":"请输入投注号码"
-
+    "Please_Enter_Bet_Number":"请输入投注号码",
+    "Total_Count":"总数"
 
 }
