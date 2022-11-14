@@ -17,7 +17,7 @@ import {
   const FirstTableData = ({firstTableData, permutationData, numberM, oddSet}) => {
     const { t } = useTranslation();
   
-    function PrizeSetComm({ prizeType }) {
+    function PrizeSetComm({prizeType }) {
         let prizeTypeStyle = "";
         let prizeTypeY = "";
         if (prizeType == "prize1") {
@@ -90,10 +90,10 @@ import {
                     if (permutationData.length > 0) {
                       permutationData.map((pdata) => {
                         if (value[game1] == pdata) {
-                          console.log('value[game1] pdata : '+index+ ' ',pdata)
-                          console.log('value[game1] : '+index+ ' ',value[game1])
-                          console.log('value[game1] game1 : '+index+ ' ',game1)
-                          console.log('value[game1] value : '+index+ ' ',value)
+                          // console.log('value[game1] pdata : '+index+ ' ',pdata)
+                          // console.log('value[game1] : '+index+ ' ',value[game1])
+                          // console.log('value[game1] game1 : '+index+ ' ',game1)
+                          // console.log('value[game1] value : '+index+ ' ',value)
                           // if(prizeType.some(f=> f.includes(game1.substring(0,6))) == false ){
                             prizeType.push(game1);
                             betNum.push(value[game1]);
@@ -112,17 +112,16 @@ import {
                       }
                     }
                   });
-                  console.log('value[game1] prizeType : '+index+ ' ',prizeType)
+                  // console.log('value[game1] prizeType : '+index+ ' ',prizeType)
                   return (
-                    <>
-                      <tr>
+                      <tr key={index}>
                         <td>{index + 1}</td>
                         <td>
-                          <b>{betNum.map((bv)=>(<>{bv}<br></br></>))}</b>
+                          <b>{betNum.map((bv,index)=>(<section key={index}>{bv}<br></br></section>))}</b>
                         </td>
                         <td>
                           {
-                            prizeType.map((pt)=>(<> <PrizeSetComm prizeType={pt} /><br></br> </>))
+                            prizeType.map((pt,index)=>(<section key={index}> <PrizeSetComm prizeType={pt} /><br></br> </section>))
                           }
                           
                         </td>
@@ -153,7 +152,6 @@ import {
                         </td>
                        
                       </tr>
-                    </>
                   );
                 })
               ) : (
