@@ -238,12 +238,28 @@ export default function SearchNumber({
     }
   }, [bettingTip, permutationData, mainCard, firstTableData, reserAllData]);
 
+  
+
   const resetClick = () => {
+
     setReserAllData(false);
     setNumber("");
     setNumberM("");
-    setPermutation(0);
-    getallcompanydata();
+    setPermutation(1);
+    $("#flexRadioDefault1").prop("checked", true);    
+    $("#flexRadioDefault2").prop("checked", false);    
+    $('#flexCheckDefault21').prop('checked',true);
+    $('#flexCheckDefault22').prop('checked',true);
+    $('#flexCheckDefault23').prop('checked',true);
+
+    setBettingInitData([
+     { game_play_id: 1,
+      selected: true},
+      { game_play_id: 2,
+        selected: false},
+        { game_play_id: 3,
+          selected: false}
+    ])
     setPrizeInitData(prizeObject);
     setPermutationData([]);
     setFirstTableData([]);
@@ -251,7 +267,6 @@ export default function SearchNumber({
     setStartDate(new Date("01/01/2016"));
     setEndDate(new Date());
   };
-
   // const getNetDrawDate = () => {
   //   let numberCount =
   //     mainCard && mainCard.avg_draw_gap ? mainCard.avg_draw_gap : 0;
