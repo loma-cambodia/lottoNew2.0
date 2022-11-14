@@ -143,18 +143,25 @@ export default function SearchNumber({
 
   const searchClick = () => {
     let toastId = null;
-    if (number.length < 4) {
+    let toast_style = {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      toastId: 1,
+    }
+    if (number.length == 0) {
       if (!toast.isActive(toastId)) {
-        toast.error(t("Please_Enter_Bet_Number"), {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          toastId: 1,
-        });
+        toast.error(t("Please_Enter_Bet_Number"), toast_style);
+      }
+      return false;
+    }
+    else if (number.length > 0 && number.length < 4){
+      if (!toast.isActive(toastId)) {
+        toast.error(t("Please_Enter_Valid_Number"), toast_style);
       }
       return false;
     }
