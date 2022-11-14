@@ -72,7 +72,7 @@ if(objectWithData.customer_id != 0){
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 
       <HomeSlider _specialDrawState={ specialDrawState} datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData} />
-      {announcementState && announcementState.length > 0 ? <Announcement _announcementState={ announcementState}  _language = { language }/> : null}
+      {announcementState && announcementState.length > 0 ? <Announcement _announcementState={ announcementState} _auth={auth}  _language = { language }/> : null}
       <PayoutSection _transactions={transactions}/>
       <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>
       <HowToPlay/>
