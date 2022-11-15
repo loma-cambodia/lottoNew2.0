@@ -2755,6 +2755,11 @@
     box-shadow: none;
     outline: 0;
   }
+  @media (max-width: 575px) {
+    .search-number-daterangepickerstyle{
+      width: 100%;
+    }
+  }
     @media (min-width: 576px) {
     .container-sm,
     .container {

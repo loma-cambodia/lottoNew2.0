@@ -392,7 +392,7 @@ export default function SearchNumber({
         <Container>
           <div className="clearfix curved-card bg-light shadow-sm mb-3">
                 <Row className="justify-content-center">
-                  <Col sm="6" lg="1" md="3">
+                  <Col sm="6" lg="2" md="3">
                     <FormGroup>
                       <label className="fw-bold mb-2">{t("Number")}</label>
                       <input
@@ -403,14 +403,14 @@ export default function SearchNumber({
                         }}
                         onChange={(e) => setNumber(e.target.value)}
                         type="text"
-                        placeholder={t("Number")}
+                        placeholder={t("4D_Bet_Number")}
                         className="form-control-custom"
                         minLength={3}
                         maxLength={4}
                         required
                         autoComplete="off"
                         value={number && !search ? number : ""}
-                        title={t("Number")}
+                        title= {t("Number")}
                       />
                     </FormGroup>
                   </Col>
@@ -653,7 +653,7 @@ export default function SearchNumber({
                       </ul>
                     </FormGroup>
                   </Col>
-                  <Col sm="6" lg="3" md="6">
+                  <Col sm="6" lg="2" md="6">
                     <FormGroup>
                       <label className="fw-bold mb-2">{t("Prize")}</label>
                       <ul className="list-inline mb-0 small">
