@@ -78,6 +78,7 @@ export default function SearchNumber({
   const [reserAllData, setReserAllData] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [numberM, setNumberM] = useState("");
+  const [isActive, setIsActive] = useState(false);
 
   const getallcompanydata = ()=> {
     let dateAndGameOptionData = [];
@@ -116,7 +117,8 @@ export default function SearchNumber({
         if (changeData) setChangeData(0);
         else setChangeData(1);
       }
-    }
+      checkSearchBtn()
+    }    
   };
 
   const selectPrize = (id) => {
@@ -133,13 +135,24 @@ export default function SearchNumber({
         else setChangeData(1);
       }
       setPrizeInitData(data);
-      console.log(data)
     }
   };
+
+  const checkSearchBtn =()=>{
+    if (bettingInitData.every(element => element.selected == false) || number.length < 4){
+      setIsActive(false)
+    }
+    else
+      setIsActive(true)
+  }
 
   useEffect(() => {
     getallcompanydata();
   }, [oddSet]);
+
+  useEffect(() => {
+    checkSearchBtn()
+  }, [number,bettingInitData]);
 
   const searchClick = () => {
     let toastId = null;
@@ -161,7 +174,7 @@ export default function SearchNumber({
     }
     else if (number.length > 0 && number.length < 4){
       if (!toast.isActive(toastId)) {
-        toast.error(t("Please_Enter_Valid_Number"), toast_style);
+        toast.error(t("Please_type_4_digits_in_number_field"), toast_style);
       }
       return false;
     }
@@ -671,10 +684,10 @@ export default function SearchNumber({
                     <FormGroup style={{ float: "right" }}>
                       {/* <label className="d-block mb-2">&nbsp;</label> */}
                       <button
-                        onClick={() => searchClick()}
+                        onClick={() => isActive? searchClick():''}
                         type="button"
                         id="search"
-                        className="btn-custom-curve2-sm w-auto me-2"
+                        className={`${isActive ? "":"button-disable" } btn-custom-curve2-sm w-auto me-2`}
                       >
                         {t("Search")}
                       </button>
