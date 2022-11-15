@@ -2755,6 +2755,12 @@
     box-shadow: none;
     outline: 0;
   }
+  .search-number-disabled{
+    background: #d3d3d3!important;
+    font-weight: bolder;
+    color: #6c757c!important;
+    border: 0px!important;
+  }
   @media (max-width: 575px) {
     .search-number-daterangepickerstyle{
       width: 100%;

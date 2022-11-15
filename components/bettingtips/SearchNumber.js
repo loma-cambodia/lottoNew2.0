@@ -687,7 +687,7 @@ export default function SearchNumber({
                         onClick={() => isActive? searchClick():''}
                         type="button"
                         id="search"
-                        className={`${isActive ? "":"button-disable" } btn-custom-curve2-sm w-auto me-2`}
+                        className={`${isActive ? "":"search-number-disabled" } btn-custom-curve2-sm w-auto me-2`}
                       >
                         {t("Search")}
                       </button>
