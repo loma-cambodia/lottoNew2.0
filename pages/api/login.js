@@ -39,7 +39,7 @@ async function handler(req, res) {
   //console.log('data:',`${data}`);
   //console.log(data);
 
-  if (data.success == true) {
+  if (data.success == true && 0) {
     req.session.user = data
     await req.session.save();
     //res.redirect(307, '/')
@@ -47,7 +47,9 @@ async function handler(req, res) {
    // location.reload();
     res.send('You are Logged in, Please Go back')
   } else {
-    res.send('Worng Data')
+    //res.send('Worng Data12')
+    res.redirect(302, '/404');
+
   }
 
 }
