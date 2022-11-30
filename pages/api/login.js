@@ -42,8 +42,8 @@ async function handler(req, res) {
   if (data.success == true) {
     req.session.user = data
     await req.session.save();
-    res.redirect(307, '/')
-   // res.redirect(302, '/');
+   // res.redirect(307, '/')
+    res.redirect(302, '/');
    // location.reload();
     res.send('You are Logged in, Please Go back')
   } else {
