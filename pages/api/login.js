@@ -39,7 +39,7 @@ async function handler(req, res) {
   //console.log('data:',`${data}`);
   //console.log(data);
 
-  if (data.success == true && 0) {
+  if (data.success == true) {
     req.session.user = data
     await req.session.save();
     res.redirect(307, '/')
