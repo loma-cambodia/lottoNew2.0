@@ -44,7 +44,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
 
                         if(getValue == false){
                         initData.games.map((game) => {
-                            selectUnSelectgame(true,game.name,false)
+                            selectUnSelectgame(true,getId,game.name,false)
                         });
 
                         }
@@ -66,11 +66,14 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
 
                 }
 
-        const selectUnSelectgame =(dateSelect,gId,gselected)=>{ // selectUnSelectgame
+        const selectUnSelectgame =(dateSelect,itemId,gId,gselected)=>{ // selectUnSelectgame
 
                     
-                    if(dateSelect)
-                    {
+                    if(!dateSelect)
+                        selectUnSelectDate(!dateSelect, itemId)
+
+                    
+
                             const newState = initData.games.map(game => {
                                 if (game.name == gId){
                                     return {  ...game, 
@@ -87,7 +90,7 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
 
                             _bettingInitData[findArrayIndex(_bettingInitData,initData.id)] = initData
                             _setBettingInitData(_bettingInitData);
-        }
+        
            
         }
 
@@ -100,61 +103,93 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
       },);
     
       
-    return(
-        <div className="col-md-3 col-sm-6" 
+    return (
+      <div className="col-md-3 col-sm-6">
+        <div
+          className={`${
+            initData.selected ? "selected" : "unselected"
+          } date-lottery-selector`}
         >
-           
-        <div 
-        className= {`${initData.selected ? "selected":"unselected"} date-lottery-selector`}>
-            {/* <div className="d-flex align-items-center"
+          {/* <div className="d-flex align-items-center"
                     onClick={() => selectUnSelectDate(!initData.selected)}
             > */}
-           <div className="d-flex align-items-center"> 
-           {initData.status == "upcoming" ? 
-
-                    <>
-                    <div className="round">
-                        <input type="checkbox" id={initData.id} defaultChecked={initData.selected} disabled/>
-                        <label htmlFor={initData.id}></label>
-                    </div>
-                    <div className="day-n-date">
-                        <p className="fw-bold mb-0">{t(initData.day)}</p>
-                        <p className="mb-0">{initData.date}</p>
-                    </div>
-                    </>
-         
-                : 
-                        <>
-                        <div className="round">
-                            <input type="checkbox" id={initData.id} defaultChecked={initData.selected} />
-                            <label htmlFor={initData.id}
-                                onClick={() => selectUnSelectDate(!initData.selected, item.id)}
-                            ></label>
-                        </div>
-                        <div className="day-n-date" style={{cursor:'pointer'}}
-                            onClick={() => selectUnSelectDate(!initData.selected, item.id)}
-                        >
-                            <p className="fw-bold mb-0">{t(initData.day)}</p>
-                            <p className="mb-0">{initData.date}</p>
-                        </div>
-                        </>
-           }
-                
-            </div>
-            <div className="d-flex">
-                <div className='round'/>
-                <div className="select-gp" id="checkboxes">
-                    <ul id="checkboxes" className="list-inline">
-                        {initData.games.map((game,id) =>(
-                        <li key={id} className={`${initData.selected ? "":""} list-inline-item`}>
-                            <span onClick={() => selectUnSelectgame(initData.selected,game.name,!game.selected)} className={`${game.selected ? "selected-gp-btn":""} outer-circle-gp`} title={t('Select')}>
-                                <span className="inner-circle-gp">
-                                    <img className="img-fluid" src={game.image}/>
-                                </span>
-                            </span>
-                        </li>
-                        ))}
-                        {/* <li className="list-inline-item">
+          <div className="d-flex align-items-center" >
+            {initData.status == "upcoming" ? (
+              <>
+                <div className="round">
+                  <input
+                    type="checkbox"
+                    id={initData.id}
+                    defaultChecked={initData.selected}
+                    disabled
+                  />
+                  <label htmlFor={initData.id}></label>
+                </div>
+                <div className="day-n-date">
+                  <p className="fw-bold mb-0">{t(initData.day)}</p>
+                  <p className="mb-0">{initData.date}</p>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="round" >
+                  <input
+                    type="checkbox"
+                    id={initData.id}
+                    checked={initData.selected}
+                  />
+                  <label
+                    htmlFor={initData.id}
+                    onClick={() =>
+                      selectUnSelectDate(!initData.selected, item.id)
+                    }
+                  ></label>
+                </div>
+                <div
+                  className="day-n-date"
+                  style={{ cursor: "pointer" }}
+                  onClick={() =>
+                    selectUnSelectDate(!initData.selected, item.id)
+                  }
+                >
+                  <p className="fw-bold mb-0">{t(initData.day)}</p>
+                  <p className="mb-0">{initData.date}</p>
+                </div>
+              </>
+            )}
+          </div>
+          <div className="d-flex">
+            <div className="round" />
+            <div className="select-gp" id="checkboxes">
+              <ul id="checkboxes" className="list-inline">
+                {initData.games.map((game, id) => (
+                  <li
+                    key={id}
+                    className={`${
+                      initData.selected ? "" : ""
+                    } list-inline-item`}
+                  >
+                    <span
+                      onClick={() =>
+                        selectUnSelectgame(
+                          initData.selected,
+                          item.id,
+                          game.name,
+                          !game.selected
+                        )
+                      }
+                      className={`${
+                        game.selected ? "selected-gp-btn" : ""
+                      } outer-circle-gp`}
+                      title={t("Select")}
+                    >
+                      <span className="inner-circle-gp">
+                        <img className="img-fluid" src={game.image} />
+                      </span>
+                    </span>
+                  </li>
+                ))}
+                {/* <li className="list-inline-item">
                             <span className="outer-circle-gp" title="Select">
                                 <span className="inner-circle-gp">
                                     <img className="img-fluid" src="assets/images/icons/damacai.png"/>
@@ -175,8 +210,8 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                                 </span>
                             </span>
                         </li> */}
-                    </ul>
-                    {/* <input type="checkbox" id="damacai" checked={initData.damacai}/>
+              </ul>
+              {/* <input type="checkbox" id="damacai" checked={initData.damacai}/>
                   <label className="gamesPicked" htmlFor="damacai">
                     <img style={{maxWidth:'30px'}} src="img/logo da MACAI.png"></img>
                   </label>
@@ -188,11 +223,11 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
                   <label className="gamesPicked" htmlFor="toto">
                       <img style={{maxWidth:'30px'}} src="img/LOGO TOTO.png"></img>
                   </label> */}
-                </div>
             </div>
+          </div>
         </div>
-    </div>
-    )
+      </div>
+    );
 
 }
 export default DateAndGameOption;

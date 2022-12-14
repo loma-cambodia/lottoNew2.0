@@ -10,7 +10,10 @@ const DateAndGameOption = ({item,_bettingInitData,_setBettingInitData,_loadpageC
         let newArr = [];
         if(work == 'child'){
             newArr = bettingInitData.map(obj => {
-                if (obj.id === dateId && obj.selected) {
+                if (obj.id === dateId ) {
+                    if(!obj.selected)
+                        selectUnSelectgame(item.id,'','parent')
+
                     return {...obj, "games":obj.games.map(itemGame => {
                         let itemGameNew = {...itemGame};
                         if(itemGame.id == gameId){
