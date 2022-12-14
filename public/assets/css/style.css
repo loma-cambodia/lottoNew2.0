@@ -200,35 +200,24 @@
     }
     
     .play-lottery-btn {
-      
-    transition: all 250ms;
-    display: inline-block;
-    color: #000;
-    /* --bs-link-hover-color: #bc2263; */
-    --bs-link-hover-color: #bc2263;
-    background-image: -moz-linear-gradient(
-    90deg,
-    rgb(253, 184, 3) 0%,
-    rgb(247, 234, 120) 100%
-    );
-    background-image: -webkit-linear-gradient(
-    90deg,
-    rgb(253, 184, 3) 0%,
-    rgb(247, 234, 120) 100%
-    );
-    background-image: -ms-linear-gradient(
-    90deg,
-    rgb(253, 184, 3) 0%,
-    rgb(247, 234, 120) 100%
-    );
-    padding: 10px 25px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    /* font-family: "Roboto Medium"; */
-    font-size: 14px;
-    text-transform: uppercase;
-    }
+      transition: all 250ms;
+      display: inline-block;
+      color: #000;
+      /* --bs-link-hover-color: #bc2263; */
+      --bs-link-hover-color: #bc2263;
+      background-image: -moz-linear-gradient( 90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100% );
+      background-image: -webkit-linear-gradient( 90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100% );
+      background-image: -ms-linear-gradient( 90deg, rgb(253, 184, 3) 0%, rgb(247, 234, 120) 100% );
+      padding: 10px 25px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      /* font-family: "Roboto Medium"; */
+      font-size: 14px;
+      text-transform: uppercase;
+      min-width: 133px;
+      text-align: center;
+  }
     .play-lottery-btn:hover {
         color: #000;
         box-shadow: 0px 8px 9px 0px rgba(253, 208, 5, 0.726);
@@ -504,8 +493,8 @@
         bottom: 100px;
     }
     .news-wrapper .announcement-text {
-        display: inherit;
-        min-width: 80px;
+      display: inherit;
+      width: auto;
     }
     .news-wrapper .toggle-icon-news {
         display: none;
@@ -1184,6 +1173,7 @@
     .selected .day-n-date p {
     color: #bc2263;
     }
+    
     .sno {
     display: block;
     width: 30px;
@@ -3797,9 +3787,7 @@ input.daterangepickerstyle-sm {
             border-width: 5px;
             border-style: solid;
             border-color: #e32e7a transparent transparent transparent;
-                        }
-
-                      
+                        }    
   .active-header a{
     color: #bc2263!important;
     font-weight: bold;
@@ -4539,7 +4527,7 @@ box-shadow: inset 0px 0px 20px 10px rgb(0 0 0 / 20%);
   } 
    
   button.lanugae-selector { 
-  width:70px; 
+  /* width:70px;  */
   } 
   } 
   @media (max-width:650px) { 
