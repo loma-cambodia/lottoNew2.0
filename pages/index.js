@@ -8,6 +8,8 @@ import Header from '../components/common/header';
 import HomeSlider from '../components/home/homeSlider';
 import Announcement from '../components/home/announcement';
 import PayoutSection from '../components/home/payoutSection';
+import PayoutSectionForMob from '../components/home/payoutSectionForMob';
+
 import GamePlayPrize from '../components/home/gamePlayPrize';
 import HowToPlay from '../components/home/howToPlay';
 import { useTranslation } from "react-i18next";
@@ -72,12 +74,20 @@ if(objectWithData.customer_id != 0){
       <Header datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData}/>
 
       <HomeSlider _specialDrawState={ specialDrawState} datauser={datauser} _auth={auth} updateSessionData={updateSessionData} setUpdateSessionData={setUpdateSessionData} />
-      {announcementState && announcementState.length > 0 ? <Announcement _announcementState={ announcementState} _auth={auth}  _language = { language }/> : null}
-      <PayoutSection _transactions={transactions}/>
-      <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>
-      <HowToPlay/>
+
+          {announcementState && announcementState.length > 0 ? <Announcement _announcementState={ announcementState} _auth={auth}  _language = { language }/> : null}
+
+      <div className={styles.device_detect_for_mobile}> 
+            <PayoutSectionForMob _transactions={transactions}/>
+      </div>
+
+      
       
       <div className={styles.device_detect_for_desktop}> 
+        <PayoutSection _transactions={transactions}/>
+        <GamePlayPrize _winnerResultDetails ={winnerResultDetails}/>
+        <HowToPlay/>
+
         <Footer/>
       </div>
 {/*--Footer--*/}
