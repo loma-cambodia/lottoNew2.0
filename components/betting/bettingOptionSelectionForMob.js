@@ -166,17 +166,20 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
   }
 
   function closeModal() {
-    setIsOpen(false);
+
     hideError();
     // alert('pppp');
+    console.log('1111');
   
     let dateAndGameOptionDataNew = [];
+    let isCompanySelected = false;
     if(_bettingDatesStore){
       bettingInitData.map(item => {
           let selectOrNot = false;
           item.games.map(itemGame => {
             if(itemGame.selected){
               selectOrNot = true;
+              isCompanySelected = true;
             }
           }) 
           let tempObject = {};   
@@ -199,6 +202,20 @@ const BettingOptionSelection = ({_bettingDatesStore,_lotterySubmitRecords,_betLi
       });
       setBettingInitData(dateAndGameOptionDataNew);
     }
+    
+    if(!isCompanySelected){
+      let toastId = null
+      if(!toast.isActive(toastId)){
+          toast.error(t('select_game_and_date'), 
+          {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,
+          pauseOnHover: true,draggable: true,progress: undefined, toastId:1});
+      }
+      return false;
+    }else{
+      setIsOpen(false);
+    }
+
+    // console.log('activeGameAllactiveGameAll',gameSelectOrNot);
   }
 
     const selectAllDate = () => {
