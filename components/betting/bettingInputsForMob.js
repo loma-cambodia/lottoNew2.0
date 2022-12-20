@@ -1308,7 +1308,7 @@ const BettingInputsForMob = ({ item,_setLocalStateInitDataParent,activeGame,acti
     return (
        
         <>
-            <ToastContainer />
+            {/* <ToastContainer /> */}
             <div className="row g-1" onClick={() => hideError()}>
                 {activeGameType ? 
                     <>  
