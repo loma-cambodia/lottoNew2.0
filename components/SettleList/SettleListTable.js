@@ -420,7 +420,7 @@ const handlePageClick = (event) => {
                                     <th className="text-center">{t('Ticket_No')}</th>
                                     <th className="text-center">{t('Betting_Time')}</th>
                                     <th className="text-center">{t('Draw_Date')}</th>
-                                    <th className="text-center">{t('Draw_Id')}</th>
+                                    {/* <th className="text-center">{t('Draw_Id')}</th> */}
                                     <th className="text-center">{t('Bet_Number')}</th>
                                     <th className="text-center">{t('Company')}</th>
                                     <th className="text-end">{t('Total')}</th>
@@ -437,7 +437,7 @@ const handlePageClick = (event) => {
                                         <td className="text-center" ><span  style={{color: '#0a58ca',cursor: 'pointer'}} onClick={() => childShowTable(item.id,'forDesk','settledList')} >{item.ticket_no}</span></td>
                                         <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td className="text-center">{moment(item.draw_date).format('DD-MM-YYYY')}</td>
-                                        <td className="text-center">{item.draw_number}</td>
+                                        {/* <td className="text-center">{item.draw_number}</td> */}
                                         <td className="text-center">{item.bet_number}</td>
                                         <td className="text-center">
                                         {
@@ -579,6 +579,7 @@ const handlePageClick = (event) => {
                                 <th className="text-start">{t('Detail_Number')}</th>
                                 <th className="text-center">{t('Betting_Time')}</th>
                                 <th className="text-center">{t('Draw_Date')}</th>
+                                <th className="text-center">{t('Draw_Id')}</th>
                                 <th className="text-center">{t('game')}</th>
                                 <th className="text-center">{t('Company')}</th>
                                 <th className="text-center">{t('Bet_Number')}</th>
@@ -602,6 +603,7 @@ const handlePageClick = (event) => {
                                     <td className="text-start"><a >{item.child_ticket_no}</a></td>
                                     <td className="text-center" >{moment(item.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
                                     <td className="text-center">{moment(item.ticket.draw_date).format('DD-MM-YYYY')}</td>
+                                    <td className="text-center">{item.draw_number}</td>
                                     <td className="text-center">{item.game_type}</td>
                                     <td className="text-center">{item.game && item.game.name ? item.game.name : ""}</td>
                                     <td className="text-center">{item.lottery_number}</td>
