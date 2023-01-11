@@ -179,7 +179,7 @@ const Header = ({_auth,datauser, updateSessionData, setUpdateSessionData}) => {
                       <ul className="right-part-list">
                           <li>
                               <span className="text-end mb-0 user-details">
-                                <span className="user-id text-black" >{auth && auth.auth  && auth.auth.name ? auth.auth.name[0].toUpperCase() + auth.auth.name.substring(1)  : "" }</span>
+                                <span className="user-id text-black" >{auth && auth.auth  && auth.auth.name ? auth.auth.name  : "" }</span>
                                 <span className="reload-icon" role="button"><span onClick={() => loginAPICall()}><img src="assets/images/icons/reload-white.png" alt="reload"/></span></span> <span className='text-black'>
                                 
                               { auth && auth.auth && auth && auth.auth.wallet && auth.auth.wallet.amount ? twoDecimalPlaceWithAmount(auth.auth.wallet.amount,1)  : "0.00" }
